@@ -1,7 +1,7 @@
 {
   "aboutus": {
     "sourceUrl": "https://jematellhomes.com/aboutus",
-    "title": "About Us — Jematell Homes",
+    "title": "About Us",
     "description": "At Jematell Homes, our mission is to bring your vision to life by constructing homes that blend innovative design, functionality, and comfort. We understand that your home is a reflection of your lifestyle and aspirations, and we strive to create spaces that perfectly suit your needs while maintaining the highest standards of construction.",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/64a6fa62b508db3128ec5684/1688664682365/Custom-home-builder-arizona.jpg?format=1500w",
     "blocks": [
@@ -59,7 +59,7 @@
   },
   "apache-junction": {
     "sourceUrl": "https://jematellhomes.com/apache-junction",
-    "title": "Custom Home Builder in Apache Junction, AZ | Jematell Homes — Jematell Homes",
+    "title": "Custom Home Builder in Apache Junction, AZ",
     "description": "Build your custom home in Apache Junction, AZ with Jematell Homes. Expert design, desert craftsmanship, and a personalized building experience from start to finish.",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/69cef07b701d8845a54f2ff9/1775169659250/23-DSC08379.jpg?format=1500w",
     "blocks": [
@@ -265,9 +265,9 @@
   },
   "blog-articles": {
     "sourceUrl": "https://jematellhomes.com/blog-articles",
-    "title": "Blog Articles | Start Your Home Journey Today — Jematell Homes",
+    "title": "Blog Articles",
     "description": "Explore expert insights on home building, custom homes, and smart technology. Discover guides and tips for creating your perfect, energy-efficient home.",
-    "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/64ace901de975b5c348335e2/1689053441214/profile+photo-01.jpg?format=1500w",
+    "ogImage": "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/1775144404853-V3Q4QY5GIGKTSWP5Y8HY/unsplash-image-r5WU0B6OUws.jpg",
     "blocks": [
       {
         "type": "img",
@@ -453,7 +453,7 @@
   },
   "build-on-your-lot": {
     "sourceUrl": "https://jematellhomes.com/build-on-your-lot",
-    "title": "Build On Your Lot — Jematell Homes",
+    "title": "Build On Your Lot",
     "description": "Already own land or planning to purchase a homesite? Building on your own lot gives you the freedom to create a home that fits your lifestyle, your vision, and your future. We make the process simple, transparent, and enjoyable—from your first consultation to move-in day.",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/69ceed3b701d8845a54f2d33/1775169933944/06-DJI_20260202163745_0044_D.jpg?format=1500w",
     "blocks": [
@@ -504,15 +504,7 @@
         "text": "Site evaluation and feasibility"
       },
       {
-        "type": "p",
-        "text": "Site evaluation and feasibility"
-      },
-      {
         "type": "li",
-        "text": "Floor plan selection and customization"
-      },
-      {
-        "type": "p",
         "text": "Floor plan selection and customization"
       },
       {
@@ -520,23 +512,11 @@
         "text": "Permits and approvals"
       },
       {
-        "type": "p",
-        "text": "Permits and approvals"
-      },
-      {
         "type": "li",
         "text": "Budget planning and financing guidance"
       },
       {
-        "type": "p",
-        "text": "Budget planning and financing guidance"
-      },
-      {
         "type": "li",
-        "text": "Construction and project management"
-      },
-      {
-        "type": "p",
         "text": "Construction and project management"
       },
       {
@@ -695,7 +675,7 @@
   },
   "buy-a-lot-with-us": {
     "sourceUrl": "https://jematellhomes.com/buy-a-lot-with-us",
-    "title": "Buy A Lot With Us — Jematell Homes",
+    "title": "Buy A Lot With Us",
     "description": "Buying the right piece of land is one of the most important steps in building your dream home—and it’s not always as simple as it seems. With our expertise in both real estate and home building, we help you find, evaluate, and purchase a lot with confidence.",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/69cef5b962e8ac760d38e0be/1775171001049/02-DJI_20260202163602_0035_D.jpg?format=1500w",
     "blocks": [
@@ -746,15 +726,7 @@
         "text": "Site access and usability"
       },
       {
-        "type": "p",
-        "text": "Site access and usability"
-      },
-      {
         "type": "li",
-        "text": "Utilities and infrastructure"
-      },
-      {
-        "type": "p",
         "text": "Utilities and infrastructure"
       },
       {
@@ -762,15 +734,7 @@
         "text": "Grading and drainage challenges"
       },
       {
-        "type": "p",
-        "text": "Grading and drainage challenges"
-      },
-      {
         "type": "li",
-        "text": "Zoning and building restrictions"
-      },
-      {
-        "type": "p",
         "text": "Zoning and building restrictions"
       },
       {
@@ -798,15 +762,7 @@
         "text": "What it will take to build on the lot"
       },
       {
-        "type": "p",
-        "text": "What it will take to build on the lot"
-      },
-      {
         "type": "li",
-        "text": "Potential site development costs"
-      },
-      {
-        "type": "p",
         "text": "Potential site development costs"
       },
       {
@@ -814,15 +770,7 @@
         "text": "Timeline considerations"
       },
       {
-        "type": "p",
-        "text": "Timeline considerations"
-      },
-      {
         "type": "li",
-        "text": "Any red flags before you buy"
-      },
-      {
-        "type": "p",
         "text": "Any red flags before you buy"
       },
       {
@@ -854,7 +802,7 @@
   },
   "carefree": {
     "sourceUrl": "https://jematellhomes.com/carefree",
-    "title": "Custom Home Builder in Carefree, AZ | Jematell Homes — Jematell Homes",
+    "title": "Custom Home Builder in Carefree, AZ",
     "description": "Build your custom home in Carefree, AZ with Jematell Homes. Expert design, desert craftsmanship, and a personalized building experience from start to finish.",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/69cef05c41b32c4b32114fac/1775169628831/Kitchen.jpg?format=1500w",
     "blocks": [
@@ -1060,7 +1008,7 @@
   },
   "casa-grande": {
     "sourceUrl": "https://jematellhomes.com/casa-grande",
-    "title": "Custom Home Builder in Casa Grande, AZ | Jematell Homes — Jematell Homes",
+    "title": "Custom Home Builder in Casa Grande, AZ",
     "description": "Build your custom home in Casa Grande, AZ with Jematell Homes. Quality craftsmanship, modern design, and a personalized building experience from start to finish.",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/69cef044701d8845a54f2fd5/1775169604941/10-IMG_7202.jpg?format=1500w",
     "blocks": [
@@ -1266,7 +1214,7 @@
   },
   "cave-creek": {
     "sourceUrl": "https://jematellhomes.com/cave-creek",
-    "title": "Custom Home Builder in Cave Creek, AZ | Jematell Homes — Jematell Homes",
+    "title": "Custom Home Builder in Cave Creek, AZ",
     "description": "Build your custom home in Cave Creek, AZ with Jematell Homes. Expert craftsmanship, personalized design, and homes built for desert living.",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/69cef0a9701d8845a54f301c/1775169705583/24-DSC09077.jpg?format=1500w",
     "blocks": [
@@ -1472,7 +1420,7 @@
   },
   "contact": {
     "sourceUrl": "https://jematellhomes.com/contact",
-    "title": "Contact — Jematell Homes",
+    "title": "Contact",
     "description": "Get Started Finding Your Dream Home. 602.421.5576 | info@jematellhomes.com",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/64a6fa8ea598664541a1c719/1688664727378/Custom-home-builder-arizona.jpg?format=1500w",
     "blocks": [
@@ -1501,7 +1449,7 @@
   },
   "custom-homes": {
     "sourceUrl": "https://jematellhomes.com/custom-homes",
-    "title": "Custom Homes — Jematell Homes",
+    "title": "Custom Homes",
     "description": "Learn About Building a Custom Home with Jematell Homes",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/677c6f7fc8bd04746dc4d007/1770054676656/06-Kitchen.jpg?format=1500w",
     "blocks": [
@@ -1644,9 +1592,9 @@
   },
   "floorplans": {
     "sourceUrl": "https://jematellhomes.com/floorplans",
-    "title": "Custom Home Floor Plans in Scottsdale & Phoenix, AZ  — Jematell Homes",
+    "title": "Custom Home Floor Plans in Scottsdale & Phoenix, AZ",
     "description": "Browse custom home floor plans from under 2,000 to over 3,000 sq ft. Jematell Homes builds semi-custom and fully custom homes across Scottsdale, Mesa, and Phoenix, AZ.",
-    "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/64ace901de975b5c348335e2/1689053441214/profile+photo-01.jpg?format=1500w",
+    "ogImage": "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/9dd598a4-90af-45ab-b64c-e6173da0836e/11-Kitchen.jpg",
     "blocks": [
       {
         "type": "img",
@@ -1673,7 +1621,7 @@
   },
   "fountain-hills": {
     "sourceUrl": "https://jematellhomes.com/fountain-hills",
-    "title": "Custom Home Builder in Fountain Hills, AZ | Jematell Homes — Jematell Homes",
+    "title": "Custom Home Builder in Fountain Hills, AZ",
     "description": "Create your custom home in Fountain Hills, AZ with Jematell Homes. Thoughtful design, quality construction, and a home built around your vision.",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/69bc674a8cab0f52b1048e59/1773954890028/07-DSC08319.jpg?format=1500w",
     "blocks": [
@@ -1879,7 +1827,7 @@
   },
   "gallery": {
     "sourceUrl": "https://jematellhomes.com/gallery",
-    "title": "Gallery — Jematell Homes",
+    "title": "Gallery",
     "description": "Our portfolio of completed homes",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/67533d0d8e07081cefe2801e/1733508369373/17-Primary+Bathroom.jpg?format=1500w",
     "blocks": [
@@ -1986,7 +1934,7 @@
   },
   "gallery_az-city-custom": {
     "sourceUrl": "https://jematellhomes.com/gallery_az-city-custom",
-    "title": "AZ City Custom — Jematell Homes",
+    "title": "AZ City Custom",
     "description": "A Custom home build in Arizona City",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/686307bdc130655fc0b7fdad/1751320509802/Front.jpg?format=1500w",
     "blocks": [
@@ -2066,7 +2014,7 @@
   },
   "gallery_cave-creek": {
     "sourceUrl": "https://jematellhomes.com/gallery_cave-creek",
-    "title": "Cave Creek Home — Jematell Homes",
+    "title": "Cave Creek Home",
     "description": "Explore this move-in-ready spec home in Cave Creek, AZ featuring luxury finishes, modern design, and stunning desert views. High-quality craftsmanship in a sought-after location close to nature and amenities",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/69852af46504d0400fb7d029/1770334964843/03-DJI_20260202163642_0038_D.jpg?format=1500w",
     "blocks": [
@@ -2276,7 +2224,7 @@
   },
   "gallery_cozy-comfort": {
     "sourceUrl": "https://jematellhomes.com/gallery_cozy-comfort",
-    "title": "Cozy Comfort — Jematell Homes",
+    "title": "Cozy Comfort",
     "description": "A cozy comfortable home with great mountain views",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/6753512cadb5fd79702e5e99/1733513521782/20240802200534558378000000-o.jpg?format=1500w",
     "blocks": [
@@ -2367,7 +2315,7 @@
   },
   "gallery_desert-retreat": {
     "sourceUrl": "https://jematellhomes.com/gallery_desert-retreat",
-    "title": "Desert Retreat — Jematell Homes",
+    "title": "Desert Retreat",
     "description": "A modern desert retreat with great mountain views",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/675346f6adb5fd79702e4f98/1733510907014/Front+of+House.jpg?format=1500w",
     "blocks": [
@@ -2477,7 +2425,7 @@
   },
   "gallery_mccartney-spec-1644": {
     "sourceUrl": "https://jematellhomes.com/gallery_mccartney-spec-1644",
-    "title": "McCartney Spec — Jematell Homes",
+    "title": "McCartney Spec",
     "description": "A spec house build on McCartney Rd in Casa Grande Arizona.",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/69dd86c40943f735c598b3ac/1776125636215/Mccartney+Lot+3+Front.png?format=1500w",
     "blocks": [
@@ -2647,7 +2595,7 @@
   },
   "gallery_mccartney-spec-1849": {
     "sourceUrl": "https://jematellhomes.com/gallery_mccartney-spec-1849",
-    "title": "McCartney Spec 1849 — Jematell Homes",
+    "title": "McCartney Spec 1849",
     "description": "View the gallery of photos for our 1849 square foot spec home off of McCartney Rd",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/69f0e5193017de2444ccb8da/1777394969290/Front+House+with+Plants.png?format=1500w",
     "blocks": [
@@ -2812,7 +2760,7 @@
   },
   "gallery_modern-farmhouse": {
     "sourceUrl": "https://jematellhomes.com/gallery_modern-farmhouse",
-    "title": "Modern Farmhouse — Jematell Homes",
+    "title": "Modern Farmhouse",
     "description": "A Modern Farmhouse with beautiful custom selections",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/67533c728da7d078c9f1af40/1733508215084/Exterior.jpg?format=1500w",
     "blocks": [
@@ -2953,7 +2901,7 @@
   },
   "gallery_rio-verde-farmhouse": {
     "sourceUrl": "https://jematellhomes.com/gallery_rio-verde-farmhouse",
-    "title": "Rio Verde Farmhouse — Jematell Homes",
+    "title": "Rio Verde Farmhouse",
     "description": "Discover this custom dream home, thoughtfully designed and expertly built to fit the clients needs. Quality craftsmanship, modern features, and personalized details throughout.",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/697d1557d969c935e4caf349/1769805143838/DJI_20260125135231_0049_D.jpg?format=1500w",
     "blocks": [
@@ -3183,7 +3131,7 @@
   },
   "gallery_rio-verde-rv": {
     "sourceUrl": "https://jematellhomes.com/gallery_rio-verde-rv",
-    "title": "Rio Verde RV — Jematell Homes",
+    "title": "Rio Verde RV",
     "description": "Rio Verde Home with an RV Garage",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/6753473f8da7d078c9f1bdf1/1733510981656/018_Aerial+View+%281%29.jpg?format=1500w",
     "blocks": [
@@ -3333,7 +3281,7 @@
   },
   "gallery_twilight-house": {
     "sourceUrl": "https://jematellhomes.com/gallery_twilight-house",
-    "title": "Twilight House — Jematell Homes",
+    "title": "Twilight House",
     "description": "A new house with beautiful custom selections",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/67f45704c2c3e8556bd9e633/1744066308642/01-Front+Of+Home+Twilight.jpg?format=1500w",
     "blocks": [
@@ -3597,7 +3545,7 @@
   },
   "phoenix": {
     "sourceUrl": "https://jematellhomes.com/phoenix",
-    "title": "Custom Home Builder in Phoenix, AZ | Jematell Homes — Jematell Homes",
+    "title": "Custom Home Builder in Phoenix, AZ",
     "description": "Build your custom home in Phoenix, AZ with Jematell Homes. Personalized design, expert craftsmanship, and a seamless building experience from start to finish.",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/69a8cca47738aa18da8957f7/1772670116612/39-DSC09131.jpg?format=1500w",
     "blocks": [
@@ -3803,9 +3751,9 @@
   },
   "privacypolicy": {
     "sourceUrl": "https://jematellhomes.com/privacypolicy",
-    "title": "Privacy Policy | Explore Privacy Options — Learn More — Jematell Homes",
+    "title": "Privacy Policy",
     "description": "Learn about Jematell Homes' privacy practices, how we protect your data, and your rights. Read our privacy policy for transparent information handling details.",
-    "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/64ace901de975b5c348335e2/1689053441214/profile+photo-01.jpg?format=1500w",
+    "ogImage": "",
     "blocks": [
       {
         "type": "h3",
@@ -3820,15 +3768,7 @@
         "text": "Visit our website at jematellhomes.com, or any website of ours that links to this privacy notice"
       },
       {
-        "type": "p",
-        "text": "Visit our website at jematellhomes.com, or any website of ours that links to this privacy notice"
-      },
-      {
         "type": "li",
-        "text": "Engage with us in other related ways, including any sales, marketing, or events"
-      },
-      {
-        "type": "p",
         "text": "Engage with us in other related ways, including any sales, marketing, or events"
       },
       {
@@ -3952,23 +3892,11 @@
         "text": "names"
       },
       {
-        "type": "p",
-        "text": "names"
-      },
-      {
         "type": "li",
         "text": "phone numbers"
       },
       {
-        "type": "p",
-        "text": "phone numbers"
-      },
-      {
         "type": "li",
-        "text": "email addresses"
-      },
-      {
-        "type": "p",
         "text": "email addresses"
       },
       {
@@ -3993,10 +3921,6 @@
       },
       {
         "type": "p",
-        "text": "To respond to user inquiries/offer support to users. We may process your information to respond to your inquiries and solve any potential issues you might have with the requested service."
-      },
-      {
-        "type": "p",
         "text": "In Short: We may share information in specific situations described in this section and/or with the following third parties."
       },
       {
@@ -4005,10 +3929,6 @@
       },
       {
         "type": "li",
-        "text": "Business Transfers. We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company."
-      },
-      {
-        "type": "p",
         "text": "Business Transfers. We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company."
       },
       {
@@ -4103,7 +4023,7 @@
   },
   "rio-verde": {
     "sourceUrl": "https://jematellhomes.com/rio-verde",
-    "title": "Custom Home Builder in Rio Verde, AZ | Jematell Homes — Jematell Homes",
+    "title": "Custom Home Builder in Rio Verde, AZ",
     "description": "Build your custom home in Rio Verde, AZ with Jematell Homes. Personalized design, quality craftsmanship, and a smooth building process tailored to your lifestyle.",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/69bc6778fc09ab305b1ff376/1773954936733/17-Chef%27s+Walk.jpg?format=1500w",
     "blocks": [
@@ -4309,9 +4229,9 @@
   },
   "rv-garages-old": {
     "sourceUrl": "https://jematellhomes.com/rv-garages-old",
-    "title": "RV Garages — Jematell Homes",
+    "title": "RV Garages",
     "description": "We have the perfect solution for your recreational vehicles with our custom-designed RV garages. Explore our range of designs and features to find the perfect RV garage to complement your dream home.",
-    "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/64ace901de975b5c348335e2/1689053441214/profile+photo-01.jpg?format=1500w",
+    "ogImage": "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/afeb151f-ff72-430d-ab49-9b5c76e160a1/RV+Garage.jpg",
     "blocks": [
       {
         "type": "img",
@@ -4330,7 +4250,7 @@
   },
   "scottsdale": {
     "sourceUrl": "https://jematellhomes.com/scottsdale",
-    "title": "Scottsdale — Jematell Homes",
+    "title": "Scottsdale",
     "description": "Jematell Homes is a premier custom home builder in Scottsdale, AZ, specializing in luxury homes designed around your lifestyle. From architectural planning to construction, we deliver exceptional craftsmanship, personalized design, and a seamless building experience.",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/6998f4b00ccc755adde0b8e2/1771789376375/03-DJI_20260202163642_0038_D.jpg?format=1500w",
     "blocks": [
@@ -4528,7 +4448,7 @@
   },
   "spechomes": {
     "sourceUrl": "https://jematellhomes.com/spechomes",
-    "title": "Spec Homes — Jematell Homes",
+    "title": "Spec Homes",
     "description": "Here at Jematell Homes, we pride ourselves in building high quality, stylish homes at affordable pricing",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/64a6fa78db9f5671f328e9c4/1770053927733/Custom-home-builder-arizona.jpg?format=1500w",
     "blocks": [
@@ -4563,15 +4483,7 @@
         "text": "1849 Square Feet"
       },
       {
-        "type": "p",
-        "text": "1849 Square Feet"
-      },
-      {
         "type": "li",
-        "text": "3 Bedrooms"
-      },
-      {
-        "type": "p",
         "text": "3 Bedrooms"
       },
       {
@@ -4579,15 +4491,7 @@
         "text": "2 Bathrooms"
       },
       {
-        "type": "p",
-        "text": "2 Bathrooms"
-      },
-      {
         "type": "li",
-        "text": "4 Homes Coming Soon"
-      },
-      {
-        "type": "p",
         "text": "4 Homes Coming Soon"
       },
       {
@@ -4600,15 +4504,7 @@
         "text": "1644 Square Feet"
       },
       {
-        "type": "p",
-        "text": "1644 Square Feet"
-      },
-      {
         "type": "li",
-        "text": "5 Homes Coming Soon"
-      },
-      {
-        "type": "p",
         "text": "5 Homes Coming Soon"
       },
       {
@@ -4620,32 +4516,20 @@
         "text": "VIEW LOT 2 ON MLS"
       },
       {
-        "type": "p",
-        "text": "VIEW LOT 2 ON MLS"
-      },
-      {
         "type": "li",
         "text": "VIEW LOT 4 ON MLS"
       },
       {
-        "type": "p",
-        "text": "VIEW LOT 4 ON MLS"
-      },
-      {
         "type": "li",
-        "text": "2 Homes Available Now"
-      },
-      {
-        "type": "p",
         "text": "2 Homes Available Now"
       }
     ]
   },
   "thankyou": {
     "sourceUrl": "https://jematellhomes.com/thankyou",
-    "title": "Thank You — Jematell Homes",
+    "title": "Thank You",
     "description": "We will review your inquiry and get back to you as soon as possible!",
-    "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/64ace901de975b5c348335e2/1689053441214/profile+photo-01.jpg?format=1500w",
+    "ogImage": "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/349e0c45-d74f-4339-8962-191661b5c87b/natur-wunderland-uH3wpt7gKnQ-unsplash.jpg",
     "blocks": [
       {
         "type": "img",
@@ -4664,9 +4548,9 @@
   },
   "warranty": {
     "sourceUrl": "https://jematellhomes.com/warranty",
-    "title": "Warranty | Home Warranty Support — Contact Us Now — Jematell Homes",
+    "title": "Warranty",
     "description": "Learn about Jematell Homes warranty process and how to submit claims. Contact us for post-move-in warranty support and service information.",
-    "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/64ace901de975b5c348335e2/1689053441214/profile+photo-01.jpg?format=1500w",
+    "ogImage": "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/d3a7f535-7f88-4e72-a8bb-004f7aaab0a9/009_Master+Bathroom+%281%29.jpg",
     "blocks": [
       {
         "type": "img",
@@ -4685,7 +4569,7 @@
   },
   "where-we-build": {
     "sourceUrl": "https://jematellhomes.com/where-we-build",
-    "title": "Where We Build — Jematell Homes",
+    "title": "Where We Build",
     "description": "Discover the areas where Jematell Homes builds custom homes.",
     "ogImage": "http://static1.squarespace.com/static/6451acc5216e2b14e01b3bc3/t/6996361f7d6d2e322fea8b10/1770406169396/53-DJI_20260125135120_0044_D.jpg?format=1500w",
     "blocks": [

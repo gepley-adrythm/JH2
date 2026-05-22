@@ -5,14 +5,34 @@ import { join, basename } from "path";
 function extractPage(html, sourceUrl) {
   const $ = cheerio.load(html);
 
-  const title =
+  let title =
     $('meta[property="og:title"]').attr("content") ||
     $("title").text().trim();
+  // Strip Squarespace SEO suffixes: " | ...", " — ...", " - ..."
+  title = title
+    .replace(/\s*[—–-]\s*Jematell Homes\s*$/i, "")
+    .replace(/\s*\|.*$/, "")
+    .replace(/\s*[—–]\s*(Contact Us|Learn More|Explore|Home Warranty|Privacy Options).*$/i, "")
+    .trim();
   const description =
     $('meta[name="description"]').attr("content") ||
     $('meta[property="og:description"]').attr("content") ||
     "";
-  const ogImage = $('meta[property="og:image"]').attr("content") || "";
+  let ogImage = $('meta[property="og:image"]').attr("content") || "";
+  // Skip generic site logo / profile photo / brand-asset OG fallback so the hero can use a real photo.
+  const isBrandAsset = (u) => /profile\+?photo|logo|favicon|jematell[\s+_-]?homes|brand|icon/i.test(u);
+  if (isBrandAsset(ogImage)) ogImage = "";
+  // If no usable OG image, pick the first non-logo content image as the hero
+  if (!ogImage) {
+    $("img").each((_, el) => {
+      if (ogImage) return;
+      const src = $(el).attr("data-src") || $(el).attr("src") || "";
+      if (!src || src.startsWith("data:")) return;
+      if (isBrandAsset(src)) return;
+      if (!/squarespace-cdn\.com/.test(src)) return;
+      ogImage = src;
+    });
+  }
 
   // Squarespace content lives in #page or main
   const root = $("#page").length ? $("#page") : $("main").length ? $("main") : $("body");
@@ -40,10 +60,11 @@ function extractPage(html, sourceUrl) {
       const text = $el.text().trim().replace(/\s+/g, " ");
       if (!text || text.length < 2) return;
       // Skip nav/footer remnants
-      if (/^(gallery|custom homes|spec homes|floor plans|where we build|about us|contact|home|start your build)$/i.test(text)) return;
-      const key = tag + ":" + text;
-      if (seen.has(key)) return;
-      seen.add(key);
+      if (/^(gallery|custom homes|spec homes|floor plans|where we build|about us|contact|home|start your build|menu|close)$/i.test(text)) return;
+      // Skip if a parent already contributed this text (Squarespace duplicates text in nested wrappers).
+      const textKey = "text:" + text;
+      if (seen.has(textKey)) return;
+      seen.add(textKey);
       blocks.push({ type: tag, text });
     }
   });

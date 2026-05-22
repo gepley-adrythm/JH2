@@ -33,6 +33,8 @@ export default function App() {
         <Route path="/spec-homes" element={<ContentPage pageKey="spechomes" />} />
         <Route path="/floor-plans" element={<ContentPage pageKey="floorplans" />} />
         <Route path="/where-we-build" element={<ContentPage pageKey="where-we-build" />} />
+        <Route path="/build-on-your-lot" element={<ContentPage pageKey="build-on-your-lot" />} />
+        <Route path="/buy-a-lot-with-us" element={<ContentPage pageKey="buy-a-lot-with-us" />} />
         <Route path="/where-we-build/:region" element={<ContentPage isRegion />} />
         <Route path="/about" element={<ContentPage pageKey="aboutus" />} />
         <Route path="/contact" element={<Contact />} />
