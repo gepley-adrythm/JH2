@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, useReducedMotion } from "framer-motion";
 import { img } from "./layout";
+import { Link } from "react-router-dom";
 
 // --- Data ---
 const WHERE_WE_BUILD = [
@@ -53,9 +54,9 @@ export function Hero() {
             <span>Let's Make Your</span>
             <span>Dream a Reality</span>
           </h1>
-          <a href="#contact" className="btn btn-outline-light" data-testid="hero-cta">
+          <Link to="/contact" className="btn btn-outline-light" data-testid="hero-cta">
             Start Your Build
-          </a>
+          </Link>
         </motion.div>
       </div>
 
@@ -138,7 +139,7 @@ export function ServicesSplit() {
           <p>
             Is a custom home what you’re envisioning? Explore our portfolio of past projects, learn more about our process, and discover how we bring your unique vision to life in the desert.
           </p>
-          <a href="/custom-homes" className="btn btn-outline-light">Explore Custom</a>
+          <Link to="/custom-homes" className="btn btn-outline-light">Explore Custom</Link>
         </div>
       </div>
       <div className="service-pane" data-testid="card-spec">
@@ -150,7 +151,7 @@ export function ServicesSplit() {
           <p>
             Explore stunning Arizona properties and find a home that perfectly suits your unique preferences and lifestyle. Move-in ready luxury, crafted with our signature attention to detail.
           </p>
-          <a href="/spechomes" className="btn btn-outline-light">View Spec Homes</a>
+          <Link to="/spec-homes" className="btn btn-outline-light">View Spec Homes</Link>
         </div>
       </div>
     </section>
@@ -199,7 +200,9 @@ export function WhereWeBuild() {
         <h2 className="heading-md">Where We Build</h2>
         <div className="pill-grid">
           {WHERE_WE_BUILD.map((loc) => (
-            <div key={loc} className="loc-pill">{loc}</div>
+            <Link key={loc} to={`/where-we-build/${loc.toLowerCase().replace(/\s+/g, "-")}`} className="loc-pill">
+              {loc}
+            </Link>
           ))}
         </div>
       </div>

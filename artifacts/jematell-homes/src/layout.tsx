@@ -1,20 +1,94 @@
 import React, { useEffect, useState, useRef } from "react";
-import { MessageSquare, Phone, Mail, Instagram, Facebook, Menu, X, ArrowRight } from "lucide-react";
+import { MessageSquare, Phone, Mail, Instagram, Facebook, Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
-const BASE = import.meta.env.BASE_URL;
+const BASE = import.meta.env.BASE_URL || "/";
 export const img = (name: string) => `${BASE}images/${name}`;
 
-const NAV_LINKS = [
-  { label: "Gallery", href: "/gallery" },
+const HOMES_LINKS = [
   { label: "Custom Homes", href: "/custom-homes" },
-  { label: "Spec Homes", href: "/spechomes" },
-  { label: "Floor Plans", href: "/floorplans" },
+  { label: "Spec Homes", href: "/spec-homes" },
+  { label: "Floor Plans", href: "/floor-plans" },
+  { label: "Gallery", href: "/gallery" },
 ];
 
 const WHERE_WE_BUILD = [
   "Scottsdale", "Rio Verde", "Phoenix", "Cave Creek",
   "Fountain Hills", "Carefree", "Casa Grande", "Apache Junction"
 ];
+
+interface NavDropdownProps {
+  label: string;
+  testId: string;
+  to?: string;
+  children: React.ReactNode;
+}
+
+function NavDropdown({ label, testId, to, children }: NavDropdownProps) {
+  const [open, setOpen] = useState(false);
+  const wrapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDocClick = (e: MouseEvent) => {
+      if (!wrapRef.current?.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", onDocClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDocClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const trigger = to ? (
+    <Link
+      to={to}
+      className="nav-trigger"
+      data-testid={testId}
+      aria-haspopup="true"
+      aria-expanded={open}
+      onClick={() => setOpen(false)}
+      onMouseEnter={() => setOpen(true)}
+      onFocus={() => setOpen(true)}
+    >
+      {label}
+    </Link>
+  ) : (
+    <button
+      type="button"
+      className="nav-trigger"
+      data-testid={testId}
+      aria-haspopup="true"
+      aria-expanded={open}
+      onClick={() => setOpen((o) => !o)}
+      onMouseEnter={() => setOpen(true)}
+      onFocus={() => setOpen(true)}
+    >
+      {label}
+    </button>
+  );
+
+  return (
+    <div
+      className={`nav-dropdown ${open ? "is-open" : ""}`}
+      ref={wrapRef}
+      onMouseLeave={() => setOpen(false)}
+    >
+      {trigger}
+      <div
+        className="dropdown-panel"
+        role="menu"
+        onClick={() => setOpen(false)}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -42,33 +116,33 @@ export function Header() {
   return (
     <header className={`site-header ${scrolled ? "scrolled" : ""}`}>
       <div className="container header-inner">
-        <a href="/" className="brand-logo" aria-label="Jematell Homes" data-testid="nav-logo">
+        <Link to="/" className="brand-logo" aria-label="Jematell Homes" data-testid="nav-logo">
           <img src={img("logo.png")} alt="Jematell Homes" />
-        </a>
+        </Link>
 
         <nav className="main-nav" aria-label="Primary">
-          {NAV_LINKS.map((l) => (
-            <a key={l.href} href={l.href} data-testid={`nav-${l.label.toLowerCase().replace(/\s+/g, "-")}`}>
-              {l.label}
-            </a>
-          ))}
-          <div className="nav-dropdown">
-            <a href="/where-we-build" data-testid="nav-where-we-build" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-              Where We Build
-            </a>
-            <div className="dropdown-panel" role="menu">
-              {WHERE_WE_BUILD.map((loc) => (
-                <a key={loc} href="#" data-testid={`nav-region-${loc.toLowerCase().replace(/\s+/g, "-")}`}>{loc}</a>
-              ))}
-            </div>
-          </div>
-          <a href="/aboutus" data-testid="nav-about-us">About Us</a>
+          <NavDropdown label="Homes" testId="nav-homes">
+            {HOMES_LINKS.map((l) => (
+              <Link key={l.href} to={l.href} role="menuitem" data-testid={`nav-${l.label.toLowerCase().replace(/\s+/g, "-")}`}>
+                {l.label}
+              </Link>
+            ))}
+          </NavDropdown>
+          <NavDropdown label="Where We Build" testId="nav-where-we-build" to="/where-we-build">
+            {WHERE_WE_BUILD.map((loc) => (
+              <Link key={loc} to={`/where-we-build/${loc.toLowerCase().replace(/\s+/g, "-")}`} role="menuitem" data-testid={`nav-region-${loc.toLowerCase().replace(/\s+/g, "-")}`}>
+                {loc}
+              </Link>
+            ))}
+          </NavDropdown>
+          <Link to="/about" data-testid="nav-about-us">About</Link>
+          <Link to="/blog" data-testid="nav-blog">Blog</Link>
         </nav>
 
         <div className="header-actions">
-          <a href="#contact" className="btn btn-primary" data-testid="header-cta">
+          <Link to="/contact" className="btn btn-primary" data-testid="header-cta">
             Start Your Build
-          </a>
+          </Link>
         </div>
 
         <button 
@@ -91,16 +165,17 @@ export function Header() {
         aria-hidden={!mobileMenuOpen}
       >
         <nav aria-label="Mobile">
-          {NAV_LINKS.map((l) => (
-            <a key={l.href} href={l.href} onClick={close} data-testid={`mobile-nav-${l.label.toLowerCase().replace(/\s+/g, "-")}`}>
+          {HOMES_LINKS.map((l) => (
+            <Link key={l.href} to={l.href} onClick={close} data-testid={`mobile-nav-${l.label.toLowerCase().replace(/\s+/g, "-")}`}>
               {l.label}
-            </a>
+            </Link>
           ))}
-          <a href="/where-we-build" onClick={close} data-testid="mobile-nav-where-we-build">Where We Build</a>
-          <a href="/aboutus" onClick={close} data-testid="mobile-nav-about-us">About Us</a>
-          <a href="#contact" onClick={close} className="btn btn-primary" data-testid="mobile-nav-cta" style={{ marginTop: 16, alignSelf: 'flex-start' }}>
+          <Link to="/where-we-build" onClick={close} data-testid="mobile-nav-where-we-build">Where We Build</Link>
+          <Link to="/about" onClick={close} data-testid="mobile-nav-about-us">About</Link>
+          <Link to="/blog" onClick={close} data-testid="mobile-nav-blog">Blog</Link>
+          <Link to="/contact" onClick={close} className="btn btn-primary" data-testid="mobile-nav-cta" style={{ marginTop: 16, alignSelf: 'flex-start' }}>
             Start Your Build
-          </a>
+          </Link>
           <div className="mobile-nav-contact">
             <a href="tel:6024215576" data-testid="mobile-nav-phone"><Phone size={16} /> (602) 421-5576</a>
             <a href="mailto:info@jematellhomes.com" data-testid="mobile-nav-email"><Mail size={16} /> info@jematellhomes.com</a>
@@ -135,19 +210,20 @@ export function Footer() {
           <div className="footer-col">
             <h4>Explore</h4>
             <ul>
-              <li><a href="/gallery">Gallery</a></li>
-              <li><a href="/custom-homes">Custom Homes</a></li>
-              <li><a href="/spechomes">Spec Homes</a></li>
-              <li><a href="/aboutus">About Us</a></li>
+              <li><Link to="/gallery">Gallery</Link></li>
+              <li><Link to="/custom-homes">Custom Homes</Link></li>
+              <li><Link to="/spec-homes">Spec Homes</Link></li>
+              <li><Link to="/about">About Us</Link></li>
             </ul>
           </div>
           
           <div className="footer-col">
             <h4>Company</h4>
             <ul>
-              <li><a href="/warranty">Warranty</a></li>
-              <li><a href="/contact">Contact</a></li>
-              <li><a href="/privacy">Privacy Policy</a></li>
+              <li><Link to="/warranty">Warranty</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
+              <li><Link to="/privacy">Privacy Policy</Link></li>
+              <li><Link to="/blog">Blog</Link></li>
             </ul>
           </div>
           
@@ -193,9 +269,9 @@ export function ContactWidget() {
         <a href="tel:6024215576">
           <Phone size={18} /> (602) 421-5576
         </a>
-        <a href="#contact" onClick={() => setOpen(false)}>
+        <Link to="/contact" onClick={() => setOpen(false)}>
           <Mail size={18} /> Email Us
-        </a>
+        </Link>
       </div>
       <button
         className="contact-widget-btn"
