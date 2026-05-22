@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { MessageSquare, Phone, Mail, Instagram, Facebook, Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const BASE = import.meta.env.BASE_URL || "/";
 export const img = (name: string) => `${BASE}images/${name}`;
@@ -90,9 +90,23 @@ function NavDropdown({ label, testId, to, children }: NavDropdownProps) {
   );
 }
 
+// Routes whose top hero is light/cream — header must always render in solid/light style
+// so the dark nav text stays readable. Everything else has a dark image hero.
+function isLightHeroPath(pathname: string): boolean {
+  // Normalize trailing slash so /blog/ matches /blog
+  const p = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+  if (p === "/blog") return true;
+  if (p === "/gallery") return true;
+  if (p === "/contact" || p.startsWith("/contact/")) return true;
+  // /blog/:slug and /gallery/:slug have dark image heroes — keep transparent
+  return false;
+}
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { pathname } = useLocation();
+  const forceSolid = isLightHeroPath(pathname);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -101,6 +115,12 @@ export function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Reset scroll-state when route changes so a long blog post doesn't leave the
+  // header stuck in the wrong mode after navigating to the cream-bg blog index.
+  useEffect(() => {
+    setScrolled(window.scrollY > 50);
+  }, [pathname]);
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -114,7 +134,7 @@ export function Header() {
   const close = () => setMobileMenuOpen(false);
 
   return (
-    <header className={`site-header ${scrolled ? "scrolled" : ""}`}>
+    <header className={`site-header ${scrolled || forceSolid ? "scrolled" : ""}`}>
       <div className="container header-inner">
         <Link to="/" className="brand-logo" aria-label="Jematell Homes" data-testid="nav-logo">
           <img src={img("logo.png")} alt="Jematell Homes" />
