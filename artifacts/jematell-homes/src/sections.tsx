@@ -1,0 +1,272 @@
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform, AnimatePresence, useReducedMotion } from "framer-motion";
+import { img } from "./layout";
+
+// --- Data ---
+const WHERE_WE_BUILD = [
+  "Scottsdale", "Rio Verde", "Phoenix", "Cave Creek",
+  "Fountain Hills", "Carefree", "Casa Grande", "Apache Junction"
+];
+
+const REVIEWS = [
+  {
+    headline: "“They are highly committed to delivering a quality product…”",
+    body: "We did a custom home build with Jematell Homes and are very glad we did! Joe worked with us through the entire process to make sure we got the exact home we wanted. Him, Tyler and their team did an incredible job building our first home, gave honest recommendations, and were very transparent”",
+    author: "Travis & Sarah W.",
+  },
+  {
+    headline: "“We couldn’t be happier with our Jematell Home!”",
+    body: "We couldn’t be happier with our Jematell Home!! It has a spacious floor plan, beautiful finishes, and a large lot!! Working with the Jematell Homes team made the home-buying process easy. If you’re thinking about buying a house give them a call.”",
+    author: "Joe & Cassandra M.",
+  },
+  {
+    headline: "“You can tell Jematell Homes takes pride in their work and doesn’t cut corners…”",
+    body: "We bought a completed home from Jematell Homes, and we are very happy with our decision. Every finish felt thoughtfully selected, and the layout was both functional and beautiful. Even though it was a spec home, it felt anything but standard.”",
+    author: "Ashton S.",
+  },
+];
+
+// --- Sections ---
+
+export function Hero() {
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollY } = useScroll();
+  const yRaw = useTransform(scrollY, [0, 1000], [0, 300]);
+  const opacityRaw = useTransform(scrollY, [0, 500], [1, 0]);
+  const y = prefersReducedMotion ? 0 : yRaw;
+  const opacity = prefersReducedMotion ? 1 : opacityRaw;
+
+  return (
+    <section className="hero">
+      <motion.div className="hero-bg" style={{ y }}>
+        <img src={img("hero.jpg")} alt="Aerial view of Jematell Home" />
+      </motion.div>
+      <div className="hero-overlay" />
+      
+      <div className="container hero-content">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
+        >
+          <h1 className="heading-xl">
+            <span>Let's Make Your</span>
+            <span>Dream a Reality</span>
+          </h1>
+          <a href="#contact" className="btn btn-outline-light" data-testid="hero-cta">
+            Start Your Build
+          </a>
+        </motion.div>
+      </div>
+
+      <motion.div className="scroll-cue" style={{ opacity }}>
+        <span>Scroll</span>
+        <div className="scroll-line" />
+      </motion.div>
+    </section>
+  );
+}
+
+export function About() {
+  return (
+    <section className="about section-pad" id="about">
+      <div className="container">
+        <div className="about-grid">
+          <motion.div 
+            className="about-text"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="eyebrow">Get to know us</span>
+            <h2 className="heading-lg" style={{ marginBottom: '32px' }}>A family-owned builder for Arizona.</h2>
+            <p>
+              At Jematell Homes, we’re a family-owned home builder dedicated to crafting quality homes in Arizona. We combine traditional craftsmanship with modern design to bring your dream home to life.
+            </p>
+            <p>
+              Our focus is on delivering excellence from the first consultation to the final walk-through, making your cherished moments possible. We offer both custom and spec home options to suit your needs. Welcome to Jematell Homes, where we turn your dream home into a reality.
+            </p>
+          </motion.div>
+          <motion.div 
+            className="about-image-wrapper"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1 }}
+          >
+            <img src={img("gallery-1.jpg")} alt="Modern interior design" />
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function StatsStrip() {
+  return (
+    <section className="stats-strip">
+      <div className="container">
+        <div className="stats-grid">
+          <div className="stat-item">
+            <span className="stat-num">15+</span>
+            <span className="stat-label">Years Building</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-num">120+</span>
+            <span className="stat-label">Homes Crafted</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-num">8</span>
+            <span className="stat-label">AZ Regions Served</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function ServicesSplit() {
+  return (
+    <section className="services-split" id="services">
+      <div className="service-pane" data-testid="card-custom">
+        <img src={img("gallery-2.jpg")} className="service-bg" alt="Custom Home" />
+        <div className="service-overlay" />
+        <div className="service-content">
+          <span className="eyebrow" style={{ color: '#fff' }}>Portfolio</span>
+          <h3>Build a Custom Home</h3>
+          <p>
+            Is a custom home what you’re envisioning? Explore our portfolio of past projects, learn more about our process, and discover how we bring your unique vision to life in the desert.
+          </p>
+          <a href="/custom-homes" className="btn btn-outline-light">Explore Custom</a>
+        </div>
+      </div>
+      <div className="service-pane" data-testid="card-spec">
+        <img src={img("hero.jpg")} className="service-bg" alt="Spec Home" />
+        <div className="service-overlay" />
+        <div className="service-content">
+          <span className="eyebrow" style={{ color: '#fff' }}>Available</span>
+          <h3>Buy One of Our Homes</h3>
+          <p>
+            Explore stunning Arizona properties and find a home that perfectly suits your unique preferences and lifestyle. Move-in ready luxury, crafted with our signature attention to detail.
+          </p>
+          <a href="/spechomes" className="btn btn-outline-light">View Spec Homes</a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Process() {
+  const steps = [
+    { title: "Consultation", desc: "Understanding your vision, lifestyle, and land." },
+    { title: "Design", desc: "Collaborative architecture and interior material selection." },
+    { title: "Build", desc: "Transparent, high-quality construction by our family team." },
+    { title: "Walk-through", desc: "The final reveal of your completed luxury home." },
+  ];
+
+  return (
+    <section className="process section-pad">
+      <div className="container">
+        <span className="eyebrow">Our Process</span>
+        <h2 className="heading-lg">How we build with you</h2>
+        <div className="process-grid">
+          {steps.map((step, i) => (
+            <motion.div 
+              key={i} 
+              className="process-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
+            >
+              <div className="process-num">0{i + 1}</div>
+              <h4>{step.title}</h4>
+              <p>{step.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function WhereWeBuild() {
+  return (
+    <section className="where-we-build section-pad">
+      <div className="container">
+        <span className="eyebrow">Locations</span>
+        <h2 className="heading-md">Where We Build</h2>
+        <div className="pill-grid">
+          {WHERE_WE_BUILD.map((loc) => (
+            <div key={loc} className="loc-pill">{loc}</div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Reviews() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % REVIEWS.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <section className="reviews section-pad" id="reviews">
+      <div className="container">
+        <div className="reviews-container">
+          <div className="reviews-left">
+            <span className="eyebrow">Reviews</span>
+            <h2 className="heading-lg">What our homeowners say</h2>
+            <div style={{ display: 'flex', gap: '8px', marginTop: '32px' }}>
+              {REVIEWS.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  data-testid={`review-pager-${i}`}
+                  className="review-pager"
+                  style={{
+                    width: i === current ? '32px' : '8px',
+                    height: '8px',
+                    borderRadius: '4px',
+                    border: 'none',
+                    padding: 0,
+                    background: i === current ? 'var(--color-accent)' : 'var(--color-border)',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  aria-label={`Go to review ${i + 1}`}
+                  aria-current={i === current}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="reviews-right">
+            <div className="review-content" data-testid={`review-${current}`}>
+              <div className="quote-mark">"</div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={current}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <p className="review-body">{REVIEWS[current].headline}</p>
+                  <p style={{ marginBottom: '24px', color: 'var(--color-text-muted)' }}>{REVIEWS[current].body}</p>
+                  <div className="review-author">— {REVIEWS[current].author}</div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
