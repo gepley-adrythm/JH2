@@ -132,7 +132,7 @@ export function ServicesSplit() {
         </div>
       </div>
       <div className="service-pane" data-testid="card-spec">
-        <img src={img("hero.jpg")} className="service-bg" alt="Spec Home" />
+        <img src={img("spec-home.jpg")} className="service-bg" alt="Twilight House spec home front exterior" />
         <div className="service-overlay" />
         <div className="service-content">
           <span className="eyebrow" style={{ color: '#fff' }}>Available</span>
