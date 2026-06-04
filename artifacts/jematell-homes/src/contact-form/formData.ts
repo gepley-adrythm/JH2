@@ -1,5 +1,5 @@
 export const statusChips = [
-  { value: "prospective homeowner", label: "Planning a New Home" },
+  { value: "new client", label: "Planning a New Home" },
   { value: "existing client", label: "Current Client" },
 ];
 
