@@ -23,6 +23,25 @@ column beside the intro image — looks like "missing text" on ~8 location/servi
 end up with `introImg && !subtitle && !intro` (warranty/thank-you legitimately have
 no intro text — that's fine, they have no intro image either).
 
+## Intro h2 == hero description dedupe
+
+On some pages the first intro `h2` is byte-identical to `data.description` (only
+`spechomes` today). Do NOT drop the subtitle in that case — that leaves the intro a
+bare headingless paragraph. Instead keep the `h2` as the intro heading and hide the
+duplicated description from the hero (`heroDescDup` flag → `PageHero hideDescription`).
+Net effect: tagline shows exactly once, as the intro `<h2>`.
+**Why:** dropping it looked like a "missing heading" bug to the user.
+**How to apply:** compare `norm(firstH2) === norm(description)`; the paragraph dedupe
+(intro `p` == description) still just drops the paragraph.
+
+## SplitSection eyebrow
+
+The generic fallback `SplitSection` must NOT print a hardcoded `<span class="eyebrow">
+Section</span>` — it renders the literal word "SECTION" above every generic section
+(visible on /spec-homes "Homes Coming Soon"). There's no meaningful eyebrow to derive
+for the fallback, so render the heading alone. Real section renderers (services,
+process, floor plans) supply their own meaningful eyebrows.
+
 # Framer Motion scroll reveals (this project)
 
 Prefer `viewport={{ once: true, amount: 0.15-0.2 }}` over negative `margin` rootMargins

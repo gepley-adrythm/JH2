@@ -146,7 +146,7 @@ function isLikelyCTA(text: string | undefined): boolean {
   return CTA_KEYWORDS.test(text);
 }
 
-function PageHero({ data }: { data: PageData }) {
+function PageHero({ data, hideDescription }: { data: PageData; hideDescription?: boolean }) {
   const title = cleanTitle(data.title);
   return (
     <section className="page-hero" data-testid="page-hero">
@@ -162,7 +162,7 @@ function PageHero({ data }: { data: PageData }) {
         >
           <span className="eyebrow page-hero-eyebrow">Jematell Homes</span>
           <h1 className="page-hero-title">{title}</h1>
-          {data.description ? (
+          {data.description && !hideDescription ? (
             <p className="page-hero-sub">{data.description}</p>
           ) : null}
         </motion.div>
@@ -527,10 +527,7 @@ function SplitSection({
         <div className={`page-split-grid ${img ? "with-media" : "no-media"} ${isOdd ? "reverse" : ""}`}>
           <motion.div className="page-split-copy" {...FADE_IN}>
             {section.heading ? (
-              <>
-                <span className="eyebrow">Section</span>
-                <h2 className="heading-lg page-split-title">{section.heading.text}</h2>
-              </>
+              <h2 className="heading-lg page-split-title">{section.heading.text}</h2>
             ) : null}
             {paras.map((p, i) => (
               <p key={i} className="page-split-p">
@@ -659,12 +656,16 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
     let subtitle: string | undefined;
     let intro: string | undefined;
     let introImg: { src: string; alt?: string } | undefined;
+    // When the intro heading is identical to the hero description, keep it as the
+    // intro heading and hide the description in the hero instead — so the tagline
+    // shows exactly once and the intro section isn't left headingless.
+    let heroDescDup = false;
 
     const descNorm = norm(data.description);
     if (i < blocks.length && (blocks[i].type === "h2" || blocks[i].type === "h3")) {
       const candidate = blocks[i].text || "";
-      // Skip if subtitle duplicates the hero description
-      if (norm(candidate) !== descNorm) subtitle = candidate;
+      subtitle = candidate;
+      if (norm(candidate) === descNorm) heroDescDup = true;
       i++;
     }
     if (i < blocks.length && blocks[i].type === "p") {
@@ -699,13 +700,13 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
     const remaining = blocks.slice(i);
     const sections = splitIntoSections(remaining);
 
-    return { subtitle, intro, introImg, sections, ctaTitle, ctaBody };
+    return { subtitle, intro, introImg, sections, ctaTitle, ctaBody, heroDescDup };
   }, [data]);
 
   if (!data) return <NotFound />;
   if (!layout) return null;
 
-  const { subtitle, intro, introImg, sections, ctaTitle, ctaBody } = layout;
+  const { subtitle, intro, introImg, sections, ctaTitle, ctaBody, heroDescDup } = layout;
 
   // Privacy policy gets its own typographic treatment
   const isLegal = /privacy/i.test(data.title);
@@ -715,7 +716,7 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
   return (
     <MotionConfig reducedMotion="user">
       <main className="page" data-testid={`page-${key}`}>
-        <PageHero data={data} />
+        <PageHero data={data} hideDescription={heroDescDup} />
         <IntroSection subtitle={subtitle} intro={intro} image={introImg} />
 
         {isLegal
