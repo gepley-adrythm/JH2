@@ -30,7 +30,7 @@ Capture your planned slugs + one-line intents and sanity-check them against the 
 
 - Group new questions by FAQ **category** (e.g. `permits-and-codes`, `land-due-diligence`, `water-septic-utilities`, `costs-budget`, `design-zoning-adus`). One category = one writer.
 - If a batch needs a brand-new category/topic, note it; the **assembly** step (not the writers) adds it to the seed's `categories`/`topics` arrays (and must give the new category/topic a `sortOrder` that does not collide with existing ones).
-- `featured` is **metadata only** — `dataset.featured()` exists but no web page renders it today, so a "pillar" flag changes nothing visible. Set it if you want the semantic marker, but do NOT spend planning effort agonizing over pillar selection or block assembly on it. What actually controls on-page order is `sortOrder` (see assembly pitfalls).
+- **Do not use `featured` / "pillar" flags.** The FAQ hub's featured section was removed, so nothing on the site renders `featured` — `dataset.featured()` still exists but has no UI consumer. Leave `featured` omitted (defaults to `false`); do not spend any planning effort selecting pillars. On-page order is controlled entirely by `sortOrder` (see assembly pitfalls).
 
 ## Step 3 — Parallel writers, each to its OWN draft file
 
@@ -84,7 +84,7 @@ These are the things that bite the assembler agent. Handle them deliberately:
 - **Extract, then reindent — don't expect paste-ready indentation.** Draft blocks come at varying indentation. Pull every ` ```ts `-fenced `item({...})` block out of the draft files (programmatically), reindent to the seed's nesting, and insert under the right category section. Expect to script this rather than hand-paste 25+ blocks.
 - **Validate every `relatedFaqSlug` against (live ∪ new) before running the pipeline.** Gather all live slugs plus all new slugs into one set and confirm each reference resolves. A dangling ref fails `faq:validate` and is the most common assembly error.
 - **Verify each `pillarBlogSlug` is a real blog slug (or `null`).** Cross-check against `clone-data/extracted/blogs.json`. Writers sometimes leave placeholders.
-- **`featured` is cosmetic today** (nothing renders it) — do not block assembly deciding pillars. Set it for semantics if you wish, but it is not a release gate.
+- **Ignore `featured`.** The FAQ hub featured section was removed; nothing renders this flag. Leave it omitted/`false` and do not spend assembly time choosing pillars.
 - **Keep new content em-dash-free.** Site preference is NO em dashes. Some *live* seed entries still contain them; that is not license to add more. Do not copy that habit into new entries (and normalize stragglers only if explicitly asked).
 - **Count check before the pipeline.** Expected total `items` = live count + new count (e.g. 13 live + 26 new = 39). A mismatch means a block was dropped or double-pasted during extraction.
 
