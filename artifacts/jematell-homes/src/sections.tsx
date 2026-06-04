@@ -53,11 +53,6 @@ export function Hero() {
           </Link>
         </motion.div>
       </div>
-
-      <div className="scroll-cue">
-        <span>Scroll</span>
-        <div className="scroll-line" />
-      </div>
     </section>
   );
 }

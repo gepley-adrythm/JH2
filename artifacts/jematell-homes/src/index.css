@@ -441,40 +441,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-bone);
 }
 
-.scroll-cue {
-  position: absolute;
-  bottom: 40px;
-  right: clamp(24px, 5vw, 64px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  color: rgba(255,255,255,0.6);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  z-index: 10;
-}
-.scroll-line {
-  width: 1px;
-  height: 60px;
-  background: rgba(255,255,255,0.2);
-  position: relative;
-  overflow: hidden;
-}
-.scroll-line::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 50%;
-  background: #fff;
-  animation: scrollDown 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
-}
-@keyframes scrollDown {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(200%); }
-}
-
 /* About / Intro Section */
 .about {
   background: var(--color-bg);
@@ -1489,8 +1455,7 @@ a.contact-info-card:hover {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  .hero-bg, .scroll-cue { animation: none !important; }
-  .hero-bg { transform: none !important; }
+  .hero-bg { animation: none !important; transform: none !important; }
 }
 
 /* ============================================
