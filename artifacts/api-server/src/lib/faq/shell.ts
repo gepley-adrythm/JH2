@@ -21,14 +21,19 @@ a{color:var(--color-accent);text-decoration:none}
 a:hover{color:var(--color-accent-hover)}
 h1,h2,h3,h4{font-family:var(--font-heading);color:var(--color-dark);line-height:1.15;margin:0 0 .5em}
 .container{width:100%;max-width:920px;margin:0 auto;padding:0 24px}
-.site-header{background:#fff;border-bottom:1px solid var(--color-border);position:sticky;top:0;z-index:10}
-.header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px}
-.brand-logo{font-family:var(--font-heading);font-weight:600;font-size:20px;letter-spacing:.02em;color:var(--color-dark)}
-.main-nav{display:flex;gap:24px;align-items:center}
-.main-nav a{color:var(--color-text);font-weight:500;font-size:15px}
-.btn{display:inline-block;padding:11px 20px;border-radius:2px;font-weight:500;font-size:14px;letter-spacing:.02em}
+.site-header{background:rgba(244,242,236,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--color-border);position:sticky;top:0;z-index:100}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;height:90px}
+.brand-logo{display:inline-flex;align-items:center}
+.brand-logo img{height:48px;width:auto;display:block}
+.main-nav{display:flex;gap:36px;align-items:center}
+.main-nav a{position:relative;color:var(--color-dark);font-weight:500;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:4px 0}
+.main-nav a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:currentColor;transition:width .3s cubic-bezier(.2,.8,.2,1)}
+.main-nav a:hover{color:var(--color-dark)}
+.main-nav a:hover::after{width:100%}
+.main-nav .has-caret::before{content:'';display:inline-block;width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-top:4px solid currentColor;margin-right:7px;vertical-align:middle;opacity:.7}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:16px 32px;border-radius:2px;font-weight:500;font-size:14px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;transition:all .3s cubic-bezier(.2,.8,.2,1)}
 .btn-primary{background:var(--color-accent);color:#fff}
-.btn-primary:hover{background:var(--color-accent-hover);color:#fff}
+.btn-primary:hover{background:var(--color-accent-hover);color:#fff;transform:translateY(-2px)}
 .faq-hero{background:var(--color-cream);padding:56px 0 40px;border-bottom:1px solid var(--color-border)}
 .faq-hero .eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:12px;color:var(--color-warm);font-weight:600;margin:0 0 14px}
 .faq-hero h1{font-size:clamp(30px,5vw,46px);max-width:18ch}
@@ -67,17 +72,19 @@ main{padding:40px 0 72px}
 .site-footer a{color:rgba(255,255,255,.75)}
 .site-footer a:hover{color:#fff}
 .footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;margin-top:24px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);font-size:12px;opacity:.7}
-@media(max-width:640px){.main-nav{display:none}.faq-hero{padding:40px 0 28px}main{padding:28px 0 48px}}
+@media(max-width:900px){.main-nav{display:none}}
+@media(max-width:640px){.header-inner{height:72px}.btn{padding:13px 22px}.faq-hero{padding:40px 0 28px}main{padding:28px 0 48px}}
 `;
 
 function header(): string {
   return `<header class="site-header"><div class="container header-inner">
-<a href="/" class="brand-logo" data-testid="faq-nav-logo">Jematell Homes</a>
+<a href="/" class="brand-logo" aria-label="Jematell Homes" data-testid="faq-nav-logo"><img src="/images/logo.png" alt="Jematell Homes" width="160" height="48"></a>
 <nav class="main-nav" aria-label="Primary">
-<a href="/custom-homes" data-testid="faq-nav-custom-homes">Custom Homes</a>
-<a href="/where-we-build" data-testid="faq-nav-where-we-build">Where We Build</a>
-<a href="/faq" data-testid="faq-nav-faq">FAQ</a>
+<a href="/custom-homes" class="has-caret" data-testid="faq-nav-homes">Homes</a>
+<a href="/where-we-build" class="has-caret" data-testid="faq-nav-where-we-build">Where We Build</a>
+<a href="/about" data-testid="faq-nav-about">About</a>
 <a href="/blog" data-testid="faq-nav-blog">Blog</a>
+<a href="/faq" data-testid="faq-nav-faq">FAQ</a>
 </nav>
 <a href="/contact" class="btn btn-primary" data-testid="faq-header-cta">Start Your Build</a>
 </div></header>`;
