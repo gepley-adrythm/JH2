@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { pages } from "../data/pages";
 import { Seo } from "../seo/seo";
@@ -45,7 +45,7 @@ export default function GalleryDetail() {
         <div className="container">
           <div className="gallery-masonry">
             {images.map((img, i) => (
-              <motion.figure
+              <m.figure
                 key={i}
                 className="gallery-masonry-item"
                 initial={reduce ? false : { opacity: 0, scale: 0.96 }}
@@ -54,7 +54,7 @@ export default function GalleryDetail() {
                 transition={{ duration: 0.6, delay: (i % 4) * 0.08 }}
               >
                 <img src={img.src!} alt={img.alt || title} loading="lazy" />
-              </motion.figure>
+              </m.figure>
             ))}
           </div>
         </div>

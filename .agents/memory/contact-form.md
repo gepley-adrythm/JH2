@@ -26,6 +26,12 @@ single delivery path.
   there (email/CRM or a POST to the api-server) when asked.
 - Styles are co-located in `contact-form.css` (namespaced `cf-*`), a deliberate
   exception to the single-`index.css` rule.
-- Ported from an imported `form-styles-kit`: uses framer-motion `motion` (not
-  the kit's `m`), all motion gated on `useReducedMotion()` (including `whileTap`),
-  no Tailwind. Dedupe hashing must stay Unicode-safe (no `btoa` on user names).
+- Ported from an imported `form-styles-kit`: uses framer-motion via the `m`
+  component (LazyMotion `strict` is enabled app-wide in AppShell, so the full
+  `motion` component throws), all motion gated on `useReducedMotion()` (including
+  `whileTap`), no Tailwind. Dedupe hashing must stay Unicode-safe (no `btoa` on
+  user names).
+- The form is lazy-loaded: `ContactFormProvider` mounts `ContactForm` via
+  `React.lazy` + `<Suspense fallback={null}>` (inside `AnimatePresence`, gated on
+  `isOpen`), so its ~47KB chunk only downloads on first open and never renders at
+  SSG prerender time.

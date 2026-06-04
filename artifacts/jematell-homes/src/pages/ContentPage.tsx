@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useParams, useLocation, Link } from "react-router-dom";
-import { motion, MotionConfig } from "framer-motion";
+import { m, MotionConfig } from "framer-motion";
 import {
   ArrowRight,
   MapPin,
@@ -199,7 +199,7 @@ function PageHero({ data, hideDescription }: { data: PageData; hideDescription?:
       ) : null}
       <div className="page-hero-overlay" />
       <div className="container page-hero-content">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55 }}
@@ -209,7 +209,7 @@ function PageHero({ data, hideDescription }: { data: PageData; hideDescription?:
           {data.description && !hideDescription ? (
             <p className="page-hero-sub">{data.description}</p>
           ) : null}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );
@@ -229,14 +229,14 @@ function IntroSection({
     <section className="page-intro section-pad">
       <div className="container">
         <div className={`page-intro-grid ${image ? "with-image" : "no-image"}`}>
-          <motion.div className="page-intro-copy" {...FADE_IN}>
+          <m.div className="page-intro-copy" {...FADE_IN}>
             {subtitle ? (
               <h2 className="heading-lg page-intro-title">{subtitle}</h2>
             ) : null}
             {intro ? <p className="page-intro-p">{intro}</p> : null}
-          </motion.div>
+          </m.div>
           {image ? (
-            <motion.figure
+            <m.figure
               className="page-intro-figure"
               initial={{ opacity: 0, scale: 0.96 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -244,7 +244,7 @@ function IntroSection({
               transition={{ duration: 0.55 }}
             >
               <img src={image.src} alt={image.alt || ""} loading="lazy" />
-            </motion.figure>
+            </m.figure>
           ) : null}
         </div>
       </div>
@@ -266,15 +266,15 @@ function ServiceGridSection({ section }: { section: Section }) {
   return (
     <section className="page-services section-pad">
       <div className="container">
-        <motion.div className="page-section-head" {...FADE_IN}>
+        <m.div className="page-section-head" {...FADE_IN}>
           <span className="eyebrow">What we do</span>
           <h2 className="heading-lg">{section.heading?.text}</h2>
-        </motion.div>
+        </m.div>
         <div className="page-services-grid">
           {items.map((it, i) => {
             const Icon = iconFor(it.title);
             return (
-              <motion.div
+              <m.div
                 key={i}
                 className="page-service-card"
                 initial={{ opacity: 0, y: 24 }}
@@ -287,7 +287,7 @@ function ServiceGridSection({ section }: { section: Section }) {
                 </div>
                 <h3 className="page-service-title">{it.title}</h3>
                 <p className="page-service-body">{it.body}</p>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>
@@ -310,13 +310,13 @@ function ProcessSection({ section }: { section: Section }) {
   return (
     <section className="page-process section-pad">
       <div className="container">
-        <motion.div className="page-section-head centered" {...FADE_IN}>
+        <m.div className="page-section-head centered" {...FADE_IN}>
           <span className="eyebrow">The process</span>
           <h2 className="heading-lg">{section.heading?.text}</h2>
-        </motion.div>
+        </m.div>
         <ol className="page-process-list">
           {steps.map((s, i) => (
-            <motion.li
+            <m.li
               key={i}
               className="page-process-step"
               initial={{ opacity: 0, y: 24 }}
@@ -329,7 +329,7 @@ function ProcessSection({ section }: { section: Section }) {
                 <h3 className="page-process-title">{s.title.replace(/^(step\s*\d+:?\s*|[1-9]\.\s*)/i, "")}</h3>
                 <p>{s.body}</p>
               </div>
-            </motion.li>
+            </m.li>
           ))}
         </ol>
       </div>
@@ -369,13 +369,13 @@ function FloorPlanTiersSection({ section }: { section: Section }) {
   return (
     <section className="page-tiers section-pad alt-bg">
       <div className="container">
-        <motion.div className="page-section-head centered" {...FADE_IN}>
+        <m.div className="page-section-head centered" {...FADE_IN}>
           <span className="eyebrow">Floor plans</span>
           <h2 className="heading-lg">{section.heading?.text}</h2>
-        </motion.div>
+        </m.div>
         <div className="page-tiers-grid">
           {tiers.map((t, i) => (
-            <motion.article
+            <m.article
               key={i}
               className="page-tier-card"
               initial={{ opacity: 0, y: 24 }}
@@ -396,7 +396,7 @@ function FloorPlanTiersSection({ section }: { section: Section }) {
                   Discuss this plan <ArrowRight size={14} />
                 </Link>
               </div>
-            </motion.article>
+            </m.article>
           ))}
         </div>
       </div>
@@ -424,13 +424,13 @@ function WhyChooseSection({ section }: { section: Section }) {
   return (
     <section className="page-why section-pad">
       <div className="container">
-        <motion.div className="page-section-head" {...FADE_IN}>
+        <m.div className="page-section-head" {...FADE_IN}>
           <span className="eyebrow">Why us</span>
           <h2 className="heading-lg">{section.heading?.text}</h2>
-        </motion.div>
+        </m.div>
         <div className="page-why-grid">
           {features.map((f, i) => (
-            <motion.div
+            <m.div
               key={i}
               className="page-why-card"
               initial={{ opacity: 0, y: 24 }}
@@ -450,7 +450,7 @@ function WhyChooseSection({ section }: { section: Section }) {
                   ))}
                 </ul>
               ) : null}
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>
@@ -465,13 +465,13 @@ function TierListSection({ section, eyebrow }: { section: Section; eyebrow?: str
     <section className="page-tiers section-pad alt-bg">
       <div className="container">
         {eyebrow ? (
-          <motion.div className="page-section-head centered" {...FADE_IN}>
+          <m.div className="page-section-head centered" {...FADE_IN}>
             <span className="eyebrow">{eyebrow}</span>
-          </motion.div>
+          </m.div>
         ) : null}
         <div className="page-tiers-grid">
           {tiers.map((t, i) => (
-            <motion.article
+            <m.article
               key={i}
               className="page-tier-card tier-card-bare"
               initial={{ opacity: 0, y: 24 }}
@@ -486,7 +486,7 @@ function TierListSection({ section, eyebrow }: { section: Section; eyebrow?: str
                   Discuss this plan <ArrowRight size={14} />
                 </Link>
               </div>
-            </motion.article>
+            </m.article>
           ))}
         </div>
       </div>
@@ -512,7 +512,7 @@ function LocationEditorialSection({ section }: { section: Section }) {
       <div className="container">
         <div className="page-editorial-grid">
           {cards.map((c, i) => (
-            <motion.div
+            <m.div
               key={i}
               className="page-editorial-card"
               initial={{ opacity: 0, y: 24 }}
@@ -526,7 +526,7 @@ function LocationEditorialSection({ section }: { section: Section }) {
                   {p}
                 </p>
               ))}
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>
@@ -569,7 +569,7 @@ function SplitSection({
     <section className={`page-split section-pad ${isOdd ? "alt-bg" : ""}`}>
       <div className="container">
         <div className={`page-split-grid ${img ? "with-media" : "no-media"} ${isOdd ? "reverse" : ""}`}>
-          <motion.div className="page-split-copy" {...FADE_IN}>
+          <m.div className="page-split-copy" {...FADE_IN}>
             {section.heading ? (
               <h2 className="heading-lg page-split-title">{section.heading.text}</h2>
             ) : null}
@@ -599,9 +599,9 @@ function SplitSection({
                 ))}
               </div>
             ) : null}
-          </motion.div>
+          </m.div>
           {img ? (
-            <motion.figure
+            <m.figure
               className="page-split-figure"
               initial={{ opacity: 0, scale: 0.96 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -609,7 +609,7 @@ function SplitSection({
               transition={{ duration: 0.55 }}
             >
               <img src={img.src} alt={img.alt || ""} loading="lazy" />
-            </motion.figure>
+            </m.figure>
           ) : null}
         </div>
       </div>

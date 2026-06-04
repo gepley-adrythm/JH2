@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { pages } from "../data/pages";
 import { Seo } from "../seo/seo";
 import { collectionJsonLd } from "../seo/jsonld";
@@ -56,7 +56,7 @@ export default function Gallery() {
             {GALLERY_PROJECTS.map((proj, i) => {
               const img = firstImage(`gallery_${proj.slug}`);
               return (
-                <motion.div
+                <m.div
                   key={proj.slug}
                   className={`gallery-card ${i % 5 === 0 ? "wide" : ""}`}
                   initial={reduce ? false : { opacity: 0, y: 24 }}
@@ -77,7 +77,7 @@ export default function Gallery() {
                       <span className="gallery-card-arrow">→</span>
                     </div>
                   </Link>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>

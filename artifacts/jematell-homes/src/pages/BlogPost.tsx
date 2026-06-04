@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { blogs } from "../data/blogs";
 import faqCrossLinks from "../data/faqCrossLinks.json";
@@ -90,44 +90,44 @@ export default function BlogPost() {
                 };
             if (b.type === "h1" || b.type === "h2") {
               return (
-                <motion.h2 key={i} className="post-h2" {...anim}>
+                <m.h2 key={i} className="post-h2" {...anim}>
                   {b.text}
-                </motion.h2>
+                </m.h2>
               );
             }
             if (b.type === "h3" || b.type === "h4") {
               return (
-                <motion.h3 key={i} className="post-h3" {...anim}>
+                <m.h3 key={i} className="post-h3" {...anim}>
                   {b.text}
-                </motion.h3>
+                </m.h3>
               );
             }
             if (b.type === "p") {
               return (
-                <motion.p key={i} className="post-p" {...anim}>
+                <m.p key={i} className="post-p" {...anim}>
                   {b.text}
-                </motion.p>
+                </m.p>
               );
             }
             if (b.type === "li") {
               return (
-                <motion.li key={i} className="post-li" {...anim}>
+                <m.li key={i} className="post-li" {...anim}>
                   {b.text}
-                </motion.li>
+                </m.li>
               );
             }
             if (b.type === "blockquote") {
               return (
-                <motion.blockquote key={i} className="post-quote" {...anim}>
+                <m.blockquote key={i} className="post-quote" {...anim}>
                   {b.text}
-                </motion.blockquote>
+                </m.blockquote>
               );
             }
             if (b.type === "img" && b.src) {
               return (
-                <motion.figure key={i} className="post-figure" {...anim}>
+                <m.figure key={i} className="post-figure" {...anim}>
                   <img src={b.src} alt={b.alt || ""} loading="lazy" />
-                </motion.figure>
+                </m.figure>
               );
             }
             return null;

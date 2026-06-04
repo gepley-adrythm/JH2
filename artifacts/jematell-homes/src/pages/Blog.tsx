@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { Search, ArrowRight } from "lucide-react";
 import { blogs } from "../data/blogs";
 import { Seo } from "../seo/seo";
@@ -93,7 +93,7 @@ export default function Blog() {
           </div>
           <div className="blog-grid">
             {filtered.map((post, i) => (
-              <motion.article
+              <m.article
                 key={post.slug}
                 className="blog-card"
                 initial={reduce ? false : { opacity: 0, y: 24 }}
@@ -119,7 +119,7 @@ export default function Blog() {
                     </span>
                   </div>
                 </Link>
-              </motion.article>
+              </m.article>
             ))}
           </div>
           {filtered.length === 0 ? (

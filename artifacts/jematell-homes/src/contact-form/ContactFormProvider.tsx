@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import ContactForm from "./ContactForm";
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import "./contact-form.css";
+
+const ContactForm = React.lazy(() => import("./ContactForm"));
 
 interface ContactFormContextValue {
   open: () => void;
@@ -74,7 +75,7 @@ export function ContactFormProvider({ children }: { children: React.ReactNode })
       {children}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <m.div
             ref={portalRef}
             className="cf-portal"
             initial={{ opacity: 0 }}
@@ -85,8 +86,10 @@ export function ContactFormProvider({ children }: { children: React.ReactNode })
             aria-modal="true"
             aria-label="Contact Jematell Homes"
           >
-            <ContactForm onClose={close} />
-          </motion.div>
+            <React.Suspense fallback={null}>
+              <ContactForm onClose={close} />
+            </React.Suspense>
+          </m.div>
         )}
       </AnimatePresence>
     </ContactFormContext.Provider>

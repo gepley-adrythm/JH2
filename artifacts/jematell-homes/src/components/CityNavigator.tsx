@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { locations, locationHref } from "../config/siteConfig";
 import { pages } from "../data/pages";
@@ -16,7 +16,7 @@ import { FADE_IN_UP_PROPS } from "../motion";
  * it. On narrow viewports the accordion relaxes into a stacked grid of cards.
  *
  * The flex-grow animation rides the site's shared easing (defined in the CSS,
- * matching EASE_OUT_EXPO) and is fully disabled under prefers-reduced-motion.
+ * matching EASE_OUT_EXPO) and is fully disabled under prefers-reduced-m.
  */
 
 const FALLBACK_IMAGE =
@@ -32,7 +32,7 @@ export function CityNavigator() {
   return (
     <section className="city-nav section-pad" aria-labelledby="city-nav-heading">
       <div className="container">
-        <motion.div className="city-nav-head" {...FADE_IN_UP_PROPS}>
+        <m.div className="city-nav-head" {...FADE_IN_UP_PROPS}>
           <span className="eyebrow">Explore by community</span>
           <h2 className="heading-lg" id="city-nav-heading">
             Find your place in the desert
@@ -42,7 +42,7 @@ export function CityNavigator() {
             Arizona&rsquo;s most sought-after communities. Choose a region to see where your home
             could take shape.
           </p>
-        </motion.div>
+        </m.div>
 
         <ul
           className="city-nav-track"

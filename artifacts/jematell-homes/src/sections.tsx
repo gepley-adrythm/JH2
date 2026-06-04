@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { ResponsiveImage } from "./components/ResponsiveImage";
 import { img } from "./layout";
 import { Link } from "react-router-dom";
@@ -63,7 +63,7 @@ export function About() {
     <section className="about section-pad" id="about">
       <div className="container">
         <div className="about-grid">
-          <motion.div 
+          <m.div 
             className="about-text"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -78,8 +78,8 @@ export function About() {
             <p>
               Our focus is on delivering excellence from the first consultation to the final walk-through, making your cherished moments possible. We offer both custom and spec home options to suit your needs. Welcome to Jematell Homes, where we turn your dream home into a reality.
             </p>
-          </motion.div>
-          <motion.div 
+          </m.div>
+          <m.div 
             className="about-image-wrapper"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -94,7 +94,7 @@ export function About() {
               width={2500}
               height={1667}
             />
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>
@@ -105,7 +105,7 @@ export function StatsStrip() {
   return (
     <section className="stats-strip">
       <div className="container">
-        <motion.div className="stats-grid" {...FADE_IN_UP_PROPS}>
+        <m.div className="stats-grid" {...FADE_IN_UP_PROPS}>
           <div className="stat-item">
             <span className="stat-num">15+</span>
             <span className="stat-label">Years Building</span>
@@ -118,7 +118,7 @@ export function StatsStrip() {
             <span className="stat-num">8</span>
             <span className="stat-label">AZ Regions Served</span>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );
@@ -186,7 +186,7 @@ export function Process() {
         <h2 className="heading-lg">How we build with you</h2>
         <div className="process-grid">
           {steps.map((step, i) => (
-            <motion.div 
+            <m.div 
               key={i} 
               className="process-card"
               initial={{ opacity: 0, y: 20 }}
@@ -197,7 +197,7 @@ export function Process() {
               <div className="process-num">0{i + 1}</div>
               <h3>{step.title}</h3>
               <p>{step.desc}</p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>
@@ -209,10 +209,10 @@ export function WhereWeBuild() {
   return (
     <section className="where-we-build section-pad">
       <div className="container">
-        <motion.div {...FADE_IN_UP_PROPS}>
+        <m.div {...FADE_IN_UP_PROPS}>
           <span className="eyebrow">Locations</span>
           <h2 className="heading-md">Where We Build</h2>
-        </motion.div>
+        </m.div>
         <div className="pill-grid">
           {locations.map((loc) => (
             <Link key={loc.slug} to={locationHref(loc.slug)} className="loc-pill" viewTransition>
@@ -269,7 +269,7 @@ export function Reviews() {
             <div className="review-content" data-testid={`review-${current}`}>
               <div className="quote-mark">"</div>
               <AnimatePresence mode="wait">
-                <motion.div
+                <m.div
                   key={current}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -279,7 +279,7 @@ export function Reviews() {
                   <p className="review-body">{REVIEWS[current].headline}</p>
                   <p style={{ marginBottom: '24px', color: 'var(--color-text-muted)' }}>{REVIEWS[current].body}</p>
                   <div className="review-author">— {REVIEWS[current].author}</div>
-                </motion.div>
+                </m.div>
               </AnimatePresence>
             </div>
           </div>

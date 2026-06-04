@@ -1,6 +1,6 @@
 import React, { useEffect, Suspense } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { MotionConfig } from "framer-motion";
+import { MotionConfig, LazyMotion, domAnimation } from "framer-motion";
 import { Header, Footer, ContactWidget } from "./layout";
 import { ContactFormProvider } from "./contact-form";
 import RouteBackground from "./RouteBackground";
@@ -35,7 +35,8 @@ function ScrollToTop() {
  */
 export default function AppShell() {
   return (
-    <MotionConfig reducedMotion="user">
+    <LazyMotion features={domAnimation} strict>
+      <MotionConfig reducedMotion="user">
       <ContactFormProvider>
         <SiteJsonLd />
         <RouteBackground />
@@ -69,6 +70,7 @@ export default function AppShell() {
         <Footer />
         <ContactWidget />
       </ContactFormProvider>
-    </MotionConfig>
+      </MotionConfig>
+    </LazyMotion>
   );
 }

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useCallback, useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Check, Phone, ArrowRight, ChevronLeft, Send, X } from "lucide-react";
 import { loadGTM, reportConversion, getTrackingData } from "./analytics";
 import { submitContactForm } from "./submit";
@@ -526,7 +526,7 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
     onSelect: (v: string) => void,
     groupId: string,
   ) => (
-    <motion.div
+    <m.div
       key={groupId}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -546,7 +546,7 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
           {c.label}
         </button>
       ))}
-    </motion.div>
+    </m.div>
   );
 
   const renderMessageStep = () => {
@@ -588,7 +588,7 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
 
               <AnimatePresence>
                 {activeChipGroup === "otherTopic" && (
-                  <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="cf-inline-wrap">
+                  <m.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="cf-inline-wrap">
                     <input
                       type="text"
                       data-testid="input-other-topic"
@@ -601,13 +601,13 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
                       autoFocus
                     />
                     <span>.</span>
-                  </motion.span>
+                  </m.span>
                 )}
               </AnimatePresence>
 
               <AnimatePresence>
                 {activeChipGroup === "otherTopic" && otherTopicValue.trim() && actionValue === "ask a question" && (
-                  <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }} transition={{ duration: 0.3 }}>
+                  <m.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }} transition={{ duration: 0.3 }}>
                     <textarea
                       data-testid="input-question"
                       value={questionValue}
@@ -616,10 +616,10 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
                       rows={2}
                       className="cf-build-textarea"
                     />
-                  </motion.div>
+                  </m.div>
                 )}
                 {activeChipGroup === "question" && (
-                  <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }}>
+                  <m.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }}>
                     <textarea
                       data-testid="input-question-direct"
                       value={questionValue}
@@ -629,10 +629,10 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
                       className="cf-build-textarea"
                       autoFocus
                     />
-                  </motion.div>
+                  </m.div>
                 )}
                 {activeChipGroup === "elaboration" && (
-                  <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }}>
+                  <m.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }}>
                     <textarea
                       data-testid="input-elaboration"
                       value={elaborationValue}
@@ -642,10 +642,10 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
                       className="cf-build-textarea"
                       autoFocus
                     />
-                  </motion.div>
+                  </m.div>
                 )}
                 {activeChipGroup === "actionDetail" && (
-                  <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }}>
+                  <m.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }}>
                     <textarea
                       data-testid="input-action-detail"
                       value={actionDetailValue}
@@ -655,7 +655,7 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
                       className="cf-build-textarea"
                       autoFocus
                     />
-                  </motion.div>
+                  </m.div>
                 )}
               </AnimatePresence>
             </div>
@@ -683,7 +683,7 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
               {activeChipGroup === "topic" && renderChipGroup(topicChips, "", handleTopicChipClick, "topic")}
               {activeChipGroup === "existingTopic" && renderChipGroup(existingTopicChips, "", handleTopicChipClick, "existingTopic")}
               {showCompletionUI && (
-                <motion.div
+                <m.div
                   key="completion-buttons"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -694,11 +694,11 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
                   <button data-testid="button-back-message" type="button" onClick={goBack} className="cf-back">
                     <ChevronLeft size={20} /> Back
                   </button>
-                  <motion.button data-testid="button-next-message" type="button" onClick={goNext} className="cf-next" {...tapProps}>
+                  <m.button data-testid="button-next-message" type="button" onClick={goNext} className="cf-next" {...tapProps}>
                     Next step
                     <ArrowRight size={20} />
-                  </motion.button>
-                </motion.div>
+                  </m.button>
+                </m.div>
               )}
             </AnimatePresence>
           </div>
@@ -709,10 +709,10 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
             <button data-testid="button-back-message" type="button" onClick={goBack} className="cf-back">
               <ChevronLeft size={20} /> Back
             </button>
-            <motion.button data-testid="button-next-message" type="button" onClick={goNext} className="cf-next" {...tapProps}>
+            <m.button data-testid="button-next-message" type="button" onClick={goNext} className="cf-next" {...tapProps}>
               Next step
               <ArrowRight size={20} />
-            </motion.button>
+            </m.button>
           </div>
         )}
       </div>
@@ -723,7 +723,7 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
     switch (step) {
       case "name":
         return (
-          <motion.div key="name" variants={slideVariants} initial="enter" animate="center" exit="exit" transition={slideTransition} className="cf-step cf-step--center">
+          <m.div key="name" variants={slideVariants} initial="enter" animate="center" exit="exit" transition={slideTransition} className="cf-step cf-step--center">
             <div className="cf-step-head">
               <h2 className="cf-h2">Let's get started</h2>
               <p className="cf-sub">Tell us a bit about your project and we'll be in touch within one business day.</p>
@@ -747,25 +747,25 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
               />
               <AnimatePresence>
                 {errors.name && (
-                  <motion.p initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} className="cf-error" role="alert" data-testid="error-name">
+                  <m.p initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} className="cf-error" role="alert" data-testid="error-name">
                     {errors.name}
-                  </motion.p>
+                  </m.p>
                 )}
               </AnimatePresence>
             </div>
             <div className="cf-actions">
               <div />
-              <motion.button data-testid="button-next" type="button" onClick={goNext} disabled={!formData.name.trim()} className="cf-next" {...tapProps}>
+              <m.button data-testid="button-next" type="button" onClick={goNext} disabled={!formData.name.trim()} className="cf-next" {...tapProps}>
                 Next step
                 <ArrowRight size={20} />
-              </motion.button>
+              </m.button>
             </div>
-          </motion.div>
+          </m.div>
         );
 
       case "contact":
         return (
-          <motion.div key="contact" variants={slideVariants} initial="enter" animate="center" exit="exit" transition={slideTransition} className="cf-step">
+          <m.div key="contact" variants={slideVariants} initial="enter" animate="center" exit="exit" transition={slideTransition} className="cf-step">
             <div className="cf-step-head">
               <h2 className="cf-h2">Contact information</h2>
               <p className="cf-sub">So we can get back to you quickly.</p>
@@ -795,9 +795,9 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
                 />
                 <AnimatePresence>
                   {errors.email && (
-                    <motion.p initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} className="cf-error" role="alert" data-testid="error-email">
+                    <m.p initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} className="cf-error" role="alert" data-testid="error-email">
                       {errors.email}
-                    </motion.p>
+                    </m.p>
                   )}
                 </AnimatePresence>
               </div>
@@ -820,9 +820,9 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
                 />
                 <AnimatePresence>
                   {errors.phone && (
-                    <motion.p initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} className="cf-error" role="alert" data-testid="error-phone">
+                    <m.p initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} className="cf-error" role="alert" data-testid="error-phone">
                       {errors.phone}
-                    </motion.p>
+                    </m.p>
                   )}
                 </AnimatePresence>
               </div>
@@ -845,7 +845,7 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
               <button data-testid="button-back" type="button" onClick={goBack} className="cf-back">
                 <ChevronLeft size={20} /> Back
               </button>
-              <motion.button
+              <m.button
                 data-testid="button-next"
                 type="button"
                 onClick={goNext}
@@ -855,21 +855,21 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
               >
                 Next step
                 <ArrowRight size={20} />
-              </motion.button>
+              </m.button>
             </div>
-          </motion.div>
+          </m.div>
         );
 
       case "message":
         return (
-          <motion.div key="message" variants={slideVariants} initial="enter" animate="center" exit="exit" transition={slideTransition} className="cf-message-wrap">
+          <m.div key="message" variants={slideVariants} initial="enter" animate="center" exit="exit" transition={slideTransition} className="cf-message-wrap">
             {renderMessageStep()}
-          </motion.div>
+          </m.div>
         );
 
       case "extras":
         return (
-          <motion.div key="extras" variants={slideVariants} initial="enter" animate="center" exit="exit" transition={slideTransition} className="cf-step">
+          <m.div key="extras" variants={slideVariants} initial="enter" animate="center" exit="exit" transition={slideTransition} className="cf-step">
             <div className="cf-step-head">
               <h2 className="cf-h2">Almost done!</h2>
               <p className="cf-sub">
@@ -898,7 +898,7 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
                   </select>
                   <AnimatePresence>
                     {formData.referralSource === "Other" && (
-                      <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} style={{ marginTop: 12, overflow: "hidden" }}>
+                      <m.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} style={{ marginTop: 12, overflow: "hidden" }}>
                         <input
                           data-testid="input-referral-other"
                           type="text"
@@ -908,10 +908,10 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
                           maxLength={255}
                           className="cf-input"
                         />
-                      </motion.div>
+                      </m.div>
                     )}
                     {formData.referralSource === "Friend or Family Referral" && (
-                      <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} style={{ marginTop: 12, overflow: "hidden" }}>
+                      <m.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} style={{ marginTop: 12, overflow: "hidden" }}>
                         <input
                           data-testid="input-referral-name"
                           type="text"
@@ -921,7 +921,7 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
                           maxLength={255}
                           className="cf-input"
                         />
-                      </motion.div>
+                      </m.div>
                     )}
                   </AnimatePresence>
                 </div>
@@ -932,11 +932,11 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
                 <ChevronLeft size={20} /> Back
               </button>
               {duplicateWarning ? (
-                <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} className="cf-dup">
+                <m.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} className="cf-dup">
                   Already submitted!
-                </motion.div>
+                </m.div>
               ) : (
-                <motion.button data-testid="button-submit" type="button" onClick={handleSubmit} disabled={isSubmitting} className="cf-next" {...tapProps}>
+                <m.button data-testid="button-submit" type="button" onClick={handleSubmit} disabled={isSubmitting} className="cf-next" {...tapProps}>
                   {isSubmitting ? (
                     <>
                       <span className="cf-spinner" />
@@ -948,17 +948,17 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
                       <Send size={20} />
                     </>
                   )}
-                </motion.button>
+                </m.button>
               )}
             </div>
-          </motion.div>
+          </m.div>
         );
 
       case "thankYou":
         return (
-          <motion.div key="thankYou" variants={slideVariants} initial="enter" animate="center" exit="exit" transition={slideTransition} className="cf-step">
+          <m.div key="thankYou" variants={slideVariants} initial="enter" animate="center" exit="exit" transition={slideTransition} className="cf-step">
             <div className="cf-ty">
-              <motion.div
+              <m.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 200, damping: 20, delay: 0.1 }}
@@ -966,11 +966,11 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
                 data-testid="icon-success"
               >
                 <Check size={44} color="#fff" />
-              </motion.div>
-              <motion.h2 initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: reduced ? 0 : 0.3 }} className="cf-ty-title" data-testid="text-thank-you-title">
+              </m.div>
+              <m.h2 initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: reduced ? 0 : 0.3 }} className="cf-ty-title" data-testid="text-thank-you-title">
                 Thank you — we're on it!
-              </motion.h2>
-              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: reduced ? 0 : 0.6 }} className="cf-ty-body">
+              </m.h2>
+              <m.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: reduced ? 0 : 0.6 }} className="cf-ty-body">
                 <p>We're grateful for the opportunity and will reach out as soon as possible, typically within one business day.</p>
                 <p className="cf-ty-italic">Thanks again for choosing {siteConfig.businessName}. We look forward to speaking with you soon.</p>
                 <p>
@@ -979,9 +979,9 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
                     <Phone size={16} /> {siteConfig.phone.display}
                   </a>
                 </p>
-              </motion.div>
+              </m.div>
             </div>
-          </motion.div>
+          </m.div>
         );
 
       default:
@@ -992,7 +992,7 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
   return (
     <div className="cf-overlay">
       <div className="cf-bg">
-        <motion.div
+        <m.div
           className="cf-bg-pan"
           initial={{ scale: 1.08, x: 0, y: 0, opacity: 0 }}
           animate={
@@ -1008,7 +1008,7 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
         >
           <picture>
             <source media="(min-width: 601px)" srcSet={siteConfig.images.contactDesktop} />
-            <motion.img
+            <m.img
               src={siteConfig.images.contactMobile}
               alt=""
               className="cf-bg-img"
@@ -1019,12 +1019,12 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
               onLoad={() => setBgLoaded(true)}
             />
           </picture>
-        </motion.div>
+        </m.div>
         <div className="cf-bg-gradient" />
       </div>
 
       <div data-testid="progress-bar" className="cf-progress">
-        <motion.div className="cf-progress-fill" animate={{ width: `${progress * 100}%` }} transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 80, damping: 20 }} />
+        <m.div className="cf-progress-fill" animate={{ width: `${progress * 100}%` }} transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 80, damping: 20 }} />
       </div>
 
       {onClose && (
@@ -1038,7 +1038,7 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
       </div>
 
       <div data-testid="progress-bar-bottom" className="cf-progress cf-progress--bottom">
-        <motion.div className="cf-progress-fill" animate={{ width: `${progress * 100}%` }} transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 80, damping: 20 }} />
+        <m.div className="cf-progress-fill" animate={{ width: `${progress * 100}%` }} transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 80, damping: 20 }} />
       </div>
     </div>
   );
