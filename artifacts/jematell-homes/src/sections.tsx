@@ -72,7 +72,7 @@ export function Hero() {
           style={textStyle}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <h1 className="heading-xl">
             <span>Let's Make Your</span>
@@ -101,8 +101,8 @@ export function About() {
             className="about-text"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
             <span className="eyebrow">Get to know us</span>
             <h2 className="heading-lg" style={{ marginBottom: '32px' }}>A family-owned builder for Arizona.</h2>
@@ -117,8 +117,8 @@ export function About() {
             className="about-image-wrapper"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             <img src={img("gallery-1.jpg")} alt="Modern interior design" />
           </motion.div>
@@ -202,8 +202,8 @@ export function Process() {
               className="process-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: Math.min(i, 5) * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="process-num">0{i + 1}</div>
               <h4>{step.title}</h4>

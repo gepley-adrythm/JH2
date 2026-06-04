@@ -45,10 +45,10 @@ function iconFor(label: string) {
 }
 
 const FADE_IN = {
-  initial: { opacity: 0, y: 24 },
+  initial: { opacity: 0, y: 18 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" } as const,
-  transition: { duration: 0.6 },
+  viewport: { once: true, amount: 0.2 } as const,
+  transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const },
 };
 
 interface Section {
@@ -158,7 +158,7 @@ function PageHero({ data }: { data: PageData }) {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.55 }}
         >
           <span className="eyebrow page-hero-eyebrow">Jematell Homes</span>
           <h1 className="page-hero-title">{title}</h1>
@@ -196,8 +196,8 @@ function IntroSection({
               className="page-intro-figure"
               initial={{ opacity: 0, scale: 0.96 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.8 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.55 }}
             >
               <img src={image.src} alt={image.alt || ""} loading="lazy" />
             </motion.figure>
@@ -235,7 +235,7 @@ function ServiceGridSection({ section }: { section: Section }) {
                 className="page-service-card"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
+                viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
               >
                 <div className="page-service-icon">
@@ -277,7 +277,7 @@ function ProcessSection({ section }: { section: Section }) {
               className="page-process-step"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
+              viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
             >
               <div className="page-process-num">{String(i + 1).padStart(2, "0")}</div>
@@ -336,7 +336,7 @@ function FloorPlanTiersSection({ section }: { section: Section }) {
               className="page-tier-card"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
+              viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
             >
               {t.img ? (
@@ -391,7 +391,7 @@ function WhyChooseSection({ section }: { section: Section }) {
               className="page-why-card"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
+              viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.5, delay: i * 0.04 }}
             >
               <div className="page-why-num">{String(i + 1).padStart(2, "0")}</div>
@@ -432,7 +432,7 @@ function TierListSection({ section, eyebrow }: { section: Section; eyebrow?: str
               className="page-tier-card tier-card-bare"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
+              viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
             >
               <div className="page-tier-body">
@@ -473,7 +473,7 @@ function LocationEditorialSection({ section }: { section: Section }) {
               className="page-editorial-card"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
+              viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.5, delay: i * 0.06 }}
             >
               <h3 className="page-editorial-title">{c.title}</h3>
@@ -564,8 +564,8 @@ function SplitSection({
               className="page-split-figure"
               initial={{ opacity: 0, scale: 0.96 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.8 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.55 }}
             >
               <img src={img.src} alt={img.alt || ""} loading="lazy" />
             </motion.figure>
@@ -642,12 +642,17 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
     let i = 0;
     // Skip leading hero image
     while (i < blocks.length && blocks[i].type === "img") i++;
-    // Skip a leading h1 if it matches the page title (it's just a duplicate of hero title)
+    // Skip a leading on-page h1 headline. Either it just echoes the page title,
+    // or it sits directly above an h2/h3 subtitle (the real intro heading) — e.g.
+    // location pages render [h1 "RIO VERDE"][h2 "BUILD A HOME IN RIO VERDE"][p].
+    // Without this, the h1 falls through, leaving the intro copy column empty.
     while (
       i < blocks.length &&
       blocks[i].type === "h1" &&
       blocks[i].text &&
-      cleanTitle(data.title).toLowerCase() === blocks[i].text!.toLowerCase()
+      (cleanTitle(data.title).toLowerCase() === blocks[i].text!.toLowerCase() ||
+        (blocks[i + 1] != null &&
+          (blocks[i + 1].type === "h2" || blocks[i + 1].type === "h3")))
     )
       i++;
 

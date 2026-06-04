@@ -1,1 +1,2 @@
 - [Hero parallax quality](hero-parallax.md) — smooth scroll parallax: element-tracked useScroll + useSpring + oversized bg layer + GPU hints; avoids jank & edge gaps.
+- [ContentPage intro extraction](content-page-intro-extraction.md) — source pages are [img][h1][h2][p]; skip leading non-title h1 above an h2 or the intro text column renders empty.
