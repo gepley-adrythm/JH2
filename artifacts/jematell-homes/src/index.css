@@ -1069,6 +1069,19 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 32px;
   right: 32px;
   z-index: 100;
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.contact-widget.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(16px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-widget {
+    transition: none;
+  }
 }
 .contact-widget-btn {
   display: flex;

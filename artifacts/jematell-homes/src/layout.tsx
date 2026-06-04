@@ -356,10 +356,36 @@ export function Footer() {
 
 export function ContactWidget() {
   const { open: openContactForm } = useContactForm();
+  const { pathname } = useLocation();
+  const isHomepage = pathname === "/";
   const [isOpen, setIsOpen] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const firstItemRef = useRef<HTMLAnchorElement>(null);
+
+  // On the homepage, the widget stays hidden while the hero is in view and
+  // fades in once the visitor scrolls past it. On every other route it is
+  // visible from the start.
+  useEffect(() => {
+    if (!isHomepage) {
+      setPastHero(false);
+      return;
+    }
+    const hero = document.querySelector(".hero");
+    if (!hero) {
+      setPastHero(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => setPastHero(!entry.isIntersecting),
+      { threshold: 0 },
+    );
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, [isHomepage]);
+
+  const hidden = isHomepage && !pastHero;
 
   useEffect(() => {
     if (!isOpen) return;
@@ -389,7 +415,11 @@ export function ContactWidget() {
   };
 
   return (
-    <div className={`contact-widget${isOpen ? " is-open" : ""}`} ref={rootRef}>
+    <div
+      className={`contact-widget${isOpen ? " is-open" : ""}${hidden ? " is-hidden" : ""}`}
+      ref={rootRef}
+      aria-hidden={hidden}
+    >
       <button
         ref={triggerRef}
         className="contact-widget-btn"
@@ -399,6 +429,7 @@ export function ContactWidget() {
         aria-expanded={isOpen}
         aria-controls="contact-widget-panel"
         aria-label={`Contact ${siteConfig.brand.name}`}
+        tabIndex={hidden ? -1 : 0}
       >
         {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
       </button>
