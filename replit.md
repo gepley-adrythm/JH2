@@ -14,6 +14,7 @@ Premium marketing website for Jematell Homes — a family-owned custom home buil
 - `pnpm --filter @workspace/jematell-homes run lint:content` — content style check against the existing `dist/public` build (em dashes + AI buzzwords)
 - `pnpm --filter @workspace/jematell-homes run lint:content:ci` — build first, then run the content lint (standalone). In CI the content lint is folded into `audit:ci` (one shared build) so the two checks never race on `dist/`
 - `node clone-data/extract.mjs` — re-run the content extraction from scraped HTML (regenerates `clone-data/extracted/*.json`)
+- `node clone-data/download-cdn.mjs` — mirror every Squarespace-hosted image referenced by the site into `clone-data/cdn/` (dev-only staging for the eventual off-Squarespace self-host) and write `clone-data/cdn-manifest.json` (remote URL → local path). Idempotent.
 
 ## Stack
 
@@ -54,8 +55,10 @@ Premium marketing website for Jematell Homes — a family-owned custom home buil
 - `lib/faq/` — shared FAQ seed, types, dataset builder, and JSON-LD/render helpers (the build-time validator reuses the render helpers)
 - `clone-data/` — content extraction pipeline (dev-only, not shipped)
   - `extract.mjs` — cheerio-based extractor
+  - `download-cdn.mjs` — mirrors all referenced Squarespace images to `clone-data/cdn/` for the future self-host migration; writes `cdn-manifest.json`
   - `pages/*.html`, `blogs/*.html` — raw scraped source HTML
   - `extracted/pages.json`, `extracted/blogs.json` — structured `{title, description, ogImage, blocks[]}` keyed by slug
+  - `cdn/` — local mirror of all Squarespace images (dev-only, NOT yet shipped/wired); `cdn-manifest.json` maps each original remote URL to its local path. To self-host: copy `cdn/` into the artifact `public/` tree and rewrite references via the manifest.
 
 ## Architecture decisions
 

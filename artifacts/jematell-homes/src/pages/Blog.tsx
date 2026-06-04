@@ -75,10 +75,10 @@ export default function Blog() {
           name="cta-bg"
           className="page-hero-bg"
           alt=""
-          widths={[768, 1280, 1920]}
+          widths={[768, 1280, 1920, 2500]}
           sizes="100vw"
-          width={1920}
-          height={1280}
+          width={2500}
+          height={1667}
           priority
         />
         <div className="page-hero-overlay" />

@@ -89,7 +89,7 @@ export function About() {
             <ResponsiveImage
               name="gallery-1"
               alt="Modern interior design"
-              widths={[640, 1024, 1280, 1600]}
+              widths={[640, 1024, 1280, 1600, 2000, 2500]}
               sizes="(min-width: 900px) 50vw, 100vw"
               width={2500}
               height={1667}
@@ -132,7 +132,7 @@ export function ServicesSplit() {
           name="gallery-2"
           className="service-bg"
           alt="Custom Home"
-          widths={[768, 1280, 1600, 2000]}
+          widths={[768, 1280, 1600, 2000, 2500]}
           sizes="(min-width: 900px) 50vw, 100vw"
           width={2500}
           height={1667}

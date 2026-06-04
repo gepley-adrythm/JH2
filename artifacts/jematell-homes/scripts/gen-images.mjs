@@ -4,8 +4,10 @@
  * Reads the source JPEGs in public/images/ and emits high-quality WebP
  * variants at several widths (for <picture>/srcset). The original JPEGs are
  * kept untouched as the universal fallback. Quality is intentionally high
- * (q90, method 6) so the WebP output is visually indistinguishable from the
- * source while shipping far fewer bytes.
+ * (q92, method 6) so the WebP output is visually indistinguishable from the
+ * source while shipping far fewer bytes. Variant ladders run up to each
+ * source's full intrinsic width so large / high-DPR screens never upscale
+ * (which is what made the photos look soft).
  *
  * Requires ImageMagick (`magick`). Run from the artifact root:
  *   node scripts/gen-images.mjs
@@ -21,13 +23,13 @@ const imagesDir = resolve(here, "..", "public", "images");
 // Each source maps to the set of WebP widths to generate. Widths never exceed
 // the source's intrinsic width (no upscaling).
 const SOURCES = {
-  "gallery-1.jpg": [640, 1024, 1280, 1600],
-  "gallery-2.jpg": [768, 1280, 1600, 2000],
+  "gallery-1.jpg": [640, 1024, 1280, 1600, 2000, 2500],
+  "gallery-2.jpg": [768, 1280, 1600, 2000, 2500],
   "spec-home.jpg": [768, 1280, 1600],
   "cta-bg.jpg": [768, 1280, 1920, 2500],
 };
 
-const QUALITY = "90";
+const QUALITY = "92";
 
 for (const [file, widths] of Object.entries(SOURCES)) {
   const src = join(imagesDir, file);
