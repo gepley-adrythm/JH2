@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { MessageSquare, Phone, Mail, Instagram, Facebook, Menu, X, ChevronDown } from "lucide-react";
+import { MessageSquare, MessageCircle, Phone, Mail, Instagram, Facebook, Menu, X, ChevronDown } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useContactForm } from "./contact-form";
 import { siteConfig, services, locations, locationHref } from "./config/siteConfig";
@@ -356,17 +356,86 @@ export function Footer() {
 
 export function ContactWidget() {
   const { open: openContactForm } = useContactForm();
+  const [isOpen, setIsOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const firstItemRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onPointerDown = (e: MouseEvent) => {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+        triggerRef.current?.focus();
+      }
+    };
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    firstItemRef.current?.focus();
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isOpen]);
+
+  const handleMessage = () => {
+    setIsOpen(false);
+    openContactForm();
+  };
 
   return (
-    <div className="contact-widget">
+    <div className={`contact-widget${isOpen ? " is-open" : ""}`} ref={rootRef}>
       <button
+        ref={triggerRef}
         className="contact-widget-btn"
-        onClick={openContactForm}
+        onClick={() => setIsOpen((v) => !v)}
         data-testid="contact-widget"
+        aria-haspopup="true"
+        aria-expanded={isOpen}
+        aria-controls="contact-widget-panel"
         aria-label={`Contact ${siteConfig.brand.name}`}
       >
-        <MessageSquare size={24} />
+        {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
       </button>
+      <div
+        id="contact-widget-panel"
+        className="contact-widget-panel"
+        aria-label="Contact options"
+      >
+        <h4>How can we help?</h4>
+        <a
+          ref={firstItemRef}
+          href={siteConfig.contact.phone.href}
+          data-testid="contact-widget-call"
+          tabIndex={isOpen ? 0 : -1}
+        >
+          <Phone size={18} />
+          Call us
+        </a>
+        <a
+          href={siteConfig.contact.sms.href}
+          data-testid="contact-widget-text"
+          tabIndex={isOpen ? 0 : -1}
+        >
+          <MessageCircle size={18} />
+          Text us
+        </a>
+        <button
+          type="button"
+          className="contact-widget-msg"
+          onClick={handleMessage}
+          data-testid="contact-widget-message"
+          tabIndex={isOpen ? 0 : -1}
+        >
+          <MessageSquare size={18} />
+          Send us a message
+        </button>
+      </div>
     </div>
   );
 }

@@ -48,6 +48,7 @@ export const siteConfig = {
   tagline: "Quietly Luxurious Arizona Living.",
   contact: {
     phone: { display: "(602) 421-5576", href: "tel:6024215576" },
+    sms: { display: "Text (602) 421-5576", href: "sms:6024215576" },
     email: { display: "info@jematellhomes.com", href: "mailto:info@jematellhomes.com" },
     address: {
       lines: ["8350 E Raintree Dr Ste 210", "Scottsdale, AZ 85260"],
