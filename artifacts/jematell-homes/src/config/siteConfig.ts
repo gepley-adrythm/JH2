@@ -9,6 +9,8 @@ export interface LocationItem {
   /** URL slug under /where-we-build/. */
   slug: string;
   name: string;
+  /** A short, editorial one-line descriptor of the region's character. */
+  tagline: string;
 }
 
 export interface ServiceItem {
@@ -18,14 +20,18 @@ export interface ServiceItem {
 
 /** The regions Jematell builds in, in display order. */
 export const locations: LocationItem[] = [
-  { slug: "scottsdale", name: "Scottsdale" },
-  { slug: "rio-verde", name: "Rio Verde" },
-  { slug: "phoenix", name: "Phoenix" },
-  { slug: "cave-creek", name: "Cave Creek" },
-  { slug: "fountain-hills", name: "Fountain Hills" },
-  { slug: "carefree", name: "Carefree" },
-  { slug: "casa-grande", name: "Casa Grande" },
-  { slug: "apache-junction", name: "Apache Junction" },
+  { slug: "scottsdale", name: "Scottsdale", tagline: "Foothill estates & golf-course living" },
+  { slug: "rio-verde", name: "Rio Verde", tagline: "Open desert skies & gated calm" },
+  { slug: "phoenix", name: "Phoenix", tagline: "Modern homes at the valley's heart" },
+  { slug: "cave-creek", name: "Cave Creek", tagline: "Rugged Sonoran charm & big views" },
+  { slug: "fountain-hills", name: "Fountain Hills", tagline: "Hillside homes above the fountain" },
+  { slug: "carefree", name: "Carefree", tagline: "Boulder serenity & dark desert skies" },
+  { slug: "casa-grande", name: "Casa Grande", tagline: "Wide-open land & room to grow" },
+  {
+    slug: "apache-junction",
+    name: "Apache Junction",
+    tagline: "Superstition Mountain backdrops",
+  },
 ];
 
 /** The "Homes" offering pages. */

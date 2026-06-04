@@ -80,6 +80,7 @@ export function CityNavigator() {
                   </span>
                   <span className="city-nav-body">
                     <span className="city-nav-name">{loc.name}</span>
+                    <span className="city-nav-tagline">{loc.tagline}</span>
                     <span className="city-nav-cta">
                       Explore <ArrowUpRight size={16} />
                     </span>
