@@ -18,6 +18,7 @@ import { pages, type PageData, type Block } from "../data/pages";
 import { Seo } from "../seo/seo";
 import { serviceJsonLd, breadcrumbJsonLd } from "../seo/jsonld";
 import NotFound from "./not-found";
+import { CityNavigator } from "../components/CityNavigator";
 
 const SERVICE_KEYS = new Set(["custom-homes", "spechomes", "floorplans"]);
 const WHERE_NESTED_KEYS = new Set(["build-on-your-lot", "buy-a-lot-with-us"]);
@@ -772,6 +773,7 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
           jsonLd={pageJsonLd.length ? pageJsonLd : undefined}
         />
         <PageHero data={data} hideDescription={heroDescDup} />
+        {key === "where-we-build" ? <CityNavigator /> : null}
         <IntroSection subtitle={subtitle} intro={intro} image={introImg} />
 
         {isLegal
