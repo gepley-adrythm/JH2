@@ -24,7 +24,12 @@ Premium marketing website for Jematell Homes — a family-owned custom home buil
   - `src/App.tsx` — BrowserRouter + all route definitions
   - `src/layout.tsx` — Header (with NavDropdown component), Footer, floating ContactWidget
   - `src/sections.tsx` — Homepage sections (Hero, About, StatsStrip, ServicesSplit, Process, WhereWeBuild, Reviews)
-  - `src/cta.tsx` — Lead capture form (react-hook-form + zod)
+  - `src/cta.tsx` — Homepage CTA section; its button opens the universal contact form (no inline form anymore)
+  - `src/contact-form/` — The universal multi-step contact form ("ContactV5")
+    - `ContactFormProvider.tsx` — mounts the form once, exposes `useContactForm()` → `{ open, close, isOpen }`; handles Esc, body-scroll-lock, focus trap + focus restoration
+    - `ContactForm.tsx` — the immersive full-screen multi-step form (name → contact → message-builder → extras → thank-you)
+    - `formData.ts` — chip options + helpers; `submit.ts` — local submit adapter (delivery not yet connected)
+    - `contact-form.css` — co-located styles (all `cf-*` classes)
   - `src/index.css` — All styling (single file, no Tailwind, organized by section)
   - `src/pages/` — Page-level components
     - `Home.tsx` — landing page (composes the homepage sections)
@@ -48,6 +53,8 @@ Premium marketing website for Jematell Homes — a family-owned custom home buil
 - **Blog filters out Squarespace taxonomy URLs** (category_*, tag_*, percent-encoded slugs) — only the ~47 real article slugs are rendered.
 - **Inner-page images are referenced via Squarespace CDN URLs** directly (they're the client's own assets). Homepage uses local files in `public/images/` for the first-paint hero.
 - **No fetch / no backend coupling on the public site** — fully static rendering, ready to host as a CDN-served SPA.
+- **One universal contact form** — a single immersive multi-step form lives in `src/contact-form/`, mounted once via `ContactFormProvider` (inside `BrowserRouter`) and opened from everywhere via `useContactForm().open()`: header CTA (desktop + mobile), hero CTA, homepage CTA section, and the floating contact widget. It replaced the old inline lead form and the old multi-link floating widget menu. Submissions are wired end-to-end but delivery is not connected yet (`submit.ts` is a local adapter with a TODO).
+- **Contact-form CSS is co-located** (`src/contact-form/contact-form.css`, imported by the provider) — a deliberate deviation from the otherwise single-`index.css` convention, to keep the ported form self-contained. All its classes are namespaced `cf-*`.
 
 ## Product
 

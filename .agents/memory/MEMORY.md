@@ -1,2 +1,3 @@
 - [Orval zod request validation](orval-zod-request-validation.md) — generated `zod.coerce` schemas can't reject missing/`"false"` params; guard the raw request first.
 - [FAQ SEO module](faq-seo-module.md) — FAQ pages are SSR'd by api-server at top-level `/faq*` (outside `/api`); seed = source of truth synced on boot; render.ts is pure for hermetic validation.
+- [Universal contact form](contact-form.md) — Jematell has ONE contact form (modal via useContactForm().open()); never add inline page forms; delivery not yet wired.

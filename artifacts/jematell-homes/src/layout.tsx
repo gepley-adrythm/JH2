@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { MessageSquare, Phone, Mail, Instagram, Facebook, Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { useContactForm } from "./contact-form";
 
 const BASE = import.meta.env.BASE_URL || "/";
 export const img = (name: string) => `${BASE}images/${name}`;
@@ -106,6 +107,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { pathname } = useLocation();
+  const { open: openContactForm } = useContactForm();
   const forceSolid = isLightHeroPath(pathname);
 
   useEffect(() => {
@@ -161,9 +163,9 @@ export function Header() {
         </nav>
 
         <div className="header-actions">
-          <Link to="/contact" className="btn btn-primary" data-testid="header-cta">
+          <button type="button" className="btn btn-primary" data-testid="header-cta" onClick={openContactForm}>
             Start Your Build
-          </Link>
+          </button>
         </div>
 
         <button 
@@ -195,9 +197,15 @@ export function Header() {
           <Link to="/about" onClick={close} data-testid="mobile-nav-about-us">About</Link>
           <Link to="/blog" onClick={close} data-testid="mobile-nav-blog">Blog</Link>
           <a href="/faq" onClick={close} data-testid="mobile-nav-faq">FAQ</a>
-          <Link to="/contact" onClick={close} className="btn btn-primary" data-testid="mobile-nav-cta" style={{ marginTop: 16, alignSelf: 'flex-start' }}>
+          <button
+            type="button"
+            onClick={() => { close(); openContactForm(); }}
+            className="btn btn-primary"
+            data-testid="mobile-nav-cta"
+            style={{ marginTop: 16, alignSelf: 'flex-start' }}
+          >
             Start Your Build
-          </Link>
+          </button>
           <div className="mobile-nav-contact">
             <a href="tel:6024215576" data-testid="mobile-nav-phone"><Phone size={16} /> (602) 421-5576</a>
             <a href="mailto:info@jematellhomes.com" data-testid="mobile-nav-email"><Mail size={16} /> info@jematellhomes.com</a>
@@ -271,38 +279,17 @@ export function Footer() {
 }
 
 export function ContactWidget() {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    const onClick = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    };
-    document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
-  }, []);
-  
+  const { open: openContactForm } = useContactForm();
+
   return (
-    <div className={`contact-widget ${open ? "is-open" : ""}`} ref={ref}>
-      <div className="contact-widget-panel" role="menu">
-        <h4>Get in Touch</h4>
-        <a href="sms:6024215576">
-          <MessageSquare size={18} /> Text Us
-        </a>
-        <a href="tel:6024215576">
-          <Phone size={18} /> (602) 421-5576
-        </a>
-        <Link to="/contact" onClick={() => setOpen(false)}>
-          <Mail size={18} /> Email Us
-        </Link>
-      </div>
+    <div className="contact-widget">
       <button
         className="contact-widget-btn"
-        onClick={(e) => { e.stopPropagation(); setOpen((v) => !v); }}
+        onClick={openContactForm}
         data-testid="contact-widget"
-        aria-expanded={open}
+        aria-label="Contact Jematell Homes"
       >
-        {open ? <X size={24} /> : <MessageSquare size={24} />}
+        <MessageSquare size={24} />
       </button>
     </div>
   );

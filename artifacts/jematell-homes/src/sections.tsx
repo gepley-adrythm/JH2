@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { img } from "./layout";
 import { Link } from "react-router-dom";
+import { useContactForm } from "./contact-form";
 
 // --- Data ---
 const WHERE_WE_BUILD = [
@@ -30,6 +31,7 @@ const REVIEWS = [
 // --- Sections ---
 
 export function Hero() {
+  const { open: openContactForm } = useContactForm();
   return (
     <section className="hero">
       <div className="hero-bg">
@@ -48,9 +50,9 @@ export function Hero() {
             <span>Let's Make Your</span>
             <span>Dream a Reality</span>
           </h1>
-          <Link to="/contact" className="btn btn-outline-light" data-testid="hero-cta">
+          <button type="button" className="btn btn-outline-light" data-testid="hero-cta" onClick={openContactForm}>
             Start Your Build
-          </Link>
+          </button>
         </motion.div>
       </div>
     </section>

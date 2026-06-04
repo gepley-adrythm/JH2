@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Header, Footer, ContactWidget } from "./layout";
+import { ContactFormProvider } from "./contact-form";
 import Home from "./pages/Home";
 import NotFound from "./pages/not-found";
 import ContentPage from "./pages/ContentPage";
@@ -23,9 +24,10 @@ const BASENAME = (import.meta.env.BASE_URL || "/").replace(/\/$/, "") || "/";
 export default function App() {
   return (
     <BrowserRouter basename={BASENAME}>
-      <ScrollToTop />
-      <Header />
-      <Routes>
+      <ContactFormProvider>
+        <ScrollToTop />
+        <Header />
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/gallery/:slug" element={<GalleryDetail />} />
@@ -44,9 +46,10 @@ export default function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="*" element={<NotFound />} />
-      </Routes>
-      <Footer />
-      <ContactWidget />
+        </Routes>
+        <Footer />
+        <ContactWidget />
+      </ContactFormProvider>
     </BrowserRouter>
   );
 }
