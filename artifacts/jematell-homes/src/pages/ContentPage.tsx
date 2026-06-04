@@ -352,10 +352,15 @@ function ProcessSection({ section }: { section: Section }) {
 }
 
 function FloorPlanTiersSection({ section }: { section: Section }) {
-  // Group h4 + p + img triples (img may precede or follow)
+  // Cards are image-on-top: in the source each tier image PRECEDES its h4 heading
+  // (e.g. img "3771 Square Foot Floor Plan" then h4 "Over 3,000 Sq Ft"). Hold each
+  // image as pending and attach it to the next tier's h4. Any trailing image after
+  // the final tier's body is decorative (e.g. an aerial photo) and is discarded.
   type Tier = { title: string; body: string; img?: string; alt?: string };
   const tiers: Tier[] = [];
   let current: Partial<Tier> = {};
+  let pendingImg: string | undefined;
+  let pendingAlt: string | undefined;
   for (const b of section.blocks) {
     if (b.type === "h4" && b.text) {
       if (current.title) {
@@ -363,17 +368,22 @@ function FloorPlanTiersSection({ section }: { section: Section }) {
         current = {};
       }
       current.title = b.text;
+      if (pendingImg) {
+        current.img = pendingImg;
+        current.alt = pendingAlt;
+        pendingImg = undefined;
+        pendingAlt = undefined;
+      }
     } else if (b.type === "p" && b.text && current.title && !current.body) {
       current.body = b.text;
     } else if (b.type === "img" && b.src) {
+      // image belongs to the upcoming tier; close the current tier first
       if (current.title) {
-        current.img = b.src;
-        current.alt = b.alt;
-      } else {
-        // pending image: hold for next tier
-        current.img = current.img || b.src;
-        current.alt = current.alt || b.alt;
+        tiers.push(current as Tier);
+        current = {};
       }
+      pendingImg = b.src;
+      pendingAlt = b.alt;
     }
   }
   if (current.title) tiers.push(current as Tier);
