@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "i4qqj2VE8tBzCTwloJrsB"
+uri = "file://research/jematell-faq-content-plan.md"
+type = "text"
+title = "Jematell Homes — FAQ / Resource Content Plan"
