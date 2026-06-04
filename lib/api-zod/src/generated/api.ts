@@ -98,3 +98,35 @@ export const GetFaqResponse = zod.object({
 })
 
 
+/**
+ * Sends an email notification for a new contact form submission.
+ * @summary Submit a contact form lead
+ */
+
+
+
+export const SubmitContactBody = zod.object({
+  "name": zod.string().min(1),
+  "email": zod.string().email(),
+  "phone": zod.string(),
+  "message": zod.string(),
+  "referralSource": zod.string(),
+  "textOptIn": zod.boolean(),
+  "tracking": zod.object({
+  "gclid": zod.string(),
+  "utm_source": zod.string(),
+  "utm_medium": zod.string(),
+  "utm_campaign": zod.string(),
+  "source": zod.string().describe('Resolved source (UTM if present, else derived from referrer).'),
+  "medium": zod.string().describe('Resolved medium (UTM if present, else derived from referrer).'),
+  "referrer": zod.string(),
+  "landing_page": zod.string(),
+  "trigger_url": zod.string()
+}).describe('Marketing attribution captured from the visitor\'s session.')
+})
+
+export const SubmitContactResponse = zod.object({
+  "success": zod.boolean()
+})
+
+

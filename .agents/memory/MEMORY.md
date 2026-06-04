@@ -2,3 +2,4 @@
 - [Fraunces wonky glyphs](fraunces-wonky-glyphs.md) — descending f/J are inherent to the font; CSS/axis pins fail, swap the font (now Newsreader).
 - [SSG perf patterns](ssg-perf-patterns.md) — eager-on-server/lazy-on-client routes (renderToString can't suspend); index.html preloads need %BASE_URL%; picture{display:contents}.
 - [Speed & a11y audit guard](audit-guard.md) — deterministic jsdom+axe+static check (scripts/audit.mjs); committed dist can be stale, prerender shares one index.html template, contrast can't run in jsdom.
+- [Cross-artifact API calls](cross-artifact-api-calls.md) — web app fetches the separate /api artifact with a root-relative path, NOT BASE_URL-prefixed (BASE_URL is for same-artifact URLs only).

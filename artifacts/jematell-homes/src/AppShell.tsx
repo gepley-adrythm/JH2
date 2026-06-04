@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { MotionConfig, LazyMotion, domAnimation } from "framer-motion";
 import { Header, Footer, ContactWidget } from "./layout";
 import { ContactFormProvider } from "./contact-form";
+import { initTracking } from "./contact-form/analytics";
 import RouteBackground from "./RouteBackground";
 import { SiteJsonLd } from "./seo/seo";
 import Home from "./pages/Home";
@@ -34,6 +35,12 @@ function ScrollToTop() {
  * SSG possible without duplicating the layout/routes.
  */
 export default function AppShell() {
+  useEffect(() => {
+    // Capture first-touch attribution (UTMs / referrer) as soon as the app
+    // mounts, before any client-side navigation changes the URL or referrer.
+    initTracking();
+  }, []);
+
   return (
     <LazyMotion features={domAnimation} strict>
       <MotionConfig reducedMotion="user">

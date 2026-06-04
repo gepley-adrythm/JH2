@@ -12,6 +12,8 @@ tags:
     description: Health operations
   - name: faqs
     description: FAQ operations
+  - name: contact
+    description: Contact form operations
 paths:
   /healthz:
     get:
@@ -105,6 +107,37 @@ paths:
                 $ref: "#/components/schemas/FaqDetailResponse"
         "404":
           description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /contact:
+    post:
+      operationId: submitContact
+      tags: [contact]
+      summary: Submit a contact form lead
+      description: Sends an email notification for a new contact form submission.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactRequest"
+      responses:
+        "200":
+          description: Submission accepted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContactResponse"
+        "400":
+          description: Invalid submission
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "502":
+          description: Email delivery failed
           content:
             application/json:
               schema:
@@ -259,3 +292,71 @@ components:
       required:
         - query
         - matches
+    ContactTracking:
+      type: object
+      description: Marketing attribution captured from the visitor's session.
+      properties:
+        gclid:
+          type: string
+        utm_source:
+          type: string
+        utm_medium:
+          type: string
+        utm_campaign:
+          type: string
+        source:
+          type: string
+          description: Resolved source (UTM if present, else derived from referrer).
+        medium:
+          type: string
+          description: Resolved medium (UTM if present, else derived from referrer).
+        referrer:
+          type: string
+        landing_page:
+          type: string
+        trigger_url:
+          type: string
+      required:
+        - gclid
+        - utm_source
+        - utm_medium
+        - utm_campaign
+        - source
+        - medium
+        - referrer
+        - landing_page
+        - trigger_url
+    ContactRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        message:
+          type: string
+        referralSource:
+          type: string
+        textOptIn:
+          type: boolean
+        tracking:
+          $ref: "#/components/schemas/ContactTracking"
+      required:
+        - name
+        - email
+        - phone
+        - message
+        - referralSource
+        - textOptIn
+        - tracking
+    ContactResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+      required:
+        - success

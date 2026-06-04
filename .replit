@@ -34,6 +34,7 @@ isValidation = true
 [agent]
 stack = "PNPM_WORKSPACE"
 expertMode = true
+integrations = ["google-mail:1.0.0"]
 
 [postMerge]
 path = "scripts/post-merge.sh"
@@ -50,3 +51,6 @@ externalPort = 80
 [[ports]]
 localPort = 24862
 externalPort = 3000
+
+[nix]
+channel = "stable-25_05"

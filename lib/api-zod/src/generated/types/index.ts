@@ -7,6 +7,9 @@
  */
 
 export * from './checkFaqDuplicateParams';
+export * from './contactRequest';
+export * from './contactResponse';
+export * from './contactTracking';
 export * from './duplicateCheckResponse';
 export * from './duplicateMatch';
 export * from './errorResponse';

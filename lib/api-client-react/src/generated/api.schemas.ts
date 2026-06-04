@@ -61,6 +61,38 @@ export interface DuplicateCheckResponse {
   matches: DuplicateMatch[];
 }
 
+/**
+ * Marketing attribution captured from the visitor's session.
+ */
+export interface ContactTracking {
+  gclid: string;
+  utm_source: string;
+  utm_medium: string;
+  utm_campaign: string;
+  /** Resolved source (UTM if present, else derived from referrer). */
+  source: string;
+  /** Resolved medium (UTM if present, else derived from referrer). */
+  medium: string;
+  referrer: string;
+  landing_page: string;
+  trigger_url: string;
+}
+
+export interface ContactRequest {
+  /** @minLength 1 */
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+  referralSource: string;
+  textOptIn: boolean;
+  tracking: ContactTracking;
+}
+
+export interface ContactResponse {
+  success: boolean;
+}
+
 export type ListFaqsParams = {
 category?: string;
 topic?: string;
