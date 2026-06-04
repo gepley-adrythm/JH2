@@ -16,7 +16,6 @@ export default function FaqIndex() {
 
   const categories = useMemo(() => faqDataset.categories(), []);
   const topics = useMemo(() => faqDataset.topics(), []);
-  const featured = useMemo(() => faqDataset.featured(), []);
   const allItems = useMemo(() => faqDataset.all(), []);
 
   const results = useMemo(() => {
@@ -82,30 +81,6 @@ export default function FaqIndex() {
         </section>
       ) : (
         <>
-          {featured.length > 0 ? (
-            <section className="section-pad" style={{ background: "var(--color-bg)" }}>
-              <div className="container">
-                <h2 className="faq-section-title">Most asked</h2>
-                <div className="faq-featured-grid" data-testid="faq-featured">
-                  {featured.map((i) => (
-                    <Link
-                      key={i.slug}
-                      to={`/faq/${i.slug}`}
-                      className="faq-featured-card"
-                      data-testid={`faq-featured-${i.slug}`}
-                    >
-                      <span className="faq-featured-cat">{i.categoryTitle}</span>
-                      <span className="faq-featured-q">{i.question}</span>
-                      <span className="faq-featured-more">
-                        Read answer <ArrowRight size={15} aria-hidden="true" />
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </section>
-          ) : null}
-
           <section className="section-pad" style={{ background: "var(--color-cream, #ece9e2)" }}>
             <div className="container">
               {topics.length > 0 ? (
@@ -130,16 +105,21 @@ export default function FaqIndex() {
                 <div key={c.slug} className="faq-category" data-testid={`faq-category-${c.slug}`}>
                   <h2 className="faq-category-title">{c.title}</h2>
                   <p className="faq-category-desc">{c.description}</p>
-                  <ul className="faq-list">
+                  <div className="faq-card-grid">
                     {c.items.map((i) => (
-                      <li key={i.slug}>
-                        <Link to={`/faq/${i.slug}`} data-testid={`faq-q-${i.slug}`}>
-                          <span>{i.question}</span>
-                          <ArrowRight size={16} aria-hidden="true" />
-                        </Link>
-                      </li>
+                      <Link
+                        key={i.slug}
+                        to={`/faq/${i.slug}`}
+                        className="faq-q-card"
+                        data-testid={`faq-q-${i.slug}`}
+                      >
+                        <span className="faq-q-card-q">{i.question}</span>
+                        <span className="faq-q-card-more">
+                          Read answer <ArrowRight size={15} aria-hidden="true" />
+                        </span>
+                      </Link>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               ))}
             </div>
