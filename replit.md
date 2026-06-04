@@ -75,7 +75,7 @@ A multi-page marketing site with:
 - Where We Build hub + 10 location-specific landing pages (Scottsdale, Rio Verde, Phoenix, Cave Creek, Fountain Hills, Carefree, Casa Grande, Apache Junction, plus Build on Your Lot / Buy a Lot With Us)
 - About, Warranty, Privacy, Thank You pages
 - Blog with 47 articles, client-side search, prev/next navigation
-- FAQ hub + per-topic pages + individual Q&A detail pages, cross-linked to blog pillars and service pages
+- FAQ hub + per-topic pages + individual Q&A detail pages, cross-linked to blog pillars and service pages. Content is a focused set of deep, research-phase, building-code-grounded answers (permitting, adopted codes, land due diligence, wells/septic/water-supply, zoning/setbacks/NAOS, ADUs, budgeting/financing) — each 500-1,500 words, citing real AZ law (A.R.S. 45-454, A.R.S. 32-2101, Scottsdale ESLO/NAOS, HB 2720, ADWR/ADEQ) and always reminding readers to confirm specifics with the local AHJ.
 - Contact page with info cards, a floating contact widget on every page, validated lead form
 
 ## User preferences

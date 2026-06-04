@@ -67,6 +67,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   line-height: 1.1;
   color: var(--color-dark);
+  /* Fraunces is a variable font whose `opsz` axis adds dramatic swash
+     descenders (f, J, g) as it scales up. `auto` maps opsz to the rendered
+     size, which makes those glyphs read as "broken" at heading sizes. Turn
+     optical sizing off so the restrained default glyph set is used everywhere. */
+  font-optical-sizing: none;
 }
 
 .container {
@@ -1939,6 +1944,8 @@ a.contact-info-card:hover {
 }
 .faq-answer ul,
 .faq-answer ol { margin: 0 0 20px; padding-left: 22px; }
+.faq-answer ul { list-style: disc; }
+.faq-answer ol { list-style: decimal; }
 .faq-answer li { margin-bottom: 8px; }
 .faq-answer a { color: var(--color-accent); text-decoration: underline; }
 

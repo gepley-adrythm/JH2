@@ -1,11 +1,12 @@
-import type { FaqSeed } from "./types";
+import type { FaqSeed, SeedItem } from "./types";
 
 // =============================================================================
 // FAQ SEED — SINGLE SOURCE OF TRUTH
 // =============================================================================
 // This file is synced into the database on server boot (see sync.ts) and is the
-// only place FAQ content is authored. The build-time validator and the SPA
-// cross-link generator also read from here. After editing, re-run:
+// only place FAQ content is authored. The build-time validator, the SPA
+// cross-link generator, and the intent registry also read from here. After
+// editing, re-run:
 //   - server boot (re-syncs DB)
 //   - pnpm --filter @workspace/api-server run faq:validate
 //   - pnpm --filter @workspace/api-server run faq:crosslinks
@@ -14,527 +15,613 @@ import type { FaqSeed } from "./types";
 // Content rules:
 //   - `shortAnswer` and `metaDescription` are schema/meta only — NEVER rendered
 //     as visible body copy. shortAnswer feeds the FAQPage acceptedAnswer; the
-//     full `answer`/`answerHtml` is what visitors read on the detail page.
-//   - Answers reflect Jematell Homes' published approach (a family-owned custom
-//     builder serving Scottsdale, Rio Verde and the greater Phoenix metro).
-//     Industry timelines/figures are given as general ranges, not fixed quotes.
+//     full `answerHtml` is what visitors read on the detail page.
+//   - Answers are deep, research-phase reference content grounded in real Arizona
+//     building law and process (permitting, codes, land due diligence, water and
+//     septic, zoning, ADUs, budgeting). Statutes and ordinances are cited by
+//     name; figures are given as ranges and every answer reminds the reader to
+//     confirm specifics with the local Authority Having Jurisdiction (AHJ),
+//     because codes, fees, and processing times change.
+//   - Authored once as rich HTML (`answerHtml`); the plain-text `answer` used for
+//     schema.org acceptedAnswer is derived from it by `plain()` so the two can
+//     never drift.
 // =============================================================================
+
+/** Derive clean schema-text from authored HTML so answer/answerHtml never drift. */
+function plain(html: string): string {
+  return html
+    .replace(/<li>/g, "\n\n- ")
+    .replace(/<\/(p|h2|h3|ul|ol|li)>/g, "\n\n")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&#39;|&rsquo;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&nbsp;/g, " ")
+    .replace(/[ \t]+/g, " ")
+    .replace(/ *\n */g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+/** Build a SeedItem from authored HTML, auto-filling the plain-text `answer`. */
+function item(base: Omit<SeedItem, "answer"> & { answerHtml: string }): SeedItem {
+  return { ...base, answer: plain(base.answerHtml) };
+}
 
 export const faqSeed: FaqSeed = {
   categories: [
     {
-      slug: "building-process",
-      title: "The Building Process",
+      slug: "permits-and-codes",
+      title: "Permits, Codes & Inspections",
       description:
-        "How a Jematell Homes build comes together — from your first conversation through design, construction, and the final walkthrough.",
+        "What it takes to get a custom home approved in Arizona — jurisdiction, building codes, the plan-review process, and inspections.",
       metaDescription:
-        "Understand the Jematell Homes custom home building process in Arizona — steps, timeline, permits, updates, and what to expect from start to move-in.",
+        "Building permits, adopted codes, plan review, and inspections for a custom home in Maricopa County, Scottsdale, and the greater Phoenix metro.",
       sortOrder: 1,
+    },
+    {
+      slug: "land-and-due-diligence",
+      title: "Land & Due Diligence",
+      description:
+        "How to tell whether a lot is buildable before you buy — zoning, access, utilities, soils, floodplain, and the studies a builder relies on.",
+      metaDescription:
+        "Arizona land due diligence — confirming a lot is buildable, checking zoning, access, utilities, soils, and floodplain before you commit.",
+      sortOrder: 2,
+    },
+    {
+      slug: "water-septic-utilities",
+      title: "Water, Septic & Utilities",
+      description:
+        "Building beyond city services — wells, hauled water, septic systems, and Arizona's water-supply rules on rural and outlying lots.",
+      metaDescription:
+        "Wells, hauled water, septic permits, and Arizona's 100-year water supply rule explained for rural homesites in Rio Verde and the Phoenix metro.",
+      sortOrder: 3,
     },
     {
       slug: "costs-and-budget",
       title: "Costs & Budget",
       description:
-        "Understanding pricing, allowances, change orders, and financing so your custom home budget stays clear and predictable.",
+        "What a custom home really costs in the Phoenix metro, what drives the number, and how allowances, change orders, and financing work.",
       metaDescription:
-        "Custom home costs, allowances, change orders, and financing explained for buyers building in Scottsdale, Rio Verde, and the Phoenix metro.",
-      sortOrder: 2,
-    },
-    {
-      slug: "lots-and-locations",
-      title: "Lots & Locations",
-      description:
-        "Building on land you own, finding the right homesite, and where Jematell Homes builds across Arizona.",
-      metaDescription:
-        "Building on your own lot, buying land with a builder's eye, and the Arizona communities Jematell Homes serves.",
-      sortOrder: 3,
-    },
-    {
-      slug: "design-and-customization",
-      title: "Design & Customization",
-      description:
-        "Floor plans, customization, casitas and ADUs, RV garages, and how your home is tailored to your lot and lifestyle.",
-      metaDescription:
-        "Floor plans, full customization, casitas/ADUs, and RV garages — how Jematell Homes designs a home around your lot and lifestyle.",
+        "Custom home cost per square foot, site costs, allowances, change orders, and construction financing in Scottsdale and the Phoenix metro.",
       sortOrder: 4,
     },
     {
-      slug: "spec-and-semi-custom",
-      title: "Spec & Semi-Custom Homes",
+      slug: "design-zoning-adus",
+      title: "Design, Zoning & ADUs",
       description:
-        "The difference between spec, semi-custom, and fully custom homes, and which path fits your goals.",
+        "How zoning shapes what you can build — setbacks, lot coverage, hillside and open-space rules, and casitas, guest houses, and ADUs.",
       metaDescription:
-        "Spec vs. semi-custom vs. custom homes in Arizona — the differences, the trade-offs, and how to choose the right path with Jematell Homes.",
+        "Setbacks, lot coverage, Scottsdale NAOS/ESL rules, and casita/guest house/ADU regulations for custom homes in the Phoenix metro.",
       sortOrder: 5,
     },
   ],
   topics: [
     {
-      slug: "custom-home-timeline",
-      title: "Custom Home Timeline",
+      slug: "building-permits-arizona",
+      title: "Building Permits in Arizona",
       description:
-        "How long each phase of a custom home takes — from design and permitting through construction and handover.",
+        "Who has authority over your parcel, which permits a custom home needs, the adopted codes, and how long approval takes.",
       metaDescription:
-        "How long it takes to build a custom home in Arizona — the design, permitting, and construction phases and what drives the timeline.",
+        "How building permits work for a custom home in Arizona — jurisdiction, required permits, adopted codes, plan review, and timelines.",
       sortOrder: 1,
     },
     {
-      slug: "building-on-your-lot",
-      title: "Building On Your Lot",
+      slug: "buying-land-to-build",
+      title: "Buying Land to Build On",
       description:
-        "Everything specific to building on land you already own or are planning to buy — feasibility, due diligence, and the process.",
+        "The due diligence that tells you whether a homesite will actually work — and what to verify before you make an offer.",
       metaDescription:
-        "Building on your own lot in Arizona — lot feasibility, due diligence, and how Jematell Homes turns your land into a finished home.",
+        "Buying land to build a custom home in Arizona — the due diligence, studies, and lot checks that determine whether a parcel is buildable.",
       sortOrder: 2,
     },
     {
-      slug: "financing-and-budgeting",
-      title: "Financing & Budgeting",
+      slug: "rural-water-and-septic",
+      title: "Rural Water & Septic",
       description:
-        "Setting a realistic budget, understanding allowances and change orders, and financing a custom or semi-custom home.",
+        "Supplying water and handling wastewater where there is no city hookup — wells, hauled water, septic systems, and the rules behind them.",
       metaDescription:
-        "Budgeting and financing a custom home in Arizona — realistic budgets, allowances, change orders, and construction loans.",
+        "Wells, hauled water, septic systems, and Arizona water-supply rules for building on rural land in Rio Verde and the Phoenix metro.",
       sortOrder: 3,
     },
     {
-      slug: "floor-plans-and-design",
-      title: "Floor Plans & Design",
+      slug: "budgeting-a-custom-home",
+      title: "Budgeting a Custom Home",
       description:
-        "Choosing a plan, bringing your own, and how much you can customize the layout and finishes of your home.",
+        "Setting a realistic number, understanding what drives cost, and how allowances, change orders, and construction loans work.",
       metaDescription:
-        "Choosing or customizing a floor plan with Jematell Homes — proven plans, bring-your-own designs, and full customization.",
+        "Budgeting a custom home in Arizona — realistic cost ranges, what drives price, allowances, change orders, and construction loans.",
       sortOrder: 4,
     },
     {
-      slug: "choosing-a-builder",
-      title: "Choosing a Builder",
+      slug: "zoning-setbacks-adus",
+      title: "Zoning, Setbacks & ADUs",
       description:
-        "What to look for, what to ask, and how to compare custom home builders in the Phoenix metro.",
+        "How zoning defines your buildable envelope and what the rules allow for casitas, guest houses, and accessory dwelling units.",
       metaDescription:
-        "How to choose a custom home builder in Scottsdale and the Phoenix metro — what to look for and the questions to ask before you sign.",
+        "Zoning, setbacks, lot coverage, NAOS, and ADU rules that shape what you can build on a custom home lot in the Phoenix metro.",
       sortOrder: 5,
     },
   ],
   items: [
-    // ----- The Building Process -----
-    {
-      slug: "how-long-does-it-take-to-build-a-custom-home",
-      question: "How long does it take to build a custom home in Arizona?",
-      answer:
-        "Every project is different, but most custom homes move through two broad stages: design and permitting, then construction.\n\nThe design and permitting stage typically takes a few months. This is where we refine your plans with our architect, finalize selections, and work through engineering and the local permit process. Lot conditions and how quickly decisions are made both affect how long this stage runs.\n\nConstruction usually takes somewhere in the range of eight to twelve months or more, depending on the size of the home, the complexity of the design, your site, and material availability. A larger or highly custom home on a challenging lot will take longer than a straightforward build on a ready homesite.\n\nWe build to a realistic schedule, provide weekly updates, and walk milestones with you so you always know where your project stands.",
-      answerHtml: `<p>Every project is different, but most custom homes move through two broad stages: <strong>design and permitting</strong>, then <strong>construction</strong>.</p><p>The design and permitting stage typically takes a few months. This is where we refine your plans with our architect, finalize selections, and work through engineering and the local permit process. Lot conditions and how quickly decisions are made both affect how long this stage runs.</p><p>Construction usually takes somewhere in the range of eight to twelve months or more, depending on the size of the home, the complexity of the design, your site, and material availability. A larger or highly custom home on a challenging lot will take longer than a straightforward build on a ready homesite.</p><p>We build to a realistic schedule, provide weekly updates, and walk milestones with you so you always know where your project stands.</p>`,
+    // ===================== Permits, Codes & Inspections =====================
+    item({
+      slug: "do-i-need-a-permit-to-build-in-maricopa-county",
+      question: "Do I need a permit to build a custom home in Maricopa County?",
+      answerHtml: `<p><strong>Yes. Every new custom home in the Phoenix metro requires a building permit, and on rural or undeveloped land you will usually need several related permits on top of it.</strong> The first thing to settle, before any drawings begin, is which government actually has authority over your parcel, because that single fact determines every rule, fee, and timeline that follows.</p>
+<h2>City versus unincorporated county</h2>
+<p>Arizona is a "home rule" state, which means building is regulated locally rather than by one statewide office. If your lot sits inside an incorporated city or town such as Scottsdale, Phoenix, Cave Creek, or Fountain Hills, that municipality is your Authority Having Jurisdiction (AHJ) and issues your permits. If your lot is in an unincorporated area, including much of Rio Verde Foothills, the Maricopa County Planning and Development Department is your AHJ. The two have different ordinances, submittal requirements, fee schedules, and processing times, so confirming jurisdiction is genuinely step one of any feasibility review.</p>
+<h2>The permits a custom home typically needs</h2>
+<p>On a finished lot inside a city, the central approval is the residential building permit, which covers the structure along with its electrical, plumbing, and mechanical work. On raw or rural land the list grows, and the supporting permits often have to be in hand before the building permit can be finalized:</p>
+<ul>
+<li><strong>Building permit</strong> for the house itself.</li>
+<li><strong>Grading and drainage permit</strong> when the site needs earthwork, retention, or sits on a slope.</li>
+<li><strong>Septic / onsite wastewater permit</strong> where there is no sewer, reviewed by Maricopa County Environmental Services under Arizona Department of Environmental Quality (ADEQ) standards.</li>
+<li><strong>Well permit or Notice of Intent to Drill</strong> filed with the Arizona Department of Water Resources (ADWR) when you supply your own water.</li>
+<li><strong>Driveway, access, or encroachment permit</strong> for a new connection to a public road.</li>
+</ul>
+<h2>How the process flows</h2>
+<ol>
+<li><strong>Zoning verification.</strong> Confirm the parcel is zoned for single-family residential and review setbacks, height limits, and any overlays before design starts.</li>
+<li><strong>Plan submittal.</strong> Construction documents, structural engineering, energy calculations, and a site and grading plan go to the AHJ for review.</li>
+<li><strong>Plan review cycles.</strong> Reviewers return comments and corrections; your team resubmits. Most custom homes go through two or three rounds.</li>
+<li><strong>Permit issuance.</strong> Fees are paid and the permit is released so construction can begin.</li>
+<li><strong>Inspections.</strong> The AHJ inspects at key milestones such as footings, framing, electrical, plumbing, and mechanical.</li>
+<li><strong>Certificate of occupancy.</strong> After the final inspection passes, the home is cleared for move-in.</li>
+</ol>
+<h2>How Jematell Homes handles it</h2>
+<p>Permitting is part of our full-service project management. We confirm jurisdiction, assemble the submittal package, carry every correction cycle, and coordinate inspections through to the certificate of occupancy, so the paperwork is ours to manage rather than yours. Because codes, fees, and processing times change, we always verify the current requirements directly with your AHJ for your specific parcel before we commit to a schedule.</p>`,
       shortAnswer:
-        "Most custom homes take a few months for design and permitting, then roughly eight to twelve months or more to build. The exact timeline depends on the home's size and complexity, your lot, and material availability. We provide weekly updates and milestone walkthroughs throughout.",
+        "Yes. A new custom home always needs a building permit, plus grading, septic, well, and access permits on rural land. First confirm whether your parcel is governed by a city or by unincorporated Maricopa County, since each has its own rules, fees, and timelines.",
       metaDescription:
-        "How long does it take to build a custom home in Arizona? A look at the design, permitting, and construction phases and what affects the timeline.",
-      categorySlug: "building-process",
-      topicSlugs: ["custom-home-timeline"],
-      tags: ["timeline", "custom-home", "process"],
-      relatedFaqSlugs: ["what-are-the-steps-of-the-building-process"],
-      relatedServiceSlugs: ["custom-homes"],
-      pillarBlogSlug: "how-long-it-takes-to-build-a-custom-home-in-arizona",
+        "Do you need a permit to build a custom home in Maricopa County? Yes — building, grading, septic, well, and access permits, plus how the approval process works.",
+      categorySlug: "permits-and-codes",
+      topicSlugs: ["building-permits-arizona"],
+      tags: ["permits", "maricopa-county", "process", "research-phase"],
+      relatedFaqSlugs: [
+        "what-building-codes-apply-to-a-new-home-in-arizona",
+        "how-long-does-permitting-take-in-scottsdale",
+        "can-i-build-without-city-water-or-sewer",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug:
+        "what-to-expect-when-building-a-custom-home-in-the-phoenix-metro-area",
       featured: true,
       sortOrder: 1,
-    },
-    {
-      slug: "what-are-the-steps-of-the-building-process",
-      question: "What are the steps of the custom home building process?",
-      answer:
-        "We keep the process organized and transparent, built around four main stages.\n\nIntroduction: You reach out through our contact form and we follow up to learn about your project's budget, timeline, and vision.\n\nDesign: We collaborate with our architect to turn your ideas into plans, refining every detail to bring your vision to life.\n\nBuild: Construction begins. We work to build your home on time and within budget, providing weekly updates and walking project milestones with you.\n\nCompletion: Your home is finished. We perform a thorough final walkthrough to address any last adjustments, and then you receive the keys.\n\nThroughout all four stages, our full-service project management handles the planning, permits, and coordination so the process stays smooth and stress-free.",
-      answerHtml: `<p>We keep the process organized and transparent, built around four main stages.</p><ol><li><strong>Introduction.</strong> You reach out through our contact form and we follow up to learn about your project's budget, timeline, and vision.</li><li><strong>Design.</strong> We collaborate with our architect to turn your ideas into plans, refining every detail to bring your vision to life.</li><li><strong>Build.</strong> Construction begins. We work to build your home on time and within budget, providing weekly updates and walking project milestones with you.</li><li><strong>Completion.</strong> Your home is finished. We perform a thorough final walkthrough to address any last adjustments, and then you receive the keys.</li></ol><p>Throughout all four stages, our full-service project management handles the planning, permits, and coordination so the process stays smooth and stress-free.</p>`,
+    }),
+    item({
+      slug: "what-building-codes-apply-to-a-new-home-in-arizona",
+      question: "What building codes apply to a new home in the Phoenix metro?",
+      answerHtml: `<p><strong>Arizona has no single statewide building code. Because Arizona is a "home rule" state, each city, town, and county adopts its own edition of the International Codes (I-Codes), with state and local amendments layered on top.</strong> So the precise code that governs your home depends entirely on which jurisdiction your lot falls in.</p>
+<h2>The base codes</h2>
+<p>For one- and two-family homes, the controlling document is almost always a version of the <strong>International Residential Code (IRC)</strong>, which bundles the structural, electrical, plumbing, mechanical, and energy requirements for houses into one book. Larger or more complex structures can fall under the International Building Code (IBC). Most Phoenix-area jurisdictions also adopt companion codes such as the International Energy Conservation Code, alongside the National Electrical Code.</p>
+<h2>Editions differ by jurisdiction</h2>
+<p>The edition that applies is set locally and is updated on each jurisdiction's own schedule. For example, the unincorporated areas of Maricopa County currently build to the <strong>2018 International Residential Code</strong> with regional amendments, while neighboring cities may be on a different edition entirely. This is why two lots a few miles apart can be held to meaningfully different standards. Always confirm the current adopted edition with the Authority Having Jurisdiction for your specific parcel before relying on any figure.</p>
+<h2>Why local amendments matter</h2>
+<p>The I-Codes are a national baseline, but jurisdictions amend them to fit local conditions. In the desert Southwest those amendments commonly address:</p>
+<ul>
+<li><strong>Soils and foundations</strong> — expansive clays and caliche drive foundation and grading requirements.</li>
+<li><strong>Energy and cooling</strong> — insulation, glazing, and HVAC efficiency rules tuned for extreme summer heat.</li>
+<li><strong>Drainage and grading</strong> — how a site must handle stormwater and monsoon runoff.</li>
+<li><strong>Pools, walls, and solar</strong> — barrier, height, and equipment standards that often need their own permits.</li>
+</ul>
+<h2>What this means for your project</h2>
+<p>You do not need to master the code book, but you should choose a builder who works across these jurisdictions every day. We design and detail each home to the edition and amendments in force where you are building, carry those requirements through plan review, and verify them against the AHJ rather than assuming last year's rules still apply. That keeps corrections to a minimum and the schedule predictable.</p>`,
       shortAnswer:
-        "Our process has four stages: Introduction, where we learn your budget, timeline, and vision; Design, where our architect turns ideas into plans; Build, with weekly updates and milestone walkthroughs; and Completion, with a final walkthrough before you receive the keys.",
+        "There is no single Arizona code. Each city and county adopts its own edition of the International Residential Code with local amendments, so the rules depend on your jurisdiction. Unincorporated Maricopa County, for example, builds to the 2018 IRC. Always confirm the current edition with your local building department.",
       metaDescription:
-        "The four steps of building a custom home with Jematell Homes — Introduction, Design, Build, and Completion — explained from first contact to move-in.",
-      categorySlug: "building-process",
-      topicSlugs: ["custom-home-timeline"],
-      tags: ["process", "phases", "custom-home"],
-      relatedFaqSlugs: ["how-long-does-it-take-to-build-a-custom-home"],
+        "What building codes apply to a new home in the Phoenix metro? Each jurisdiction adopts its own edition of the International Residential Code with local amendments.",
+      categorySlug: "permits-and-codes",
+      topicSlugs: ["building-permits-arizona"],
+      tags: ["building-codes", "irc", "phoenix-metro", "research-phase"],
+      relatedFaqSlugs: [
+        "do-i-need-a-permit-to-build-in-maricopa-county",
+        "how-long-does-permitting-take-in-scottsdale",
+      ],
       relatedServiceSlugs: ["custom-homes"],
       pillarBlogSlug: "how-to-build-a-custom-home",
-      featured: true,
+      featured: false,
       sortOrder: 2,
-    },
-    {
-      slug: "what-happens-at-the-first-consultation",
-      question: "What happens at the first consultation with Jematell Homes?",
-      answer:
-        "The first conversation is about understanding your goals. After you reach out through our contact form, we follow up to learn about your project's budget, timeline, and vision, along with whether you already own land or are still looking.\n\nIt helps to come with a sense of how you want to live in the home, any plans or inspiration you've collected, and a budget range you're comfortable with. You don't need finished drawings or every detail figured out. That's what the design stage is for.\n\nFrom there, we can talk through realistic options, the path that fits your situation, and what the next steps look like.",
-      answerHtml: `<p>The first conversation is about understanding your goals. After you reach out through our contact form, we follow up to learn about your project's budget, timeline, and vision, along with whether you already own land or are still looking.</p><p>It helps to come with a sense of how you want to live in the home, any plans or inspiration you've collected, and a budget range you're comfortable with. You don't need finished drawings or every detail figured out — that's what the design stage is for.</p><p>From there, we can talk through realistic options, the path that fits your situation, and what the next steps look like.</p>`,
+    }),
+    item({
+      slug: "how-long-does-permitting-take-in-scottsdale",
+      question: "How long does it take to get a building permit in Scottsdale?",
+      answerHtml: `<p><strong>For a custom home, plan on roughly two to four months from submittal to an issued permit in the City of Scottsdale, and longer if your lot triggers special overlays or an HOA design review.</strong> Permitting runs before any ground is broken, so it belongs in your timeline from the very start of planning.</p>
+<h2>A realistic timeline</h2>
+<p>The schedule usually breaks down like this, in business days:</p>
+<ul>
+<li><strong>Intake and queue:</strong> about 5 to 10 days for the application to be logged and assigned.</li>
+<li><strong>First plan review:</strong> roughly 10 to 15 days for the initial set of comments.</li>
+<li><strong>Each correction cycle:</strong> about 5 to 10 days per resubmittal, with most custom homes going through two or three rounds.</li>
+</ul>
+<p>Add it up and a straightforward custom home commonly lands in the two-to-four-month window. These are typical ranges, not guarantees; the city publishes current review times and they shift with workload.</p>
+<h2>What adds time</h2>
+<p>Several conditions extend review, and many of them are tied to Scottsdale's desert terrain:</p>
+<ul>
+<li><strong>Environmentally Sensitive Lands (ESL) overlay and NAOS:</strong> lots in the foothills must address native plant preservation and protected open space, which adds review steps.</li>
+<li><strong>Hillside District:</strong> sloped sites carry extra grading, drainage, and engineering review.</li>
+<li><strong>HOA or design review:</strong> many Scottsdale communities require architectural approval that runs in parallel and can take weeks to months on its own.</li>
+<li><strong>Incomplete submittals:</strong> missing engineering or energy documents are the most common avoidable delay.</li>
+</ul>
+<h2>How unincorporated county compares</h2>
+<p>If your lot is outside city limits in unincorporated Maricopa County, the process and timeline differ, and rural sites add their own approvals for septic and wells that should be sequenced early so they do not hold up the building permit.</p>
+<h2>How we keep it moving</h2>
+<p>The single biggest lever on permit speed is the quality of the first submittal. We assemble complete, coordinated plans, anticipate the comments common to your jurisdiction, and respond to corrections quickly so cycles do not stack up. We also start any HOA design review in parallel rather than in sequence. Because the city updates its review times and requirements periodically, we confirm the current process for your project rather than relying on past timelines.</p>`,
       shortAnswer:
-        "We follow up after you reach out to learn your budget, timeline, vision, and whether you own land yet. Bring a sense of how you want to live, any inspiration you've gathered, and a comfortable budget range. You don't need finished drawings to get started.",
+        "Expect roughly two to four months for a Scottsdale custom home permit: about a week to queue, 10 to 15 business days for first review, then a few correction cycles. ESL and hillside overlays, HOA design review, and incomplete submittals all add time. Confirm current review times with the city.",
       metaDescription:
-        "What to expect at your first consultation with Jematell Homes — what we discuss and what's helpful to bring before your custom home build.",
-      categorySlug: "building-process",
-      topicSlugs: [],
-      tags: ["consultation", "getting-started", "process"],
-      relatedFaqSlugs: ["what-are-the-steps-of-the-building-process"],
+        "How long does a Scottsdale building permit take? Plan on about two to four months for a custom home, longer with ESL, hillside, or HOA design review.",
+      categorySlug: "permits-and-codes",
+      topicSlugs: ["building-permits-arizona"],
+      tags: ["permit-timeline", "scottsdale", "plan-review", "research-phase"],
+      relatedFaqSlugs: [
+        "do-i-need-a-permit-to-build-in-maricopa-county",
+        "what-building-codes-apply-to-a-new-home-in-arizona",
+      ],
       relatedServiceSlugs: ["custom-homes"],
-      pillarBlogSlug:
-        "what-custom-home-builders-need-from-you-before-the-first-design-meeting",
+      pillarBlogSlug: "how-long-it-takes-to-build-a-custom-home-in-arizona",
       featured: false,
       sortOrder: 3,
-    },
-    {
-      slug: "do-you-handle-permits-and-inspections",
-      question: "Do you handle permits, engineering, and inspections?",
-      answer:
-        "Yes. Our full-service project management takes care of permits and regulatory requirements as part of the build. We handle permitting, coordinate engineering, and manage the inspections required through construction.\n\nBecause we build across many Arizona communities, we understand local regulations, soil conditions, and permitting processes, which helps keep your project on track and avoids surprises. You stay informed throughout, but the paperwork and coordination are ours to manage.",
-      answerHtml: `<p>Yes. Our full-service project management takes care of permits and regulatory requirements as part of the build. We handle permitting, coordinate engineering, and manage the inspections required through construction.</p><p>Because we build across many Arizona communities, we understand local regulations, soil conditions, and permitting processes, which helps keep your project on track and avoids surprises. You stay informed throughout, but the paperwork and coordination are ours to manage.</p>`,
+    }),
+
+    // ========================= Land & Due Diligence =========================
+    item({
+      slug: "how-do-i-know-if-a-lot-is-buildable",
+      question: "How do I know if a lot is buildable before I buy it in Arizona?",
+      answerHtml: `<p><strong>A lot is "buildable" only when zoning, legal access, utilities or their substitutes, soils, drainage, and topography all line up for the home you want. A low price often reflects a missing piece, so the due diligence happens before you make an offer, not after.</strong> Buying raw land is very different from buying in a master-planned community where the infrastructure work is already done.</p>
+<h2>The due-diligence checklist</h2>
+<ul>
+<li><strong>Zoning and land use.</strong> Confirm the parcel is zoned for single-family residential and check minimum lot size, setbacks, height limits, and any overlays. The local planning department will tell you what the zoning allows.</li>
+<li><strong>Legal access.</strong> You need recorded, legal access to the parcel, not just a dirt road that appears to reach it. Landlocked parcels and unrecorded easements are common and expensive surprises.</li>
+<li><strong>Utilities.</strong> Find out how far power runs and what it costs to extend, whether there is a water provider or you will need a well, and whether there is sewer or you will need septic.</li>
+<li><strong>Water supply.</strong> On rural land, water may come from a well, a water-hauling service, or a provider. Each has its own rules and costs, and water is often the deciding factor on outlying Arizona lots.</li>
+<li><strong>Soils and drainage.</strong> Expansive soils, caliche, and poor drainage drive foundation design and grading cost; a soils report tells you what you are dealing with.</li>
+<li><strong>Floodplain.</strong> Check FEMA flood mapping; a parcel in a floodplain can require elevation, special engineering, and flood insurance.</li>
+<li><strong>Topography and slope.</strong> Steep ground triggers hillside regulations and far higher site costs.</li>
+<li><strong>Easements, CC&Rs, and title.</strong> Recorded easements, HOA restrictions, and title issues all limit where and what you can build.</li>
+</ul>
+<h2>Why the cheap lot can cost more</h2>
+<p>The purchase price is only one line in the budget. A bargain parcel that needs a long power extension, a deep well, an engineered septic system, a new access easement, and heavy grading can end up costing far more to make ready than a slightly pricier lot that is already serviced. The goal of due diligence is to put real numbers on those site costs before you commit.</p>
+<h2>How Jematell Homes helps</h2>
+<p>We routinely walk lots with prospective buyers and pressure-test them against this checklist, drawing on years of building across Scottsdale, Rio Verde, and the wider Phoenix metro. We can flag the conditions that quietly add cost or kill a deal, and help you weigh a parcel you are considering or find one that fits your plans. None of this replaces formal reports and the jurisdiction's own determinations, but it gives you a clear-eyed read before you sign.</p>`,
       shortAnswer:
-        "Yes. Our full-service project management handles permits, coordinates engineering, and manages required inspections. We know local regulations, soils, and permitting across Arizona communities, which keeps your project on track. You stay informed while we manage the paperwork and coordination.",
+        "A lot is buildable only when zoning, legal access, utilities or substitutes, soils, drainage, and topography all work for your home. Verify each before you make an offer, since a cheap parcel often hides a long utility run, a well, septic, or heavy grading that drives up true cost.",
       metaDescription:
-        "Does Jematell Homes handle permits and inspections? Yes — full-service project management covers permitting, engineering, and required inspections.",
-      categorySlug: "building-process",
-      topicSlugs: [],
-      tags: ["permits", "inspections", "engineering", "process"],
-      relatedFaqSlugs: ["how-will-i-stay-updated-during-construction"],
-      relatedServiceSlugs: ["custom-homes"],
-      pillarBlogSlug:
-        "what-to-expect-when-building-a-custom-home-in-the-phoenix-metro-area",
-      featured: false,
+        "How do you know if an Arizona lot is buildable before buying? Check zoning, access, utilities, water, soils, floodplain, and slope before you make an offer.",
+      categorySlug: "land-and-due-diligence",
+      topicSlugs: ["buying-land-to-build"],
+      tags: ["lot-due-diligence", "buildable", "land", "research-phase"],
+      relatedFaqSlugs: [
+        "do-i-need-a-soils-or-geotechnical-report",
+        "can-i-build-without-city-water-or-sewer",
+        "what-is-arizonas-100-year-water-supply-rule",
+      ],
+      relatedServiceSlugs: ["build-on-your-lot", "buy-a-lot-with-us"],
+      pillarBlogSlug: "building-on-your-own-lot-arizona",
+      featured: true,
       sortOrder: 4,
-    },
-    {
-      slug: "how-will-i-stay-updated-during-construction",
-      question: "How will I stay updated during construction?",
-      answer:
-        "Communication is a core part of how we work. During construction we provide weekly updates on progress and perform milestone walkthroughs with you at key stages of the build.\n\nWe believe in open, transparent communication and addressing any questions or concerns promptly, so you always know where your project stands. When the home is finished, we complete a thorough final walkthrough together to address any last adjustments before you receive the keys.",
-      answerHtml: `<p>Communication is a core part of how we work. During construction we provide <strong>weekly updates</strong> on progress and perform <strong>milestone walkthroughs</strong> with you at key stages of the build.</p><p>We believe in open, transparent communication and addressing any questions or concerns promptly, so you always know where your project stands. When the home is finished, we complete a thorough final walkthrough together to address any last adjustments before you receive the keys.</p>`,
+    }),
+    item({
+      slug: "do-i-need-a-soils-or-geotechnical-report",
+      question: "Do I need a soils or geotechnical report to build in Arizona?",
+      answerHtml: `<p><strong>For a new custom home in Arizona, the answer is almost always yes. A geotechnical (soils) report tells your engineer how the ground will behave, and most jurisdictions require one before they will approve a foundation design.</strong> It is one of the first studies worth ordering once you are serious about a lot.</p>
+<h2>What a soils report does</h2>
+<p>A licensed geotechnical engineer drills or digs test borings, samples the soil, and reports on bearing capacity, soil chemistry, and how the ground moves with moisture. That data drives the foundation design, the grading plan, and sometimes the drainage approach. Without it, an engineer has to make conservative assumptions that can cost you money or, worse, miss a real risk.</p>
+<h2>The Arizona soils that matter</h2>
+<ul>
+<li><strong>Expansive clays.</strong> Some desert soils swell when wet and shrink when dry, which can crack slabs and footings if the foundation is not designed for it.</li>
+<li><strong>Caliche.</strong> A hard, cement-like layer that can complicate excavation, trenching, and septic systems.</li>
+<li><strong>Collapsible and low-density soils.</strong> Certain soils settle when they first get wet under load, which has to be addressed before building.</li>
+<li><strong>Rock and slope.</strong> Shallow bedrock or steep ground changes both foundation strategy and cost.</li>
+</ul>
+<h2>Related testing on rural land</h2>
+<p>If your homesite uses a septic system rather than sewer, you will also need a <strong>percolation or soil-absorption evaluation</strong> so the system can be sized and sited correctly. That is a separate study from the structural soils report, though both are about understanding the ground. On rural lots it makes sense to plan for both early.</p>
+<h2>Cost and timing</h2>
+<p>A residential geotechnical report is a modest line item relative to the home, and it is money well spent because it removes guesswork from the most expensive part of the structure to fix later. Order it early enough that the results are in hand before foundation engineering and plan submittal, so the report informs the design rather than forcing a redo.</p>
+<h2>How we handle it</h2>
+<p>We coordinate the soils investigation as part of the design and engineering phase, make sure the foundation is designed to the report's recommendations, and carry that documentation into plan review. Requirements vary by jurisdiction, so we confirm exactly what your AHJ expects for your parcel rather than assuming a one-size-fits-all standard.</p>`,
       shortAnswer:
-        "We provide weekly updates during construction and perform milestone walkthroughs at key stages, so you always know where your project stands. We address questions promptly and complete a thorough final walkthrough together before you receive the keys.",
+        "Almost always yes. A geotechnical report tells your engineer how the soil behaves and is typically required before a foundation design is approved. Arizona's expansive clays, caliche, and collapsible soils make it essential. Rural septic lots also need a separate percolation test. Order both early in design.",
       metaDescription:
-        "How Jematell Homes keeps you updated during construction — weekly progress updates, milestone walkthroughs, and a thorough final walkthrough.",
-      categorySlug: "building-process",
-      topicSlugs: [],
-      tags: ["communication", "updates", "process"],
-      relatedFaqSlugs: ["do-you-handle-permits-and-inspections"],
-      relatedServiceSlugs: ["custom-homes"],
-      pillarBlogSlug:
-        "what-to-expect-when-building-a-custom-home-in-the-phoenix-metro-area",
+        "Do you need a soils or geotechnical report to build in Arizona? Usually yes — it drives foundation design and is typically required for plan approval.",
+      categorySlug: "land-and-due-diligence",
+      topicSlugs: ["buying-land-to-build"],
+      tags: ["soils-report", "geotechnical", "foundation", "research-phase"],
+      relatedFaqSlugs: [
+        "how-do-i-know-if-a-lot-is-buildable",
+        "how-do-septic-systems-work-for-a-new-home",
+      ],
+      relatedServiceSlugs: ["build-on-your-lot", "custom-homes"],
+      pillarBlogSlug: "what-to-do-after-buying-land-in-arizona",
       featured: false,
       sortOrder: 5,
-    },
-    {
-      slug: "how-do-i-choose-the-right-home-builder",
-      question: "How do I choose the right custom home builder?",
-      answer:
-        "Choosing a builder is one of the most important decisions in the whole project, so it's worth taking your time. Look at the builder's experience with homes like the one you want, the quality of their past work, and how they communicate.\n\nGood questions to ask include how they manage budgets and allowances, how they keep you updated during construction, how they handle change orders and challenges, and what their warranty support looks like after move-in.\n\nAt Jematell Homes we lead with transparent pricing, clear communication, weekly updates, and full-service project management, because a smooth, stress-free experience matters as much as the finished home.",
-      answerHtml: `<p>Choosing a builder is one of the most important decisions in the whole project, so it's worth taking your time. Look at the builder's experience with homes like the one you want, the quality of their past work, and how they communicate.</p><p>Good questions to ask include:</p><ul><li>How do you manage budgets and allowances?</li><li>How will you keep me updated during construction?</li><li>How do you handle change orders and unexpected challenges?</li><li>What does warranty support look like after move-in?</li></ul><p>At Jematell Homes we lead with transparent pricing, clear communication, weekly updates, and full-service project management, because a smooth, stress-free experience matters as much as the finished home.</p>`,
+    }),
+
+    // ======================= Water, Septic & Utilities ======================
+    item({
+      slug: "can-i-build-without-city-water-or-sewer",
+      question: "Can I build on rural land without city water or sewer?",
+      answerHtml: `<p><strong>Yes. Plenty of custom homes across the Phoenix metro's outlying areas are built without a municipal hookup. Instead of city water you use a well or hauled water with on-site storage, and instead of sewer you use a septic (onsite wastewater) system.</strong> These are well-established approaches, but each comes with its own permits, costs, and uncertainties that belong in your due diligence.</p>
+<h2>Your water options</h2>
+<ul>
+<li><strong>A private well.</strong> Drilling a well requires a Notice of Intent to Drill filed with the Arizona Department of Water Resources (ADWR) and a licensed driller. Most homes rely on an "exempt" domestic well, which under <strong>A.R.S. § 45-454</strong> is a non-irrigation well with a pump capacity of no more than 35 gallons per minute. The big unknowns are how deep you must drill and what it will cost, since both depend on the aquifer beneath your parcel.</li>
+<li><strong>Hauled water.</strong> Where a well is not practical, homes use a large storage tank or cistern filled by a licensed water-hauling service. This is common in parts of Rio Verde Foothills; after the area's well-publicized 2023 disruption, EPCOR brought a local fill station online to stabilize supply.</li>
+<li><strong>A water provider.</strong> Some outlying areas are served by a private water company. Confirm availability and connection cost before assuming it exists.</li>
+</ul>
+<h2>Wastewater without sewer</h2>
+<p>With no sewer line, your home uses a septic system permitted through Maricopa County Environmental Services under ADEQ standards. The system has to be designed to your soils and lot, which is why the percolation test and site evaluation come early. We cover how septic systems work in a separate answer.</p>
+<h2>The water-supply question behind it all</h2>
+<p>On rural land you should also understand Arizona's assured and adequate water supply rules, which can affect whether and how a parcel was created. We address that in detail in our answer on the 100-year water supply rule; it is worth reading before you buy an outlying lot.</p>
+<h2>How Jematell Homes helps</h2>
+<p>We build regularly on rural and unserved lots, so we can help you scope what water and wastewater will realistically cost on a given parcel, coordinate the well and septic permitting, and sequence those approvals so they do not delay the building permit. Because well yields and rural water rules vary parcel by parcel, we verify the specifics for your site rather than generalizing.</p>`,
       shortAnswer:
-        "Look at a builder's experience with homes like yours, the quality of past work, and how they communicate. Ask how they manage budgets and allowances, keep you updated, handle change orders, and support warranties. Transparent pricing and clear communication matter as much as the finished home.",
+        "Yes. Rural homes use a well or hauled water with on-site storage instead of city water, and a septic system instead of sewer. Wells need an ADWR Notice of Intent and are usually exempt domestic wells under 35 gallons per minute. Budget early, since depth, yield, and hauling costs vary by parcel.",
       metaDescription:
-        "How to choose the right custom home builder in Arizona — what to look for and the key questions to ask before you sign.",
-      categorySlug: "building-process",
-      topicSlugs: ["choosing-a-builder"],
-      tags: ["choosing-a-builder", "questions", "process"],
-      relatedFaqSlugs: ["is-there-a-warranty-on-your-homes"],
-      relatedServiceSlugs: ["custom-homes"],
-      pillarBlogSlug: "questions-to-ask-custom-home-builder-arizona",
-      featured: false,
+        "Can you build on rural Arizona land without city water or sewer? Yes — with a well or hauled water plus a septic system. Here's how each works and what to verify.",
+      categorySlug: "water-septic-utilities",
+      topicSlugs: ["rural-water-and-septic"],
+      tags: ["well", "hauled-water", "septic", "rio-verde", "research-phase"],
+      relatedFaqSlugs: [
+        "how-do-septic-systems-work-for-a-new-home",
+        "what-is-arizonas-100-year-water-supply-rule",
+        "how-do-i-know-if-a-lot-is-buildable",
+      ],
+      relatedServiceSlugs: ["build-on-your-lot"],
+      pillarBlogSlug: "rio-verde-arizona-utilities-water-infrastructure",
+      featured: true,
       sortOrder: 6,
-    },
-    {
-      slug: "is-there-a-warranty-on-your-homes",
-      question: "Do you offer a warranty on your homes?",
-      answer:
-        "Yes. We stand behind our work and provide warranty support after you move in. If a warranty issue comes up once you're in your home, contact Jematell Homes or call (602) 421-5576, and a representative will follow up with you.\n\nOur commitment to quality and client satisfaction doesn't end at handover. Addressing concerns promptly is part of how we make sure you have a positive experience from start to finish.",
-      answerHtml: `<p>Yes. We stand behind our work and provide warranty support after you move in. If a warranty issue comes up once you're in your home, contact Jematell Homes or call <strong>(602) 421-5576</strong>, and a representative will follow up with you.</p><p>Our commitment to quality and client satisfaction doesn't end at handover. Addressing concerns promptly is part of how we make sure you have a positive experience from start to finish.</p>`,
+    }),
+    item({
+      slug: "how-do-septic-systems-work-for-a-new-home",
+      question: "How does a septic system work for a new custom home?",
+      answerHtml: `<p><strong>A septic system treats your home's wastewater on site when there is no sewer to connect to. For a new custom home it must be permitted and designed before construction, sized to your soils and household, and inspected before use.</strong> In Maricopa County these systems are reviewed by the county's Environmental Services department under Arizona Department of Environmental Quality (ADEQ) standards.</p>
+<h2>The two common system types</h2>
+<ul>
+<li><strong>Conventional systems.</strong> Wastewater flows to a septic tank, where solids settle, and the liquid disperses into a drainfield (leach field) where the soil finishes the treatment. These work where soils percolate well and there is room for the field.</li>
+<li><strong>Alternative or engineered systems.</strong> Where soils are tight, the water table is high, or the lot is small or sloped, an engineered system provides extra treatment before dispersal. These cost more and carry ongoing maintenance requirements.</li>
+</ul>
+<h2>Why the site evaluation comes first</h2>
+<p>Before a system can be designed, a <strong>percolation test and soil evaluation</strong> determine how quickly the ground absorbs water. Those results set the system type and the drainfield size. This is why the soils work belongs early in due diligence: a lot with poor percolation may require a more expensive engineered system, which changes your budget.</p>
+<h2>Permitting and placement</h2>
+<p>A septic permit is required before you build, and the system has to respect setbacks from wells, property lines, structures, and washes. Most designs also reserve space for a future replacement field. Where you have both a well and septic on the same parcel, the separation between them is a key design constraint.</p>
+<h2>Cost and upkeep</h2>
+<p>Cost depends heavily on system type and soils; a conventional system on good ground is the lower end, while an engineered system on difficult soils is considerably more. Septic systems also need periodic pumping and inspection, and engineered systems may carry a service contract. These are real ownership considerations, not just construction line items.</p>
+<h2>How we handle it</h2>
+<p>We coordinate the site evaluation, the system design, and the permitting as part of the build, and we place the system to work with your home and any well. Because septic rules and fees are set locally and change, we confirm the current requirements with Maricopa County Environmental Services for your parcel rather than assuming.</p>`,
       shortAnswer:
-        "Yes. We provide warranty support after you move in. If a warranty issue comes up, contact Jematell Homes or call (602) 421-5576 and a representative will follow up. Our commitment to quality and prompt resolution continues after handover.",
+        "A septic system treats wastewater on site where there is no sewer. A percolation test sets the system type and drainfield size, then the design is permitted before construction through Maricopa County Environmental Services. Conventional systems suit good soils; engineered systems handle difficult lots at higher cost.",
       metaDescription:
-        "Does Jematell Homes offer a warranty? Yes — post move-in warranty support is available. Contact us or call (602) 421-5576 for warranty claims.",
-      categorySlug: "building-process",
-      topicSlugs: [],
-      tags: ["warranty", "after-move-in", "support"],
-      relatedFaqSlugs: ["how-do-i-choose-the-right-home-builder"],
-      relatedServiceSlugs: ["custom-homes"],
-      pillarBlogSlug: null,
+        "How does a septic system work for a new custom home? A percolation test sets the design, which is permitted before construction under ADEQ and county rules.",
+      categorySlug: "water-septic-utilities",
+      topicSlugs: ["rural-water-and-septic"],
+      tags: ["septic", "onsite-wastewater", "percolation", "research-phase"],
+      relatedFaqSlugs: [
+        "can-i-build-without-city-water-or-sewer",
+        "do-i-need-a-soils-or-geotechnical-report",
+      ],
+      relatedServiceSlugs: ["build-on-your-lot"],
+      pillarBlogSlug:
+        "building-a-custom-home-in-rio-verde-az-lot-considerations-most-buyers-miss",
       featured: false,
       sortOrder: 7,
-    },
-
-    // ----- Costs & Budget -----
-    {
-      slug: "how-much-does-it-cost-to-build-a-custom-home",
-      question: "What does it cost to build a custom home in the Phoenix metro?",
-      answer:
-        "There isn't a single price, because a custom home is priced around your choices. The biggest drivers are the size of the home, the level of finishes you select, the design's complexity, and your lot, since site conditions like grading, access, and utilities all affect cost.\n\nThe best way to get a realistic number is to start with a budget you're comfortable with and design to it. We provide clear, upfront pricing and detailed breakdowns so you understand exactly what you're paying for, with no surprises. Establishing a realistic budget before design begins keeps the whole project grounded and helps you prioritize what matters most.",
-      answerHtml: `<p>There isn't a single price, because a custom home is priced around your choices. The biggest drivers are:</p><ul><li>The size of the home</li><li>The level of finishes you select</li><li>The design's complexity</li><li>Your lot — site conditions like grading, access, and utilities all affect cost</li></ul><p>The best way to get a realistic number is to start with a budget you're comfortable with and design to it. We provide clear, upfront pricing and detailed breakdowns so you understand exactly what you're paying for, with no surprises. Establishing a realistic budget before design begins keeps the whole project grounded and helps you prioritize what matters most.</p>`,
+    }),
+    item({
+      slug: "what-is-arizonas-100-year-water-supply-rule",
+      question: "What is Arizona's 100-year water supply rule and does it affect my lot?",
+      answerHtml: `<p><strong>Arizona's Assured Water Supply (AWS) program requires that, within the state's Active Management Areas, new subdivisions demonstrate a 100-year supply of water before lots can be sold. Whether it affects your lot depends on how that lot was created and where it sits.</strong> This is one of the most misunderstood issues in Arizona land, and it is worth understanding before you buy on the metro's edges.</p>
+<h2>What the rule is</h2>
+<p>The Arizona Department of Water Resources (ADWR) runs the Assured and Adequate Water Supply programs to protect groundwater. Inside an <strong>Active Management Area (AMA)</strong> — and the Phoenix metro sits within the Phoenix AMA — a new subdivision must prove a physically available, legally secure, and continuously available 100-year water supply as a condition of approval.</p>
+<h2>Subdivisions versus lot splits</h2>
+<p>The catch is in the definitions. Under <strong>A.R.S. § 32-2101</strong>, land divided into <strong>six or more lots</strong> is a "subdivision," and subdivisions are subject to the assured-water-supply requirement. Splitting a larger parcel into <strong>five or fewer lots</strong> has historically not met that definition, so those "lot splits" have often avoided the 100-year demonstration. That gap is what produced so-called "wildcat" parcels in unincorporated areas, where homes were built without a guaranteed long-term water source.</p>
+<h2>Why Rio Verde Foothills became the example</h2>
+<p>Rio Verde Foothills is the best-known illustration: many homes there sit on lot-split parcels relying on hauled water rather than an assured supply, which is exactly why a hauling disruption in 2023 drew national attention before a longer-term fill-station solution came online. The rules in this area have been the subject of active legislative attention, so the legal landscape can shift.</p>
+<h2>What it means for a buyer</h2>
+<p>If you are buying a single existing lot, you are usually arranging your own water through a well, a provider, or hauling rather than a subdivision-level guarantee. The practical questions become: what water source does this parcel actually have, is it legally secure, and what does it cost to rely on year after year. Those answers matter as much as the purchase price.</p>
+<h2>How we help</h2>
+<p>We help buyers ask the right water questions on outlying lots and connect the dots between the parcel's history, its water source, and what building there will realistically require. Because this area of law is technical and changing, we point you to ADWR and qualified professionals for formal determinations rather than offering legal conclusions.</p>`,
       shortAnswer:
-        "There's no single price — cost depends on the home's size, finishes, design complexity, and your lot's site conditions. The best approach is to set a realistic budget and design to it. We provide clear, upfront pricing and detailed breakdowns so there are no surprises.",
+        "Arizona requires new subdivisions in its Active Management Areas to prove a 100-year water supply. But under A.R.S. § 32-2101, dividing land into five or fewer lots is a lot split, not a subdivision, so those parcels often skip that proof. That gap explains Rio Verde Foothills and matters when buying outlying lots.",
       metaDescription:
-        "What does a custom home cost in the Phoenix metro? The main cost drivers and why setting a realistic budget before design matters.",
+        "What is Arizona's 100-year water supply rule? New subdivisions must prove a 100-year supply, but lot splits of five or fewer parcels often avoid it. Here's why it matters.",
+      categorySlug: "water-septic-utilities",
+      topicSlugs: ["rural-water-and-septic"],
+      tags: ["assured-water-supply", "lot-split", "adwr", "research-phase"],
+      relatedFaqSlugs: [
+        "can-i-build-without-city-water-or-sewer",
+        "how-do-i-know-if-a-lot-is-buildable",
+      ],
+      relatedServiceSlugs: ["buy-a-lot-with-us", "build-on-your-lot"],
+      pillarBlogSlug:
+        "building-a-custom-home-in-rio-verde-az-what-to-know-before-you-start",
+      featured: false,
+      sortOrder: 8,
+    }),
+
+    // ============================ Costs & Budget ============================
+    item({
+      slug: "how-much-does-it-cost-to-build-a-custom-home",
+      question: "How much does it cost to build a custom home in Scottsdale or Phoenix?",
+      answerHtml: `<p><strong>There is no single price, because a custom home is built around your choices and your lot. As a planning range, custom construction in the Phoenix area commonly runs from roughly the low-$200s per square foot for an entry-level build to $400 to $600 or more per square foot for luxury work, with Scottsdale and Paradise Valley trending toward the higher end.</strong> Treat any per-foot figure as a starting point, not a quote.</p>
+<h2>What the per-foot ranges look like</h2>
+<ul>
+<li><strong>Entry-level custom:</strong> roughly $200 to $300 per square foot for simpler designs and standard finishes.</li>
+<li><strong>Mid-range custom:</strong> roughly $300 to $400-plus per square foot for elevated finishes and indoor-outdoor living.</li>
+<li><strong>Luxury custom:</strong> roughly $400 to $600 and up per square foot, higher in premium Scottsdale and Paradise Valley locations.</li>
+</ul>
+<p>These are general market ranges for planning and will move with materials, labor, and design complexity. They describe the house itself, which on raw land is only part of the total.</p>
+<h2>What actually drives the number</h2>
+<ul>
+<li><strong>Size and complexity.</strong> Square footage, rooflines, ceiling heights, and structural spans all push cost.</li>
+<li><strong>Finishes.</strong> Cabinetry, stone, flooring, windows, and fixtures span an enormous range.</li>
+<li><strong>The lot.</strong> Grading, retaining, long utility runs, a well, a septic system, and difficult access can add substantial site cost before the house begins.</li>
+<li><strong>Soft costs.</strong> Design, engineering, soils reports, permits, and jurisdiction fees are real budget lines.</li>
+</ul>
+<h2>Land and site costs on raw lots</h2>
+<p>If you are building on your own land, remember that the parcel price plus the cost to make it ready — power extension, water, septic, grading, driveway — can rival the difference between two finish levels. This is why our due-diligence answer stresses pricing the site before you commit.</p>
+<h2>Design to a budget, not the other way around</h2>
+<p>The most reliable path to a number you can live with is to set a budget you are comfortable with and design to it, making trade-offs deliberately rather than discovering them late. We provide clear, itemized pricing and use realistic allowances so you can see how each choice moves the total, with no surprises. Because market pricing shifts, we build your estimate around current costs for your design and lot rather than a generic per-foot rule of thumb.</p>`,
+      shortAnswer:
+        "There is no single price. As a planning range, Phoenix-area custom homes run from about $200 to $300 per square foot at entry level to $400 to $600 or more for luxury, higher in Scottsdale and Paradise Valley. Size, finishes, your lot's site costs, and soft costs all move the number, so design to a budget.",
+      metaDescription:
+        "How much does it cost to build a custom home in Scottsdale or Phoenix? Planning ranges run from about $200 to $600+ per square foot, plus land and site costs.",
       categorySlug: "costs-and-budget",
-      topicSlugs: ["financing-and-budgeting"],
-      tags: ["cost", "budget", "pricing"],
-      relatedFaqSlugs: ["what-are-construction-allowances", "can-you-help-with-financing"],
+      topicSlugs: ["budgeting-a-custom-home"],
+      tags: ["cost", "price-per-square-foot", "budget", "research-phase"],
+      relatedFaqSlugs: [
+        "what-are-allowances-and-change-orders",
+        "how-do-i-finance-building-a-custom-home",
+        "how-do-i-know-if-a-lot-is-buildable",
+      ],
       relatedServiceSlugs: ["custom-homes"],
       pillarBlogSlug:
         "establish-a-realistic-budget-before-designing-your-custom-home",
       featured: true,
-      sortOrder: 8,
-    },
-    {
-      slug: "what-are-construction-allowances",
-      question: "What are construction allowances and how do they work?",
-      answer:
-        "An allowance is a set dollar amount budgeted for a category of selections you haven't finalized yet, such as flooring, cabinetry, countertops, lighting, or appliances. It lets the project move forward before every choice is made.\n\nWhen you make your final selections, the actual cost is compared to the allowance. If you choose finishes that cost less, you save against that amount. If you select something more expensive, the difference is added to your price. Allowances keep the budget transparent and give you control: you can spend where it matters most to you and pull back elsewhere.\n\nWe set realistic allowances up front and provide detailed breakdowns so you always understand how your selections affect the final number.",
-      answerHtml: `<p>An allowance is a set dollar amount budgeted for a category of selections you haven't finalized yet — such as flooring, cabinetry, countertops, lighting, or appliances. It lets the project move forward before every choice is made.</p><p>When you make your final selections, the actual cost is compared to the allowance:</p><ul><li>Choose finishes that cost <strong>less</strong>, and you save against that amount.</li><li>Choose something <strong>more expensive</strong>, and the difference is added to your price.</li></ul><p>Allowances keep the budget transparent and give you control — you can spend where it matters most and pull back elsewhere. We set realistic allowances up front and provide detailed breakdowns so you always understand how your selections affect the final number.</p>`,
-      shortAnswer:
-        "An allowance is a budgeted dollar amount for selections you haven't finalized, like flooring or cabinetry. When you choose, costs above the allowance add to your price and costs below it save you money. Allowances keep the budget transparent and let you prioritize what matters most.",
-      metaDescription:
-        "What are construction allowances? How budgeted amounts for finishes work, and how selections above or below them affect your custom home's final price.",
-      categorySlug: "costs-and-budget",
-      topicSlugs: ["financing-and-budgeting"],
-      tags: ["budget", "allowances", "pricing"],
-      relatedFaqSlugs: ["what-is-a-change-order", "how-much-does-it-cost-to-build-a-custom-home"],
-      relatedServiceSlugs: ["custom-homes"],
-      pillarBlogSlug: "custom-home-budget-allowances-change-orders",
-      featured: true,
       sortOrder: 9,
-    },
-    {
-      slug: "what-is-a-change-order",
-      question: "What is a change order and how does it affect my budget?",
-      answer:
-        "A change order is a documented adjustment to the plans, selections, or scope after the contract is in place, such as moving a wall, upgrading a finish, or adding a feature. Each change order records what's changing and its effect on cost and, sometimes, schedule.\n\nChange orders aren't a bad thing. They're how a custom build stays flexible as your ideas evolve. The key is keeping them transparent so there are no surprises. We document changes clearly and review the budget and timeline impact with you before work proceeds, so you stay in control of both your home and your spending.",
-      answerHtml: `<p>A change order is a documented adjustment to the plans, selections, or scope after the contract is in place — such as moving a wall, upgrading a finish, or adding a feature. Each change order records what's changing and its effect on cost and, sometimes, schedule.</p><p>Change orders aren't a bad thing. They're how a custom build stays flexible as your ideas evolve. The key is keeping them transparent so there are no surprises. We document changes clearly and review the budget and timeline impact with you before work proceeds, so you stay in control of both your home and your spending.</p>`,
+    }),
+    item({
+      slug: "what-are-allowances-and-change-orders",
+      question: "What are allowances and change orders, and how do they affect my budget?",
+      answerHtml: `<p><strong>Allowances and change orders are the two mechanisms that let a custom home budget move from estimate to final number. An allowance is a placeholder dollar amount for a selection you have not finalized; a change order is a documented change to the contract scope. Understanding both keeps your budget transparent rather than full of surprises.</strong></p>
+<h2>How allowances work</h2>
+<p>An allowance is a set amount budgeted for a category of selections you have not chosen yet — flooring, cabinetry, countertops, lighting, plumbing fixtures, or appliances. It lets the project price and proceed before every detail is decided. When you make your final selections, the actual cost is compared to the allowance:</p>
+<ul>
+<li>Choose finishes that cost <strong>less</strong> than the allowance, and you save against that amount.</li>
+<li>Choose something <strong>more expensive</strong>, and the difference is added to your price.</li>
+</ul>
+<p>Realistic allowances are everything. An estimate padded with low allowances can look attractive and then climb steeply once real selections are made. We set allowances at levels that reflect the finishes our clients actually choose, so the starting number is honest.</p>
+<h2>How change orders work</h2>
+<p>A change order documents any change to the agreed scope after the contract is set — moving a wall, upgrading a system, adding a feature, or responding to a condition discovered on site. A good change order states the work, the cost, and any schedule impact, and is approved before the work proceeds. That paper trail is what keeps everyone aligned and the budget under control.</p>
+<h2>Why this matters in the research phase</h2>
+<p>When you compare builders, look past the headline price and ask how allowances are set and how change orders are handled. Two estimates can look similar while one is built on realistic allowances and the other is not. The difference shows up months later as either a predictable project or a series of unwelcome additions.</p>
+<h2>How Jematell Homes handles it</h2>
+<p>We lead with transparent, itemized pricing, set realistic allowances up front, and give you detailed breakdowns so you can see exactly how each selection moves the total. Change orders are documented and approved before work proceeds, so you always understand what you are paying for and why. The result is a budget that behaves the way you expect from contract through move-in.</p>`,
       shortAnswer:
-        "A change order is a documented adjustment to plans, selections, or scope after the contract is signed, recording its effect on cost and sometimes schedule. They keep a custom build flexible. We review the budget and timeline impact with you before work proceeds, so there are no surprises.",
+        "An allowance is a budgeted placeholder for selections you have not finalized; spend under it and you save, over it and you pay the difference. A change order documents any later change to scope, with cost and schedule, approved before work proceeds. Realistic allowances are what keep a budget honest.",
       metaDescription:
-        "What is a change order in custom home building, and how does it affect your budget and timeline? How Jematell Homes keeps changes transparent.",
+        "What are allowances and change orders in custom home building? Allowances budget unfinalized selections; change orders document scope changes. Both keep your budget clear.",
       categorySlug: "costs-and-budget",
-      topicSlugs: ["financing-and-budgeting"],
-      tags: ["change-order", "budget", "process"],
-      relatedFaqSlugs: ["what-are-construction-allowances"],
+      topicSlugs: ["budgeting-a-custom-home"],
+      tags: ["allowances", "change-orders", "budget", "research-phase"],
+      relatedFaqSlugs: [
+        "how-much-does-it-cost-to-build-a-custom-home",
+        "how-do-i-finance-building-a-custom-home",
+      ],
       relatedServiceSlugs: ["custom-homes"],
       pillarBlogSlug: "custom-home-budget-allowances-change-orders",
       featured: false,
       sortOrder: 10,
-    },
-    {
-      slug: "can-you-help-with-financing",
-      question: "Can you help me navigate financing or a construction loan?",
-      answer:
-        "Yes. Navigating financing is part of the expert guidance we provide, and we'll point you in the right direction early so your budget and your build stay aligned.\n\nNew construction is often financed differently from buying an existing home. Many buyers use a construction loan that funds the build in stages and then converts to a standard mortgage once the home is complete. We're happy to talk through how this works and help you connect with lenders experienced in financing custom and semi-custom homes in Arizona, so you can move forward with confidence.",
-      answerHtml: `<p>Yes. Navigating financing is part of the expert guidance we provide, and we'll point you in the right direction early so your budget and your build stay aligned.</p><p>New construction is often financed differently from buying an existing home. Many buyers use a <strong>construction loan</strong> that funds the build in stages and then converts to a standard mortgage once the home is complete. We're happy to talk through how this works and help you connect with lenders experienced in financing custom and semi-custom homes in Arizona, so you can move forward with confidence.</p>`,
+    }),
+    item({
+      slug: "how-do-i-finance-building-a-custom-home",
+      question: "How do I finance building a custom home in Arizona?",
+      answerHtml: `<p><strong>Most custom homes are financed with a construction loan, which works differently from a standard mortgage: the lender releases money in stages as the home is built, you typically pay interest only on what has been drawn, and the loan often converts to a permanent mortgage when the home is finished.</strong> Understanding the structure early helps you plan both the build and your cash flow.</p>
+<h2>Construction-to-permanent loans</h2>
+<p>The most common path is a construction-to-permanent ("one-time close") loan. It funds the build in <strong>draws</strong> tied to completed milestones — foundation, framing, and so on — with an inspection before each release. During construction you usually pay interest only on the amount drawn so far, which keeps early payments lower. When the home is complete, the loan rolls into a long-term mortgage, often without a second closing.</p>
+<h2>How your lot fits in</h2>
+<p>If you already own your land, its value can often serve as part of your equity or down payment, which can reduce the cash you need to bring. If you are buying the lot and building, some loans can fold the land purchase into the financing. Either way, lenders look closely at the parcel, so the same due diligence that makes a lot buildable also makes it financeable.</p>
+<h2>What lenders want to see</h2>
+<ul>
+<li><strong>Plans and a fixed builder contract</strong> with a detailed cost breakdown, since the appraisal is based on the completed design.</li>
+<li><strong>A qualified, licensed builder</strong> — many construction lenders require one rather than an owner-builder arrangement.</li>
+<li><strong>A contingency</strong> built into the budget for the unexpected.</li>
+<li><strong>Your financial profile</strong> — credit, income, and reserves, as with any mortgage.</li>
+</ul>
+<h2>Plan for the soft costs and timeline</h2>
+<p>Remember that design, engineering, soils reports, permits, and fees often come before a construction loan funds, so plan for those early costs. And because permitting and construction span many months, your interest carry during the build is part of the real cost of the project.</p>
+<h2>How we support the process</h2>
+<p>We provide the detailed plans, fixed scope, and itemized pricing that construction lenders rely on, and we coordinate with your lender's draw and inspection schedule so funding keeps pace with the build. We are not a lender and this is not financial advice; we will gladly work alongside the construction lender you choose to keep the project moving.</p>`,
       shortAnswer:
-        "Yes. Navigating financing is part of the expert guidance we provide. New construction is often funded with a construction loan that pays out in stages and converts to a mortgage at completion. We'll explain how it works and connect you with experienced Arizona lenders.",
+        "Most custom homes use a construction loan that funds the build in draws, charges interest only on what is drawn, and converts to a permanent mortgage at completion. Owned land can count toward equity. Lenders want plans, a fixed builder contract, and a contingency, so budget for soft costs up front.",
       metaDescription:
-        "Can Jematell Homes help with financing? Yes — guidance on construction loans and connecting you with lenders experienced in Arizona custom homes.",
+        "How do you finance building a custom home in Arizona? Construction-to-permanent loans fund the build in draws and convert to a mortgage. Here's how they work.",
       categorySlug: "costs-and-budget",
-      topicSlugs: ["financing-and-budgeting"],
-      tags: ["financing", "construction-loan", "budget"],
-      relatedFaqSlugs: ["how-much-does-it-cost-to-build-a-custom-home"],
-      relatedServiceSlugs: ["custom-homes"],
+      topicSlugs: ["budgeting-a-custom-home"],
+      tags: ["financing", "construction-loan", "budget", "research-phase"],
+      relatedFaqSlugs: [
+        "how-much-does-it-cost-to-build-a-custom-home",
+        "what-are-allowances-and-change-orders",
+      ],
+      relatedServiceSlugs: ["custom-homes", "spec-homes"],
       pillarBlogSlug: "financing-your-custom-or-semi-home",
       featured: false,
       sortOrder: 11,
-    },
+    }),
 
-    // ----- Lots & Locations -----
-    {
-      slug: "can-i-build-on-my-own-lot",
-      question: "Can I build a custom home on a lot I already own?",
-      answer:
-        "Absolutely. Building on your own lot is one of our specialties, and it gives you the freedom to create a home that fits your land, your lifestyle, and your future.\n\nWe have extensive experience building homes of all sizes across the Valley, from straightforward homesites to highly complex builds. Before design begins, we evaluate your property for utilities, access, grading, and overall build feasibility, then guide you through design, permitting, site preparation, and construction. No two lots are the same, and we're well-versed in navigating challenges like grading, utilities, access, and local regulations so you don't have to.",
-      answerHtml: `<p>Absolutely. Building on your own lot is one of our specialties, and it gives you the freedom to create a home that fits your land, your lifestyle, and your future.</p><p>We have extensive experience building homes of all sizes across the Valley, from straightforward homesites to highly complex builds. Before design begins, we evaluate your property for <strong>utilities, access, grading, and overall build feasibility</strong>, then guide you through design, permitting, site preparation, and construction.</p><p>No two lots are the same, and we're well-versed in navigating challenges like grading, utilities, access, and local regulations so you don't have to.</p>`,
+    // ========================= Design, Zoning & ADUs ========================
+    item({
+      slug: "what-are-setbacks-lot-coverage-and-naos-rules",
+      question: "What are setbacks, lot coverage, and NAOS rules in Scottsdale?",
+      answerHtml: `<p><strong>Setbacks, lot coverage, and open-space rules together define your "buildable envelope" — the part of a lot where a home can actually go and how big it can be. In Scottsdale's desert and foothill areas, the Environmentally Sensitive Lands rules add a Natural Area Open Space (NAOS) requirement on top, which can meaningfully shrink where you build.</strong> These rules are zoning-driven, so they vary by parcel.</p>
+<h2>The core zoning limits</h2>
+<ul>
+<li><strong>Setbacks</strong> are the minimum distances a structure must sit from the front, side, and rear property lines. They frame the footprint before design even begins.</li>
+<li><strong>Lot coverage</strong> caps how much of the lot the building (and sometimes other hardscape) can occupy, usually as a percentage.</li>
+<li><strong>Height limits</strong> restrict how tall the home can be, which interacts with grading on sloped lots.</li>
+</ul>
+<p>Your zoning designation sets these numbers, and the planning department can confirm them for a specific parcel.</p>
+<h2>NAOS and the ESL ordinance</h2>
+<p>Scottsdale's <strong>Environmentally Sensitive Lands Ordinance (ESLO)</strong> governs development across a large area of desert and mountain terrain in the city's north and east. It requires that a percentage of qualifying properties be permanently preserved as <strong>Natural Area Open Space (NAOS)</strong> and that native vegetation and desert features be protected. The preservation percentage and the rules scale with the land's sensitivity and slope, so two foothill lots can have very different effective building areas even at the same size.</p>
+<h2>Hillside considerations</h2>
+<p>On sloped parcels, hillside regulations add further limits on grading, disturbance, and where structures can sit. Combined with NAOS, this is why a large foothill lot does not always mean a large building envelope — much of the land may be protected or too steep to disturb.</p>
+<h2>Why this belongs in your lot search</h2>
+<p>Before you fall for a view lot, it pays to understand how much of it you can actually build on. A parcel with generous acreage but heavy NAOS, steep slope, and tight setbacks may yield a smaller usable footprint than a plain, flat lot half its size.</p>
+<h2>How we help</h2>
+<p>We design each home to its lot's real envelope, working setbacks, coverage, slope, and any NAOS preservation into the plan from the start so the design fits the rules rather than fighting them. Because these standards are local and periodically updated, we verify the current requirements with the city for your specific parcel.</p>`,
       shortAnswer:
-        "Yes. Building on your own lot is one of our specialties. We evaluate your property for utilities, access, grading, and build feasibility, then guide you through design, permitting, site prep, and construction. We're experienced with the challenges that come with building on any lot.",
+        "Setbacks, lot coverage, and height limits define where and how big you can build; in Scottsdale's foothills the Environmentally Sensitive Lands ordinance adds Natural Area Open Space that must be preserved. Together they set your buildable envelope, so a large view lot can yield a surprisingly small footprint.",
       metaDescription:
-        "Can you build on a lot you already own? Yes — Jematell Homes specializes in on-your-lot building, from feasibility to move-in across the Valley.",
-      categorySlug: "lots-and-locations",
-      topicSlugs: ["building-on-your-lot"],
-      tags: ["lot", "land", "build-on-your-lot"],
-      relatedFaqSlugs: ["what-should-i-check-before-buying-a-lot"],
-      relatedServiceSlugs: ["build-on-your-lot"],
-      pillarBlogSlug: "building-on-your-own-lot-arizona",
-      featured: true,
-      sortOrder: 12,
-    },
-    {
-      slug: "what-should-i-check-before-buying-a-lot",
-      question: "What should I check before buying a lot to build on?",
-      answer:
-        "Not all lots are created equal, and the right due diligence up front saves time and money later. Before you buy, it's worth confirming utility availability (water, sewer or septic, power), legal and physical access to the property, and how the site's grading and soils will affect building.\n\nYou'll also want to understand zoning, setbacks, and any HOA or community restrictions that shape what you can build. We evaluate land through the lens of a builder, not just a buyer, so we can spot potential issues early, including what it will actually take to build on the property. That's the difference between buying land and buying the right land.",
-      answerHtml: `<p>Not all lots are created equal, and the right due diligence up front saves time and money later. Before you buy, it's worth confirming:</p><ul><li><strong>Utilities</strong> — water, sewer or septic, and power availability</li><li><strong>Access</strong> — legal and physical access to the property</li><li><strong>Grading and soils</strong> — how the site affects building</li><li><strong>Zoning, setbacks, and HOA</strong> — restrictions that shape what you can build</li></ul><p>We evaluate land through the lens of a builder, not just a buyer, so we can spot potential issues early — including what it will actually take to build on the property. That's the difference between buying land and buying the right land.</p>`,
-      shortAnswer:
-        "Confirm utilities (water, sewer or septic, power), legal and physical access, grading and soil conditions, and zoning, setbacks, and any HOA restrictions. We evaluate land through a builder's lens to spot issues early, so you buy the right land, not just any land.",
-      metaDescription:
-        "What to check before buying a building lot — utilities, access, grading, soils, zoning, and HOA — evaluated through a builder's lens.",
-      categorySlug: "lots-and-locations",
-      topicSlugs: ["building-on-your-lot"],
-      tags: ["lot", "due-diligence", "land"],
-      relatedFaqSlugs: ["can-you-help-me-find-and-buy-land", "can-i-build-on-my-own-lot"],
-      relatedServiceSlugs: ["buy-a-lot-with-us"],
-      pillarBlogSlug:
-        "top-strategies-for-finding-the-perfect-building-lot-a-comprehensive-guide",
-      featured: false,
-      sortOrder: 13,
-    },
-    {
-      slug: "can-you-help-me-find-and-buy-land",
-      question: "Can you help me find and purchase land?",
-      answer:
-        "Yes. We're not just builders, we're also licensed real estate agents, so we can actively search for and source land that fits your goals, budget, and preferred location, then guide you through writing and negotiating your offer.\n\nBecause we evaluate land as builders, we look at more than the listing. We assess what it will really take to build on a property, helping you avoid costly mistakes and identify potential issues early. From finding the right homesite to closing, we support you through the entire purchase so you can move forward with confidence.",
-      answerHtml: `<p>Yes. We're not just builders — we're also licensed real estate agents, so we can actively search for and source land that fits your goals, budget, and preferred location, then guide you through writing and negotiating your offer.</p><p>Because we evaluate land as builders, we look at more than the listing. We assess what it will really take to build on a property, helping you avoid costly mistakes and identify potential issues early. From finding the right homesite to closing, we support you through the entire purchase so you can move forward with confidence.</p>`,
-      shortAnswer:
-        "Yes. As licensed real estate agents and builders, we can search for and source land that fits your goals and budget, then guide you through the offer and purchase. We evaluate each property as builders, spotting build issues early so you make a smart investment.",
-      metaDescription:
-        "Can Jematell Homes help you find and buy land? Yes — as licensed agents and builders, we source, evaluate, and help you purchase the right homesite.",
-      categorySlug: "lots-and-locations",
-      topicSlugs: [],
-      tags: ["land", "real-estate", "buy-a-lot"],
-      relatedFaqSlugs: ["what-should-i-check-before-buying-a-lot"],
-      relatedServiceSlugs: ["buy-a-lot-with-us"],
-      pillarBlogSlug: "what-to-do-after-buying-land-in-arizona",
-      featured: false,
-      sortOrder: 14,
-    },
-    {
-      slug: "where-do-you-build",
-      question: "What areas do you build in?",
-      answer:
-        "We proudly build custom homes across a variety of communities around Arizona, with a focus on Scottsdale, Rio Verde, and the greater Phoenix metro. We also build in areas including Cave Creek, Fountain Hills, Carefree, Casa Grande, Apache Junction, Mesa, and the East Valley.\n\nWe build on private lots, in established neighborhoods, and within communities, giving you the flexibility to create a home that fits both your vision and your surroundings. Whether you already own land or are still searching for the perfect homesite, we can help you build in a location that complements your lifestyle.",
-      answerHtml: `<p>We proudly build custom homes across a variety of communities around Arizona, with a focus on <strong>Scottsdale, Rio Verde, and the greater Phoenix metro</strong>. We also build in areas including Cave Creek, Fountain Hills, Carefree, Casa Grande, Apache Junction, Mesa, and the East Valley.</p><p>We build on private lots, in established neighborhoods, and within communities, giving you the flexibility to create a home that fits both your vision and your surroundings. Whether you already own land or are still searching for the perfect homesite, we can help you build in a location that complements your lifestyle.</p>`,
-      shortAnswer:
-        "We build custom homes across Arizona, focused on Scottsdale, Rio Verde, and the greater Phoenix metro, plus areas like Cave Creek, Fountain Hills, Carefree, Casa Grande, Apache Junction, Mesa, and the East Valley. We build on private lots, in neighborhoods, and within communities.",
-      metaDescription:
-        "Where does Jematell Homes build? Custom homes across Scottsdale, Rio Verde, and the greater Phoenix metro, including Cave Creek, Fountain Hills, and more.",
-      categorySlug: "lots-and-locations",
-      topicSlugs: [],
-      tags: ["locations", "service-area", "arizona"],
-      relatedFaqSlugs: ["can-i-build-on-my-own-lot"],
-      relatedServiceSlugs: ["where-we-build"],
-      pillarBlogSlug:
-        "building-a-custom-home-outside-the-city-benefits-of-the-phoenix-metros-outlying-areas",
-      featured: true,
-      sortOrder: 15,
-    },
-
-    // ----- Design & Customization -----
-    {
-      slug: "do-you-have-floor-plans-or-can-i-bring-my-own",
-      question: "Do you have floor plans, or can I bring my own design?",
-      answer:
-        "Both, plus everything in between. Every home begins with the floor plan, and we have plenty to choose from across a range of styles, sizes, and configurations, from under 2,000 square feet to over 3,000 square feet.\n\nIf you don't see a plan you love, our architect can design your home from scratch. And if you've already found a plan you want elsewhere, you're more than welcome to bring it to us. The goal is to start from whatever foundation makes sense for you and shape it into the right home for your lot and lifestyle.",
-      answerHtml: `<p>Both — plus everything in between. Every home begins with the floor plan, and we have plenty to choose from across a range of styles, sizes, and configurations, from under 2,000 square feet to over 3,000 square feet.</p><p>If you don't see a plan you love, our architect can design your home from scratch. And if you've already found a plan you want elsewhere, you're more than welcome to bring it to us. The goal is to start from whatever foundation makes sense for you and shape it into the right home for your lot and lifestyle.</p>`,
-      shortAnswer:
-        "Both. We offer proven floor plans across many styles and sizes, from under 2,000 to over 3,000 square feet. If none fit, our architect can design from scratch, or you can bring a plan you found elsewhere. We start from whatever foundation works for you.",
-      metaDescription:
-        "Does Jematell Homes have floor plans, or can you bring your own? Choose a proven plan, design from scratch with our architect, or bring your own.",
-      categorySlug: "design-and-customization",
-      topicSlugs: ["floor-plans-and-design"],
-      tags: ["floor-plans", "design", "customization"],
-      relatedFaqSlugs: ["how-customizable-are-your-homes"],
-      relatedServiceSlugs: ["floor-plans"],
-      pillarBlogSlug: "how-to-choose-the-right-floor-plan",
-      featured: false,
-      sortOrder: 16,
-    },
-    {
-      slug: "how-customizable-are-your-homes",
-      question: "How customizable are your homes?",
-      answer:
-        "As customizable as you want them to be. You can choose one of our proven floor plans and personalize it, or create something entirely your own with our architect. Every home is tailored to fit your land and your lifestyle.\n\nGreat custom design is about more than square footage. Thoughtful layout, how rooms flow, where light falls, and how the home sits on your lot often matter more than raw size. We collaborate with you on every detail, combining our team's expertise with your vision to create a home that's genuinely personal, not a template.",
-      answerHtml: `<p>As customizable as you want them to be. You can choose one of our proven floor plans and personalize it, or create something entirely your own with our architect. Every home is tailored to fit your land and your lifestyle.</p><p>Great custom design is about more than square footage. Thoughtful layout, how rooms flow, where light falls, and how the home sits on your lot often matter more than raw size. We collaborate with you on every detail, combining our team's expertise with your vision to create a home that's genuinely personal — not a template.</p>`,
-      shortAnswer:
-        "Fully customizable. Personalize one of our proven floor plans or design something entirely your own with our architect. Every home is tailored to your land and lifestyle, with layout, flow, and light often mattering more than square footage. We collaborate on every detail.",
-      metaDescription:
-        "How customizable are Jematell Homes? Fully — personalize a proven plan or design from scratch, tailored to your lot and lifestyle down to the detail.",
-      categorySlug: "design-and-customization",
-      topicSlugs: ["floor-plans-and-design"],
-      tags: ["customization", "design", "layout"],
-      relatedFaqSlugs: ["do-you-have-floor-plans-or-can-i-bring-my-own"],
-      relatedServiceSlugs: ["custom-homes"],
+        "What are setbacks, lot coverage, and NAOS rules in Scottsdale? They define your buildable envelope; the ESL ordinance adds protected open space in the foothills.",
+      categorySlug: "design-zoning-adus",
+      topicSlugs: ["zoning-setbacks-adus"],
+      tags: ["setbacks", "naos", "esl", "scottsdale", "research-phase"],
+      relatedFaqSlugs: [
+        "can-i-build-a-casita-or-adu",
+        "how-do-i-know-if-a-lot-is-buildable",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
       pillarBlogSlug:
         "designing-a-custom-home-around-your-lot-why-layout-matters-more-than-square-footage",
       featured: false,
-      sortOrder: 17,
-    },
-    {
-      slug: "can-you-build-a-casita-guest-house-or-adu",
-      question: "Can you build a casita, guest house, or ADU?",
-      answer:
-        "Yes. Casitas, guest houses, and accessory dwelling units (ADUs) are a popular addition in Arizona, whether for guests, multigenerational living, a home office, or rental potential.\n\nWe can design a casita or ADU as part of a new custom home or plan for one on your lot. Because rules for guest houses and ADUs vary by city and have evolved in recent years, we'll help you understand what's allowed on your property and design a space that fits both the regulations and the way you want to use it.",
-      answerHtml: `<p>Yes. Casitas, guest houses, and accessory dwelling units (ADUs) are a popular addition in Arizona — whether for guests, multigenerational living, a home office, or rental potential.</p><p>We can design a casita or ADU as part of a new custom home or plan for one on your lot. Because rules for guest houses and ADUs vary by city and have evolved in recent years, we'll help you understand what's allowed on your property and design a space that fits both the regulations and the way you want to use it.</p>`,
+      sortOrder: 12,
+    }),
+    item({
+      slug: "can-i-build-a-casita-or-adu",
+      question: "Can I build a casita, guest house, or ADU on my property?",
+      answerHtml: `<p><strong>Often yes, but the rules depend entirely on your jurisdiction and zoning. A casita, guest house, or accessory dwelling unit (ADU) is a smaller second living space on the same lot as the main home, and Arizona has recently moved to make ADUs easier in its larger cities.</strong> What you can build, how big, and whether it can be rented all come down to local rules.</p>
+<h2>Casita versus ADU</h2>
+<p>People use these terms loosely, but the distinction matters for permitting. A <strong>casita or guest house</strong> is often a secondary space without a full independent kitchen, while an <strong>ADU</strong> is a complete, independent dwelling with its own kitchen, bath, and entrance. Whether a unit counts as an ADU affects which rules apply and whether it can be a separate rental.</p>
+<h2>Arizona's statewide ADU law</h2>
+<p>In May 2024, Arizona enacted <strong>House Bill 2720</strong>, which requires municipalities with at least 75,000 residents to allow ADUs on lots zoned for single-family homes. That brings more consistent ADU rights to the state's larger cities, including much of the Phoenix metro. The law sets a baseline; each qualifying city adopts its own implementing regulations on size, setbacks, and design, and smaller towns and unincorporated county areas are not covered by it. Always confirm how your specific jurisdiction has implemented the rules.</p>
+<h2>What typically governs the unit</h2>
+<ul>
+<li><strong>Size limits</strong> on the ADU relative to the main home or lot.</li>
+<li><strong>Setbacks and height</strong> as with any structure, plus any owner-occupancy or parking conditions the city imposes.</li>
+<li><strong>Attached versus detached</strong> configurations, each with its own standards.</li>
+<li><strong>Utilities and septic capacity.</strong> On a septic lot, a second dwelling may require a larger or upgraded system.</li>
+<li><strong>Short-term rental rules,</strong> which are regulated separately and change.</li>
+</ul>
+<h2>Designing it in from the start</h2>
+<p>The cleanest path is to plan the casita or ADU as part of the original design, so the layout, utilities, and septic capacity all account for it rather than being retrofitted later. It is far easier to size a septic system or position utilities once than to expand them after the fact.</p>
+<h2>How Jematell Homes helps</h2>
+<p>We design custom homes with casitas, guest houses, and ADUs regularly, and we tailor the unit to your lot's zoning and your goals — multigenerational living, guests, a home office, or a future rental. Because ADU rules are evolving and differ by city, we confirm the current standards for your jurisdiction before finalizing the design.</p>`,
       shortAnswer:
-        "Yes. We design casitas, guest houses, and ADUs for guests, multigenerational living, offices, or rental potential, either as part of a new custom home or planned for your lot. Since rules vary by city, we help you understand what's allowed and design to fit it.",
+        "Often yes, depending on your zoning. A casita is usually a guest space; an ADU is a full independent dwelling. Arizona's 2024 HB 2720 requires cities over 75,000 residents to allow ADUs on single-family lots, but each sets its own size and setback rules. Plan utilities and septic capacity from the start.",
       metaDescription:
-        "Can Jematell Homes build a casita, guest house, or ADU? Yes — designed to your needs and local rules, as part of a new home or on your lot.",
-      categorySlug: "design-and-customization",
-      topicSlugs: [],
-      tags: ["casita", "adu", "guest-house"],
-      relatedFaqSlugs: ["how-customizable-are-your-homes"],
-      relatedServiceSlugs: ["custom-homes"],
+        "Can you build a casita, guest house, or ADU in Arizona? Often yes — and HB 2720 now requires larger cities to allow ADUs on single-family lots. Here's what governs it.",
+      categorySlug: "design-zoning-adus",
+      topicSlugs: ["zoning-setbacks-adus"],
+      tags: ["adu", "casita", "guest-house", "hb-2720", "research-phase"],
+      relatedFaqSlugs: [
+        "what-are-setbacks-lot-coverage-and-naos-rules",
+        "how-much-does-it-cost-to-build-a-custom-home",
+      ],
+      relatedServiceSlugs: ["custom-homes", "floor-plans"],
       pillarBlogSlug:
         "guest-house-amp-adu-essentials-building-casitas-in-phoenix-under-new-laws",
       featured: false,
-      sortOrder: 18,
-    },
-    {
-      slug: "can-you-add-an-rv-garage",
-      question: "Can you build a custom RV garage?",
-      answer:
-        "Yes. An RV garage is a popular feature for Arizona homeowners, offering secure, climate-protected storage for a motorhome, boat, trailers, or workshop space, and it can add real value and function to your property.\n\nWe design RV garages to fit your vehicles and how you'll use the space, from ceiling height and door dimensions to power, plumbing, and finishes. Whether it's part of a new custom home or planned around your lot, we'll make sure it's sized and equipped correctly from the start.",
-      answerHtml: `<p>Yes. An RV garage is a popular feature for Arizona homeowners, offering secure, climate-protected storage for a motorhome, boat, trailers, or workshop space — and it can add real value and function to your property.</p><p>We design RV garages to fit your vehicles and how you'll use the space, from ceiling height and door dimensions to power, plumbing, and finishes. Whether it's part of a new custom home or planned around your lot, we'll make sure it's sized and equipped correctly from the start.</p>`,
-      shortAnswer:
-        "Yes. We design custom RV garages for secure storage of a motorhome, boat, or trailers, or workshop space. We size and equip them to your vehicles and use, from ceiling height and door dimensions to power, plumbing, and finishes, as part of a new home or on your lot.",
-      metaDescription:
-        "Can Jematell Homes build a custom RV garage? Yes — sized and equipped to your vehicles and needs, as part of a new home or planned for your lot.",
-      categorySlug: "design-and-customization",
-      topicSlugs: [],
-      tags: ["rv-garage", "customization", "storage"],
-      relatedFaqSlugs: ["how-customizable-are-your-homes"],
-      relatedServiceSlugs: ["custom-homes"],
-      pillarBlogSlug:
-        "why-adding-an-rv-garage-is-a-smart-investment-for-your-arizona-home",
-      featured: false,
-      sortOrder: 19,
-    },
-
-    // ----- Spec & Semi-Custom Homes -----
-    {
-      slug: "what-is-the-difference-between-spec-custom-and-semi-custom",
-      question:
-        "What is the difference between spec, semi-custom, and custom homes?",
-      answer:
-        "The three options mainly differ in how much you design versus how quickly you can move in.\n\nA spec home is one we design and build with current trends in mind, then offer for sale. It's the fastest path to a brand-new home because the major decisions are already made, with high quality at an approachable price.\n\nA semi-custom home starts from an established floor plan that you personalize, letting you tailor finishes and certain features without designing from a blank page. It's a balance of choice and efficiency.\n\nA fully custom home is designed around you from the ground up, on your plan or ours, with the most freedom over layout, finishes, and how the home sits on your lot. The right choice depends on how much you want to customize, your timeline, and your budget, and we're happy to help you weigh them.",
-      answerHtml: `<p>The three options mainly differ in how much you design versus how quickly you can move in.</p><ul><li><strong>Spec home</strong> — one we design and build with current trends in mind, then offer for sale. It's the fastest path to a brand-new home because the major decisions are already made, with high quality at an approachable price.</li><li><strong>Semi-custom home</strong> — starts from an established floor plan that you personalize, letting you tailor finishes and certain features without designing from a blank page. A balance of choice and efficiency.</li><li><strong>Fully custom home</strong> — designed around you from the ground up, on your plan or ours, with the most freedom over layout, finishes, and how the home sits on your lot.</li></ul><p>The right choice depends on how much you want to customize, your timeline, and your budget — and we're happy to help you weigh them.</p>`,
-      shortAnswer:
-        "A spec home is designed and built by us, then sold — the fastest move-in. A semi-custom home personalizes an established plan, balancing choice and efficiency. A fully custom home is designed around you from scratch, with the most freedom. The right fit depends on customization, timeline, and budget.",
-      metaDescription:
-        "Spec vs. semi-custom vs. custom homes — the differences in design freedom, timeline, and budget, and how to choose the right path in Arizona.",
-      categorySlug: "spec-and-semi-custom",
-      topicSlugs: [],
-      tags: ["spec-home", "semi-custom", "custom-home"],
-      relatedFaqSlugs: ["do-you-have-spec-homes-for-sale"],
-      relatedServiceSlugs: ["spec-homes"],
-      pillarBlogSlug:
-        "spec-home-vs-custom-home-vs-semi-custom-finding-your-perfect-fit-in-arizona",
-      featured: true,
-      sortOrder: 20,
-    },
-    {
-      slug: "do-you-have-spec-homes-for-sale",
-      question: "Do you have move-in ready spec homes for sale?",
-      answer:
-        "We build high-quality, stylish spec homes designed with current trends in mind, and we never trade quality for a price tag. Availability changes over time, and we have homes coming soon.\n\nIf a move-in ready or nearly-finished home appeals to you, a spec home is a smart way to get a thoughtfully designed, well-built new home without managing the full custom process. Contact us to learn what's currently available or coming up, and we'll help you find the right fit.",
-      answerHtml: `<p>We build high-quality, stylish spec homes designed with current trends in mind, and we never trade quality for a price tag. Availability changes over time, and we have homes coming soon.</p><p>If a move-in ready or nearly-finished home appeals to you, a spec home is a smart way to get a thoughtfully designed, well-built new home without managing the full custom process. Contact us to learn what's currently available or coming up, and we'll help you find the right fit.</p>`,
-      shortAnswer:
-        "We build high-quality, stylish spec homes designed with current trends, and we have homes coming soon. A spec home is a smart way to get a well-built new home without managing the full custom process. Contact us to learn what's available or coming up.",
-      metaDescription:
-        "Does Jematell Homes have move-in ready spec homes for sale? We build stylish, high-quality spec homes with new ones coming soon — contact us for availability.",
-      categorySlug: "spec-and-semi-custom",
-      topicSlugs: [],
-      tags: ["spec-home", "move-in-ready", "for-sale"],
-      relatedFaqSlugs: ["what-is-the-difference-between-spec-custom-and-semi-custom"],
-      relatedServiceSlugs: ["spec-homes"],
-      pillarBlogSlug:
-        "when-a-spec-home-makes-sense-a-smarter-way-to-buy-new-construction",
-      featured: false,
-      sortOrder: 21,
-    },
+      sortOrder: 13,
+    }),
   ],
 };
