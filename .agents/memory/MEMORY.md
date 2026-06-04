@@ -1,3 +1,4 @@
 - [Orval zod request validation](orval-zod-request-validation.md) — generated `zod.coerce` schemas can't reject missing/`"false"` params; guard the raw request first.
-- [FAQ SEO module](faq-seo-module.md) — FAQ pages are SSR'd by api-server at top-level `/faq*` (outside `/api`); seed = source of truth synced on boot; render.ts is pure for hermetic validation.
+- [FAQ module](faq-seo-module.md) — FAQ is now real SSG'd React pages in the web app (owns `/faq*`); api-server keeps only DB/`/api/faqs`/validator; shared `@workspace/faq` lib = source of truth.
+- [SSG real-H1 rule](ssg-real-h1.md) — above-the-fold H1s must be CSS-driven (`hero-title`), never framer-motion `opacity:0`, or the pre-JS HTML ships an invisible heading and fails SEO.
 - [Universal contact form](contact-form.md) — Jematell has ONE contact form (modal via useContactForm().open()); never add inline page forms; delivery not yet wired.

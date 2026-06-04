@@ -70,14 +70,7 @@ export default function BlogPost() {
           <Link to="/blog" className="gallery-back" data-testid="blog-back">
             <ArrowLeft size={16} /> All Articles
           </Link>
-          <motion.h1
-            className="blog-post-title"
-            initial={reduce ? false : { opacity: 0, y: 16 }}
-            animate={reduce ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            {title}
-          </motion.h1>
+          <h1 className="blog-post-title hero-title">{title}</h1>
           {data.description ? (
             <p className="page-hero-sub">{data.description}</p>
           ) : null}

@@ -23,6 +23,25 @@ export default function FaqDetail() {
   if (!item || !detail) return <NotFound />;
 
   const path = `/faq/${detail.slug}`;
+  // The breadcrumb parent is the item's first resolvable topic (topics have real
+  // pages at /faq/topics/:slug). Categories live only as sections on the hub, so
+  // they are not link-worthy breadcrumb nodes. Items without a topic fall back to
+  // a 3-level trail (Home > FAQ > Question).
+  const primaryTopic = (() => {
+    for (const ts of detail.topicSlugs) {
+      const t = faqDataset.getTopic(ts);
+      if (t) return { slug: t.slug, title: t.title };
+    }
+    return null;
+  })();
+  const crumbs = [
+    { name: "Home", url: "/" },
+    { name: "FAQ", url: "/faq" },
+    ...(primaryTopic
+      ? [{ name: primaryTopic.title, url: `/faq/topics/${primaryTopic.slug}` }]
+      : []),
+    { name: detail.question, url: path },
+  ];
   const services = detail.relatedServiceSlugs
     .map((s) => SERVICE_LINKS[s])
     .filter((s): s is { label: string; href: string } => Boolean(s));
@@ -41,11 +60,7 @@ export default function FaqDetail() {
         canonical={path}
         jsonLd={[
           qaPageJsonLd({ url: path, question: detail.question, answer: detail.answer }),
-          breadcrumbJsonLd([
-            { name: "Home", url: "/" },
-            { name: "FAQ", url: "/faq" },
-            { name: detail.question, url: path },
-          ]),
+          breadcrumbJsonLd(crumbs),
         ]}
       />
 
@@ -55,7 +70,16 @@ export default function FaqDetail() {
           <nav className="faq-crumbs hero-eyebrow" aria-label="Breadcrumb">
             <Link to="/faq" data-testid="faq-detail-crumb">FAQ</Link>
             <ChevronRight size={14} aria-hidden="true" />
-            <span>{detail.categoryTitle}</span>
+            {primaryTopic ? (
+              <Link
+                to={`/faq/topics/${primaryTopic.slug}`}
+                data-testid="faq-detail-crumb-topic"
+              >
+                {primaryTopic.title}
+              </Link>
+            ) : (
+              <span>{detail.categoryTitle}</span>
+            )}
           </nav>
           <h1 className="faq-detail-title hero-title">{detail.question}</h1>
         </div>

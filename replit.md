@@ -14,8 +14,9 @@ Premium marketing website for Jematell Homes — a family-owned custom home buil
 ## Stack
 
 - pnpm workspaces, Node.js 24, TypeScript 5.9
-- Web artifact: React 18, Vite, plain CSS, framer-motion, lucide-react, react-router-dom, react-hook-form + zod
-- API: Express 5 (not yet used by the web artifact — currently a static client)
+- Web artifact: React 18, Vite (SSG prerender), plain CSS, framer-motion, lucide-react, react-router-dom v7, react-hook-form + zod
+- Shared lib: `@workspace/faq` — FAQ seed + types + dataset/JSON-LD helpers; single source of truth consumed by both the web app and the api-server
+- API: Express 5 — owns the FAQ DB, `/api/faqs`, and a build-time FAQ JSON-LD validator. It no longer renders public FAQ HTML (the web app does)
 - Build: Vite + esbuild
 
 ## Where things live
@@ -36,10 +37,16 @@ Premium marketing website for Jematell Homes — a family-owned custom home buil
     - `ContentPage.tsx` — generic renderer that ingests `pages.json` blocks
     - `Gallery.tsx`, `GalleryDetail.tsx` — portfolio
     - `Blog.tsx`, `BlogPost.tsx` — journal index + article
+    - `FaqIndex.tsx`, `FaqTopic.tsx`, `FaqDetail.tsx` — FAQ hub, topic pages, and Q&A detail pages
     - `Contact.tsx` — contact info cards + lead form
     - `not-found.tsx` — 404
-  - `src/data/pages.ts`, `src/data/blogs.ts` — typed wrappers around the extracted JSON
+  - `src/config/` — central `siteConfig` + `navConfig` (brand, CTA, services, locations, contact, social; primary nav + sub-nav children) — single source of truth, no hardcoded brand strings in components
+  - `src/motion.ts`, `src/transitions.css` — motion tokens (one easing `cubic-bezier(0.22,1,0.36,1)`, durations 0.3-0.8s) + cross-route fade / hero entrance / scroll-reveal CSS; all reduced-motion guarded
+  - `src/seo/` — per-page `Seo` head collector + `jsonld.ts` builders; site-wide JSON-LD `@type`s emitted once, page types added per page
+  - `src/entry-client.tsx`, `src/entry-server.tsx`, prerender script — the SSG pipeline (hydrate in browser; `renderToString` + `StaticRouter` at build time)
+  - `src/data/pages.ts`, `src/data/blogs.ts`, `src/data/faq.ts` — typed wrappers around the content sources (extracted JSON + the shared FAQ lib)
   - `public/images/` — local homepage hero/section images
+- `lib/faq/` — shared FAQ seed, types, dataset builder, and JSON-LD/render helpers (the build-time validator reuses the render helpers)
 - `clone-data/` — content extraction pipeline (dev-only, not shipped)
   - `extract.mjs` — cheerio-based extractor
   - `pages/*.html`, `blogs/*.html` — raw scraped source HTML
@@ -52,7 +59,10 @@ Premium marketing website for Jematell Homes — a family-owned custom home buil
 - **Content comes from `clone-data/extracted/*.json`** — produced by scraping the existing Squarespace site and parsing with cheerio into `{type, text|src|alt}` block arrays. Re-run `node clone-data/extract.mjs` after rescraping to refresh.
 - **Blog filters out Squarespace taxonomy URLs** (category_*, tag_*, percent-encoded slugs) — only the ~47 real article slugs are rendered.
 - **Inner-page images are referenced via Squarespace CDN URLs** directly (they're the client's own assets). Homepage uses local files in `public/images/` for the first-paint hero.
-- **No fetch / no backend coupling on the public site** — fully static rendering, ready to host as a CDN-served SPA.
+- **Static pre-rendering (SSG), not SSR** — every public route is rendered to real HTML at build time (`renderToString` + `StaticRouter`) and hydrated in the browser. All content is static at build time (extracted JSON + the FAQ seed), so every indexable page ships a real H1 + body copy in the first HTML response. Dev runs as plain CSR; SSG is verified via `build`.
+- **Per-page SEO + JSON-LD policy** — the `src/seo/` collector sets title/meta/canonical/OG per route. Site-wide JSON-LD types (Organization/GeneralContractor/WebSite) are emitted exactly once; page-specific types are added per page (Service, Article/BlogPosting, FAQPage on FAQ hub/topic, QAPage on FAQ detail, BreadcrumbList on nested pages). Never emit the same `@type` twice on one page.
+- **FAQ lives in the web app** — `/faq`, `/faq/topics/:slug`, `/faq/:slug` are real React routes using the site's design system, nav, motion, and universal contact form, pre-rendered via SSG. The FAQ detail breadcrumb is 4-level (Home › FAQ › Topic › Question) when the item has a resolvable topic, falling back to 3-level when it does not (categories have no pages, so they are not link-worthy breadcrumb nodes). The api-server no longer serves public FAQ HTML — it keeps the DB, `/api/faqs`, and the build-time JSON-LD validator only.
+- **Motion system** — one shared easing (`cubic-bezier(0.22,1,0.36,1)`), durations 0.3-0.8s, defined in `src/motion.ts` / `src/transitions.css`; every animation is disabled under `prefers-reduced-motion`. Above-the-fold H1s use the CSS `hero-title` class (NOT framer-motion `initial={{opacity:0}}`) so the heading is visible in the raw pre-JS HTML.
 - **One universal contact form** — a single immersive multi-step form lives in `src/contact-form/`, mounted once via `ContactFormProvider` (inside `BrowserRouter`) and opened from everywhere via `useContactForm().open()`: header CTA (desktop + mobile), hero CTA, homepage CTA section, and the floating contact widget. It replaced the old inline lead form and the old multi-link floating widget menu. Submissions are wired end-to-end but delivery is not connected yet (`submit.ts` is a local adapter with a TODO).
 - **Contact-form CSS is co-located** (`src/contact-form/contact-form.css`, imported by the provider) — a deliberate deviation from the otherwise single-`index.css` convention, to keep the ported form self-contained. All its classes are namespaced `cf-*`.
 
@@ -65,6 +75,7 @@ A multi-page marketing site with:
 - Where We Build hub + 10 location-specific landing pages (Scottsdale, Rio Verde, Phoenix, Cave Creek, Fountain Hills, Carefree, Casa Grande, Apache Junction, plus Build on Your Lot / Buy a Lot With Us)
 - About, Warranty, Privacy, Thank You pages
 - Blog with 47 articles, client-side search, prev/next navigation
+- FAQ hub + per-topic pages + individual Q&A detail pages, cross-linked to blog pillars and service pages
 - Contact page with info cards, a floating contact widget on every page, validated lead form
 
 ## User preferences
@@ -87,6 +98,8 @@ A multi-page marketing site with:
 - **Always strip the " — Jematell Homes" title suffix** when displaying page titles (handled by `cleanTitle()` in renderers).
 - **Skip `rv-garages-old`** — deprecated page; no route exists for it.
 - **Blog slug filter** must reject keys containing `%`, `+`, or starting with `category_`/`tag_`/`author_` — these are Squarespace taxonomy URLs, not real articles.
+- **The web app owns `/faq*`; the api-server owns only `/api`** — don't re-add public FAQ HTML routes to the api-server or let both artifacts claim `/faq*` in their `artifact.toml` (use the artifacts skill, not hand edits).
+- **Above-the-fold H1s must use the CSS `hero-title` class, never framer-motion `initial={{opacity:0}}`** — the latter ships an invisible heading in the raw pre-JS HTML, which fails the real-H1 SEO requirement.
 
 ## Pointers
 
