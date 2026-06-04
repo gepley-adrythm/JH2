@@ -31,10 +31,10 @@ export default function Gallery() {
     <main className="page">
       <Seo
         title="Gallery"
-        description="A selection of custom and semi-custom homes Jematell Homes has built across Arizona — each one shaped by the land it sits on and the family that calls it home."
+        description="A selection of custom and semi-custom homes Jematell Homes has built across Arizona, each one shaped by the land it sits on and the family that calls it home."
         canonical="/gallery"
         jsonLd={collectionJsonLd({
-          name: "Gallery — Jematell Homes",
+          name: "Gallery - Jematell Homes",
           description: "Custom homes built by Jematell Homes across Arizona.",
           url: "/gallery",
         })}
@@ -45,7 +45,7 @@ export default function Gallery() {
           <span className="eyebrow page-hero-eyebrow" style={{ color: "var(--color-accent)" }}>Our Portfolio</span>
           <h1 className="page-hero-title" style={{ color: "var(--color-dark)" }}>Gallery</h1>
           <p className="page-hero-sub" style={{ color: "var(--color-text-muted)" }}>
-            A selection of homes we've built across Arizona — each one shaped by
+            A selection of homes we've built across Arizona, each one shaped by
             the land it sits on and the family that calls it home.
           </p>
         </div>

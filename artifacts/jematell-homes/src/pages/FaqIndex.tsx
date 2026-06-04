@@ -8,7 +8,7 @@ import { Seo } from "../seo/seo";
 import { faqPageJsonLd } from "../seo/jsonld";
 
 const INTRO =
-  "Straight answers about building a custom home in Arizona — timelines, budgets, lots, floor plans, and what it's like to work with a family-owned builder.";
+  "Straight answers about building a custom home in Arizona: timelines, budgets, lots, floor plans, and what it's like to work with a family-owned builder.";
 
 export default function FaqIndex() {
   const { open } = useContactForm();

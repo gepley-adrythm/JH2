@@ -21,7 +21,7 @@ export default function GalleryDetail() {
     <main className="page">
       <Seo
         title={title}
-        description={data.description || `${title} — a custom home built by Jematell Homes in Arizona.`}
+        description={data.description || `${title}: a custom home built by Jematell Homes in Arizona.`}
         canonical={path}
         image={data.ogImage}
         jsonLd={breadcrumbJsonLd([

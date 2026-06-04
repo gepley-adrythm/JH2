@@ -278,7 +278,7 @@ export function Reviews() {
                 >
                   <p className="review-body">{REVIEWS[current].headline}</p>
                   <p style={{ marginBottom: '24px', color: 'var(--color-text-muted)' }}>{REVIEWS[current].body}</p>
-                  <div className="review-author">— {REVIEWS[current].author}</div>
+                  <div className="review-author">- {REVIEWS[current].author}</div>
                 </m.div>
               </AnimatePresence>
             </div>

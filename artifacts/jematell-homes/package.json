@@ -9,7 +9,9 @@
     "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "audit": "node scripts/audit.mjs",
-    "audit:ci": "BASE_PATH=/ PORT=5000 NODE_ENV=production pnpm run build && node scripts/audit.mjs"
+    "audit:ci": "BASE_PATH=/ PORT=5000 NODE_ENV=production pnpm run build && node scripts/audit.mjs",
+    "lint:content": "node scripts/content-lint.mjs",
+    "lint:content:ci": "BASE_PATH=/ PORT=5000 NODE_ENV=production pnpm run build && node scripts/content-lint.mjs"
   },
   "devDependencies": {
     "@replit/vite-plugin-cartographer": "catalog:",

@@ -685,10 +685,10 @@ function RelatedFaqsSection({ services }: { services: string[] }) {
   return (
     <section className="section-pad post-faqs" style={{ background: "var(--color-cream, #ece9e2)" }}>
       <div className="container container-narrow">
-        <motion.div className="page-section-head" {...FADE_IN}>
+        <m.div className="page-section-head" {...FADE_IN}>
           <span className="eyebrow">Before you build</span>
           <h2 className="heading-lg">Common questions</h2>
-        </motion.div>
+        </m.div>
         <ul className="post-faq-list" data-testid="page-related-faqs">
           {faqs.map((f) => (
             <li key={f.slug}>

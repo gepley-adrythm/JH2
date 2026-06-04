@@ -50,7 +50,7 @@ export default function BlogPost() {
     <main className="page blog-post">
       <Seo
         title={title}
-        description={data.description || `${title} — insights from Jematell Homes.`}
+        description={data.description || `${title}: notes from the Jematell Homes journal.`}
         canonical={path}
         image={heroImg}
         type="article"

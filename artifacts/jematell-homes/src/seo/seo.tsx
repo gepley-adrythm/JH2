@@ -43,7 +43,7 @@ export function formatTitle(title?: string): string {
   const brand = siteConfig.brand.name;
   const t = (title || "").trim();
   if (!t || t.toLowerCase() === brand.toLowerCase()) return brand;
-  return `${t} — ${brand}`;
+  return `${t} - ${brand}`;
 }
 
 export interface SeoProps {

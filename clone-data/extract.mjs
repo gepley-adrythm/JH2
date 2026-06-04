@@ -1,6 +1,7 @@
 import * as cheerio from "cheerio";
 import { readFileSync, readdirSync, writeFileSync, mkdirSync } from "fs";
 import { join, basename } from "path";
+import { cleanText } from "./normalize.mjs";
 
 function extractPage(html, sourceUrl) {
   const $ = cheerio.load(html);
@@ -14,10 +15,12 @@ function extractPage(html, sourceUrl) {
     .replace(/\s*\|.*$/, "")
     .replace(/\s*[—–]\s*(Contact Us|Learn More|Explore|Home Warranty|Privacy Options).*$/i, "")
     .trim();
-  const description =
+  title = cleanText(title);
+  const description = cleanText(
     $('meta[name="description"]').attr("content") ||
-    $('meta[property="og:description"]').attr("content") ||
-    "";
+      $('meta[property="og:description"]').attr("content") ||
+      "",
+  );
   let ogImage = $('meta[property="og:image"]').attr("content") || "";
   // Skip generic site logo / profile photo / brand-asset OG fallback so the hero can use a real photo.
   const isBrandAsset = (u) => /profile\+?photo|logo|favicon|jematell[\s+_-]?homes|brand|icon/i.test(u);
@@ -57,7 +60,7 @@ function extractPage(html, sourceUrl) {
         blocks.push({ type: "img", src, alt });
       }
     } else {
-      const text = $el.text().trim().replace(/\s+/g, " ");
+      const text = cleanText($el.text().trim().replace(/\s+/g, " "));
       if (!text || text.length < 2) return;
       // Skip nav/footer remnants
       if (/^(gallery|custom homes|spec homes|floor plans|where we build|about us|contact|home|start your build|menu|close)$/i.test(text)) return;

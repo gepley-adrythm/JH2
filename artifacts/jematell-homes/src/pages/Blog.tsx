@@ -5,6 +5,10 @@ import { Search, ArrowRight } from "lucide-react";
 import { blogs } from "../data/blogs";
 import { Seo } from "../seo/seo";
 import { collectionJsonLd } from "../seo/jsonld";
+import { ResponsiveImage } from "../components/ResponsiveImage";
+
+const INTRO =
+  "Expert advice on home building, custom design, and life in Arizona, from our family to yours.";
 
 interface PostMeta {
   slug: string;
@@ -58,26 +62,35 @@ export default function Blog() {
     <main className="page">
       <Seo
         title="Blog"
-        description="Expert insights on home building, custom design, and life in Arizona — from the Jematell Homes family to yours."
+        description="Expert advice on home building, custom design, and life in Arizona, from the Jematell Homes family to yours."
         canonical="/blog"
         jsonLd={collectionJsonLd({
-          name: "Blog — Jematell Homes",
-          description: "Expert insights on home building, custom design, and life in Arizona.",
+          name: "Blog - Jematell Homes",
+          description: "Expert advice on home building, custom design, and life in Arizona.",
           url: "/blog",
         })}
       />
-      <section className="page-hero page-hero-short" style={{ background: "var(--color-cream)" }}>
-        <div className="container page-hero-content" style={{ textAlign: "center" }}>
-          <span className="eyebrow page-hero-eyebrow" style={{ color: "var(--color-accent)" }}>Journal</span>
-          <h1 className="page-hero-title" style={{ color: "var(--color-dark)" }}>Blog Articles</h1>
-          <p className="page-hero-sub" style={{ color: "var(--color-text-muted)", maxWidth: 640, margin: "0 auto" }}>
-            Expert insights on home building, custom design, and life in Arizona — from our family to yours.
-          </p>
-          <div className="blog-search" style={{ margin: "32px auto 0", maxWidth: 480 }}>
-            <Search size={18} />
+      <section className="page-hero faq-hero">
+        <ResponsiveImage
+          name="cta-bg"
+          className="page-hero-bg"
+          alt=""
+          widths={[768, 1280, 1920]}
+          sizes="100vw"
+          width={1920}
+          height={1280}
+          priority
+        />
+        <div className="page-hero-overlay" />
+        <div className="container page-hero-content">
+          <span className="eyebrow page-hero-eyebrow">Journal</span>
+          <h1 className="faq-hero-title hero-title">Blog Articles</h1>
+          <p className="page-hero-sub hero-subtitle">{INTRO}</p>
+          <div className="faq-search hero-cta" role="search">
+            <Search size={18} aria-hidden="true" />
             <input
               type="search"
-              placeholder="Search articles..."
+              placeholder="Search articles…"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               data-testid="blog-search"

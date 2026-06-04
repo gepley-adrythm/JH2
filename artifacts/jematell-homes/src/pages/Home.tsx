@@ -9,7 +9,7 @@ export default function Home() {
     <MotionConfig reducedMotion="user">
       <Seo
         title="Custom & Semi-Custom Home Builder in Arizona"
-        description="Jematell Homes is a family-owned Arizona custom home builder serving Scottsdale, Rio Verde, and the greater Phoenix metro — quietly luxurious homes built with passion, integrity, and a personal touch."
+        description="Jematell Homes is a family-owned Arizona custom home builder serving Scottsdale, Rio Verde, and the greater Phoenix metro: quietly luxurious homes built with passion, integrity, and a personal touch."
         canonical="/"
       />
       <main>

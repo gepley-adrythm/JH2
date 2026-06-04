@@ -20,6 +20,10 @@ author = "agent"
 task = "workflow.run"
 args = "audit"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "content"
+
 [[workflows.workflow]]
 name = "audit"
 author = "agent"
@@ -27,6 +31,17 @@ author = "agent"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "pnpm --filter @workspace/jematell-homes run audit:ci"
+
+[workflows.workflow.metadata]
+isValidation = true
+
+[[workflows.workflow]]
+name = "content"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pnpm --filter @workspace/jematell-homes run lint:content:ci"
 
 [workflows.workflow.metadata]
 isValidation = true

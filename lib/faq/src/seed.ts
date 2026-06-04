@@ -1,7 +1,7 @@
 import type { FaqSeed, SeedItem } from "./types";
 
 // =============================================================================
-// FAQ SEED — SINGLE SOURCE OF TRUTH
+// FAQ SEED - SINGLE SOURCE OF TRUTH
 // =============================================================================
 // This file is synced into the database on server boot (see sync.ts) and is the
 // only place FAQ content is authored. The build-time validator, the SPA
@@ -58,7 +58,7 @@ export const faqSeed: FaqSeed = {
       slug: "permits-and-codes",
       title: "Permits, Codes & Inspections",
       description:
-        "What it takes to get a custom home approved in Arizona — jurisdiction, building codes, the plan-review process, and inspections.",
+        "What it takes to get a custom home approved in Arizona - jurisdiction, building codes, the plan-review process, and inspections.",
       metaDescription:
         "Building permits, adopted codes, plan review, and inspections for a custom home in Maricopa County, Scottsdale, and the greater Phoenix metro.",
       sortOrder: 1,
@@ -67,16 +67,16 @@ export const faqSeed: FaqSeed = {
       slug: "land-and-due-diligence",
       title: "Land & Due Diligence",
       description:
-        "How to tell whether a lot is buildable before you buy — zoning, access, utilities, soils, floodplain, and the studies a builder relies on.",
+        "How to tell whether a lot is buildable before you buy - zoning, access, utilities, soils, floodplain, and the studies a builder relies on.",
       metaDescription:
-        "Arizona land due diligence — confirming a lot is buildable, checking zoning, access, utilities, soils, and floodplain before you commit.",
+        "Arizona land due diligence - confirming a lot is buildable, checking zoning, access, utilities, soils, and floodplain before you commit.",
       sortOrder: 2,
     },
     {
       slug: "water-septic-utilities",
       title: "Water, Septic & Utilities",
       description:
-        "Building beyond city services — wells, hauled water, septic systems, and Arizona's water-supply rules on rural and outlying lots.",
+        "Building beyond city services - wells, hauled water, septic systems, and Arizona's water-supply rules on rural and outlying lots.",
       metaDescription:
         "Wells, hauled water, septic permits, and Arizona's 100-year water supply rule explained for rural homesites in Rio Verde and the Phoenix metro.",
       sortOrder: 3,
@@ -94,7 +94,7 @@ export const faqSeed: FaqSeed = {
       slug: "design-zoning-adus",
       title: "Design, Zoning & ADUs",
       description:
-        "How zoning shapes what you can build — setbacks, lot coverage, hillside and open-space rules, and casitas, guest houses, and ADUs.",
+        "How zoning shapes what you can build - setbacks, lot coverage, hillside and open-space rules, and casitas, guest houses, and ADUs.",
       metaDescription:
         "Setbacks, lot coverage, Scottsdale NAOS/ESL rules, and casita/guest house/ADU regulations for custom homes in the Phoenix metro.",
       sortOrder: 5,
@@ -116,23 +116,23 @@ export const faqSeed: FaqSeed = {
       description:
         "Who has authority over your parcel, which permits a custom home needs, the adopted codes, and how long approval takes.",
       metaDescription:
-        "How building permits work for a custom home in Arizona — jurisdiction, required permits, adopted codes, plan review, and timelines.",
+        "How building permits work for a custom home in Arizona - jurisdiction, required permits, adopted codes, plan review, and timelines.",
       sortOrder: 1,
     },
     {
       slug: "buying-land-to-build",
       title: "Buying Land to Build On",
       description:
-        "The due diligence that tells you whether a homesite will actually work — and what to verify before you make an offer.",
+        "The due diligence that tells you whether a homesite will actually work - and what to verify before you make an offer.",
       metaDescription:
-        "Buying land to build a custom home in Arizona — the due diligence, studies, and lot checks that determine whether a parcel is buildable.",
+        "Buying land to build a custom home in Arizona - the due diligence, studies, and lot checks that determine whether a parcel is buildable.",
       sortOrder: 2,
     },
     {
       slug: "rural-water-and-septic",
       title: "Rural Water & Septic",
       description:
-        "Supplying water and handling wastewater where there is no city hookup — wells, hauled water, septic systems, and the rules behind them.",
+        "Supplying water and handling wastewater where there is no city hookup - wells, hauled water, septic systems, and the rules behind them.",
       metaDescription:
         "Wells, hauled water, septic systems, and Arizona water-supply rules for building on rural land in Rio Verde and the Phoenix metro.",
       sortOrder: 3,
@@ -143,7 +143,7 @@ export const faqSeed: FaqSeed = {
       description:
         "Setting a realistic number, understanding what drives cost, and how allowances, change orders, and construction loans work.",
       metaDescription:
-        "Budgeting a custom home in Arizona — realistic cost ranges, what drives price, allowances, change orders, and construction loans.",
+        "Budgeting a custom home in Arizona - realistic cost ranges, what drives price, allowances, change orders, and construction loans.",
       sortOrder: 4,
     },
     {
@@ -196,7 +196,7 @@ export const faqSeed: FaqSeed = {
       shortAnswer:
         "Yes. A new custom home always needs a building permit, plus grading, septic, well, and access permits on rural land. First confirm whether your parcel is governed by a city or by unincorporated Maricopa County, since each has its own rules, fees, and timelines.",
       metaDescription:
-        "Do you need a permit to build a custom home in Maricopa County? Yes — building, grading, septic, well, and access permits, plus how the approval process works.",
+        "Do you need a permit to build a custom home in Maricopa County? Yes - building, grading, septic, well, and access permits, plus how the approval process works.",
       categorySlug: "permits-and-codes",
       topicSlugs: ["building-permits-arizona"],
       tags: ["permits", "maricopa-county", "process", "research-phase"],
@@ -222,10 +222,10 @@ export const faqSeed: FaqSeed = {
 <h2>Why local amendments matter</h2>
 <p>The I-Codes are a national baseline, but jurisdictions amend them to fit local conditions. In the desert Southwest those amendments commonly address:</p>
 <ul>
-<li><strong>Soils and foundations</strong> — expansive clays and caliche drive foundation and grading requirements.</li>
-<li><strong>Energy and cooling</strong> — insulation, glazing, and HVAC efficiency rules tuned for extreme summer heat.</li>
-<li><strong>Drainage and grading</strong> — how a site must handle stormwater and monsoon runoff.</li>
-<li><strong>Pools, walls, and solar</strong> — barrier, height, and equipment standards that often need their own permits.</li>
+<li><strong>Soils and foundations</strong> - expansive clays and caliche drive foundation and grading requirements.</li>
+<li><strong>Energy and cooling</strong> - insulation, glazing, and HVAC efficiency rules tuned for extreme summer heat.</li>
+<li><strong>Drainage and grading</strong> - how a site must handle stormwater and monsoon runoff.</li>
+<li><strong>Pools, walls, and solar</strong> - barrier, height, and equipment standards that often need their own permits.</li>
 </ul>
 <h2>What this means for your project</h2>
 <p>You do not need to master the code book, but you should choose a builder who works across these jurisdictions every day. We design and detail each home to the edition and amendments in force where you are building, carry those requirements through plan review, and verify them against the AHJ rather than assuming last year's rules still apply. That keeps corrections to a minimum and the schedule predictable.</p>`,
@@ -538,7 +538,7 @@ export const faqSeed: FaqSeed = {
       shortAnswer:
         "Almost always yes. A geotechnical report tells your engineer how the soil behaves and is typically required before a foundation design is approved. Arizona's expansive clays, caliche, and collapsible soils make it essential. Rural septic lots also need a separate percolation test. Order both early in design.",
       metaDescription:
-        "Do you need a soils or geotechnical report to build in Arizona? Usually yes — it drives foundation design and is typically required for plan approval.",
+        "Do you need a soils or geotechnical report to build in Arizona? Usually yes - it drives foundation design and is typically required for plan approval.",
       categorySlug: "land-and-due-diligence",
       topicSlugs: ["buying-land-to-build"],
       tags: ["soils-report", "geotechnical", "foundation", "research-phase"],
@@ -737,7 +737,7 @@ export const faqSeed: FaqSeed = {
       shortAnswer:
         "Yes. Rural homes use a well or hauled water with on-site storage instead of city water, and a septic system instead of sewer. Wells need an ADWR Notice of Intent and are usually exempt domestic wells under 35 gallons per minute. Budget early, since depth, yield, and hauling costs vary by parcel.",
       metaDescription:
-        "Can you build on rural Arizona land without city water or sewer? Yes — with a well or hauled water plus a septic system. Here's how each works and what to verify.",
+        "Can you build on rural Arizona land without city water or sewer? Yes - with a well or hauled water plus a septic system. Here's how each works and what to verify.",
       categorySlug: "water-septic-utilities",
       topicSlugs: ["rural-water-and-septic"],
       tags: ["well", "hauled-water", "septic", "rio-verde", "research-phase"],
@@ -790,7 +790,7 @@ export const faqSeed: FaqSeed = {
       question: "What is Arizona's 100-year water supply rule and does it affect my lot?",
       answerHtml: `<p><strong>Arizona's Assured Water Supply (AWS) program requires that, within the state's Active Management Areas, new subdivisions demonstrate a 100-year supply of water before lots can be sold. Whether it affects your lot depends on how that lot was created and where it sits.</strong> This is one of the most misunderstood issues in Arizona land, and it is worth understanding before you buy on the metro's edges.</p>
 <h2>What the rule is</h2>
-<p>The Arizona Department of Water Resources (ADWR) runs the Assured and Adequate Water Supply programs to protect groundwater. Inside an <strong>Active Management Area (AMA)</strong> — and the Phoenix metro sits within the Phoenix AMA — a new subdivision must prove a physically available, legally secure, and continuously available 100-year water supply as a condition of approval.</p>
+<p>The Arizona Department of Water Resources (ADWR) runs the Assured and Adequate Water Supply programs to protect groundwater. Inside an <strong>Active Management Area (AMA)</strong> - and the Phoenix metro sits within the Phoenix AMA - a new subdivision must prove a physically available, legally secure, and continuously available 100-year water supply as a condition of approval.</p>
 <h2>Subdivisions versus lot splits</h2>
 <p>The catch is in the definitions. Under <strong>A.R.S. § 32-2101</strong>, land divided into <strong>six or more lots</strong> is a "subdivision," and subdivisions are subject to the assured-water-supply requirement. Splitting a larger parcel into <strong>five or fewer lots</strong> has historically not met that definition, so those "lot splits" have often avoided the 100-year demonstration. That gap is what produced so-called "wildcat" parcels in unincorporated areas, where homes were built without a guaranteed long-term water source.</p>
 <h2>Why Rio Verde Foothills became the example</h2>
@@ -1012,7 +1012,7 @@ export const faqSeed: FaqSeed = {
 <li><strong>Soft costs.</strong> Design, engineering, soils reports, permits, and jurisdiction fees are real budget lines.</li>
 </ul>
 <h2>Land and site costs on raw lots</h2>
-<p>If you are building on your own land, remember that the parcel price plus the cost to make it ready — power extension, water, septic, grading, driveway — can rival the difference between two finish levels. This is why our due-diligence answer stresses pricing the site before you commit.</p>
+<p>If you are building on your own land, remember that the parcel price plus the cost to make it ready - power extension, water, septic, grading, driveway - can rival the difference between two finish levels. This is why our due-diligence answer stresses pricing the site before you commit.</p>
 <h2>Design to a budget, not the other way around</h2>
 <p>The most reliable path to a number you can live with is to set a budget you are comfortable with and design to it, making trade-offs deliberately rather than discovering them late. We provide clear, itemized pricing and use realistic allowances so you can see how each choice moves the total, with no surprises. Because market pricing shifts, we build your estimate around current costs for your design and lot rather than a generic per-foot rule of thumb.</p>`,
       shortAnswer:
@@ -1038,14 +1038,14 @@ export const faqSeed: FaqSeed = {
       question: "What are allowances and change orders, and how do they affect my budget?",
       answerHtml: `<p><strong>Allowances and change orders are the two mechanisms that let a custom home budget move from estimate to final number. An allowance is a placeholder dollar amount for a selection you have not finalized; a change order is a documented change to the contract scope. Understanding both keeps your budget transparent rather than full of surprises.</strong></p>
 <h2>How allowances work</h2>
-<p>An allowance is a set amount budgeted for a category of selections you have not chosen yet — flooring, cabinetry, countertops, lighting, plumbing fixtures, or appliances. It lets the project price and proceed before every detail is decided. When you make your final selections, the actual cost is compared to the allowance:</p>
+<p>An allowance is a set amount budgeted for a category of selections you have not chosen yet - flooring, cabinetry, countertops, lighting, plumbing fixtures, or appliances. It lets the project price and proceed before every detail is decided. When you make your final selections, the actual cost is compared to the allowance:</p>
 <ul>
 <li>Choose finishes that cost <strong>less</strong> than the allowance, and you save against that amount.</li>
 <li>Choose something <strong>more expensive</strong>, and the difference is added to your price.</li>
 </ul>
 <p>Realistic allowances are everything. An estimate padded with low allowances can look attractive and then climb steeply once real selections are made. We set allowances at levels that reflect the finishes our clients actually choose, so the starting number is honest.</p>
 <h2>How change orders work</h2>
-<p>A change order documents any change to the agreed scope after the contract is set — moving a wall, upgrading a system, adding a feature, or responding to a condition discovered on site. A good change order states the work, the cost, and any schedule impact, and is approved before the work proceeds. That paper trail is what keeps everyone aligned and the budget under control.</p>
+<p>A change order documents any change to the agreed scope after the contract is set - moving a wall, upgrading a system, adding a feature, or responding to a condition discovered on site. A good change order states the work, the cost, and any schedule impact, and is approved before the work proceeds. That paper trail is what keeps everyone aligned and the budget under control.</p>
 <h2>Why this matters in the research phase</h2>
 <p>When you compare builders, look past the headline price and ask how allowances are set and how change orders are handled. Two estimates can look similar while one is built on realistic allowances and the other is not. The difference shows up months later as either a predictable project or a series of unwelcome additions.</p>
 <h2>How Jematell Homes handles it</h2>
@@ -1071,15 +1071,15 @@ export const faqSeed: FaqSeed = {
       question: "How do I finance building a custom home in Arizona?",
       answerHtml: `<p><strong>Most custom homes are financed with a construction loan, which works differently from a standard mortgage: the lender releases money in stages as the home is built, you typically pay interest only on what has been drawn, and the loan often converts to a permanent mortgage when the home is finished.</strong> Understanding the structure early helps you plan both the build and your cash flow.</p>
 <h2>Construction-to-permanent loans</h2>
-<p>The most common path is a construction-to-permanent ("one-time close") loan. It funds the build in <strong>draws</strong> tied to completed milestones — foundation, framing, and so on — with an inspection before each release. During construction you usually pay interest only on the amount drawn so far, which keeps early payments lower. When the home is complete, the loan rolls into a long-term mortgage, often without a second closing.</p>
+<p>The most common path is a construction-to-permanent ("one-time close") loan. It funds the build in <strong>draws</strong> tied to completed milestones - foundation, framing, and so on - with an inspection before each release. During construction you usually pay interest only on the amount drawn so far, which keeps early payments lower. When the home is complete, the loan rolls into a long-term mortgage, often without a second closing.</p>
 <h2>How your lot fits in</h2>
 <p>If you already own your land, its value can often serve as part of your equity or down payment, which can reduce the cash you need to bring. If you are buying the lot and building, some loans can fold the land purchase into the financing. Either way, lenders look closely at the parcel, so the same due diligence that makes a lot buildable also makes it financeable.</p>
 <h2>What lenders want to see</h2>
 <ul>
 <li><strong>Plans and a fixed builder contract</strong> with a detailed cost breakdown, since the appraisal is based on the completed design.</li>
-<li><strong>A qualified, licensed builder</strong> — many construction lenders require one rather than an owner-builder arrangement.</li>
+<li><strong>A qualified, licensed builder</strong> - many construction lenders require one rather than an owner-builder arrangement.</li>
 <li><strong>A contingency</strong> built into the budget for the unexpected.</li>
-<li><strong>Your financial profile</strong> — credit, income, and reserves, as with any mortgage.</li>
+<li><strong>Your financial profile</strong> - credit, income, and reserves, as with any mortgage.</li>
 </ul>
 <h2>Plan for the soft costs and timeline</h2>
 <p>Remember that design, engineering, soils reports, permits, and fees often come before a construction loan funds, so plan for those early costs. And because permitting and construction span many months, your interest carry during the build is part of the real cost of the project.</p>
@@ -1234,7 +1234,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "what-are-setbacks-lot-coverage-and-naos-rules",
       question: "What are setbacks, lot coverage, and NAOS rules in Scottsdale?",
-      answerHtml: `<p><strong>Setbacks, lot coverage, and open-space rules together define your "buildable envelope" — the part of a lot where a home can actually go and how big it can be. In Scottsdale's desert and foothill areas, the Environmentally Sensitive Lands rules add a Natural Area Open Space (NAOS) requirement on top, which can meaningfully shrink where you build.</strong> These rules are zoning-driven, so they vary by parcel.</p>
+      answerHtml: `<p><strong>Setbacks, lot coverage, and open-space rules together define your "buildable envelope" - the part of a lot where a home can actually go and how big it can be. In Scottsdale's desert and foothill areas, the Environmentally Sensitive Lands rules add a Natural Area Open Space (NAOS) requirement on top, which can meaningfully shrink where you build.</strong> These rules are zoning-driven, so they vary by parcel.</p>
 <h2>The core zoning limits</h2>
 <ul>
 <li><strong>Setbacks</strong> are the minimum distances a structure must sit from the front, side, and rear property lines. They frame the footprint before design even begins.</li>
@@ -1245,7 +1245,7 @@ export const faqSeed: FaqSeed = {
 <h2>NAOS and the ESL ordinance</h2>
 <p>Scottsdale's <strong>Environmentally Sensitive Lands Ordinance (ESLO)</strong> governs development across a large area of desert and mountain terrain in the city's north and east. It requires that a percentage of qualifying properties be permanently preserved as <strong>Natural Area Open Space (NAOS)</strong> and that native vegetation and desert features be protected. The preservation percentage and the rules scale with the land's sensitivity and slope, so two foothill lots can have very different effective building areas even at the same size.</p>
 <h2>Hillside considerations</h2>
-<p>On sloped parcels, hillside regulations add further limits on grading, disturbance, and where structures can sit. Combined with NAOS, this is why a large foothill lot does not always mean a large building envelope — much of the land may be protected or too steep to disturb.</p>
+<p>On sloped parcels, hillside regulations add further limits on grading, disturbance, and where structures can sit. Combined with NAOS, this is why a large foothill lot does not always mean a large building envelope - much of the land may be protected or too steep to disturb.</p>
 <h2>Why this belongs in your lot search</h2>
 <p>Before you fall for a view lot, it pays to understand how much of it you can actually build on. A parcel with generous acreage but heavy NAOS, steep slope, and tight setbacks may yield a smaller usable footprint than a plain, flat lot half its size.</p>
 <h2>How we help</h2>
@@ -1286,11 +1286,11 @@ export const faqSeed: FaqSeed = {
 <h2>Designing it in from the start</h2>
 <p>The cleanest path is to plan the casita or ADU as part of the original design, so the layout, utilities, and septic capacity all account for it rather than being retrofitted later. It is far easier to size a septic system or position utilities once than to expand them after the fact.</p>
 <h2>How Jematell Homes helps</h2>
-<p>We design custom homes with casitas, guest houses, and ADUs regularly, and we tailor the unit to your lot's zoning and your goals — multigenerational living, guests, a home office, or a future rental. Because ADU rules are evolving and differ by city, we confirm the current standards for your jurisdiction before finalizing the design.</p>`,
+<p>We design custom homes with casitas, guest houses, and ADUs regularly, and we tailor the unit to your lot's zoning and your goals - multigenerational living, guests, a home office, or a future rental. Because ADU rules are evolving and differ by city, we confirm the current standards for your jurisdiction before finalizing the design.</p>`,
       shortAnswer:
         "Often yes, depending on your zoning. A casita is usually a guest space; an ADU is a full independent dwelling. Arizona's 2024 HB 2720 requires cities over 75,000 residents to allow ADUs on single-family lots, but each sets its own size and setback rules. Plan utilities and septic capacity from the start.",
       metaDescription:
-        "Can you build a casita, guest house, or ADU in Arizona? Often yes — and HB 2720 now requires larger cities to allow ADUs on single-family lots. Here's what governs it.",
+        "Can you build a casita, guest house, or ADU in Arizona? Often yes - and HB 2720 now requires larger cities to allow ADUs on single-family lots. Here's what governs it.",
       categorySlug: "design-zoning-adus",
       topicSlugs: ["zoning-setbacks-adus"],
       tags: ["adu", "casita", "guest-house", "hb-2720", "research-phase"],

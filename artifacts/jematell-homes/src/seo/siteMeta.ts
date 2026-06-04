@@ -10,7 +10,7 @@ import { siteConfig } from "../config/siteConfig";
 export const SITE_URL = "https://www.jematellhomes.com";
 
 export const DEFAULT_DESCRIPTION =
-  "Jematell Homes is a family-owned Arizona custom home builder serving Scottsdale, Rio Verde, and the greater Phoenix metro — semi-custom and fully custom homes built with passion, integrity, and a personal touch.";
+  "Jematell Homes is a family-owned Arizona custom home builder serving Scottsdale, Rio Verde, and the greater Phoenix metro: semi-custom and fully custom homes built with passion, integrity, and a personal touch.";
 
 export const DEFAULT_OG_IMAGE = "/opengraph.jpg";
 
