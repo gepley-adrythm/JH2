@@ -560,6 +560,7 @@ picture {
   display: flex;
   min-height: 800px;
   height: 100vh;
+  height: 100dvh;
 }
 .service-pane {
   flex: 1;
