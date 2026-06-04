@@ -7,6 +7,8 @@ The FAQ system is SSR'd by the **api-server** (Express), not the React SPA, beca
 
 - Pages are served at **top-level** paths (`/faq`, `/faq/:slug`, `/faq/topics/:slug`, `/sitemap-faq.xml`) — OUTSIDE `/api`. The reverse proxy routes them by listing those paths in `artifacts/api-server/.replit-artifact/artifact.toml` `services.paths`. Most-specific-first matching keeps `/faq` from colliding with the SPA at `/`.
 - Express 5 route order matters: register `/faq/topics/:slug` BEFORE `/faq/:slug`.
+- Detail-page breadcrumb is the 4-level hierarchy **Home > FAQ > Topic > Question** (3rd crumb = primary topic, URL under `/faq/topics/<slug>`); falls back to category only when the item has no topic. The build-time validator asserts this.
+- Detail pages must render a **related services/pages** section from `relatedServiceSlugs` (mapped to real SPA routes via a SERVICE_LINKS map; unknown slugs are skipped, never dead links). The validator fails if `relatedServiceSlugs` is set but the section is missing.
 - **Seed is the single source of truth** (`src/lib/faq/seed.ts`); it is synced into the DB on boot (idempotent upsert by slug, deactivate-missing), non-fatal if the DB is down.
 - `render.ts` is a **pure** function of dataset → HTML, so the build-time JSON-LD validator (`faq:validate`, wired as `prebuild`) runs hermetically from the seed with no DB.
 - **`shortAnswer` + `metaDescription` are schema/meta only, NEVER visible body copy.** shortAnswer → FAQPage `acceptedAnswer`; full answer → QAPage + visible on detail.

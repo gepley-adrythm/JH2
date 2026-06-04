@@ -12,6 +12,17 @@ import type { FaqSummary } from "./types";
 const ARROW = `<span class="arrow" aria-hidden="true">&rarr;</span>`;
 const SITE = "Jematell Homes";
 
+// Maps a relatedServiceSlug (authored in the seed) to a real page on the
+// jematell SPA. Slugs not in this map are skipped (never render a dead link).
+const SERVICE_LINKS: Record<string, { title: string; href: string }> = {
+  "custom-homes": { title: "Custom Homes", href: "/custom-homes" },
+  "spec-homes": { title: "Spec Homes", href: "/spec-homes" },
+  "floor-plans": { title: "Floor Plans", href: "/floor-plans" },
+  "where-we-build": { title: "Where We Build", href: "/where-we-build" },
+  "build-on-your-lot": { title: "Build on Your Lot", href: "/build-on-your-lot" },
+  "buy-a-lot-with-us": { title: "Buy a Lot With Us", href: "/buy-a-lot-with-us" },
+};
+
 function questionListItem(item: FaqSummary): string {
   return `<li><a href="/faq/${item.slug}" data-testid="faq-link-${item.slug}">${escapeHtml(
     item.question,
@@ -90,15 +101,46 @@ export function renderFaqDetail(
   const related = dataset.related(item);
   const url = `${baseUrl}/faq/${slug}`;
 
+  // Breadcrumb third level is the primary TOPIC (Home > FAQ > Topic > Question),
+  // which is the schema.org hierarchy this FAQ system is built around. Items
+  // without a topic fall back to their category so the crumb is never empty.
+  const primaryTopic = detail.topicSlugs
+    .map((s) => dataset.getTopic(s))
+    .find((t) => t !== undefined);
+  const parentCrumb = primaryTopic
+    ? {
+        name: primaryTopic.title,
+        url: `${baseUrl}/faq/topics/${primaryTopic.slug}`,
+      }
+    : {
+        name: detail.categoryTitle,
+        url: `${baseUrl}/faq#${detail.categorySlug}`,
+      };
+  const parentHref = primaryTopic
+    ? `/faq/topics/${primaryTopic.slug}`
+    : `/faq#${detail.categorySlug}`;
+  const parentName = parentCrumb.name;
+
   const crumbs = [
     { name: "Home", url: `${baseUrl}/` },
     { name: "FAQ", url: `${baseUrl}/faq` },
-    {
-      name: detail.categoryTitle,
-      url: `${baseUrl}/faq#${detail.categorySlug}`,
-    },
+    parentCrumb,
     { name: detail.question, url },
   ];
+
+  const serviceLinks = detail.relatedServiceSlugs
+    .map((s) => SERVICE_LINKS[s])
+    .filter((s): s is { title: string; href: string } => s !== undefined);
+  const servicesHtml = serviceLinks.length
+    ? `<aside class="related related-services" data-testid="faq-related-services"><h3>Related services</h3><ul>${serviceLinks
+        .map(
+          (s) =>
+            `<li><a href="${s.href}" data-testid="faq-service-${s.href
+              .replace(/^\//, "")
+              .replace(/\//g, "-")}">${escapeHtml(s.title)}${ARROW}</a></li>`,
+        )
+        .join("")}</ul></aside>`
+    : "";
 
   const relatedHtml = related.length
     ? `<aside class="related" data-testid="faq-related"><h3>Related questions</h3><ul>${related
@@ -118,9 +160,9 @@ export function renderFaqDetail(
   const updated = detail.updatedDate.slice(0, 10);
 
   const body = `<section class="faq-hero"><div class="container">
-<div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/faq">FAQ</a><span>/</span>${escapeHtml(
-    detail.categoryTitle,
-  )}</div>
+<div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/faq">FAQ</a><span>/</span><a href="${parentHref}">${escapeHtml(
+    parentName,
+  )}</a></div>
 <h1>${escapeHtml(detail.question)}</h1>
 </div></section>
 <main><div class="container qa">
@@ -130,6 +172,7 @@ export function renderFaqDetail(
 <div class="answer" data-testid="faq-answer">${answerHtml(detail.answer, detail.answerHtml)}</div>
 ${pillarHtml}
 ${relatedHtml}
+${servicesHtml}
 </div></main>
 ${ctaStrip}`;
 

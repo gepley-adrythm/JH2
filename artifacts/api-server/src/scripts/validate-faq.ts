@@ -168,6 +168,41 @@ for (const item of dataset.all()) {
       `${label}: @graph types must be {QAPage, BreadcrumbList}, got {${types.join(", ")}}`,
     );
   }
+
+  // Breadcrumb must be the 4-level hierarchy Home > FAQ > Topic > Question.
+  // When the item has a topic, the 3rd crumb must point at /faq/topics/<slug>.
+  const breadcrumb = root["@graph"].find((n) => typeOf(n) === "BreadcrumbList") as
+    | { itemListElement?: { position: number; name: string; item: string }[] }
+    | undefined;
+  const crumbs = breadcrumb?.itemListElement ?? [];
+  if (crumbs.length !== 4) {
+    errors.push(
+      `${label}: breadcrumb must have 4 levels (Home > FAQ > Topic > Question), got ${crumbs.length}`,
+    );
+  } else if ((item.topicSlugs ?? []).length > 0) {
+    const third = crumbs.find((c) => c.position === 3);
+    const primaryTopic = (item.topicSlugs ?? [])
+      .map((s) => dataset.getTopic(s))
+      .find((t) => t !== undefined);
+    if (!third || !third.item.includes("/faq/topics/")) {
+      errors.push(
+        `${label}: breadcrumb level 3 must be the topic (URL under /faq/topics/), got "${third?.item ?? "none"}"`,
+      );
+    } else if (primaryTopic && third.name !== primaryTopic.title) {
+      errors.push(
+        `${label}: breadcrumb level 3 name must be the topic title "${primaryTopic.title}", got "${third.name}"`,
+      );
+    }
+  }
+
+  // Related services/pages must render when the item declares relatedServiceSlugs.
+  if ((item.relatedServiceSlugs ?? []).length > 0) {
+    if (!html.includes('data-testid="faq-related-services"')) {
+      errors.push(
+        `${label}: relatedServiceSlugs set but no related-services section rendered`,
+      );
+    }
+  }
 }
 
 // ---- Report ----
