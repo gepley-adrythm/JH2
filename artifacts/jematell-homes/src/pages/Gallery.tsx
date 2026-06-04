@@ -73,7 +73,7 @@ export default function Gallery() {
                       <div className="gallery-card-media gallery-card-placeholder" />
                     )}
                     <div className="gallery-card-meta">
-                      <span className="gallery-card-title">{proj.title}</span>
+                      <h2 className="gallery-card-title">{proj.title}</h2>
                       <span className="gallery-card-arrow">→</span>
                     </div>
                   </Link>

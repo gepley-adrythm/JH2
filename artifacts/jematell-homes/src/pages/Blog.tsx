@@ -110,7 +110,7 @@ export default function Blog() {
                     <div className="blog-card-media blog-card-placeholder" />
                   )}
                   <div className="blog-card-body">
-                    <h3 className="blog-card-title">{post.title}</h3>
+                    <h2 className="blog-card-title">{post.title}</h2>
                     {post.description ? (
                       <p className="blog-card-desc">{post.description}</p>
                     ) : null}
