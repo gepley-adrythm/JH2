@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ResponsiveImage } from "./components/ResponsiveImage";
+import { img } from "./layout";
 import { Link } from "react-router-dom";
 import { useContactForm } from "./contact-form";
 import { EASE_OUT_EXPO, FADE_IN_UP_PROPS } from "./motion";
@@ -32,14 +33,12 @@ export function Hero() {
   return (
     <section className="hero">
       <div className="hero-bg">
-        <ResponsiveImage
-          name="hero"
+        <img
+          src={img("hero.jpg")}
           alt="Aerial view of Jematell Home"
-          widths={[768, 1280, 1920, 2500]}
-          sizes="100vw"
           width={2500}
           height={1406}
-          priority
+          fetchPriority="high"
         />
       </div>
       <div className="hero-overlay" />

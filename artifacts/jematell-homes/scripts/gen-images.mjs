@@ -21,7 +21,6 @@ const imagesDir = resolve(here, "..", "public", "images");
 // Each source maps to the set of WebP widths to generate. Widths never exceed
 // the source's intrinsic width (no upscaling).
 const SOURCES = {
-  "hero.jpg": [768, 1280, 1920, 2500],
   "gallery-1.jpg": [640, 1024, 1280, 1600],
   "gallery-2.jpg": [768, 1280, 1600, 2000],
   "spec-home.jpg": [768, 1280, 1600],
