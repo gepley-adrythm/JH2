@@ -1,0 +1,44 @@
+Assemble & Publish FAQ Content
+Take the six category draft files produced by the writer agents and stitch them into the live FAQ seed as one coherent, validated, SEO-ready release. This is the final step that turns the submitted research/content into published FAQ pages. Best run by the main agent, since it integrates the merged drafts from all six writers.
+
+
+View plan
+
+Exploring FAQ content and seed file
+I'll start by examining the draft files and the current seed structure.
+
+
+3 actions
+Let me read the draft files and the content plan.
+
+
+6 actions
+The drafts are paste-ready. Let me extract all the metadata across drafts to plan assembly and validate cross-links.
+
+
+2 actions
+Now let me understand how sortOrder is used (global vs per-category) and check the live seed's existing sortOrders before resolving collisions.
+
+
+2 actions
+The live seed uses sort ordering per-category (dataset sorts within each category). Let me gather all live slugs and all draft relatedFaqSlugs to validate cross-links before assembling.
+
+
+2 actions
+All 28 distinct relatedFaqSlugs references resolve to either a live or new slug — no broken cross-links. Now let me check how featured is consumed and locate the validator, to reconcile the task's pillar directive (A1 codes, C2 septic) with the drafts' flags.
+
+
+2 actions
+featured() exists in the dataset but isn't rendered anywhere in the web app — it's metadata only. The dataset groups items by categorySlug and sorts by sortOrder, so file order within the items array doesn't affect rendering, but I'll still place items under their category sections per the task. Let me extract all the ts blocks programmatically.
+
+
+2 actions
+Extraction is clean: 26 items + 1 category + 1 topic. Let me find the exact section-header anchors in seed.ts to insert items under the right category sections.
+
+
+2 actions
+I have a clear plan. Let me write an assembly script that reindents the blocks to match seed style, applies the featured/sortOrder reconciliations (A1 codes + C2 septic as featured pillars; land renumbered 6-9; desert 1-5), and inserts everything under the correct category sections.
+
+
+2 actions
+Counts look right (39 items = 13 live + 26 new). Let me verify the permits section overrides and run the pipeline.

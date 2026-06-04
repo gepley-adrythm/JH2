@@ -29,8 +29,8 @@ Capture your planned slugs + one-line intents and sanity-check them against the 
 ## Step 2 — Decide the batch shape
 
 - Group new questions by FAQ **category** (e.g. `permits-and-codes`, `land-due-diligence`, `water-septic-utilities`, `costs-budget`, `design-zoning-adus`). One category = one writer.
-- If a batch needs a brand-new category/topic, note it; the **assembly** step (not the writers) adds it to the seed's `categories`/`topics` arrays.
-- Decide which 1-2 answers are "pillar" hubs (broad, cross-linked) and mark them `featured` at assembly.
+- If a batch needs a brand-new category/topic, note it; the **assembly** step (not the writers) adds it to the seed's `categories`/`topics` arrays (and must give the new category/topic a `sortOrder` that does not collide with existing ones).
+- `featured` is **metadata only** — `dataset.featured()` exists but no web page renders it today, so a "pillar" flag changes nothing visible. Set it if you want the semantic marker, but do NOT spend planning effort agonizing over pillar selection or block assembly on it. What actually controls on-page order is `sortOrder` (see assembly pitfalls).
 
 ## Step 3 — Parallel writers, each to its OWN draft file
 
@@ -46,15 +46,17 @@ Spin up one writer per category (project tasks in Plan mode, or `subagent`/`star
 
 ### Schema rules for every `item({ ... })` block
 
-Author with the `item()` helper (`Omit<SeedItem,"answer"> & { answerHtml }`), never raw objects:
+Author with the `item()` helper (`Omit<SeedItem,"answer"> & { answerHtml }`), never raw objects. **Wrap each `item({ ... })` block in a fenced ` ```ts ` code block** so the assembly step can extract every block programmatically (the assembler greps for `ts`-fenced blocks; loose blocks get missed).
 
 - `slug` (kebab-case, unique), `question`.
-- `answerHtml` — the rich HTML body, 500-1,500 words, using `<p> <h2> <h3> <ul> <ol> <li> <strong>`.
+- `answerHtml` — the rich HTML body, 500-1,500 words, using `<p> <h2> <h3> <ul> <ol> <li> <strong>`. The 500-word floor is NOT validator-enforced; an answer under it ships silently. Write to it.
 - **Never hand-write the plain `answer` field** — it is derived from `answerHtml` by the `plain()` helper. Writing both reintroduces drift.
-- `shortAnswer` (40-60 words, plain, self-contained) and `metaDescription` are **schema/meta only** — they feed JSON-LD and the detail-page lede; they are NOT visible body copy and must not be duplicated into the body.
+- `shortAnswer` (plain, self-contained) and `metaDescription` are **schema/meta only** — they feed JSON-LD and the detail-page lede; they are NOT visible body copy and must not be duplicated into the body. Keep `shortAnswer` **25-80 words** (the validator WARNs outside that range); aim 40-60.
 - `categorySlug`, `topicSlugs: [...]`, `tags` (kebab-case).
-- `relatedFaqSlugs` — may reference other planned slugs in the same batch; assembly validates/finalizes them.
-- `relatedServiceSlugs` (real services, e.g. `custom-homes`, `build-on-your-lot`), `pillarBlogSlug` (a real blog slug or `null`), `sortOrder`.
+- `relatedFaqSlugs` — use the **final intended slug** of each target, whether it is a live entry or a sibling being added in the same batch. Every one of these must resolve at assembly or `faq:validate` fails, so do not point at a slug you are guessing about.
+- `relatedServiceSlugs` (real services, e.g. `custom-homes`, `build-on-your-lot`).
+- `pillarBlogSlug` — a **real** blog slug or `null`, never invented. Verify against the actual blog source (`clone-data/extracted/blogs.json` keys) before using one; when in doubt use `null`.
+- `sortOrder` — number your entries sequentially **within your own category**, starting just after the live category's current last value. Ordering is per-category, so cross-category collisions are fine; the assembler finalizes contiguous numbering.
 - Below each block add a short "Sources used" list with the plan's `[N]` citation numbers + URLs so the research is auditable.
 
 ### Voice + content rules
@@ -71,8 +73,20 @@ Once the drafts exist, one assembly pass (best done by the main agent) stitches 
 
 1. Paste each `item({ ... })` block into `lib/faq/src/seed.ts` under its correct category section.
 2. Add any new category + topic to the `categories` / `topics` arrays.
-3. Finalize cross-links: make every `relatedFaqSlugs` resolve to a real slug, set real `relatedServiceSlugs`, mark pillar answers `featured`, assign sensible per-category `sortOrder`.
+3. Finalize cross-links: make every `relatedFaqSlugs` resolve to a real slug, set real `relatedServiceSlugs`, assign sensible per-category `sortOrder`.
 4. Re-confirm no entry duplicates a live question's intent (cross-check the registry again).
+
+### Assembly pitfalls (learned the hard way)
+
+These are the things that bite the assembler agent. Handle them deliberately:
+
+- **`sortOrder` is per-category, not global.** The dataset groups items by `categorySlug` and sorts within each group by `sortOrder`; the order of blocks in the `items` array does NOT affect rendering. So you must renumber each category to a clean contiguous sequence and only worry about collisions *within* a category. A new category/topic also needs a `sortOrder` that does not collide with the existing categories/topics.
+- **Extract, then reindent — don't expect paste-ready indentation.** Draft blocks come at varying indentation. Pull every ` ```ts `-fenced `item({...})` block out of the draft files (programmatically), reindent to the seed's nesting, and insert under the right category section. Expect to script this rather than hand-paste 25+ blocks.
+- **Validate every `relatedFaqSlug` against (live ∪ new) before running the pipeline.** Gather all live slugs plus all new slugs into one set and confirm each reference resolves. A dangling ref fails `faq:validate` and is the most common assembly error.
+- **Verify each `pillarBlogSlug` is a real blog slug (or `null`).** Cross-check against `clone-data/extracted/blogs.json`. Writers sometimes leave placeholders.
+- **`featured` is cosmetic today** (nothing renders it) — do not block assembly deciding pillars. Set it for semantics if you wish, but it is not a release gate.
+- **Keep new content em-dash-free.** Site preference is NO em dashes. Some *live* seed entries still contain them; that is not license to add more. Do not copy that habit into new entries (and normalize stragglers only if explicitly asked).
+- **Count check before the pipeline.** Expected total `items` = live count + new count (e.g. 13 live + 26 new = 39). A mismatch means a block was dropped or double-pasted during extraction.
 
 ## Step 5 — Run the FAQ pipeline IN ORDER (after ANY seed edit)
 
