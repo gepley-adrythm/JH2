@@ -1,7 +1,7 @@
 [
   {
     "slug": "how-long-does-it-take-to-build-a-custom-home",
-    "question": "[PLACEHOLDER] How long does it take to build a custom home in Arizona?",
+    "question": "How long does it take to build a custom home in Arizona?",
     "categorySlug": "building-process",
     "categoryTitle": "The Building Process",
     "topicSlugs": [
@@ -12,14 +12,114 @@
       "custom-home",
       "process"
     ],
-    "pillarBlogSlug": "building-your-dream-home-in-2023"
+    "pillarBlogSlug": "how-long-it-takes-to-build-a-custom-home-in-arizona"
+  },
+  {
+    "slug": "what-are-the-steps-of-the-building-process",
+    "question": "What are the steps of the custom home building process?",
+    "categorySlug": "building-process",
+    "categoryTitle": "The Building Process",
+    "topicSlugs": [
+      "custom-home-timeline"
+    ],
+    "tags": [
+      "process",
+      "phases",
+      "custom-home"
+    ],
+    "pillarBlogSlug": "how-to-build-a-custom-home"
+  },
+  {
+    "slug": "what-happens-at-the-first-consultation",
+    "question": "What happens at the first consultation with Jematell Homes?",
+    "categorySlug": "building-process",
+    "categoryTitle": "The Building Process",
+    "topicSlugs": [],
+    "tags": [
+      "consultation",
+      "getting-started",
+      "process"
+    ],
+    "pillarBlogSlug": "what-custom-home-builders-need-from-you-before-the-first-design-meeting"
+  },
+  {
+    "slug": "do-you-handle-permits-and-inspections",
+    "question": "Do you handle permits, engineering, and inspections?",
+    "categorySlug": "building-process",
+    "categoryTitle": "The Building Process",
+    "topicSlugs": [],
+    "tags": [
+      "permits",
+      "inspections",
+      "engineering",
+      "process"
+    ],
+    "pillarBlogSlug": "what-to-expect-when-building-a-custom-home-in-the-phoenix-metro-area"
+  },
+  {
+    "slug": "how-will-i-stay-updated-during-construction",
+    "question": "How will I stay updated during construction?",
+    "categorySlug": "building-process",
+    "categoryTitle": "The Building Process",
+    "topicSlugs": [],
+    "tags": [
+      "communication",
+      "updates",
+      "process"
+    ],
+    "pillarBlogSlug": "what-to-expect-when-building-a-custom-home-in-the-phoenix-metro-area"
+  },
+  {
+    "slug": "how-do-i-choose-the-right-home-builder",
+    "question": "How do I choose the right custom home builder?",
+    "categorySlug": "building-process",
+    "categoryTitle": "The Building Process",
+    "topicSlugs": [
+      "choosing-a-builder"
+    ],
+    "tags": [
+      "choosing-a-builder",
+      "questions",
+      "process"
+    ],
+    "pillarBlogSlug": "questions-to-ask-custom-home-builder-arizona"
+  },
+  {
+    "slug": "is-there-a-warranty-on-your-homes",
+    "question": "Do you offer a warranty on your homes?",
+    "categorySlug": "building-process",
+    "categoryTitle": "The Building Process",
+    "topicSlugs": [],
+    "tags": [
+      "warranty",
+      "after-move-in",
+      "support"
+    ],
+    "pillarBlogSlug": null
+  },
+  {
+    "slug": "how-much-does-it-cost-to-build-a-custom-home",
+    "question": "What does it cost to build a custom home in the Phoenix metro?",
+    "categorySlug": "costs-and-budget",
+    "categoryTitle": "Costs & Budget",
+    "topicSlugs": [
+      "financing-and-budgeting"
+    ],
+    "tags": [
+      "cost",
+      "budget",
+      "pricing"
+    ],
+    "pillarBlogSlug": "establish-a-realistic-budget-before-designing-your-custom-home"
   },
   {
     "slug": "what-are-construction-allowances",
-    "question": "[PLACEHOLDER] What are construction allowances and how do they work?",
+    "question": "What are construction allowances and how do they work?",
     "categorySlug": "costs-and-budget",
     "categoryTitle": "Costs & Budget",
-    "topicSlugs": [],
+    "topicSlugs": [
+      "financing-and-budgeting"
+    ],
     "tags": [
       "budget",
       "allowances",
@@ -28,8 +128,38 @@
     "pillarBlogSlug": "custom-home-budget-allowances-change-orders"
   },
   {
+    "slug": "what-is-a-change-order",
+    "question": "What is a change order and how does it affect my budget?",
+    "categorySlug": "costs-and-budget",
+    "categoryTitle": "Costs & Budget",
+    "topicSlugs": [
+      "financing-and-budgeting"
+    ],
+    "tags": [
+      "change-order",
+      "budget",
+      "process"
+    ],
+    "pillarBlogSlug": "custom-home-budget-allowances-change-orders"
+  },
+  {
+    "slug": "can-you-help-with-financing",
+    "question": "Can you help me navigate financing or a construction loan?",
+    "categorySlug": "costs-and-budget",
+    "categoryTitle": "Costs & Budget",
+    "topicSlugs": [
+      "financing-and-budgeting"
+    ],
+    "tags": [
+      "financing",
+      "construction-loan",
+      "budget"
+    ],
+    "pillarBlogSlug": "financing-your-custom-or-semi-home"
+  },
+  {
     "slug": "can-i-build-on-my-own-lot",
-    "question": "[PLACEHOLDER] Can I build a custom home on a lot I already own?",
+    "question": "Can I build a custom home on a lot I already own?",
     "categorySlug": "lots-and-locations",
     "categoryTitle": "Lots & Locations",
     "topicSlugs": [
@@ -44,7 +174,7 @@
   },
   {
     "slug": "what-should-i-check-before-buying-a-lot",
-    "question": "[PLACEHOLDER] What should I check before buying a lot to build on?",
+    "question": "What should I check before buying a lot to build on?",
     "categorySlug": "lots-and-locations",
     "categoryTitle": "Lots & Locations",
     "topicSlugs": [
@@ -55,21 +185,114 @@
       "due-diligence",
       "land"
     ],
-    "pillarBlogSlug": "building-a-custom-home-in-rio-verde-az-lot-considerations-most-buyers-miss"
+    "pillarBlogSlug": "top-strategies-for-finding-the-perfect-building-lot-a-comprehensive-guide"
   },
   {
-    "slug": "what-are-the-steps-of-the-building-process",
-    "question": "[PLACEHOLDER] What are the steps of the custom home building process?",
-    "categorySlug": "building-process",
-    "categoryTitle": "The Building Process",
+    "slug": "can-you-help-me-find-and-buy-land",
+    "question": "Can you help me find and purchase land?",
+    "categorySlug": "lots-and-locations",
+    "categoryTitle": "Lots & Locations",
+    "topicSlugs": [],
+    "tags": [
+      "land",
+      "real-estate",
+      "buy-a-lot"
+    ],
+    "pillarBlogSlug": "what-to-do-after-buying-land-in-arizona"
+  },
+  {
+    "slug": "where-do-you-build",
+    "question": "What areas do you build in?",
+    "categorySlug": "lots-and-locations",
+    "categoryTitle": "Lots & Locations",
+    "topicSlugs": [],
+    "tags": [
+      "locations",
+      "service-area",
+      "arizona"
+    ],
+    "pillarBlogSlug": "building-a-custom-home-outside-the-city-benefits-of-the-phoenix-metros-outlying-areas"
+  },
+  {
+    "slug": "do-you-have-floor-plans-or-can-i-bring-my-own",
+    "question": "Do you have floor plans, or can I bring my own design?",
+    "categorySlug": "design-and-customization",
+    "categoryTitle": "Design & Customization",
     "topicSlugs": [
-      "custom-home-timeline"
+      "floor-plans-and-design"
     ],
     "tags": [
-      "process",
-      "phases",
+      "floor-plans",
+      "design",
+      "customization"
+    ],
+    "pillarBlogSlug": "how-to-choose-the-right-floor-plan"
+  },
+  {
+    "slug": "how-customizable-are-your-homes",
+    "question": "How customizable are your homes?",
+    "categorySlug": "design-and-customization",
+    "categoryTitle": "Design & Customization",
+    "topicSlugs": [
+      "floor-plans-and-design"
+    ],
+    "tags": [
+      "customization",
+      "design",
+      "layout"
+    ],
+    "pillarBlogSlug": "designing-a-custom-home-around-your-lot-why-layout-matters-more-than-square-footage"
+  },
+  {
+    "slug": "can-you-build-a-casita-guest-house-or-adu",
+    "question": "Can you build a casita, guest house, or ADU?",
+    "categorySlug": "design-and-customization",
+    "categoryTitle": "Design & Customization",
+    "topicSlugs": [],
+    "tags": [
+      "casita",
+      "adu",
+      "guest-house"
+    ],
+    "pillarBlogSlug": "guest-house-amp-adu-essentials-building-casitas-in-phoenix-under-new-laws"
+  },
+  {
+    "slug": "can-you-add-an-rv-garage",
+    "question": "Can you build a custom RV garage?",
+    "categorySlug": "design-and-customization",
+    "categoryTitle": "Design & Customization",
+    "topicSlugs": [],
+    "tags": [
+      "rv-garage",
+      "customization",
+      "storage"
+    ],
+    "pillarBlogSlug": "why-adding-an-rv-garage-is-a-smart-investment-for-your-arizona-home"
+  },
+  {
+    "slug": "what-is-the-difference-between-spec-custom-and-semi-custom",
+    "question": "What is the difference between spec, semi-custom, and custom homes?",
+    "categorySlug": "spec-and-semi-custom",
+    "categoryTitle": "Spec & Semi-Custom Homes",
+    "topicSlugs": [],
+    "tags": [
+      "spec-home",
+      "semi-custom",
       "custom-home"
     ],
-    "pillarBlogSlug": "building-your-dream-home-in-2023"
+    "pillarBlogSlug": "spec-home-vs-custom-home-vs-semi-custom-finding-your-perfect-fit-in-arizona"
+  },
+  {
+    "slug": "do-you-have-spec-homes-for-sale",
+    "question": "Do you have move-in ready spec homes for sale?",
+    "categorySlug": "spec-and-semi-custom",
+    "categoryTitle": "Spec & Semi-Custom Homes",
+    "topicSlugs": [],
+    "tags": [
+      "spec-home",
+      "move-in-ready",
+      "for-sale"
+    ],
+    "pillarBlogSlug": "when-a-spec-home-makes-sense-a-smarter-way-to-buy-new-construction"
   }
 ]

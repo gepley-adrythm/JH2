@@ -12,13 +12,32 @@ Every published FAQ URL and the search intent it owns. Before adding a new FAQ, 
 | `/faq` | FAQ hub — all questions grouped by category |
 | `/faq/topics/custom-home-timeline` | Topic cluster: Custom Home Timeline |
 | `/faq/topics/building-on-your-lot` | Topic cluster: Building On Your Lot |
+| `/faq/topics/financing-and-budgeting` | Topic cluster: Financing & Budgeting |
+| `/faq/topics/floor-plans-and-design` | Topic cluster: Floor Plans & Design |
+| `/faq/topics/choosing-a-builder` | Topic cluster: Choosing a Builder |
 
 ## Questions
 
 | URL | Category | Intent (question) |
 | --- | --- | --- |
-| `/faq/how-long-does-it-take-to-build-a-custom-home` | The Building Process | [PLACEHOLDER] How long does it take to build a custom home in Arizona? |
-| `/faq/what-are-construction-allowances` | Costs & Budget | [PLACEHOLDER] What are construction allowances and how do they work? |
-| `/faq/can-i-build-on-my-own-lot` | Lots & Locations | [PLACEHOLDER] Can I build a custom home on a lot I already own? |
-| `/faq/what-should-i-check-before-buying-a-lot` | Lots & Locations | [PLACEHOLDER] What should I check before buying a lot to build on? |
-| `/faq/what-are-the-steps-of-the-building-process` | The Building Process | [PLACEHOLDER] What are the steps of the custom home building process? |
+| `/faq/how-long-does-it-take-to-build-a-custom-home` | The Building Process | How long does it take to build a custom home in Arizona? |
+| `/faq/what-are-the-steps-of-the-building-process` | The Building Process | What are the steps of the custom home building process? |
+| `/faq/what-happens-at-the-first-consultation` | The Building Process | What happens at the first consultation with Jematell Homes? |
+| `/faq/do-you-handle-permits-and-inspections` | The Building Process | Do you handle permits, engineering, and inspections? |
+| `/faq/how-will-i-stay-updated-during-construction` | The Building Process | How will I stay updated during construction? |
+| `/faq/how-do-i-choose-the-right-home-builder` | The Building Process | How do I choose the right custom home builder? |
+| `/faq/is-there-a-warranty-on-your-homes` | The Building Process | Do you offer a warranty on your homes? |
+| `/faq/how-much-does-it-cost-to-build-a-custom-home` | Costs & Budget | What does it cost to build a custom home in the Phoenix metro? |
+| `/faq/what-are-construction-allowances` | Costs & Budget | What are construction allowances and how do they work? |
+| `/faq/what-is-a-change-order` | Costs & Budget | What is a change order and how does it affect my budget? |
+| `/faq/can-you-help-with-financing` | Costs & Budget | Can you help me navigate financing or a construction loan? |
+| `/faq/can-i-build-on-my-own-lot` | Lots & Locations | Can I build a custom home on a lot I already own? |
+| `/faq/what-should-i-check-before-buying-a-lot` | Lots & Locations | What should I check before buying a lot to build on? |
+| `/faq/can-you-help-me-find-and-buy-land` | Lots & Locations | Can you help me find and purchase land? |
+| `/faq/where-do-you-build` | Lots & Locations | What areas do you build in? |
+| `/faq/do-you-have-floor-plans-or-can-i-bring-my-own` | Design & Customization | Do you have floor plans, or can I bring my own design? |
+| `/faq/how-customizable-are-your-homes` | Design & Customization | How customizable are your homes? |
+| `/faq/can-you-build-a-casita-guest-house-or-adu` | Design & Customization | Can you build a casita, guest house, or ADU? |
+| `/faq/can-you-add-an-rv-garage` | Design & Customization | Can you build a custom RV garage? |
+| `/faq/what-is-the-difference-between-spec-custom-and-semi-custom` | Spec & Semi-Custom Homes | What is the difference between spec, semi-custom, and custom homes? |
+| `/faq/do-you-have-spec-homes-for-sale` | Spec & Semi-Custom Homes | Do you have move-in ready spec homes for sale? |
