@@ -399,18 +399,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 .hero-bg {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  /* Oversize the layer so the parallax drift never exposes an edge gap.
+     Drift (bgY) maxes at 10% of this layer's height = ~13.2vh, which stays
+     within the 16vh top headroom — top edge never crosses 0 while visible. */
+  top: -16%;
+  left: 0;
+  right: 0;
+  height: 132%;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 .hero-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.05);
-  animation: heroZoom 24s ease-out forwards;
+  transform: scale(1.06);
+  animation: heroZoom 24s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 @keyframes heroZoom { to { transform: scale(1); } }
+
+.hero-copy { will-change: transform; }
 
 .hero-overlay {
   position: absolute;
@@ -1492,6 +1501,7 @@ a.contact-info-card:hover {
     scroll-behavior: auto !important;
   }
   .hero-bg, .scroll-cue { animation: none !important; }
+  .hero-bg { transform: none !important; }
 }
 
 /* ============================================

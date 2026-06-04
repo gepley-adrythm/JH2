@@ -1,0 +1,1 @@
+- [Hero parallax quality](hero-parallax.md) — smooth scroll parallax: element-tracked useScroll + useSpring + oversized bg layer + GPU hints; avoids jank & edge gaps.

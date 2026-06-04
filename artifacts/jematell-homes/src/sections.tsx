@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, AnimatePresence, useReducedMotion } from "framer-motion";
 import { img } from "./layout";
 import { Link } from "react-router-dom";
 
@@ -29,26 +29,50 @@ const REVIEWS = [
 
 // --- Sections ---
 
+// Spring tuned for buttery, non-janky scroll easing (see motion.dev/docs/performance)
+const PARALLAX_SPRING = { stiffness: 120, damping: 30, restDelta: 0.001 } as const;
+
 export function Hero() {
   const prefersReducedMotion = useReducedMotion();
-  const { scrollY } = useScroll();
-  const yRaw = useTransform(scrollY, [0, 1000], [0, 300]);
-  const opacityRaw = useTransform(scrollY, [0, 500], [1, 0]);
-  const y = prefersReducedMotion ? 0 : yRaw;
-  const opacity = prefersReducedMotion ? 1 : opacityRaw;
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Track this section's progress through the viewport (0 = top aligned, 1 = scrolled past)
+  // rather than raw page scrollY, so the effect is self-contained and resolution-independent.
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Background drifts down slowly; foreground copy lifts up faster → layered depth.
+  // bgY max (10% of the 132%-tall .hero-bg ≈ 13.2vh) stays within its 16vh top
+  // headroom so the drift never exposes an edge gap (see .hero-bg in index.css).
+  const bgYRaw = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
+  const textYRaw = useTransform(scrollYProgress, [0, 1], ["0%", "-22%"]);
+  const fadeRaw = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+
+  // useSpring smooths the 1:1 scroll mapping that causes the jank — eased, never stutters.
+  const bgY = useSpring(bgYRaw, PARALLAX_SPRING);
+  const textY = useSpring(textYRaw, PARALLAX_SPRING);
+  const fade = useSpring(fadeRaw, PARALLAX_SPRING);
+
+  const bgStyle = prefersReducedMotion ? {} : { y: bgY };
+  const textStyle = prefersReducedMotion ? {} : { y: textY };
+  const fadeStyle = prefersReducedMotion ? {} : { opacity: fade };
 
   return (
-    <section className="hero">
-      <motion.div className="hero-bg" style={{ y }}>
+    <section className="hero" ref={sectionRef}>
+      <motion.div className="hero-bg" style={bgStyle}>
         <img src={img("hero.jpg")} alt="Aerial view of Jematell Home" />
       </motion.div>
       <div className="hero-overlay" />
-      
+
       <div className="container hero-content">
         <motion.div
+          className="hero-copy"
+          style={textStyle}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
+          transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
           <h1 className="heading-xl">
             <span>Let's Make Your</span>
@@ -60,7 +84,7 @@ export function Hero() {
         </motion.div>
       </div>
 
-      <motion.div className="scroll-cue" style={{ opacity }}>
+      <motion.div className="scroll-cue" style={fadeStyle}>
         <span>Scroll</span>
         <div className="scroll-line" />
       </motion.div>
