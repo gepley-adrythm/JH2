@@ -1,0 +1,43 @@
+FAQ SEO Module — Build Spec
+Build an FAQ system optimized for organic search and AI Overview citations (Google AI Overviews, ChatGPT Search, Perplexity, Bing Copilot).
+
+Architecture
+Single seed file (server/faqSeed.ts) is the source of truth for all FAQ content. No CMS, no admin UI — content lives in code, version-controlled, deployed with the app.
+Two DB tables: faq_categories (groups) and faq_items (questions). Drizzle ORM + PostgreSQL. Auto-generated tsvector searchVector column for full-text search.
+Three public URL patterns:
+/faq — landing page, all categories with chips, FAQPage schema
+/faq/[slug] — one page per question, QAPage schema (not FAQPage — QAPage is the correct type for a single Q&A and what Google rewards with AI Overview citations)
+/faq/topics/[slug] — topic clusters that group questions across categories, FAQPage schema scoped to that topic
+API: GET /api/faqs (list, filterable by ?service= or ?category=), GET /api/faqs/:slug (detail + related FAQs + related services), GET /api/faqs/admin/check-duplicate?q= (intent overlap checker — critical for avoiding keyword cannibalization).
+FAQ item fields (the SEO-critical ones)
+id, slug, question, answer (plain text — used for schema),
+answerHtml (optional rich HTML for display),
+shortAnswer (40-60 word direct answer — used for structured data + AI citations ONLY, never displayed visibly),
+metaDescription (meta tag only, never visible),
+categoryId, relatedServiceIds[], relatedFaqIds[], tags[],
+sortOrder, featured, active, publishedDate, updatedDate
+
+The shortAnswer / metaDescription separation is the single biggest SEO trick — it lets you write a clean answer for humans and a tight extractable answer for AI Overviews without duplication.
+
+Reuse pattern
+The same FAQ appears in multiple places via relatedServiceIds. Example: a question tagged ["wills", "living-trusts"] automatically shows up in the FAQ accordion on both service pages. Write once, surface everywhere.
+
+Schema markup (non-negotiable)
+/faq/[slug] ships QAPage + BreadcrumbList as a single @graph JSON-LD block. Never emit both QAPage and FAQPage on the same page.
+/faq and /faq/topics/[slug] ship FAQPage (collection of Q&A).
+Breadcrumb is 4-level on detail pages: Home > FAQ > <Topic> > <Question>.
+Validate with a build-time script that parses the rendered JSON-LD and asserts exactly one of each @type per page.
+Guardrails (essential — bake these in from day one)
+Duplicate intent check before adding any new FAQ. Two FAQs answering the same intent will cannibalize each other in search. Build the /check-duplicate endpoint and a CONTENT-INTENT-REGISTRY.md file that lists every published intent.
+shortAnswer is structured-data-only. Never render it as visible text. It exists so Google/AI can extract one clean sentence without parsing prose.
+answer must be a complete, standalone answer in plain language. No "see above" or "as mentioned" — every FAQ page is an SEO landing page in isolation.
+updatedDate is a ranking signal for AI freshness. Bump it whenever the answer is revised, even slightly.
+Topic pages (/faq/topics/[slug]) cluster questions across categories around an intent (e.g. "trusts-vs-wills"). These outrank category pages because intent > taxonomy.
+Build order for the agent
+Drizzle schema for faq_categories and faq_items (with searchVector and unique index on slug).
+Seed file with 5-10 starter FAQs across 2-3 categories.
+API routes (list, detail, check-duplicate).
+Three pages with their JSON-LD blocks.
+Sitemap entries for every active FAQ slug and topic slug.
+Build-time validator: every FAQ has question, answer, shortAnswer, metaDescription, and a unique slug; every page emits exactly one QAPage or FAQPage.
+
