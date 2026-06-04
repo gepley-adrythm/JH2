@@ -7,8 +7,7 @@
 import { writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildDatasetFromSeed } from "../lib/faq/dataset";
-import { faqSeed } from "../lib/faq/seed";
+import { buildDatasetFromSeed, faqSeed } from "@workspace/faq";
 
 const dataset = buildDatasetFromSeed(faqSeed);
 

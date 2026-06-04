@@ -4,6 +4,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { blogs } from "../data/blogs";
 import faqCrossLinks from "../data/faqCrossLinks.json";
+import { Seo } from "../seo/seo";
+import { articleJsonLd, breadcrumbJsonLd } from "../seo/jsonld";
 import NotFound from "./not-found";
 
 function cleanTitle(t: string) {
@@ -42,8 +44,25 @@ export default function BlogPost() {
     (b) => !(b.type === "img" && b.src === heroImg),
   );
 
+  const path = `/blog/${slug}`;
+
   return (
     <main className="page blog-post">
+      <Seo
+        title={title}
+        description={data.description || `${title} — insights from Jematell Homes.`}
+        canonical={path}
+        image={heroImg}
+        type="article"
+        jsonLd={[
+          articleJsonLd({ title, description: data.description, url: path, image: heroImg }),
+          breadcrumbJsonLd([
+            { name: "Home", url: "/" },
+            { name: "Blog", url: "/blog" },
+            { name: title, url: path },
+          ]),
+        ]}
+      />
       <section className="blog-post-hero">
         {heroImg ? <img src={heroImg} alt="" className="page-hero-bg" /> : null}
         <div className="page-hero-overlay" />

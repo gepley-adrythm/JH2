@@ -1,8 +1,12 @@
 import { db, faqCategories, faqItems } from "@workspace/db";
 import { asc, eq } from "drizzle-orm";
-import { buildDatasetFromSeed, makeDataset, type Dataset } from "./dataset";
-import { faqSeed } from "./seed";
-import type { NormalizedItem } from "./types";
+import {
+  buildDatasetFromSeed,
+  makeDataset,
+  faqSeed,
+  type Dataset,
+  type NormalizedItem,
+} from "@workspace/faq";
 
 // Load the live dataset from the database. Topic metadata (titles/descriptions)
 // lives only in the seed (there is no topics table), so we merge it here.

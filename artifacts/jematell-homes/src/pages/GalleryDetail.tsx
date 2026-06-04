@@ -3,6 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { pages } from "../data/pages";
+import { Seo } from "../seo/seo";
+import { breadcrumbJsonLd } from "../seo/jsonld";
 import NotFound from "./not-found";
 
 export default function GalleryDetail() {
@@ -13,9 +15,21 @@ export default function GalleryDetail() {
 
   const title = data.title.replace(/\s*[—–-]\s*Jematell Homes\s*$/i, "").trim();
   const images = data.blocks.filter((b) => b.type === "img" && b.src);
+  const path = `/gallery/${slug}`;
 
   return (
     <main className="page">
+      <Seo
+        title={title}
+        description={data.description || `${title} — a custom home built by Jematell Homes in Arizona.`}
+        canonical={path}
+        image={data.ogImage}
+        jsonLd={breadcrumbJsonLd([
+          { name: "Home", url: "/" },
+          { name: "Gallery", url: "/gallery" },
+          { name: title, url: path },
+        ])}
+      />
       <section className="gallery-detail-hero">
         {data.ogImage ? <img src={data.ogImage} alt="" className="page-hero-bg" /> : null}
         <div className="page-hero-overlay" />

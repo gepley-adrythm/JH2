@@ -1,0 +1,111 @@
+/*
+ * Page and content transition styles. Plain, framework-agnostic CSS.
+ * Imported once globally (see main.tsx). Provides:
+ *   1. The cross-route fade (native View Transitions API).
+ *   2. Staggered hero entrance animations.
+ *   3. A general-purpose fade-in-up class.
+ *   4. An optional route-change progress bar.
+ * Every animation is disabled under prefers-reduced-motion at the bottom.
+ *
+ * One easing curve, cubic-bezier(0.22, 1, 0.36, 1), is used everywhere so all
+ * motion feels like one system. It matches EASE_OUT_EXPO in motion.ts.
+ *
+ * The cross-fade only fires when the router opts a navigation into the View
+ * Transitions API. With React Router this is the `viewTransition` prop on
+ * <Link> (or `navigate(to, { viewTransition: true })`); it is NOT automatic.
+ */
+
+/* 1. CROSS-ROUTE FADE (native View Transitions API) */
+::view-transition-old(root) {
+  animation-name: vt-fade-out;
+}
+::view-transition-new(root) {
+  animation-name: vt-fade-in;
+}
+@keyframes vt-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes vt-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* 2. STAGGERED HERO ENTRANCE
+ * Add these classes to above-the-fold hero elements; each starts hidden and
+ * rises in slightly after the one before it, so the headline assembles itself
+ * after the page paints. */
+@keyframes rise-in {
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.hero-eyebrow,
+.hero-title,
+.hero-subtitle,
+.hero-cta {
+  opacity: 0;
+  animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.hero-eyebrow  { animation-delay: 0.10s; }
+.hero-title    { animation-delay: 0.25s; animation-duration: 0.8s; }
+.hero-subtitle { animation-delay: 0.55s; }
+.hero-cta      { animation-delay: 0.75s; animation-duration: 0.6s; }
+
+/* 3. GENERAL-PURPOSE FADE-IN-UP (on-mount). For scroll-triggered reveals use
+ * FADE_IN_UP_PROPS from motion.ts instead. */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in-up {
+  animation: fade-in-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.fade-in-up-delayed {
+  animation: fade-in-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+/* 4. OPTIONAL ROUTE-CHANGE PROGRESS BAR */
+.nav-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-accent, #3b617f) 20%,
+    var(--color-accent, #3b617f) 60%,
+    transparent 100%
+  );
+  background-size: 40% 100%;
+  background-repeat: no-repeat;
+  animation: nav-slide 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+@keyframes nav-slide {
+  0% { background-position: -40% 0; }
+  100% { background-position: 140% 0; }
+}
+
+/* 5. RESPECT REDUCED MOTION (always last) */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+  .hero-eyebrow,
+  .hero-title,
+  .hero-subtitle,
+  .hero-cta,
+  .fade-in-up,
+  .fade-in-up-delayed {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .nav-progress {
+    animation: none;
+    opacity: 0.6;
+  }
+}

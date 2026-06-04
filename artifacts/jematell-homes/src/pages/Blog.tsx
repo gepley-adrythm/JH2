@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { Search, ArrowRight } from "lucide-react";
 import { blogs } from "../data/blogs";
+import { Seo } from "../seo/seo";
+import { collectionJsonLd } from "../seo/jsonld";
 
 interface PostMeta {
   slug: string;
@@ -54,6 +56,16 @@ export default function Blog() {
 
   return (
     <main className="page">
+      <Seo
+        title="Blog"
+        description="Expert insights on home building, custom design, and life in Arizona — from the Jematell Homes family to yours."
+        canonical="/blog"
+        jsonLd={collectionJsonLd({
+          name: "Blog — Jematell Homes",
+          description: "Expert insights on home building, custom design, and life in Arizona.",
+          url: "/blog",
+        })}
+      />
       <section className="page-hero page-hero-short" style={{ background: "var(--color-cream)" }}>
         <div className="container page-hero-content" style={{ textAlign: "center" }}>
           <span className="eyebrow page-hero-eyebrow" style={{ color: "var(--color-accent)" }}>Journal</span>

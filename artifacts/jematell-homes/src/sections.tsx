@@ -3,13 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { img } from "./layout";
 import { Link } from "react-router-dom";
 import { useContactForm } from "./contact-form";
+import { EASE_OUT_EXPO, FADE_IN_UP_PROPS } from "./motion";
+import { locations, locationHref } from "./config/siteConfig";
 
 // --- Data ---
-const WHERE_WE_BUILD = [
-  "Scottsdale", "Rio Verde", "Phoenix", "Cave Creek",
-  "Fountain Hills", "Carefree", "Casa Grande", "Apache Junction"
-];
-
 const REVIEWS = [
   {
     headline: "“They are highly committed to delivering a quality product…”",
@@ -40,20 +37,15 @@ export function Hero() {
       <div className="hero-overlay" />
 
       <div className="container hero-content">
-        <motion.div
-          className="hero-copy"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <h1 className="heading-xl">
+        <div className="hero-copy">
+          <h1 className="heading-xl hero-title">
             <span>Let's Make Your</span>
             <span>Dream a Reality</span>
           </h1>
-          <button type="button" className="btn btn-outline-light" data-testid="hero-cta" onClick={openContactForm}>
+          <button type="button" className="btn btn-outline-light hero-cta" data-testid="hero-cta" onClick={openContactForm}>
             Start Your Build
           </button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -69,7 +61,7 @@ export function About() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.55, ease: EASE_OUT_EXPO }}
           >
             <span className="eyebrow">Get to know us</span>
             <h2 className="heading-lg" style={{ marginBottom: '32px' }}>A family-owned builder for Arizona.</h2>
@@ -85,7 +77,7 @@ export function About() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
           >
             <img src={img("gallery-1.jpg")} alt="Modern interior design" />
           </motion.div>
@@ -99,7 +91,7 @@ export function StatsStrip() {
   return (
     <section className="stats-strip">
       <div className="container">
-        <div className="stats-grid">
+        <motion.div className="stats-grid" {...FADE_IN_UP_PROPS}>
           <div className="stat-item">
             <span className="stat-num">15+</span>
             <span className="stat-label">Years Building</span>
@@ -112,7 +104,7 @@ export function StatsStrip() {
             <span className="stat-num">8</span>
             <span className="stat-label">AZ Regions Served</span>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -130,7 +122,7 @@ export function ServicesSplit() {
           <p>
             Is a custom home what you’re envisioning? Explore our portfolio of past projects, learn more about our process, and discover how we bring your unique vision to life in the desert.
           </p>
-          <Link to="/custom-homes" className="btn btn-outline-light">Explore Custom</Link>
+          <Link to="/custom-homes" className="btn btn-outline-light" viewTransition>Explore Custom</Link>
         </div>
       </div>
       <div className="service-pane" data-testid="card-spec">
@@ -142,7 +134,7 @@ export function ServicesSplit() {
           <p>
             Explore stunning Arizona properties and find a home that perfectly suits your unique preferences and lifestyle. Move-in ready luxury, crafted with our signature attention to detail.
           </p>
-          <Link to="/spec-homes" className="btn btn-outline-light">View Spec Homes</Link>
+          <Link to="/spec-homes" className="btn btn-outline-light" viewTransition>View Spec Homes</Link>
         </div>
       </div>
     </section>
@@ -170,7 +162,7 @@ export function Process() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ delay: Math.min(i, 5) * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: Math.min(i, 5) * 0.06, duration: 0.5, ease: EASE_OUT_EXPO }}
             >
               <div className="process-num">0{i + 1}</div>
               <h4>{step.title}</h4>
@@ -187,12 +179,14 @@ export function WhereWeBuild() {
   return (
     <section className="where-we-build section-pad">
       <div className="container">
-        <span className="eyebrow">Locations</span>
-        <h2 className="heading-md">Where We Build</h2>
+        <motion.div {...FADE_IN_UP_PROPS}>
+          <span className="eyebrow">Locations</span>
+          <h2 className="heading-md">Where We Build</h2>
+        </motion.div>
         <div className="pill-grid">
-          {WHERE_WE_BUILD.map((loc) => (
-            <Link key={loc} to={`/where-we-build/${loc.toLowerCase().replace(/\s+/g, "-")}`} className="loc-pill">
-              {loc}
+          {locations.map((loc) => (
+            <Link key={loc.slug} to={locationHref(loc.slug)} className="loc-pill" viewTransition>
+              {loc.name}
             </Link>
           ))}
         </div>
@@ -250,7 +244,7 @@ export function Reviews() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.5, ease: EASE_OUT_EXPO }}
                 >
                   <p className="review-body">{REVIEWS[current].headline}</p>
                   <p style={{ marginBottom: '24px', color: 'var(--color-text-muted)' }}>{REVIEWS[current].body}</p>

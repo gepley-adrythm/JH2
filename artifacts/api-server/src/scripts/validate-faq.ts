@@ -9,8 +9,7 @@
 //
 // Run: pnpm --filter @workspace/api-server run faq:validate
 
-import { buildDatasetFromSeed } from "../lib/faq/dataset";
-import { faqSeed } from "../lib/faq/seed";
+import { buildDatasetFromSeed, faqSeed } from "@workspace/faq";
 import {
   renderFaqDetail,
   renderFaqIndex,

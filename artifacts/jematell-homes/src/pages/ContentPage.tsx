@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 import { motion, MotionConfig } from "framer-motion";
 import {
   ArrowRight,
@@ -15,7 +15,50 @@ import {
   Check,
 } from "lucide-react";
 import { pages, type PageData, type Block } from "../data/pages";
+import { Seo } from "../seo/seo";
+import { serviceJsonLd, breadcrumbJsonLd } from "../seo/jsonld";
 import NotFound from "./not-found";
+
+const SERVICE_KEYS = new Set(["custom-homes", "spechomes", "floorplans"]);
+const WHERE_NESTED_KEYS = new Set(["build-on-your-lot", "buy-a-lot-with-us"]);
+
+function buildPageJsonLd(
+  key: string,
+  isRegion: boolean | undefined,
+  data: PageData,
+  pageTitle: string,
+  path: string,
+): object[] {
+  if (isRegion) {
+    return [
+      breadcrumbJsonLd([
+        { name: "Home", url: "/" },
+        { name: "Where We Build", url: "/where-we-build" },
+        { name: pageTitle, url: path },
+      ]),
+    ];
+  }
+  if (SERVICE_KEYS.has(key)) {
+    return [
+      serviceJsonLd({
+        name: pageTitle,
+        description: data.description,
+        url: path,
+        image: data.ogImage,
+      }),
+    ];
+  }
+  if (WHERE_NESTED_KEYS.has(key)) {
+    return [
+      breadcrumbJsonLd([
+        { name: "Home", url: "/" },
+        { name: "Where We Build", url: "/where-we-build" },
+        { name: pageTitle, url: path },
+      ]),
+    ];
+  }
+  return [];
+}
 
 function cleanTitle(t: string) {
   return t
@@ -628,6 +671,7 @@ interface Props {
 
 export default function ContentPage({ pageKey, isRegion }: Props) {
   const params = useParams();
+  const location = useLocation();
   const key = isRegion ? params.region || "" : pageKey || "";
   const data = pages[key];
 
@@ -713,9 +757,20 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
 
   const tierEyebrow = key === "floorplans" ? "Floor plans" : undefined;
 
+  const pageTitle = cleanTitle(data.title);
+  const pageJsonLd = buildPageJsonLd(key, isRegion, data, pageTitle, location.pathname);
+
   return (
     <MotionConfig reducedMotion="user">
       <main className="page" data-testid={`page-${key}`}>
+        <Seo
+          title={pageTitle}
+          description={data.description}
+          canonical={location.pathname}
+          image={data.ogImage}
+          noindex={key === "thankyou"}
+          jsonLd={pageJsonLd.length ? pageJsonLd : undefined}
+        />
         <PageHero data={data} hideDescription={heroDescDup} />
         <IntroSection subtitle={subtitle} intro={intro} image={introImg} />
 

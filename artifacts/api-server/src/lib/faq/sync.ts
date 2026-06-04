@@ -1,7 +1,7 @@
 import { db, faqCategories, faqItems } from "@workspace/db";
 import { notInArray, sql } from "drizzle-orm";
 import type { Logger } from "pino";
-import { faqSeed } from "./seed";
+import { faqSeed } from "@workspace/faq";
 
 // Upsert the seed into the database (idempotent, keyed on slug). Items no longer
 // present in the seed are deactivated (not deleted) so URLs can 410/redirect.

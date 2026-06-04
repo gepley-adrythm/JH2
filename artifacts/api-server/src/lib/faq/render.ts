@@ -1,4 +1,4 @@
-import type { Dataset } from "./dataset";
+import type { Dataset } from "@workspace/faq";
 import { escapeHtml, sanitizeHtml } from "./html";
 import {
   breadcrumbJsonLd,
@@ -7,7 +7,7 @@ import {
   qaPageJsonLd,
 } from "./jsonld";
 import { ctaStrip, renderShell } from "./shell";
-import type { FaqSummary } from "./types";
+import type { FaqSummary } from "@workspace/faq";
 
 const ARROW = `<span class="arrow" aria-hidden="true">&rarr;</span>`;
 const SITE = "Jematell Homes";

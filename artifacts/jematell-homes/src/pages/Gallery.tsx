@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { pages } from "../data/pages";
+import { Seo } from "../seo/seo";
+import { collectionJsonLd } from "../seo/jsonld";
 
 const GALLERY_PROJECTS = [
   { slug: "modern-farmhouse", title: "Modern Farmhouse" },
@@ -27,6 +29,16 @@ export default function Gallery() {
   const reduce = useReducedMotion();
   return (
     <main className="page">
+      <Seo
+        title="Gallery"
+        description="A selection of custom and semi-custom homes Jematell Homes has built across Arizona — each one shaped by the land it sits on and the family that calls it home."
+        canonical="/gallery"
+        jsonLd={collectionJsonLd({
+          name: "Gallery — Jematell Homes",
+          description: "Custom homes built by Jematell Homes across Arizona.",
+          url: "/gallery",
+        })}
+      />
       <section className="page-hero page-hero-short">
         <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, var(--color-bg) 0%, var(--color-cream) 100%)" }} />
         <div className="container page-hero-content">

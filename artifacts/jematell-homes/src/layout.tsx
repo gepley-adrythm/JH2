@@ -1,31 +1,60 @@
 import React, { useEffect, useState, useRef } from "react";
-import { MessageSquare, Phone, Mail, Instagram, Facebook, Menu, X } from "lucide-react";
+import { MessageSquare, Phone, Mail, Instagram, Facebook, Menu, X, ChevronDown } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useContactForm } from "./contact-form";
+import { siteConfig, services, locations, locationHref } from "./config/siteConfig";
+import { navItems, isNavActive, isSectionActive, type SubNavItem } from "./config/navConfig";
 
 const BASE = import.meta.env.BASE_URL || "/";
 export const img = (name: string) => `${BASE}images/${name}`;
 
-const HOMES_LINKS = [
-  { label: "Custom Homes", href: "/custom-homes" },
-  { label: "Spec Homes", href: "/spec-homes" },
-  { label: "Floor Plans", href: "/floor-plans" },
-  { label: "Gallery", href: "/gallery" },
-];
-
-const WHERE_WE_BUILD = [
-  "Scottsdale", "Rio Verde", "Phoenix", "Cave Creek",
-  "Fountain Hills", "Carefree", "Casa Grande", "Apache Junction"
-];
+/** Renders a sub-nav child as a client Link, or a hard <a> for routes the app
+ * does not own yet (e.g. /faq). Shared by desktop dropdowns and mobile sub-nav. */
+function SubNavLink({
+  item,
+  pathname,
+  testIdPrefix,
+  onNavigate,
+}: {
+  item: SubNavItem;
+  pathname: string;
+  testIdPrefix: string;
+  onNavigate?: () => void;
+}) {
+  const active = isNavActive(pathname, item.href);
+  const className = active ? "is-active" : undefined;
+  const testId = `${testIdPrefix}-${item.id}`;
+  if (item.hardNav) {
+    return (
+      <a href={item.href} role="menuitem" className={className} data-testid={testId} onClick={onNavigate}>
+        {item.label}
+      </a>
+    );
+  }
+  return (
+    <Link
+      to={item.href}
+      role="menuitem"
+      className={className}
+      data-testid={testId}
+      aria-current={active ? "page" : undefined}
+      viewTransition
+      onClick={onNavigate}
+    >
+      {item.label}
+    </Link>
+  );
+}
 
 interface NavDropdownProps {
   label: string;
   testId: string;
   to?: string;
+  active?: boolean;
   children: React.ReactNode;
 }
 
-function NavDropdown({ label, testId, to, children }: NavDropdownProps) {
+function NavDropdown({ label, testId, to, active, children }: NavDropdownProps) {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
 
@@ -45,23 +74,28 @@ function NavDropdown({ label, testId, to, children }: NavDropdownProps) {
     };
   }, [open]);
 
+  const triggerClass = `nav-trigger${active ? " is-active" : ""}`;
+  const chevron = <ChevronDown className="nav-chevron" size={14} aria-hidden="true" />;
+
   const trigger = to ? (
     <Link
       to={to}
-      className="nav-trigger"
+      className={triggerClass}
       data-testid={testId}
       aria-haspopup="true"
       aria-expanded={open}
+      viewTransition
       onClick={() => setOpen(false)}
       onMouseEnter={() => setOpen(true)}
       onFocus={() => setOpen(true)}
     >
       {label}
+      {chevron}
     </Link>
   ) : (
     <button
       type="button"
-      className="nav-trigger"
+      className={triggerClass}
       data-testid={testId}
       aria-haspopup="true"
       aria-expanded={open}
@@ -70,6 +104,7 @@ function NavDropdown({ label, testId, to, children }: NavDropdownProps) {
       onFocus={() => setOpen(true)}
     >
       {label}
+      {chevron}
     </button>
   );
 
@@ -80,11 +115,7 @@ function NavDropdown({ label, testId, to, children }: NavDropdownProps) {
       onMouseLeave={() => setOpen(false)}
     >
       {trigger}
-      <div
-        className="dropdown-panel"
-        role="menu"
-        onClick={() => setOpen(false)}
-      >
+      <div className="dropdown-panel" role="menu" onClick={() => setOpen(false)}>
         {children}
       </div>
     </div>
@@ -106,6 +137,7 @@ function isLightHeroPath(pathname: string): boolean {
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [expanded, setExpanded] = useState<string | null>(null);
   const { pathname } = useLocation();
   const { open: openContactForm } = useContactForm();
   const forceSolid = isLightHeroPath(pathname);
@@ -138,38 +170,47 @@ export function Header() {
   return (
     <header className={`site-header ${scrolled || forceSolid ? "scrolled" : ""}`}>
       <div className="container header-inner">
-        <Link to="/" className="brand-logo" aria-label="Jematell Homes" data-testid="nav-logo">
-          <img src={img("logo.png")} alt="Jematell Homes" />
+        <Link to="/" className="brand-logo" aria-label={siteConfig.brand.name} data-testid="nav-logo">
+          <img src={img("logo.png")} alt={siteConfig.brand.name} />
         </Link>
 
         <nav className="main-nav" aria-label="Primary">
-          <NavDropdown label="Homes" testId="nav-homes">
-            {HOMES_LINKS.map((l) => (
-              <Link key={l.href} to={l.href} role="menuitem" data-testid={`nav-${l.label.toLowerCase().replace(/\s+/g, "-")}`}>
-                {l.label}
+          {navItems.map((item) =>
+            item.children ? (
+              <NavDropdown
+                key={item.id}
+                label={item.label}
+                testId={`nav-${item.id}`}
+                to={item.href}
+                active={isSectionActive(pathname, item)}
+              >
+                {item.children.map((child) => (
+                  <SubNavLink key={child.id} item={child} pathname={pathname} testIdPrefix="nav" />
+                ))}
+              </NavDropdown>
+            ) : (
+              <Link
+                key={item.id}
+                to={item.href!}
+                className={isNavActive(pathname, item.href!) ? "is-active" : undefined}
+                data-testid={`nav-${item.id}`}
+                aria-current={isNavActive(pathname, item.href!) ? "page" : undefined}
+                viewTransition
+              >
+                {item.label}
               </Link>
-            ))}
-          </NavDropdown>
-          <NavDropdown label="Where We Build" testId="nav-where-we-build" to="/where-we-build">
-            {WHERE_WE_BUILD.map((loc) => (
-              <Link key={loc} to={`/where-we-build/${loc.toLowerCase().replace(/\s+/g, "-")}`} role="menuitem" data-testid={`nav-region-${loc.toLowerCase().replace(/\s+/g, "-")}`}>
-                {loc}
-              </Link>
-            ))}
-          </NavDropdown>
-          <Link to="/about" data-testid="nav-about-us">About</Link>
-          <Link to="/blog" data-testid="nav-blog">Blog</Link>
-          <a href="/faq" data-testid="nav-faq">FAQ</a>
+            ),
+          )}
         </nav>
 
         <div className="header-actions">
           <button type="button" className="btn btn-primary" data-testid="header-cta" onClick={openContactForm}>
-            Start Your Build
+            {siteConfig.cta.label}
           </button>
         </div>
 
-        <button 
-          className="mobile-menu-btn" 
+        <button
+          className="mobile-menu-btn"
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-nav-panel"
@@ -188,15 +229,46 @@ export function Header() {
         aria-hidden={!mobileMenuOpen}
       >
         <nav aria-label="Mobile">
-          {HOMES_LINKS.map((l) => (
-            <Link key={l.href} to={l.href} onClick={close} data-testid={`mobile-nav-${l.label.toLowerCase().replace(/\s+/g, "-")}`}>
-              {l.label}
-            </Link>
-          ))}
-          <Link to="/where-we-build" onClick={close} data-testid="mobile-nav-where-we-build">Where We Build</Link>
-          <Link to="/about" onClick={close} data-testid="mobile-nav-about-us">About</Link>
-          <Link to="/blog" onClick={close} data-testid="mobile-nav-blog">Blog</Link>
-          <a href="/faq" onClick={close} data-testid="mobile-nav-faq">FAQ</a>
+          {navItems.map((item) =>
+            item.children ? (
+              <div className="mobile-nav-group" key={item.id}>
+                <button
+                  type="button"
+                  className="mobile-nav-accordion"
+                  aria-expanded={expanded === item.id}
+                  data-testid={`mobile-nav-${item.id}`}
+                  onClick={() => setExpanded((e) => (e === item.id ? null : item.id))}
+                >
+                  {item.label}
+                  <ChevronDown size={20} aria-hidden="true" />
+                </button>
+                {expanded === item.id && (
+                  <div className="mobile-nav-sub">
+                    {item.children.map((child) => (
+                      <SubNavLink
+                        key={child.id}
+                        item={child}
+                        pathname={pathname}
+                        testIdPrefix="mobile-nav"
+                        onNavigate={close}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                key={item.id}
+                to={item.href!}
+                onClick={close}
+                className={isNavActive(pathname, item.href!) ? "is-active" : undefined}
+                data-testid={`mobile-nav-${item.id}`}
+                viewTransition
+              >
+                {item.label}
+              </Link>
+            ),
+          )}
           <button
             type="button"
             onClick={() => { close(); openContactForm(); }}
@@ -204,11 +276,11 @@ export function Header() {
             data-testid="mobile-nav-cta"
             style={{ marginTop: 16, alignSelf: 'flex-start' }}
           >
-            Start Your Build
+            {siteConfig.cta.label}
           </button>
           <div className="mobile-nav-contact">
-            <a href="tel:6024215576" data-testid="mobile-nav-phone"><Phone size={16} /> (602) 421-5576</a>
-            <a href="mailto:info@jematellhomes.com" data-testid="mobile-nav-email"><Mail size={16} /> info@jematellhomes.com</a>
+            <a href={siteConfig.contact.phone.href} data-testid="mobile-nav-phone"><Phone size={16} /> {siteConfig.contact.phone.display}</a>
+            <a href={siteConfig.contact.email.href} data-testid="mobile-nav-email"><Mail size={16} /> {siteConfig.contact.email.display}</a>
           </div>
         </nav>
       </div>
@@ -222,56 +294,60 @@ export function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <img src={img("logo-footer.png")} alt="Jematell Homes" />
-            <p>
-              A family-owned Arizona home builder bringing passion, integrity, and a
-              personal touch to every project.
-            </p>
+            <img src={img("logo-footer.png")} alt={siteConfig.brand.name} />
+            <p>{siteConfig.blurb}</p>
             <div className="footer-social">
-              <a href="https://www.instagram.com/jematellhomes/" aria-label="Instagram" target="_blank" rel="noreferrer">
+              <a href={siteConfig.social.instagram} aria-label="Instagram" target="_blank" rel="noreferrer">
                 <Instagram size={20} />
               </a>
-              <a href="https://www.facebook.com/JematellHomes/" aria-label="Facebook" target="_blank" rel="noreferrer">
+              <a href={siteConfig.social.facebook} aria-label="Facebook" target="_blank" rel="noreferrer">
                 <Facebook size={20} />
               </a>
             </div>
           </div>
-          
+
           <div className="footer-col">
-            <h4>Explore</h4>
+            <h4>Homes</h4>
             <ul>
-              <li><Link to="/gallery">Gallery</Link></li>
-              <li><Link to="/custom-homes">Custom Homes</Link></li>
-              <li><Link to="/spec-homes">Spec Homes</Link></li>
-              <li><Link to="/about">About Us</Link></li>
+              {services.map((s) => (
+                <li key={s.href}><Link to={s.href} viewTransition>{s.label}</Link></li>
+              ))}
             </ul>
           </div>
-          
+
+          <div className="footer-col">
+            <h4>Where We Build</h4>
+            <ul>
+              {locations.map((l) => (
+                <li key={l.slug}><Link to={locationHref(l.slug)} viewTransition>{l.name}</Link></li>
+              ))}
+            </ul>
+          </div>
+
           <div className="footer-col">
             <h4>Company</h4>
             <ul>
-              <li><Link to="/warranty">Warranty</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
-              <li><Link to="/privacy">Privacy Policy</Link></li>
-              <li><Link to="/blog">Blog</Link></li>
+              <li><Link to="/about" viewTransition>About Us</Link></li>
+              <li><Link to="/warranty" viewTransition>Warranty</Link></li>
+              <li><Link to="/blog" viewTransition>Blog</Link></li>
               <li><a href="/faq">FAQ</a></li>
+              <li><Link to="/contact" viewTransition>Contact</Link></li>
+              <li><Link to="/privacy" viewTransition>Privacy Policy</Link></li>
             </ul>
-          </div>
-          
-          <div className="footer-col">
-            <h4>Get in Touch</h4>
-            <ul>
-              <li><a href="mailto:info@jematellhomes.com">info@jematellhomes.com</a></li>
-              <li><a href="tel:6024215576">(602) 421-5576</a></li>
-              <li style={{ marginTop: '16px', lineHeight: 1.6 }}>8350 E Raintree Dr Ste 210<br />Scottsdale, AZ 85260</li>
-              <li style={{ marginTop: '8px', opacity: 0.5, fontSize: '12px' }}>ROC# 339367</li>
+            <ul style={{ marginTop: '24px' }}>
+              <li><a href={siteConfig.contact.email.href}>{siteConfig.contact.email.display}</a></li>
+              <li><a href={siteConfig.contact.phone.href}>{siteConfig.contact.phone.display}</a></li>
+              <li style={{ marginTop: '12px', lineHeight: 1.6 }}>
+                {siteConfig.contact.address.lines[0]}<br />{siteConfig.contact.address.lines[1]}
+              </li>
+              <li style={{ marginTop: '8px', opacity: 0.5, fontSize: '12px' }}>{siteConfig.contact.roc}</li>
             </ul>
           </div>
         </div>
-        
+
         <div className="footer-bottom">
-          <span>&copy; {new Date().getFullYear()} Jematell Homes. All rights reserved.</span>
-          <span>Quietly Luxurious Arizona Living.</span>
+          <span>&copy; {new Date().getFullYear()} {siteConfig.brand.name}. All rights reserved.</span>
+          <span>{siteConfig.tagline}</span>
         </div>
       </div>
     </footer>
@@ -287,7 +363,7 @@ export function ContactWidget() {
         className="contact-widget-btn"
         onClick={openContactForm}
         data-testid="contact-widget"
-        aria-label="Contact Jematell Homes"
+        aria-label={`Contact ${siteConfig.brand.name}`}
       >
         <MessageSquare size={24} />
       </button>

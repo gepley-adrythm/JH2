@@ -1,10 +1,21 @@
 import React from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { CTA } from "../cta";
+import { Seo } from "../seo/seo";
+import { breadcrumbJsonLd } from "../seo/jsonld";
 
 export default function Contact() {
   return (
     <main className="page">
+      <Seo
+        title="Contact"
+        description="Tell us about your vision and we'll be in touch to schedule a consultation. Call (602) 421-5576 or email info@jematellhomes.com."
+        canonical="/contact"
+        jsonLd={breadcrumbJsonLd([
+          { name: "Home", url: "/" },
+          { name: "Contact", url: "/contact" },
+        ])}
+      />
       <section className="page-hero page-hero-short" style={{ background: "var(--color-cream)" }}>
         <div className="container page-hero-content" style={{ textAlign: "center" }}>
           <span className="eyebrow page-hero-eyebrow" style={{ color: "var(--color-accent)" }}>Contact</span>

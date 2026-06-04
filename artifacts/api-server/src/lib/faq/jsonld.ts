@@ -1,4 +1,4 @@
-import type { FaqDetail, FaqSummary } from "./types";
+import type { FaqDetail, FaqSummary } from "@workspace/faq";
 
 // schema.org builders. Each returns a plain object; the renderer serializes them
 // with jsonLdScript(). The build-time validator asserts the @type on each page.
