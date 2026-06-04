@@ -1,0 +1,25 @@
+[
+  {
+    "city": "Phoenix",
+    "venue": "Desert Ridge Community Center",
+    "address": "21001 N Tatum Blvd, Phoenix, AZ 85050",
+    "eventdate": "2026-07-15T18:00:00",
+    "dayofweek": "Wednesday",
+    "campaign": "summer-2026"
+  },
+  {
+    "city": "Tucson",
+    "venue": "Sabino Canyon Library",
+    "address": "5605 E River Rd, Tucson, AZ 85750",
+    "eventdate": "2026-07-22T18:00:00",
+    "dayofweek": "Wednesday",
+    "campaign": "summer-2026"
+  },
+  {
+    "city": "Scottsdale",
+    "venue": "Civic Center Library",
+    "address": "3839 N Drinkwater Blvd, Scottsdale, AZ 85251",
+    "eventdate": "2026-08-05T18:00:00",
+    "dayofweek": "Wednesday"
+  }
+]

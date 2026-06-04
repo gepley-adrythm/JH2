@@ -1,0 +1,12 @@
+[
+  {
+    "venue": "Desert Ridge Community Center",
+    "address": "21001 N Tatum Blvd, Phoenix, AZ 85050",
+    "photoUrl": "https://example.com/photos/desert-ridge.jpg"
+  },
+  {
+    "venue": "Sabino Canyon Library",
+    "address": "5605 E River Rd, Tucson, AZ 85750",
+    "photoUrl": null
+  }
+]
