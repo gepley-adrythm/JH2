@@ -168,7 +168,8 @@ export function Header() {
   const close = () => setMobileMenuOpen(false);
 
   return (
-    <header className={`site-header ${scrolled || forceSolid ? "scrolled" : ""}`}>
+    <>
+      <header className={`site-header ${scrolled || forceSolid ? "scrolled" : ""}`}>
       <div className="container header-inner">
         <Link to="/" className="brand-logo" aria-label={siteConfig.brand.name} data-testid="nav-logo">
           <img src={img("logo.png")} alt={siteConfig.brand.name} />
@@ -220,6 +221,7 @@ export function Header() {
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
+      </header>
 
       <div
         id="mobile-nav-panel"
@@ -284,7 +286,7 @@ export function Header() {
           </div>
         </nav>
       </div>
-    </header>
+    </>
   );
 }
 

@@ -1,1 +1,6 @@
 - [Floor-plan tier image ordering](floorplan-tier-images.md) — "Explore Floor Plans" tier images PRECEDE their h4 (image-on-top); grouping must attach each image to the NEXT tier, not the in-progress one.
+- [Fixed-overlay containing-block trap](fixed-overlay-containing-block.md) — header backdrop-filter traps position:fixed descendants; keep full-screen mobile nav a sibling of the header.
+- [Jematell performance + motion](jematell-performance.md) — WebP image pipeline (+hero exception), eager-server/lazy-client code splitting, fonts, LazyMotion + the m-vs-motion SSG traps.
+- [Jematell SEO + SSG](jematell-seo-ssg.md) — static prerender pipeline, per-page JSON-LD policy (each @type once), hero-title H1 rule, FAQ-in-web-app + breadcrumb, ContentPage renderer, content extraction.
+- [Jematell contact form](jematell-contact-form.md) — one universal multi-step form, Gmail email delivery via /api/contact, first-touch attribution, co-located cf-* CSS.
+- [Jematell quality guards](jematell-quality-guards.md) — audit.mjs (real-H1 + JS budget + gated axe) and content-lint.mjs (em dash hard error, AI buzzwords error on owned routes).
