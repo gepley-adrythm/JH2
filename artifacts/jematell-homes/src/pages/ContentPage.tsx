@@ -779,12 +779,15 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
       }
     }
 
-    // Detect trailing CTA: final h1 (e.g. "BEGIN YOUR BUILD", "LET'S MAKE...") + optional p.
-    // Require keyword intent so legit final h1s like "WARRANTY" or "THANK YOU!" are not truncated.
+    // Detect trailing CTA: final heading (h1/h2, e.g. "BEGIN YOUR BUILD",
+    // "LET'S MAKE...") + optional p. Squarespace tagged some of these CTAs as h2,
+    // which previously slipped past detection and rendered as a button-less,
+    // half-finished section mid-page. Require keyword intent so legit final
+    // headings like "WARRANTY" or "THANK YOU!" are not truncated.
     let ctaTitle: string | undefined;
     let ctaBody: string | undefined;
     for (let j = blocks.length - 1; j >= Math.max(i, blocks.length - 4); j--) {
-      if (blocks[j].type === "h1" && isLikelyCTA(blocks[j].text)) {
+      if ((blocks[j].type === "h1" || blocks[j].type === "h2") && isLikelyCTA(blocks[j].text)) {
         ctaTitle = blocks[j].text;
         if (blocks[j + 1] && blocks[j + 1].type === "p") {
           ctaBody = blocks[j + 1].text;

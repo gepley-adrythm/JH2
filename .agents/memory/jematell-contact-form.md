@@ -21,7 +21,7 @@ artifact). The api-server route (`artifacts/api-server/src/routes/contact.ts`)
 validates with the generated `SubmitContactBody` zod schema and sends an HTML+text
 email via the **Gmail integration** (`@replit/connectors-sdk`, connector
 `google-mail`, `POST /gmail/v1/users/me/messages/send` with a base64url MIME message).
-Recipients default to `gepley@adrythm.com` + `tyler@jematellhomes.com`, overridable via
+Recipients default to two hardcoded notification addresses (see `contact.ts`), overridable via
 the `CONTACT_NOTIFY_TO` env var (comma-separated). `Reply-To` is set to the lead's
 name+email so replies go straight to the lead. User input is HTML-escaped and header
 fields are CRLF-stripped (injection guards).
