@@ -13,9 +13,11 @@ import type { FaqSeed, SeedItem } from "./types";
 //   - pnpm --filter @workspace/api-server run faq:registry
 //
 // Content rules:
-//   - `shortAnswer` and `metaDescription` are schema/meta only — NEVER rendered
-//     as visible body copy. shortAnswer feeds the FAQPage acceptedAnswer; the
-//     full `answerHtml` is what visitors read on the detail page.
+//   - `shortAnswer` is a concise, plain-text answer: it feeds the FAQPage
+//     acceptedAnswer schema AND is shown as the lede under the question in the
+//     detail-page hero, so keep it self-contained and free of markup.
+//     `metaDescription` stays meta-only (never rendered). The full `answerHtml`
+//     is what visitors read in the answer body.
 //   - Answers are deep, research-phase reference content grounded in real Arizona
 //     building law and process (permitting, codes, land due diligence, water and
 //     septic, zoning, ADUs, budgeting). Statutes and ordinances are cited by

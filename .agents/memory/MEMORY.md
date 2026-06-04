@@ -1,1 +1,2 @@
 - [FAQ seed authoring & regeneration pipeline](faq-seed-pipeline.md) — single-source answerHtml→plain() pattern; after any seed edit run typecheck:libs + faq:validate + faq:crosslinks + faq:registry or generated files go stale.
+- [Fraunces wonky glyphs](fraunces-wonky-glyphs.md): descending f/J are inherent; CSS/axis pins fail, swap the font.

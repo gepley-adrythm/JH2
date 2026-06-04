@@ -4,6 +4,7 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 import { faqDataset, SERVICE_LINKS } from "../data/faq";
 import { blogs } from "../data/blogs";
 import { useContactForm } from "../contact-form";
+import { img } from "../layout";
 import { Seo } from "../seo/seo";
 import { qaPageJsonLd, breadcrumbJsonLd } from "../seo/jsonld";
 import NotFound from "./not-found";
@@ -65,6 +66,7 @@ export default function FaqDetail() {
       />
 
       <section className="page-hero faq-hero">
+        <img className="page-hero-bg" src={img("cta-bg.jpg")} alt="" loading="eager" />
         <div className="page-hero-overlay" />
         <div className="container page-hero-content">
           <nav className="faq-crumbs hero-eyebrow" aria-label="Breadcrumb">
@@ -82,6 +84,11 @@ export default function FaqDetail() {
             )}
           </nav>
           <h1 className="faq-detail-title hero-title">{detail.question}</h1>
+          {detail.shortAnswer ? (
+            <p className="faq-detail-lede" data-testid="faq-detail-lede">
+              {detail.shortAnswer}
+            </p>
+          ) : null}
         </div>
       </section>
 
