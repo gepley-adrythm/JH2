@@ -65,7 +65,7 @@ export default function FaqDetail() {
         ]}
       />
 
-      <section className="page-hero faq-hero">
+      <section className="page-hero faq-hero faq-detail-hero">
         <img className="page-hero-bg" src={img("cta-bg.jpg")} alt="" loading="eager" />
         <div className="page-hero-overlay" />
         <div className="container page-hero-content">
