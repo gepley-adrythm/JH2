@@ -1,5 +1,6 @@
 import app from "./app";
 import { logger } from "./lib/logger";
+import { syncFaqSeed } from "./lib/faq/sync";
 
 const rawPort = process.env["PORT"];
 
@@ -22,4 +23,10 @@ app.listen(port, (err) => {
   }
 
   logger.info({ port }, "Server listening");
+
+  // Sync the FAQ seed (source of truth) into the DB. Non-fatal: the server still
+  // serves health/other routes if the DB is unavailable.
+  syncFaqSeed(logger).catch((err) => {
+    logger.error({ err }, "FAQ seed sync failed");
+  });
 });

@@ -5,7 +5,9 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
+import type { FaqSummary } from './faqSummary';
 
-export interface HealthStatus {
-  status: string;
+export interface FaqListResponse {
+  items: FaqSummary[];
+  total: number;
 }

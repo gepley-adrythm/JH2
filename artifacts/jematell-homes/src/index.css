@@ -1725,3 +1725,13 @@ a.contact-info-card:hover {
 /* Bare tier card (heading-only tiers, e.g. sparse floor-plan data) */
 .page-tier-card.tier-card-bare { min-height: 200px; display: flex; align-items: stretch; }
 .page-tier-card.tier-card-bare .page-tier-body { padding: 32px; display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+
+/* Related FAQ cross-links on blog posts */
+.post-faqs .post-h2 { margin-bottom: 18px; }
+.post-faq-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-border); }
+.post-faq-list li { border-bottom: 1px solid var(--color-border); }
+.post-faq-list a { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 2px; font-size: 17px; font-weight: 500; color: var(--color-dark); }
+.post-faq-list a:hover { color: var(--color-accent); }
+.post-faq-list a svg { color: var(--color-accent); flex: none; }
+.post-faq-all { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; font-weight: 500; color: var(--color-accent); }
+.post-faq-all:hover { color: var(--color-accent-hover); }

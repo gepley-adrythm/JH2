@@ -1,0 +1,75 @@
+[
+  {
+    "slug": "how-long-does-it-take-to-build-a-custom-home",
+    "question": "[PLACEHOLDER] How long does it take to build a custom home in Arizona?",
+    "categorySlug": "building-process",
+    "categoryTitle": "The Building Process",
+    "topicSlugs": [
+      "custom-home-timeline"
+    ],
+    "tags": [
+      "timeline",
+      "custom-home",
+      "process"
+    ],
+    "pillarBlogSlug": "building-your-dream-home-in-2023"
+  },
+  {
+    "slug": "what-are-construction-allowances",
+    "question": "[PLACEHOLDER] What are construction allowances and how do they work?",
+    "categorySlug": "costs-and-budget",
+    "categoryTitle": "Costs & Budget",
+    "topicSlugs": [],
+    "tags": [
+      "budget",
+      "allowances",
+      "pricing"
+    ],
+    "pillarBlogSlug": "custom-home-budget-allowances-change-orders"
+  },
+  {
+    "slug": "can-i-build-on-my-own-lot",
+    "question": "[PLACEHOLDER] Can I build a custom home on a lot I already own?",
+    "categorySlug": "lots-and-locations",
+    "categoryTitle": "Lots & Locations",
+    "topicSlugs": [
+      "building-on-your-lot"
+    ],
+    "tags": [
+      "lot",
+      "land",
+      "build-on-your-lot"
+    ],
+    "pillarBlogSlug": "building-on-your-own-lot-arizona"
+  },
+  {
+    "slug": "what-should-i-check-before-buying-a-lot",
+    "question": "[PLACEHOLDER] What should I check before buying a lot to build on?",
+    "categorySlug": "lots-and-locations",
+    "categoryTitle": "Lots & Locations",
+    "topicSlugs": [
+      "building-on-your-lot"
+    ],
+    "tags": [
+      "lot",
+      "due-diligence",
+      "land"
+    ],
+    "pillarBlogSlug": "building-a-custom-home-in-rio-verde-az-lot-considerations-most-buyers-miss"
+  },
+  {
+    "slug": "what-are-the-steps-of-the-building-process",
+    "question": "[PLACEHOLDER] What are the steps of the custom home building process?",
+    "categorySlug": "building-process",
+    "categoryTitle": "The Building Process",
+    "topicSlugs": [
+      "custom-home-timeline"
+    ],
+    "tags": [
+      "process",
+      "phases",
+      "custom-home"
+    ],
+    "pillarBlogSlug": "building-your-dream-home-in-2023"
+  }
+]

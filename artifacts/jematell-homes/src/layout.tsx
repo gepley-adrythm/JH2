@@ -157,6 +157,7 @@ export function Header() {
           </NavDropdown>
           <Link to="/about" data-testid="nav-about-us">About</Link>
           <Link to="/blog" data-testid="nav-blog">Blog</Link>
+          <a href="/faq" data-testid="nav-faq">FAQ</a>
         </nav>
 
         <div className="header-actions">
@@ -193,6 +194,7 @@ export function Header() {
           <Link to="/where-we-build" onClick={close} data-testid="mobile-nav-where-we-build">Where We Build</Link>
           <Link to="/about" onClick={close} data-testid="mobile-nav-about-us">About</Link>
           <Link to="/blog" onClick={close} data-testid="mobile-nav-blog">Blog</Link>
+          <a href="/faq" onClick={close} data-testid="mobile-nav-faq">FAQ</a>
           <Link to="/contact" onClick={close} className="btn btn-primary" data-testid="mobile-nav-cta" style={{ marginTop: 16, alignSelf: 'flex-start' }}>
             Start Your Build
           </Link>
@@ -244,6 +246,7 @@ export function Footer() {
               <li><Link to="/contact">Contact</Link></li>
               <li><Link to="/privacy">Privacy Policy</Link></li>
               <li><Link to="/blog">Blog</Link></li>
+              <li><a href="/faq">FAQ</a></li>
             </ul>
           </div>
           

@@ -6,6 +6,10 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export interface HealthStatus {
-  status: string;
-}
+export type ListFaqsParams = {
+category?: string;
+topic?: string;
+service?: string;
+q?: string;
+featured?: boolean;
+};

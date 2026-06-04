@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { blogs } from "../data/blogs";
+import faqCrossLinks from "../data/faqCrossLinks.json";
 import NotFound from "./not-found";
 
 function cleanTitle(t: string) {
@@ -24,6 +25,11 @@ export default function BlogPost() {
       next: idx >= 0 && idx < keys.length - 1 ? keys[idx + 1] : null,
     };
   }, [slug]);
+
+  const relatedFaqs = useMemo(
+    () => faqCrossLinks.filter((f) => f.pillarBlogSlug === slug),
+    [slug],
+  );
 
   if (!data) return <NotFound />;
 
@@ -116,6 +122,27 @@ export default function BlogPost() {
           })}
         </div>
       </section>
+
+      {relatedFaqs.length > 0 ? (
+        <section className="section-pad post-faqs" style={{ background: "var(--color-cream, #ece9e2)" }}>
+          <div className="container container-narrow">
+            <h2 className="post-h2">Related questions</h2>
+            <ul className="post-faq-list" data-testid="post-related-faqs">
+              {relatedFaqs.map((f) => (
+                <li key={f.slug}>
+                  <a href={`/faq/${f.slug}`} data-testid={`post-faq-${f.slug}`}>
+                    {f.question.replace(/^\[PLACEHOLDER\]\s*/, "")}
+                    <ArrowRight size={16} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <a href="/faq" className="post-faq-all" data-testid="post-faq-all">
+              See all FAQs <ArrowRight size={14} />
+            </a>
+          </div>
+        </section>
+      ) : null}
 
       <section className="post-nav-strip">
         <div className="container">

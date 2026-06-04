@@ -10,6 +10,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: faqs
+    description: FAQ operations
 paths:
   /healthz:
     get:
@@ -24,6 +26,89 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /faqs:
+    get:
+      operationId: listFaqs
+      tags: [faqs]
+      summary: List FAQs
+      description: Returns FAQ summaries, optionally filtered by category, topic, service, search query, or featured flag.
+      parameters:
+        - name: category
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: topic
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: service
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: featured
+          in: query
+          required: false
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: A list of FAQ summaries
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FaqListResponse"
+  /faqs/admin/check-duplicate:
+    get:
+      operationId: checkFaqDuplicate
+      tags: [faqs]
+      summary: Check for duplicate FAQ intent
+      description: Returns existing FAQs whose question intent overlaps with the provided query. Guardrail against publishing duplicate-intent content.
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Duplicate intent matches
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DuplicateCheckResponse"
+  /faqs/{slug}:
+    get:
+      operationId: getFaq
+      tags: [faqs]
+      summary: Get an FAQ by slug
+      description: Returns a single FAQ with its related FAQs.
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The FAQ detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FaqDetailResponse"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +118,144 @@ components:
           type: string
       required:
         - status
-
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
+    FaqSummary:
+      type: object
+      properties:
+        slug:
+          type: string
+        question:
+          type: string
+        shortAnswer:
+          type: string
+        categorySlug:
+          type: string
+        categoryTitle:
+          type: string
+        topicSlugs:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+      required:
+        - slug
+        - question
+        - shortAnswer
+        - categorySlug
+        - categoryTitle
+        - topicSlugs
+        - tags
+    FaqDetail:
+      type: object
+      properties:
+        slug:
+          type: string
+        question:
+          type: string
+        shortAnswer:
+          type: string
+        answer:
+          type: string
+        answerHtml:
+          type: string
+          nullable: true
+        metaDescription:
+          type: string
+        categorySlug:
+          type: string
+        categoryTitle:
+          type: string
+        topicSlugs:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+        relatedServiceSlugs:
+          type: array
+          items:
+            type: string
+        relatedFaqSlugs:
+          type: array
+          items:
+            type: string
+        pillarBlogSlug:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+      required:
+        - slug
+        - question
+        - shortAnswer
+        - answer
+        - answerHtml
+        - metaDescription
+        - categorySlug
+        - categoryTitle
+        - topicSlugs
+        - tags
+        - relatedServiceSlugs
+        - relatedFaqSlugs
+        - pillarBlogSlug
+        - updatedDate
+    FaqListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/FaqSummary"
+        total:
+          type: integer
+      required:
+        - items
+        - total
+    FaqDetailResponse:
+      type: object
+      properties:
+        faq:
+          $ref: "#/components/schemas/FaqDetail"
+        related:
+          type: array
+          items:
+            $ref: "#/components/schemas/FaqSummary"
+      required:
+        - faq
+        - related
+    DuplicateMatch:
+      type: object
+      properties:
+        slug:
+          type: string
+        question:
+          type: string
+        score:
+          type: number
+      required:
+        - slug
+        - question
+        - score
+    DuplicateCheckResponse:
+      type: object
+      properties:
+        query:
+          type: string
+        matches:
+          type: array
+          items:
+            $ref: "#/components/schemas/DuplicateMatch"
+      required:
+        - query
+        - matches
