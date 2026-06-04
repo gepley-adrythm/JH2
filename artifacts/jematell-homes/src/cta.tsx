@@ -1,4 +1,4 @@
-import { img } from "./layout";
+import { ResponsiveImage } from "./components/ResponsiveImage";
 import { ArrowRight } from "lucide-react";
 import { useContactForm } from "./contact-form";
 
@@ -7,7 +7,15 @@ export function CTA() {
 
   return (
     <section className="cta" id="contact">
-      <img src={img("cta-bg.jpg")} className="cta-bg" alt="Desert landscape" />
+      <ResponsiveImage
+        name="cta-bg"
+        className="cta-bg"
+        alt="Desert landscape"
+        widths={[768, 1280, 1920, 2500]}
+        sizes="100vw"
+        width={2500}
+        height={1667}
+      />
       <div className="cta-overlay" />
 
       <div className="container">

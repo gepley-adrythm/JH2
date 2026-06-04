@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { img } from "./layout";
+import { ResponsiveImage } from "./components/ResponsiveImage";
 import { Link } from "react-router-dom";
 import { useContactForm } from "./contact-form";
 import { EASE_OUT_EXPO, FADE_IN_UP_PROPS } from "./motion";
@@ -32,7 +32,15 @@ export function Hero() {
   return (
     <section className="hero">
       <div className="hero-bg">
-        <img src={img("hero.jpg")} alt="Aerial view of Jematell Home" />
+        <ResponsiveImage
+          name="hero"
+          alt="Aerial view of Jematell Home"
+          widths={[768, 1280, 1920, 2500]}
+          sizes="100vw"
+          width={2500}
+          height={1406}
+          priority
+        />
       </div>
       <div className="hero-overlay" />
 
@@ -79,7 +87,14 @@ export function About() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
           >
-            <img src={img("gallery-1.jpg")} alt="Modern interior design" />
+            <ResponsiveImage
+              name="gallery-1"
+              alt="Modern interior design"
+              widths={[640, 1024, 1280, 1600]}
+              sizes="(min-width: 900px) 50vw, 100vw"
+              width={2500}
+              height={1667}
+            />
           </motion.div>
         </div>
       </div>
@@ -114,7 +129,15 @@ export function ServicesSplit() {
   return (
     <section className="services-split" id="services">
       <div className="service-pane" data-testid="card-custom">
-        <img src={img("gallery-2.jpg")} className="service-bg" alt="Custom Home" />
+        <ResponsiveImage
+          name="gallery-2"
+          className="service-bg"
+          alt="Custom Home"
+          widths={[768, 1280, 1600, 2000]}
+          sizes="(min-width: 900px) 50vw, 100vw"
+          width={2500}
+          height={1667}
+        />
         <div className="service-overlay" />
         <div className="service-content">
           <span className="eyebrow" style={{ color: '#fff' }}>Portfolio</span>
@@ -126,7 +149,15 @@ export function ServicesSplit() {
         </div>
       </div>
       <div className="service-pane" data-testid="card-spec">
-        <img src={img("spec-home.jpg")} className="service-bg" alt="Twilight House spec home front exterior" />
+        <ResponsiveImage
+          name="spec-home"
+          className="service-bg"
+          alt="Twilight House spec home front exterior"
+          widths={[768, 1280, 1600]}
+          sizes="(min-width: 900px) 50vw, 100vw"
+          width={1600}
+          height={1066}
+        />
         <div className="service-overlay" />
         <div className="service-content">
           <span className="eyebrow" style={{ color: '#fff' }}>Available</span>
@@ -165,7 +196,7 @@ export function Process() {
               transition={{ delay: Math.min(i, 5) * 0.06, duration: 0.5, ease: EASE_OUT_EXPO }}
             >
               <div className="process-num">0{i + 1}</div>
-              <h4>{step.title}</h4>
+              <h3>{step.title}</h3>
               <p>{step.desc}</p>
             </motion.div>
           ))}

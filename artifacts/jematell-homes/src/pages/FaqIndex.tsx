@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Search } from "lucide-react";
 import { faqDataset } from "../data/faq";
 import { useContactForm } from "../contact-form";
-import { img } from "../layout";
+import { ResponsiveImage } from "../components/ResponsiveImage";
 import { Seo } from "../seo/seo";
 import { faqPageJsonLd } from "../seo/jsonld";
 
@@ -39,7 +39,16 @@ export default function FaqIndex() {
       />
 
       <section className="page-hero faq-hero">
-        <img className="page-hero-bg" src={img("spec-home.jpg")} alt="" loading="eager" />
+        <ResponsiveImage
+          name="spec-home"
+          className="page-hero-bg"
+          alt=""
+          widths={[768, 1280, 1600]}
+          sizes="100vw"
+          width={1600}
+          height={1066}
+          priority
+        />
         <div className="page-hero-overlay" />
         <div className="container page-hero-content">
           <h1 className="faq-hero-title hero-title">Frequently Asked Questions</h1>

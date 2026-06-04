@@ -307,7 +307,7 @@ export function Footer() {
           </div>
 
           <div className="footer-col">
-            <h4>Homes</h4>
+            <h3>Homes</h3>
             <ul>
               {services.map((s) => (
                 <li key={s.href}><Link to={s.href} viewTransition>{s.label}</Link></li>
@@ -316,7 +316,7 @@ export function Footer() {
           </div>
 
           <div className="footer-col">
-            <h4>Where We Build</h4>
+            <h3>Where We Build</h3>
             <ul>
               {locations.map((l) => (
                 <li key={l.slug}><Link to={locationHref(l.slug)} viewTransition>{l.name}</Link></li>
@@ -325,7 +325,7 @@ export function Footer() {
           </div>
 
           <div className="footer-col">
-            <h4>Company</h4>
+            <h3>Company</h3>
             <ul>
               <li><Link to="/about" viewTransition>About Us</Link></li>
               <li><Link to="/warranty" viewTransition>Warranty</Link></li>
@@ -438,7 +438,7 @@ export function ContactWidget() {
         className="contact-widget-panel"
         aria-label="Contact options"
       >
-        <h4>How can we help?</h4>
+        <h3>How can we help?</h3>
         <a
           ref={firstItemRef}
           href={siteConfig.contact.phone.href}

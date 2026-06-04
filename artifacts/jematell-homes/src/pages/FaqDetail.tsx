@@ -4,7 +4,7 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 import { faqDataset, SERVICE_LINKS } from "../data/faq";
 import { blogs } from "../data/blogs";
 import { useContactForm } from "../contact-form";
-import { img } from "../layout";
+import { ResponsiveImage } from "../components/ResponsiveImage";
 import { Seo } from "../seo/seo";
 import { qaPageJsonLd, breadcrumbJsonLd } from "../seo/jsonld";
 import NotFound from "./not-found";
@@ -66,7 +66,16 @@ export default function FaqDetail() {
       />
 
       <section className="page-hero faq-hero faq-detail-hero">
-        <img className="page-hero-bg" src={img("cta-bg.jpg")} alt="" loading="eager" />
+        <ResponsiveImage
+          name="cta-bg"
+          className="page-hero-bg"
+          alt=""
+          widths={[768, 1280, 1920, 2500]}
+          sizes="100vw"
+          width={2500}
+          height={1667}
+          priority
+        />
         <div className="page-hero-overlay" />
         <div className="container page-hero-content">
           <nav className="faq-crumbs hero-eyebrow" aria-label="Breadcrumb">

@@ -1,2 +1,3 @@
 - [FAQ seed authoring & regeneration pipeline](faq-seed-pipeline.md) — single-source answerHtml→plain() pattern; after any seed edit run typecheck:libs + faq:validate + faq:crosslinks + faq:registry or generated files go stale.
 - [Fraunces wonky glyphs](fraunces-wonky-glyphs.md) — descending f/J are inherent to the font; CSS/axis pins fail, swap the font (now Newsreader).
+- [SSG perf patterns](ssg-perf-patterns.md) — eager-on-server/lazy-on-client routes (renderToString can't suspend); index.html preloads need %BASE_URL%; picture{display:contents}.

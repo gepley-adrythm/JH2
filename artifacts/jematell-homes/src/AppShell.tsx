@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { MotionConfig } from "framer-motion";
 import { Header, Footer, ContactWidget } from "./layout";
@@ -7,15 +7,17 @@ import RouteBackground from "./RouteBackground";
 import { SiteJsonLd } from "./seo/seo";
 import Home from "./pages/Home";
 import NotFound from "./pages/not-found";
-import ContentPage from "./pages/ContentPage";
-import Gallery from "./pages/Gallery";
-import GalleryDetail from "./pages/GalleryDetail";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
-import Contact from "./pages/Contact";
-import FaqIndex from "./pages/FaqIndex";
-import FaqTopic from "./pages/FaqTopic";
-import FaqDetail from "./pages/FaqDetail";
+import {
+  ContentPage,
+  Gallery,
+  GalleryDetail,
+  Blog,
+  BlogPost,
+  Contact,
+  FaqIndex,
+  FaqTopic,
+  FaqDetail,
+} from "./routes";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -39,6 +41,7 @@ export default function AppShell() {
         <RouteBackground />
         <ScrollToTop />
         <Header />
+        <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/gallery" element={<Gallery />} />
@@ -62,6 +65,7 @@ export default function AppShell() {
           <Route path="/faq/:slug" element={<FaqDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </Suspense>
         <Footer />
         <ContactWidget />
       </ContactFormProvider>

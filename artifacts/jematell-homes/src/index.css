@@ -1,8 +1,9 @@
 /* Heading font is Newsreader, a warm editorial serif with conventional f and J
    glyphs. It replaced Fraunces, whose signature WONK design draws a descending
    J and a curling descending f that cannot be reliably disabled over Google
-   Fonts and read as broken letters at heading sizes. */
-@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Outfit:wght@300;400;500;600&display=swap');
+   Fonts and read as broken letters at heading sizes.
+   The font stylesheet is loaded via a non-blocking <link> in index.html (with
+   preconnect) rather than an @import here, which would chain-block rendering. */
 
 *, *::before, *::after {
   margin: 0;
@@ -452,14 +453,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 @keyframes heroZoom { to { transform: scale(1); } }
 
+picture {
+  display: contents;
+}
+
 .hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0,0,0,0.3) 0%,
-    rgba(0,0,0,0.1) 40%,
-    rgba(0,0,0,0.7) 100%
+    rgba(0,0,0,0.38) 0%,
+    rgba(0,0,0,0.18) 40%,
+    rgba(0,0,0,0.82) 100%
   );
 }
 
@@ -644,7 +649,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-warm);
   margin-bottom: 24px;
 }
-.process-card h4 {
+.process-card h3 {
   color: #fff;
   font-family: var(--font-body);
   font-size: 20px;
@@ -1025,7 +1030,7 @@ h1, h2, h3, h4, h5, h6 {
   filter: brightness(0) invert(1);
   margin-bottom: 24px;
 }
-.footer-col h4 {
+.footer-col h3 {
   color: #fff;
   font-family: var(--font-body);
   font-size: 13px;
@@ -1034,17 +1039,26 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   margin-bottom: 24px;
 }
-.footer-col li { margin-bottom: 16px; }
+.footer-col li { margin-bottom: 8px; }
 .footer-col a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 4px 0;
   transition: color 0.2s;
 }
 .footer-col a:hover { color: #fff; }
 .footer-social {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   margin-top: 24px;
 }
 .footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
   color: rgba(255,255,255,0.6);
 }
 .footer-social a:hover { color: #fff; }
@@ -1120,7 +1134,7 @@ h1, h2, h3, h4, h5, h6 {
   visibility: visible;
   transform: translateY(0) scale(1);
 }
-.contact-widget-panel h4 {
+.contact-widget-panel h3 {
   font-family: var(--font-body);
   font-size: 16px;
   font-weight: 500;
