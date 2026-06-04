@@ -518,6 +518,11 @@
   .cf-step {
     padding-top: 80px;
   }
+  .cf-step--center {
+    align-self: center;
+    padding-top: 0;
+    padding-bottom: 80px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

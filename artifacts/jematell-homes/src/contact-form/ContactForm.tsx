@@ -723,7 +723,7 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
     switch (step) {
       case "name":
         return (
-          <motion.div key="name" variants={slideVariants} initial="enter" animate="center" exit="exit" transition={slideTransition} className="cf-step">
+          <motion.div key="name" variants={slideVariants} initial="enter" animate="center" exit="exit" transition={slideTransition} className="cf-step cf-step--center">
             <div className="cf-step-head">
               <h2 className="cf-h2">Let's get started</h2>
               <p className="cf-sub">Tell us a bit about your project and we'll be in touch within one business day.</p>
