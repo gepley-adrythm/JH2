@@ -303,6 +303,8 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-dark);
 }
 .site-header:not(.scrolled) .mobile-menu-btn { color: #fff; }
+.mobile-menu-btn.is-open,
+.site-header:not(.scrolled) .mobile-menu-btn.is-open { color: var(--color-dark); }
 
 @media (max-width: 1024px) {
   .main-nav { display: none; }

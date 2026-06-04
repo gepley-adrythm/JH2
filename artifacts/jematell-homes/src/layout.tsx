@@ -210,7 +210,7 @@ export function Header() {
         </div>
 
         <button
-          className="mobile-menu-btn"
+          className={`mobile-menu-btn${mobileMenuOpen ? " is-open" : ""}`}
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-nav-panel"
