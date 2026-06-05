@@ -1896,6 +1896,71 @@ a.contact-info-card:hover {
 .page-tier-link:hover { color: var(--color-accent-hover); }
 @media (max-width: 960px) { .page-tiers-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; } }
 
+/* Floor-plan widget embeds (Architectural Designs collections) */
+.page-plans-intro {
+  max-width: 640px;
+  margin: 16px auto 0;
+  color: var(--color-text-muted);
+  font-size: 16px;
+  line-height: 1.65;
+}
+.page-plans-list {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  margin-top: 56px;
+}
+.page-plan-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 14px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--color-border);
+}
+.page-plan-title {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(22px, 3vw, 30px);
+  letter-spacing: -0.01em;
+  color: var(--color-dark);
+}
+.page-plan-browse {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-warm);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.page-plan-browse:hover { text-decoration: underline; }
+.page-plan-embed {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--color-cream);
+  box-shadow: 0 24px 60px -24px rgba(18, 20, 21, 0.22);
+}
+.page-plan-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+@media (max-width: 600px) {
+  .page-plans-list { gap: 48px; }
+  .page-plan-embed { padding-bottom: 75%; }
+}
+
 /* Why-choose feature grid */
 .page-why-grid {
   display: grid;

@@ -667,6 +667,93 @@ function ProseSection({ section }: { section: Section }) {
   );
 }
 
+// Architectural Designs house-plan collections, embedded as their responsive
+// widget iframes (the same embeds the old Squarespace floor-plans page used).
+// Each tier also deep-links to the full collection on architecturaldesigns.com,
+// which is the more "native" path: faster than the iframe, works if the embed is
+// ever blocked, and is where a visitor can actually open and save a plan.
+const FLOOR_PLAN_COLLECTIONS: Array<{
+  id: string;
+  title: string;
+  widget: string;
+  browse: string;
+}> = [
+  {
+    id: "under-2000",
+    title: "Homes Under 2,000 Sq Ft",
+    widget:
+      "https://www.architecturaldesigns.com/house-plan-collections/sub-2000-square-foot-homes/widget",
+    browse:
+      "https://www.architecturaldesigns.com/house-plan-collections/sub-2000-square-foot-homes",
+  },
+  {
+    id: "2000-3000",
+    title: "Homes Between 2,000 and 3,000 Sq Ft",
+    widget:
+      "https://www.architecturaldesigns.com/house-plan-collections/homes-between-2000-3000-square-feet/widget",
+    browse:
+      "https://www.architecturaldesigns.com/house-plan-collections/homes-between-2000-3000-square-feet",
+  },
+  {
+    id: "over-3000",
+    title: "Homes Over 3,000 Sq Ft",
+    widget:
+      "https://www.architecturaldesigns.com/house-plan-collections/over-3000-square-foot-homes/widget",
+    browse:
+      "https://www.architecturaldesigns.com/house-plan-collections/over-3000-square-foot-homes",
+  },
+];
+
+function FloorPlanWidgets() {
+  return (
+    <section className="page-plans section-pad" data-testid="floor-plan-widgets">
+      <div className="container">
+        <m.div className="page-section-head centered" {...FADE_IN}>
+          <span className="eyebrow">Floor plans</span>
+          <h2 className="heading-lg">Browse plans by size</h2>
+          <p className="page-plans-intro">
+            Explore curated house-plan collections from Architectural Designs. Find one
+            you love and bring it to us, or our architect can tailor any plan to your
+            land and lifestyle.
+          </p>
+        </m.div>
+        <div className="page-plans-list">
+          {FLOOR_PLAN_COLLECTIONS.map((c) => (
+            <m.div
+              key={c.id}
+              className="page-plan-block"
+              {...FADE_IN}
+              data-testid={`floor-plan-${c.id}`}
+            >
+              <div className="page-plan-head">
+                <h3 className="page-plan-title">{c.title}</h3>
+                <a
+                  className="page-plan-browse"
+                  href={c.browse}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid={`floor-plan-browse-${c.id}`}
+                >
+                  Browse all plans <ArrowRight size={14} />
+                </a>
+              </div>
+              <div className="page-plan-embed">
+                <iframe
+                  src={c.widget}
+                  title={`${c.title} house plan collection`}
+                  loading="lazy"
+                  allowFullScreen
+                  data-testid={`floor-plan-iframe-${c.id}`}
+                />
+              </div>
+            </m.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function PageCTA({ title, body }: { title?: string; body?: string }) {
   return (
     <section className="page-cta">
@@ -841,6 +928,8 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
 
         {isLegal
           ? sections.map((s, i) => <ProseSection key={i} section={s} />)
+          : key === "floorplans"
+          ? <FloorPlanWidgets />
           : sections.map((s, i) => {
               if (isServiceGridSection(s)) return <ServiceGridSection key={i} section={s} />;
               if (isProcessSection(s)) return <ProcessSection key={i} section={s} />;
