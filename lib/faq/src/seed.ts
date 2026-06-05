@@ -479,6 +479,162 @@ export const faqSeed: FaqSeed = {
       sortOrder: 8,
     }),
 
+    item({
+      slug: "how-long-does-permitting-take-across-our-markets",
+      question:
+        "How long does the building permit process take across the Phoenix metro and your other markets?",
+      answerHtml: `<p><strong>Plan on roughly two to six months from a complete submittal to a permit in hand for a custom home, but the real number depends on which jurisdiction reviews your plans, how complete the first submittal is, and how many correction cycles it takes to clear plan review.</strong> Arizona has no statewide permit clock, so each city, town, and county runs its own queue. This page compares how the markets we build in tend to behave and what actually moves the timeline.</p>
+<h2>Why there is no single answer</h2>
+<p>Arizona is a home-rule state, so building regulation happens at the local level. What state law does require is transparency: under the licensing time-frame statutes (A.R.S. 9-835 for municipalities and A.R.S. 11-1605 for counties), each jurisdiction must publish the time frames it commits to for the administrative completeness check and the substantive review of a permit application. Those published windows are a useful planning tool, but they describe the agency's review time, not the calendar time you experience, which also includes your design team's turnaround on each round of corrections.</p>
+<h2>How our markets tend to compare</h2>
+<p>These are planning ranges as of June 2026, not guarantees. Confirm the current published time frames with the reviewing office for your parcel before you build a schedule around them.</p>
+<ul>
+<li><strong>City of Scottsdale.</strong> A mature, well-staffed department with an established online submittal process. A straightforward custom home often clears first review in a few weeks, but homes inside the Environmentally Sensitive Lands overlay (with native plant and natural area open space requirements) carry extra review layers that add time.</li>
+<li><strong>City of Phoenix.</strong> High volume, but a deep department and online tools. First review of a custom home commonly lands in the few-week range, with self-certification paths available to design professionals for some project types that can shorten the cycle.</li>
+<li><strong>Unincorporated Maricopa County (including Rio Verde Foothills).</strong> The county is the Authority Having Jurisdiction, and the building permit usually will not finalize until the septic (onsite wastewater) clearance and any well documentation are in place. Those supporting approvals, not the building plan check, are often the long pole.</li>
+<li><strong>Pinal County, Casa Grande, and Apache Junction.</strong> Smaller departments and, on rural parcels, the same dependence on septic, well, and access approvals. Whether the city or the county is your AHJ is the first thing to settle, because each runs its own queue and fee schedule.</li>
+</ul>
+<h2>What actually moves the timeline</h2>
+<p>The jurisdiction sets a baseline, but the things below decide whether you land at the fast or slow end of the range.</p>
+<ol>
+<li><strong>Submittal completeness.</strong> A complete first submittal with structural engineering, energy calculations, and a site and grading plan moves through review far faster than a thin package that draws a long correction letter.</li>
+<li><strong>Number of correction cycles.</strong> Most custom homes go through at least one round of comments. Each round adds the agency's re-review time plus your team's turnaround. Two clean cycles beat four messy ones.</li>
+<li><strong>Supporting approvals.</strong> Septic, well, floodplain use permits, grading, driveway or access permits, and HOA architectural review can each run on their own track and gate the building permit. On rural lots these usually dominate the schedule.</li>
+<li><strong>Site complexity.</strong> Hillside lots, sensitive-lands overlays, floodplain, or special soils trigger additional studies and reviews that a flat, serviced infill lot never sees.</li>
+</ol>
+<h2>How Jematell Homes handles it</h2>
+<p>Because we work across all of these jurisdictions, we confirm the AHJ and its published time frames for your parcel early, assemble a complete first submittal to minimize correction cycles, and sequence the septic, well, grading, and access approvals so they are not the thing that holds up the building permit. Published time frames, fees, and staffing all change, so we verify the current numbers with your reviewing office rather than relying on last year's experience. Always confirm the current permit time frames and submittal requirements with your local building department for your specific lot before committing to a schedule.</p>`,
+      shortAnswer:
+        "Expect roughly two to six months from a complete submittal to permit in hand, but it varies by jurisdiction. Arizona sets no statewide clock; each city and county publishes its own review time frames. Submittal completeness, correction cycles, and rural approvals like septic and wells move it most. Confirm current time frames with your AHJ.",
+      metaDescription:
+        "How long does a custom-home building permit take in Scottsdale, Phoenix, unincorporated Maricopa County, and Pinal County? A cross-market comparison and what moves the timeline.",
+      categorySlug: "permits-and-codes",
+      topicSlugs: ["building-permits-arizona"],
+      tags: ["permits", "permit-timeline", "phoenix-metro", "plan-review", "research-phase"],
+      relatedFaqSlugs: [
+        "how-long-does-permitting-take-in-scottsdale",
+        "how-permitting-works-in-pinal-county",
+        "do-i-need-a-permit-in-unincorporated-maricopa-county",
+        "which-building-code-edition-does-each-city-use",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug: "how-long-it-takes-to-build-a-custom-home-in-arizona",
+      sortOrder: 9,
+    }),
+    item({
+      slug: "do-house-plans-need-an-engineer-or-architect-stamp",
+      question: "Do my house plans need an engineer's or architect's stamp in Arizona?",
+      answerHtml: `<p><strong>For a typical single-family home, Arizona law usually does not force you to hire a registered architect, thanks to a long-standing residential exemption in the state's registration statutes. A licensed engineer's stamp is a different story: the structural parts of your plans frequently need one, and whether that applies depends on your design, your soils, and the rules of the jurisdiction reviewing the project.</strong> The two questions, "do I need an architect" and "do I need an engineer," have different answers, so it helps to take them one at a time.</p>
+<h2>The architect question</h2>
+<p>Architects and engineers in Arizona are regulated by the State Board of Technical Registration under A.R.S. Title 32, Chapter 1. Those statutes include a residential exemption that allows plans for certain one- and two-family dwellings to be prepared without a registered architect's seal. In practice this is why many custom homes are designed by a residential designer or a design-build builder rather than a licensed architect. The exemption is specific, however, and it does not switch off other requirements, so it is not a blanket "no professional needed" rule.</p>
+<h2>The engineer question</h2>
+<p>Structural design is where a stamp most often becomes mandatory. The International Residential Code (IRC) provides prescriptive paths that a designer can follow for conventional construction, but the moment a design steps outside those prescriptive limits, an engineered, stamped design is required. Common triggers in our markets include:</p>
+<ul>
+<li><strong>Soils.</strong> Caliche, expansive clay, collapsible soils, or a poor geotechnical report push the foundation into engineered territory. A soils report routinely drives a stamped foundation design.</li>
+<li><strong>Spans, openings, and loads.</strong> Long spans, large window and door openings, tall walls, and heavy roof loads can exceed the prescriptive tables and need engineering.</li>
+<li><strong>Lateral design.</strong> Wind bracing and seismic detailing beyond the prescriptive provisions require an engineer.</li>
+<li><strong>Site conditions.</strong> Hillside lots, retaining walls above a threshold height, and post-tensioned slabs are typically engineered and stamped.</li>
+</ul>
+<p>Separately, manufactured components such as roof and floor trusses arrive with their own engineered, stamped shop drawings from the supplier, which the building department reviews alongside your plans.</p>
+<h2>Why the jurisdiction still matters</h2>
+<p>Even where state law exempts the architect, the local building department sets submittal requirements and decides what it will accept. Some jurisdictions require a stamped structural package for any custom home; others accept prescriptive IRC framing for simple designs. Overlays such as hillside or sensitive-lands districts can add their own engineering and reporting requirements. The only reliable way to know what your reviewer expects is to ask before you finalize the construction documents.</p>
+<h2>What this means for your project</h2>
+<p>For most of the homes we build, the practical answer is that a registered architect is optional but a structural engineer's involvement is likely, because Arizona desert soils and modern open designs routinely push the structure past the prescriptive code paths. Budgeting for a geotechnical report and a structural engineer up front avoids a mid-review surprise when a plan checker asks for a stamp you did not plan for.</p>
+<h2>How Jematell Homes handles it</h2>
+<p>We confirm which professional stamps your specific design and jurisdiction require before drawings are finalized, coordinate the geotechnical report and structural engineering so the foundation matches your soils, and submit a package the building department can approve without chasing missing seals. Because registration rules and local submittal standards change, we verify the current requirements with the Arizona Board of Technical Registration and your local building department for your specific lot. Always confirm what stamps your plans need with your local Authority Having Jurisdiction before you submit.</p>`,
+      shortAnswer:
+        "Usually a registered architect is optional for a single-family home under Arizona's residential exemption, but a licensed engineer's stamp is often required for the structure. Expansive or caliche soils, long spans, tall walls, and hillside sites push the design past prescriptive code and trigger stamped engineering. Confirm exact requirements with your AHJ and the Board of Technical Registration.",
+      metaDescription:
+        "Do Arizona house plans need an architect's or engineer's stamp? An architect is often optional under the residential exemption, but structural engineering is frequently required.",
+      categorySlug: "permits-and-codes",
+      topicSlugs: ["building-permits-arizona"],
+      tags: ["plans", "structural-engineering", "architect", "btr", "research-phase"],
+      relatedFaqSlugs: [
+        "what-building-codes-apply-to-a-new-home-in-arizona",
+        "do-i-need-a-soils-or-geotechnical-report",
+        "which-building-code-edition-does-each-city-use",
+        "what-inspections-happen-during-a-custom-home-build",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug: "what-custom-home-builders-need-from-you-before-the-first-design-meeting",
+      sortOrder: 10,
+    }),
+    item({
+      slug: "what-is-a-certificate-of-occupancy-and-how-do-i-get-one",
+      question: "What is a certificate of occupancy and how do I get one?",
+      answerHtml: `<p><strong>A certificate of occupancy (CO) is the building official's written confirmation that your finished home was built to the code it was permitted under and is legally safe to live in. You get one by passing every required final inspection. Once the building final and the final electrical, plumbing, and mechanical inspections all pass, the jurisdiction issues the certificate, and that document is your green light to move in.</strong> Until it is issued, the home is not legally occupiable, even if it looks done.</p>
+<h2>What the certificate actually means</h2>
+<p>Under the International Residential Code (IRC R110) and the parallel building-code provisions most Arizona jurisdictions adopt, a building cannot be used or occupied until the building official issues a certificate of occupancy. The certificate ties the completed structure back to the approved plans and the code edition in force when the permit was issued. It is both a safety document and a legal one: lenders, insurers, and future buyers may ask to see it, so it matters well beyond move-in day.</p>
+<h2>How you earn it, step by step</h2>
+<ol>
+<li><strong>Complete the work to the approved plans.</strong> The finished home has to match what was permitted. Any field changes should already be on file as approved revisions.</li>
+<li><strong>Pass the trade finals.</strong> Final electrical, plumbing, and mechanical inspections confirm those systems are complete and working.</li>
+<li><strong>Pass any project-specific finals.</strong> If the project includes a pool, perimeter or retaining walls, or a solar array, those carry their own inspections that must clear too.</li>
+<li><strong>Pass the building final.</strong> This is the comprehensive last inspection of the whole home: life-safety items, egress, smoke and carbon-monoxide alarms, grading and drainage, and the overall match to the approved plans.</li>
+<li><strong>Receive the certificate.</strong> When the building final passes, the jurisdiction issues the CO (or records final approval). That is the moment the home is legal to occupy.</li>
+</ol>
+<h2>Temporary certificates of occupancy</h2>
+<p>If the home is safe to live in but a few non-critical items remain (a punch-list item, final landscaping, or a detail awaiting a part), some jurisdictions issue a temporary certificate of occupancy (TCO). A TCO lets you move in while you finish the listed items by a deadline, after which the full CO is issued. Whether a TCO is available, and on what terms, is entirely up to the building official.</p>
+<h2>A note on how it is documented</h2>
+<p>The exact paperwork varies by jurisdiction. Some issue a formal, separate certificate of occupancy document for every home. Others, for one- and two-family dwellings, record a passed building final as "final approval" that functions as the occupancy clearance rather than printing a distinct certificate. Either way, the principle is the same: do not move in, and do not let utilities go to permanent service, until the building official has signed off. If you ever need proof of occupancy later and are not sure what your jurisdiction issued, the building department can tell you what document to request.</p>
+<h2>How Jematell Homes handles it</h2>
+<p>We manage the home to a clean final inspection: keeping the approved plans and any revisions current on site, scheduling the trade and building finals in the right order, and clearing punch-list items so the building official can issue your certificate without a second trip. If a temporary certificate is the right call to let you move in on time, we coordinate that and the remaining work to closeout. Because each jurisdiction names and documents this step differently, we confirm the exact occupancy requirements with your local Authority Having Jurisdiction for your specific permit before you plan a move-in date.</p>`,
+      shortAnswer:
+        "A certificate of occupancy is the building official's confirmation that your finished home meets code and is legal to live in. You earn it by passing every final inspection, the trade finals plus the building final. Some homes get a temporary certificate to move in while minor items finish. Never occupy before it is issued; confirm requirements with your AHJ.",
+      metaDescription:
+        "What is a certificate of occupancy and how do you get one in Arizona? It is the building official's sign-off that your home is code-compliant and legal to occupy after final inspections.",
+      categorySlug: "permits-and-codes",
+      topicSlugs: ["building-permits-arizona"],
+      tags: ["certificate-of-occupancy", "inspections", "final-inspection", "move-in", "research-phase"],
+      relatedFaqSlugs: [
+        "what-inspections-happen-during-a-custom-home-build",
+        "can-i-live-on-site-in-an-rv-while-building",
+        "do-i-need-a-permit-to-build-in-maricopa-county",
+        "how-long-does-permitting-take-across-our-markets",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug: "what-to-expect-when-building-a-custom-home-in-the-phoenix-metro-area",
+      sortOrder: 11,
+    }),
+    item({
+      slug: "can-i-live-on-site-in-an-rv-while-building",
+      question: "Can I live in an RV or temporary structure on my lot while I build?",
+      answerHtml: `<p><strong>Often yes, but only with permission and conditions. Many Arizona jurisdictions, especially in unincorporated county areas, allow you to live in a recreational vehicle on your own lot temporarily while you have an active building permit, provided you get a temporary use permit, arrange approved water and sewage, and remove the RV once your certificate of occupancy is issued. Cities tend to be stricter, and a few prohibit it outright.</strong> It is a zoning and health question as much as a building one, so it is worth settling before you buy or move a trailer onto the land.</p>
+<h2>It comes down to your jurisdiction's zoning rules</h2>
+<p>Whether you can camp on your lot during construction is governed by the local zoning ordinance, not the building code, and the answer varies sharply by jurisdiction. Unincorporated Maricopa County and Pinal County both have provisions that allow temporary occupancy of an RV or similar unit on a parcel during active construction, tied to a permit and a time limit. Inside city limits, the rules are usually tighter; some cities allow it as a narrow construction exception, while others do not permit anyone to live in an RV as a residence at all. The first step is to confirm which jurisdiction governs your lot and read its specific temporary-occupancy rule.</p>
+<h2>The conditions you should expect</h2>
+<p>Where it is allowed, approval almost always comes with strings attached. Plan for some combination of the following:</p>
+<ul>
+<li><strong>An active building permit.</strong> Temporary occupancy is permitted because you are building, so it is generally tied to a live, in-progress permit. If the build stalls, the permission can lapse.</li>
+<li><strong>A temporary use or temporary occupancy permit.</strong> This is a separate approval from your building permit, with its own application and fee.</li>
+<li><strong>Approved sewage disposal.</strong> You cannot simply dump waste on the ground. Expect to need an approved method, such as connection to a permitted septic system, an approved holding tank that is regularly pumped, or another method the county environmental office accepts under Arizona Department of Environmental Quality standards.</li>
+<li><strong>Potable water.</strong> A safe drinking-water source, whether a permitted well, a water provider, or a hauled-water arrangement to an approved tank.</li>
+<li><strong>A time limit.</strong> Permission is temporary and usually capped, sometimes renewable while the permit stays active, and the RV must be removed at or before the certificate of occupancy is issued.</li>
+<li><strong>No permanent connections.</strong> The RV is treated as temporary, so permanent utility hookups intended for a dwelling are typically not allowed.</li>
+</ul>
+<h2>HOA and deed restrictions can override it</h2>
+<p>Even where the jurisdiction allows it, a homeowners association or recorded deed restriction can prohibit living in an RV on the lot, including during construction. If your parcel is in an HOA or has CC&Rs, check those documents before you count on the zoning answer, because private restrictions can be stricter than the public code.</p>
+<h2>Why people do it, and the trade-offs</h2>
+<p>Living on site during a build can save on rent, shorten commutes for an owner-builder, and let you keep an eye on the project. The trade-offs are the setup cost and effort of approved water and sewage, the permit and its conditions, and the reality that desert sites can be hot, dusty, and active construction zones. It works best on rural acreage where the county allows it and the lot has room, and it is rarely practical on a tight city infill lot.</p>
+<h2>How Jematell Homes handles it</h2>
+<p>If living on your lot during construction is part of your plan, we help you confirm whether your jurisdiction allows it, identify the temporary use permit and the approved water and sewage arrangements you will need, and coordinate the timing so the RV is sited and removed in step with the build and your certificate of occupancy. Because zoning rules, health requirements, and time limits differ by jurisdiction and change over time, we verify the current rules with your county or city planning and environmental offices for your specific parcel. Always confirm temporary-occupancy rules with your local Authority Having Jurisdiction, your county environmental office, and any HOA before you move onto the land.</p>`,
+      shortAnswer:
+        "Often yes in unincorporated county areas, with limits. You typically need an active building permit, a temporary use permit, approved water and sewage, and you must remove the RV by the time the certificate of occupancy is issued. Cities are stricter and some prohibit it; HOAs and deed restrictions can override the zoning. Confirm with your AHJ before moving on.",
+      metaDescription:
+        "Can you live in an RV on your lot while building a home in Arizona? Often yes in county areas with a temporary use permit and approved water and sewage, but cities and HOAs may say no.",
+      categorySlug: "permits-and-codes",
+      topicSlugs: ["building-permits-arizona"],
+      tags: ["rv", "temporary-occupancy", "zoning", "owner-builder", "research-phase"],
+      relatedFaqSlugs: [
+        "do-i-need-a-permit-in-unincorporated-maricopa-county",
+        "what-is-a-certificate-of-occupancy-and-how-do-i-get-one",
+        "how-do-septic-systems-work-for-a-new-home",
+        "can-i-build-a-casita-or-adu",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug: "building-on-your-own-lot-arizona",
+      sortOrder: 12,
+    }),
     // ========================= Land & Due Diligence =========================
     item({
       slug: "how-do-i-know-if-a-lot-is-buildable",
@@ -717,6 +873,176 @@ export const faqSeed: FaqSeed = {
       sortOrder: 9,
     }),
 
+    item({
+      slug: "how-do-i-check-zoning-before-buying-a-lot",
+      question:
+        "How do I check a lot's zoning before I buy it?",
+      answerHtml: `<p><strong>Check a lot's zoning before you buy by looking up the parcel on the jurisdiction's official zoning map, confirming the district allows a single-family home at the density you want, and then calling the planning department to verify there are no overlays, pending changes, or conditions that limit what you can build. Zoning is public information tied to the parcel, and it is one of the cheapest and most important pieces of due diligence you can do before making an offer.</strong> A lot that looks perfect can carry a zoning district, a minimum lot size, or an overlay that quietly rules out the home you have in mind.</p>
+<h2>Find out which jurisdiction sets the zoning</h2>
+<p>The first question is who the Authority Having Jurisdiction is, because that determines whose map and rules apply. If the parcel sits inside a city such as Scottsdale, Phoenix, Cave Creek, Fountain Hills, Carefree, Casa Grande, or Apache Junction, that city's planning or development services department sets and enforces zoning under its municipal authority (A.R.S. 9-462 and related statutes). If the parcel is in unincorporated land, such as the Rio Verde Foothills or rural stretches of Maricopa or Pinal County, the county is the zoning authority under A.R.S. 11-811 and 11-812. Confirming city versus county first saves you from reading the wrong rulebook.</p>
+<h2>Look up the parcel and its zoning district</h2>
+<p>Once you know the jurisdiction, you can usually find the zoning yourself online:</p>
+<ul>
+<li><strong>Get the parcel number (APN).</strong> The county assessor's site lets you find a parcel by address or owner and gives you the assessor's parcel number, which is how every other record is keyed.</li>
+<li><strong>Open the official zoning map or GIS viewer.</strong> Most cities and both Maricopa and Pinal County publish an online zoning map. Enter the address or APN and read off the zoning district, such as a single-family residential district with a minimum lot size (for example a district requiring 35,000 or 43,000 square feet per home in lower-density desert areas).</li>
+<li><strong>Read what the district allows.</strong> The zoning code tied to that district controls the permitted uses, the minimum lot size and density, the building setbacks, the maximum height, and the lot coverage. These together decide whether your house, garage, casita, and pool actually fit.</li>
+</ul>
+<h2>Check for overlays and special designations</h2>
+<p>The base zoning district is only part of the story. Many desert parcels carry an overlay or a special designation layered on top that adds rules:</p>
+<ul>
+<li><strong>Environmentally sensitive and hillside overlays</strong> such as Scottsdale's Environmentally Sensitive Lands Ordinance with its Natural Area Open Space set-aside, or Fountain Hills hillside disturbance rules, can require you to leave large portions of a lot undisturbed.</li>
+<li><strong>Floodplain designations</strong> can require an elevated finished floor and a separate permit.</li>
+<li><strong>Planned communities and master plans</strong> can add their own development standards beyond the base zoning.</li>
+</ul>
+<p>Overlays are exactly the kind of thing a quick map read can miss, so they are worth asking the planning department about directly.</p>
+<h2>Zoning is not the same as private restrictions</h2>
+<p>Zoning is the government's land-use control. It is separate from private restrictions such as a homeowners association's CC&Rs or recorded deed restrictions, which can be stricter than zoning and are found in the title report rather than the zoning map. A lot can be zoned for a home you want and still be limited by HOA architectural rules, so check both. Recorded easements, which also limit where you can build, show up in the title work too, not in the zoning code.</p>
+<h2>Call the planning department before you rely on the map</h2>
+<p>Online maps are a screening tool, not a guarantee. Zoning districts get amended, parcels get conditions attached through prior rezoning or variance cases, and maps lag reality. Before you remove your due-diligence contingency, call or email the planning department with the APN and ask three things: confirm the current zoning district, confirm a single-family home is a permitted use, and ask whether any overlays, conditions, pending rezonings, or code amendments affect the parcel. If your plans need something the current zoning does not allow, you would be looking at a rezoning or variance, which is a public, uncertain, and time-consuming process you want to know about before you buy, not after.</p>
+<h2>How Jematell Homes helps</h2>
+<p>When we evaluate a parcel with a buyer, confirming the zoning district, the minimum lot size, the setbacks, and any overlays is part of the conversation before an offer, so the home we design actually fits the rules of the lot. Because zoning codes and overlays change and because each city and county administers its own, we confirm the current designation and any conditions for your specific parcel with the local Authority Having Jurisdiction (the city planning department, or Maricopa or Pinal County for unincorporated land) before relying on any map.</p>`,
+      shortAnswer:
+        "Find the parcel number on the county assessor site, open the city or county zoning map, and confirm the district allows a single-family home at your density. Then call the planning department to verify setbacks, overlays such as Scottsdale ESL or floodplain, and any conditions. Check private CC&Rs and easements separately in the title report.",
+      metaDescription:
+        "How to check a lot's zoning before you buy in Arizona: find the parcel, read the zoning district and overlays, and confirm a single-family home is permitted with the city or county.",
+      categorySlug: "land-and-due-diligence",
+      topicSlugs: ["buying-land-to-build"],
+      tags: ["zoning", "due-diligence", "parcel-lookup", "overlays", "research-phase"],
+      relatedFaqSlugs: [
+        "how-do-i-know-if-a-lot-is-buildable",
+        "buying-raw-land-vs-a-finished-lot",
+        "what-are-setbacks-lot-coverage-and-naos-rules",
+        "easements-rights-of-way-and-where-you-can-build",
+      ],
+      relatedServiceSlugs: ["buy-a-lot-with-us", "build-on-your-lot", "custom-homes"],
+      pillarBlogSlug: "top-strategies-for-finding-the-perfect-building-lot-a-comprehensive-guide",
+      featured: false,
+      sortOrder: 10,
+    }),
+    item({
+      slug: "what-is-a-perc-test-and-do-i-need-one",
+      question:
+        "What is a percolation (perc) test and do I need one?",
+      answerHtml: `<p><strong>A percolation test, or perc test, measures how quickly water drains through the soil on a lot. It is used to design and locate a septic system, so you need one whenever the home will be on an onsite wastewater system instead of a municipal sewer. On most rural lots in the Jematell build area, including the Rio Verde Foothills and outlying parts of Maricopa and Pinal County, there is no sewer, which means a septic system, which means a soil and percolation evaluation is part of due diligence.</strong> The result decides whether a standard septic system works, whether you need a more expensive engineered alternative, and sometimes whether the lot can be developed at the density you want.</p>
+<h2>What a perc test actually measures</h2>
+<p>A percolation test involves digging or boring test holes at the proposed disposal area, saturating them, and timing how fast the water level drops. That drainage rate, combined with a soil profile showing the soil layers and any restrictive layers, tells a designer how well the ground can absorb and treat the effluent that a septic system discharges. Soil that drains too slowly (heavy clay) cannot accept the flow; soil that drains too fast (loose sand or fractured rock) does not treat the effluent enough before it reaches groundwater. Caliche, a cemented desert layer, and a shallow water table both complicate the picture. The test is the evidence that the leach field, also called the disposal field, will work where you want to put it.</p>
+<h2>Why and when you need one in Arizona</h2>
+<p>Onsite wastewater systems in Arizona are regulated by the Arizona Department of Environmental Quality under its rules for onsite wastewater treatment facilities (A.A.C. Title 18, Chapter 9), with permitting delegated to county environmental health departments such as Maricopa County Environmental Services. To get a construction authorization or permit for a septic system, the county requires a site investigation that includes a soil evaluation and, depending on the system, a percolation test performed and reported by a qualified professional. In practice you need a perc or soil evaluation when:</p>
+<ul>
+<li><strong>The lot has no access to a municipal or community sewer</strong>, which is the norm on rural and unincorporated parcels.</li>
+<li><strong>You are confirming feasibility before purchase</strong>, so you know the lot can actually support a system before you commit.</li>
+<li><strong>You are sizing the system</strong>, because the soil result and the home's number of bedrooms together determine the required disposal area.</li>
+</ul>
+<p>If the lot connects to a public sewer, you do not need a perc test for wastewater, though you may still want soils information for the foundation, which is a separate geotechnical question.</p>
+<h2>What happens if the soil does not perc well</h2>
+<p>A poor result is not always a dead end, but it costs money. Where conventional soil absorption will not work, the designer turns to an alternative or engineered system, such as a system with additional treatment before disposal, a different disposal method, or a larger or specially designed field. These cost more to install and sometimes more to maintain than a conventional septic system. A failed or marginal perc result can also limit how large a home the lot will support, because a bigger house with more bedrooms needs a larger disposal area. This is one of the practical reasons two similar-looking rural lots can carry very different all-in costs.</p>
+<h2>How it fits the rest of due diligence</h2>
+<p>The percolation and soil-absorption evaluation answers the wastewater question. It is separate from the structural geotechnical (soils) report, which tells your engineer how to design the foundation, although both involve looking at the ground and it often makes sense to plan them together early. It is also tied to the water question on a rural lot, because a parcel that needs a well and a septic system has to site the two with the required separation. Confirming septic feasibility, water, and access together before you buy is what keeps a rural lot from turning into an expensive surprise.</p>
+<h2>How Jematell Homes helps</h2>
+<p>On rural and unincorporated lots, we help buyers scope the wastewater question early, coordinate the soil and percolation evaluation with a qualified professional, and design the home so the disposal field, the well, and the structure all fit with the required separations. Because the rules, required test methods, and fees are set by ADEQ and administered by the county and can change, we confirm exactly what is required for your parcel with the local Authority Having Jurisdiction (Maricopa County Environmental Services, Pinal County, or your city, depending on where the lot sits) before relying on any result.</p>`,
+      shortAnswer:
+        "A perc test times how fast water drains through a lot's soil, which is how a septic system is designed and sited. You need one whenever the home will use a septic system instead of a municipal sewer, which is most rural Arizona lots. Poor-draining soil can force a costlier engineered system or limit the home size.",
+      metaDescription:
+        "What a percolation (perc) test is, when you need one for a septic system in Arizona, and what a poor result means for system cost and home size on a rural lot.",
+      categorySlug: "land-and-due-diligence",
+      topicSlugs: ["buying-land-to-build"],
+      tags: ["perc-test", "percolation", "septic", "soil-evaluation", "research-phase"],
+      relatedFaqSlugs: [
+        "how-do-septic-systems-work-for-a-new-home",
+        "can-i-build-without-city-water-or-sewer",
+        "buying-raw-land-vs-a-finished-lot",
+        "caliche-expansive-clay-and-desert-soils",
+      ],
+      relatedServiceSlugs: ["build-on-your-lot", "buy-a-lot-with-us", "custom-homes"],
+      pillarBlogSlug: null,
+      featured: false,
+      sortOrder: 11,
+    }),
+    item({
+      slug: "easements-rights-of-way-and-where-you-can-build",
+      question:
+        "How do easements and rights-of-way affect where I can build?",
+      answerHtml: `<p><strong>An easement is a recorded right for someone else to use part of your land for a specific purpose, and a right-of-way is the strip of land set aside for a road or utility corridor. You generally cannot build a permanent structure on top of an easement, so easements and rights-of-way shrink the usable, buildable area of a lot and shape where the house, garage, driveway, and pool can go.</strong> They are one of the most common reasons a parcel that looks big enough turns out to have a much smaller building envelope than the lot lines suggest, which is why you check for them before you buy.</p>
+<h2>What easements and rights-of-way are</h2>
+<p>Easements come in several forms, and each affects siting differently:</p>
+<ul>
+<li><strong>Utility easements</strong> give a power, water, gas, sewer, or telecom provider the right to run and maintain lines across your property. You cannot put a building over them, and they often run along lot lines.</li>
+<li><strong>Access easements (ingress and egress)</strong> let another parcel cross yours to reach a road. A shared driveway is a common example.</li>
+<li><strong>Drainage easements</strong> preserve a path for stormwater, which matters a great deal on desert lots that flow during monsoon storms.</li>
+<li><strong>Conservation or open-space easements</strong>, including required Natural Area Open Space set-asides in places like Scottsdale's environmentally sensitive lands, keep portions of a lot undisturbed.</li>
+</ul>
+<p>A right-of-way is the public or dedicated corridor for a street or a major utility. Your buildable area is measured from the edge of the right-of-way, not the centerline of the road, so the setback effectively starts further into the lot than people expect.</p>
+<h2>How they limit where you can build</h2>
+<p>The practical effect is that an easement or right-of-way is carved out of your building envelope. You typically cannot place a house, garage, or other permanent structure over a recorded easement, and some easements restrict even paving, walls, pools, or large landscaping. Combine the easements and rights-of-way with the zoning setbacks, any required open-space set-aside, and any floodplain or hillside limits, and what remains is the true area you can build on. On an otherwise generous lot, a utility easement along one boundary plus a drainage easement across a corner can push the house into a surprisingly narrow band.</p>
+<h2>How to find the easements on a lot</h2>
+<p>Easements are recorded, which means they are discoverable before you buy if you look in the right places:</p>
+<ul>
+<li><strong>Order a title commitment.</strong> The title report lists recorded easements and other encumbrances affecting the parcel. Read the exceptions schedule, not just the summary.</li>
+<li><strong>Pull the recorded plat and documents.</strong> The subdivision plat or recorded easement documents at the county recorder show the location and width of each easement.</li>
+<li><strong>Get a survey.</strong> A survey, ideally one that locates the easements on the ground (an ALTA-style survey), shows exactly where each easement sits relative to your planned building envelope. A list of easements in a title report does not always tell you where they are; a survey does.</li>
+<li><strong>Watch for unrecorded or prescriptive use.</strong> A long-used path or utility line that is not formally recorded can still create rights. If you see signs of use that the records do not explain, ask about it.</li>
+</ul>
+<h2>Why this matters before you make an offer</h2>
+<p>Because easements reduce the buildable area and dictate placement, discovering them after you design the home is expensive and sometimes fatal to the plan. A buyer who confirms the easements and rights-of-way during due diligence can design a home that fits, or can walk away from a lot whose building envelope is too small or too awkward for the home they want. This is also closely tied to legal access: the same recorded documents that grant you access across a neighbor's land are easements, and the absence of one can leave a parcel landlocked.</p>
+<h2>How Jematell Homes helps</h2>
+<p>When we evaluate a lot with a buyer, we factor the recorded easements, rights-of-way, setbacks, and any open-space requirements into the buildable envelope before we design, so the home is placed where it is actually allowed to sit. We work from the title commitment and the survey rather than guessing from the lot lines. Because easements are parcel-specific and the binding record is the recorded document, we confirm the exact location and terms of every easement with a title company, a licensed surveyor, and the county recorder, and we confirm setback and open-space rules with the local Authority Having Jurisdiction, before relying on any building footprint.</p>`,
+      shortAnswer:
+        "An easement is a recorded right for someone else to use part of your land, and a right-of-way is the corridor for a road or utility. You cannot build permanent structures over them, so they shrink the buildable area. Find them in the title commitment, the recorded plat, and a survey before you buy.",
+      metaDescription:
+        "How easements and rights-of-way affect where you can build in Arizona: what they are, how they shrink the buildable envelope, and how to find them in title and survey records.",
+      categorySlug: "land-and-due-diligence",
+      topicSlugs: ["buying-land-to-build"],
+      tags: ["easements", "rights-of-way", "buildable-envelope", "title", "research-phase"],
+      relatedFaqSlugs: [
+        "how-do-i-confirm-legal-access-to-a-rural-lot",
+        "how-do-i-know-if-a-lot-is-buildable",
+        "what-are-setbacks-lot-coverage-and-naos-rules",
+        "buying-raw-land-vs-a-finished-lot",
+      ],
+      relatedServiceSlugs: ["buy-a-lot-with-us", "build-on-your-lot", "custom-homes"],
+      pillarBlogSlug: "building-a-custom-home-in-rio-verde-az-lot-considerations-most-buyers-miss",
+      featured: false,
+      sortOrder: 12,
+    }),
+    item({
+      slug: "how-do-i-confirm-legal-access-to-a-rural-lot",
+      question:
+        "How do I confirm legal access to a rural or landlocked lot?",
+      answerHtml: `<p><strong>Confirm legal access by verifying, in the recorded records, that the parcel either fronts a public road or has a recorded easement granting you the right to cross other land to reach one. A dirt road that physically reaches the lot is not the same as a legal right to use it, and a parcel without recorded access is landlocked, which can stop you from getting a building permit, financing, or title insurance.</strong> On rural lots in the Rio Verde Foothills and the outlying parts of Maricopa and Pinal County, access is one of the first things to verify, because it is both common to be missing and expensive to fix after the fact.</p>
+<h2>Legal access versus physical access</h2>
+<p>Physical access means you can drive to the lot today. Legal access means you have a recorded, enforceable right to do so that runs with the land and cannot be revoked by a neighbor. These are not the same thing. Many rural parcels are reached by a dirt track that crosses someone else's property with no recorded easement, which means the owner could lose access if relations change or the neighboring land sells. A buyer relying on a handshake or long use is taking a real risk. The goal of due diligence is to turn physical access into documented legal access, or to find out before you buy that it does not exist.</p>
+<h2>How to confirm legal access</h2>
+<ul>
+<li><strong>Order a title commitment and read it for access.</strong> A title company can tell you whether the parcel has recorded legal access and will often except from coverage any access that is not insured. If the title company will not insure access, treat that as a serious warning.</li>
+<li><strong>Check for road frontage.</strong> If the lot fronts a public, dedicated, county-maintained road, access is generally established. Confirm the road is public and accepted, not a private road that only looks public.</li>
+<li><strong>Look for a recorded access easement.</strong> If the lot is reached by crossing other land, there should be a recorded ingress and egress easement at the county recorder describing the route and width. Confirm it actually connects your parcel to a public road, not just to another private parcel.</li>
+<li><strong>Get a survey.</strong> A surveyor can show whether the recorded access matches the road on the ground and whether the easement is wide enough for a driveway and for emergency vehicles.</li>
+<li><strong>Ask about a road maintenance agreement.</strong> Shared private roads often have, or should have, a recorded maintenance agreement spelling out who pays to keep the road usable.</li>
+</ul>
+<h2>What landlocked means and how it gets fixed</h2>
+<p>A landlocked parcel has no recorded legal access to a public road. Arizona law does provide remedies, but they are slow, uncertain, and sometimes costly. An owner can negotiate and purchase an easement from a neighbor, which depends entirely on the neighbor's willingness and price. In some circumstances a court can recognize an easement by necessity or grant a private way of necessity to a landlocked owner under Arizona statute, but that is a legal proceeding, not a quick fix, and the outcome is not guaranteed. None of this is something to count on after you have already bought; it is a reason to confirm access before you commit.</p>
+<h2>Why access also drives permitting</h2>
+<p>Access is not only a legal question; it is a permitting one. Building departments and fire authorities require that a homesite be reachable by emergency apparatus, which can mean minimum road width, surface, grade, and turnaround standards for the access route and driveway. A parcel with a marginal track may need road improvements before a permit will issue, which is a cost and a timeline item. Address assignment and utility service also depend on a defined, legal access point. So confirming access early protects the permit, the budget, and the schedule, not just the deed.</p>
+<h2>How Jematell Homes helps</h2>
+<p>For rural and unincorporated lots, we help buyers treat access as a first-tier question alongside water and septic, working from the title commitment and the survey rather than from how the road looks on a site visit. We help scope what an access route needs to satisfy the building and fire requirements so the driveway and any road work are in the budget from the start. Because access rights live in recorded documents and because permitting standards are set locally, we confirm legal access with a title company and a licensed surveyor and confirm the access and emergency-vehicle requirements with the local Authority Having Jurisdiction (Maricopa County, Pinal County, or your city, plus the fire authority) before relying on any access for your parcel.</p>`,
+      shortAnswer:
+        "Verify in recorded records that the lot either fronts a public road or has a recorded ingress and egress easement to one. A dirt road you can drive is not legal access, and a landlocked parcel can block your permit, financing, and title insurance. Confirm with a title company and surveyor before you buy.",
+      metaDescription:
+        "How to confirm legal access to a rural or landlocked lot in Arizona: recorded easements, road frontage, title insurance, and the permitting and emergency-access requirements.",
+      categorySlug: "land-and-due-diligence",
+      topicSlugs: ["buying-land-to-build"],
+      tags: ["legal-access", "landlocked", "ingress-egress", "rural-lots", "research-phase"],
+      relatedFaqSlugs: [
+        "easements-rights-of-way-and-where-you-can-build",
+        "buying-raw-land-vs-a-finished-lot",
+        "how-do-i-know-if-a-lot-is-buildable",
+        "can-i-build-without-city-water-or-sewer",
+      ],
+      relatedServiceSlugs: ["build-on-your-lot", "buy-a-lot-with-us", "custom-homes"],
+      pillarBlogSlug: "what-to-do-after-buying-land-in-arizona",
+      featured: false,
+      sortOrder: 13,
+    }),
     // ======================= Water, Septic & Utilities ======================
     item({
       slug: "can-i-build-without-city-water-or-sewer",
@@ -992,6 +1318,163 @@ export const faqSeed: FaqSeed = {
       sortOrder: 12,
     }),
 
+    item({
+      slug: "how-much-does-it-cost-to-drill-a-well-in-arizona",
+      question: "How much does it cost to drill a well in Arizona?",
+      answerHtml: `<p><strong>There is no single price for a well in Arizona because the two things that drive the cost the most, depth and yield, are unknown until you drill. A typical domestic well on a rural lot in our build area usually runs into the tens of thousands of dollars once you add the pump, storage, and electrical, and a deep or low-producing well can cost several times a shallow one.</strong> The honest planning answer is to budget a realistic range, not a fixed number, and to gather as much local well data as you can before you commit to a parcel.</p>
+<h2>Why there is no flat price</h2>
+<p>A well is priced largely by the foot, so the depth to a reliable water-bearing layer is the single biggest variable. Two lots a mile apart can hit good water at very different depths depending on the aquifer beneath them. On top of depth, the well's <strong>yield</strong> (how many gallons per minute it reliably produces) determines what pump and storage you need and whether the well can serve the home at all. Most homes are built around an <strong>exempt well</strong> under A.R.S. 45-454, a non-irrigation well with a pump no larger than 35 gallons per minute, but the legal ceiling is not a promise of yield. The ground decides the yield; the pump just cannot exceed the exempt limit.</p>
+<h2>What goes into the total cost</h2>
+<p>When buyers hear a "per-foot" drilling quote, that number is only one line item. A working domestic water system on a rural lot usually includes:</p>
+<ul>
+<li><strong>Drilling</strong> itself, charged by the foot, including the borehole and the rig time.</li>
+<li><strong>Casing and well construction</strong> built to ADWR's well construction standards so the well does not contaminate the aquifer.</li>
+<li><strong>The pump and motor</strong>, sized to the well's depth and yield. A deeper well needs a more powerful pump.</li>
+<li><strong>Pressure tank, wiring, and controls</strong> to deliver consistent water pressure to the house.</li>
+<li><strong>Electrical service to the wellhead</strong>, which on a remote lot can mean a meaningful trenching or line-extension cost of its own.</li>
+<li><strong>Water storage</strong> (a holding tank or cistern), often added when yield is modest so the home has a buffer.</li>
+<li><strong>Water treatment</strong> if testing shows hardness, arsenic, or other quality issues common in some Arizona groundwater.</li>
+</ul>
+<p>Because of all those pieces, the drilling quote alone understates the real cost of getting water to the tap. Treat it as a starting point, not the finished number.</p>
+<h2>Required steps that affect the bill</h2>
+<p>Arizona's well rules add a few non-negotiable steps, each of which carries cost or time:</p>
+<ol>
+<li><strong>Hire a licensed driller.</strong> ADWR requires that whoever drills, deepens, or abandons a well hold a current Arizona drilling license. This is not a do-it-yourself job.</li>
+<li><strong>File a Notice of Intent to Drill.</strong> Before any drilling, a Notice of Intent goes to ADWR, which issues a drilling card and a unique well registration number.</li>
+<li><strong>Drill, construct, and equip the well</strong> to ADWR standards.</li>
+<li><strong>File the well completion report</strong> recording depth, yield, and construction. That record becomes part of the well's permanent file and is exactly the kind of document you want to read on neighboring wells before you buy.</li>
+</ol>
+<h2>How to narrow the range before you drill</h2>
+<p>You can reduce the guesswork without a crystal ball. Pull ADWR's well records for nearby parcels to see the depths and yields drillers actually hit in the area. Talk to two or three drillers who work that specific area, since their local experience is worth more than any statewide average. Ask whether the lot may need storage or treatment, because those add cost that a bare drilling quote hides. And build a contingency into the budget, since the well is one of the few parts of a rural build where the final price genuinely is not known until the work is done.</p>
+<h2>What this means for the parcel decision</h2>
+<p>On a lot with no water provider, the well is often the make-or-break cost item. A shallow, productive aquifer can make a well a reasonable line in the budget; a deep or stubborn one can change whether the parcel pencils out at all, and may push you toward hauled water with on-site storage instead. That is why the water question belongs at the front of due diligence, alongside septic feasibility and access, not after you have fallen in love with the lot.</p>
+<h2>How Jematell Homes helps</h2>
+<p>We build regularly on rural and unserved lots, so we can help you scope what a well is likely to cost on a given parcel, pull and read nearby well records, coordinate the licensed driller and the ADWR filings, and sequence the well so it does not hold up the building permit or collide with the septic field. Because well costs, depths, and aquifer conditions vary parcel by parcel and ADWR's requirements change over time, we confirm the current process and likely costs with ADWR, licensed drillers, and the local AHJ for your specific site rather than quoting a one-size-fits-all number.</p>`,
+      shortAnswer:
+        "There is no flat price for an Arizona well because depth and yield are unknown until you drill. A typical domestic well, once you add the pump, storage, and electrical, runs into the tens of thousands, and a deep or low-yield well costs far more. Pull nearby ADWR well records and budget a range. Confirm specifics with ADWR and licensed drillers.",
+      metaDescription:
+        "How much does it cost to drill a well in Arizona? Depth and yield drive the price, and a complete domestic well system (drilling, pump, storage, electrical) usually runs into the tens of thousands.",
+      categorySlug: "water-septic-utilities",
+      topicSlugs: ["rural-water-and-septic"],
+      tags: ["well", "well-cost", "adwr", "rural", "research-phase"],
+      relatedFaqSlugs: [
+        "drilling-a-well-in-arizona-the-exempt-well-rule",
+        "what-is-a-shared-well-agreement",
+        "can-i-build-without-city-water-or-sewer",
+      ],
+      relatedServiceSlugs: ["build-on-your-lot", "custom-homes"],
+      pillarBlogSlug: "rio-verde-arizona-utilities-water-infrastructure",
+      featured: false,
+      sortOrder: 13,
+    }),
+    item({
+      slug: "what-is-a-shared-well-agreement",
+      question: "What is a shared well agreement, and what should I check before relying on one?",
+      answerHtml: `<p><strong>A shared well agreement is a recorded contract that lets two or more parcels draw water from a single well and spells out who pays for what, how the well is maintained, and who may use it. On rural Arizona lots without a water provider, a shared well can be a sensible way to split the high cost of drilling, but the agreement behind it is only as good as its terms, and you should read it closely before you rely on it.</strong> Treat the agreement as a core piece of due diligence, on par with the title report and the septic records.</p>
+<h2>Why shared wells exist</h2>
+<p>Drilling a well is expensive, and on lots with no city water it is often the single largest utility cost. Neighbors sometimes share one well to split that cost and to avoid drilling several holes into the same aquifer. Most domestic wells operate as <strong>exempt wells</strong> under A.R.S. 45-454, with a pump no larger than 35 gallons per minute. That same capacity must now serve multiple homes, so a well that is comfortable for one household can be tight for three. Understanding how many connections the well supports, and how its yield is divided, is the first question to ask.</p>
+<h2>What a good agreement covers</h2>
+<p>A shared well agreement is typically recorded against all the served parcels so it runs with the land and binds future owners. A thorough one addresses:</p>
+<ul>
+<li><strong>Who may use the well</strong> and how many homes or connections it serves.</li>
+<li><strong>Cost sharing</strong> for electricity to run the pump, routine maintenance, repairs, and eventual replacement of the pump or the well itself.</li>
+<li><strong>Maintenance responsibilities</strong>, including who arranges service and how decisions get made when the well needs work.</li>
+<li><strong>Access easements</strong> across the parcel that holds the wellhead, so every user has a legal right to reach and maintain the equipment and the pipes.</li>
+<li><strong>Water allocation</strong> if the well's yield is limited, including any rules during shortages.</li>
+<li><strong>Dispute resolution</strong> for when owners disagree about cost or repairs.</li>
+<li><strong>What happens on sale</strong>, so the obligations and rights transfer cleanly to the next owner.</li>
+</ul>
+<p>If the well sits on a neighbor's parcel rather than yours, the recorded easement is what guarantees your continued access. A handshake or an unrecorded note is not enough, because it may not bind a future owner of the parcel where the well lives.</p>
+<h2>Lender and resale considerations</h2>
+<p>Shared wells also matter to financing. Many mortgage lenders, including government-backed loan programs, expect a properly recorded shared well agreement with specific protections before they will lend on a home that depends on one. A missing or weak agreement can complicate your own purchase financing and can make the home harder to sell later. Confirming that an enforceable, recorded agreement exists is therefore both a water question and a resale question.</p>
+<h2>What to check before you rely on one</h2>
+<p>Before counting on a shared well for a parcel you are considering, work through a short checklist:</p>
+<ol>
+<li><strong>Get the recorded agreement</strong> and read it, rather than relying on a description. Confirm it is actually recorded against the parcels.</li>
+<li><strong>Find out how many homes the well serves</strong> today and how many it is permitted or designed to serve, then compare that to the well's yield.</li>
+<li><strong>Review the well's ADWR records</strong> for depth, yield, and age, and ask when the pump was last replaced.</li>
+<li><strong>Confirm the access easement</strong> if the wellhead is on someone else's parcel.</li>
+<li><strong>Understand the cost split</strong> for power, maintenance, and the big-ticket replacement that will eventually come.</li>
+<li><strong>Ask about water quality and treatment</strong>, since all users share the same source.</li>
+</ol>
+<h2>How Jematell Homes helps</h2>
+<p>We build on rural and unserved lots where shared wells are common, so we can help you ask the right questions about a parcel's water arrangement, factor the shared-well terms into your planning, and coordinate the well, storage, and septic so they work together on the site. Because a shared well agreement is a legal document and water rights are technical, we point you to a qualified real estate attorney and to ADWR for formal review rather than offering legal conclusions, and we always confirm the current requirements with the local AHJ and your lender.</p>`,
+      shortAnswer:
+        "A shared well agreement is a recorded contract letting two or more parcels draw from one well, covering who may use it, how costs and maintenance are split, and access easements. Before relying on one, read the recorded agreement, check how many homes the well serves against its yield, and confirm lenders accept it. Have an attorney review it.",
+      metaDescription:
+        "What is a shared well agreement in Arizona? A recorded contract letting multiple parcels share one well. Check the recorded terms, the well's yield versus the number of homes, and access easements.",
+      categorySlug: "water-septic-utilities",
+      topicSlugs: ["rural-water-and-septic"],
+      tags: ["shared-well", "well-agreement", "easement", "rural", "research-phase"],
+      relatedFaqSlugs: [
+        "how-much-does-it-cost-to-drill-a-well-in-arizona",
+        "drilling-a-well-in-arizona-the-exempt-well-rule",
+        "buying-raw-land-vs-a-finished-lot",
+      ],
+      relatedServiceSlugs: ["build-on-your-lot", "buy-a-lot-with-us"],
+      pillarBlogSlug:
+        "building-a-custom-home-in-rio-verde-az-lot-considerations-most-buyers-miss",
+      featured: false,
+      sortOrder: 14,
+    }),
+    item({
+      slug: "getting-power-and-utilities-to-a-rural-lot",
+      question: "How do I get power, propane, and internet to a rural lot?",
+      answerHtml: `<p><strong>On a rural lot in our build area you usually cannot assume the utilities are at the property line. Electricity often has to be extended to the lot at the owner's cost, natural gas is frequently unavailable so homes run on propane, and internet comes from fixed wireless, satellite, or cellular rather than a guaranteed fiber connection.</strong> Confirming each of these before you buy, and budgeting for the gaps, is one of the most important parts of rural due diligence.</p>
+<h2>Getting electric power to the lot</h2>
+<p>In our area the electric provider is typically a utility such as APS or SRP, depending on the location. The key question is not just "is there power nearby" but "how far is the nearest service, and what will it cost to bring it to the building site." A lot a few hundred feet from existing lines is a very different proposition from one that needs a long line extension. Expect the process to involve:</p>
+<ul>
+<li><strong>A line-extension request</strong> to the utility, which studies the route and provides a cost estimate. Long extensions across desert terrain can be a major budget item, and the cost can fall on the owner.</li>
+<li><strong>Trenching and conduit</strong> from the connection point to the home, plus any transformer the utility requires.</li>
+<li><strong>Temporary construction power</strong>, since the crew needs electricity during the build. On very remote sites this can mean a generator until permanent service is energized.</li>
+<li><strong>Easements</strong> if the line must cross neighboring parcels to reach yours.</li>
+</ul>
+<p>Because line extensions take time as well as money, start the conversation with the utility early. A long lead time on power can otherwise stall the whole project. Where extending the grid is impractical, some rural owners look at a solar-plus-battery system, which is a design decision to weigh against the extension cost rather than an automatic answer.</p>
+<h2>Propane instead of natural gas</h2>
+<p>Many rural lots have no natural gas service, so homes that want gas for cooking, heating, a water heater, or a pool use propane stored in an on-site tank. Planning for propane means:</p>
+<ul>
+<li><strong>Choosing a tank size</strong> suited to the home's appliances, with larger or buried tanks for higher demand.</li>
+<li><strong>Siting the tank</strong> to meet required clearances from the house, property lines, and ignition sources, which is a code and safety question for the local AHJ.</li>
+<li><strong>Lining up a propane supplier</strong> for the initial fill and ongoing deliveries, and understanding delivery access on the lot.</li>
+<li><strong>Deciding between owning or leasing the tank</strong>, which affects upfront cost and which supplier you can buy from.</li>
+</ul>
+<p>Some homeowners skip gas entirely and design an all-electric home, which simplifies the lot but shifts demand onto the electric service you are already arranging. It is worth deciding gas versus all-electric early, because it touches both the propane plan and the size of the electric service.</p>
+<h2>Internet and connectivity</h2>
+<p>Reliable internet is no longer optional, and on a rural lot it rarely arrives by default. The realistic options are:</p>
+<ul>
+<li><strong>Fixed wireless</strong> from a regional provider, where a small antenna on the home receives a signal from a nearby tower. Availability depends on line of sight and coverage.</li>
+<li><strong>Satellite internet</strong>, including low-earth-orbit services, which now reaches even very remote desert lots and has made off-grid connectivity far more workable than it was a few years ago.</li>
+<li><strong>Cellular home internet</strong>, which can work well where carrier coverage is strong.</li>
+<li><strong>Fiber or cable</strong>, which is the best option when it exists but is far from guaranteed on outlying parcels. Never assume it is available without checking each provider against the specific address.</li>
+</ul>
+<p>Check connectivity at the actual parcel, not the general area, because coverage can change street by street in the desert.</p>
+<h2>A due-diligence checklist</h2>
+<p>Before you commit to a rural lot, confirm in writing where possible:</p>
+<ol>
+<li>The distance to the nearest electric service and an estimate for extending it, including any easements.</li>
+<li>Whether natural gas exists or whether you will plan for propane, and where a tank can legally sit.</li>
+<li>Which internet options actually serve the address, tested or confirmed at the parcel.</li>
+<li>How these utilities interact with your well, septic, and driveway plan, since they share the same site and trenches.</li>
+</ol>
+<h2>How Jematell Homes helps</h2>
+<p>We build on rural and unserved lots throughout our area, so we can help you map out what each utility will take, coordinate the electric line extension and temporary construction power, plan the propane and the trenching alongside the well and septic, and sequence it all so the home is ready to occupy. Because providers, coverage, and costs vary by exact location and change over time, we confirm current availability and pricing with the relevant utilities and the local AHJ for your specific parcel rather than assuming what is at the line.</p>`,
+      shortAnswer:
+        "On a rural lot, do not assume utilities are at the line. Electricity often must be extended to the lot at the owner's cost through a utility like APS or SRP; natural gas is usually absent so homes run on propane stored in an on-site tank; and internet comes from fixed wireless, satellite, or cellular. Confirm each at the parcel and budget the gaps.",
+      metaDescription:
+        "How do you get power, propane, and internet to a rural Arizona lot? Electricity often needs a paid line extension, gas is usually propane in an on-site tank, and internet means fixed wireless, satellite, or cellular.",
+      categorySlug: "water-septic-utilities",
+      topicSlugs: ["rural-water-and-septic"],
+      tags: ["utilities", "electric", "propane", "internet", "rural", "research-phase"],
+      relatedFaqSlugs: [
+        "can-i-build-without-city-water-or-sewer",
+        "buying-raw-land-vs-a-finished-lot",
+        "how-do-i-know-if-a-lot-is-buildable",
+      ],
+      relatedServiceSlugs: ["build-on-your-lot", "buy-a-lot-with-us"],
+      pillarBlogSlug: "rio-verde-arizona-utilities-water-infrastructure",
+      featured: false,
+      sortOrder: 15,
+    }),
     // ============================ Costs & Budget ============================
     item({
       slug: "how-much-does-it-cost-to-build-a-custom-home",
@@ -1230,6 +1713,149 @@ export const faqSeed: FaqSeed = {
       sortOrder: 14,
     }),
 
+    item({
+      slug: "how-much-should-i-budget-for-site-work",
+      question: "How much should I budget for site work on a raw lot?",
+      answerHtml: `<p><strong>Site work is everything that has to happen to a raw lot before the house itself can rise: clearing and grading, bringing in power and water, putting in a well and septic where there is no city service, building a driveway and access, and engineering drainage. On a finished subdivision lot most of this is already done. On raw desert land it is not, and it lands in your budget first. The honest answer is that site work is the most variable line in a custom-home budget, and on a difficult parcel it can run from the tens of thousands into well over a hundred thousand dollars before a single wall goes up.</strong> The number depends almost entirely on the specific lot, so the goal of this answer is to show you what to budget for, not to hand you a figure to bank on.</p>
+<h2>What "site work" actually includes</h2>
+<p>When builders talk about site costs on a raw lot in our markets, they usually mean some combination of the following:</p>
+<ul>
+<li><strong>Clearing and demolition.</strong> Removing brush, native vegetation, rock, and any existing structures. In Arizona this can also trigger native plant protection rules and dust-control requirements, so it is not always as simple as running a machine over the land.</li>
+<li><strong>Grading and earthwork.</strong> Cut and fill to create a level building pad, plus any retaining walls. This is where a sloped or rocky lot gets expensive fast, because moving and compacting earth is priced by the volume and difficulty of the work.</li>
+<li><strong>Utility extension.</strong> Running electric service from the nearest line to the home, and water where a municipal main is available. The further your building site sits from existing service, the longer and costlier the run.</li>
+<li><strong>Well and septic.</strong> On rural land with no city water or sewer, you are budgeting for a drilled well and an engineered on-site wastewater (septic) system instead of a tap and a sewer connection. Both are permitted separately and both depend on conditions you cannot fully price until they are tested.</li>
+<li><strong>Driveway and access.</strong> A culvert, a graded or paved driveway, and any right-of-way or encroachment work to connect the lot to the public road.</li>
+<li><strong>Drainage and stormwater.</strong> Grading and retention to carry monsoon runoff away from the house. Arizona's adopted residential code requires the finished grade to slope away from the foundation, so this is not optional, it is engineered.</li>
+</ul>
+<h2>Why the range is so wide</h2>
+<p>Two lots that look similar from the road can carry very different site budgets. The biggest swing factors are:</p>
+<ul>
+<li><strong>Slope and topography.</strong> A flat pad needs little earthwork. A hillside lot can trigger hillside-disturbance and grading rules, heavier structural engineering, and far more cut and fill.</li>
+<li><strong>Soils and what is underground.</strong> Caliche (a cement-hard calcium-carbonate layer common in the desert), expansive clay, and collapsible soils all raise excavation and foundation cost. A geotechnical (soils) report is one of the first studies worth ordering, because it tells you what the ground will demand before you commit a budget.</li>
+<li><strong>Distance to utilities.</strong> A parcel a quarter mile from the nearest power line carries a very different extension cost than one with service at the property line.</li>
+<li><strong>Water and wastewater feasibility.</strong> Well depth is not knowable until you drill, and the septic system the soils require (a conventional system versus a more expensive engineered or alternative system) is set by a percolation or soils evaluation. Both are real unknowns at the budgeting stage.</li>
+<li><strong>Access.</strong> A long private driveway across uneven ground costs far more than a short connection to a paved street.</li>
+</ul>
+<h2>How to put a working number on it</h2>
+<p>Because the variables are lot-specific, the right approach is to convert unknowns into studies before you finalize a budget. The studies that retire the most risk are a boundary and topographic survey, a geotechnical (soils) report, a percolation or septic feasibility evaluation, and written will-serve or service-availability letters from the utility and water providers. Each one costs a fraction of the surprise it prevents. Order them during due diligence, ideally before you close on the land, so the site budget is built on tested facts rather than optimism.</p>
+<p>It also helps to separate the site budget from the house budget in your own planning. Lumping them together hides where the money is really going, and on many raw lots the ground is where the budget is truly decided. Keeping site work as its own set of line items lets you see the true cost of the parcel you are considering and compare two lots honestly.</p>
+<h2>Permits and fees are part of site work too</h2>
+<p>Site work is not just dirt and pipe. Grading and drainage permits, a septic permit from the county environmental department, well registration with the Arizona Department of Water Resources, and any driveway or encroachment permit each carry their own fee and review timeline. In unincorporated areas such as the Rio Verde Foothills the county, not a city, is the Authority Having Jurisdiction, and a septic clearance is typically required before the building permit releases. Build those approvals into both the budget and the schedule.</p>
+<h2>How Jematell Homes approaches it</h2>
+<p>We price the site and the house as two separate conversations, because on many of the lots we build, the site is where the real cost lives. Before we commit to a site budget we want the survey, the soils report, the septic feasibility, and the utility will-serve letters in hand, so the number reflects your actual ground rather than a generic allowance. We also sequence the grading, well, septic, and access permits so they do not stall the building permit. Because soils, well depth, and fee schedules all vary by parcel and change over time, treat any planning figure as a starting point and confirm the current requirements and costs with the local Authority Having Jurisdiction, your utility and water providers, and your licensed site professionals for your specific lot.</p>`,
+      shortAnswer:
+        "Site work covers clearing, grading, utility runs, a well and septic where there is no city service, a driveway, and drainage. On a raw desert lot it is the most variable budget line and can run from the tens of thousands into six figures before the house begins. Order a survey, soils report, septic feasibility, and utility will-serve letters to price it, and confirm costs for your specific parcel.",
+      metaDescription:
+        "How much should you budget for site work on a raw Arizona lot? Clearing, grading, utilities, well, septic, driveway, and drainage, plus the studies that let you price it.",
+      categorySlug: "costs-and-budget",
+      topicSlugs: ["budgeting-a-custom-home"],
+      tags: ["site-work", "raw-land", "grading", "well-and-septic", "budget", "research-phase"],
+      relatedFaqSlugs: [
+        "what-drives-custom-home-cost-per-square-foot",
+        "buying-raw-land-vs-a-finished-lot",
+        "how-much-does-it-cost-to-build-a-custom-home",
+        "what-deposit-do-custom-home-builders-require",
+      ],
+      relatedServiceSlugs: ["build-on-your-lot", "buy-a-lot-with-us", "custom-homes"],
+      pillarBlogSlug: "establish-a-realistic-budget-before-designing-your-custom-home",
+      featured: false,
+      sortOrder: 15,
+    }),
+    item({
+      slug: "fixed-price-vs-cost-plus-building-contracts",
+      question: "What is the difference between a fixed-price and a cost-plus building contract?",
+      answerHtml: `<p><strong>The two most common ways a custom home is priced are a fixed-price (also called lump-sum or stipulated-sum) contract and a cost-plus contract. In a fixed-price contract the builder commits to a single total for a defined scope, and the builder carries the risk if costs run over. In a cost-plus contract you pay the actual cost of materials and labor plus an agreed builder's fee, so you carry the risk if costs rise but you also see exactly where the money goes. Many Arizona custom builds use a hybrid, such as cost-plus with a guaranteed maximum price, that tries to capture the best of both.</strong> Neither structure is automatically better; the right one depends on how defined your design is and how you want to share risk.</p>
+<h2>Fixed-price (lump-sum) contracts</h2>
+<p>A fixed-price contract states one number for an agreed scope of work. You know the bottom line up front, which makes budgeting and loan qualification simpler, and the builder absorbs the impact if material or labor prices climb during construction. The trade-offs are real, though:</p>
+<ul>
+<li><strong>It needs a complete design to price honestly.</strong> A builder can only commit to a firm number when the plans, specifications, and selections are well defined. If you are still deciding on finishes, the contract leans heavily on allowances (placeholder budgets for items not yet chosen), and going over those allowances changes your price through change orders.</li>
+<li><strong>The contingency is built in and hidden.</strong> Because the builder carries the overrun risk, a prudent fixed price includes a cushion for the unknowns. You may pay for risk that never materializes.</li>
+<li><strong>Less visibility.</strong> You generally do not see the builder's actual costs or markup, only the total and the line items.</li>
+</ul>
+<p>Fixed price tends to fit buyers who want certainty above all, who have a fully designed home, and who do not need to watch every invoice.</p>
+<h2>Cost-plus contracts</h2>
+<p>In a cost-plus arrangement you reimburse the actual, documented cost of construction (materials, subcontractors, labor) and pay the builder a fee on top, structured either as a fixed dollar amount or a percentage of cost. The advantages are transparency and flexibility:</p>
+<ul>
+<li><strong>You see the real costs.</strong> Open-book accounting means you can review supplier invoices and subcontractor bids. If a trade comes in under budget, you keep the savings rather than the builder.</li>
+<li><strong>It handles evolving designs.</strong> If your selections are not final, or the lot holds surprises like rock or caliche, cost-plus adapts without renegotiating a lump sum each time.</li>
+<li><strong>The trade-off is uncertainty.</strong> You do not know the final total until the home is finished, and if costs rise, you absorb them. A percentage fee can also, in theory, reward higher spending, which is why many buyers prefer a fixed fee or a cap.</li>
+</ul>
+<h2>The hybrid: cost-plus with a guaranteed maximum price</h2>
+<p>A widely used middle path is cost-plus with a guaranteed maximum price (often shortened to GMP). You get open-book transparency and the flexibility of cost-plus, but the builder also commits to a ceiling the total will not exceed for the defined scope. Savings below the cap are often shared or returned to you, while overruns above the cap (for the agreed scope) are the builder's responsibility. For a complex custom build on an uncertain lot, this structure balances control of the downside with visibility into the costs.</p>
+<h2>What Arizona buyers should check before signing any contract</h2>
+<p>Whatever structure you choose, Arizona law and good practice point to the same protections:</p>
+<ul>
+<li><strong>Verify the contractor's license.</strong> Residential building in Arizona requires a licensed contractor (for example a B-class general residential license) regulated by the Arizona Registrar of Contractors (ROC). You can confirm a license, its status, and complaint history on the ROC website before you sign.</li>
+<li><strong>Get it in writing with a clear scope.</strong> The contract should spell out the scope, the plans and specifications, the allowance amounts, the payment or draw schedule, the change-order process, the warranty, and how disputes are handled. Vague scope is the root of most cost fights.</li>
+<li><strong>Understand allowances and change orders.</strong> In both contract types, allowances and changes are where the price actually moves. Know how they are priced and approved.</li>
+<li><strong>Know your backstop.</strong> Arizona maintains a Residential Contractors' Recovery Fund (A.R.S. 32-1131 and following) that can compensate an eligible homeowner, up to a statutory cap per transaction, for certain losses caused by a licensed residential contractor. It is a safety net, not a substitute for a careful contract.</li>
+</ul>
+<h2>How Jematell Homes approaches it</h2>
+<p>We talk through contract structure early, because the right choice depends on how finished your design is and how you want to handle risk on your particular lot. We work from a defined scope, realistic allowances, and a clear change-order process so the number you agree to is the number you understand, whichever structure we use. Because contract terms carry legal and financial consequences, confirm the specifics with your builder, verify the contractor's license on the Arizona Registrar of Contractors website, and have an attorney review the agreement before you sign.</p>`,
+      shortAnswer:
+        "A fixed-price contract sets one total for a defined scope and the builder carries the overrun risk, which needs a complete design to price honestly. A cost-plus contract pays actual cost plus a builder's fee with open-book transparency, but you carry the overrun risk. A hybrid with a guaranteed maximum price blends both. Always verify the contractor's license and have an attorney review the agreement.",
+      metaDescription:
+        "Fixed-price vs cost-plus building contracts: how each prices a custom home, who carries the risk, the guaranteed-maximum-price hybrid, and what Arizona buyers should verify.",
+      categorySlug: "costs-and-budget",
+      topicSlugs: ["budgeting-a-custom-home"],
+      tags: ["building-contracts", "fixed-price", "cost-plus", "roc", "budget", "research-phase"],
+      relatedFaqSlugs: [
+        "what-are-allowances-and-change-orders",
+        "what-deposit-do-custom-home-builders-require",
+        "how-much-does-it-cost-to-build-a-custom-home",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug: "establish-a-realistic-budget-before-designing-your-custom-home",
+      featured: false,
+      sortOrder: 16,
+    }),
+    item({
+      slug: "what-deposit-do-custom-home-builders-require",
+      question: "What deposit or payment schedule do custom home builders require?",
+      answerHtml: `<p><strong>A custom home is almost never paid for in one lump sum. You typically put down an initial deposit to start design and pre-construction, and then pay the construction cost through a series of progress payments, often called draws, that are released as defined stages of the work are completed and inspected. When the build is financed, the lender's draw schedule drives most of those payments. The guiding principle, and the one Arizona's contractor regulator emphasizes, is that your payments should track the work actually completed, so you never get far ahead of what has been built.</strong> There is no single mandatory schedule; the details live in your contract, so understanding the structure protects you.</p>
+<h2>The initial deposit</h2>
+<p>Most custom builders ask for a deposit before construction to cover the early design, engineering, and pre-construction work, and to secure your place in the schedule. This is sometimes handled as a separate design or pre-construction agreement before the main construction contract is signed. A reasonable deposit funds real work that is delivered to you, such as plans, engineering, and permitting, rather than simply sitting as money paid far ahead of any deliverable. The Arizona Registrar of Contractors (ROC) consistently advises homeowners to be cautious about large up-front payments and to make sure payments correspond to work performed or materials delivered.</p>
+<h2>The progress-payment (draw) schedule</h2>
+<p>The bulk of the cost is paid through progress payments tied to construction milestones. A typical sequence releases funds at stages such as:</p>
+<ol>
+<li>Site work and foundation complete.</li>
+<li>Framing and roof complete (dried-in).</li>
+<li>Mechanical, electrical, and plumbing rough-in complete.</li>
+<li>Insulation, drywall, and interior finishes underway.</li>
+<li>Final completion and certificate of occupancy.</li>
+</ol>
+<p>The point of structuring payments this way is that the money follows verified progress. Before each payment, the work for that stage should be confirmed as complete, which keeps you from paying for work that has not been done.</p>
+<h2>How financing changes the picture</h2>
+<p>If you are using a construction loan, the lender, not just the builder, controls the rhythm of payments. With a construction-to-permanent (one-time-close) loan, the lender releases funds in draws and usually orders an inspection before each draw to confirm the stage is complete. During construction you generally pay interest only on the amount drawn so far, and the loan converts to a permanent mortgage at completion. In that arrangement your cash deposit is often applied to the early costs and to your required equity, and if you already own the lot, its value can count toward that equity and reduce the cash you bring to closing.</p>
+<h2>Protections to build into the schedule</h2>
+<p>A few contract details keep a payment schedule fair to both sides:</p>
+<ul>
+<li><strong>Tie every payment to a defined, verifiable milestone.</strong> Avoid payments based only on the calendar; tie them to completed, inspectable stages so money tracks work.</li>
+<li><strong>Use lien waivers.</strong> Collecting a lien waiver from the builder (and, where appropriate, subcontractors and suppliers) as payments are made helps confirm that the people who did the work are being paid, which protects you from a later mechanic's lien on your home.</li>
+<li><strong>Hold a retainage or final payment for completion.</strong> Keeping a meaningful final payment until the home is genuinely finished, including the punch list, gives the builder an incentive to complete every detail.</li>
+<li><strong>Keep records.</strong> Save the contract, the schedule, every invoice, and every approved change order so the running balance is always clear.</li>
+</ul>
+<h2>Your Arizona backstop</h2>
+<p>Building with a contractor licensed by the Arizona Registrar of Contractors matters here. Beyond verifying the license before you sign, an eligible homeowner who suffers certain losses from a licensed residential contractor may be able to recover from the Residential Contractors' Recovery Fund (A.R.S. 32-1131 and following), up to a statutory cap per transaction. That fund is a safety net, not a reason to skip a careful, milestone-based payment schedule.</p>
+<h2>How Jematell Homes approaches it</h2>
+<p>We structure deposits and progress payments so they track real, completed work, and we coordinate the schedule with your lender's draw and inspection process so funding keeps pace with construction rather than running ahead of it. We put the deposit, the milestone payment schedule, the change-order process, and the final-payment terms in writing so nothing is a surprise. Because every contract and loan is different and terms change over time, confirm the specific deposit and payment terms with your builder and your lender, verify the contractor's license on the Arizona Registrar of Contractors website, and consider an attorney's review before you sign.</p>`,
+      shortAnswer:
+        "Expect an initial deposit that funds design, engineering, and permitting, then progress payments (draws) released as inspected construction milestones are completed. When you finance the build, the lender's draw schedule controls most payments. Arizona's contractor regulator urges payments to track completed work, so tie each draw to a verifiable stage and verify the builder's license before signing.",
+      metaDescription:
+        "What deposit or payment schedule do custom home builders require? An initial deposit plus milestone-based progress draws, how construction loans drive them, and protections to build in.",
+      categorySlug: "costs-and-budget",
+      topicSlugs: ["budgeting-a-custom-home"],
+      tags: ["deposit", "payment-schedule", "draws", "roc", "budget", "research-phase"],
+      relatedFaqSlugs: [
+        "how-does-a-one-time-close-construction-loan-work",
+        "fixed-price-vs-cost-plus-building-contracts",
+        "how-do-i-finance-building-a-custom-home",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug: "financing-your-custom-or-semi-home",
+      featured: false,
+      sortOrder: 17,
+    }),
     // ========================= Design, Zoning & ADUs ========================
     item({
       slug: "what-are-setbacks-lot-coverage-and-naos-rules",
@@ -1505,6 +2131,132 @@ export const faqSeed: FaqSeed = {
       sortOrder: 18,
     }),
 
+    item({
+      slug: "can-i-rent-out-a-casita-or-run-a-short-term-rental",
+      question: "Can I rent out a casita or run a short-term rental on my property?",
+      answerHtml: `<p><strong>In most cases yes, but the right to build a casita and the right to rent it are governed by two different sets of rules. Arizona limits how cities and counties can regulate short-term and vacation rentals, your HOA can restrict leasing entirely, the casita law lets a city bar nightly rental of an ADU, and you must license and pay tax on rental income. All four have to line up before you can host a guest for money.</strong></p>
+<h2>What Arizona law says about short-term rentals</h2>
+<p>Arizona broadly protects the ability to operate a short-term or vacation rental. Under A.R.S. 9-500.39 for cities and towns and A.R.S. 11-269.17 for counties, a local government cannot prohibit short-term rentals outright or single them out for a use-permit that long-term rentals do not need. What changed after 2022 is that the same statutes now let local governments regulate them more tightly. A city or county may require you to:</p>
+<ul>
+<li><strong>Obtain a local permit or license</strong> for the property and renew it periodically.</li>
+<li><strong>Carry liability insurance</strong> (commonly at least 500,000 dollars in coverage) for the rental use.</li>
+<li><strong>Name a local emergency contact</strong> who can respond to complaints around the clock.</li>
+<li><strong>Follow health, safety, noise, occupancy, and parking standards</strong> that apply to the property.</li>
+</ul>
+<p>So the practical question in a city such as Scottsdale or Phoenix is not whether you can run a short-term rental, but what the registration, insurance, and notification requirements are, and what the penalties are for repeat nuisance violations. Several Valley cities have built active licensing programs with annual fees, so this is a real process, not a formality.</p>
+<h2>The casita law has a short-term-rental carve-out</h2>
+<p>Arizona's 2024 ADU law, HB 2720, codified at A.R.S. 9-461.18, requires larger cities to allow accessory dwelling units on single-family lots. But the same law expressly lets a covered city prohibit the use of an ADU as a short-term or vacation rental. In other words, a city that must let you build a casita can still forbid you from renting that casita by the night, even while a longer-term lease of the same unit is allowed. If nightly rental income is part of your plan, confirm how your specific city treats ADU short-term use before you design around it.</p>
+<h2>Your HOA can restrict rentals more than the city does</h2>
+<p>If your lot is inside a homeowners association, the recorded declaration (CC&Rs) is often the real gatekeeper. Arizona law lets planned-community and condominium associations regulate leasing, and many have adopted minimum lease terms (for example a 30-day or 6-month minimum) that effectively bar nightly rental, caps on the number of rented homes, or outright short-term-rental prohibitions. A.R.S. 33-1806.01 for planned communities and A.R.S. 33-1260.01 for condominiums set the framework for how associations handle rental information and restrictions. Always read the CC&Rs and any rental rules before assuming a casita can become an income unit.</p>
+<h2>Licensing and taxes</h2>
+<p>Renting to short-term guests is a taxable activity. Operators generally must obtain a transaction privilege tax (TPT) license from the Arizona Department of Revenue, register each rental property, and collect and remit state, county, and city TPT plus any applicable transient lodging taxes. Cities also commonly require you to display the TPT and local license numbers in any listing. Treating the rental as a small business from day one, with the right licenses and insurance, avoids fines and back taxes later.</p>
+<h2>Design choices that make a casita rent-ready</h2>
+<p>Whether the goal is a future nightly rental, a long-term lease, or simply flexibility, certain design moves help: a private entrance and parking separate from the main house, its own kitchenette or full kitchen, a separate HVAC zone and utility metering or submetering where feasible, sound separation, and durable, low-maintenance finishes. On a lot served by a well and septic, the onsite wastewater system has to be sized for the extra occupancy under Arizona Department of Environmental Quality standards, so plan that capacity in early rather than retrofitting it.</p>
+<h2>How Jematell Homes helps</h2>
+<p>We design casitas and guest houses that can flex into rental use where it is allowed, with the privacy, utilities, and durability that role requires, and we coordinate the septic sizing when a lot is not on city sewer. Because short-term-rental rules, ADU rental carve-outs, HOA restrictions, and tax requirements all change and differ by jurisdiction, confirm the current rules with your local Authority Having Jurisdiction, your HOA, and the Arizona Department of Revenue before counting on rental income. None of this is legal or tax advice.</p>`,
+      shortAnswer:
+        "Usually yes, but four things must align: Arizona lets cities regulate (not ban) short-term rentals, the HB 2720 casita law lets a city bar nightly rental of an ADU, your HOA can restrict or prohibit leasing, and you must hold a TPT license and pay rental taxes. Confirm each before counting on income.",
+      metaDescription:
+        "Can you rent out a casita or run a short-term rental in Arizona? Cities can regulate but not ban STRs, HOAs can restrict leasing, the casita law allows ADU nightly-rental bans, and TPT licensing applies.",
+      categorySlug: "design-zoning-adus",
+      topicSlugs: ["zoning-setbacks-adus"],
+      tags: ["short-term-rental", "casita", "adu", "hoa", "research-phase"],
+      relatedFaqSlugs: [
+        "can-i-build-a-casita-or-adu",
+        "what-hb-2720-changed-for-adus-in-arizona",
+        "what-an-hoa-architectural-committee-can-require",
+      ],
+      relatedServiceSlugs: ["custom-homes", "floor-plans"],
+      pillarBlogSlug: "modern-casita-and-guest-house-design-trends",
+      featured: false,
+      sortOrder: 19,
+    }),
+    item({
+      slug: "rural-residential-zoning-districts-in-maricopa-county",
+      question: "What do Maricopa County's rural residential zoning districts (like RU-43) allow?",
+      answerHtml: `<p><strong>In unincorporated Maricopa County, including much of the Rio Verde Foothills, land is governed by the county's own zoning ordinance rather than a city code, and most low-density home sites fall in a rural district such as RU-43. These districts pair a single-family home with generous lot sizes, larger setbacks, and the right to keep horses and other animals, which is exactly why so many custom-home buyers seek them out.</strong></p>
+<h2>The county, not a city, is the authority here</h2>
+<p>If your lot is outside an incorporated city or town, Maricopa County Planning and Development administers zoning and issues the building permit. The Maricopa County Zoning Ordinance defines a family of districts; the most common rural-residential one is RU-43, where the "RU" denotes rural and the "43" refers to a minimum lot area of 43,560 square feet, which is one acre. Larger rural and residential districts exist for bigger parcels, and the exact district for any given lot is recorded on the county's zoning map.</p>
+<h2>What RU-43 typically allows</h2>
+<p>RU-43 is built around low-density rural living. In general terms it permits:</p>
+<ul>
+<li><strong>One single-family detached home per lot,</strong> with the usual accessory buildings such as a garage, workshop, or guest house consistent with the ordinance.</li>
+<li><strong>Keeping of horses and other animals.</strong> The rural designation is what allows livestock and horse privileges, subject to per-area animal limits and manure and setback rules. This is the key difference from a strictly residential district.</li>
+<li><strong>Agricultural and horticultural uses</strong> appropriate to rural land.</li>
+<li><strong>Home occupations</strong> within defined limits so a low-impact business does not change the residential character.</li>
+</ul>
+<p>Because the minimum lot is an acre, RU-43 neighborhoods feel open, with houses set well apart. That density, plus the animal privileges, is the whole appeal for buyers who want room, a barn or arena, or simply distance from neighbors.</p>
+<h2>Setbacks, height, and lot coverage</h2>
+<p>Rural districts use larger building setbacks than typical in-town residential zoning, often on the order of several tens of feet from front, side, and rear lines, with additional separation required for animal-keeping structures. Building height is limited (commonly to roughly two stories), and lot coverage by structures is capped so the parcel keeps its open feel. The precise front, side, and rear setback figures, the maximum height, the allowed lot coverage, and the animal counts are all set in the ordinance for the specific district, so read them against your exact parcel rather than assuming. A builder or civil engineer can run a quick buildability check to confirm your floor plan fits inside the rural setback envelope.</p>
+<h2>Lot splits and how parcels get created</h2>
+<p>Rural acreage is often created or divided through lot splits. Arizona draws a bright line here: under A.R.S. 32-2101, dividing land into six or more lots is a subdivision with full platting, infrastructure, and public-report requirements, while a split into five or fewer lots is treated as a minor lot split with far lighter process. This distinction shaped how much of the Rio Verde Foothills was parceled out, and it affects what utilities, roads, and water arrangements a buyer can expect to find already in place.</p>
+<h2>Why the district matters before you buy</h2>
+<p>Two rural lots that look identical can carry different rights depending on their zoning district and overlays. Confirm the district, the minimum lot size, the setbacks, the animal privileges, and whether any floodplain or hillside overlay applies before you make an offer, because those rules drive where the house can sit, how big it can be, and whether your horses are welcome. Remember too that unincorporated lots usually rely on a well and septic, so water and onsite wastewater feasibility belong in the same due-diligence pass.</p>
+<h2>How Jematell Homes helps</h2>
+<p>We build custom homes throughout unincorporated Maricopa County and design each one to its parcel's rural zoning, working the setbacks, height, lot coverage, accessory buildings, and any animal facilities into the site plan from the start. Because Maricopa County updates its zoning ordinance and applies districts and overlays parcel by parcel, confirm the current zoning, setbacks, and animal rules with Maricopa County Planning and Development, and any applicable HOA, for your specific lot before you finalize a design.</p>`,
+      shortAnswer:
+        "In unincorporated Maricopa County, low-density home sites usually sit in a rural district like RU-43, which sets a one-acre minimum lot, allows a single-family home plus horses and other animals, and uses larger setbacks. The county, not a city, is the permitting authority, and exact rules are set per district.",
+      metaDescription:
+        "What does Maricopa County RU-43 rural zoning allow? A one-acre minimum lot, a single-family home, horse and animal privileges, and larger setbacks, all administered by the county for unincorporated land.",
+      categorySlug: "design-zoning-adus",
+      topicSlugs: ["zoning-setbacks-adus"],
+      tags: ["zoning", "ru-43", "maricopa-county", "rural", "research-phase"],
+      relatedFaqSlugs: [
+        "what-are-setbacks-lot-coverage-and-naos-rules",
+        "do-i-need-a-permit-in-unincorporated-maricopa-county",
+        "how-do-i-know-if-a-lot-is-buildable",
+      ],
+      relatedServiceSlugs: ["build-on-your-lot", "custom-homes"],
+      pillarBlogSlug: "building-a-custom-home-in-rio-verde-az-lot-considerations-most-buyers-miss",
+      featured: false,
+      sortOrder: 20,
+    }),
+    item({
+      slug: "room-sizes-ceiling-heights-and-bedroom-egress",
+      question: "What are the code-required room sizes, ceiling heights, and bedroom egress rules?",
+      answerHtml: `<p><strong>The interior dimensions of a new home are governed by the International Residential Code (IRC) that your jurisdiction has adopted, which sets minimum room areas, minimum ceiling heights, and the emergency escape opening every bedroom must have. These are floors, not targets, and a thoughtful custom design comfortably clears them, but knowing them helps you understand why a room, a window, or a ceiling cannot simply shrink to fit.</strong></p>
+<h2>Which code edition applies</h2>
+<p>Arizona has no mandatory statewide building code, so each city, town, and county adopts its own edition of the IRC with local amendments. The City of Phoenix, for example, adopted the 2024 International Codes effective August 1, 2025, while neighboring jurisdictions may be on an earlier edition. The specific section numbers below are stable across recent editions, but always confirm the adopted edition and any local amendments with your Authority Having Jurisdiction, because details shift between code cycles.</p>
+<h2>Minimum room sizes</h2>
+<p>The IRC sets a small floor on habitable room size under Section R304. In recent editions, every habitable room must have a floor area of at least 70 square feet, and no habitable room (other than a kitchen) may be less than 7 feet in any horizontal dimension. Kitchens are exempt from the minimum-area rule but still must meet ceiling height. These minimums are far below what a custom home delivers; their real effect is on tight spaces such as a small home office or a bonus nook, where the code confirms whether the room can count as habitable.</p>
+<h2>Ceiling heights</h2>
+<p>Section R305 governs ceiling height. The general rule is that habitable spaces, hallways, and bathrooms must have a ceiling height of at least 7 feet, measured from finished floor to finished ceiling. A few practical exceptions apply:</p>
+<ul>
+<li><strong>Beams and girders</strong> may project below the required height by a limited amount as long as they are spaced apart, which matters in homes with exposed structural members.</li>
+<li><strong>Sloped ceilings</strong> need the minimum height over only a defined portion of the room, so a vaulted or attic-style space is fine as long as enough of it meets the standard.</li>
+<li><strong>Bathrooms</strong> have a reduced minimum height at fixtures, typically allowing a lower clearance directly above a shower or toilet.</li>
+</ul>
+<p>Because 7 feet is only the minimum, most custom homes run 9 or 10 foot ceilings or higher for the sense of volume buyers want; the code simply sets the line below which a space stops qualifying.</p>
+<h2>Bedroom egress: the emergency escape and rescue opening</h2>
+<p>The rule buyers most often run into is Section R310, which requires an emergency escape and rescue opening (EERO) in every sleeping room and in basements with habitable space. The opening, almost always a window in a single-family home, must meet all of these at once:</p>
+<ul>
+<li><strong>A minimum net clear opening of 5.7 square feet</strong> (reduced to 5.0 square feet for openings at grade level).</li>
+<li><strong>A minimum net clear opening height of 24 inches</strong> and a minimum net clear opening width of 20 inches. These are minimums for each dimension, not a recipe; a window that is exactly 20 by 24 inches does not reach 5.7 square feet, so at least one dimension has to be larger.</li>
+<li><strong>A sill height no more than 44 inches above the finished floor,</strong> so an occupant can reach and use it.</li>
+<li><strong>Operability from the inside</strong> without keys, tools, or special knowledge.</li>
+</ul>
+<p>This is why a bedroom cannot rely on a tiny clerestory or a fixed picture window alone, and why a room marketed as a bedroom must have a conforming egress window. Window wells, when an opening is below grade, have their own size and ladder requirements.</p>
+<h2>Light, ventilation, and getting out the door</h2>
+<p>Two related sections round out the interior basics. Section R303 requires natural light and ventilation in habitable rooms, generally glazing equal to about 8 percent of the floor area and openable area for ventilation equal to about 4 percent, unless mechanical systems are provided. Section R311 requires at least one compliant egress door and sets minimum hallway and stair dimensions so the home can be exited safely. Together with room size, ceiling height, and bedroom egress, these define the baseline every floor plan must satisfy before it is permitted.</p>
+<h2>How Jematell Homes helps</h2>
+<p>We design every room, window, and ceiling to clear the adopted IRC comfortably, so a space called a bedroom truly functions as one and the plan sails through review rather than triggering corrections. Because Arizona adopts building codes city by city and edition by edition, confirm the specific code edition, amendments, and dimensional requirements with your local Authority Having Jurisdiction before construction. This is general information, not a substitute for plan review.</p>`,
+      shortAnswer:
+        "The adopted International Residential Code sets the minimums: habitable rooms at least 70 square feet, ceiling heights generally at least 7 feet, and an emergency escape opening in every bedroom (about 5.7 square feet net, 24 inches high, 20 inches wide, sill no higher than 44 inches). Custom homes clear these easily.",
+      metaDescription:
+        "Code-required room sizes, ceiling heights, and bedroom egress: the IRC sets a 70-square-foot room minimum, a 7-foot ceiling minimum, and an emergency escape window in every bedroom. Adopted edition varies by Arizona city.",
+      categorySlug: "design-zoning-adus",
+      topicSlugs: ["zoning-setbacks-adus"],
+      tags: ["irc", "ceiling-height", "egress", "room-size", "research-phase"],
+      relatedFaqSlugs: [
+        "what-building-codes-apply-to-a-new-home-in-arizona",
+        "what-inspections-happen-during-a-custom-home-build",
+        "what-are-setbacks-lot-coverage-and-naos-rules",
+      ],
+      relatedServiceSlugs: ["custom-homes", "floor-plans"],
+      pillarBlogSlug: "how-to-choose-the-right-floor-plan",
+      featured: false,
+      sortOrder: 21,
+    }),
     // ====================== Building in the Desert ======================
     item({
       slug: "designing-an-energy-efficient-home-for-the-arizona-desert",
@@ -1698,6 +2450,183 @@ export const faqSeed: FaqSeed = {
       pillarBlogSlug: "how-long-it-takes-to-build-a-custom-home-in-arizona",
       featured: false,
       sortOrder: 5,
+    }),
+    item({
+      slug: "best-roofing-and-exterior-materials-for-the-desert",
+      question: "What are the best roofing and exterior materials for the Arizona desert?",
+      answerHtml: `<p><strong>In the Sonoran Desert the roof and the exterior walls are the home's first defense against relentless sun, 115-degree afternoons, sudden monsoon downpours, and blowing dust. The materials that perform best here are the ones that reflect heat instead of soaking it up, shrug off intense ultraviolet (UV) light without breaking down, and shed water fast when the rain finally comes.</strong> Concrete and clay tile, reflective standing-seam metal, and well-detailed foam or single-ply membranes on low-slope roofs all earn their place, paired with masonry or cement-based stucco walls in light, heat-rejecting colors. The right combination keeps a custom home in Scottsdale or Rio Verde cooler, lower to operate, and longer-lasting.</p>
+<h2>Why the roof is the most important surface</h2>
+<p>A dark roof in direct desert sun can reach 150 degrees or more, and that heat conducts straight down into the attic and the rooms below. The single most effective material decision you can make is to choose a roof that reflects sunlight and releases the heat it does absorb. Two measurable properties describe this:</p>
+<ul>
+<li><strong>Solar reflectance</strong> is the share of sunlight the surface bounces back rather than absorbs. Higher is better in a cooling-dominated climate.</li>
+<li><strong>Thermal emittance</strong> is how readily the surface sheds the heat it does take on, so it cools down quickly after sunset.</li>
+</ul>
+<p>The Cool Roof Rating Council (CRRC) publishes independent ratings for these values, and the ENERGY STAR program certifies reflective roofing products. A roof that performs well on both measures, often called a "cool roof," reduces attic temperatures, eases the load on the air conditioner, and extends the life of the roofing itself because the material runs cooler.</p>
+<h2>Roofing materials that perform in the desert</h2>
+<ul>
+<li><strong>Concrete and clay tile.</strong> A Southwest classic for good reason. Tile is extremely durable in UV and heat, carries a Class A fire rating, and the air gap under the tiles creates a ventilated layer that interrupts heat transfer into the deck. Light or reflective glazes push the reflectance higher.</li>
+<li><strong>Reflective metal (standing seam).</strong> Long-lived, low-maintenance, and available with high-reflectance factory finishes. Metal sheds monsoon rain instantly and resists embers, which matters on foothill lots.</li>
+<li><strong>Foam (sprayed polyurethane) and single-ply membranes (TPO or PVC) for low-slope roofs.</strong> Flat and low-slope rooflines are common on contemporary desert homes. A reflective foam roof or a white single-ply membrane gives a continuous, highly reflective surface, but flat roofs live or die on drainage detailing, so scuppers, tapered slope, and overflow drains must be designed in.</li>
+<li><strong>Reflective coatings.</strong> Elastomeric and acrylic cool-roof coatings can raise the reflectance of an existing or new low-slope roof and add a waterproof layer.</li>
+</ul>
+<p>Whatever the material, generous attic insulation, a radiant barrier, and proper roof and attic ventilation work with the roofing to keep heat out of the living space.</p>
+<h2>Exterior walls: mass, color, and water management</h2>
+<p>For walls, cement-based stucco over masonry or framed walls remains the desert standard. It is durable, fire-resistant, and forgiving of intense sun. Masonry such as block or stone adds thermal mass, which slows the swing between the hot day and the cool desert night. The details that matter most:</p>
+<ul>
+<li><strong>Light, heat-rejecting colors.</strong> Earth-tone but lighter palettes reflect more solar energy than dark walls, lowering surface temperatures.</li>
+<li><strong>A proper water-resistive barrier and flashing.</strong> Even stucco needs a drainage layer behind it and correct flashing at openings so wind-driven monsoon rain cannot get trapped in the wall.</li>
+<li><strong>UV-stable finishes.</strong> Coatings and sealants rated for high UV exposure last far longer here than standard products.</li>
+<li><strong>Shading.</strong> Deep overhangs and recessed openings protect both the glass and the wall surface from the harshest sun.</li>
+</ul>
+<h2>Codes, fire, and date-sensitive details</h2>
+<p>Arizona has no statewide building code; each city, town, or county adopts its own edition of the International Residential Code (IRC) and International Energy Conservation Code (IECC), and the IECC sets the floor for roof and envelope performance. Some foothill jurisdictions also require Class A roof assemblies and ember-resistant detailing in wildland-urban interface areas. Adopted editions and local amendments change over time and differ by parcel.</p>
+<h2>How Jematell Homes approaches it</h2>
+<p>We specify roofing and exterior materials to the home, the lot, and the local code: reflective, UV-durable, fire-appropriate assemblies with the flashing and drainage detailed correctly so they last in the desert. Because adopted code editions, energy requirements, and any wildland-interface roofing rules are set locally and change, we confirm the current requirements with your AHJ for your specific parcel before finalizing the design.</p>`,
+      shortAnswer:
+        "Choose materials that reflect heat, resist UV, and shed water fast. Concrete or clay tile, reflective standing-seam metal, and well-drained foam or single-ply membranes top the list for roofs, paired with stucco or masonry walls in light, heat-rejecting colors. Look for Cool Roof Rating Council and ENERGY STAR ratings, and confirm fire and energy rules with your AHJ.",
+      metaDescription:
+        "The best desert roofing and exterior materials: reflective tile, metal, and membranes plus stucco and masonry in light colors, rated by the Cool Roof Rating Council and ENERGY STAR.",
+      categorySlug: "building-in-the-desert",
+      topicSlugs: ["desert-build-essentials"],
+      tags: ["roofing", "exterior-materials", "cool-roof", "stucco", "research-phase"],
+      relatedFaqSlugs: [
+        "designing-an-energy-efficient-home-for-the-arizona-desert",
+        "how-do-i-size-hvac-for-extreme-arizona-heat",
+        "firewise-and-defensible-space-for-foothill-lots",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug: "arizona-home-design-trends-for-2026",
+      sortOrder: 6,
+    }),
+    item({
+      slug: "how-do-i-size-hvac-for-extreme-arizona-heat",
+      question: "How do I size and choose HVAC for extreme Arizona heat?",
+      answerHtml: `<p><strong>The right way to size air conditioning for the Arizona desert is by calculation, not by rule of thumb. A room-by-room Manual J load calculation tells you exactly how much cooling the home you designed actually needs at the local design temperature, which in the Phoenix metro sits around 110 to 112 degrees. From that load you select right-sized, high-efficiency equipment (Manual S) and a properly designed duct system (Manual D). The most common and most expensive mistake here is oversizing, so bigger is emphatically not better.</strong></p>
+<h2>Why "bigger" is the wrong instinct</h2>
+<p>It is tempting to assume that brutal summers call for the biggest unit available. In practice an oversized air conditioner cools the air quickly but cycles on and off in short bursts. That short-cycling wears the equipment, leaves the house feeling clammy because the system never runs long enough to pull humidity out during monsoon season, creates hot and cold spots, and costs more to buy and to run. A correctly sized unit runs longer, steadier cycles that hold an even temperature and dehumidify properly.</p>
+<h2>The calculation trilogy: Manual J, S, and D</h2>
+<p>The Air Conditioning Contractors of America (ACCA) publishes the industry-standard design procedures that a quality builder follows in sequence:</p>
+<ul>
+<li><strong>Manual J (load calculation).</strong> A detailed, room-by-room accounting of heat gain that considers orientation, window area and performance, insulation levels, air leakage, ceiling height, and the local design temperature, rather than a crude square-footage guess.</li>
+<li><strong>Manual S (equipment selection).</strong> Matching the actual equipment to the Manual J load and to the desert design conditions, so the unit is sized to the home and not rounded up "to be safe."</li>
+<li><strong>Manual D (duct design).</strong> Sizing and laying out the ducts so each room gets the airflow it needs. Undersized or leaky ducts waste a large share of the capacity you paid for.</li>
+</ul>
+<h2>Efficiency ratings and what the law requires</h2>
+<p>As of January 1, 2023 the U.S. Department of Energy applies regional minimum-efficiency standards measured in SEER2 and EER2. Arizona is in the Southwest region (with California, Nevada, and New Mexico), which carries the strictest limits because of the heat. The current minimums for split-system central air conditioners in the Southwest region are about 14.3 SEER2 for systems under 45,000 BTU per hour and 13.8 SEER2 for larger systems, with companion EER2 floors; heat pumps must meet 14.3 SEER2 and 7.5 HSPF2 nationally. SEER2 measures seasonal cooling efficiency and EER2 measures efficiency at a hot peak, and the EER2 figure is especially meaningful in a climate that spends weeks above 105 degrees. These federal figures change over time, so verify the current standard when you build.</p>
+<h2>Equipment choices that fit the desert</h2>
+<ul>
+<li><strong>Heat pump versus straight AC.</strong> Modern heat pumps cool as well as a conventional air conditioner and heat efficiently through the mild Phoenix winter, often replacing a separate gas furnace.</li>
+<li><strong>Variable-speed and two-stage systems.</strong> Equipment that can run at lower capacity for most of the day holds temperature and humidity far better than a single-stage unit that only knows full blast or off.</li>
+<li><strong>Ducts in conditioned space.</strong> Ducts run through a 140-degree attic bleed enormous energy. Bringing the ducts, or the whole air handler, into conditioned space is one of the highest-value moves in this climate.</li>
+<li><strong>Zoning.</strong> On a larger or multi-level home, zoning lets you cool the occupied parts of the house without overcooling the rest.</li>
+</ul>
+<h2>The envelope does half the work</h2>
+<p>HVAC sizing and the building envelope are two halves of one problem. A tight, well-insulated, well-shaded house with low-solar-heat-gain windows has a smaller cooling load, which means a smaller, cheaper, quieter system and lower bills for the life of the home. Sizing the equipment first and the envelope second gets it backwards. Design them together.</p>
+<h2>How Jematell Homes approaches it</h2>
+<p>We base mechanical design on a Manual J load calculation for the specific home and lot, select right-sized high-efficiency equipment, design the ducts deliberately, and coordinate the system with a tight, shaded envelope rather than defaulting to oversized tonnage. Adopted energy codes and federal efficiency standards change over time and the energy code edition varies by jurisdiction, so we confirm the current requirements with your local AHJ for your specific parcel before finalizing the design.</p>`,
+      shortAnswer:
+        "Size cooling by a room-by-room Manual J load calculation at the local design temperature, not by square footage, because oversized units short-cycle and dehumidify poorly. Then select right-sized, high-efficiency equipment (Manual S) and ducts (Manual D), favoring a heat pump, variable-speed operation, and ducts in conditioned space. Confirm current SEER2 and energy-code rules with your AHJ.",
+      metaDescription:
+        "How do you size HVAC for Arizona heat? Use a Manual J load calculation, not square footage, then pick right-sized SEER2-rated equipment and ducts in conditioned space.",
+      categorySlug: "building-in-the-desert",
+      topicSlugs: ["desert-build-essentials"],
+      tags: ["hvac", "manual-j", "cooling", "seer2", "research-phase"],
+      relatedFaqSlugs: [
+        "designing-an-energy-efficient-home-for-the-arizona-desert",
+        "best-roofing-and-exterior-materials-for-the-desert",
+        "going-solar-on-a-new-home-and-hoa-solar-rights",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug: null,
+      sortOrder: 7,
+    }),
+    item({
+      slug: "protecting-a-desert-home-from-monsoon-and-dust",
+      question: "How do I protect a desert home from monsoon storms, dust, and flash flooding?",
+      answerHtml: `<p><strong>Protecting a desert home from the monsoon and from blowing dust is mostly about how the building itself is detailed: a water-resistive barrier and correct flashing behind the cladding, windows and doors that are pan-flashed and sealed against wind-driven rain, a low-slope roof with redundant drainage, and an air-tight envelope that keeps fine dust out. Site grading and drainage keep water away from the foundation; this answer covers the rest of the house, the envelope and the openings, that has to keep water and dust out once the storm arrives.</strong> (For the lot-level grading and drainage rules, see the separate grading and drainage answer.)</p>
+<h2>What a monsoon actually does to a building</h2>
+<p>The Arizona monsoon, roughly mid-June through September, brings the year's most violent weather in short bursts: an inch of rain in an hour, 60-mile-per-hour gusts, and walls of dust. Rain does not just fall, it is driven sideways into walls, windows, and door frames. The pressure of that wind-driven rain finds any gap in the flashing or sealant. A home that handles a calm day fine can leak badly in a 20-minute storm if the openings were not detailed for it.</p>
+<h2>The envelope: barriers and flashing</h2>
+<p>Behind the stucco, stone, or siding, the wall needs a continuous water-resistive barrier (WRB) and a way to drain any water that gets past the cladding. The International Residential Code (IRC) requires this in Section R703: at least one WRB layer over the sheathing, lapped shingle-fashion so water flows down and out, with corrosion-resistant flashing at all openings and penetrations. Done right, the cladding is the first line of defense and the WRB plus flashing is the backup that actually keeps the structure dry.</p>
+<h2>Windows and doors: the most common leak points</h2>
+<p>Openings are where wind-driven rain gets in, so they deserve the most attention:</p>
+<ul>
+<li><strong>Pan flashing under every window and door,</strong> sloped to drain water back out to the WRB, is the detail that prevents the classic sill leak.</li>
+<li><strong>Integrated head and jamb flashing</strong> that laps correctly over the WRB so water sheds away from, not into, the opening.</li>
+<li><strong>Windows rated for the exposure.</strong> Units with good water-penetration and air-infiltration ratings hold up to driven rain and keep dust out.</li>
+<li><strong>Quality sealants and backer rod</strong> rated for high UV and movement, since desert heat cycles open up cheap caulk joints within a season or two.</li>
+</ul>
+<h2>The roof, especially low-slope roofs</h2>
+<p>Flat and low-slope rooflines are popular on desert homes and need redundant drainage. That means a tapered slope to the drains, primary scuppers or drains, and overflow scuppers or overflow drains set slightly higher to handle a clogged primary or a cloudburst that outpaces it. Parapet walls need proper coping and flashing, and every roof penetration needs a detailed, UV-stable seal. On pitched roofs, valley and step flashing carry the heavy water safely.</p>
+<h2>Keeping dust out</h2>
+<p>Blowing dust is the desert's other relentless intruder, and the defense overlaps with energy efficiency: a tight envelope. The same air sealing that lowers cooling bills also keeps fine dust from infiltrating through gaps around windows, doors, and penetrations. Practical measures include:</p>
+<ul>
+<li><strong>Air-sealing the envelope</strong> and weatherstripping doors and windows so dust has no easy path in.</li>
+<li><strong>Quality door sweeps and gasketing,</strong> including at the garage-to-house door.</li>
+<li><strong>Sealing and conditioning the duct system,</strong> so the HVAC is not pulling attic or wall-cavity dust into the living space.</li>
+<li><strong>Effective air filtration</strong> at the air handler (a higher-MERV filter the system is designed to handle) to capture the fine particulate that does get in.</li>
+</ul>
+<h2>Flash flooding and the bigger picture</h2>
+<p>Where a lot sits near a wash or in a mapped floodplain, building elevation and a floodplain use permit may come into play, which is a site and due-diligence question handled before design. The whole-home detailing above assumes the site drainage has already been solved; the two work together, the lot moves water away from the house, and the envelope keeps out whatever the storm throws at the walls and roof.</p>
+<h2>How Jematell Homes approaches it</h2>
+<p>We detail the envelope for the monsoon from the start: continuous WRB and flashing, pan-flashed openings, windows rated for driven rain, redundant low-slope roof drainage, and an air-tight, well-filtered envelope that keeps dust out. Adopted code editions and local amendments to the flashing and drainage requirements change and vary by jurisdiction, so we confirm the current requirements with your AHJ for your specific parcel before construction.</p>`,
+      shortAnswer:
+        "Detail the building to keep weather out: a continuous water-resistive barrier and flashing behind the cladding, pan-flashed windows and doors rated for wind-driven rain, redundant drainage on low-slope roofs, and an air-tight, well-filtered envelope that blocks dust. Site grading handles water away from the foundation; confirm current code details with your AHJ.",
+      metaDescription:
+        "Protect a desert home from monsoon and dust: water-resistive barriers, pan-flashed windows, redundant low-slope roof drainage, and an air-tight envelope per IRC R703.",
+      categorySlug: "building-in-the-desert",
+      topicSlugs: ["desert-build-essentials"],
+      tags: ["monsoon", "dust", "building-envelope", "flashing", "research-phase"],
+      relatedFaqSlugs: [
+        "lot-grading-and-drainage-keeping-water-away-from-the-house",
+        "what-is-the-dust-control-rule-for-valley-construction-sites",
+        "best-roofing-and-exterior-materials-for-the-desert",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug: "how-to-avoid-common-mistakes-when-building-a-custom-home-in-arizona",
+      sortOrder: 8,
+    }),
+    item({
+      slug: "firewise-and-defensible-space-for-foothill-lots",
+      question: "What is firewise design and defensible space for foothill lots?",
+      answerHtml: `<p><strong>Firewise design and defensible space are the two halves of building a home that can survive a wildfire in the wildland-urban interface, the foothill and desert-edge areas where neighborhoods meet open land. "Firewise" or home hardening means building the structure itself from materials and details that resist embers and flame. "Defensible space" means managing the landscape in concentric zones around the house so a fire has less fuel as it approaches. Research from the National Fire Protection Association (NFPA) and federal fire scientists is clear that wind-blown embers, not a wall of flame, ignite the large majority of homes lost to wildfire, so the goal is to give embers nowhere to catch.</strong></p>
+<h2>The Home Ignition Zone</h2>
+<p>The NFPA organizes the defense around the home into the Home Ignition Zone, divided into three areas measured outward from the structure:</p>
+<ul>
+<li><strong>Immediate zone (0 to 5 feet).</strong> The most critical area. Keep it free of anything that can burn: no bark mulch, no firewood stacked against the house, no combustible fences touching the wall, no dead leaves in gutters or against the foundation. Some frameworks call this innermost ring Zone 0 and recommend a noncombustible, ember-resistant ground surface such as gravel or pavers.</li>
+<li><strong>Intermediate zone (5 to 30 feet).</strong> Break up the fuel. Space and prune plants so fire cannot move continuously from one to the next, keep grass low, and create gaps between tree canopies and the house.</li>
+<li><strong>Extended zone (30 to 100 feet).</strong> Reduce and thin fuels so an approaching fire drops from the treetops to the ground and loses intensity before it reaches the home.</li>
+</ul>
+<h2>Hardening the structure (firewise design)</h2>
+<p>The materials and details that make a structure ember-resistant include:</p>
+<ul>
+<li><strong>A Class A roof assembly.</strong> The roof is the largest target for falling embers. Concrete or clay tile, metal, and other Class A assemblies resist ignition, and the roof valleys and edges should be detailed to shed embers, not trap them.</li>
+<li><strong>Ember-resistant vents.</strong> Attic and crawlspace vents are a primary entry point for embers. Use fine corrosion-resistant metal mesh (commonly 1/8-inch) or listed ember-resistant vents.</li>
+<li><strong>Noncombustible siding and enclosed eaves.</strong> Stucco, masonry, fiber-cement, and boxed-in (soffited) eaves deny embers a foothold.</li>
+<li><strong>Dual-pane and tempered windows.</strong> Multi-pane glass resists the radiant heat that can shatter a single pane and let fire inside.</li>
+<li><strong>Noncombustible zone-0 details.</strong> Metal gutters and gutter guards, noncombustible fencing or a metal gate where a fence meets the house, and a clean roof and gutter line.</li>
+</ul>
+<h2>The codes and agencies behind it</h2>
+<p>Wildfire safety in Arizona is shaped by several authorities. The Arizona Department of Forestry and Fire Management (DFFM), operating under A.R.S. Title 37 (roughly sections 37-1301 through 37-1426), leads wildfire prevention and supports community programs. Many foothill jurisdictions adopt the International Wildland-Urban Interface Code (IWUIC), which sets construction and defensible-space requirements in mapped interface areas, layered on top of the local building code. The national Firewise USA recognition program, run by the NFPA, gives communities a framework and is increasingly relevant to wildfire insurance availability. Which rules apply, and how wide the defensible-space requirement is, depends entirely on the parcel and the jurisdiction.</p>
+<h2>Why it matters before you design</h2>
+<p>Firewise choices are far cheaper and cleaner to build in than to retrofit. Roof class, vent type, siding, window glazing, and where a noncombustible zone falls around the house are all decisions best made on paper, before framing, alongside the rest of the design. On a foothill lot, getting them right can also affect whether, and at what cost, the home can be insured.</p>
+<h2>How Jematell Homes approaches it</h2>
+<p>On foothill and desert-edge lots we design the home to harden it against embers, Class A roofing, ember-resistant vents, noncombustible siding and eaves, appropriate glazing, and we plan the defensible-space zones around the structure into the site design. Wildland-interface codes, defensible-space requirements, and adopted code editions are set locally and change, so we confirm the current requirements with your local AHJ and fire authority for your specific parcel before finalizing the design.</p>`,
+      shortAnswer:
+        "Firewise design hardens the house against embers (Class A roof, ember-resistant vents, noncombustible siding and eaves, dual-pane windows), while defensible space manages fuel in concentric zones: 0 to 5 feet kept noncombustible, 5 to 30 feet thinned, and 30 to 100 feet reduced. Many foothill jurisdictions enforce this through the IWUIC, so confirm requirements with your AHJ and fire authority.",
+      metaDescription:
+        "Firewise design and defensible space for foothill lots: harden the home with a Class A roof and ember-resistant vents, and manage fuel in NFPA Home Ignition Zones.",
+      categorySlug: "building-in-the-desert",
+      topicSlugs: ["desert-build-essentials"],
+      tags: ["wildfire", "firewise", "defensible-space", "wildland-urban-interface", "research-phase"],
+      relatedFaqSlugs: [
+        "best-roofing-and-exterior-materials-for-the-desert",
+        "what-building-codes-apply-to-a-new-home-in-arizona",
+        "how-do-i-know-if-a-lot-is-buildable",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug: null,
+      sortOrder: 9,
     }),
   ],
 };

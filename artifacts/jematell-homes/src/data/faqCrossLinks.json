@@ -252,6 +252,23 @@
     "pillarBlogSlug": null
   },
   {
+    "slug": "best-roofing-and-exterior-materials-for-the-desert",
+    "question": "What are the best roofing and exterior materials for the Arizona desert?",
+    "categorySlug": "building-in-the-desert",
+    "categoryTitle": "Building in the Desert",
+    "topicSlugs": [
+      "desert-build-essentials"
+    ],
+    "tags": [
+      "roofing",
+      "exterior-materials",
+      "cool-roof",
+      "stucco",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "arizona-home-design-trends-for-2026"
+  },
+  {
     "slug": "is-my-lot-in-a-floodplain-in-maricopa-county",
     "question": "How do I find out if a lot is in a floodplain, and what does that mean for building?",
     "categorySlug": "land-and-due-diligence",
@@ -264,6 +281,23 @@
       "flood-control-district",
       "maricopa-county",
       "floodplain-use-permit",
+      "research-phase"
+    ],
+    "pillarBlogSlug": null
+  },
+  {
+    "slug": "how-do-i-size-hvac-for-extreme-arizona-heat",
+    "question": "How do I size and choose HVAC for extreme Arizona heat?",
+    "categorySlug": "building-in-the-desert",
+    "categoryTitle": "Building in the Desert",
+    "topicSlugs": [
+      "desert-build-essentials"
+    ],
+    "tags": [
+      "hvac",
+      "manual-j",
+      "cooling",
+      "seer2",
       "research-phase"
     ],
     "pillarBlogSlug": null
@@ -320,6 +354,23 @@
     "pillarBlogSlug": null
   },
   {
+    "slug": "protecting-a-desert-home-from-monsoon-and-dust",
+    "question": "How do I protect a desert home from monsoon storms, dust, and flash flooding?",
+    "categorySlug": "building-in-the-desert",
+    "categoryTitle": "Building in the Desert",
+    "topicSlugs": [
+      "desert-build-essentials"
+    ],
+    "tags": [
+      "monsoon",
+      "dust",
+      "building-envelope",
+      "flashing",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "how-to-avoid-common-mistakes-when-building-a-custom-home-in-arizona"
+  },
+  {
     "slug": "what-is-the-dust-control-rule-for-valley-construction-sites",
     "question": "What dust-control rules apply to a construction site in the Phoenix metro?",
     "categorySlug": "permits-and-codes",
@@ -371,6 +422,23 @@
     "pillarBlogSlug": "rio-verde-arizona-utilities-water-infrastructure"
   },
   {
+    "slug": "how-long-does-permitting-take-across-our-markets",
+    "question": "How long does the building permit process take across the Phoenix metro and your other markets?",
+    "categorySlug": "permits-and-codes",
+    "categoryTitle": "Permits, Codes & Inspections",
+    "topicSlugs": [
+      "building-permits-arizona"
+    ],
+    "tags": [
+      "permits",
+      "permit-timeline",
+      "phoenix-metro",
+      "plan-review",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "how-long-it-takes-to-build-a-custom-home-in-arizona"
+  },
+  {
     "slug": "how-much-does-it-cost-to-build-a-custom-home",
     "question": "How much does it cost to build a custom home in Scottsdale or Phoenix?",
     "categorySlug": "costs-and-budget",
@@ -403,6 +471,57 @@
       "research-phase"
     ],
     "pillarBlogSlug": null
+  },
+  {
+    "slug": "firewise-and-defensible-space-for-foothill-lots",
+    "question": "What is firewise design and defensible space for foothill lots?",
+    "categorySlug": "building-in-the-desert",
+    "categoryTitle": "Building in the Desert",
+    "topicSlugs": [
+      "desert-build-essentials"
+    ],
+    "tags": [
+      "wildfire",
+      "firewise",
+      "defensible-space",
+      "wildland-urban-interface",
+      "research-phase"
+    ],
+    "pillarBlogSlug": null
+  },
+  {
+    "slug": "do-house-plans-need-an-engineer-or-architect-stamp",
+    "question": "Do my house plans need an engineer's or architect's stamp in Arizona?",
+    "categorySlug": "permits-and-codes",
+    "categoryTitle": "Permits, Codes & Inspections",
+    "topicSlugs": [
+      "building-permits-arizona"
+    ],
+    "tags": [
+      "plans",
+      "structural-engineering",
+      "architect",
+      "btr",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "what-custom-home-builders-need-from-you-before-the-first-design-meeting"
+  },
+  {
+    "slug": "how-do-i-check-zoning-before-buying-a-lot",
+    "question": "How do I check a lot's zoning before I buy it?",
+    "categorySlug": "land-and-due-diligence",
+    "categoryTitle": "Land & Due Diligence",
+    "topicSlugs": [
+      "buying-land-to-build"
+    ],
+    "tags": [
+      "zoning",
+      "due-diligence",
+      "parcel-lookup",
+      "overlays",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "top-strategies-for-finding-the-perfect-building-lot-a-comprehensive-guide"
   },
   {
     "slug": "what-are-allowances-and-change-orders",
@@ -469,6 +588,74 @@
       "research-phase"
     ],
     "pillarBlogSlug": "rio-verde-arizona-utilities-water-infrastructure"
+  },
+  {
+    "slug": "what-is-a-certificate-of-occupancy-and-how-do-i-get-one",
+    "question": "What is a certificate of occupancy and how do I get one?",
+    "categorySlug": "permits-and-codes",
+    "categoryTitle": "Permits, Codes & Inspections",
+    "topicSlugs": [
+      "building-permits-arizona"
+    ],
+    "tags": [
+      "certificate-of-occupancy",
+      "inspections",
+      "final-inspection",
+      "move-in",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "what-to-expect-when-building-a-custom-home-in-the-phoenix-metro-area"
+  },
+  {
+    "slug": "what-is-a-perc-test-and-do-i-need-one",
+    "question": "What is a percolation (perc) test and do I need one?",
+    "categorySlug": "land-and-due-diligence",
+    "categoryTitle": "Land & Due Diligence",
+    "topicSlugs": [
+      "buying-land-to-build"
+    ],
+    "tags": [
+      "perc-test",
+      "percolation",
+      "septic",
+      "soil-evaluation",
+      "research-phase"
+    ],
+    "pillarBlogSlug": null
+  },
+  {
+    "slug": "can-i-live-on-site-in-an-rv-while-building",
+    "question": "Can I live in an RV or temporary structure on my lot while I build?",
+    "categorySlug": "permits-and-codes",
+    "categoryTitle": "Permits, Codes & Inspections",
+    "topicSlugs": [
+      "building-permits-arizona"
+    ],
+    "tags": [
+      "rv",
+      "temporary-occupancy",
+      "zoning",
+      "owner-builder",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "building-on-your-own-lot-arizona"
+  },
+  {
+    "slug": "easements-rights-of-way-and-where-you-can-build",
+    "question": "How do easements and rights-of-way affect where I can build?",
+    "categorySlug": "land-and-due-diligence",
+    "categoryTitle": "Land & Due Diligence",
+    "topicSlugs": [
+      "buying-land-to-build"
+    ],
+    "tags": [
+      "easements",
+      "rights-of-way",
+      "buildable-envelope",
+      "title",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "building-a-custom-home-in-rio-verde-az-lot-considerations-most-buyers-miss"
   },
   {
     "slug": "what-are-setbacks-lot-coverage-and-naos-rules",
@@ -539,6 +726,23 @@
     "pillarBlogSlug": "guest-house-amp-adu-essentials-building-casitas-in-phoenix-under-new-laws"
   },
   {
+    "slug": "how-do-i-confirm-legal-access-to-a-rural-lot",
+    "question": "How do I confirm legal access to a rural or landlocked lot?",
+    "categorySlug": "land-and-due-diligence",
+    "categoryTitle": "Land & Due Diligence",
+    "topicSlugs": [
+      "buying-land-to-build"
+    ],
+    "tags": [
+      "legal-access",
+      "landlocked",
+      "ingress-egress",
+      "rural-lots",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "what-to-do-after-buying-land-in-arizona"
+  },
+  {
     "slug": "how-does-a-one-time-close-construction-loan-work",
     "question": "How does a construction-to-permanent (one-time-close) loan work?",
     "categorySlug": "costs-and-budget",
@@ -554,6 +758,23 @@
       "research-phase"
     ],
     "pillarBlogSlug": "financing-your-custom-or-semi-home"
+  },
+  {
+    "slug": "how-much-does-it-cost-to-drill-a-well-in-arizona",
+    "question": "How much does it cost to drill a well in Arizona?",
+    "categorySlug": "water-septic-utilities",
+    "categoryTitle": "Water, Septic & Utilities",
+    "topicSlugs": [
+      "rural-water-and-septic"
+    ],
+    "tags": [
+      "well",
+      "well-cost",
+      "adwr",
+      "rural",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "rio-verde-arizona-utilities-water-infrastructure"
   },
   {
     "slug": "what-hb-2720-changed-for-adus-in-arizona",
@@ -590,6 +811,41 @@
     "pillarBlogSlug": "establish-a-realistic-budget-before-designing-your-custom-home"
   },
   {
+    "slug": "what-is-a-shared-well-agreement",
+    "question": "What is a shared well agreement, and what should I check before relying on one?",
+    "categorySlug": "water-septic-utilities",
+    "categoryTitle": "Water, Septic & Utilities",
+    "topicSlugs": [
+      "rural-water-and-septic"
+    ],
+    "tags": [
+      "shared-well",
+      "well-agreement",
+      "easement",
+      "rural",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "building-a-custom-home-in-rio-verde-az-lot-considerations-most-buyers-miss"
+  },
+  {
+    "slug": "getting-power-and-utilities-to-a-rural-lot",
+    "question": "How do I get power, propane, and internet to a rural lot?",
+    "categorySlug": "water-septic-utilities",
+    "categoryTitle": "Water, Septic & Utilities",
+    "topicSlugs": [
+      "rural-water-and-septic"
+    ],
+    "tags": [
+      "utilities",
+      "electric",
+      "propane",
+      "internet",
+      "rural",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "rio-verde-arizona-utilities-water-infrastructure"
+  },
+  {
     "slug": "scottsdale-esl-ordinance-and-naos-explained",
     "question": "How do Scottsdale's ESL ordinance and NAOS rules affect what I can build?",
     "categorySlug": "design-zoning-adus",
@@ -607,6 +863,24 @@
     "pillarBlogSlug": "designing-a-custom-home-around-your-lot-why-layout-matters-more-than-square-footage"
   },
   {
+    "slug": "how-much-should-i-budget-for-site-work",
+    "question": "How much should I budget for site work on a raw lot?",
+    "categorySlug": "costs-and-budget",
+    "categoryTitle": "Costs & Budget",
+    "topicSlugs": [
+      "budgeting-a-custom-home"
+    ],
+    "tags": [
+      "site-work",
+      "raw-land",
+      "grading",
+      "well-and-septic",
+      "budget",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "establish-a-realistic-budget-before-designing-your-custom-home"
+  },
+  {
     "slug": "hillside-and-grading-rules-in-fountain-hills",
     "question": "What are the hillside and grading rules for building in Fountain Hills?",
     "categorySlug": "design-zoning-adus",
@@ -622,6 +896,42 @@
       "research-phase"
     ],
     "pillarBlogSlug": "building-on-your-own-lot-arizona"
+  },
+  {
+    "slug": "fixed-price-vs-cost-plus-building-contracts",
+    "question": "What is the difference between a fixed-price and a cost-plus building contract?",
+    "categorySlug": "costs-and-budget",
+    "categoryTitle": "Costs & Budget",
+    "topicSlugs": [
+      "budgeting-a-custom-home"
+    ],
+    "tags": [
+      "building-contracts",
+      "fixed-price",
+      "cost-plus",
+      "roc",
+      "budget",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "establish-a-realistic-budget-before-designing-your-custom-home"
+  },
+  {
+    "slug": "what-deposit-do-custom-home-builders-require",
+    "question": "What deposit or payment schedule do custom home builders require?",
+    "categorySlug": "costs-and-budget",
+    "categoryTitle": "Costs & Budget",
+    "topicSlugs": [
+      "budgeting-a-custom-home"
+    ],
+    "tags": [
+      "deposit",
+      "payment-schedule",
+      "draws",
+      "roc",
+      "budget",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "financing-your-custom-or-semi-home"
   },
   {
     "slug": "desert-and-dark-sky-design-rules-cave-creek-carefree",
@@ -656,5 +966,56 @@
       "research-phase"
     ],
     "pillarBlogSlug": null
+  },
+  {
+    "slug": "can-i-rent-out-a-casita-or-run-a-short-term-rental",
+    "question": "Can I rent out a casita or run a short-term rental on my property?",
+    "categorySlug": "design-zoning-adus",
+    "categoryTitle": "Design, Zoning & ADUs",
+    "topicSlugs": [
+      "zoning-setbacks-adus"
+    ],
+    "tags": [
+      "short-term-rental",
+      "casita",
+      "adu",
+      "hoa",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "modern-casita-and-guest-house-design-trends"
+  },
+  {
+    "slug": "rural-residential-zoning-districts-in-maricopa-county",
+    "question": "What do Maricopa County's rural residential zoning districts (like RU-43) allow?",
+    "categorySlug": "design-zoning-adus",
+    "categoryTitle": "Design, Zoning & ADUs",
+    "topicSlugs": [
+      "zoning-setbacks-adus"
+    ],
+    "tags": [
+      "zoning",
+      "ru-43",
+      "maricopa-county",
+      "rural",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "building-a-custom-home-in-rio-verde-az-lot-considerations-most-buyers-miss"
+  },
+  {
+    "slug": "room-sizes-ceiling-heights-and-bedroom-egress",
+    "question": "What are the code-required room sizes, ceiling heights, and bedroom egress rules?",
+    "categorySlug": "design-zoning-adus",
+    "categoryTitle": "Design, Zoning & ADUs",
+    "topicSlugs": [
+      "zoning-setbacks-adus"
+    ],
+    "tags": [
+      "irc",
+      "ceiling-height",
+      "egress",
+      "room-size",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "how-to-choose-the-right-floor-plan"
   }
 ]
