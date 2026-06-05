@@ -16,30 +16,38 @@ Every published FAQ URL and the search intent it owns. Before adding a new FAQ, 
 | `/faq/topics/budgeting-a-custom-home` | Topic cluster: Budgeting a Custom Home |
 | `/faq/topics/zoning-setbacks-adus` | Topic cluster: Zoning, Setbacks & ADUs |
 | `/faq/topics/desert-build-essentials` | Topic cluster: Desert Build Essentials |
+| `/faq/topics/choosing-a-custom-home-builder` | Topic cluster: Choosing a Custom Home Builder |
 
 ## Questions
 
 | URL | Category | Intent (question) |
 | --- | --- | --- |
 | `/faq/do-i-need-a-permit-to-build-in-maricopa-county` | Permits, Codes & Inspections | Do I need a permit to build a custom home in Maricopa County? |
+| `/faq/how-to-choose-a-custom-home-builder-in-arizona` | Choosing & Working With a Builder | How do I choose a custom home builder in Arizona? |
 | `/faq/designing-an-energy-efficient-home-for-the-arizona-desert` | Building in the Desert | How do you design an energy-efficient home for the Arizona desert? |
 | `/faq/lot-grading-and-drainage-keeping-water-away-from-the-house` | Building in the Desert | How does lot grading and drainage protect a desert home from monsoon flooding? |
 | `/faq/what-building-codes-apply-to-a-new-home-in-arizona` | Permits, Codes & Inspections | What building codes apply to a new home in the Phoenix metro? |
+| `/faq/what-to-ask-a-custom-home-builder-before-hiring` | Choosing & Working With a Builder | What should I ask a custom home builder before hiring them? |
 | `/faq/how-long-does-permitting-take-in-scottsdale` | Permits, Codes & Inspections | How long does it take to get a building permit in Scottsdale? |
 | `/faq/arizona-pool-safety-barrier-requirements` | Building in the Desert | What are Arizona's pool safety barrier requirements for a new home with a pool? |
+| `/faq/red-flags-when-choosing-a-custom-home-builder` | Choosing & Working With a Builder | What are the red flags to watch for when choosing a custom home builder? |
 | `/faq/going-solar-on-a-new-home-and-hoa-solar-rights` | Building in the Desert | Can I put solar on my new Arizona home, and can an HOA stop me? |
 | `/faq/how-do-i-know-if-a-lot-is-buildable` | Land & Due Diligence | How do I know if a lot is buildable before I buy it in Arizona? |
+| `/faq/design-build-vs-design-bid-build` | Choosing & Working With a Builder | What is the difference between design-build and design-bid-build, and which is right for a custom home? |
 | `/faq/which-building-code-edition-does-each-city-use` | Permits, Codes & Inspections | Which building code edition does each city in your build area use? |
 | `/faq/do-i-need-a-permit-in-unincorporated-maricopa-county` | Permits, Codes & Inspections | Do I need a permit to build in unincorporated Maricopa County, like Rio Verde Foothills? |
 | `/faq/do-i-need-a-soils-or-geotechnical-report` | Land & Due Diligence | Do I need a soils or geotechnical report to build in Arizona? |
+| `/faq/how-to-verify-an-arizona-contractor-license` | Choosing & Working With a Builder | How do I verify a builder's Arizona contractor license, and why does it matter? |
 | `/faq/how-long-does-it-take-to-build-a-custom-home` | Building in the Desert | How long does it take to build a custom home in Arizona, phase by phase? |
 | `/faq/can-i-build-without-city-water-or-sewer` | Water, Septic & Utilities | Can I build on rural land without city water or sewer? |
 | `/faq/how-permitting-works-in-pinal-county` | Permits, Codes & Inspections | How does building permitting work in Pinal County, around Casa Grande and Apache Junction? |
 | `/faq/earth-fissures-and-land-subsidence-in-pinal-county` | Land & Due Diligence | Should I check for earth fissures before buying a lot in Pinal County? |
 | `/faq/best-roofing-and-exterior-materials-for-the-desert` | Building in the Desert | What are the best roofing and exterior materials for the Arizona desert? |
+| `/faq/custom-vs-semi-custom-vs-spec-home` | Choosing & Working With a Builder | What is the difference between a custom, semi-custom, and spec home? |
 | `/faq/is-my-lot-in-a-floodplain-in-maricopa-county` | Land & Due Diligence | How do I find out if a lot is in a floodplain, and what does that mean for building? |
 | `/faq/how-do-i-size-hvac-for-extreme-arizona-heat` | Building in the Desert | How do I size and choose HVAC for extreme Arizona heat? |
 | `/faq/how-do-septic-systems-work-for-a-new-home` | Water, Septic & Utilities | How does a septic system work for a new custom home? |
+| `/faq/the-custom-home-building-process-step-by-step` | Choosing & Working With a Builder | What are the steps to build a custom home, from first meeting to move-in? |
 | `/faq/what-inspections-happen-during-a-custom-home-build` | Permits, Codes & Inspections | What inspections happen during a custom-home build, and in what order? |
 | `/faq/caliche-expansive-clay-and-desert-soils` | Land & Due Diligence | How do caliche and expansive clay affect a custom home foundation in Arizona? |
 | `/faq/protecting-a-desert-home-from-monsoon-and-dust` | Building in the Desert | How do I protect a desert home from monsoon storms, dust, and flash flooding? |
@@ -52,20 +60,24 @@ Every published FAQ URL and the search intent it owns. Before adding a new FAQ, 
 | `/faq/firewise-and-defensible-space-for-foothill-lots` | Building in the Desert | What is firewise design and defensible space for foothill lots? |
 | `/faq/do-house-plans-need-an-engineer-or-architect-stamp` | Permits, Codes & Inspections | Do my house plans need an engineer's or architect's stamp in Arizona? |
 | `/faq/how-do-i-check-zoning-before-buying-a-lot` | Land & Due Diligence | How do I check a lot's zoning before I buy it? |
+| `/faq/icf-vs-wood-frame-vs-block-construction` | Building in the Desert | ICF vs wood-frame vs block: which wall system is best for a desert custom home? |
 | `/faq/what-are-allowances-and-change-orders` | Costs & Budget | What are allowances and change orders, and how do they affect my budget? |
 | `/faq/septic-permits-and-the-transfer-of-ownership-inspection` | Water, Septic & Utilities | What permits does a septic system need, and what is the transfer-of-ownership inspection? |
 | `/faq/how-do-i-finance-building-a-custom-home` | Costs & Budget | How do I finance building a custom home in Arizona? |
+| `/faq/foundation-types-for-arizona-custom-homes` | Building in the Desert | What foundation types are used for Arizona custom homes (post-tension slab, conventional slab, stem-wall)? |
 | `/faq/rio-verde-foothills-water-how-lots-get-water-now` | Water, Septic & Utilities | What happened with Rio Verde Foothills water, and how do lots get water there now? |
 | `/faq/what-is-a-certificate-of-occupancy-and-how-do-i-get-one` | Permits, Codes & Inspections | What is a certificate of occupancy and how do I get one? |
 | `/faq/what-is-a-perc-test-and-do-i-need-one` | Land & Due Diligence | What is a percolation (perc) test and do I need one? |
 | `/faq/can-i-live-on-site-in-an-rv-while-building` | Permits, Codes & Inspections | Can I live in an RV or temporary structure on my lot while I build? |
 | `/faq/easements-rights-of-way-and-where-you-can-build` | Land & Due Diligence | How do easements and rights-of-way affect where I can build? |
 | `/faq/what-are-setbacks-lot-coverage-and-naos-rules` | Design, Zoning & ADUs | What are setbacks, lot coverage, and NAOS rules in Scottsdale? |
+| `/faq/insulation-options-for-an-arizona-home` | Building in the Desert | What are the best insulation options for an Arizona home (spray foam, batt, blown-in)? |
 | `/faq/what-do-permit-and-development-fees-cost-to-build` | Costs & Budget | What do permit, impact, and development fees add to the cost of a build? |
 | `/faq/assured-vs-adequate-water-supply-and-the-100-year-rule` | Water, Septic & Utilities | What is the difference between assured and adequate water supply, and how does the 100-year rule work? |
 | `/faq/can-i-build-a-casita-or-adu` | Design, Zoning & ADUs | Can I build a casita, guest house, or ADU on my property? |
 | `/faq/how-do-i-confirm-legal-access-to-a-rural-lot` | Land & Due Diligence | How do I confirm legal access to a rural or landlocked lot? |
 | `/faq/how-does-a-one-time-close-construction-loan-work` | Costs & Budget | How does a construction-to-permanent (one-time-close) loan work? |
+| `/faq/how-a-custom-home-reaches-net-zero-energy` | Building in the Desert | How does a custom home reach net-zero energy in Arizona? |
 | `/faq/how-much-does-it-cost-to-drill-a-well-in-arizona` | Water, Septic & Utilities | How much does it cost to drill a well in Arizona? |
 | `/faq/what-hb-2720-changed-for-adus-in-arizona` | Design, Zoning & ADUs | What did HB 2720 change for building a casita or ADU in Arizona? |
 | `/faq/what-drives-custom-home-cost-per-square-foot` | Costs & Budget | What drives custom-home cost per square foot in our markets? |
@@ -77,7 +89,11 @@ Every published FAQ URL and the search intent it owns. Before adding a new FAQ, 
 | `/faq/fixed-price-vs-cost-plus-building-contracts` | Costs & Budget | What is the difference between a fixed-price and a cost-plus building contract? |
 | `/faq/what-deposit-do-custom-home-builders-require` | Costs & Budget | What deposit or payment schedule do custom home builders require? |
 | `/faq/desert-and-dark-sky-design-rules-cave-creek-carefree` | Design, Zoning & ADUs | What desert and dark-sky design rules apply in Cave Creek and Carefree? |
+| `/faq/hidden-costs-of-building-a-custom-home` | Costs & Budget | What are the hidden costs of building a custom home? |
 | `/faq/what-an-hoa-architectural-committee-can-require` | Design, Zoning & ADUs | What can an HOA's architectural committee require when I build a custom home? |
 | `/faq/can-i-rent-out-a-casita-or-run-a-short-term-rental` | Design, Zoning & ADUs | Can I rent out a casita or run a short-term rental on my property? |
+| `/faq/whats-in-a-custom-home-construction-contract` | Costs & Budget | What should be in a custom home construction contract? |
+| `/faq/lien-waivers-and-mechanics-liens-in-arizona` | Costs & Budget | How do lien waivers and mechanic's liens work in Arizona? |
 | `/faq/rural-residential-zoning-districts-in-maricopa-county` | Design, Zoning & ADUs | What do Maricopa County's rural residential zoning districts (like RU-43) allow? |
 | `/faq/room-sizes-ceiling-heights-and-bedroom-egress` | Design, Zoning & ADUs | What are the code-required room sizes, ceiling heights, and bedroom egress rules? |
+| `/faq/what-is-a-punch-list-and-final-walkthrough` | Costs & Budget | What is a punch list and final walkthrough on a new home? |

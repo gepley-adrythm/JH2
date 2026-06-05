@@ -16,6 +16,23 @@
     "pillarBlogSlug": "what-to-expect-when-building-a-custom-home-in-the-phoenix-metro-area"
   },
   {
+    "slug": "how-to-choose-a-custom-home-builder-in-arizona",
+    "question": "How do I choose a custom home builder in Arizona?",
+    "categorySlug": "choosing-a-builder",
+    "categoryTitle": "Choosing & Working With a Builder",
+    "topicSlugs": [
+      "choosing-a-custom-home-builder"
+    ],
+    "tags": [
+      "choosing-a-builder",
+      "roc-license",
+      "arizona",
+      "hiring",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "choosing-the-best-home-builder-in-scottsdale-key-considerations-for-2026"
+  },
+  {
     "slug": "designing-an-energy-efficient-home-for-the-arizona-desert",
     "question": "How do you design an energy-efficient home for the Arizona desert?",
     "categorySlug": "building-in-the-desert",
@@ -66,6 +83,23 @@
     "pillarBlogSlug": "how-to-build-a-custom-home"
   },
   {
+    "slug": "what-to-ask-a-custom-home-builder-before-hiring",
+    "question": "What should I ask a custom home builder before hiring them?",
+    "categorySlug": "choosing-a-builder",
+    "categoryTitle": "Choosing & Working With a Builder",
+    "topicSlugs": [
+      "choosing-a-custom-home-builder"
+    ],
+    "tags": [
+      "questions-to-ask",
+      "choosing-a-builder",
+      "hiring",
+      "contracts",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "questions-to-ask-custom-home-builder-arizona"
+  },
+  {
     "slug": "how-long-does-permitting-take-in-scottsdale",
     "question": "How long does it take to get a building permit in Scottsdale?",
     "categorySlug": "permits-and-codes",
@@ -99,6 +133,23 @@
     "pillarBlogSlug": null
   },
   {
+    "slug": "red-flags-when-choosing-a-custom-home-builder",
+    "question": "What are the red flags to watch for when choosing a custom home builder?",
+    "categorySlug": "choosing-a-builder",
+    "categoryTitle": "Choosing & Working With a Builder",
+    "topicSlugs": [
+      "choosing-a-custom-home-builder"
+    ],
+    "tags": [
+      "red-flags",
+      "choosing-a-builder",
+      "roc-license",
+      "hiring",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "choosing-the-best-home-builder-in-scottsdale-key-considerations-for-2026"
+  },
+  {
     "slug": "going-solar-on-a-new-home-and-hoa-solar-rights",
     "question": "Can I put solar on my new Arizona home, and can an HOA stop me?",
     "categorySlug": "building-in-the-desert",
@@ -130,6 +181,23 @@
       "research-phase"
     ],
     "pillarBlogSlug": "building-on-your-own-lot-arizona"
+  },
+  {
+    "slug": "design-build-vs-design-bid-build",
+    "question": "What is the difference between design-build and design-bid-build, and which is right for a custom home?",
+    "categorySlug": "choosing-a-builder",
+    "categoryTitle": "Choosing & Working With a Builder",
+    "topicSlugs": [
+      "choosing-a-custom-home-builder"
+    ],
+    "tags": [
+      "design-build",
+      "design-bid-build",
+      "delivery-method",
+      "choosing-a-builder",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "choosing-the-best-home-builder-in-scottsdale-key-considerations-for-2026"
   },
   {
     "slug": "which-building-code-edition-does-each-city-use",
@@ -181,6 +249,23 @@
       "research-phase"
     ],
     "pillarBlogSlug": "what-to-do-after-buying-land-in-arizona"
+  },
+  {
+    "slug": "how-to-verify-an-arizona-contractor-license",
+    "question": "How do I verify a builder's Arizona contractor license, and why does it matter?",
+    "categorySlug": "choosing-a-builder",
+    "categoryTitle": "Choosing & Working With a Builder",
+    "topicSlugs": [
+      "choosing-a-custom-home-builder"
+    ],
+    "tags": [
+      "roc-license",
+      "license-verification",
+      "recovery-fund",
+      "choosing-a-builder",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "choosing-the-best-home-builder-in-scottsdale-key-considerations-for-2026"
   },
   {
     "slug": "how-long-does-it-take-to-build-a-custom-home",
@@ -269,6 +354,23 @@
     "pillarBlogSlug": "arizona-home-design-trends-for-2026"
   },
   {
+    "slug": "custom-vs-semi-custom-vs-spec-home",
+    "question": "What is the difference between a custom, semi-custom, and spec home?",
+    "categorySlug": "choosing-a-builder",
+    "categoryTitle": "Choosing & Working With a Builder",
+    "topicSlugs": [
+      "choosing-a-custom-home-builder"
+    ],
+    "tags": [
+      "custom-home",
+      "semi-custom",
+      "spec-home",
+      "choosing-a-builder",
+      "research-phase"
+    ],
+    "pillarBlogSlug": null
+  },
+  {
     "slug": "is-my-lot-in-a-floodplain-in-maricopa-county",
     "question": "How do I find out if a lot is in a floodplain, and what does that mean for building?",
     "categorySlug": "land-and-due-diligence",
@@ -317,6 +419,23 @@
       "research-phase"
     ],
     "pillarBlogSlug": "building-a-custom-home-in-rio-verde-az-lot-considerations-most-buyers-miss"
+  },
+  {
+    "slug": "the-custom-home-building-process-step-by-step",
+    "question": "What are the steps to build a custom home, from first meeting to move-in?",
+    "categorySlug": "choosing-a-builder",
+    "categoryTitle": "Choosing & Working With a Builder",
+    "topicSlugs": [
+      "choosing-a-custom-home-builder"
+    ],
+    "tags": [
+      "building-process",
+      "steps",
+      "custom-home",
+      "choosing-a-builder",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "what-custom-home-builders-need-from-you-before-the-first-design-meeting"
   },
   {
     "slug": "what-inspections-happen-during-a-custom-home-build",
@@ -524,6 +643,24 @@
     "pillarBlogSlug": "top-strategies-for-finding-the-perfect-building-lot-a-comprehensive-guide"
   },
   {
+    "slug": "icf-vs-wood-frame-vs-block-construction",
+    "question": "ICF vs wood-frame vs block: which wall system is best for a desert custom home?",
+    "categorySlug": "building-in-the-desert",
+    "categoryTitle": "Building in the Desert",
+    "topicSlugs": [
+      "desert-build-essentials"
+    ],
+    "tags": [
+      "wall-systems",
+      "icf",
+      "block-construction",
+      "wood-frame",
+      "energy-efficiency",
+      "research-phase"
+    ],
+    "pillarBlogSlug": null
+  },
+  {
     "slug": "what-are-allowances-and-change-orders",
     "question": "What are allowances and change orders, and how do they affect my budget?",
     "categorySlug": "costs-and-budget",
@@ -571,6 +708,24 @@
       "research-phase"
     ],
     "pillarBlogSlug": "financing-your-custom-or-semi-home"
+  },
+  {
+    "slug": "foundation-types-for-arizona-custom-homes",
+    "question": "What foundation types are used for Arizona custom homes (post-tension slab, conventional slab, stem-wall)?",
+    "categorySlug": "building-in-the-desert",
+    "categoryTitle": "Building in the Desert",
+    "topicSlugs": [
+      "desert-build-essentials"
+    ],
+    "tags": [
+      "foundations",
+      "post-tension-slab",
+      "stem-wall",
+      "expansive-soils",
+      "caliche",
+      "research-phase"
+    ],
+    "pillarBlogSlug": null
   },
   {
     "slug": "rio-verde-foothills-water-how-lots-get-water-now",
@@ -675,6 +830,24 @@
     "pillarBlogSlug": "designing-a-custom-home-around-your-lot-why-layout-matters-more-than-square-footage"
   },
   {
+    "slug": "insulation-options-for-an-arizona-home",
+    "question": "What are the best insulation options for an Arizona home (spray foam, batt, blown-in)?",
+    "categorySlug": "building-in-the-desert",
+    "categoryTitle": "Building in the Desert",
+    "topicSlugs": [
+      "desert-build-essentials"
+    ],
+    "tags": [
+      "insulation",
+      "spray-foam",
+      "attic",
+      "air-sealing",
+      "energy-efficiency",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "arizona-home-design-trends-for-2026"
+  },
+  {
     "slug": "what-do-permit-and-development-fees-cost-to-build",
     "question": "What do permit, impact, and development fees add to the cost of a build?",
     "categorySlug": "costs-and-budget",
@@ -758,6 +931,24 @@
       "research-phase"
     ],
     "pillarBlogSlug": "financing-your-custom-or-semi-home"
+  },
+  {
+    "slug": "how-a-custom-home-reaches-net-zero-energy",
+    "question": "How does a custom home reach net-zero energy in Arizona?",
+    "categorySlug": "building-in-the-desert",
+    "categoryTitle": "Building in the Desert",
+    "topicSlugs": [
+      "desert-build-essentials"
+    ],
+    "tags": [
+      "net-zero",
+      "solar",
+      "energy-efficiency",
+      "hers",
+      "all-electric",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "a-comprehensive-guide-to-home-building-with-passive-solar-design"
   },
   {
     "slug": "how-much-does-it-cost-to-drill-a-well-in-arizona",
@@ -951,6 +1142,23 @@
     "pillarBlogSlug": "designing-your-custom-home-in-arizona-maximizing-view-light-and-comfort"
   },
   {
+    "slug": "hidden-costs-of-building-a-custom-home",
+    "question": "What are the hidden costs of building a custom home?",
+    "categorySlug": "costs-and-budget",
+    "categoryTitle": "Costs & Budget",
+    "topicSlugs": [
+      "budgeting-a-custom-home"
+    ],
+    "tags": [
+      "hidden-costs",
+      "budget",
+      "allowances",
+      "site-work",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "establish-a-realistic-budget-before-designing-your-custom-home"
+  },
+  {
     "slug": "what-an-hoa-architectural-committee-can-require",
     "question": "What can an HOA's architectural committee require when I build a custom home?",
     "categorySlug": "design-zoning-adus",
@@ -985,6 +1193,40 @@
     "pillarBlogSlug": "modern-casita-and-guest-house-design-trends"
   },
   {
+    "slug": "whats-in-a-custom-home-construction-contract",
+    "question": "What should be in a custom home construction contract?",
+    "categorySlug": "costs-and-budget",
+    "categoryTitle": "Costs & Budget",
+    "topicSlugs": [
+      "budgeting-a-custom-home"
+    ],
+    "tags": [
+      "construction-contract",
+      "change-orders",
+      "roc-license",
+      "warranty",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "what-to-expect-when-building-a-custom-home-in-the-phoenix-metro-area"
+  },
+  {
+    "slug": "lien-waivers-and-mechanics-liens-in-arizona",
+    "question": "How do lien waivers and mechanic's liens work in Arizona?",
+    "categorySlug": "costs-and-budget",
+    "categoryTitle": "Costs & Budget",
+    "topicSlugs": [
+      "budgeting-a-custom-home"
+    ],
+    "tags": [
+      "lien-waivers",
+      "mechanics-lien",
+      "arizona-law",
+      "draws",
+      "research-phase"
+    ],
+    "pillarBlogSlug": null
+  },
+  {
     "slug": "rural-residential-zoning-districts-in-maricopa-county",
     "question": "What do Maricopa County's rural residential zoning districts (like RU-43) allow?",
     "categorySlug": "design-zoning-adus",
@@ -1017,5 +1259,22 @@
       "research-phase"
     ],
     "pillarBlogSlug": "how-to-choose-the-right-floor-plan"
+  },
+  {
+    "slug": "what-is-a-punch-list-and-final-walkthrough",
+    "question": "What is a punch list and final walkthrough on a new home?",
+    "categorySlug": "costs-and-budget",
+    "categoryTitle": "Costs & Budget",
+    "topicSlugs": [
+      "budgeting-a-custom-home"
+    ],
+    "tags": [
+      "punch-list",
+      "final-walkthrough",
+      "closeout",
+      "warranty",
+      "research-phase"
+    ],
+    "pillarBlogSlug": "what-to-expect-when-building-a-custom-home-in-the-phoenix-metro-area"
   }
 ]

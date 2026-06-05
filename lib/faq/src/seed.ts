@@ -108,6 +108,15 @@ export const faqSeed: FaqSeed = {
         "Building a custom home in the Arizona desert: energy-efficient design, lot grading and drainage, pool-barrier law, solar rights, and realistic build timelines.",
       sortOrder: 6,
     },
+    {
+      slug: "choosing-a-builder",
+      title: "Choosing & Working With a Builder",
+      description:
+        "How to find, vet, and hire the right Arizona custom home builder - license verification, the questions to ask, red flags, delivery methods, and how the build process works.",
+      metaDescription:
+        "Choosing a custom home builder in Arizona: verify the ROC license, the questions to ask, red flags to avoid, design-build vs design-bid-build, and the build process.",
+      sortOrder: 7,
+    },
   ],
   topics: [
     {
@@ -163,6 +172,15 @@ export const faqSeed: FaqSeed = {
       metaDescription:
         "Desert build essentials for an Arizona custom home: hot-dry energy design, grading and drainage, pool safety barriers, going solar, and how long the build takes.",
       sortOrder: 6,
+    },
+    {
+      slug: "choosing-a-custom-home-builder",
+      title: "Choosing a Custom Home Builder",
+      description:
+        "Finding and hiring the right builder - verifying an Arizona contractor license, the questions to ask before you sign, red flags, and how the build process runs.",
+      metaDescription:
+        "Choosing a custom home builder in Arizona: license verification, questions to ask, red flags, design-build vs design-bid-build, and the step-by-step build process.",
+      sortOrder: 7,
     },
   ],
   items: [
@@ -1856,6 +1874,203 @@ export const faqSeed: FaqSeed = {
       featured: false,
       sortOrder: 17,
     }),
+    item({
+      slug: "hidden-costs-of-building-a-custom-home",
+      question: "What are the hidden costs of building a custom home?",
+      answerHtml: `<p><strong>The hidden costs of building a custom home are the real, predictable line items that buyers leave out of a back-of-the-napkin budget: land due diligence (survey, geotechnical report, percolation test), plan review and permit fees, utility hookups or well and septic, impact and development fees, allowance overruns on finishes, and the finish-grading and landscaping at the very end. None of these are surprises to an experienced builder, but they routinely add a meaningful percentage to a number that started as just "lot plus house."</strong> The fix is not luck. It is a complete budget that names every category before design begins.</p>
+    <h2>Why do custom home budgets blow up?</h2>
+    <p>Most budget overruns are not caused by one dramatic event. They come from a stack of ordinary costs that never made it onto the first spreadsheet. A buyer prices the lot and a per-square-foot construction number, then discovers that getting from raw dirt to a finished, move-in-ready home involves a long tail of professional studies, government fees, site work, and selection upgrades. Below are the categories that most often go missing.</p>
+    <h2>What costs do buyers forget before construction even starts?</h2>
+    <p>These soft costs come early, before a single footing is poured, and many lenders will not fund them, so they often come out of pocket:</p>
+    <ul>
+    <li><strong>Boundary and topographic survey.</strong> You need to know exactly where the lot lines, easements, and slopes are before anyone designs to them.</li>
+    <li><strong>Geotechnical (soils) report.</strong> Arizona soils include expansive clay and caliche, and the report drives the foundation design. It is a study you pay for up front, not a line in the construction contract.</li>
+    <li><strong>Percolation or site evaluation for septic</strong> on lots without sewer, required before a septic system can be designed and permitted.</li>
+    <li><strong>Civil and structural engineering, energy calculations, and architectural design</strong> needed to assemble a permit-ready set.</li>
+    <li><strong>Plan review and permit fees</strong> charged by the city or county, which are separate from the cost of building.</li>
+    <li><strong>Impact and development fees</strong> that many jurisdictions assess on a new dwelling to fund roads, parks, and public safety.</li>
+    </ul>
+    <h2>What gets underestimated during construction?</h2>
+    <p>Once the build is underway, the most common overruns are tied to site conditions and to the choices you make at the selection table:</p>
+    <ul>
+    <li><strong>Site work and earthwork.</strong> Clearing, cut and fill, retaining walls, and a long driveway on a sloped or remote lot can dwarf what a flat infill lot would cost.</li>
+    <li><strong>Utility extensions.</strong> Running power, water, gas, or fiber to a rural parcel, or drilling a well and installing a septic system, can each be five figures.</li>
+    <li><strong>Allowance overruns.</strong> A contract sets dollar allowances for flooring, cabinets, countertops, plumbing fixtures, and lighting. If your taste runs above the allowance, you pay the difference, and a thin allowance can make a low bid look better than it is.</li>
+    <li><strong>Change orders.</strong> Mid-build design changes carry both material and labor cost and can affect the schedule.</li>
+    </ul>
+    <h2>What costs land at the very end?</h2>
+    <p>The last stretch of a project hides costs because buyers picture the finished house and forget what surrounds it:</p>
+    <ul>
+    <li><strong>Finish grading, hardscape, and landscaping,</strong> including desert-appropriate planting, irrigation, and often a wall or fence.</li>
+    <li><strong>Driveway paving and the final approach</strong> to the garage.</li>
+    <li><strong>Window coverings, appliances not in the contract, and low-voltage or security systems.</strong></li>
+    <li><strong>Closing and financing costs</strong> on a construction loan, including interest paid during the build and any inspection or draw fees.</li>
+    </ul>
+    <h2>How do you keep these costs from being hidden?</h2>
+    <p>The answer is a complete, itemized budget produced before design is finalized, where every category above is either a real number or an honest, clearly labeled allowance. We build that budget with you, set allowances at levels that reflect the finishes our clients actually choose rather than artificially low placeholders, and flag the lot-driven costs (site work, utilities, well and septic) early, because those are where raw land surprises people most. A cost that is written down is a planned cost, not a hidden one.</p>
+    <p>Fees, impact charges, and utility costs vary by jurisdiction and by lot, and they change year to year, so always confirm the current numbers for your specific parcel with the local Authority Having Jurisdiction and your utility providers before you commit to a budget.</p>`,
+      shortAnswer:
+        "The hidden costs are the predictable extras buyers omit: surveys, the geotechnical report, plan review and permit fees, impact fees, utility hookups or well and septic, allowance overruns on finishes, and the finish grading and landscaping at the end. An itemized budget built before design turns every one of them into a planned cost.",
+      metaDescription:
+        "The hidden costs of building a custom home in Arizona: surveys, geotech, permit and impact fees, utility hookups, allowance overruns, and final landscaping.",
+      categorySlug: "costs-and-budget",
+      topicSlugs: ["budgeting-a-custom-home"],
+      tags: ["hidden-costs", "budget", "allowances", "site-work", "research-phase"],
+      relatedFaqSlugs: [
+        "whats-in-a-custom-home-construction-contract",
+        "what-are-allowances-and-change-orders",
+        "what-drives-custom-home-cost-per-square-foot",
+        "how-much-should-i-budget-for-site-work",
+        "what-do-permit-and-development-fees-cost-to-build",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug: "establish-a-realistic-budget-before-designing-your-custom-home",
+      sortOrder: 18,
+    }),
+    item({
+      slug: "whats-in-a-custom-home-construction-contract",
+      question: "What should be in a custom home construction contract?",
+      answerHtml: `<p><strong>A custom home construction contract should clearly define the scope of work, the price and how it is calculated, the payment or draw schedule, the dollar allowances for finishes, a written change-order process, the schedule with substantial-completion terms, the warranty, insurance and licensing, and how disputes are handled. In Arizona it should also carry the contractor's Registrar of Contractors (ROC) license number, because residential work must be performed by a licensed contractor.</strong> A strong contract is not about distrust. It is the shared, written understanding that keeps a long, expensive project predictable.</p>
+    <h2>Why does the contract matter so much on a custom home?</h2>
+    <p>A custom home runs for many months and involves hundreds of decisions, dozens of trades, and a large sum paid out over time. The contract is the single document everyone returns to when a question comes up. Arizona requires residential construction to be performed by a contractor licensed through the Registrar of Contractors, and a written agreement is the standard of care. The clearer it is, the fewer assumptions there are to argue about later.</p>
+    <h2>What are the essential clauses to look for?</h2>
+    <ul>
+    <li><strong>Scope of work and plans.</strong> The contract should reference the specific plan set, specifications, and selections so "the house" is defined, not implied.</li>
+    <li><strong>Price and pricing model.</strong> It should state whether the job is fixed-price or cost-plus and exactly what is included and excluded.</li>
+    <li><strong>Allowances.</strong> Dollar amounts for finish categories (flooring, cabinets, counters, fixtures, lighting) with a clear rule for what happens if a selection comes in above or below the allowance.</li>
+    <li><strong>Payment / draw schedule.</strong> When payments are due, tied to milestones or to lender draws, and what each draw covers.</li>
+    <li><strong>Change-order process.</strong> A written, signed procedure that prices any change in scope and states its schedule impact before the work proceeds. Verbal changes are where disputes start.</li>
+    <li><strong>Schedule and substantial completion.</strong> A start date, an estimated completion, how weather or owner-caused delays are handled, and what "substantially complete" means.</li>
+    <li><strong>Warranty.</strong> The builder's express warranty and how it relates to Arizona's implied warranty of workmanship and habitability and the ROC workmanship standards.</li>
+    <li><strong>Insurance, licensing, and lien protection.</strong> The ROC license number, proof of liability and workers' compensation coverage, and how lien waivers will be collected from subcontractors and suppliers at each draw.</li>
+    <li><strong>Dispute resolution.</strong> Whether disputes go to mediation, arbitration, or court, and a note that homeowners may also file with the ROC.</li>
+    <li><strong>Termination and closeout.</strong> The conditions for ending the contract and what defines final completion and final payment.</li>
+    </ul>
+    <h2>What does Arizona law add to a residential contract?</h2>
+    <p>Arizona residential contractors must be licensed by the ROC, and the license number belongs in the contract so you can verify it. The ROC publishes workmanship standards that function as the baseline for acceptable residential work, and homeowners have a window after completion to file a complaint with the ROC if a licensed contractor's work is deficient. Owner-occupants of a licensed contractor's project may also have access to the Residential Contractors' Recovery Fund for certain unpaid judgments, subject to statutory caps. These remedies sit on top of the contract, not instead of it, which is why a written, license-bearing agreement matters.</p>
+    <h2>What are common contract red flags?</h2>
+    <ul>
+    <li>A large up-front deposit out of proportion to early work.</li>
+    <li>Vague or missing allowances, which let a low bid hide future cost.</li>
+    <li>No written change-order procedure.</li>
+    <li>No license number, or a number that does not verify on the ROC website.</li>
+    <li>A payment schedule that runs ahead of work completed.</li>
+    </ul>
+    <h2>How we approach the contract</h2>
+    <p>We put the full scope, an honest allowance schedule, a milestone-based draw schedule, and a written change-order process in front of you before work begins, and we collect lien waivers from our subcontractors and suppliers at each draw so payments are documented. The contract should leave you with no guesswork about what you are buying, when you pay, and what happens if something changes. Because licensing rules, workmanship standards, and statutory remedies are set by the state and can change, confirm the current requirements with the Arizona Registrar of Contractors, and have your own attorney review any construction contract before you sign.</p>`,
+      shortAnswer:
+        "A custom home contract should define scope and plans, the price and pricing model, allowances, the draw schedule, a written change-order process, the schedule and substantial completion, the warranty, insurance and the ROC license number, and how disputes are resolved. In Arizona, residential work must be done by a licensed contractor, so verify that number.",
+      metaDescription:
+        "What should a custom home construction contract include? Scope, price, allowances, draw schedule, change orders, warranty, ROC license, and dispute resolution in Arizona.",
+      categorySlug: "costs-and-budget",
+      topicSlugs: ["budgeting-a-custom-home"],
+      tags: ["construction-contract", "change-orders", "roc-license", "warranty", "research-phase"],
+      relatedFaqSlugs: [
+        "hidden-costs-of-building-a-custom-home",
+        "lien-waivers-and-mechanics-liens-in-arizona",
+        "what-are-allowances-and-change-orders",
+        "fixed-price-vs-cost-plus-building-contracts",
+        "how-to-verify-an-arizona-contractor-license",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug: "what-to-expect-when-building-a-custom-home-in-the-phoenix-metro-area",
+      sortOrder: 19,
+    }),
+    item({
+      slug: "lien-waivers-and-mechanics-liens-in-arizona",
+      question: "How do lien waivers and mechanic's liens work in Arizona?",
+      answerHtml: `<p><strong>In Arizona, a mechanic's or materialman's lien (A.R.S. Title 33, Chapter 6) lets contractors, subcontractors, and suppliers who are not paid for work or materials place a claim against the property they improved. A lien waiver is the document a paid party signs giving up that claim, and owners and lenders collect waivers at every draw to confirm everyone down the chain has actually been paid.</strong> The two ideas work together: liens protect the people who build, and waivers protect the owner from paying twice.</p>
+    <h2>What is a mechanic's lien?</h2>
+    <p>Arizona's lien statutes (A.R.S. 33-981 and following) give anyone who furnishes labor, professional services, materials, or equipment to improve real property the right to record a lien against that property if they are not paid. The lien attaches to the home and land, and if it is not resolved it can be foreclosed, which is why an unreleased lien is a serious title problem at closing or sale. The risk for an owner is being asked to pay twice: once to the general contractor, and again to a subcontractor or supplier the contractor failed to pay.</p>
+    <h2>What are the key deadlines?</h2>
+    <p>Arizona lien rights run on strict statutory timelines. As of June 2026 the general framework is:</p>
+    <ul>
+    <li><strong>Preliminary twenty-day notice (A.R.S. 33-992.01).</strong> Most potential claimants must serve a preliminary notice within twenty days after first furnishing labor or materials to preserve lien rights. This is the notice owners receive early in a project from suppliers they have never met, and it is normal.</li>
+    <li><strong>Recording the lien (A.R.S. 33-993).</strong> A lien generally must be recorded within 120 days after completion of the project, or within 60 days after a notice of completion is recorded, whichever applies.</li>
+    <li><strong>Foreclosing the lien (A.R.S. 33-998).</strong> A lawsuit to enforce a recorded lien must generally be started within six months, or the lien expires.</li>
+    </ul>
+    <p>These deadlines are precise and change occasionally, so anyone relying on them should confirm the current statute or consult an attorney.</p>
+    <h2>Does the owner-occupant exemption protect me?</h2>
+    <p>Arizona gives special protection to owner-occupants. Under A.R.S. 33-1002, a person who contracts directly with a licensed contractor to build or improve a dwelling they own and occupy (or intend to occupy) is generally protected from subcontractor and supplier liens, as long as that owner-occupant has paid the general contractor in full. The protection is real but conditional, and it does not erase the practical risk, which is exactly why paying through the contractor and collecting waivers still matters. This is a nuanced statute, so confirm how it applies to your situation with an attorney.</p>
+    <h2>What are the four types of lien waiver?</h2>
+    <p>Lien waivers come in four standard forms, split two ways: progress versus final, and conditional versus unconditional.</p>
+    <ul>
+    <li><strong>Conditional waiver on progress payment.</strong> Releases lien rights for a specific draw, but only once that payment actually clears. Safe for the party signing.</li>
+    <li><strong>Unconditional waiver on progress payment.</strong> Releases lien rights for that draw immediately, whether or not payment clears, so it should only be signed after payment is confirmed.</li>
+    <li><strong>Conditional waiver on final payment.</strong> Releases all remaining lien rights, effective only when the final payment clears.</li>
+    <li><strong>Unconditional waiver on final payment.</strong> Releases all lien rights immediately and unconditionally, appropriate only after final payment has been received.</li>
+    </ul>
+    <p>Arizona addresses lien waivers in A.R.S. 33-1008. The critical distinction is conditional versus unconditional: a conditional waiver depends on payment clearing, while an unconditional one does not, so an unconditional waiver should never be signed before the money is in hand.</p>
+    <h2>Why does my builder collect waivers at each draw?</h2>
+    <p>Collecting a lien waiver from every subcontractor and supplier at each draw creates a paper trail proving they were paid for that phase. Construction lenders and title companies usually require this before releasing the next draw or clearing title. It is the single most effective routine protection against a surprise lien.</p>
+    <h2>How we handle it</h2>
+    <p>We pay our subcontractors and suppliers on schedule and collect signed lien waivers at each draw, so your draws are documented and your title stays clean through to closeout. Lien law is technical and the deadlines are unforgiving, so for any actual or threatened lien, and before relying on any deadline or the owner-occupant exemption, confirm the current statute with the relevant authority and consult a construction attorney.</p>`,
+      shortAnswer:
+        "A mechanic's lien (A.R.S. Title 33) lets unpaid contractors and suppliers claim against the property they improved; a lien waiver is the signed release a paid party gives up that right. Builders collect conditional or unconditional waivers at each draw so owners are not asked to pay twice and title stays clean.",
+      metaDescription:
+        "How lien waivers and mechanic's liens work in Arizona: A.R.S. Title 33 lien rights, the 20-day notice and deadlines, the owner-occupant exemption, and conditional vs unconditional waivers.",
+      categorySlug: "costs-and-budget",
+      topicSlugs: ["budgeting-a-custom-home"],
+      tags: ["lien-waivers", "mechanics-lien", "arizona-law", "draws", "research-phase"],
+      relatedFaqSlugs: [
+        "whats-in-a-custom-home-construction-contract",
+        "what-is-a-punch-list-and-final-walkthrough",
+        "how-does-a-one-time-close-construction-loan-work",
+        "how-to-verify-an-arizona-contractor-license",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug: null,
+      sortOrder: 20,
+    }),
+    item({
+      slug: "what-is-a-punch-list-and-final-walkthrough",
+      question: "What is a punch list and final walkthrough on a new home?",
+      answerHtml: `<p><strong>A final walkthrough is the inspection you and your builder do together near the end of construction, and the punch list is the written list of remaining items to fix or finish that comes out of it: touch-up paint, an adjusted door, a missed fixture, a scuffed surface. The builder completes the punch list, you confirm the work, and only then do you make final payment and take the keys.</strong> It is the formal handoff that turns a finished house into your home.</p>
+    <h2>What is the difference between a punch list and a final walkthrough?</h2>
+    <p>The two go together but are not the same. The final walkthrough is the event: a scheduled, room-by-room tour of the completed home with your builder, ideally in good light and with utilities on. The punch list is the document: the running list of every item the walkthrough turns up that still needs attention. The walkthrough generates the list, the builder works the list, and a short re-check confirms each item is done.</p>
+    <h2>When does the walkthrough happen?</h2>
+    <p>The final walkthrough typically happens once construction is substantially complete and the home has passed its final building inspection and received its certificate of occupancy from the Authority Having Jurisdiction. The certificate of occupancy confirms the home meets code and is legally cleared for move-in; the walkthrough and punch list are about fit, finish, and function on top of that code approval.</p>
+    <h2>What should be on a punch list?</h2>
+    <p>A punch list is detailed by design. Common items include:</p>
+    <ul>
+    <li><strong>Paint and drywall:</strong> touch-ups, nail pops, uneven texture, or overspray.</li>
+    <li><strong>Doors and windows:</strong> alignment, latching, smooth operation, intact screens and weatherstripping.</li>
+    <li><strong>Cabinets and counters:</strong> doors and drawers aligned, hardware tight, surfaces free of chips or scratches.</li>
+    <li><strong>Flooring and tile:</strong> no cracked tiles, clean grout lines, no gaps or lippage.</li>
+    <li><strong>Plumbing fixtures:</strong> no leaks, good water pressure, proper drainage, working shutoffs.</li>
+    <li><strong>Electrical:</strong> every switch, outlet, and light fixture works; the panel is labeled.</li>
+    <li><strong>HVAC:</strong> heating and cooling run correctly at every register, with a working thermostat.</li>
+    <li><strong>Exterior and site:</strong> stucco, trim, garage door, grading that drains away from the house, and finished hardscape.</li>
+    </ul>
+    <h2>How should I prepare for the walkthrough?</h2>
+    <ul>
+    <li>Schedule enough time to go slowly and check every room, not just the showpiece spaces.</li>
+    <li>Bring your plans and selection sheets so you can confirm what was specified actually got installed.</li>
+    <li>Test things: open every door and window, run faucets, flip switches, open and close the garage.</li>
+    <li>Use painter's tape to flag small cosmetic issues as you find them.</li>
+    <li>Get the punch list in writing, with each item described clearly, before you sign off.</li>
+    </ul>
+    <h2>How does the punch list connect to final payment and warranty?</h2>
+    <p>Final payment is normally tied to completion of the punch list, which is one reason the list should be written and agreed rather than verbal. Completing it is also the moment lien waivers and final closeout documents come together. Separately, your home carries warranty coverage: the builder's express warranty, plus Arizona's implied warranty of workmanship and habitability, which the Arizona Supreme Court recognized for new home buyers in Richards v. Powercraft Homes (1984). The punch list handles what you can see at handoff; the warranty covers issues that surface later. Items that appear after move-in are warranty claims, not punch-list items, so keep the two straight.</p>
+    <h2>How we handle closeout</h2>
+    <p>We walk the finished home with you, build the punch list together, complete every item, and confirm each one with you before final payment and handoff, along with your warranty documents and the maintenance information for your new home. Because final inspection, certificate-of-occupancy, and warranty requirements are set locally and by statute and can change, confirm the current process for your project with the local Authority Having Jurisdiction.</p>`,
+      shortAnswer:
+        "The final walkthrough is the room-by-room inspection you and your builder do near completion; the punch list is the written list of remaining fixes it produces, from touch-up paint to an adjusted door. The builder completes the list, you confirm each item, and only then do you make final payment and take the keys.",
+      metaDescription:
+        "What is a punch list and final walkthrough on a new custom home? The end-of-build inspection, what to check, and how it ties to final payment and your warranty in Arizona.",
+      categorySlug: "costs-and-budget",
+      topicSlugs: ["budgeting-a-custom-home"],
+      tags: ["punch-list", "final-walkthrough", "closeout", "warranty", "research-phase"],
+      relatedFaqSlugs: [
+        "whats-in-a-custom-home-construction-contract",
+        "lien-waivers-and-mechanics-liens-in-arizona",
+        "what-inspections-happen-during-a-custom-home-build",
+        "what-is-a-certificate-of-occupancy-and-how-do-i-get-one",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug: "what-to-expect-when-building-a-custom-home-in-the-phoenix-metro-area",
+      sortOrder: 21,
+    }),
     // ========================= Design, Zoning & ADUs ========================
     item({
       slug: "what-are-setbacks-lot-coverage-and-naos-rules",
@@ -2627,6 +2842,499 @@ export const faqSeed: FaqSeed = {
       relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
       pillarBlogSlug: null,
       sortOrder: 9,
+    }),
+    item({
+      slug: "icf-vs-wood-frame-vs-block-construction",
+      question: "ICF vs wood-frame vs block: which wall system is best for a desert custom home?",
+      answerHtml: `<p><strong>There is no single best wall system, and the question that decides it is not which material is strongest. It is which wall gives you the most continuous insulation and the tightest air seal for your budget. Wood frame is the most common and lowest in first cost, concrete masonry (block, or CMU) adds mass and durability, and insulated concrete forms (ICF) deliver the highest insulation and airtightness at the highest upfront price.</strong> In a hot-dry climate the wall's real job is to slow the heat coming in and keep cooled air from leaking out, so insulation and air sealing matter more than raw mass.</p>
+    <h2>How does each wall system work?</h2>
+    <h3>Wood frame</h3>
+    <p>Dimensional 2x6 (or 2x4) studs at 16 or 24 inches on center, sheathed and insulated in the stud cavities, then finished with stucco over a weather-resistive barrier outside and drywall inside. It is the default for most Arizona custom homes because it is fast, flexible for complex floor plans, and the trades are everywhere. Its weak point is the studs themselves: wood conducts heat, so every framing member is a small thermal bridge unless you add a layer of continuous exterior insulation over the sheathing.</p>
+    <h3>Concrete masonry (block / CMU)</h3>
+    <p>Concrete blocks stacked and grouted, with steel reinforcing, then typically stuccoed outside and furred-and-insulated or insulated in the cores inside. Block is durable, fire-resistant, termite-proof, and quiet, which is why it was a Southwest staple for decades. On its own a bare block wall is a mediocre insulator, so the insulation strategy (interior furring with rigid or batt, or insulated cores) is what determines its real-world performance.</p>
+    <h3>Insulated concrete forms (ICF)</h3>
+    <p>Hollow rigid-foam blocks are stacked like large bricks, reinforced with steel, and filled with concrete. The foam stays in place permanently as continuous insulation on both faces of a solid concrete core. The result is a wall that is highly insulated, very airtight, strong, and quiet. The Portland Cement Association and the Insulating Concrete Forms Manufacturers Association document typical whole-wall R-values well above a standard insulated wood wall, plus very low air leakage. The trade-offs are higher material and labor cost and the need for a crew experienced in ICF.</p>
+    <h2>What actually matters in a hot-dry climate?</h2>
+    <ul>
+    <li><strong>Continuous insulation and whole-wall R-value.</strong> The number that counts is the performance of the entire assembly, not the insulation in the stud bays. ICF wins here because the foam is unbroken. A wood or block wall can close the gap with a layer of continuous exterior rigid insulation.</li>
+    <li><strong>Air tightness.</strong> Leaky walls dump your cooled air to the outside and pull hot air in. ICF and well-detailed block are inherently tight; wood frame depends on careful air sealing, verified with a blower-door test on a quality build.</li>
+    <li><strong>The thermal-mass question.</strong> Mass (block or the concrete core of ICF) stores heat and slows the daily temperature swing, which can help in the high desert where nights cool off. But in the low desert, where summer nights stay warm, mass without good insulation can keep re-radiating heat indoors. Mass helps most when it is paired with insulation on the outside of it, which is exactly how ICF is built.</li>
+    </ul>
+    <h2>How do the three compare?</h2>
+    <ul>
+    <li><strong>Energy and comfort:</strong> ICF is strongest, well-insulated block is solid, wood frame is good when you add continuous exterior insulation and tight air sealing.</li>
+    <li><strong>First cost:</strong> wood frame is lowest, block is in the middle, ICF is highest.</li>
+    <li><strong>Durability and quiet:</strong> ICF and block lead; both resist fire and termites and dampen sound far better than wood.</li>
+    <li><strong>Design flexibility and speed:</strong> wood frame is the most flexible for intricate plans and the fastest to frame; ICF and block reward simpler, more rectilinear forms.</li>
+    <li><strong>Resilience:</strong> the concrete systems shrug off the desert's heat cycling, wind-driven debris, and pests with less long-term maintenance.</li>
+    </ul>
+    <h2>What does code require, and what about cost?</h2>
+    <p>All three systems must meet the same baseline. Arizona has no statewide building code, so each jurisdiction adopts its own edition of the International Residential Code (IRC) and the International Energy Conservation Code (IECC), which set the minimum wall U-factor or R-value, the bracing and structural requirements, and termite-protection provisions under IRC Chapter 3. A wall system is a means to hit those numbers, not an exemption from them. On cost, wood frame keeps the lowest entry price, but the gap narrows over the life of the home when you account for lower cooling bills and lower maintenance on the concrete systems. Many desert custom homes land on a hybrid: wood-framed where flexibility matters, with block or ICF where mass, durability, or sound control earn their keep.</p>
+    <h2>How do you decide?</h2>
+    <p>Start from your priorities. If first cost and design flexibility lead, a well-insulated, well-sealed wood-frame wall with continuous exterior insulation is hard to beat. If long-term energy performance, quiet, and resilience lead, ICF or insulated block justify the premium. The lot matters too: exposure, views, and how much glass you want all interact with the wall choice. We model the options against your design and budget rather than defaulting to one system.</p>
+    <h2>Confirm the details for your lot</h2>
+    <p>Adopted IRC and IECC editions, the required wall performance, and structural and termite provisions are set locally and change over time. Always confirm the current requirements with your Authority Having Jurisdiction (AHJ) for your specific parcel before locking in a wall system.</p>`,
+      shortAnswer:
+        "There is no single best wall system. Wood frame is cheapest and most flexible, block adds mass and durability, and ICF gives the highest insulation and airtightness for the highest cost. In the desert, continuous insulation and air sealing matter more than raw mass, and all three must meet the same adopted IRC and IECC requirements.",
+      metaDescription:
+        "ICF vs wood-frame vs block for an Arizona desert custom home: how each wall system compares on energy, cost, comfort, and durability, and what the adopted code requires.",
+      categorySlug: "building-in-the-desert",
+      topicSlugs: ["desert-build-essentials"],
+      tags: ["wall-systems", "icf", "block-construction", "wood-frame", "energy-efficiency", "research-phase"],
+      relatedFaqSlugs: [
+        "insulation-options-for-an-arizona-home",
+        "designing-an-energy-efficient-home-for-the-arizona-desert",
+        "foundation-types-for-arizona-custom-homes",
+        "what-building-codes-apply-to-a-new-home-in-arizona",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug: null,
+      sortOrder: 10,
+    }),
+    item({
+      slug: "foundation-types-for-arizona-custom-homes",
+      question: "What foundation types are used for Arizona custom homes (post-tension slab, conventional slab, stem-wall)?",
+      answerHtml: `<p><strong>Most Arizona custom homes sit on one of three foundation systems: a post-tensioned slab-on-ground, a conventionally reinforced (rebar) slab-on-ground, or a stem-wall foundation with footings and a raised slab. Which one fits your home is a structural-engineering decision driven by your soils report, the lot's slope and drainage, and the size of the house.</strong> The geotechnical report tells the engineer how the ground behaves; the foundation system is how the design responds to it.</p>
+    <h2>How does each foundation system work?</h2>
+    <h3>Post-tensioned (PT) slab-on-ground</h3>
+    <p>A concrete slab cast over a grid of high-strength steel tendons that are tensioned after the concrete cures, putting the slab into compression. That compression helps the slab span minor soil movement and resist cracking, which is why PT slabs are common across the Phoenix metro on lots with expansive clays that shrink and swell with moisture. Residential PT slabs are typically designed to the Post-Tensioning Institute standard for slabs-on-ground (PTI DC10.5), using soil parameters from your geotechnical report. The trade-off is that you cannot later cut into the slab casually, because the tendons are under load.</p>
+    <h3>Conventionally reinforced slab-on-ground</h3>
+    <p>A monolithic or two-pour slab reinforced with steel rebar rather than tensioned tendons, with thickened edges and interior footings sized by the engineer. It works well on stable, well-drained, low-expansion soils and is straightforward for trades to build and to modify later. On reactive desert soils it can be designed to perform, but the engineer may favor a PT slab or a stiffer stem-wall approach where movement is a concern.</p>
+    <h3>Stem-wall foundation</h3>
+    <p>Continuous footings carry short concrete or masonry stem walls that bring the structure up to the desired floor height; the interior is then backfilled and a slab poured on top, or a structural floor is framed over a crawl space. Stem walls shine on sloped lots, where they let the house step up a grade, and where you want the finished floor raised well above surrounding grade for drainage. They cost more than a flat slab but give the design more freedom on uneven desert terrain.</p>
+    <h2>How do soils and the desert drive the choice?</h2>
+    <p>Arizona soils are the deciding factor. Two conditions show up constantly in this region and both belong in the foundation conversation:</p>
+    <ul>
+    <li><strong>Expansive clays.</strong> These swell when wet and shrink when dry, flexing the ground under the foundation. PT slabs and engineered stiffened slabs are designed specifically to ride out that movement.</li>
+    <li><strong>Caliche.</strong> A naturally cemented, concrete-hard soil layer that can be excellent bearing material but is expensive and slow to excavate, which affects footing depth and earthwork cost.</li>
+    </ul>
+    <p>Slope, drainage, and the depth to firm bearing soil also matter. A lot that needs the finished floor raised for monsoon drainage may point toward a stem-wall; a flat, stable pad may suit a slab. Those soil behaviors are covered in depth on our soils-report and caliche pages; here the point is how they steer the foundation system itself.</p>
+    <h2>What does code require?</h2>
+    <p>Foundations are governed by Chapter 4 of the adopted International Residential Code (IRC), which sets minimum footing sizes, depth, reinforcement, and drainage, and requires the design to account for the site's soils. On reactive or questionable soils the building department will expect a geotechnical report and a foundation engineered to it, often stamped by a licensed engineer. Arizona has no single statewide code, so the adopted IRC edition and any local amendments vary by jurisdiction. The IRC also requires the finished grade to fall away from the foundation, which ties your foundation choice to the lot's grading and drainage plan.</p>
+    <h2>How does Jematell Homes approach it?</h2>
+    <p>We start with a geotechnical investigation, share it with the structural engineer, and let the soils, slope, drainage, and the home's design select the foundation rather than defaulting to one type. On expansive ground that often means a PT slab; on a sloped view lot it may mean a stem-wall; on stable soil a conventional slab can be the right, economical answer. Because adopted code editions, required studies, and engineering thresholds are set locally and change over time, always confirm the current foundation and soils requirements with your Authority Having Jurisdiction (AHJ) for your specific parcel before design is finalized.</p>`,
+      shortAnswer:
+        "Arizona custom homes typically use a post-tensioned slab, a conventionally reinforced slab, or a stem-wall foundation. The right one is an engineering call driven by your soils report, the lot's slope and drainage, and the home size. Expansive clays often favor a post-tensioned slab; sloped lots often favor a stem-wall.",
+      metaDescription:
+        "Foundation types for Arizona custom homes: post-tensioned slab, conventional slab-on-ground, and stem-wall, and how soils, slope, and the adopted IRC drive the choice.",
+      categorySlug: "building-in-the-desert",
+      topicSlugs: ["desert-build-essentials"],
+      tags: ["foundations", "post-tension-slab", "stem-wall", "expansive-soils", "caliche", "research-phase"],
+      relatedFaqSlugs: [
+        "caliche-expansive-clay-and-desert-soils",
+        "do-i-need-a-soils-or-geotechnical-report",
+        "icf-vs-wood-frame-vs-block-construction",
+        "lot-grading-and-drainage-keeping-water-away-from-the-house",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug: null,
+      sortOrder: 11,
+    }),
+    item({
+      slug: "insulation-options-for-an-arizona-home",
+      question: "What are the best insulation options for an Arizona home (spray foam, batt, blown-in)?",
+      answerHtml: `<p><strong>For an Arizona home the best insulation is whatever lets you build a tight, well-insulated envelope and, ideally, get the ducts out of a brutally hot attic. Spray foam (open or closed cell) air-seals and insulates in one step and enables a conditioned attic; blown-in cellulose or fiberglass is a cost-effective way to reach high attic R-values; and batts (fiberglass or mineral wool) are the economical choice in walls when paired with careful air sealing.</strong> In this cooling-dominated climate the attic and the air leaks are where most of the heat gets in, so that is where the insulation dollars work hardest.</p>
+    <h2>What are the main insulation types?</h2>
+    <h3>Spray polyurethane foam (SPF)</h3>
+    <p>Sprayed in place, it expands to fill cavities and seal gaps. Closed-cell foam has a high R-value per inch and adds air and moisture control; open-cell foam is lower in R-value per inch but cheaper and still an excellent air seal. Sprayed at the underside of the roof deck, foam creates an unvented, conditioned attic, which is one of the highest-value moves in the desert because it brings the ductwork into cooled space. The trade-offs are higher cost and the need for correct installation and code-required ignition or thermal barriers.</p>
+    <h3>Blown-in (loose-fill) cellulose or fiberglass</h3>
+    <p>Blown across an attic floor to a measured depth, loose-fill reaches high R-values economically and fills irregular spaces well. It is the workhorse for a vented attic where you keep the ducts low or, better, eliminate attic ducts entirely. It does not by itself air-seal, so the ceiling plane must be sealed first.</p>
+    <h3>Batts (fiberglass or mineral wool)</h3>
+    <p>Pre-cut blankets friction-fit into stud and ceiling cavities. They are the most economical wall insulation and, when installed cleanly with no gaps or compression, perform to their rating. Mineral wool adds fire and sound resistance. Like blown-in, batts rely on a separate air-sealing layer to perform in the real world.</p>
+    <h2>What matters most in a hot-dry climate?</h2>
+    <ul>
+    <li><strong>Air sealing comes first.</strong> Insulation slows heat conduction, but air leaks let hot outdoor air pour in directly. The most effective desert envelopes combine insulation with deliberate air sealing, verified by a blower-door test.</li>
+    <li><strong>The attic is the battlefield.</strong> A desert attic can hit 140 degrees or more. Generous attic insulation, a radiant barrier or reflective roof, and getting ducts out of that heat (via a conditioned attic or by keeping ducts in conditioned space) drive comfort and bills more than wall insulation does.</li>
+    <li><strong>Continuous insulation reduces thermal bridging.</strong> A layer of rigid foam outside the framing stops heat from short-circuiting through the studs, lifting whole-wall performance above the cavity-only number.</li>
+    <li><strong>Vented attic with sealed ceiling versus unvented conditioned attic.</strong> Both work in Arizona. The vented-and-sealed approach is lower cost; the spray-foam conditioned attic costs more but protects the ducts and the mechanical equipment from extreme heat.</li>
+    </ul>
+    <h2>How much insulation does code require?</h2>
+    <p>Arizona's residential energy requirements come from the adopted edition of the International Energy Conservation Code (IECC), which sets minimum R-values and U-factors by climate zone. Most of the Phoenix metro lies in IECC Climate Zone 2B, while higher-elevation areas fall into Zone 3B or cooler, so the required ceiling, wall, and slab insulation levels depend on both your jurisdiction and your elevation. Spray foam used on a roofline must also meet code provisions for unvented attics and for ignition and thermal barriers. Because Arizona has no statewide code, the adopted IECC edition and any local amendments vary by jurisdiction, so the exact R-values are local.</p>
+    <h2>So which should you choose?</h2>
+    <p>There is rarely one answer for the whole house. A common high-performing desert recipe is spray foam at the roof deck for a conditioned attic (protecting the ducts), blown-in or batt in any remaining cavities, continuous exterior insulation on the walls to cut thermal bridging, and careful air sealing throughout. Budget, whether the ducts run through the attic, and your target energy performance steer the mix. We design the insulation and air-sealing strategy as a system with the wall assembly and the mechanical layout rather than picking a single product.</p>
+    <h2>Confirm the details for your lot</h2>
+    <p>The adopted IECC edition, the required R-values for your climate zone, and the rules for unvented attics and foam barriers are set locally and change over time. Always confirm the current energy-code requirements with your Authority Having Jurisdiction (AHJ) for your specific parcel before finalizing the insulation plan.</p>`,
+      shortAnswer:
+        "The best Arizona insulation is whatever builds a tight, well-insulated envelope and gets ducts out of the hot attic. Spray foam air-seals and enables a conditioned attic, blown-in reaches high attic R-values cheaply, and batts are economical in walls with good air sealing. Required R-values follow the adopted IECC and your climate zone.",
+      metaDescription:
+        "Best insulation options for an Arizona home: spray foam, batt, and blown-in compared, plus attic strategy, air sealing, and the R-values the adopted IECC requires.",
+      categorySlug: "building-in-the-desert",
+      topicSlugs: ["desert-build-essentials"],
+      tags: ["insulation", "spray-foam", "attic", "air-sealing", "energy-efficiency", "research-phase"],
+      relatedFaqSlugs: [
+        "designing-an-energy-efficient-home-for-the-arizona-desert",
+        "how-a-custom-home-reaches-net-zero-energy",
+        "icf-vs-wood-frame-vs-block-construction",
+        "what-building-codes-apply-to-a-new-home-in-arizona",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug: "arizona-home-design-trends-for-2026",
+      sortOrder: 12,
+    }),
+    item({
+      slug: "how-a-custom-home-reaches-net-zero-energy",
+      question: "How does a custom home reach net-zero energy in Arizona?",
+      answerHtml: `<p><strong>A net-zero-energy home produces, over a year, at least as much energy as it uses. You get there with a two-step formula: first drive the home's energy use down as far as it will go with a tight, well-insulated envelope and efficient equipment, then add enough on-site solar generation to offset the remaining annual demand. Arizona's abundant sunshine makes the second step easier here than almost anywhere in the country.</strong> The order matters: every unit of energy you do not use is one you do not have to generate, so load reduction always comes before adding panels.</p>
+    <h2>Step one: reduce the load</h2>
+    <p>The cheapest kilowatt-hour is the one you never use, so a net-zero home starts as a very efficient home. The core moves are the same hot-dry best practices the U.S. Department of Energy's Building America program recommends, taken to a higher standard:</p>
+    <ul>
+    <li><strong>Orientation and shading</strong> to keep the desert sun off the glass.</li>
+    <li><strong>A tight, well-insulated envelope</strong> with continuous insulation, verified air sealing, and an attic strategy that protects the ducts.</li>
+    <li><strong>High-performance windows</strong> with a low Solar Heat Gain Coefficient for this cooling-dominated climate.</li>
+    <li><strong>A right-sized, high-efficiency cooling system</strong> sized with a Manual J load calculation, not a rule of thumb.</li>
+    <li><strong>Efficient water heating, lighting, and appliances</strong>, often all-electric so a single energy source can be offset by solar.</li>
+    </ul>
+    <p>Performance is usually verified with a Home Energy Rating System (HERS) index: the lower the score, the less energy the house needs. Programs such as DOE's Zero Energy Ready Home and ENERGY STAR set the envelope and equipment bar that a net-zero home builds on.</p>
+    <h2>Step two: generate on site</h2>
+    <p>Once the load is low, you size a rooftop or ground-mounted solar photovoltaic (PV) system to produce, across a full year, enough electricity to match what the home consumes. Because Arizona has exceptional solar resource, the array needed to offset an efficient home is smaller and more cost-effective than in cloudier regions. Designing the roof for solar from the start (orientation, pitch, unshaded area, conduit, and electrical capacity) is far cheaper than retrofitting later, which is why net-zero is a design decision, not an add-on.</p>
+    <h2>Step three: handle the offset and the grid</h2>
+    <p>Net-zero is an annual balance, not an hourly one. The house makes surplus power on sunny days and draws from the grid at night and in peak summer, and the two are reconciled over the year through your utility's billing arrangement. The terms of that arrangement, including export credit rates and rate plans, are set by your utility and the Arizona Corporation Commission and change over time, so confirm the current program with your specific utility. Battery storage is optional: it lets you use more of your own solar after sundown and adds resilience, but it is not required to reach a net-zero annual balance. Worth knowing: Arizona law (A.R.S. 33-439) voids HOA rules that would prohibit a solar energy device, so an HOA cannot simply ban the panels a net-zero home depends on, though reasonable placement conditions can apply.</p>
+    <h2>Net-zero, net-zero-ready, and net-positive</h2>
+    <p>A few terms get used loosely. A <strong>net-zero-ready</strong> home is built efficient enough that solar would bring it to net-zero, but the panels are not yet installed (the roof and electrical are prepared for them). A <strong>net-zero</strong> home has the generation in place to offset its annual use. A <strong>net-positive</strong> home generates more than it uses. The right target depends on your budget, your roof, and your goals; an efficient, net-zero-ready design is a common, sensible stopping point that keeps the door open to full net-zero later.</p>
+    <h2>How does Jematell Homes approach it?</h2>
+    <p>We design for net-zero the way it actually works: reduce the load first with orientation, a tight envelope, and load-calculated systems, then size solar to offset the remainder, and prepare the roof and electrical so the path to net-zero stays open even if panels come in a later phase. Energy codes, utility solar programs, and incentive rules are set locally and by the utility and the Arizona Corporation Commission, and they change, so always confirm the current energy-code and solar-interconnection requirements with your Authority Having Jurisdiction (AHJ) and your utility for your specific parcel before you commit to a plan.</p>`,
+      shortAnswer:
+        "A net-zero home generates at least as much energy as it uses over a year. You get there in two steps: first cut the load with a tight, well-insulated, well-shaded envelope and efficient all-electric systems, then add enough on-site solar to offset the rest. Arizona's strong sun makes the solar step easier and cheaper here.",
+      metaDescription:
+        "How does a custom home reach net-zero energy in Arizona? Reduce the load with a tight efficient envelope, then offset the rest with on-site solar, plus net-zero-ready options.",
+      categorySlug: "building-in-the-desert",
+      topicSlugs: ["desert-build-essentials"],
+      tags: ["net-zero", "solar", "energy-efficiency", "hers", "all-electric", "research-phase"],
+      relatedFaqSlugs: [
+        "designing-an-energy-efficient-home-for-the-arizona-desert",
+        "insulation-options-for-an-arizona-home",
+        "going-solar-on-a-new-home-and-hoa-solar-rights",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug: "a-comprehensive-guide-to-home-building-with-passive-solar-design",
+      sortOrder: 13,
+    }),
+    // ================== Choosing & Working With a Builder ==================
+    item({
+      slug: "how-to-choose-a-custom-home-builder-in-arizona",
+      question: "How do I choose a custom home builder in Arizona?",
+      answerHtml: `<p><strong>Choose an Arizona custom home builder by verifying their Registrar of Contractors (ROC) license and bond first, then comparing how they communicate, price, and stand behind their work. The strongest signals are an active, correctly classified ROC license, real local references you can call, transparent fixed-price or cost-plus contracts, and recent homes built in your market that match the quality and style you want.</strong> Price matters, but it is the last filter, not the first, because the cheapest bid often hides the most risk.</p>
+    <h2>Start with the license, not the portfolio</h2>
+    <p>Before you fall in love with a builder's photos, confirm they are legally allowed to build your home. In Arizona, new home construction must be performed by a contractor licensed by the Arizona Registrar of Contractors (ROC) under A.R.S. Title 32, Chapter 10. A residential custom home is typically built under a "B" General Residential Contractor license or one of the dual "KB" building classifications. Use the free license lookup at roc.az.gov to confirm the license is active, in good standing, correctly classified for residential work, and free of a pattern of unresolved complaints. A builder who hesitates to give you their ROC number is telling you something important.</p>
+    <h2>What questions separate a great builder from an average one?</h2>
+    <p>Once licensing checks out, the right conversations reveal fit. Ask each builder you are considering:</p>
+    <ul>
+    <li><strong>How do you price a custom home, fixed-price or cost-plus?</strong> Understand exactly what is and is not included, and how allowances work.</li>
+    <li><strong>How are change orders handled and priced?</strong> A clear written process protects both sides.</li>
+    <li><strong>Who is my day-to-day contact and how often will I get updates?</strong> Communication is the single biggest driver of how a build feels.</li>
+    <li><strong>What warranty do you provide, and who answers the phone after move-in?</strong></li>
+    <li><strong>Can I speak with two or three clients whose homes you finished in the last year or two?</strong></li>
+    </ul>
+    <h2>How do I compare builders fairly?</h2>
+    <p>Get proposals from a short list of two or three builders and compare them on the same scope, not just the bottom-line number. A lower bid that assumes thin allowances, excludes site work, or leaves out permitting will balloon later through change orders. Look for an apples-to-apples breakdown: the building shell, allowances for finishes, site and utility work, permitting and fees, and the builder's fee. The builder who explains where your money goes is usually the one who will manage it well.</p>
+    <h2>Why does local Arizona experience matter so much?</h2>
+    <p>Building in the desert and across our jurisdictions is its own discipline. A builder who works in Scottsdale, Rio Verde, Phoenix, Cave Creek, Fountain Hills, Carefree, and the Pinal County markets every day knows which Authority Having Jurisdiction (AHJ) governs a given parcel, how Scottsdale's Environmentally Sensitive Lands rules and hillside reviews work, how wells and septic are permitted on rural land, and how to design for extreme heat, expansive soils, and monsoon drainage. That local fluency keeps your plan-review cycles short and your schedule predictable. A builder new to your jurisdiction learns on your time and your budget.</p>
+    <h2>Red flags to walk away from</h2>
+    <ul>
+    <li>No verifiable ROC license, or a license in the wrong classification.</li>
+    <li>A bid far below the others, or pressure to sign quickly.</li>
+    <li>A large upfront deposit demand with no milestone schedule.</li>
+    <li>Vague or verbal-only scope, allowances, and warranty terms.</li>
+    <li>No recent local references, or references they will not let you contact.</li>
+    </ul>
+    <h2>How Jematell Homes fits in</h2>
+    <p>We are a family-owned custom builder working across Scottsdale, Rio Verde, and the greater Phoenix metro, and we encourage you to verify our ROC license, talk to our clients, and read our contract line by line before you commit to anyone. Because license status, bonding requirements, and adopted codes change, always confirm a builder's current standing directly with the Arizona Registrar of Contractors at roc.az.gov and confirm jurisdiction-specific requirements with your local AHJ before you sign.</p>`,
+      shortAnswer:
+        "Verify the builder's Arizona Registrar of Contractors license and bond first, then compare communication, pricing transparency, warranty, and recent local references. Get apples-to-apples proposals on the same scope rather than chasing the lowest bid, and favor a builder with real experience in your specific Arizona jurisdiction.",
+      metaDescription:
+        "How to choose a custom home builder in Arizona: verify the ROC license and bond, compare contracts and references, and prioritize local jurisdiction experience over the lowest bid.",
+      categorySlug: "choosing-a-builder",
+      topicSlugs: ["choosing-a-custom-home-builder"],
+      tags: ["choosing-a-builder", "roc-license", "arizona", "hiring", "research-phase"],
+      relatedFaqSlugs: [
+        "what-to-ask-a-custom-home-builder-before-hiring",
+        "red-flags-when-choosing-a-custom-home-builder",
+        "how-to-verify-an-arizona-contractor-license",
+        "custom-vs-semi-custom-vs-spec-home",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug:
+        "choosing-the-best-home-builder-in-scottsdale-key-considerations-for-2026",
+      sortOrder: 1,
+    }),
+    item({
+      slug: "what-to-ask-a-custom-home-builder-before-hiring",
+      question: "What should I ask a custom home builder before hiring them?",
+      answerHtml: `<p><strong>Before hiring a custom home builder in Arizona, ask about their Registrar of Contractors (ROC) license and bond, how they price and what their bid includes, how change orders and allowances work, who manages your project day to day, what their warranty covers, and for recent local client references you can actually call. The answers, and how openly they are given, tell you more than any brochure.</strong> Treat the first meeting like an interview, because you are hiring a partner for a year or more.</p>
+    <h2>Questions about licensing and accountability</h2>
+    <ul>
+    <li><strong>What is your ROC license number, and what classification is it?</strong> You can verify it free at roc.az.gov; a new home is built under a "B" residential or dual "KB" building classification.</li>
+    <li><strong>Are you bonded and insured, and can you show current certificates?</strong> Arizona licensed contractors carry a license bond, and you want proof of general liability and workers' compensation coverage.</li>
+    <li><strong>Have you had complaints filed with the ROC, and how were they resolved?</strong> A complaint is not automatically disqualifying; how it was handled matters.</li>
+    </ul>
+    <h2>Questions about price and contract</h2>
+    <ul>
+    <li><strong>Is this a fixed-price or a cost-plus contract, and what exactly is included?</strong></li>
+    <li><strong>How do you set allowances for finishes, and what happens if I go over?</strong></li>
+    <li><strong>What is your written change-order process and how are changes priced?</strong></li>
+    <li><strong>What deposit do you require, and what is the milestone-based payment (draw) schedule?</strong></li>
+    <li><strong>What is not included in this price that I should budget for separately?</strong> Site work, permitting and fees, wells, and septic are common exclusions on rural lots.</li>
+    </ul>
+    <h2>Questions about how the build will actually run</h2>
+    <ul>
+    <li><strong>Who is my single point of contact, and how often will I get updates?</strong></li>
+    <li><strong>How many homes are you building at once right now?</strong> A builder spread too thin is a scheduling risk.</li>
+    <li><strong>Do you self-perform any trades or manage subcontractors, and how do you vet them?</strong></li>
+    <li><strong>How do you handle permitting and inspections with the local AHJ?</strong></li>
+    <li><strong>What is your realistic timeline, and what tends to move it?</strong></li>
+    </ul>
+    <h2>Questions about experience and the warranty</h2>
+    <ul>
+    <li><strong>Have you built in my specific jurisdiction, and recently?</strong> Scottsdale ESL and hillside lots, unincorporated Maricopa County, and Pinal County each carry different rules.</li>
+    <li><strong>Can I see and visit a recent finished home, and speak with the owners?</strong></li>
+    <li><strong>What does your warranty cover, for how long, and who responds after move-in?</strong></li>
+    </ul>
+    <h2>Why the answers matter more than the words</h2>
+    <p>A strong builder welcomes these questions and answers in writing. Watch for evasiveness on price breakdowns, reluctance to share references, a push for a large upfront deposit, or vague warranty language. Those are the patterns that turn into problems once construction starts. The Arizona ROC also publishes consumer guidance on hiring a licensed contractor and on the Residential Contractors' Recovery Fund, which only protects you when you hire a licensed contractor, so verifying the license is not a formality, it is your safety net.</p>
+    <h2>How Jematell Homes approaches it</h2>
+    <p>We would rather you ask every one of these questions up front than discover a surprise mid-build, so we put pricing, allowances, the change-order process, and the warranty in writing and connect you with recent clients in your market. Because license status, bond amounts, and adopted codes change, confirm any builder's current standing with the Arizona Registrar of Contractors at roc.az.gov and verify jurisdiction-specific requirements with your local AHJ before you sign a contract.</p>`,
+      shortAnswer:
+        "Ask for the builder's ROC license number and bond, exactly what the bid includes, how allowances and change orders work, the deposit and draw schedule, who manages the build day to day, the warranty terms, and recent local references you can call. How openly they answer matters as much as the answers.",
+      metaDescription:
+        "The key questions to ask a custom home builder before hiring in Arizona: ROC license and bond, what the bid includes, allowances, change orders, draw schedule, warranty, and references.",
+      categorySlug: "choosing-a-builder",
+      topicSlugs: ["choosing-a-custom-home-builder"],
+      tags: ["questions-to-ask", "choosing-a-builder", "hiring", "contracts", "research-phase"],
+      relatedFaqSlugs: [
+        "how-to-choose-a-custom-home-builder-in-arizona",
+        "red-flags-when-choosing-a-custom-home-builder",
+        "how-to-verify-an-arizona-contractor-license",
+        "the-custom-home-building-process-step-by-step",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug: "questions-to-ask-custom-home-builder-arizona",
+      sortOrder: 2,
+    }),
+    item({
+      slug: "red-flags-when-choosing-a-custom-home-builder",
+      question: "What are the red flags to watch for when choosing a custom home builder?",
+      answerHtml: `<p><strong>The biggest red flags when choosing a custom home builder are no verifiable Arizona Registrar of Contractors (ROC) license, a bid far below the others, pressure to sign or pay quickly, a large upfront deposit with no milestone schedule, vague or verbal-only contracts, and no recent local references. Any one of these is a reason to slow down; two or more is a reason to walk away.</strong> A custom home is a long, high-trust relationship, and the warning signs almost always appear before you sign.</p>
+    <h2>Licensing and accountability red flags</h2>
+    <ul>
+    <li><strong>No ROC license, or one in the wrong classification.</strong> New home construction in Arizona must be done by a contractor licensed under A.R.S. Title 32, Chapter 10. Verify the number at roc.az.gov and confirm it is active and classified for residential work. Hiring an unlicensed builder also forfeits your protection under the Residential Contractors' Recovery Fund.</li>
+    <li><strong>No proof of bond or insurance.</strong> A licensed Arizona contractor carries a license bond; you should also see general liability and workers' compensation certificates.</li>
+    <li><strong>A pattern of unresolved ROC complaints.</strong> One resolved complaint is normal; a string of open ones is not.</li>
+    </ul>
+    <h2>Why is the lowest bid often the biggest risk?</h2>
+    <p>A bid well below the rest is rarely a gift. It usually means thin or unrealistic finish allowances, excluded scope such as site work or permitting, or an intent to recover margin later through change orders. When you normalize the bids to the same scope, the cheap one frequently is not cheap at all. Be especially wary of a builder who cannot or will not break down where your money goes. Transparency on the numbers is the antidote to bid-shopping surprises.</p>
+    <h2>Money and contract red flags</h2>
+    <ul>
+    <li><strong>A large deposit demanded up front</strong> with no milestone-based draw schedule tied to completed work.</li>
+    <li><strong>A request to be paid in cash, or to pull the permit in your name as the owner-builder.</strong> If a builder asks you to be the owner-builder of record, you are taking on the legal responsibilities of the contractor and losing key consumer protections.</li>
+    <li><strong>Vague scope, allowances, or warranty,</strong> or a refusal to put commitments in writing.</li>
+    <li><strong>No clear written change-order process.</strong></li>
+    </ul>
+    <h2>Communication and reputation red flags</h2>
+    <ul>
+    <li><strong>Slow, evasive, or inconsistent answers</strong> during the courtship phase, when a builder should be at their most responsive.</li>
+    <li><strong>No recent local references,</strong> or references the builder will not let you contact.</li>
+    <li><strong>No finished homes you can visit</strong> in or near your market.</li>
+    <li><strong>High-pressure tactics or artificial deadlines</strong> to get you to sign.</li>
+    </ul>
+    <h2>Arizona-specific red flags</h2>
+    <p>Local fluency is a safety check of its own. A builder who is unsure which Authority Having Jurisdiction governs your parcel, who has not worked under Scottsdale's Environmentally Sensitive Lands or hillside rules, who is vague about how wells and septic are permitted on a rural lot, or who underestimates desert heat, expansive soils, and monsoon drainage is likely to learn on your budget. In our markets, that inexperience shows up as stalled plan-review cycles and costly redesigns.</p>
+    <h2>How to protect yourself</h2>
+    <p>Verify the ROC license, get written proposals from two or three builders on the same scope, read the contract and warranty in full, insist on a milestone draw schedule, and call recent clients. The Arizona ROC publishes consumer guidance on hiring a licensed contractor and on filing a complaint, which is worth reading before you commit. Because license status, bond requirements, and adopted codes change, confirm any builder's current standing with the Arizona Registrar of Contractors at roc.az.gov and verify jurisdiction-specific requirements with your local AHJ before you sign.</p>`,
+      shortAnswer:
+        "Watch for no verifiable ROC license, a suspiciously low bid, pressure to sign fast, a big upfront deposit with no milestone draw schedule, vague or verbal-only contracts, and no recent local references. Hiring an unlicensed builder also forfeits Recovery Fund protection. Two or more of these is a reason to walk away.",
+      metaDescription:
+        "Red flags when choosing a custom home builder in Arizona: no ROC license, a too-low bid, large upfront deposits, vague contracts, owner-builder requests, and no local references.",
+      categorySlug: "choosing-a-builder",
+      topicSlugs: ["choosing-a-custom-home-builder"],
+      tags: ["red-flags", "choosing-a-builder", "roc-license", "hiring", "research-phase"],
+      relatedFaqSlugs: [
+        "how-to-choose-a-custom-home-builder-in-arizona",
+        "what-to-ask-a-custom-home-builder-before-hiring",
+        "how-to-verify-an-arizona-contractor-license",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug:
+        "choosing-the-best-home-builder-in-scottsdale-key-considerations-for-2026",
+      sortOrder: 3,
+    }),
+    item({
+      slug: "design-build-vs-design-bid-build",
+      question: "What is the difference between design-build and design-bid-build, and which is right for a custom home?",
+      answerHtml: `<p><strong>In design-bid-build, you hire a designer or architect to finish the plans, then put those plans out to bid and hire a separate builder to construct them. In design-build, a single team is responsible for both the design and the construction under one contract. Design-build gives you one point of accountability, earlier and more reliable cost feedback, and usually a smoother schedule, which is why it is a popular choice for custom homes.</strong> Neither is universally right; the best fit depends on how much control, cost certainty, and coordination you want.</p>
+    <h2>How does design-bid-build work?</h2>
+    <p>The traditional, sequential path looks like this:</p>
+    <ol>
+    <li>You hire an architect or designer and complete the design and construction documents.</li>
+    <li>You send the finished plans to several general contractors for competitive bids.</li>
+    <li>You select a builder and sign a separate construction contract.</li>
+    <li>The builder constructs the home from the completed plans.</li>
+    </ol>
+    <p>The appeal is competitive bidding on a fully defined scope and a clear separation between the designer and the builder. The drawbacks are that design happens without builder cost input, so plans can come back over budget and require redesign; the schedule is longer because the phases are sequential; and when problems arise on site, the designer and builder can point at each other, leaving you in the middle.</p>
+    <h2>How does design-build work?</h2>
+    <p>In design-build, one integrated team handles design and construction together under a single contract. Design and budgeting happen in parallel rather than in sequence, so the builder is pricing the home as it is being designed. The benefits for a custom home are real:</p>
+    <ul>
+    <li><strong>Single point of accountability.</strong> One team owns the outcome, so there is no finger-pointing between designer and builder.</li>
+    <li><strong>Earlier, more reliable cost feedback.</strong> You learn what choices cost while you can still adjust them, which reduces the over-budget redesign loop.</li>
+    <li><strong>A faster, smoother schedule.</strong> Overlapping design and preconstruction compresses the timeline.</li>
+    <li><strong>Constructability built in.</strong> The builder flags site, code, and material issues during design, not after permitting.</li>
+    </ul>
+    <p>The trade-off is that you are placing more trust in one team, so vetting that team, its licensing, references, and contract, matters even more.</p>
+    <h2>Which is right for a custom home?</h2>
+    <p>If you value cost certainty, speed, and a single responsible party, design-build is usually the better fit, especially on complex Arizona lots where site work, wells, septic, grading, and overlay rules need to be coordinated with the design from day one. Design-bid-build can make sense if you already have a completed design you love, or you specifically want to keep the designer fully independent from the builder and are comfortable managing the coordination yourself.</p>
+    <h2>What this means for an Arizona build</h2>
+    <p>On desert lots, the design has to respond to the lot before it is final: which Authority Having Jurisdiction governs the parcel, whether Scottsdale's Environmentally Sensitive Lands or a hillside overlay applies, how a well and septic will be placed, and how grading will handle monsoon runoff. A design-build team folds those realities in early, which is exactly when changes are cheap. Whichever model you choose, confirm the builder's license and classification with the Arizona Registrar of Contractors at roc.az.gov, and verify the rules for your specific parcel with your local AHJ, because adopted codes and jurisdiction requirements change.</p>`,
+      shortAnswer:
+        "In design-bid-build you complete the design first, then bid it out and hire a separate builder; the phases are sequential and the designer and builder are independent. In design-build, one team handles design and construction under one contract, giving you a single point of accountability, earlier cost feedback, and a faster schedule. Design-build suits most custom homes.",
+      metaDescription:
+        "Design-build vs design-bid-build for a custom home: how each delivery method works, the trade-offs in cost certainty and schedule, and which is the better fit in Arizona.",
+      categorySlug: "choosing-a-builder",
+      topicSlugs: ["choosing-a-custom-home-builder"],
+      tags: ["design-build", "design-bid-build", "delivery-method", "choosing-a-builder", "research-phase"],
+      relatedFaqSlugs: [
+        "how-to-choose-a-custom-home-builder-in-arizona",
+        "the-custom-home-building-process-step-by-step",
+        "custom-vs-semi-custom-vs-spec-home",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug:
+        "choosing-the-best-home-builder-in-scottsdale-key-considerations-for-2026",
+      sortOrder: 4,
+    }),
+    item({
+      slug: "how-to-verify-an-arizona-contractor-license",
+      question: "How do I verify a builder's Arizona contractor license, and why does it matter?",
+      answerHtml: `<p><strong>Verify an Arizona builder's license for free at the Registrar of Contractors website, roc.az.gov, using the contractor search tool to confirm the license is active, correctly classified for residential work, bonded, and free of a pattern of unresolved complaints. It matters because state law requires a license to build a home, and hiring a licensed contractor is what gives you access to the Residential Contractors' Recovery Fund if a project goes wrong.</strong> This single check is the most important five minutes of due diligence you will do.</p>
+    <h2>How do I look up an Arizona contractor license?</h2>
+    <ol>
+    <li>Go to the Arizona Registrar of Contractors (ROC) at roc.az.gov and open the contractor search.</li>
+    <li>Search by the license number, the business name, or the qualifying party's name.</li>
+    <li>Confirm the license status is <strong>active</strong>, not suspended, revoked, or expired.</li>
+    <li>Confirm the <strong>classification</strong> covers residential building (see below).</li>
+    <li>Review the license history, bond information, and any complaint or disciplinary records.</li>
+    </ol>
+    <h2>What license classification should a custom home builder have?</h2>
+    <p>Arizona issues separate license classifications under A.R.S. Title 32, Chapter 10. For building a new custom home, the relevant residential classifications include:</p>
+    <ul>
+    <li><strong>B - General Residential Contractor.</strong> The core classification for building a new single-family home and managing the trades.</li>
+    <li><strong>B-2 and related residential remodeling/repair classes.</strong> Aimed more at remodeling and specific scopes than at building a whole new home.</li>
+    <li><strong>Dual "KB" building classifications.</strong> These let a contractor perform both commercial and residential building work.</li>
+    </ul>
+    <p>Classifications and their exact letter codes are set by the ROC and can be updated, so confirm on roc.az.gov that the specific license you are checking is authorized for new residential construction rather than assuming a letter means what you expect.</p>
+    <h2>Why does hiring a licensed contractor matter so much?</h2>
+    <p>Three reasons make this non-negotiable in Arizona:</p>
+    <ul>
+    <li><strong>It is the law.</strong> Building a home is contracting work that requires an ROC license. An unlicensed builder is operating illegally, which tells you how they treat every other rule.</li>
+    <li><strong>The license carries a bond.</strong> Licensed contractors post a license bond, a financial backstop that an unlicensed operator does not provide.</li>
+    <li><strong>The Recovery Fund only protects you with a licensed contractor.</strong> Arizona maintains the Residential Contractors' Recovery Fund, which can reimburse a qualifying homeowner for certain damages caused by a licensed residential contractor's poor or incomplete work, up to a statutory cap (as of 2026, on the order of tens of thousands of dollars per transaction, with an aggregate limit per contractor). Hire an unlicensed builder and that safety net disappears entirely.</li>
+    </ul>
+    <h2>What about the owner-builder option?</h2>
+    <p>Arizona allows a property owner to act as their own builder (owner-builder) on their own property under limited conditions, but doing so means you take on the legal responsibilities of a licensed contractor, you generally cannot sell the home for a set period without it looking like unlicensed contracting, and you lose Recovery Fund protection. If a builder asks you to pull the permit as the owner-builder, treat it as a serious red flag, because it shifts the risk onto you.</p>
+    <h2>How Jematell Homes handles it</h2>
+    <p>We want you to verify our license before you trust us with your home, so we provide our ROC number and encourage you to look it up. Because license status, bond amounts, classification codes, and Recovery Fund limits change, confirm the current details directly with the Arizona Registrar of Contractors at roc.az.gov, and verify any parcel-specific permitting requirements with your local Authority Having Jurisdiction before you sign.</p>`,
+      shortAnswer:
+        "Use the free contractor search at roc.az.gov to confirm the license is active, classified for residential building (typically a B or dual KB classification), bonded, and clear of unresolved complaints. It matters because Arizona requires a license to build a home, and only a licensed contractor gives you access to the Residential Contractors' Recovery Fund.",
+      metaDescription:
+        "How to verify an Arizona contractor license at roc.az.gov: check status, the B or KB residential classification, bonding, and complaints, plus why the Recovery Fund only covers licensed builders.",
+      categorySlug: "choosing-a-builder",
+      topicSlugs: ["choosing-a-custom-home-builder"],
+      tags: ["roc-license", "license-verification", "recovery-fund", "choosing-a-builder", "research-phase"],
+      relatedFaqSlugs: [
+        "how-to-choose-a-custom-home-builder-in-arizona",
+        "red-flags-when-choosing-a-custom-home-builder",
+        "what-to-ask-a-custom-home-builder-before-hiring",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug:
+        "choosing-the-best-home-builder-in-scottsdale-key-considerations-for-2026",
+      sortOrder: 5,
+    }),
+    item({
+      slug: "custom-vs-semi-custom-vs-spec-home",
+      question: "What is the difference between a custom, semi-custom, and spec home?",
+      answerHtml: `<p><strong>A custom home is designed from scratch for you on your lot, with full control over the floor plan, materials, and every selection. A semi-custom home starts from a builder's existing floor plan that you personalize within set options, which is faster and more cost-predictable. A spec (speculative) home is one a builder designs and builds without a specific buyer, then sells finished or nearly finished, with little or no customization.</strong> The right choice comes down to how much control, time, and budget flexibility you want.</p>
+    <h2>What is a custom home?</h2>
+    <p>A custom home is built to a one-of-a-kind design created for you, usually on land you own or are buying. You and your design-build team shape the floor plan, architecture, finishes, and systems around your site, your lifestyle, and your budget. The advantages are total control and a home that fits your lot's orientation, views, and constraints exactly. The trade-offs are that it takes the longest, requires the most decisions from you, and carries the widest cost range because nearly everything is a choice. Custom is the path when the home and the land both need to be exactly right.</p>
+    <h2>What is a semi-custom home?</h2>
+    <p>A semi-custom home begins with a proven floor plan from the builder's portfolio, which you then personalize: choosing finishes, cabinetry, fixtures, and often a menu of structural options such as an extended garage, a casita, or a different elevation. Because the core plan is already engineered and priced, a semi-custom build is typically faster and more cost-predictable than a fully custom one, while still letting the home feel like yours. The trade-off is less freedom than a blank-page design. Semi-custom is a strong middle path for buyers who want personalization without managing every decision from zero.</p>
+    <h2>What is a spec home?</h2>
+    <p>A spec, or speculative, home is built by the builder on the builder's lot without a specific buyer in mind, based on what the builder expects the market to want. You buy it complete or, if you catch it mid-construction, sometimes with a chance to pick remaining finishes. The advantages are speed and certainty: you can often move in quickly and you see the finished product before you commit. The trade-offs are little to no customization and no say over the lot or layout. Spec is the path when you want a high-quality new home without the design process or the wait.</p>
+    <h2>How do I choose between them?</h2>
+    <ul>
+    <li><strong>Choose custom</strong> if you own or want a specific lot and want full control over design and finishes, and you can invest the time.</li>
+    <li><strong>Choose semi-custom</strong> if you want a personalized home with more cost and schedule predictability and fewer decisions to manage.</li>
+    <li><strong>Choose a spec home</strong> if you want a new, move-in-ready home quickly and are comfortable with the builder's design and lot.</li>
+    </ul>
+    <h2>What this means in our Arizona markets</h2>
+    <p>On many lots across Scottsdale, Rio Verde, and the greater Phoenix metro, the land itself drives the decision. A rural parcel with well and septic needs, a hillside or Environmentally Sensitive Lands overlay, or unusual views often rewards the custom or semi-custom path, because the home has to respond to the site. A spec home removes those variables but also removes your input on them. Whichever route you take, confirm the builder's license and classification with the Arizona Registrar of Contractors at roc.az.gov, and verify any lot-specific requirements with the local Authority Having Jurisdiction, since codes and rules change by jurisdiction and over time.</p>`,
+      shortAnswer:
+        "A custom home is designed from scratch for you on your lot with full control. A semi-custom home personalizes a builder's existing plan within set options, so it is faster and more cost-predictable. A spec home is built without a specific buyer and sold finished, with little or no customization. The choice depends on how much control, time, and budget flexibility you want.",
+      metaDescription:
+        "Custom vs semi-custom vs spec home explained: how each differs in design control, cost predictability, and timeline, and how to choose the right path for an Arizona build.",
+      categorySlug: "choosing-a-builder",
+      topicSlugs: ["choosing-a-custom-home-builder"],
+      tags: ["custom-home", "semi-custom", "spec-home", "choosing-a-builder", "research-phase"],
+      relatedFaqSlugs: [
+        "how-to-choose-a-custom-home-builder-in-arizona",
+        "the-custom-home-building-process-step-by-step",
+        "design-build-vs-design-bid-build",
+      ],
+      relatedServiceSlugs: ["custom-homes", "spec-homes", "floor-plans"],
+      pillarBlogSlug: null,
+      sortOrder: 6,
+    }),
+    item({
+      slug: "the-custom-home-building-process-step-by-step",
+      question: "What are the steps to build a custom home, from first meeting to move-in?",
+      answerHtml: `<p><strong>Building a custom home moves through a clear sequence of stages: choosing a builder, setting a budget and securing financing, selecting and vetting the lot, design and engineering, finalizing selections and allowances, permitting and plan review, site work and foundation, framing, the rough-in and finish phases, and finally inspections and the certificate of occupancy before move-in.</strong> Understanding the stages, and the decisions each one asks of you, is what keeps a custom build calm instead of chaotic.</p>
+    <h2>Stage 1: Choose your builder and align on vision</h2>
+    <p>The process starts before any drawing exists. You interview builders, verify each one's Arizona Registrar of Contractors (ROC) license at roc.az.gov, check references, and align on your goals, style, and rough budget. In a design-build model, this team will carry both the design and the construction, so choosing well here shapes everything that follows.</p>
+    <h2>Stage 2: Set the budget and secure financing</h2>
+    <p>Establish a realistic budget early, including the home, site work, permitting and fees, and a contingency. If you are financing, get pre-approved for a construction-to-permanent (one-time-close) loan, which funds the build in draws and converts to a mortgage at completion. The budget set here becomes the discipline that guides every later decision.</p>
+    <h2>Stage 3: Select and vet the lot</h2>
+    <p>If you do not already own land, lot selection and due diligence come next, and on Arizona lots this is where deals are made or broken. Confirm the Authority Having Jurisdiction, zoning and setbacks, legal access, utility availability or the need for a well and septic, soils, floodplain status, and any overlays such as Scottsdale's Environmentally Sensitive Lands or a hillside district. A buildable lot is the foundation of a buildable design.</p>
+    <h2>Stage 4: Design and engineering</h2>
+    <p>Design typically moves through phases:</p>
+    <ol>
+    <li><strong>Schematic design</strong> establishes the layout, massing, and how the home sits on the lot.</li>
+    <li><strong>Design development</strong> refines rooms, elevations, and major systems.</li>
+    <li><strong>Construction documents</strong> produce the detailed, engineered drawings the permit and the builder work from.</li>
+    </ol>
+    <p>Structural engineering, energy calculations, and a site and grading plan are completed here so the plans are ready for review.</p>
+    <h2>Stage 5: Finalize selections and allowances</h2>
+    <p>You lock in finishes, fixtures, cabinetry, and materials, converting allowances into real selections. Making these decisions before construction, rather than during it, is the single best way to avoid costly change orders and schedule slips later.</p>
+    <h2>Stage 6: Permitting and plan review</h2>
+    <p>The completed plans go to the AHJ for plan review. Reviewers return comments, your team resubmits, and most custom homes go through two or three correction cycles before the permit issues. On rural lots, septic and well permits are sequenced here so they do not hold up the building permit.</p>
+    <h2>Stage 7: Site work and foundation</h2>
+    <p>With the permit in hand, construction begins: clearing and grading, utility and septic work, then the foundation. In the desert, grading and drainage are engineered to move monsoon runoff away from the home.</p>
+    <h2>Stage 8: Framing and dry-in</h2>
+    <p>The structure goes up, the roof goes on, and windows and exterior doors are installed so the home is weather-tight, or dried in. This is when the design becomes physically real and you can walk the spaces.</p>
+    <h2>Stage 9: Rough-in and inspections</h2>
+    <p>Electrical, plumbing, and mechanical systems are roughed in inside the framed walls, each passing its own inspection before anything is covered. Insulation follows once the rough-ins pass.</p>
+    <h2>Stage 10: Finishes</h2>
+    <p>Drywall, interior trim, cabinetry, countertops, flooring, fixtures, paint, and exterior finishes bring the home to completion. Your earlier selections all land in this stage.</p>
+    <h2>Stage 11: Final inspections and certificate of occupancy</h2>
+    <p>The AHJ performs final inspections across all trades. When they pass, the jurisdiction issues a certificate of occupancy, which legally clears the home for move-in.</p>
+    <h2>Stage 12: Walkthrough, closeout, and warranty</h2>
+    <p>You and your builder do a final walkthrough, create a punch list of any items to address, and the builder completes them. The home is handed over with its warranty, and a good builder remains your point of contact afterward.</p>
+    <h2>How Jematell Homes guides you through it</h2>
+    <p>We manage every stage, from jurisdiction and lot due diligence through permitting, construction, and closeout, so the coordination is ours and the decisions are yours. This walkthrough describes the stages, not a fixed timeline, and because adopted codes, fees, and processing times change, we confirm the current requirements with your local AHJ and our standing with the Arizona Registrar of Contractors at roc.az.gov for your specific project.</p>`,
+      shortAnswer:
+        "A custom build moves through choosing a builder, setting a budget and financing, vetting the lot, design and engineering, finalizing selections, permitting and plan review, site work and foundation, framing and dry-in, rough-in and finish phases, then final inspections and the certificate of occupancy before move-in and warranty handoff.",
+      metaDescription:
+        "The steps to build a custom home in Arizona, from first builder meeting to move-in: budget and financing, lot due diligence, design, permitting, construction phases, and certificate of occupancy.",
+      categorySlug: "choosing-a-builder",
+      topicSlugs: ["choosing-a-custom-home-builder"],
+      tags: ["building-process", "steps", "custom-home", "choosing-a-builder", "research-phase"],
+      relatedFaqSlugs: [
+        "how-to-choose-a-custom-home-builder-in-arizona",
+        "design-build-vs-design-bid-build",
+        "custom-vs-semi-custom-vs-spec-home",
+        "how-long-does-it-take-to-build-a-custom-home",
+      ],
+      relatedServiceSlugs: ["custom-homes", "build-on-your-lot"],
+      pillarBlogSlug:
+        "what-custom-home-builders-need-from-you-before-the-first-design-meeting",
+      sortOrder: 7,
     }),
   ],
 };
