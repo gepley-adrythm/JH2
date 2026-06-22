@@ -34,7 +34,7 @@ isValidation = true
 [agent]
 stack = "BEST_EFFORT_FALLBACK"
 expertMode = true
-integrations = ["google-mail:1.0.0"]
+integrations = ["google-mail:1.0.0", "google-drive:1.0.0"]
 
 [postMerge]
 path = "scripts/post-merge.sh"
