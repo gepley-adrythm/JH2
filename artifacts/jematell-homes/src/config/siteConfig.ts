@@ -39,7 +39,6 @@ export const services: ServiceItem[] = [
   { label: "Custom Homes", href: "/custom-homes" },
   { label: "Spec Homes", href: "/spec-homes" },
   { label: "Floor Plans", href: "/floor-plans" },
-  { label: "Gallery", href: "/gallery" },
 ];
 
 /** Build the canonical route for a location slug. */
