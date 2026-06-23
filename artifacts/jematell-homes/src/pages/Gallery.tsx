@@ -7,16 +7,16 @@ import { Seo } from "../seo/seo";
 import { collectionJsonLd } from "../seo/jsonld";
 
 const GALLERY_PROJECTS = [
-  { slug: "modern-farmhouse", title: "Modern Farmhouse" },
+  { slug: "modern-farmhouse",   title: "Modern Farmhouse" },
   { slug: "rio-verde-farmhouse", title: "Rio Verde Farmhouse" },
-  { slug: "cave-creek", title: "Cave Creek" },
-  { slug: "rio-verde-rv", title: "Rio Verde RV" },
-  { slug: "desert-retreat", title: "Desert Retreat" },
-  { slug: "cozy-comfort", title: "Cozy Comfort" },
-  { slug: "twilight-house", title: "Twilight House" },
-  { slug: "az-city-custom", title: "AZ City Custom" },
-  { slug: "mccartney-spec-1644", title: "McCartney Spec 1644" },
+  { slug: "cave-creek",          title: "Cave Creek" },
+  { slug: "rio-verde-rv",        title: "Rio Verde RV" },
+  { slug: "twilight-house",      title: "Twilight House" },
+  { slug: "desert-retreat",      title: "Desert Retreat" },
   { slug: "mccartney-spec-1849", title: "McCartney Spec 1849" },
+  { slug: "mccartney-spec-1644", title: "McCartney Spec 1644" },
+  { slug: "cozy-comfort",        title: "Cozy Comfort" },
+  { slug: "az-city-custom",      title: "AZ City Custom" },
 ];
 
 function firstImage(key: string): string {
