@@ -1,7 +1,5 @@
-/* Heading font is Newsreader, a warm editorial serif with conventional f and J
-   glyphs. It replaced Fraunces, whose signature WONK design draws a descending
-   J and a curling descending f that cannot be reliably disabled over Google
-   Fonts and read as broken letters at heading sizes.
+/* Heading font is Cormorant Garamond — high-contrast luxury serif with elegant
+   italics, paired with DM Sans for body copy (geometric, clean, functional).
    The font stylesheet is loaded via a non-blocking <link> in index.html (with
    preconnect) rather than an @import here, which would chain-block rendering. */
 
@@ -23,8 +21,8 @@
   --color-bone: #e2ddd3;
   --color-border: rgba(0, 0, 0, 0.08);
 
-  --font-heading: 'Newsreader', serif;
-  --font-body: 'Outfit', sans-serif;
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'DM Sans', sans-serif;
 
   --container-max: 1440px;
   --section-pad: clamp(80px, 10vw, 160px);
