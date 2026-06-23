@@ -40,7 +40,9 @@ export function DevDraggableGallery({ initialImages, slug, masonryClass }: Props
   const [dragIndex, setDragIndex] = useState<number | null>(null);
   const [dropIndex, setDropIndex] = useState<number | null>(null);
   const [saveState, setSaveState] = useState<"idle" | "saving" | "saved">("idle");
+  const [copyState, setCopyState] = useState<"idle" | "copied">("idle");
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const copyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const flashSaved = useCallback(() => {
     setSaveState("saved");
@@ -90,6 +92,24 @@ export function DevDraggableGallery({ initialImages, slug, masonryClass }: Props
     setDragIndex(null);
     setDropIndex(null);
   }, []);
+
+  const handleSave = useCallback(() => {
+    setImages((current) => {
+      saveOrder(slug, current);
+      return current;
+    });
+    flashSaved();
+  }, [slug, flashSaved]);
+
+  const handleCopy = useCallback(() => {
+    const keys = images.map((img) => img.key);
+    const text = JSON.stringify(keys, null, 2);
+    navigator.clipboard.writeText(text).then(() => {
+      setCopyState("copied");
+      if (copyTimer.current) clearTimeout(copyTimer.current);
+      copyTimer.current = setTimeout(() => setCopyState("idle"), 2200);
+    });
+  }, [images]);
 
   const handleReset = useCallback(() => {
     localStorage.removeItem(STORAGE_KEY(slug));
@@ -141,8 +161,44 @@ export function DevDraggableGallery({ initialImages, slug, masonryClass }: Props
             fontSize: "11px",
           }}
         >
-          ✓ Order saved
+          ✓ Saved
         </span>
+        <button
+          onClick={handleSave}
+          title="Re-write current order to localStorage"
+          style={{
+            background: "rgba(59,97,127,0.7)",
+            border: "1px solid rgba(59,97,127,0.9)",
+            color: "#f4f2ec",
+            padding: "3px 11px",
+            borderRadius: "3px",
+            cursor: "pointer",
+            fontSize: "11px",
+            fontFamily: "inherit",
+            transition: "background 0.15s",
+          }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(59,97,127,1)"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(59,97,127,0.7)"; }}
+        >
+          Save
+        </button>
+        <button
+          onClick={handleCopy}
+          title="Copy the ordered key list to clipboard (paste to agent to update source files)"
+          style={{
+            background: copyState === "copied" ? "rgba(111,207,151,0.25)" : "transparent",
+            border: `1px solid ${copyState === "copied" ? "rgba(111,207,151,0.6)" : "rgba(255,255,255,0.18)"}`,
+            color: copyState === "copied" ? "#6fcf97" : "rgba(255,255,255,0.5)",
+            padding: "3px 11px",
+            borderRadius: "3px",
+            cursor: "pointer",
+            fontSize: "11px",
+            fontFamily: "inherit",
+            transition: "background 0.2s, border-color 0.2s, color 0.2s",
+          }}
+        >
+          {copyState === "copied" ? "✓ Copied!" : "Copy order"}
+        </button>
         <button
           onClick={handleReset}
           style={{
