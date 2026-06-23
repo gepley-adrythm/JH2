@@ -27,6 +27,17 @@ const SOURCES = {
   "gallery-2.jpg": [768, 1280, 1600, 2000, 2500],
   "spec-home.jpg": [768, 1280, 1600],
   "cta-bg.jpg": [768, 1280, 1920, 2500],
+  // City landing page heroes — widths capped at each source's intrinsic width.
+  // 1500px sources: scottsdale, rio-verde, cave-creek, carefree, casa-grande, apache-junction
+  // 2500px sources: phoenix, fountain-hills
+  "city-hero-scottsdale.jpg":     [768, 1280, 1500],
+  "city-hero-rio-verde.jpg":      [768, 1280, 1500],
+  "city-hero-phoenix.jpg":        [768, 1280, 1920, 2500],
+  "city-hero-cave-creek.jpg":     [768, 1280, 1500],
+  "city-hero-fountain-hills.jpg": [768, 1280, 1920, 2500],
+  "city-hero-carefree.jpg":       [768, 1280, 1500],
+  "city-hero-casa-grande.jpg":    [768, 1280, 1920, 2500],
+  "city-hero-apache-junction.jpg":[768, 1280, 1500],
 };
 
 const QUALITY = "92";

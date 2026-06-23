@@ -204,11 +204,54 @@ function isLikelyCTA(text: string | undefined): boolean {
   return CTA_KEYWORDS.test(text);
 }
 
-function PageHero({ data, hideDescription }: { data: PageData; hideDescription?: boolean }) {
+const CITY_HERO_WIDTHS: Record<string, number[]> = {
+  "scottsdale":      [768, 1280, 1500],
+  "rio-verde":       [768, 1280, 1500],
+  "phoenix":         [768, 1280, 1920, 2500],
+  "cave-creek":      [768, 1280, 1500],
+  "fountain-hills":  [768, 1280, 1920, 2500],
+  "carefree":        [768, 1280, 1500],
+  "casa-grande":     [768, 1280, 1920, 2500],
+  "apache-junction": [768, 1280, 1500],
+};
+
+function CityHeroPicture({ slug }: { slug: string }) {
+  const widths = CITY_HERO_WIDTHS[slug];
+  if (!widths) return null;
+  const base = `/images/city-hero-${slug}`;
+  const largest = widths[widths.length - 1];
+  const webpSrcset = widths.map((w) => `${base}-${w}.webp ${w}w`).join(", ");
+  return (
+    <picture>
+      <source type="image/webp" srcSet={webpSrcset} sizes="100vw" />
+      <img
+        src={`${base}.jpg`}
+        alt=""
+        className="page-hero-bg"
+        loading="eager"
+        fetchPriority="high"
+        width={largest}
+      />
+    </picture>
+  );
+}
+
+function PageHero({
+  data,
+  citySlug,
+  hideDescription,
+}: {
+  data: PageData;
+  citySlug?: string;
+  hideDescription?: boolean;
+}) {
   const title = cleanTitle(data.title);
+  const hasCityHero = citySlug != null && citySlug in CITY_HERO_WIDTHS;
   return (
     <section className="page-hero" data-testid="page-hero">
-      {data.ogImage ? (
+      {hasCityHero ? (
+        <CityHeroPicture slug={citySlug!} />
+      ) : data.ogImage ? (
         <img src={data.ogImage} alt="" className="page-hero-bg" loading="eager" />
       ) : null}
       <div className="page-hero-overlay" />
@@ -922,7 +965,7 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
           noindex={key === "thankyou"}
           jsonLd={pageJsonLd.length ? pageJsonLd : undefined}
         />
-        <PageHero data={data} hideDescription={heroDescDup} />
+        <PageHero data={data} citySlug={isRegion ? key : undefined} hideDescription={heroDescDup} />
         {key === "where-we-build" ? <CityNavigator /> : null}
         <IntroSection subtitle={subtitle} intro={intro} image={introImg} />
 
