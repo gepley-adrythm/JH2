@@ -16,6 +16,16 @@ function webpPath(jpgSrc: string): string {
   return jpgSrc.replace(/\.jpe?g$/i, ".webp");
 }
 
+const isDev = import.meta.env.DEV;
+
+const DevDraggableGallery = isDev
+  ? React.lazy(() =>
+      import("../dev/DevDraggableGallery").then((m) => ({
+        default: m.DevDraggableGallery,
+      }))
+    )
+  : null;
+
 export default function GalleryDetail() {
   const { slug } = useParams();
   const reduce = useReducedMotion();
@@ -23,6 +33,17 @@ export default function GalleryDetail() {
 
   if (slug === "crist") {
     const imgs = cristImages();
+
+    const devImages = isDev
+      ? imgs.map((img, i) => ({
+          key: img.jpg.split("/").pop()!.replace(/\.(jpg|jpeg|webp)$/i, ""),
+          src: img.jpg,
+          webp: img.webp,
+          alt: img.alt,
+          eager: i < 6,
+        }))
+      : null;
+
     return (
       <main className="page">
         <Seo
@@ -81,27 +102,37 @@ export default function GalleryDetail() {
 
         <section className="section-pad" style={{ background: "var(--color-bg)" }}>
           <div className="container">
-            <div className="gallery-masonry gallery-masonry-crist">
-              {imgs.map((img, i) => (
-                <m.figure
-                  key={i}
-                  className="gallery-masonry-item"
-                  initial={reduce ? false : { opacity: 0, y: 20 }}
-                  whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.55, delay: (i % 5) * 0.06 }}
-                >
-                  <picture>
-                    <source srcSet={img.webp} type="image/webp" />
-                    <img
-                      src={img.jpg}
-                      alt={img.alt}
-                      loading={i < 6 ? "eager" : "lazy"}
-                    />
-                  </picture>
-                </m.figure>
-              ))}
-            </div>
+            {isDev && DevDraggableGallery && devImages ? (
+              <React.Suspense fallback={null}>
+                <DevDraggableGallery
+                  initialImages={devImages}
+                  slug="crist"
+                  masonryClass="gallery-masonry gallery-masonry-crist"
+                />
+              </React.Suspense>
+            ) : (
+              <div className="gallery-masonry gallery-masonry-crist">
+                {imgs.map((img, i) => (
+                  <m.figure
+                    key={i}
+                    className="gallery-masonry-item"
+                    initial={reduce ? false : { opacity: 0, y: 20 }}
+                    whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-60px" }}
+                    transition={{ duration: 0.55, delay: (i % 5) * 0.06 }}
+                  >
+                    <picture>
+                      <source srcSet={img.webp} type="image/webp" />
+                      <img
+                        src={img.jpg}
+                        alt={img.alt}
+                        loading={i < 6 ? "eager" : "lazy"}
+                      />
+                    </picture>
+                  </m.figure>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       </main>
@@ -113,6 +144,16 @@ export default function GalleryDetail() {
 
   const title = data.title.replace(/\s*[—–-]\s*Jematell Homes\s*$/i, "").trim();
   const images = data.blocks.filter((b) => b.type === "img" && b.src);
+
+  const devImages = isDev
+    ? images.map((img, i) => ({
+        key: img.src!,
+        src: img.src!,
+        webp: isLocalPath(img.src!) ? webpPath(img.src!) : undefined,
+        alt: img.alt || title,
+        eager: i < 4,
+      }))
+    : null;
 
   return (
     <main className="page">
@@ -149,27 +190,37 @@ export default function GalleryDetail() {
       </section>
       <section className="section-pad" style={{ background: "var(--color-bg)" }}>
         <div className="container">
-          <div className="gallery-masonry">
-            {images.map((img, i) => (
-              <m.figure
-                key={i}
-                className="gallery-masonry-item"
-                initial={reduce ? false : { opacity: 0, scale: 0.97 }}
-                whileInView={reduce ? undefined : { opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.55, delay: (i % 4) * 0.07 }}
-              >
-                {isLocalPath(img.src!) ? (
-                  <picture>
-                    <source srcSet={webpPath(img.src!)} type="image/webp" />
+          {isDev && DevDraggableGallery && devImages ? (
+            <React.Suspense fallback={null}>
+              <DevDraggableGallery
+                initialImages={devImages}
+                slug={slug!}
+                masonryClass="gallery-masonry"
+              />
+            </React.Suspense>
+          ) : (
+            <div className="gallery-masonry">
+              {images.map((img, i) => (
+                <m.figure
+                  key={i}
+                  className="gallery-masonry-item"
+                  initial={reduce ? false : { opacity: 0, scale: 0.97 }}
+                  whileInView={reduce ? undefined : { opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.55, delay: (i % 4) * 0.07 }}
+                >
+                  {isLocalPath(img.src!) ? (
+                    <picture>
+                      <source srcSet={webpPath(img.src!)} type="image/webp" />
+                      <img src={img.src!} alt={img.alt || title} loading={i < 4 ? "eager" : "lazy"} />
+                    </picture>
+                  ) : (
                     <img src={img.src!} alt={img.alt || title} loading={i < 4 ? "eager" : "lazy"} />
-                  </picture>
-                ) : (
-                  <img src={img.src!} alt={img.alt || title} loading={i < 4 ? "eager" : "lazy"} />
-                )}
-              </m.figure>
-            ))}
-          </div>
+                  )}
+                </m.figure>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </main>
