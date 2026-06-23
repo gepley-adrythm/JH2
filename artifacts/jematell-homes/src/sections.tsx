@@ -267,7 +267,6 @@ export function Reviews() {
           </div>
           <div className="reviews-right">
             <div className="review-content" data-testid={`review-${current}`}>
-              <div className="quote-mark">"</div>
               <AnimatePresence mode="wait">
                 <m.div
                   key={current}

@@ -908,16 +908,6 @@ picture {
 .review-content {
   position: relative;
 }
-.quote-mark {
-  position: absolute;
-  top: -40px;
-  left: -20px;
-  font-family: var(--font-heading);
-  font-size: 120px;
-  color: var(--color-warm);
-  opacity: 0.2;
-  line-height: 1;
-}
 .review-body {
   font-family: var(--font-heading);
   font-size: clamp(24px, 2.5vw, 36px);
