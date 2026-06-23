@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 
 export interface DevImg {
   key: string;
@@ -15,39 +15,90 @@ interface Props {
 }
 
 const STORAGE_KEY = (slug: string) => `jh-gallery-order-${slug}`;
+// DEV-ONLY endpoint, served by the Vite dev middleware in vite.config.ts.
+// Absent from the static production build. BASE_URL keeps it correct behind the proxy.
+const ENDPOINT = `${import.meta.env.BASE_URL}__dev/gallery-order`;
 
-function loadOrder(slug: string, images: DevImg[]): DevImg[] {
+function applyOrder(images: DevImg[], keys: string[]): DevImg[] {
+  const byKey = Object.fromEntries(images.map((img) => [img.key, img]));
+  const ordered = keys.map((k) => byKey[k]).filter(Boolean) as DevImg[];
+  const savedSet = new Set(keys);
+  const extra = images.filter((img) => !savedSet.has(img.key));
+  return [...ordered, ...extra];
+}
+
+function loadLocal(slug: string, images: DevImg[]): DevImg[] {
   try {
     const saved = localStorage.getItem(STORAGE_KEY(slug));
     if (!saved) return images;
-    const keys: string[] = JSON.parse(saved);
-    const byKey = Object.fromEntries(images.map((img) => [img.key, img]));
-    const ordered = keys.map((k) => byKey[k]).filter(Boolean) as DevImg[];
-    const savedSet = new Set(keys);
-    const extra = images.filter((img) => !savedSet.has(img.key));
-    return [...ordered, ...extra];
+    return applyOrder(images, JSON.parse(saved) as string[]);
   } catch {
     return images;
   }
 }
 
-function saveOrder(slug: string, images: DevImg[]) {
+function saveLocal(slug: string, images: DevImg[]) {
   localStorage.setItem(STORAGE_KEY(slug), JSON.stringify(images.map((img) => img.key)));
 }
 
+async function saveServer(slug: string, keys: string[]): Promise<boolean> {
+  try {
+    const r = await fetch(ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ slug, keys }),
+    });
+    return r.ok;
+  } catch {
+    return false;
+  }
+}
+
+async function loadServer(slug: string): Promise<string[] | null> {
+  try {
+    const r = await fetch(`${ENDPOINT}?slug=${encodeURIComponent(slug)}`);
+    if (!r.ok) return null;
+    const data = (await r.json()) as { keys?: unknown };
+    return Array.isArray(data.keys) ? (data.keys as string[]) : null;
+  } catch {
+    return null;
+  }
+}
+
+type SaveState = "idle" | "saving" | "saved" | "error";
+
 export function DevDraggableGallery({ initialImages, slug, masonryClass }: Props) {
-  const [images, setImages] = useState<DevImg[]>(() => loadOrder(slug, initialImages));
+  const [images, setImages] = useState<DevImg[]>(() => loadLocal(slug, initialImages));
   const [dragIndex, setDragIndex] = useState<number | null>(null);
   const [dropIndex, setDropIndex] = useState<number | null>(null);
-  const [saveState, setSaveState] = useState<"idle" | "saving" | "saved">("idle");
+  const [saveState, setSaveState] = useState<SaveState>("idle");
   const [copyState, setCopyState] = useState<"idle" | "copied">("idle");
+  const [preview, setPreview] = useState(false);
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const copyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const flashSaved = useCallback(() => {
-    setSaveState("saved");
+  // Server is the source of truth — hydrate from it on mount so the order
+  // survives a localStorage wipe (different browser, cleared cache, etc.).
+  useEffect(() => {
+    let cancelled = false;
+    loadServer(slug).then((keys) => {
+      if (cancelled || !keys || keys.length === 0) return;
+      const ordered = applyOrder(initialImages, keys);
+      setImages(ordered);
+      saveLocal(slug, ordered);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [slug, initialImages]);
+
+  const persist = useCallback(async (s: string, imgs: DevImg[]) => {
+    setSaveState("saving");
+    saveLocal(s, imgs);
+    const ok = await saveServer(s, imgs.map((img) => img.key));
     if (saveTimer.current) clearTimeout(saveTimer.current);
-    saveTimer.current = setTimeout(() => setSaveState("idle"), 2200);
+    setSaveState(ok ? "saved" : "error");
+    saveTimer.current = setTimeout(() => setSaveState("idle"), ok ? 2200 : 5000);
   }, []);
 
   const reorder = useCallback(
@@ -57,12 +108,11 @@ export function DevDraggableGallery({ initialImages, slug, masonryClass }: Props
         const next = [...prev];
         const [moved] = next.splice(from, 1);
         next.splice(to, 0, moved);
-        saveOrder(slug, next);
+        void persist(slug, next);
         return next;
       });
-      flashSaved();
     },
-    [slug, flashSaved]
+    [slug, persist]
   );
 
   const handleDragStart = useCallback((e: React.DragEvent, i: number) => {
@@ -95,11 +145,10 @@ export function DevDraggableGallery({ initialImages, slug, masonryClass }: Props
 
   const handleSave = useCallback(() => {
     setImages((current) => {
-      saveOrder(slug, current);
+      void persist(slug, current);
       return current;
     });
-    flashSaved();
-  }, [slug, flashSaved]);
+  }, [slug, persist]);
 
   const handleCopy = useCallback(() => {
     const keys = images.map((img) => img.key);
@@ -114,8 +163,82 @@ export function DevDraggableGallery({ initialImages, slug, masonryClass }: Props
   const handleReset = useCallback(() => {
     localStorage.removeItem(STORAGE_KEY(slug));
     setImages(initialImages);
-    setSaveState("idle");
-  }, [initialImages, slug]);
+    // Write the source order back to the server so the saved file matches reset.
+    void persist(slug, initialImages);
+  }, [initialImages, slug, persist]);
+
+  const status =
+    saveState === "saving"
+      ? { text: "Saving…", color: "#e0c068" }
+      : saveState === "saved"
+        ? { text: "✓ Saved to server", color: "#6fcf97" }
+        : saveState === "error"
+          ? { text: "Save failed — kept locally", color: "#e07a5f" }
+          : { text: "", color: "transparent" };
+
+  // Production preview: render the gallery exactly as the static production
+  // build would (no drag handles, no dev bar) so you can see the real look.
+  // A small floating pill is the only dev affordance, to switch back.
+  if (preview) {
+    return (
+      <>
+        <div className={masonryClass}>
+          {images.map((img) => (
+            <figure key={img.key} className="gallery-masonry-item">
+              {img.webp ? (
+                <picture>
+                  <source srcSet={img.webp} type="image/webp" />
+                  <img src={img.src} alt={img.alt} loading={img.eager ? "eager" : "lazy"} />
+                </picture>
+              ) : (
+                <img src={img.src} alt={img.alt} loading={img.eager ? "eager" : "lazy"} />
+              )}
+            </figure>
+          ))}
+        </div>
+        <button
+          onClick={() => setPreview(false)}
+          title="Return to the drag-to-reorder editor"
+          style={{
+            position: "fixed",
+            left: "20px",
+            bottom: "20px",
+            zIndex: 300,
+            background: "rgba(12,14,15,0.9)",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+            color: "#f4f2ec",
+            border: "1px solid rgba(255,255,255,0.18)",
+            borderRadius: "999px",
+            padding: "9px 16px",
+            cursor: "pointer",
+            fontSize: "11.5px",
+            fontFamily: "'DM Mono', 'Fira Mono', 'Consolas', monospace",
+            letterSpacing: "0.04em",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            boxShadow: "0 6px 24px rgba(0,0,0,0.25)",
+          }}
+        >
+          <span
+            style={{
+              background: "#8c5a45",
+              color: "#fff",
+              padding: "1px 6px",
+              borderRadius: "3px",
+              fontSize: "9px",
+              fontWeight: 700,
+              letterSpacing: "0.1em",
+            }}
+          >
+            DEV
+          </span>
+          Exit production preview
+        </button>
+      </>
+    );
+  }
 
   return (
     <>
@@ -155,17 +278,36 @@ export function DevDraggableGallery({ initialImages, slug, masonryClass }: Props
         <span
           style={{
             marginLeft: "auto",
-            opacity: saveState === "saved" ? 1 : 0,
-            color: "#6fcf97",
-            transition: "opacity 0.3s",
+            opacity: status.text ? 1 : 0,
+            color: status.color,
+            transition: "opacity 0.3s, color 0.3s",
             fontSize: "11px",
           }}
         >
-          ✓ Saved
+          {status.text || "·"}
         </span>
         <button
+          onClick={() => setPreview(true)}
+          title="Preview the gallery exactly as it looks in production (no editor)"
+          style={{
+            background: "rgba(140,90,69,0.7)",
+            border: "1px solid rgba(140,90,69,0.9)",
+            color: "#f4f2ec",
+            padding: "3px 11px",
+            borderRadius: "3px",
+            cursor: "pointer",
+            fontSize: "11px",
+            fontFamily: "inherit",
+            transition: "background 0.15s",
+          }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(140,90,69,1)"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(140,90,69,0.7)"; }}
+        >
+          Preview production
+        </button>
+        <button
           onClick={handleSave}
-          title="Re-write current order to localStorage"
+          title="Save the current order to the dev server (persisted to src/data/gallery-orders.json)"
           style={{
             background: "rgba(59,97,127,0.7)",
             border: "1px solid rgba(59,97,127,0.9)",

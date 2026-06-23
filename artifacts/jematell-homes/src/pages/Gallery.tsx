@@ -7,16 +7,16 @@ import { Seo } from "../seo/seo";
 import { collectionJsonLd } from "../seo/jsonld";
 
 const GALLERY_PROJECTS = [
-  { slug: "modern-farmhouse",   title: "Modern Farmhouse" },
-  { slug: "rio-verde-farmhouse", title: "Rio Verde Farmhouse" },
-  { slug: "cave-creek",          title: "Cave Creek" },
-  { slug: "rio-verde-rv",        title: "Rio Verde RV" },
-  { slug: "twilight-house",      title: "Twilight House" },
-  { slug: "desert-retreat",      title: "Desert Retreat" },
-  { slug: "mccartney-spec-1849", title: "McCartney Spec 1849" },
-  { slug: "mccartney-spec-1644", title: "McCartney Spec 1644" },
-  { slug: "cozy-comfort",        title: "Cozy Comfort" },
-  { slug: "az-city-custom",      title: "AZ City Custom" },
+  { slug: "modern-farmhouse",   title: "Modern Farmhouse",    meta: "Custom Home" },
+  { slug: "rio-verde-farmhouse", title: "Rio Verde Farmhouse", meta: "Rio Verde · Custom Home" },
+  { slug: "cave-creek",          title: "Cave Creek",          meta: "Cave Creek · Custom Home" },
+  { slug: "rio-verde-rv",        title: "Rio Verde RV",        meta: "Rio Verde, AZ" },
+  { slug: "twilight-house",      title: "Twilight House",      meta: "Custom Home" },
+  { slug: "desert-retreat",      title: "Desert Retreat",      meta: "Custom Home" },
+  { slug: "mccartney-spec-1849", title: "McCartney Spec 1849", meta: "Spec Home" },
+  { slug: "mccartney-spec-1644", title: "McCartney Spec 1644", meta: "Spec Home" },
+  { slug: "cozy-comfort",        title: "Cozy Comfort",        meta: "Custom Home" },
+  { slug: "az-city-custom",      title: "AZ City Custom",      meta: "Custom Home" },
 ];
 
 function firstImage(key: string): string {
@@ -111,7 +111,10 @@ export default function Gallery() {
                       <div className="gallery-card-media gallery-card-placeholder" />
                     )}
                     <div className="gallery-card-meta">
-                      <h2 className="gallery-card-title">{proj.title}</h2>
+                      <div className="gallery-card-text">
+                        <h2 className="gallery-card-title">{proj.title}</h2>
+                        <span className="gallery-card-sub">{proj.meta}</span>
+                      </div>
                       <span className="gallery-card-arrow">→</span>
                     </div>
                   </Link>

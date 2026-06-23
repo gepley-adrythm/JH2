@@ -101,7 +101,7 @@ export default function GalleryDetail() {
         </div>
 
         <section className="section-pad" style={{ background: "var(--color-bg)" }}>
-          <div className="container">
+          <div className="gallery-masonry-wrap">
             {isDev && DevDraggableGallery && devImages ? (
               <React.Suspense fallback={null}>
                 <DevDraggableGallery
@@ -189,7 +189,7 @@ export default function GalleryDetail() {
         </div>
       </section>
       <section className="section-pad" style={{ background: "var(--color-bg)" }}>
-        <div className="container">
+        <div className="gallery-masonry-wrap">
           {isDev && DevDraggableGallery && devImages ? (
             <React.Suspense fallback={null}>
               <DevDraggableGallery
