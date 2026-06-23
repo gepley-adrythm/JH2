@@ -3,19 +3,116 @@ import { useParams, Link } from "react-router-dom";
 import { m, useReducedMotion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { pages } from "../data/pages";
+import { cristImages, CRIST_HERO_JPG, CRIST_HERO_WEBP } from "../data/crist";
 import { Seo } from "../seo/seo";
 import { breadcrumbJsonLd } from "../seo/jsonld";
 import NotFound from "./not-found";
 
+function isLocalPath(src: string): boolean {
+  return src.startsWith("/") || src.startsWith("./") || !src.startsWith("http");
+}
+
+function webpPath(jpgSrc: string): string {
+  return jpgSrc.replace(/\.jpe?g$/i, ".webp");
+}
+
 export default function GalleryDetail() {
   const { slug } = useParams();
   const reduce = useReducedMotion();
+  const path = `/gallery/${slug}`;
+
+  if (slug === "crist") {
+    const imgs = cristImages();
+    return (
+      <main className="page">
+        <Seo
+          title="Crist Residence"
+          description="A 2026 custom home in Rio Verde, AZ — captured in 56 professional photographs showing every detail of this signature Jematell Homes build."
+          canonical={path}
+          image={CRIST_HERO_JPG}
+          jsonLd={breadcrumbJsonLd([
+            { name: "Home", url: "/" },
+            { name: "Gallery", url: "/gallery" },
+            { name: "Crist Residence", url: path },
+          ])}
+        />
+        <section className="gallery-detail-hero">
+          <picture className="gallery-detail-hero-picture">
+            <source srcSet={CRIST_HERO_WEBP} type="image/webp" />
+            <img src={CRIST_HERO_JPG} alt="Crist Residence" className="page-hero-bg" loading="eager" />
+          </picture>
+          <div className="page-hero-overlay" style={{ background: "linear-gradient(to top, rgba(22,22,22,0.72) 0%, rgba(22,22,22,0.2) 60%, transparent 100%)" }} />
+          <div className="container page-hero-content">
+            <Link to="/gallery" className="gallery-back" data-testid="gallery-back">
+              <ArrowLeft size={16} /> Back to Gallery
+            </Link>
+            <h1 className="page-hero-title">Crist Residence</h1>
+            <p className="page-hero-sub" style={{ maxWidth: "560px" }}>
+              A custom home in Rio Verde, AZ. Photography by professional photographer, 2026.
+            </p>
+          </div>
+        </section>
+
+        <div className="gallery-detail-stats">
+          <div className="container">
+            <div className="gallery-detail-stats-inner">
+              <div className="gallery-detail-stat">
+                <span className="gallery-detail-stat-value">56</span>
+                <span className="gallery-detail-stat-label">Photographs</span>
+              </div>
+              <div className="gallery-detail-stat-divider" />
+              <div className="gallery-detail-stat">
+                <span className="gallery-detail-stat-value">Custom</span>
+                <span className="gallery-detail-stat-label">Build Type</span>
+              </div>
+              <div className="gallery-detail-stat-divider" />
+              <div className="gallery-detail-stat">
+                <span className="gallery-detail-stat-value">Rio Verde</span>
+                <span className="gallery-detail-stat-label">Location</span>
+              </div>
+              <div className="gallery-detail-stat-divider" />
+              <div className="gallery-detail-stat">
+                <span className="gallery-detail-stat-value">2026</span>
+                <span className="gallery-detail-stat-label">Completed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section className="section-pad" style={{ background: "var(--color-bg)" }}>
+          <div className="container">
+            <div className="gallery-masonry gallery-masonry-crist">
+              {imgs.map((img, i) => (
+                <m.figure
+                  key={i}
+                  className="gallery-masonry-item"
+                  initial={reduce ? false : { opacity: 0, y: 20 }}
+                  whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.55, delay: (i % 5) * 0.06 }}
+                >
+                  <picture>
+                    <source srcSet={img.webp} type="image/webp" />
+                    <img
+                      src={img.jpg}
+                      alt={img.alt}
+                      loading={i < 6 ? "eager" : "lazy"}
+                    />
+                  </picture>
+                </m.figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+    );
+  }
+
   const data = pages[`gallery_${slug}`];
   if (!data) return <NotFound />;
 
   const title = data.title.replace(/\s*[—–-]\s*Jematell Homes\s*$/i, "").trim();
   const images = data.blocks.filter((b) => b.type === "img" && b.src);
-  const path = `/gallery/${slug}`;
 
   return (
     <main className="page">
@@ -31,7 +128,16 @@ export default function GalleryDetail() {
         ])}
       />
       <section className="gallery-detail-hero">
-        {data.ogImage ? <img src={data.ogImage} alt="" className="page-hero-bg" /> : null}
+        {data.ogImage ? (
+          isLocalPath(data.ogImage) ? (
+            <picture className="gallery-detail-hero-picture">
+              <source srcSet={webpPath(data.ogImage)} type="image/webp" />
+              <img src={data.ogImage} alt="" className="page-hero-bg" loading="eager" />
+            </picture>
+          ) : (
+            <img src={data.ogImage} alt="" className="page-hero-bg" loading="eager" />
+          )
+        ) : null}
         <div className="page-hero-overlay" />
         <div className="container page-hero-content">
           <Link to="/gallery" className="gallery-back" data-testid="gallery-back">
@@ -48,12 +154,19 @@ export default function GalleryDetail() {
               <m.figure
                 key={i}
                 className="gallery-masonry-item"
-                initial={reduce ? false : { opacity: 0, scale: 0.96 }}
+                initial={reduce ? false : { opacity: 0, scale: 0.97 }}
                 whileInView={reduce ? undefined : { opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.6, delay: (i % 4) * 0.08 }}
+                transition={{ duration: 0.55, delay: (i % 4) * 0.07 }}
               >
-                <img src={img.src!} alt={img.alt || title} loading="lazy" />
+                {isLocalPath(img.src!) ? (
+                  <picture>
+                    <source srcSet={webpPath(img.src!)} type="image/webp" />
+                    <img src={img.src!} alt={img.alt || title} loading={i < 4 ? "eager" : "lazy"} />
+                  </picture>
+                ) : (
+                  <img src={img.src!} alt={img.alt || title} loading={i < 4 ? "eager" : "lazy"} />
+                )}
               </m.figure>
             ))}
           </div>

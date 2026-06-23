@@ -55,6 +55,7 @@ export function getRoutes(): string[] {
     "/blog",
   ]);
   for (const loc of locations) routes.add(locationHref(loc.slug));
+  routes.add("/gallery/crist");
   for (const key of Object.keys(pages)) {
     if (key.startsWith("gallery_")) {
       routes.add(`/gallery/${key.slice("gallery_".length)}`);
