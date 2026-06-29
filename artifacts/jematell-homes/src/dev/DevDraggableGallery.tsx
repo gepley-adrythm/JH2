@@ -143,6 +143,18 @@ export function DevDraggableGallery({ initialImages, slug, masonryClass }: Props
     setDropIndex(null);
   }, []);
 
+  // Allow scroll-wheel to scroll the page while a drag is in progress.
+  // The HTML5 drag API captures the mouse, so native wheel-scroll is blocked;
+  // we relay the delta manually.
+  useEffect(() => {
+    if (dragIndex === null) return;
+    const onWheel = (e: WheelEvent) => {
+      window.scrollBy({ top: e.deltaY, behavior: "instant" as ScrollBehavior });
+    };
+    window.addEventListener("wheel", onWheel, { passive: true });
+    return () => window.removeEventListener("wheel", onWheel);
+  }, [dragIndex]);
+
   const handleSave = useCallback(() => {
     setImages((current) => {
       void persist(slug, current);
