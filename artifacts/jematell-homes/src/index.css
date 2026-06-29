@@ -1550,8 +1550,9 @@ picture {
   font-weight: 400;
   color: #fff;
   font-size: 21px;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.04em;
   line-height: 1.1;
+  text-transform: uppercase;
   transition: color 0.25s ease;
 }
 .gallery-card:hover .gallery-card-title { color: #fff; }
