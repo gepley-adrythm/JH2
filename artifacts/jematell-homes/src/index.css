@@ -1570,13 +1570,21 @@ picture {
   position: relative;
   min-height: 55vh;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
   padding: 140px 0 60px;
   overflow: hidden;
   background: var(--color-dark);
   color: #fff;
 }
 .gallery-detail-hero-picture { display: contents; }
+.gallery-detail-hero-content {
+  text-align: center;
+  max-width: none;
+}
+.gallery-detail-hero-content .page-hero-title {
+  text-transform: uppercase;
+}
 
 /* Stats bar — Crist */
 .gallery-detail-stats {

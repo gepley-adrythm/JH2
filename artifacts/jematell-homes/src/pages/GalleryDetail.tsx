@@ -62,11 +62,8 @@ export default function GalleryDetail() {
             <img src={CRIST_HERO_JPG} alt="Skinner Custom" className="page-hero-bg" loading="eager" />
           </picture>
           <div className="page-hero-overlay" style={{ background: "linear-gradient(to top, rgba(22,22,22,0.72) 0%, rgba(22,22,22,0.2) 60%, transparent 100%)" }} />
-          <div className="container page-hero-content">
+          <div className="container page-hero-content gallery-detail-hero-content">
             <h1 className="page-hero-title">Skinner Custom</h1>
-            <p className="page-hero-sub" style={{ maxWidth: "560px" }}>
-              A custom home in Rio Verde, AZ. Photography by professional photographer, 2026.
-            </p>
           </div>
         </section>
 
@@ -176,9 +173,8 @@ export default function GalleryDetail() {
           )
         ) : null}
         <div className="page-hero-overlay" />
-        <div className="container page-hero-content">
+        <div className="container page-hero-content gallery-detail-hero-content">
           <h1 className="page-hero-title">{title}</h1>
-          {data.description ? <p className="page-hero-sub">{data.description}</p> : null}
         </div>
       </section>
       <section className="section-pad" style={{ background: "var(--color-bg)" }}>
