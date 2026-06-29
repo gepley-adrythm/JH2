@@ -170,6 +170,7 @@ export function Header() {
     <>
       <header className={`site-header ${scrolled || forceSolid ? "scrolled" : ""}`}>
       <div className="container header-inner">
+        <div className="header-left">
         <Link to="/" className="brand-logo" aria-label={siteConfig.brand.name} data-testid="nav-logo">
           <img src={img("logo.png")} alt={siteConfig.brand.name} />
         </Link>
@@ -202,6 +203,7 @@ export function Header() {
             ),
           )}
         </nav>
+        </div>
 
         <div className="header-actions">
           <button type="button" className="btn btn-primary" data-testid="header-cta" onClick={openContactForm}>
