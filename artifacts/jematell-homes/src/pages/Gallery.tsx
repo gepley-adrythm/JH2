@@ -7,7 +7,7 @@ import { Seo } from "../seo/seo";
 import { collectionJsonLd } from "../seo/jsonld";
 
 const GALLERY_PROJECTS: { slug: string; title: string; meta: string; thumb?: string }[] = [
-  { slug: "crist", title: "Crist Residence", meta: "Rio Verde, AZ · Custom Home", thumb: CRIST_AERIAL_JPG },
+  { slug: "crist", title: "Skinner Custom", meta: "Rio Verde, AZ · Custom Home", thumb: CRIST_AERIAL_JPG },
   { slug: "modern-farmhouse",   title: "Modern Farmhouse",    meta: "Custom Home" },
   { slug: "rio-verde-farmhouse", title: "Rio Verde Farmhouse", meta: "Rio Verde · Custom Home" },
   { slug: "cave-creek",          title: "Cave Creek",          meta: "Cave Creek · Custom Home" },

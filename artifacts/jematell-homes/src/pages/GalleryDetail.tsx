@@ -46,24 +46,24 @@ export default function GalleryDetail() {
     return (
       <main className="page">
         <Seo
-          title="Crist Residence"
+          title="Skinner Custom"
           description="A 2026 custom home in Rio Verde, AZ — captured in 56 professional photographs showing every detail of this signature Jematell Homes build."
           canonical={path}
           image={CRIST_HERO_JPG}
           jsonLd={breadcrumbJsonLd([
             { name: "Home", url: "/" },
             { name: "Gallery", url: "/gallery" },
-            { name: "Crist Residence", url: path },
+            { name: "Skinner Custom", url: path },
           ])}
         />
         <section className="gallery-detail-hero">
           <picture className="gallery-detail-hero-picture">
             <source srcSet={CRIST_HERO_WEBP} type="image/webp" />
-            <img src={CRIST_HERO_JPG} alt="Crist Residence" className="page-hero-bg" loading="eager" />
+            <img src={CRIST_HERO_JPG} alt="Skinner Custom" className="page-hero-bg" loading="eager" />
           </picture>
           <div className="page-hero-overlay" style={{ background: "linear-gradient(to top, rgba(22,22,22,0.72) 0%, rgba(22,22,22,0.2) 60%, transparent 100%)" }} />
           <div className="container page-hero-content">
-            <h1 className="page-hero-title">Crist Residence</h1>
+            <h1 className="page-hero-title">Skinner Custom</h1>
             <p className="page-hero-sub" style={{ maxWidth: "560px" }}>
               A custom home in Rio Verde, AZ. Photography by professional photographer, 2026.
             </p>
