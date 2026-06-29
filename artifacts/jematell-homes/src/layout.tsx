@@ -349,7 +349,6 @@ export function Footer() {
 
         <div className="footer-bottom">
           <span>&copy; {new Date().getFullYear()} {siteConfig.brand.name}. All rights reserved.</span>
-          <span>{siteConfig.tagline}</span>
         </div>
       </div>
     </footer>
