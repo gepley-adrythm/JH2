@@ -13,7 +13,7 @@ export const GALLERY_PROJECTS: GalleryProject[] = [
   { slug: "modern-farmhouse",    title: "Modern Farmhouse",    meta: "Custom Home",                  buildType: "Custom", location: "Rio Verde", completed: "2024" },
   { slug: "rio-verde-farmhouse", title: "Rio Verde Farmhouse", meta: "Rio Verde · Custom Home",      buildType: "Custom", location: "Rio Verde", completed: "2026" },
   { slug: "cave-creek",          title: "Cave Creek Spec",     meta: "Cave Creek · Spec Home",       buildType: "Spec",   location: "Cave Creek", completed: "2026" },
-  { slug: "rio-verde-rv",        title: "Rio Verde RV",        meta: "Rio Verde, AZ",                buildType: "Custom", location: "Rio Verde" },
+  { slug: "rio-verde-rv",        title: "Rio Verde RV",        meta: "Rio Verde, AZ",                buildType: "Custom", location: "Rio Verde", completed: "2023" },
   { slug: "twilight-house",      title: "Twilight House",      meta: "Custom Home",                  buildType: "Custom" },
   { slug: "desert-retreat",      title: "Desert Retreat",      meta: "Custom Home",                  buildType: "Custom" },
   { slug: "mccartney-spec-1849", title: "McCartney Spec 1849", meta: "Spec Home",                    buildType: "Spec" },
