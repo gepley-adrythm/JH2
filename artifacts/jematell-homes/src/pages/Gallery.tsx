@@ -51,7 +51,7 @@ export default function Gallery() {
         </div>
       </section>
       <section className="section-pad" style={{ background: "var(--color-bg)", paddingTop: "48px" }}>
-        <div className="container">
+        <div className="gallery-page-inner">
 
           <m.div
             className="gallery-featured"
@@ -93,7 +93,7 @@ export default function Gallery() {
               return (
                 <m.div
                   key={proj.slug}
-                  className={`gallery-card ${i % 5 === 0 ? "wide" : ""}`}
+                  className="gallery-card"
                   initial={reduce ? false : { opacity: 0, y: 24 }}
                   whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
