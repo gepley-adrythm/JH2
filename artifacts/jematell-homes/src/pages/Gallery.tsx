@@ -15,7 +15,6 @@ const GALLERY_PROJECTS: { slug: string; title: string; meta: string; thumb?: str
   { slug: "desert-retreat",      title: "Desert Retreat",      meta: "Custom Home" },
   { slug: "mccartney-spec-1849", title: "McCartney Spec 1849", meta: "Spec Home" },
   { slug: "mccartney-spec-1644", title: "McCartney Spec 1644", meta: "Spec Home" },
-  { slug: "cozy-comfort",        title: "Balancing Rock Spec 1644", meta: "Spec Home" },
   { slug: "az-city-custom",      title: "AZ City Custom",      meta: "Custom Home" },
 ];
 
