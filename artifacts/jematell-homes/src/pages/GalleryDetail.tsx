@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { m, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { pages } from "../data/pages";
 import { cristImages, CRIST_HERO_JPG, CRIST_HERO_WEBP } from "../data/crist";
 import { Seo } from "../seo/seo";
@@ -29,6 +29,9 @@ export default function GalleryDetail() {
   const { slug } = useParams();
   const reduce = useReducedMotion();
   const path = `/gallery/${slug}`;
+  const { scrollY } = useScroll();
+  const parallaxY = useTransform(scrollY, [0, 700], [0, -90]);
+  const heroY = reduce ? 0 : parallaxY;
 
   if (slug === "crist") {
     const imgs = cristImages();
@@ -57,10 +60,12 @@ export default function GalleryDetail() {
           ])}
         />
         <section className="gallery-detail-hero">
-          <picture className="gallery-detail-hero-picture">
-            <source srcSet={CRIST_HERO_WEBP} type="image/webp" />
-            <img src={CRIST_HERO_JPG} alt="Skinner Custom" className="page-hero-bg" loading="eager" />
-          </picture>
+          <m.div className="gallery-detail-parallax" style={{ y: heroY }}>
+            <picture className="gallery-detail-hero-picture">
+              <source srcSet={CRIST_HERO_WEBP} type="image/webp" />
+              <img src={CRIST_HERO_JPG} alt="Skinner Custom" className="page-hero-bg" loading="eager" />
+            </picture>
+          </m.div>
           <div className="page-hero-overlay" style={{ background: "linear-gradient(to top, rgba(22,22,22,0.72) 0%, rgba(22,22,22,0.2) 60%, transparent 100%)" }} />
           <div className="container page-hero-content gallery-detail-hero-content">
             <h1 className="page-hero-title">Skinner Custom</h1>
@@ -162,16 +167,18 @@ export default function GalleryDetail() {
         ])}
       />
       <section className="gallery-detail-hero">
-        {data.ogImage ? (
-          isLocalPath(data.ogImage) ? (
-            <picture className="gallery-detail-hero-picture">
-              <source srcSet={webpPath(data.ogImage)} type="image/webp" />
+        <m.div className="gallery-detail-parallax" style={{ y: heroY }}>
+          {data.ogImage ? (
+            isLocalPath(data.ogImage) ? (
+              <picture className="gallery-detail-hero-picture">
+                <source srcSet={webpPath(data.ogImage)} type="image/webp" />
+                <img src={data.ogImage} alt="" className="page-hero-bg" loading="eager" />
+              </picture>
+            ) : (
               <img src={data.ogImage} alt="" className="page-hero-bg" loading="eager" />
-            </picture>
-          ) : (
-            <img src={data.ogImage} alt="" className="page-hero-bg" loading="eager" />
-          )
-        ) : null}
+            )
+          ) : null}
+        </m.div>
         <div className="page-hero-overlay" />
         <div className="container page-hero-content gallery-detail-hero-content">
           <h1 className="page-hero-title">{title}</h1>

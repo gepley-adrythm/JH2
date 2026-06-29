@@ -1578,6 +1578,13 @@ picture {
   color: #fff;
 }
 .gallery-detail-hero-picture { display: contents; }
+
+/* Parallax wrapper — extends 15% above/below the hero so movement never exposes a gap */
+.gallery-detail-parallax {
+  position: absolute;
+  inset: -15% 0;
+  will-change: transform;
+}
 .gallery-detail-hero-content {
   text-align: center;
   max-width: none;
