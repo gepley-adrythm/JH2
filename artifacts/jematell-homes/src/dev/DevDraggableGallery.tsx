@@ -197,6 +197,15 @@ export function DevDraggableGallery({ initialImages, slug, masonryClass }: Props
     });
   }, [images]);
 
+  const handleDelete = useCallback((key: string, label: string) => {
+    if (!window.confirm(`Remove "${label}" from the gallery?\n\nUse "Reset order" to restore it.`)) return;
+    setImages((prev) => {
+      const next = prev.filter((img) => img.key !== key);
+      void persist(slug, next);
+      return next;
+    });
+  }, [slug, persist]);
+
   const handleReset = useCallback(() => {
     localStorage.removeItem(STORAGE_KEY(slug));
     setImages(initialImages);
@@ -446,6 +455,36 @@ export function DevDraggableGallery({ initialImages, slug, masonryClass }: Props
                   style={{ pointerEvents: "none" }}
                 />
               )}
+              {/* Delete button — top-left */}
+              <button
+                onClick={(e) => { e.stopPropagation(); handleDelete(img.key, img.alt || img.key); }}
+                title="Remove this photo from the gallery"
+                style={{
+                  position: "absolute",
+                  top: "8px",
+                  left: "8px",
+                  width: "28px",
+                  height: "28px",
+                  background: "rgba(180,40,40,0.8)",
+                  border: "none",
+                  borderRadius: "4px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  color: "#fff",
+                  fontSize: "16px",
+                  lineHeight: 1,
+                  fontFamily: "system-ui, sans-serif",
+                  opacity: 0.85,
+                  transition: "opacity 0.15s, background 0.15s",
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.opacity = "1"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(200,30,30,1)"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.opacity = "0.85"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(180,40,40,0.8)"; }}
+              >
+                ×
+              </button>
+              {/* Drag handle — top-right */}
               <div
                 style={{
                   position: "absolute",
