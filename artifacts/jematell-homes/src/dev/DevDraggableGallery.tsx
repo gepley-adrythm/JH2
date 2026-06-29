@@ -21,10 +21,7 @@ const ENDPOINT = `${import.meta.env.BASE_URL}__dev/gallery-order`;
 
 function applyOrder(images: DevImg[], keys: string[]): DevImg[] {
   const byKey = Object.fromEntries(images.map((img) => [img.key, img]));
-  const ordered = keys.map((k) => byKey[k]).filter(Boolean) as DevImg[];
-  const savedSet = new Set(keys);
-  const extra = images.filter((img) => !savedSet.has(img.key));
-  return [...ordered, ...extra];
+  return keys.map((k) => byKey[k]).filter(Boolean) as DevImg[];
 }
 
 function loadLocal(slug: string, images: DevImg[]): DevImg[] {
