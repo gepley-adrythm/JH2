@@ -143,16 +143,41 @@ export function DevDraggableGallery({ initialImages, slug, masonryClass }: Props
     setDropIndex(null);
   }, []);
 
-  // Allow scroll-wheel to scroll the page while a drag is in progress.
-  // The HTML5 drag API captures the mouse, so native wheel-scroll is blocked;
-  // we relay the delta manually.
+  // Auto-scroll when dragging near the top or bottom edge of the viewport.
+  // The HTML5 drag API blocks wheel events entirely, so we watch dragover
+  // (which does fire) and use rAF to scroll proportionally to edge proximity.
   useEffect(() => {
     if (dragIndex === null) return;
-    const onWheel = (e: WheelEvent) => {
-      window.scrollBy({ top: e.deltaY, behavior: "instant" as ScrollBehavior });
+
+    const THRESHOLD = 140; // px from edge to start scrolling
+    const MAX_SPEED = 18;  // px per frame at the very edge
+    let speed = 0;
+    let rafId: number;
+
+    const onDragOver = (e: DragEvent) => {
+      const y = e.clientY;
+      const h = window.innerHeight;
+      if (y < THRESHOLD) {
+        speed = -((THRESHOLD - y) / THRESHOLD) * MAX_SPEED;
+      } else if (y > h - THRESHOLD) {
+        speed = ((y - (h - THRESHOLD)) / THRESHOLD) * MAX_SPEED;
+      } else {
+        speed = 0;
+      }
     };
-    window.addEventListener("wheel", onWheel, { passive: true });
-    return () => window.removeEventListener("wheel", onWheel);
+
+    const tick = () => {
+      if (speed !== 0) window.scrollBy(0, speed);
+      rafId = requestAnimationFrame(tick);
+    };
+
+    rafId = requestAnimationFrame(tick);
+    document.addEventListener("dragover", onDragOver);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      document.removeEventListener("dragover", onDragOver);
+    };
   }, [dragIndex]);
 
   const handleSave = useCallback(() => {
