@@ -65,18 +65,11 @@ export default function Gallery() {
                   transition={{ duration: 0.6, delay: (i % 3) * 0.08 }}
                 >
                   <Link to={`/gallery/${proj.slug}`} data-testid={`gallery-card-${proj.slug}`}>
-                    {img ? (
-                      <div className="gallery-card-media">
-                        <img src={img} alt={proj.title} loading="lazy" />
-                      </div>
-                    ) : (
-                      <div className="gallery-card-media gallery-card-placeholder" />
-                    )}
-                    <div className="gallery-card-meta">
-                      <div className="gallery-card-text">
+                    <div className={`gallery-card-media${img ? "" : " gallery-card-placeholder"}`}>
+                      {img && <img src={img} alt={proj.title} loading="lazy" />}
+                      <div className="gallery-card-overlay">
                         <h2 className="gallery-card-title">{proj.title}</h2>
                       </div>
-                      <span className="gallery-card-arrow">→</span>
                     </div>
                   </Link>
                 </m.div>
