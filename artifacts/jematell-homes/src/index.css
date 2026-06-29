@@ -1661,20 +1661,21 @@ picture {
   overflow: hidden;
   border-radius: 3px;
   background: var(--color-cream);
+  aspect-ratio: 3 / 2;
 }
 .gallery-masonry-item img,
 .gallery-masonry-item picture {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
 }
 .gallery-masonry-item picture img {
   width: 100%;
-  height: auto;
-  object-fit: unset;
+  height: 100%;
+  object-fit: cover;
 }
 .gallery-masonry-item > img {
-  object-fit: unset;
+  object-fit: cover;
 }
 
 /* Crist 56-photo grid */
