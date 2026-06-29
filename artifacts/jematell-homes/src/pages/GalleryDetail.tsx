@@ -87,7 +87,7 @@ export default function GalleryDetail() {
           </div>
         </div>
 
-        <section className="section-pad" style={{ background: "var(--color-bg)" }}>
+        <section className="section-pad" style={{ background: "var(--color-bg)", paddingTop: 0 }}>
           <div className="gallery-masonry-wrap">
             {isDev && DevDraggableGallery && devImages ? (
               <React.Suspense fallback={null}>
@@ -171,7 +171,7 @@ export default function GalleryDetail() {
           <h1 className="page-hero-title">{title}</h1>
         </div>
       </section>
-      <section className="section-pad" style={{ background: "var(--color-bg)" }}>
+      <section className="section-pad" style={{ background: "var(--color-bg)", paddingTop: 0 }}>
         <div className="gallery-masonry-wrap">
           {isDev && DevDraggableGallery && devImages ? (
             <React.Suspense fallback={null}>
