@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { m, useReducedMotion } from "framer-motion";
 import { pages } from "../data/pages";
+import { GALLERY_BY_SLUG } from "../data/galleryProjects";
 import { cristImages, CRIST_HERO_JPG, CRIST_HERO_WEBP } from "../data/crist";
 import { Seo } from "../seo/seo";
 import { breadcrumbJsonLd } from "../seo/jsonld";
@@ -169,6 +170,32 @@ export default function GalleryDetail() {
           <h1 className="page-hero-title">{title}</h1>
         </div>
       </section>
+      {(() => {
+        const proj = GALLERY_BY_SLUG[slug!];
+        const stats = [
+          proj?.buildType  && { value: proj.buildType,  label: "Build Type" },
+          proj?.location   && { value: proj.location,   label: "Location" },
+          proj?.completed  && { value: proj.completed,  label: "Completed" },
+        ].filter(Boolean) as { value: string; label: string }[];
+        if (stats.length === 0) return null;
+        return (
+          <div className="gallery-detail-stats">
+            <div className="container">
+              <div className="gallery-detail-stats-inner">
+                {stats.map((s, i) => (
+                  <React.Fragment key={s.label}>
+                    {i > 0 && <div className="gallery-detail-stat-divider" />}
+                    <div className="gallery-detail-stat">
+                      <span className="gallery-detail-stat-value">{s.value}</span>
+                      <span className="gallery-detail-stat-label">{s.label}</span>
+                    </div>
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      })()}
       <section className="section-pad" style={{ background: "var(--color-bg)", paddingTop: 0 }}>
         <div className="gallery-masonry-wrap">
           {isDev && DevDraggableGallery && devImages ? (

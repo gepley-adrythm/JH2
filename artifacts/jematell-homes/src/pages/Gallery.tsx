@@ -2,21 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { m, useReducedMotion } from "framer-motion";
 import { pages } from "../data/pages";
+import { GALLERY_PROJECTS } from "../data/galleryProjects";
 import { Seo } from "../seo/seo";
 import { collectionJsonLd } from "../seo/jsonld";
-
-const GALLERY_PROJECTS: { slug: string; title: string; meta: string; thumb?: string }[] = [
-  { slug: "crist", title: "Skinner Custom", meta: "Surprise, AZ · Custom Home", thumb: "/images/gallery/crist/kitchen-hero.png" },
-  { slug: "modern-farmhouse",   title: "Modern Farmhouse",    meta: "Custom Home" },
-  { slug: "rio-verde-farmhouse", title: "Rio Verde Farmhouse", meta: "Rio Verde · Custom Home" },
-  { slug: "cave-creek",          title: "Cave Creek",          meta: "Cave Creek · Custom Home" },
-  { slug: "rio-verde-rv",        title: "Rio Verde RV",        meta: "Rio Verde, AZ" },
-  { slug: "twilight-house",      title: "Twilight House",      meta: "Custom Home" },
-  { slug: "desert-retreat",      title: "Desert Retreat",      meta: "Custom Home" },
-  { slug: "mccartney-spec-1849", title: "McCartney Spec 1849", meta: "Spec Home" },
-  { slug: "mccartney-spec-1644", title: "McCartney Spec 1644", meta: "Spec Home" },
-  { slug: "az-city-custom",      title: "AZ City Custom",      meta: "Custom Home" },
-];
 
 function firstImage(key: string): string {
   const p = pages[key];
