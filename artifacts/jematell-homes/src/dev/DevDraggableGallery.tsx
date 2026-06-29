@@ -150,7 +150,7 @@ export function DevDraggableGallery({ initialImages, slug, masonryClass }: Props
     if (dragIndex === null) return;
 
     const THRESHOLD = 140; // px from edge to start scrolling
-    const MAX_SPEED = 40;  // px per frame at the very edge
+    const MAX_SPEED = 80;  // px per frame at the very edge
     let speed = 0;
     let rafId: number;
 
