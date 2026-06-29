@@ -46,7 +46,7 @@ export default function Gallery() {
           <img src="/images/gallery-hero.jpg" alt="" className="page-hero-bg" loading="eager" />
         </picture>
         <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.55) 0%, rgba(10,12,14,0.72) 100%)" }} />
-        <div className="container page-hero-content">
+        <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
           <h1 className="page-hero-title">OUR PORTFOLIO</h1>
         </div>
       </section>
