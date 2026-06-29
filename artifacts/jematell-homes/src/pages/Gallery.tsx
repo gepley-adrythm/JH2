@@ -75,7 +75,6 @@ export default function Gallery() {
                     <div className="gallery-card-meta">
                       <div className="gallery-card-text">
                         <h2 className="gallery-card-title">{proj.title}</h2>
-                        <span className="gallery-card-sub">{proj.meta}</span>
                       </div>
                       <span className="gallery-card-arrow">→</span>
                     </div>
