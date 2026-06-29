@@ -2,11 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { m, useReducedMotion } from "framer-motion";
 import { pages } from "../data/pages";
-import { CRIST_AERIAL_JPG, CRIST_AERIAL_WEBP } from "../data/crist";
+import { CRIST_AERIAL_JPG } from "../data/crist";
 import { Seo } from "../seo/seo";
 import { collectionJsonLd } from "../seo/jsonld";
 
-const GALLERY_PROJECTS = [
+const GALLERY_PROJECTS: { slug: string; title: string; meta: string; thumb?: string }[] = [
+  { slug: "crist", title: "Crist Residence", meta: "Rio Verde, AZ · Custom Home", thumb: CRIST_AERIAL_JPG },
   { slug: "modern-farmhouse",   title: "Modern Farmhouse",    meta: "Custom Home" },
   { slug: "rio-verde-farmhouse", title: "Rio Verde Farmhouse", meta: "Rio Verde · Custom Home" },
   { slug: "cave-creek",          title: "Cave Creek",          meta: "Cave Creek · Custom Home" },
@@ -52,44 +53,9 @@ export default function Gallery() {
       </section>
       <section className="section-pad" style={{ background: "var(--color-bg)", paddingTop: "48px" }}>
         <div className="gallery-page-inner">
-
-          <m.div
-            className="gallery-featured"
-            initial={reduce ? false : { opacity: 0, y: 32 }}
-            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.75 }}
-          >
-            <Link to="/gallery/crist" data-testid="gallery-featured-crist">
-              <div className="gallery-featured-media">
-                <picture>
-                  <source srcSet={CRIST_AERIAL_WEBP} type="image/webp" />
-                  <img src={CRIST_AERIAL_JPG} alt="Crist Residence aerial" loading="eager" />
-                </picture>
-                <div className="gallery-featured-overlay" />
-              </div>
-              <div className="gallery-featured-content">
-                <span className="gallery-featured-eyebrow">Featured Project · 2026</span>
-                <h2 className="gallery-featured-title">Crist Residence</h2>
-                <div className="gallery-featured-meta">
-                  <span>Rio Verde, AZ</span>
-                  <span className="gallery-featured-dot" />
-                  <span>56 Photographs</span>
-                  <span className="gallery-featured-dot" />
-                  <span>Custom Home</span>
-                </div>
-                <span className="gallery-featured-cta">View Project →</span>
-              </div>
-            </Link>
-          </m.div>
-
-          <div className="gallery-divider">
-            <span className="gallery-divider-label">More Projects</span>
-          </div>
-
           <div className="gallery-grid">
             {GALLERY_PROJECTS.map((proj, i) => {
-              const img = firstImage(`gallery_${proj.slug}`);
+              const img = proj.thumb ?? firstImage(`gallery_${proj.slug}`);
               return (
                 <m.div
                   key={proj.slug}
