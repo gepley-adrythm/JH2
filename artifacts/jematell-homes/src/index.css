@@ -1679,14 +1679,10 @@ picture {
   object-fit: cover;
 }
 
-/* Crist 56-photo grid: some cells span 2 rows for variety */
+/* Crist 56-photo grid: uniform cell height */
 .gallery-masonry-crist {
   grid-auto-rows: clamp(160px, 20vw, 300px);
   gap: 6px;
-}
-.gallery-masonry-crist .gallery-masonry-item:nth-child(7n+1),
-.gallery-masonry-crist .gallery-masonry-item:nth-child(7n+4) {
-  grid-row: span 2;
 }
 
 @media (max-width: 900px) {
@@ -1696,8 +1692,6 @@ picture {
 @media (max-width: 560px) {
   .gallery-masonry { grid-template-columns: 1fr; grid-auto-rows: clamp(220px, 62vw, 380px); }
   .gallery-masonry-crist { grid-auto-rows: clamp(200px, 58vw, 340px); }
-  .gallery-masonry-crist .gallery-masonry-item:nth-child(7n+1),
-  .gallery-masonry-crist .gallery-masonry-item:nth-child(7n+4) { grid-row: span 1; }
 }
 
 /* ============================================
