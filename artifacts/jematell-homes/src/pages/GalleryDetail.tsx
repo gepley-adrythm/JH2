@@ -65,7 +65,6 @@ export default function GalleryDetail() {
             <h1 className="page-hero-title">Skinner Custom</h1>
           </div>
         </section>
-
         <div className="gallery-detail-stats">
           <div className="container">
             <div className="gallery-detail-stats-inner">
@@ -75,7 +74,7 @@ export default function GalleryDetail() {
               </div>
               <div className="gallery-detail-stat-divider" />
               <div className="gallery-detail-stat">
-                <span className="gallery-detail-stat-value">Rio Verde</span>
+                <span className="gallery-detail-stat-value">Surprise</span>
                 <span className="gallery-detail-stat-label">Location</span>
               </div>
               <div className="gallery-detail-stat-divider" />
@@ -86,7 +85,6 @@ export default function GalleryDetail() {
             </div>
           </div>
         </div>
-
         <section className="section-pad" style={{ background: "var(--color-bg)", paddingTop: 0 }}>
           <div className="gallery-masonry-wrap">
             {isDev && DevDraggableGallery && devImages ? (
