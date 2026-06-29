@@ -48,7 +48,7 @@ export const navItems: NavItem[] = [
       href: locationHref(l.slug),
     })),
   },
-  { id: "gallery", label: "Portfolio", href: "/gallery" },
+  { id: "gallery", label: "Gallery", href: "/gallery" },
   {
     id: "resources",
     label: "Resources",
