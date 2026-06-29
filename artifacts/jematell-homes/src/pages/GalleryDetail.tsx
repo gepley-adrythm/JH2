@@ -64,9 +64,6 @@ export default function GalleryDetail() {
           </picture>
           <div className="page-hero-overlay" style={{ background: "linear-gradient(to top, rgba(22,22,22,0.72) 0%, rgba(22,22,22,0.2) 60%, transparent 100%)" }} />
           <div className="container page-hero-content">
-            <Link to="/gallery" className="gallery-back" data-testid="gallery-back">
-              <ArrowLeft size={16} /> Back to Gallery
-            </Link>
             <h1 className="page-hero-title">Crist Residence</h1>
             <p className="page-hero-sub" style={{ maxWidth: "560px" }}>
               A custom home in Rio Verde, AZ. Photography by professional photographer, 2026.
@@ -98,6 +95,11 @@ export default function GalleryDetail() {
               </div>
             </div>
           </div>
+        </div>
+        <div className="container">
+          <Link to="/gallery" className="gallery-back" data-testid="gallery-back">
+            <ArrowLeft size={16} /> Back to Gallery
+          </Link>
         </div>
 
         <section className="section-pad" style={{ background: "var(--color-bg)" }}>
@@ -181,13 +183,15 @@ export default function GalleryDetail() {
         ) : null}
         <div className="page-hero-overlay" />
         <div className="container page-hero-content">
-          <Link to="/gallery" className="gallery-back" data-testid="gallery-back">
-            <ArrowLeft size={16} /> Back to Gallery
-          </Link>
           <h1 className="page-hero-title">{title}</h1>
           {data.description ? <p className="page-hero-sub">{data.description}</p> : null}
         </div>
       </section>
+      <div className="container">
+        <Link to="/gallery" className="gallery-back" data-testid="gallery-back">
+          <ArrowLeft size={16} /> Back to Gallery
+        </Link>
+      </div>
       <section className="section-pad" style={{ background: "var(--color-bg)" }}>
         <div className="gallery-masonry-wrap">
           {isDev && DevDraggableGallery && devImages ? (
