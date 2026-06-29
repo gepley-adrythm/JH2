@@ -70,11 +70,6 @@ export default function GalleryDetail() {
           <div className="container">
             <div className="gallery-detail-stats-inner">
               <div className="gallery-detail-stat">
-                <span className="gallery-detail-stat-value">56</span>
-                <span className="gallery-detail-stat-label">Photographs</span>
-              </div>
-              <div className="gallery-detail-stat-divider" />
-              <div className="gallery-detail-stat">
                 <span className="gallery-detail-stat-value">Custom</span>
                 <span className="gallery-detail-stat-label">Build Type</span>
               </div>
