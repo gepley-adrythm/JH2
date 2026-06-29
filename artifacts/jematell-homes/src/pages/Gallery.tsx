@@ -41,7 +41,7 @@ export default function Gallery() {
         })}
       />
       <section className="page-hero page-hero-short" style={{ alignItems: "center" }}>
-        <picture className="page-hero-bg" style={{ display: "contents" }}>
+        <picture>
           <source srcSet="/images/gallery-hero.webp" type="image/webp" />
           <img src="/images/gallery-hero.jpg" alt="" className="page-hero-bg" loading="eager" />
         </picture>
