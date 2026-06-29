@@ -47,12 +47,7 @@ export default function Gallery() {
         </picture>
         <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.55) 0%, rgba(10,12,14,0.72) 100%)" }} />
         <div className="container page-hero-content">
-          <span className="eyebrow page-hero-eyebrow">Our Portfolio</span>
           <h1 className="page-hero-title">OUR PORTFOLIO</h1>
-          <p className="page-hero-sub">
-            A selection of homes we've built across Arizona, each one shaped by
-            the land it sits on and the family that calls it home.
-          </p>
         </div>
       </section>
       <section className="section-pad" style={{ background: "var(--color-bg)", paddingTop: "48px" }}>
