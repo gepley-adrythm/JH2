@@ -50,10 +50,7 @@ export default function Gallery() {
         <div className="container page-hero-content">
           <span className="eyebrow page-hero-eyebrow">Our Portfolio</span>
           <h1 className="page-hero-title">Gallery</h1>
-          <p className="page-hero-sub">
-            A selection of homes we've built across Arizona, each one shaped by
-            the land it sits on and the family that calls it home.
-          </p>
+
         </div>
       </section>
 
