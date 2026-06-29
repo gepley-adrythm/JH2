@@ -128,7 +128,8 @@ export default function GalleryDetail() {
   const data = pages[`gallery_${slug}`];
   if (!data) return <NotFound />;
 
-  const title = data.title.replace(/\s*[—–-]\s*Jematell Homes\s*$/i, "").trim();
+  const rawTitle = data.title.replace(/\s*[—–-]\s*Jematell Homes\s*$/i, "").trim();
+  const title = GALLERY_BY_SLUG[slug!]?.title ?? rawTitle;
   const images = data.blocks.filter((b) => b.type === "img" && b.src);
 
   const devImages = isDev
