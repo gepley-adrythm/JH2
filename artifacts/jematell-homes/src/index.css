@@ -173,6 +173,9 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: space-between;
   height: clamp(68px, 7vw, 90px);
+  max-width: none;
+  padding-left: clamp(24px, 4vw, 80px);
+  padding-right: clamp(24px, 4vw, 80px);
 }
 
 .header-left {
