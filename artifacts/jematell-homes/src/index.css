@@ -172,17 +172,17 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 90px;
+  height: clamp(68px, 7vw, 90px);
 }
 
 .header-left {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: clamp(20px, 2.5vw, 48px);
 }
 
 .brand-logo img {
-  height: 48px;
+  height: clamp(36px, 3.5vw, 48px);
   width: auto;
   transition: filter 0.4s ease;
 }
@@ -203,7 +203,7 @@ h1, h2, h3, h4, h5, h6 {
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 36px;
+  gap: clamp(18px, 2vw, 36px);
 }
 .main-nav a,
 .main-nav .nav-trigger {
@@ -312,7 +312,7 @@ h1, h2, h3, h4, h5, h6 {
 .mobile-menu-btn.is-open,
 .site-header:not(.scrolled) .mobile-menu-btn.is-open { color: var(--color-dark); }
 
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
   .main-nav { display: none; }
   .header-actions { display: none; }
   .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
@@ -332,7 +332,7 @@ h1, h2, h3, h4, h5, h6 {
   overflow-y: auto;
   display: none;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
   .mobile-nav { display: block; }
 }
 .mobile-nav.is-open {
