@@ -1577,18 +1577,6 @@ picture {
   color: #fff;
 }
 .gallery-detail-hero-picture { display: contents; }
-.gallery-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  margin: 20px 0;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  transition: color 0.2s;
-}
-.gallery-back:hover { color: var(--color-accent); }
 
 /* Stats bar — Crist */
 .gallery-detail-stats {

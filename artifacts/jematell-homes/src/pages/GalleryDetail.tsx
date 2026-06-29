@@ -1,7 +1,6 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { m, useReducedMotion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
 import { pages } from "../data/pages";
 import { cristImages, CRIST_HERO_JPG, CRIST_HERO_WEBP } from "../data/crist";
 import { Seo } from "../seo/seo";
@@ -96,11 +95,6 @@ export default function GalleryDetail() {
             </div>
           </div>
         </div>
-        <div className="container">
-          <Link to="/gallery" className="gallery-back" data-testid="gallery-back">
-            <ArrowLeft size={16} /> Back to Gallery
-          </Link>
-        </div>
 
         <section className="section-pad" style={{ background: "var(--color-bg)" }}>
           <div className="gallery-masonry-wrap">
@@ -187,11 +181,6 @@ export default function GalleryDetail() {
           {data.description ? <p className="page-hero-sub">{data.description}</p> : null}
         </div>
       </section>
-      <div className="container">
-        <Link to="/gallery" className="gallery-back" data-testid="gallery-back">
-          <ArrowLeft size={16} /> Back to Gallery
-        </Link>
-      </div>
       <section className="section-pad" style={{ background: "var(--color-bg)" }}>
         <div className="gallery-masonry-wrap">
           {isDev && DevDraggableGallery && devImages ? (
