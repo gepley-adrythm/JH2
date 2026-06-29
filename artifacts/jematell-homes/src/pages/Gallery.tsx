@@ -42,11 +42,15 @@ export default function Gallery() {
       />
 
       <section className="page-hero page-hero-short">
-        <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, var(--color-bg) 0%, var(--color-cream) 100%)" }} />
+        <picture className="page-hero-bg" style={{ display: "contents" }}>
+          <source srcSet="/images/gallery-hero.webp" type="image/webp" />
+          <img src="/images/gallery-hero.jpg" alt="" className="page-hero-bg" loading="eager" />
+        </picture>
+        <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.55) 0%, rgba(10,12,14,0.72) 100%)" }} />
         <div className="container page-hero-content">
-          <span className="eyebrow page-hero-eyebrow" style={{ color: "var(--color-accent)" }}>Our Portfolio</span>
-          <h1 className="page-hero-title" style={{ color: "var(--color-dark)" }}>Gallery</h1>
-          <p className="page-hero-sub" style={{ color: "var(--color-text-muted)" }}>
+          <span className="eyebrow page-hero-eyebrow">Our Portfolio</span>
+          <h1 className="page-hero-title">Gallery</h1>
+          <p className="page-hero-sub">
             A selection of homes we've built across Arizona, each one shaped by
             the land it sits on and the family that calls it home.
           </p>
