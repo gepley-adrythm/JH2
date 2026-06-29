@@ -1655,8 +1655,6 @@ picture {
 .gallery-masonry {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* row height scales with viewport so photos stay proportional at any size */
-  grid-auto-rows: clamp(180px, 22vw, 340px);
   gap: 8px;
 }
 .gallery-masonry-item {
@@ -1667,31 +1665,28 @@ picture {
 .gallery-masonry-item img,
 .gallery-masonry-item picture {
   width: 100%;
-  height: 100%;
+  height: auto;
   display: block;
 }
 .gallery-masonry-item picture img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: unset;
 }
 .gallery-masonry-item > img {
-  object-fit: cover;
+  object-fit: unset;
 }
 
-/* Crist 56-photo grid: uniform cell height */
+/* Crist 56-photo grid */
 .gallery-masonry-crist {
-  grid-auto-rows: clamp(160px, 20vw, 300px);
   gap: 6px;
 }
 
 @media (max-width: 900px) {
-  .gallery-masonry { grid-template-columns: repeat(2, 1fr); grid-auto-rows: clamp(180px, 30vw, 300px); }
-  .gallery-masonry-crist { grid-auto-rows: clamp(160px, 27vw, 280px); }
+  .gallery-masonry { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 560px) {
-  .gallery-masonry { grid-template-columns: 1fr; grid-auto-rows: clamp(220px, 62vw, 380px); }
-  .gallery-masonry-crist { grid-auto-rows: clamp(200px, 58vw, 340px); }
+  .gallery-masonry { grid-template-columns: 1fr; }
 }
 
 /* ============================================
