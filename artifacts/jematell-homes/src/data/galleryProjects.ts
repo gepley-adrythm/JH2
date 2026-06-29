@@ -17,7 +17,7 @@ export const GALLERY_PROJECTS: GalleryProject[] = [
   { slug: "twilight-house",      title: "Twilight House",      meta: "Rio Verde · Custom Home",      buildType: "Custom", location: "Rio Verde", completed: "2025" },
   { slug: "desert-retreat",      title: "Desert Retreat",      meta: "Rio Verde · Custom Home",      buildType: "Custom", location: "Rio Verde", completed: "2024" },
   { slug: "mccartney-spec-1849", title: "McCartney Spec 1849", meta: "Casa Grande · Spec Home",       buildType: "Spec", location: "Casa Grande", completed: "2026" },
-  { slug: "mccartney-spec-1644", title: "McCartney Spec 1644", meta: "Spec Home",                    buildType: "Spec" },
+  { slug: "mccartney-spec-1644", title: "McCartney Spec 1644", meta: "Casa Grande · Spec Home",       buildType: "Spec", location: "Casa Grande", completed: "2026" },
   { slug: "az-city-custom",      title: "AZ City Custom",      meta: "Custom Home",                  buildType: "Custom" },
 ];
 
