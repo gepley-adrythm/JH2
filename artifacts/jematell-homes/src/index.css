@@ -1111,7 +1111,15 @@ picture {
 }
 .footer-bottom-contact a { color: inherit; text-decoration: none; }
 .footer-bottom-contact a:hover { opacity: 1; color: #fff; }
-.footer-bottom-sep { margin: 0 8px; opacity: 0.4; }
+.footer-bottom-sep {
+  display: inline-block;
+  width: 1px;
+  height: 11px;
+  background: currentColor;
+  opacity: 0.3;
+  margin: 0 10px;
+  vertical-align: middle;
+}
 @media (max-width: 1024px) {
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 48px; }
 }
