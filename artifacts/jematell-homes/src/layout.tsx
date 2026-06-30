@@ -310,15 +310,6 @@ export function Footer() {
           </div>
 
           <div className="footer-col">
-            <h3>Where We Build</h3>
-            <ul>
-              {locations.map((l) => (
-                <li key={l.slug}><Link to={locationHref(l.slug)} viewTransition>{l.name}</Link></li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="footer-col">
             <h3>Company</h3>
             <ul>
               <li><Link to="/contact" viewTransition>Contact</Link></li>
