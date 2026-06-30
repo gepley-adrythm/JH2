@@ -27,7 +27,7 @@ export default function Gallery() {
           url: "/gallery",
         })}
       />
-      <section className="page-hero" style={{ alignItems: "center", minHeight: "75vh" }}>
+      <section className="page-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
         <picture>
           <source srcSet="/images/gallery-hero.webp" type="image/webp" />
           <img src="/images/gallery-hero.jpg" alt="" className="page-hero-bg" loading="eager" />
