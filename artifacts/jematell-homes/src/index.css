@@ -1119,19 +1119,21 @@ picture {
 }
 .footer-bottom {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding-top: 32px;
+  text-align: center;
+  gap: 12px;
+  padding: 40px 0 0;
   border-top: 1px solid rgba(255,255,255,0.1);
   font-size: 13px;
 }
 .footer-bottom-contact {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 6px 0;
-  opacity: 0.55;
+  gap: 4px 0;
+  opacity: 0.45;
   font-size: 12px;
 }
 .footer-bottom-contact a { color: inherit; text-decoration: none; }
@@ -1147,8 +1149,7 @@ picture {
 }
 @media (max-width: 600px) {
   .footer-links a { padding: 8px 14px; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
-  .footer-bottom-contact { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .footer-bottom-contact { flex-direction: column; align-items: center; gap: 4px; }
   .footer-bottom-sep { display: none; }
 }
 
