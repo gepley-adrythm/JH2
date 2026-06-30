@@ -62,9 +62,7 @@ export function About() {
   return (
     <section className="about section-pad" id="about">
       <div className="container">
-        <div className="about-grid">
-          <m.div 
-            className="about-text"
+        <m.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -78,8 +76,7 @@ export function About() {
             <p>
               Our focus is on delivering excellence from the first consultation to the final walk-through, making your cherished moments possible. We offer both custom and spec home options to suit your needs. Welcome to Jematell Homes, where we turn your dream home into a reality.
             </p>
-          </m.div>
-        </div>
+        </m.div>
       </div>
     </section>
   );
