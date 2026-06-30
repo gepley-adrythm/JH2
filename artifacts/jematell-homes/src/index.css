@@ -1094,17 +1094,32 @@ picture {
 .footer-social a:hover { color: #fff; }
 .footer-bottom {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: 24px;
   padding-top: 32px;
   border-top: 1px solid rgba(255,255,255,0.1);
   font-size: 13px;
 }
+.footer-bottom-contact {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 0;
+  opacity: 0.55;
+  font-size: 12px;
+}
+.footer-bottom-contact a { color: inherit; text-decoration: none; }
+.footer-bottom-contact a:hover { opacity: 1; color: #fff; }
+.footer-bottom-sep { margin: 0 8px; opacity: 0.4; }
 @media (max-width: 1024px) {
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 48px; }
 }
 @media (max-width: 600px) {
   .footer-grid { grid-template-columns: 1fr; }
-  .footer-bottom { flex-direction: column; gap: 16px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .footer-bottom-contact { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .footer-bottom-sep { display: none; }
 }
 
 /* Floating Contact Widget */

@@ -351,19 +351,20 @@ export function Footer() {
               <li><Link to="/contact" viewTransition>Contact</Link></li>
               <li><Link to="/privacy" viewTransition>Privacy Policy</Link></li>
             </ul>
-            <ul style={{ marginTop: '24px' }}>
-              <li><a href={siteConfig.contact.email.href}>{siteConfig.contact.email.display}</a></li>
-              <li><a href={siteConfig.contact.phone.href}>{siteConfig.contact.phone.display}</a></li>
-              <li style={{ marginTop: '12px', lineHeight: 1.6 }}>
-                {siteConfig.contact.address.lines[0]}<br />{siteConfig.contact.address.lines[1]}
-              </li>
-              <li style={{ marginTop: '8px', opacity: 0.5, fontSize: '12px' }}>{siteConfig.contact.roc}</li>
-            </ul>
           </div>
         </div>
 
         <div className="footer-bottom">
           <span>&copy; {new Date().getFullYear()} {siteConfig.brand.name}. All rights reserved.</span>
+          <span className="footer-bottom-contact">
+            <a href={siteConfig.contact.email.href}>{siteConfig.contact.email.display}</a>
+            <span className="footer-bottom-sep" aria-hidden="true">·</span>
+            <a href={siteConfig.contact.phone.href}>{siteConfig.contact.phone.display}</a>
+            <span className="footer-bottom-sep" aria-hidden="true">·</span>
+            <span>{siteConfig.contact.address.lines[0]}, {siteConfig.contact.address.lines[1]}</span>
+            <span className="footer-bottom-sep" aria-hidden="true">·</span>
+            <span>{siteConfig.contact.roc}</span>
+          </span>
         </div>
       </div>
     </footer>
