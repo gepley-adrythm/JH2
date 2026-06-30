@@ -1118,7 +1118,7 @@ picture {
   padding: 28px 0;
 }
 .footer-bottom {
-  background: rgba(0,0,0,0.35);
+  background: #000;
   font-size: 13px;
 }
 .footer-bottom-inner {
