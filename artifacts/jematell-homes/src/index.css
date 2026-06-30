@@ -1968,19 +1968,18 @@ a.contact-info-card:hover {
 }
 
 /* Contact Location Section */
-.contact-location-grid {
-  display: grid;
-  grid-template-columns: 320px 1fr 1fr;
-  gap: 0;
-  background: #fff;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  overflow: hidden;
+.cl-outer {
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
 }
 .cl-photo {
-  position: relative;
+  flex-shrink: 0;
+  width: 300px;
+  border-radius: 8px;
   overflow: hidden;
-  min-height: 300px;
+  position: relative;
+  min-height: 340px;
 }
 .cl-photo picture {
   position: absolute;
@@ -1995,6 +1994,15 @@ a.contact-info-card:hover {
   height: 100%;
   object-fit: cover;
   object-position: center 65%;
+}
+.cl-card {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
 }
 .cl-info {
   padding: 40px 36px;
@@ -2034,11 +2042,6 @@ a.contact-info-card:hover {
   border-top: 1px solid var(--color-border);
 }
 .cl-maps-link:hover { color: var(--color-accent); }
-.cl-roc {
-  font-size: 12px;
-  color: var(--color-text-muted);
-  margin: 0;
-}
 .cl-map {
   min-height: 320px;
 }
@@ -2049,19 +2052,15 @@ a.contact-info-card:hover {
   min-height: 320px;
   border: 0;
 }
-@media (max-width: 900px) {
-  .contact-location-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-  }
-  .cl-photo { grid-column: 1 / -1; max-height: 280px; }
+@media (max-width: 960px) {
+  .cl-outer { flex-direction: column; }
+  .cl-photo { width: 100%; min-height: 260px; }
+  .cl-card { grid-template-columns: 1fr; }
+  .cl-info { border-right: none; border-bottom: 1px solid var(--color-border); }
   .cl-map { min-height: 260px; }
   .cl-map iframe { min-height: 260px; }
-  .cl-info { border-right: none; border-bottom: 1px solid var(--color-border); }
 }
 @media (max-width: 560px) {
-  .contact-location-grid { grid-template-columns: 1fr; }
-  .cl-photo { max-height: 220px; }
   .cl-info { padding: 28px 24px; }
 }
 
