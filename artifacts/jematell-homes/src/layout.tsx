@@ -128,7 +128,6 @@ function isLightHeroPath(pathname: string): boolean {
   // Normalize trailing slash so /blog/ matches /blog
   const p = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
   if (p === "/blog") return true;
-  if (p === "/contact" || p.startsWith("/contact/")) return true;
   // /blog/:slug and /gallery/:slug have dark image heroes — keep transparent
   return false;
 }
