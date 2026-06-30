@@ -240,30 +240,42 @@ function PageHero({
   data,
   citySlug,
   hideDescription,
+  galleryStyle,
 }: {
   data: PageData;
   citySlug?: string;
   hideDescription?: boolean;
+  galleryStyle?: boolean;
 }) {
   const title = cleanTitle(data.title);
   const hasCityHero = citySlug != null && citySlug in CITY_HERO_WIDTHS;
   return (
-    <section className="page-hero" data-testid="page-hero">
+    <section
+      className="page-hero"
+      data-testid="page-hero"
+      style={galleryStyle ? { alignItems: "center", minHeight: "65vh" } : undefined}
+    >
       {hasCityHero ? (
         <CityHeroPicture slug={citySlug!} />
       ) : data.ogImage ? (
         <img src={data.ogImage} alt="" className="page-hero-bg" loading="eager" />
       ) : null}
-      <div className="page-hero-overlay" />
-      <div className="container page-hero-content">
+      <div
+        className="page-hero-overlay"
+        style={galleryStyle ? { background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" } : undefined}
+      />
+      <div
+        className="container page-hero-content"
+        style={galleryStyle ? { textAlign: "center", maxWidth: "100%" } : undefined}
+      >
         <m.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55 }}
         >
-          <span className="eyebrow page-hero-eyebrow">Jematell Homes</span>
+          {!galleryStyle && <span className="eyebrow page-hero-eyebrow">Jematell Homes</span>}
           <h1 className="page-hero-title">{title}</h1>
-          {data.description && !hideDescription ? (
+          {data.description && !hideDescription && !galleryStyle ? (
             <p className="page-hero-sub">{data.description}</p>
           ) : null}
         </m.div>
@@ -965,7 +977,7 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
           noindex={key === "thankyou"}
           jsonLd={pageJsonLd.length ? pageJsonLd : undefined}
         />
-        <PageHero data={data} citySlug={isRegion ? key : undefined} hideDescription={heroDescDup} />
+        <PageHero data={data} citySlug={isRegion ? key : undefined} hideDescription={heroDescDup} galleryStyle={key === "warranty"} />
         {key === "where-we-build" ? <CityNavigator /> : null}
         <IntroSection subtitle={subtitle} intro={intro} image={introImg} />
 
