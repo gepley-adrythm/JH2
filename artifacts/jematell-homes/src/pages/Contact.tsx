@@ -60,7 +60,6 @@ export default function Contact() {
               >
                 View on Google Maps <ArrowRight size={14} />
               </a>
-              <p className="cl-roc">ROC# 339367</p>
             </div>
 
             <div className="cl-map">

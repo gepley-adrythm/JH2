@@ -2013,7 +2013,7 @@ a.contact-info-card:hover {
 }
 .cl-row svg {
   flex-shrink: 0;
-  color: var(--color-text-muted);
+  color: var(--color-accent);
   margin-top: 2px;
 }
 .cl-row a {
