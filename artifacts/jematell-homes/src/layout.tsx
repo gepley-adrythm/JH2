@@ -301,15 +301,6 @@ export function Footer() {
           </div>
 
           <div className="footer-col">
-            <h3>Homes</h3>
-            <ul>
-              {services.map((s) => (
-                <li key={s.href}><Link to={s.href} viewTransition>{s.label}</Link></li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="footer-col">
             <h3>Company</h3>
             <ul>
               <li><Link to="/contact" viewTransition>Contact</Link></li>
