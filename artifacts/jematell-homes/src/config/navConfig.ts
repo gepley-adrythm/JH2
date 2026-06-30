@@ -6,7 +6,7 @@
  * `useLocation()`.
  */
 
-import { services, locations, locationHref } from "./siteConfig";
+import { locations, locationHref } from "./siteConfig";
 
 export interface SubNavItem {
   id: string;
@@ -29,15 +29,9 @@ export interface NavItem {
 }
 
 export const navItems: NavItem[] = [
-  {
-    id: "homes",
-    label: "Homes",
-    children: services.map((s) => ({
-      id: s.href.replace(/^\//, ""),
-      label: s.label,
-      href: s.href,
-    })),
-  },
+  { id: "custom-homes", label: "Custom Homes", href: "/custom-homes" },
+  { id: "spec-homes", label: "Spec Homes", href: "/spec-homes" },
+  { id: "floor-plans", label: "Floor Plans", href: "/floor-plans" },
   {
     id: "where-we-build",
     label: "Where We Build",
@@ -48,7 +42,6 @@ export const navItems: NavItem[] = [
       href: locationHref(l.slug),
     })),
   },
-  { id: "floor-plans", label: "Floor Plans", href: "/floor-plans" },
   { id: "gallery", label: "Gallery", href: "/gallery" },
   { id: "about", label: "About", href: "/about" },
 ];
