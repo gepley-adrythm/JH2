@@ -138,7 +138,7 @@ export function Process() {
     { title: "Consultation", desc: "Understanding your vision, lifestyle, and land." },
     { title: "Design", desc: "Collaborative architecture and interior material selection." },
     { title: "Build", desc: "Transparent, high-quality construction by our family team." },
-    { title: "Walk-through", desc: "The final reveal of your completed luxury home." },
+    { title: "Completion", desc: "The final reveal of your completed luxury home." },
   ];
 
   return (
