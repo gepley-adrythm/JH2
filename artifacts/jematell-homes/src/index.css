@@ -652,11 +652,7 @@ picture {
 }
 .process-card {
   padding-top: 24px;
-  border-top: 1px solid rgba(255,255,255,0.2);
-  transition: border-color 0.4s ease;
-}
-.process-card:hover {
-  border-color: rgba(255,255,255,0.6);
+  border-top: 1px solid rgba(255,255,255,0.5);
 }
 .process-num {
   font-family: var(--font-heading);
