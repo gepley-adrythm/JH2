@@ -30,7 +30,6 @@ export interface NavItem {
 
 export const navItems: NavItem[] = [
   { id: "custom-homes", label: "Custom Homes", href: "/custom-homes" },
-  { id: "spec-homes", label: "Spec Homes", href: "/spec-homes" },
   { id: "floor-plans", label: "Floor Plans", href: "/floor-plans" },
   {
     id: "where-we-build",
