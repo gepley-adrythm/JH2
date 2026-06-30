@@ -156,7 +156,7 @@ export function Process() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: Math.min(i, 5) * 0.06, duration: 0.5, ease: EASE_OUT_EXPO }}
             >
-              <div className="process-num">0{i + 1}</div>
+              <div className="process-num">{["I","II","III","IV"][i]}</div>
               <h3>{step.title}</h3>
               <p>{step.desc}</p>
             </m.div>
