@@ -49,14 +49,6 @@ export const navItems: NavItem[] = [
     })),
   },
   { id: "gallery", label: "Gallery", href: "/gallery" },
-  {
-    id: "resources",
-    label: "Resources",
-    children: [
-      { id: "blog", label: "Blog", href: "/blog" },
-      { id: "faq", label: "FAQ", href: "/faq" },
-    ],
-  },
   { id: "about", label: "About", href: "/about" },
 ];
 
