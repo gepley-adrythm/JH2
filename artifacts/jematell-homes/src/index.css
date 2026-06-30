@@ -1967,6 +1967,95 @@ a.contact-info-card:hover {
   .contact-info-grid { grid-template-columns: 1fr; }
 }
 
+/* Contact Location Section */
+.contact-location-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr 1fr;
+  gap: 0;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.cl-photo {
+  flex-shrink: 0;
+}
+.cl-photo picture,
+.cl-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cl-info {
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-right: 1px solid var(--color-border);
+}
+.cl-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--color-dark);
+  line-height: 1.5;
+}
+.cl-row svg {
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+.cl-row a {
+  color: var(--color-dark);
+  text-decoration: none;
+}
+.cl-row a:hover { color: var(--color-accent); }
+.cl-maps-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-dark);
+  text-decoration: none;
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-border);
+}
+.cl-maps-link:hover { color: var(--color-accent); }
+.cl-roc {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+.cl-map {
+  min-height: 320px;
+}
+.cl-map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  border: 0;
+}
+@media (max-width: 900px) {
+  .contact-location-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+  .cl-photo { grid-column: 1 / -1; max-height: 280px; }
+  .cl-map { min-height: 260px; }
+  .cl-map iframe { min-height: 260px; }
+  .cl-info { border-right: none; border-bottom: 1px solid var(--color-border); }
+}
+@media (max-width: 560px) {
+  .contact-location-grid { grid-template-columns: 1fr; }
+  .cl-photo { max-height: 220px; }
+  .cl-info { padding: 28px 24px; }
+}
+
 /* ============================================
    REDUCED MOTION
    ============================================ */
