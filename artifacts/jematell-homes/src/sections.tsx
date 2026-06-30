@@ -85,28 +85,6 @@ export function About() {
   );
 }
 
-export function StatsStrip() {
-  return (
-    <section className="stats-strip">
-      <div className="container">
-        <m.div className="stats-grid" {...FADE_IN_UP_PROPS}>
-          <div className="stat-item">
-            <span className="stat-num">15+</span>
-            <span className="stat-label">Years Building</span>
-          </div>
-          <div className="stat-item">
-            <span className="stat-num">120+</span>
-            <span className="stat-label">Homes Crafted</span>
-          </div>
-          <div className="stat-item">
-            <span className="stat-num">8</span>
-            <span className="stat-label">AZ Regions Served</span>
-          </div>
-        </m.div>
-      </div>
-    </section>
-  );
-}
 
 export function ServicesSplit() {
   return (

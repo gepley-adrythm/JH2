@@ -1,6 +1,6 @@
 import React from "react";
 import { MotionConfig } from "framer-motion";
-import { Hero, About, StatsStrip, ServicesSplit, Process, WhereWeBuild, Reviews } from "../sections";
+import { Hero, About, ServicesSplit, Process, WhereWeBuild, Reviews } from "../sections";
 import { CTA } from "../cta";
 import { Seo } from "../seo/seo";
 
@@ -15,7 +15,6 @@ export default function Home() {
       <main>
         <Hero />
         <About />
-        <StatsStrip />
         <ServicesSplit />
         <Process />
         <WhereWeBuild />
