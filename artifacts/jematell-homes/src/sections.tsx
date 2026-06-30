@@ -62,7 +62,7 @@ export function About() {
   return (
     <section className="about section-pad" id="about">
       <div className="container">
-        <div className="about-grid">
+        <div className="about-grid" style={{ display: 'block' }}>
           <m.div
             className="about-text"
             initial={{ opacity: 0, x: -30 }}
