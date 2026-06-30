@@ -16,13 +16,22 @@ export default function Contact() {
           { name: "Contact", url: "/contact" },
         ])}
       />
-      <section className="page-hero page-hero-short" style={{ background: "var(--color-cream)" }}>
+      <section className="page-hero page-hero-short">
+        <picture>
+          <source
+            srcSet="/images/contact-hero-2000.webp 2000w, /images/contact-hero-1600.webp 1600w, /images/contact-hero-1280.webp 1280w, /images/contact-hero-768.webp 768w"
+            sizes="100vw"
+            type="image/webp"
+          />
+          <img src="/images/contact-hero.jpg" alt="" className="page-hero-bg" aria-hidden="true" />
+        </picture>
+        <div className="page-hero-overlay" />
         <div className="container page-hero-content" style={{ textAlign: "center" }}>
-          <span className="eyebrow page-hero-eyebrow" style={{ color: "var(--color-accent)" }}>Contact</span>
-          <h1 className="page-hero-title" style={{ color: "var(--color-dark)" }}>
+          <span className="eyebrow page-hero-eyebrow">Contact</span>
+          <h1 className="page-hero-title hero-title">
             Create the home of your dreams.
           </h1>
-          <p className="page-hero-sub" style={{ color: "var(--color-text-muted)", maxWidth: 600, margin: "0 auto" }}>
+          <p className="page-hero-sub" style={{ maxWidth: 600, margin: "0 auto" }}>
             We're excited to hear about your ideas. Tell us about your vision and we'll be in touch to schedule a consultation.
           </p>
         </div>
