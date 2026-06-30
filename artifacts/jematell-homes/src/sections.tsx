@@ -62,13 +62,15 @@ export function About() {
   return (
     <section className="about section-pad" id="about">
       <div className="container">
-        <m.div 
+        <div className="about-grid">
+          <m.div
+            className="about-text"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55, ease: EASE_OUT_EXPO }}
           >
-            <span className="eyebrow text-[color:var(--color-accent)]">Get to know us</span>
+            <span className="eyebrow">Get to know us</span>
             <h2 className="heading-lg" style={{ marginBottom: '32px' }}>A family-owned builder for Arizona.</h2>
             <p>
               At Jematell Homes, we’re a family-owned home builder dedicated to crafting quality homes in Arizona. We combine traditional craftsmanship with modern design to bring your dream home to life.
@@ -76,7 +78,8 @@ export function About() {
             <p>
               Our focus is on delivering excellence from the first consultation to the final walk-through, making your cherished moments possible. We offer both custom and spec home options to suit your needs. Welcome to Jematell Homes, where we turn your dream home into a reality.
             </p>
-        </m.div>
+          </m.div>
+        </div>
       </div>
     </section>
   );
