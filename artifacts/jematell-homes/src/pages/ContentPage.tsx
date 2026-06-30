@@ -274,7 +274,7 @@ function PageHero({
           transition={{ duration: 0.55 }}
         >
           {!galleryStyle && <span className="eyebrow page-hero-eyebrow">Jematell Homes</span>}
-          <h1 className="page-hero-title">{title}</h1>
+          <h1 className="page-hero-title" style={galleryStyle ? { textTransform: "uppercase" } : undefined}>{title}</h1>
           {data.description && !hideDescription && !galleryStyle ? (
             <p className="page-hero-sub">{data.description}</p>
           ) : null}
