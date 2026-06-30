@@ -657,7 +657,7 @@ picture {
 .process-num {
   font-family: var(--font-heading);
   font-size: 32px;
-  color: var(--color-warm);
+  color: #000;
   margin-bottom: 24px;
 }
 .process-card h3 {
