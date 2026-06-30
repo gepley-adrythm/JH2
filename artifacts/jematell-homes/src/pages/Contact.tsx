@@ -1,6 +1,5 @@
 import React from "react";
 import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
-import { CTA } from "../cta";
 import { Seo } from "../seo/seo";
 import { breadcrumbJsonLd } from "../seo/jsonld";
 import { useContactForm } from "../contact-form/ContactFormProvider";
@@ -102,7 +101,6 @@ export default function Contact() {
         </div>
       </section>
 
-      <CTA />
     </main>
   );
 }
