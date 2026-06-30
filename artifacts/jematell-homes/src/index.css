@@ -1046,7 +1046,7 @@ picture {
 .site-footer {
   background: var(--color-dark);
   color: rgba(255,255,255,0.6);
-  padding: 100px 0 40px;
+  padding-top: 100px;
   border-top: 1px solid rgba(255,255,255,0.05);
 }
 .footer-top {
