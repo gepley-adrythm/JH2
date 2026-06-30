@@ -29,13 +29,9 @@ export default function Contact() {
         </picture>
         <div className="page-hero-overlay" />
         <div className="container page-hero-content" style={{ textAlign: "center" }}>
-          <span className="eyebrow page-hero-eyebrow">Contact</span>
           <h1 className="page-hero-title hero-title">
             Create the home of your dreams.
           </h1>
-          <p className="page-hero-sub" style={{ maxWidth: 600, margin: "0 auto" }}>
-            We're excited to hear about your ideas. Tell us about your vision and we'll be in touch to schedule a consultation.
-          </p>
         </div>
       </section>
 
