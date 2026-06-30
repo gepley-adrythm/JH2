@@ -1092,6 +1092,12 @@ picture {
   color: rgba(255,255,255,0.6);
 }
 .footer-social a:hover { color: #fff; }
+.footer-social-centered {
+  justify-content: center;
+  margin-top: 0;
+  padding: 28px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
 .footer-bottom {
   display: flex;
   align-items: center;
