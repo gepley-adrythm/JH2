@@ -297,7 +297,10 @@ function IntroSection({
 }) {
   if (!subtitle && !intro && !image) return null;
   return (
-    <section className="page-intro section-pad">
+    <section
+      className="page-intro section-pad"
+      style={centered ? { display: "flex", alignItems: "center", justifyContent: "center", minHeight: "30vh" } : undefined}
+    >
       <div className="container">
         <div className={`page-intro-grid ${image ? "with-image" : "no-image"}${centered ? " centered" : ""}`}>
           <m.div className="page-intro-copy" {...FADE_IN} style={centered ? { textAlign: "center" } : undefined}>
