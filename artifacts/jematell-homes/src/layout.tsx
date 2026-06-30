@@ -338,7 +338,9 @@ export function Footer() {
           </a>
         </div>
 
-        <div className="footer-bottom">
+      </div>
+      <div className="footer-bottom">
+        <div className="container footer-bottom-inner">
           <span>&copy; {new Date().getFullYear()} {siteConfig.brand.name}. All rights reserved.</span>
           <span className="footer-bottom-contact">
             <a href={siteConfig.contact.email.href}>{siteConfig.contact.email.display}</a>
