@@ -48,6 +48,7 @@ export const navItems: NavItem[] = [
       href: locationHref(l.slug),
     })),
   },
+  { id: "floor-plans", label: "Floor Plans", href: "/floor-plans" },
   { id: "gallery", label: "Gallery", href: "/gallery" },
   { id: "about", label: "About", href: "/about" },
 ];
