@@ -30,7 +30,7 @@ export default function Contact() {
         <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }} />
         <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
           <h1 className="page-hero-title hero-title">
-            Create the home of your dreams.
+            CREATE THE HOME OF YOUR DREAMS
           </h1>
         </div>
       </section>
