@@ -91,9 +91,9 @@ export function ServicesSplit() {
     <section className="services-split" id="services">
       <div className="service-pane" data-testid="card-custom">
         <ResponsiveImage
-          name="gallery-2"
+          name="custom-home"
           className="service-bg"
-          alt="Custom Home"
+          alt="Custom home kitchen with green cabinetry and marble island"
           widths={[768, 1280, 1600, 2000, 2500]}
           sizes="(min-width: 900px) 50vw, 100vw"
           width={2500}
