@@ -321,7 +321,7 @@ export function Footer() {
                 </svg>
               </a>
               <a href="https://www.buildzoom.com/contractor/jematell-homes-llc" aria-label="BuildZoom" target="_blank" rel="noreferrer">
-                <img src="/images/buildzoom-icon.png" alt="" aria-hidden="true" width="20" height="20" style={{ display: "block", filter: "brightness(0) invert(1)", opacity: 0.7 }} />
+                <img src="/images/buildzoom-icon.png" alt="" aria-hidden="true" width="17" height="17" style={{ display: "block", filter: "brightness(0) invert(1)", opacity: 0.7 }} />
               </a>
             </div>
           </div>
