@@ -1978,14 +1978,23 @@ a.contact-info-card:hover {
   overflow: hidden;
 }
 .cl-photo {
-  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  min-height: 300px;
 }
-.cl-photo picture,
+.cl-photo picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .cl-photo img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 65%;
 }
 .cl-info {
   padding: 40px 36px;
