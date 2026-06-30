@@ -320,6 +320,9 @@ export function Footer() {
                   <path d="M1.27 0V24H9.32V16.44H14.68V24H22.73V10.37L6.61 5.75V0H1.27Z"/>
                 </svg>
               </a>
+              <a href="https://www.buildzoom.com/contractor/jematell-homes-llc" aria-label="BuildZoom" target="_blank" rel="noreferrer">
+                <img src="/images/buildzoom-icon.png" alt="" aria-hidden="true" width="20" height="20" style={{ display: "block", filter: "brightness(0) invert(1)", opacity: 0.7 }} />
+              </a>
             </div>
           </div>
 
