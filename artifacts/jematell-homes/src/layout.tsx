@@ -294,23 +294,19 @@ export function Footer() {
   return (
     <footer className="site-footer">
       <div className="container">
-        <div className="footer-grid">
+        <div className="footer-top">
           <div className="footer-brand">
             <img src={img("logo-footer.png")} alt={siteConfig.brand.name} />
             <p>{siteConfig.blurb}</p>
           </div>
-
-          <div className="footer-col">
-            <h3>Company</h3>
-            <ul>
-              <li><Link to="/contact" viewTransition>Contact</Link></li>
-              <li><Link to="/spec-homes" viewTransition>Spec Homes</Link></li>
-              <li><Link to="/blog" viewTransition>Blog</Link></li>
-              <li><a href="/faq">FAQ</a></li>
-              <li><Link to="/warranty" viewTransition>Warranty</Link></li>
-              <li><Link to="/privacy" viewTransition>Privacy Policy</Link></li>
-            </ul>
-          </div>
+          <nav className="footer-links" aria-label="Footer navigation">
+            <Link to="/contact" viewTransition>Contact</Link>
+            <Link to="/spec-homes" viewTransition>Spec Homes</Link>
+            <Link to="/blog" viewTransition>Blog</Link>
+            <a href="/faq">FAQ</a>
+            <Link to="/warranty" viewTransition>Warranty</Link>
+            <Link to="/privacy" viewTransition>Privacy Policy</Link>
+          </nav>
         </div>
 
         <div className="footer-social footer-social-centered">
