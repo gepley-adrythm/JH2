@@ -640,7 +640,7 @@ picture {
 
 /* Process Section */
 .process {
-  background: var(--color-dark);
+  background: var(--color-accent);
   color: #fff;
 }
 .process .heading-lg { color: #fff; margin-bottom: 80px; }
@@ -655,7 +655,7 @@ picture {
   transition: border-color 0.4s ease;
 }
 .process-card:hover {
-  border-color: var(--color-accent);
+  border-color: rgba(255,255,255,0.6);
 }
 .process-num {
   font-family: var(--font-heading);
