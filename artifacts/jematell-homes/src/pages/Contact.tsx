@@ -3,8 +3,10 @@ import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { CTA } from "../cta";
 import { Seo } from "../seo/seo";
 import { breadcrumbJsonLd } from "../seo/jsonld";
+import { useContactForm } from "../contact-form/ContactFormProvider";
 
 export default function Contact() {
+  const { open: openContactForm } = useContactForm();
   return (
     <main className="page">
       <Seo
@@ -34,6 +36,24 @@ export default function Contact() {
           <p className="page-hero-sub" style={{ maxWidth: 600, margin: "0 auto" }}>
             We're excited to hear about your ideas. Tell us about your vision and we'll be in touch to schedule a consultation.
           </p>
+        </div>
+      </section>
+
+      <section className="contact-intro">
+        <div className="container contact-intro-inner">
+          <span className="eyebrow">Let's Get Started</span>
+          <h2 className="contact-intro-heading">We're excited to hear about your ideas!</h2>
+          <p className="contact-intro-body">
+            To begin the process, please share some details about your project by completing the form on this page.
+            From there we will contact you to arrange our introductory meeting and get things started.
+          </p>
+          <button
+            className="btn-primary"
+            onClick={openContactForm}
+            data-testid="contact-intro-cta"
+          >
+            Start Your Build
+          </button>
         </div>
       </section>
 
