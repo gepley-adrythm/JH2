@@ -1001,7 +1001,7 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
 
         {faqServices.length ? <RelatedFaqsSection services={faqServices} /> : null}
 
-        <PageCTA title={ctaTitle ? cleanTitle(ctaTitle) : undefined} body={ctaBody} />
+        {key !== "warranty" && <PageCTA title={ctaTitle ? cleanTitle(ctaTitle) : undefined} body={ctaBody} />}
       </main>
     </MotionConfig>
   );
