@@ -981,7 +981,14 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
         />
         <PageHero data={data} citySlug={isRegion ? key : undefined} hideDescription={heroDescDup} galleryStyle={key === "warranty"} />
         {key === "where-we-build" ? <CityNavigator /> : null}
-        <IntroSection subtitle={subtitle} intro={intro} image={introImg} centered={key === "warranty"} />
+        <IntroSection
+          subtitle={subtitle}
+          intro={key === "warranty" && intro
+            ? intro.replace("Please contact Jematell Homes or call", "Please contact your Jematell Homes contact or call")
+            : intro}
+          image={introImg}
+          centered={key === "warranty"}
+        />
 
         {isLegal
           ? sections.map((s, i) => <ProseSection key={i} section={s} />)
