@@ -292,7 +292,7 @@ export function Header() {
 
 export function Footer() {
   return (
-    <footer className="site-footer">
+    <footer className="site-footer bg-[color:var(--color-cream)]">
       <div className="container">
         <div className="footer-top">
           <div className="footer-brand">
