@@ -288,17 +288,19 @@ function IntroSection({
   subtitle,
   intro,
   image,
+  centered,
 }: {
   subtitle?: string;
   intro?: string;
   image?: { src: string; alt?: string };
+  centered?: boolean;
 }) {
   if (!subtitle && !intro && !image) return null;
   return (
     <section className="page-intro section-pad">
       <div className="container">
-        <div className={`page-intro-grid ${image ? "with-image" : "no-image"}`}>
-          <m.div className="page-intro-copy" {...FADE_IN}>
+        <div className={`page-intro-grid ${image ? "with-image" : "no-image"}${centered ? " centered" : ""}`}>
+          <m.div className="page-intro-copy" {...FADE_IN} style={centered ? { textAlign: "center" } : undefined}>
             {subtitle ? (
               <h2 className="heading-lg page-intro-title">{subtitle}</h2>
             ) : null}
@@ -979,7 +981,7 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
         />
         <PageHero data={data} citySlug={isRegion ? key : undefined} hideDescription={heroDescDup} galleryStyle={key === "warranty"} />
         {key === "where-we-build" ? <CityNavigator /> : null}
-        <IntroSection subtitle={subtitle} intro={intro} image={introImg} />
+        <IntroSection subtitle={subtitle} intro={intro} image={introImg} centered={key === "warranty"} />
 
         {isLegal
           ? sections.map((s, i) => <ProseSection key={i} section={s} />)
