@@ -644,6 +644,7 @@ picture {
   color: #fff;
 }
 .process .heading-lg { color: #fff; margin-bottom: 80px; }
+.process .eyebrow { color: #000; }
 .process-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
