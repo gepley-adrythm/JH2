@@ -349,7 +349,6 @@ export function Footer() {
           <div className="footer-col">
             <h3>Company</h3>
             <ul>
-              <li><Link to="/about" viewTransition>About Us</Link></li>
               <li><Link to="/warranty" viewTransition>Warranty</Link></li>
               <li><Link to="/blog" viewTransition>Blog</Link></li>
               <li><a href="/faq">FAQ</a></li>
