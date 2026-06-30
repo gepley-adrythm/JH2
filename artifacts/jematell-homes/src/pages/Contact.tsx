@@ -18,7 +18,7 @@ export default function Contact() {
           { name: "Contact", url: "/contact" },
         ])}
       />
-      <section className="page-hero page-hero-short">
+      <section className="page-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
         <picture>
           <source
             srcSet="/images/contact-hero-2000.webp 2000w, /images/contact-hero-1600.webp 1600w, /images/contact-hero-1280.webp 1280w, /images/contact-hero-768.webp 768w"
@@ -27,8 +27,8 @@ export default function Contact() {
           />
           <img src="/images/contact-hero.jpg" alt="" className="page-hero-bg" aria-hidden="true" />
         </picture>
-        <div className="page-hero-overlay" />
-        <div className="container page-hero-content" style={{ textAlign: "center" }}>
+        <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }} />
+        <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
           <h1 className="page-hero-title hero-title">
             Create the home of your dreams.
           </h1>
