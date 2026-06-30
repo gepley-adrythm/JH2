@@ -314,9 +314,7 @@ export function Footer() {
                 </svg>
               </a>
               <a href="https://www.houzz.com/pro/jematellhomes" aria-label="Houzz" target="_blank" rel="noreferrer">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M0 0h11.5v11.5H0V0zm12.5 12.5H24V24H12.5V12.5z"/>
-                </svg>
+                <img src="/images/houzz-icon.png" alt="Houzz" width="20" height="20" style={{ display: "block", opacity: 0.85 }} />
               </a>
             </div>
           </div>
