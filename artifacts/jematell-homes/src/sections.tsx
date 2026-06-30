@@ -79,22 +79,6 @@ export function About() {
               Our focus is on delivering excellence from the first consultation to the final walk-through, making your cherished moments possible. We offer both custom and spec home options to suit your needs. Welcome to Jematell Homes, where we turn your dream home into a reality.
             </p>
           </m.div>
-          <m.div 
-            className="about-image-wrapper"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
-          >
-            <ResponsiveImage
-              name="gallery-1"
-              alt="Modern interior design"
-              widths={[640, 1024, 1280, 1600, 2000, 2500]}
-              sizes="(min-width: 900px) 50vw, 100vw"
-              width={2500}
-              height={1667}
-            />
-          </m.div>
         </div>
       </div>
     </section>
