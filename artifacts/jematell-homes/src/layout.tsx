@@ -304,6 +304,7 @@ export function Footer() {
             <h3>Company</h3>
             <ul>
               <li><Link to="/contact" viewTransition>Contact</Link></li>
+              <li><Link to="/spec-homes" viewTransition>Spec Homes</Link></li>
               <li><Link to="/blog" viewTransition>Blog</Link></li>
               <li><a href="/faq">FAQ</a></li>
               <li><Link to="/warranty" viewTransition>Warranty</Link></li>
