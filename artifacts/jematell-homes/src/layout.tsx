@@ -314,7 +314,10 @@ export function Footer() {
                 </svg>
               </a>
               <a href="https://www.houzz.com/pro/jematellhomes" aria-label="Houzz" target="_blank" rel="noreferrer">
-                <img src="/images/houzz-icon.png" alt="Houzz" width="20" height="20" style={{ display: "block", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M11.9752 0H0v24h8.0003v-8.0005h3.9749V0z"/>
+                  <path d="M12.0248 8.0007H24v16H12.0248V8.0007z"/>
+                </svg>
               </a>
             </div>
           </div>
