@@ -70,7 +70,7 @@ export function About() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55, ease: EASE_OUT_EXPO }}
           >
-            <span className="eyebrow">Get to know us</span>
+            <span className="eyebrow text-[color:var(--color-accent)]">Get to know us</span>
             <h2 className="heading-lg" style={{ marginBottom: '32px' }}>A family-owned builder for Arizona.</h2>
             <p>
               At Jematell Homes, we’re a family-owned home builder dedicated to crafting quality homes in Arizona. We combine traditional craftsmanship with modern design to bring your dream home to life.
