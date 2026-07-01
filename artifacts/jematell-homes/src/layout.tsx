@@ -296,7 +296,7 @@ export function Footer() {
       <div className="container">
         <div className="footer-top">
           <div className="footer-brand">
-            <img src={img("logo.png")} alt={siteConfig.brand.name} />
+            <img src={img("logo.png")} alt={siteConfig.brand.name} style={{ filter: "none" }} />
             <p>{siteConfig.blurb}</p>
           </div>
           <nav className="footer-links" aria-label="Footer navigation">
