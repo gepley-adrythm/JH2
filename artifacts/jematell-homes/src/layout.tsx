@@ -332,7 +332,7 @@ export function Footer() {
             </svg>
           </a>
           <a href="https://www.buildzoom.com/contractor/jematell-homes-llc" aria-label="BuildZoom" target="_blank" rel="noreferrer">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path fillRule="evenodd" clipRule="evenodd" d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 5.5-5.5 5.5H8v5h3v-3h2v3h3v-5h1.5L12 7.5z"/>
             </svg>
           </a>
