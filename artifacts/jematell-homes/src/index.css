@@ -1055,7 +1055,7 @@ picture {
   align-items: center;
   justify-content: flex-end;
   text-align: center;
-  padding-bottom: 28px;
+  padding-bottom: 16px;
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 .footer-brand {
@@ -1116,7 +1116,7 @@ picture {
 .footer-social-centered {
   justify-content: center;
   margin-top: 0;
-  padding: 28px 0;
+  padding: 16px 0;
 }
 .footer-bottom {
   background: #000;
