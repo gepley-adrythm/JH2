@@ -53,6 +53,7 @@ export function getRoutes(): string[] {
     "/privacy",
     "/thank-you",
     "/blog",
+    "/llm-info",
   ]);
   for (const loc of locations) routes.add(locationHref(loc.slug));
   routes.add("/gallery/crist");

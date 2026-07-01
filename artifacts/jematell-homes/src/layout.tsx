@@ -306,6 +306,7 @@ export function Footer() {
             <a href="/faq">FAQ</a>
             <Link to="/warranty" viewTransition>Warranty</Link>
             <Link to="/privacy" viewTransition>Privacy Policy</Link>
+            <Link to="/llm-info" viewTransition>LLM Info</Link>
           </nav>
         </div>
 
