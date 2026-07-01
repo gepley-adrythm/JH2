@@ -1068,7 +1068,7 @@ picture {
 }
 .footer-brand p {
   max-width: 400px;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.7;
   margin: 0 auto;
   color: rgba(0,0,0,0.6);
@@ -1081,7 +1081,7 @@ picture {
 }
 .footer-links a {
   color: var(--color-accent);
-  font-size: 13px;
+  font-size: 14px;
   padding: 6px 20px;
   transition: color 0.2s;
   position: relative;
