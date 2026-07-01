@@ -1045,7 +1045,7 @@ picture {
 /* Footer */
 .site-footer {
   background: var(--color-dark);
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.7);
   padding-top: 100px;
   border-top: 1px solid rgba(255,255,255,0.05);
 }
@@ -1080,7 +1080,7 @@ picture {
   gap: 0;
 }
 .footer-links a {
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.7);
   font-size: 13px;
   padding: 6px 20px;
   transition: color 0.2s;
@@ -1109,7 +1109,7 @@ picture {
   justify-content: center;
   min-width: 40px;
   min-height: 40px;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.7);
 }
 .footer-social a:hover { color: #fff; }
 .footer-social-centered {
