@@ -292,11 +292,11 @@ export function Header() {
 
 export function Footer() {
   return (
-    <footer className="site-footer bg-[color:var(--color-bg)]">
+    <footer className="site-footer">
       <div className="container">
         <div className="footer-top">
           <div className="footer-brand">
-            <img src={img("logo-footer.png")} alt={siteConfig.brand.name} />
+            <img src={img("logo.png")} alt={siteConfig.brand.name} />
             <p>{siteConfig.blurb}</p>
           </div>
           <nav className="footer-links" aria-label="Footer navigation">
