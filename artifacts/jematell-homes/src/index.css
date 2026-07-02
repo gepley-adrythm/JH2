@@ -2049,11 +2049,17 @@ a.contact-info-card:hover {
 }
 .contact-intro-heading {
   font-family: var(--font-serif);
-  font-size: clamp(1.7rem, 2.6vw, 2.3rem);
+  font-size: clamp(1.15rem, 1.7vw, 1.5rem);
   font-weight: 400;
   color: var(--color-dark);
   line-height: 1.2;
   margin: 0;
+  white-space: nowrap;
+}
+@media (max-width: 900px) {
+  .contact-intro-heading {
+    white-space: normal;
+  }
 }
 .contact-intro-body {
   font-size: 1.05rem;
