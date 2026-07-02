@@ -2022,28 +2022,24 @@ a.contact-info-card:hover {
   background: var(--color-bg);
   padding: 72px 0 80px;
 }
-.contact-intro .container {
-  max-width: 1600px;
-}
 .contact-intro-split {
-  display: flex;
+  display: grid;
+  grid-template-columns: 300px 24px 1fr 1fr;
   align-items: center;
-  justify-content: center;
-  gap: 64px;
 }
 .contact-intro-text {
-  flex: 0 1 380px;
+  grid-column: 1 / 4;
   min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
   text-align: left;
+  padding-right: 40px;
 }
 .contact-intro-form {
-  flex: 1 1 480px;
+  grid-column: 4 / 5;
   min-width: 0;
-  max-width: 720px;
 }
 .cf-inline-fallback {
   width: 100%;
@@ -2068,14 +2064,18 @@ a.contact-info-card:hover {
 }
 @media (max-width: 900px) {
   .contact-intro-split {
+    display: flex;
     flex-direction: column;
     gap: 40px;
   }
   .contact-intro-text {
+    grid-column: auto;
     align-items: center;
     text-align: center;
+    padding-right: 0;
   }
   .contact-intro-form {
+    grid-column: auto;
     max-width: 100%;
     width: 100%;
   }
