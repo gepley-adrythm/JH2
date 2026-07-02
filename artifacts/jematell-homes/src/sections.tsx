@@ -161,9 +161,9 @@ export function Process() {
             >
               {step.featured && (
                 <ResponsiveImage
-                  name="spec-home"
+                  name="completion-reveal"
                   className="process-bg"
-                  alt="Completed Jematell home exterior at twilight"
+                  alt="Finished primary bathroom in a completed Jematell home"
                   widths={[768, 1280, 1600]}
                   sizes="(min-width: 900px) 33vw, 100vw"
                   width={1600}
