@@ -728,6 +728,7 @@ picture {
   text-align: center;
 }
 .featured-projects h2 { margin-bottom: 64px; }
+.featured-projects-heading { color: var(--color-accent); }
 .featured-projects-grid { text-align: left; }
 .featured-projects-cta {
   margin-top: 56px;
