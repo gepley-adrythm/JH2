@@ -298,7 +298,7 @@ function IntroSection({
   if (!subtitle && !intro && !image) return null;
   return (
     <section
-      className={centered ? "page-intro" : "page-intro section-pad"}
+      className="page-intro bg-[color:var(--color-bone)]"
       style={centered ? { display: "flex", alignItems: "center", justifyContent: "center", minHeight: "30vh", padding: "4rem 0" } : undefined}
     >
       <div className="container">
