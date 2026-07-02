@@ -138,10 +138,10 @@ export function ServicesSplit() {
 
 export function Process() {
   const steps = [
-    { num: "01", title: "Consultation", desc: "Understanding your vision, lifestyle, and land." },
-    { num: "02", title: "Design", desc: "Collaborative architecture and interior material selection." },
-    { num: "03", title: "Build", desc: "Transparent, high-quality construction by our family team." },
-    { num: "04", title: "Completion", desc: "The final reveal of your completed luxury home.", featured: true },
+    { num: "01", title: "Consultation", desc: "We start by getting to know your vision, budget, goals, and the land you\u2019ll be building on." },
+    { num: "02", title: "Design", desc: "Together, we shape the architecture, layout, finishes, and interior selections that bring your home to life." },
+    { num: "03", title: "Build", desc: "Our team manages the construction process with care, communication, and attention to quality. You\u2019ll know what\u2019s happening throughout the build, from foundation to finishing touches. Weekly updates." },
+    { num: "04", title: "Completion", desc: "Once the home is complete, we walk through every detail with you to make sure it feels right. Then comes the best part: handing over the keys to your finished Jematell home.", featured: true },
   ];
 
   return (
