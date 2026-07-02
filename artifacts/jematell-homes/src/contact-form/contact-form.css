@@ -14,6 +14,33 @@
   overflow: hidden;
 }
 
+/* Inline variant: a self-contained card that sits within normal page flow,
+   instead of a fixed full-screen overlay. */
+.cf-overlay--inline {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  min-height: 560px;
+  border-radius: 20px;
+  background: var(--color-dark);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+}
+.cf-overlay--inline .cf-scroll {
+  padding-bottom: 1.5rem;
+  align-items: center;
+}
+.cf-overlay--inline .cf-step {
+  padding: 48px 28px 0;
+}
+.cf-overlay--inline .cf-step--center {
+  padding-top: 32px;
+}
+@media (min-width: 600px) {
+  .cf-overlay--inline .cf-step {
+    padding-top: 40px;
+  }
+}
+
 /* Background */
 .cf-bg {
   position: absolute;

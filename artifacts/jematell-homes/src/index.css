@@ -2021,14 +2021,31 @@ a.contact-info-card:hover {
 .contact-intro {
   background: var(--color-bg);
   padding: 72px 0 80px;
-  text-align: center;
 }
-.contact-intro-inner {
-  max-width: 720px;
+.contact-intro-split {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+}
+.contact-intro-text {
+  flex: 1 1 380px;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 20px;
+  text-align: left;
+}
+.contact-intro-form {
+  flex: 1 1 480px;
+  min-width: 0;
+  max-width: 560px;
+}
+.cf-inline-fallback {
+  width: 100%;
+  min-height: 560px;
+  border-radius: 20px;
+  background: var(--color-dark);
 }
 .contact-intro-heading {
   font-family: var(--font-serif);
@@ -2042,8 +2059,22 @@ a.contact-info-card:hover {
   font-size: 1.05rem;
   color: var(--color-text-muted);
   line-height: 1.7;
-  max-width: 600px;
+  max-width: 500px;
   margin: 0;
+}
+@media (max-width: 900px) {
+  .contact-intro-split {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .contact-intro-text {
+    align-items: center;
+    text-align: center;
+  }
+  .contact-intro-form {
+    max-width: 100%;
+    width: 100%;
+  }
 }
 
 /* Contact Location Section */

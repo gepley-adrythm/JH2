@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { Seo } from "../seo/seo";
 import { breadcrumbJsonLd } from "../seo/jsonld";
-import { useContactForm } from "../contact-form/ContactFormProvider";
+
+const ContactForm = React.lazy(() => import("../contact-form/ContactForm"));
 
 export default function Contact() {
-  const { open: openContactForm } = useContactForm();
   return (
     <main className="page">
       <Seo
@@ -35,20 +35,20 @@ export default function Contact() {
       </section>
 
       <section className="contact-intro">
-        <div className="container contact-intro-inner">
-          <span className="eyebrow">Let's Get Started</span>
-          <h2 className="contact-intro-heading">We're excited to hear about your ideas!</h2>
-          <p className="contact-intro-body">
-            To begin the process, please share some details about your project by completing the form on this page.
-            From there we will contact you to arrange our introductory meeting and get things started.
-          </p>
-          <button
-            className="btn-primary"
-            onClick={openContactForm}
-            data-testid="contact-intro-cta"
-          >
-            Start Your Build
-          </button>
+        <div className="container contact-intro-split">
+          <div className="contact-intro-text">
+            <span className="eyebrow">Let's Get Started</span>
+            <h2 className="contact-intro-heading">We're excited to hear about your ideas!</h2>
+            <p className="contact-intro-body">
+              To begin the process, please share some details about your project using the form to the right.
+              From there we will contact you to arrange our introductory meeting and get things started.
+            </p>
+          </div>
+          <div className="contact-intro-form" data-testid="contact-inline-form">
+            <Suspense fallback={<div className="cf-inline-fallback" aria-hidden="true" />}>
+              <ContactForm variant="inline" />
+            </Suspense>
+          </div>
         </div>
       </section>
 

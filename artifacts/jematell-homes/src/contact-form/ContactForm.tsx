@@ -122,9 +122,11 @@ function useTypingAnimation() {
 
 interface ContactFormProps {
   onClose?: () => void;
+  variant?: "modal" | "inline";
 }
 
-export default function ContactForm({ onClose }: ContactFormProps = {}) {
+export default function ContactForm({ onClose, variant = "modal" }: ContactFormProps = {}) {
+  const isInline = variant === "inline";
   const reduced = useReducedMotion();
   const slideTransition = reduced
     ? { duration: 0 }
@@ -990,38 +992,40 @@ export default function ContactForm({ onClose }: ContactFormProps = {}) {
   };
 
   return (
-    <div className="cf-overlay">
-      <div className="cf-bg">
-        <m.div
-          className="cf-bg-pan"
-          initial={{ scale: 1.08, x: 0, y: 0, opacity: 0 }}
-          animate={
-            reduced
-              ? { opacity: bgLoaded ? 1 : 0 }
-              : { scale: [1.08, 1.09, 1.07, 1.09, 1.08], x: [0, 2, -2, 1, 0], y: [0, -1, 2, -1, 0], opacity: bgLoaded ? 1 : 0 }
-          }
-          transition={
-            reduced
-              ? { opacity: { duration: 0.35 } }
-              : { duration: 35, ease: "easeInOut", repeat: Infinity, delay: 2, opacity: { duration: 0.35, delay: 0 } }
-          }
-        >
-          <picture>
-            <source media="(min-width: 601px)" srcSet={siteConfig.images.contactDesktop} />
-            <m.img
-              src={siteConfig.images.contactMobile}
-              alt=""
-              className="cf-bg-img"
-              style={{ transform: "scale(1.15) translateZ(0)" }}
-              animate={{ objectPosition: getBgPosition() }}
-              transition={{ duration: reduced ? 0 : 1.2, ease: [0.22, 1, 0.36, 1] }}
-              loading="eager"
-              onLoad={() => setBgLoaded(true)}
-            />
-          </picture>
-        </m.div>
-        <div className="cf-bg-gradient" />
-      </div>
+    <div className={isInline ? "cf-overlay cf-overlay--inline" : "cf-overlay"}>
+      {!isInline && (
+        <div className="cf-bg">
+          <m.div
+            className="cf-bg-pan"
+            initial={{ scale: 1.08, x: 0, y: 0, opacity: 0 }}
+            animate={
+              reduced
+                ? { opacity: bgLoaded ? 1 : 0 }
+                : { scale: [1.08, 1.09, 1.07, 1.09, 1.08], x: [0, 2, -2, 1, 0], y: [0, -1, 2, -1, 0], opacity: bgLoaded ? 1 : 0 }
+            }
+            transition={
+              reduced
+                ? { opacity: { duration: 0.35 } }
+                : { duration: 35, ease: "easeInOut", repeat: Infinity, delay: 2, opacity: { duration: 0.35, delay: 0 } }
+            }
+          >
+            <picture>
+              <source media="(min-width: 601px)" srcSet={siteConfig.images.contactDesktop} />
+              <m.img
+                src={siteConfig.images.contactMobile}
+                alt=""
+                className="cf-bg-img"
+                style={{ transform: "scale(1.15) translateZ(0)" }}
+                animate={{ objectPosition: getBgPosition() }}
+                transition={{ duration: reduced ? 0 : 1.2, ease: [0.22, 1, 0.36, 1] }}
+                loading="eager"
+                onLoad={() => setBgLoaded(true)}
+              />
+            </picture>
+          </m.div>
+          <div className="cf-bg-gradient" />
+        </div>
+      )}
 
       <div data-testid="progress-bar" className="cf-progress">
         <m.div className="cf-progress-fill" animate={{ width: `${progress * 100}%` }} transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 80, damping: 20 }} />

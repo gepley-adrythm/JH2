@@ -40,3 +40,14 @@ the notification email.
 `src/contact-form/contact-form.css` (imported by the provider) is a deliberate
 deviation from the otherwise single-`index.css` convention, to keep the ported form
 self-contained. All its classes are namespaced `cf-*`.
+
+## Inline (non-modal) placement
+`ContactForm` also accepts `variant="inline"` (default `"modal"`) for embedding
+directly in page flow (e.g. next to text in a two-column section) instead of the
+full-screen portal. Inline mode skips the fixed-position background image and close
+button and instead renders the same dark-themed `cf-*` step content inside a
+self-contained rounded card (own `overflow:hidden` + `border-radius`, sized by its
+flex container). All the modal's dark-on-dark styling is reused as-is by design — the
+card just becomes a dark panel sitting on the page's light background rather than a
+full-bleed backdrop. Import it directly with `React.lazy` + `Suspense` at the call
+site (don't route inline usage through `ContactFormProvider`, which is portal/modal-only).
