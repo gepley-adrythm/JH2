@@ -187,7 +187,7 @@ export function Process() {
 // is large and only meant to be pulled into route-level lazy chunks, never
 // the eagerly-loaded homepage bundle).
 const FEATURED_PROJECT_IMAGES: Record<string, string> = {
-  crist: "/images/gallery/crist/kitchen-hero.png",
+  crist: "/images/gallery/crist/10-DSC05808.jpg",
   "modern-farmhouse": "/images/gallery/modern-farmhouse/kitchen-hero.jpg",
   "rio-verde-farmhouse": "/images/gallery/rio-verde-farmhouse/kitchen-hero.jpg",
 };
