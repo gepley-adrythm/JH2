@@ -10,7 +10,7 @@ import { GALLERY_PROJECTS } from "./data/galleryProjects";
 // --- Data ---
 const REVIEWS = [
   {
-    headline: "“They are highly committed to delivering a quality product…”",
+    headline: "“They are highly committed to delivering a quality product…",
     body: "We did a custom home build with Jematell Homes and are very glad we did! Joe worked with us through the entire process to make sure we got the exact home we wanted. Him, Tyler and their team did an incredible job building our first home, gave honest recommendations, and were very transparent”",
     author: "Travis & Sarah W.",
   },
