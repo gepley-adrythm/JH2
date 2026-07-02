@@ -15,7 +15,7 @@ const REVIEWS = [
     author: "Travis & Sarah W.",
   },
   {
-    headline: "“We couldn’t be happier with our Jematell Home!”",
+    headline: "“We couldn’t be happier with our Jematell Home!",
     body: "We couldn’t be happier with our Jematell Home!! It has a spacious floor plan, beautiful finishes, and a large lot!! Working with the Jematell Homes team made the home-buying process easy. If you’re thinking about buying a house give them a call.”",
     author: "Joe & Cassandra M.",
   },
