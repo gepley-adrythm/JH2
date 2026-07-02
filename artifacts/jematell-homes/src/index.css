@@ -728,7 +728,7 @@ picture {
   text-align: center;
 }
 .featured-projects h2 { margin-bottom: 64px; }
-.featured-projects-heading { color: #000; }
+.featured-projects-heading { color: #000; font-size: 64px; }
 .featured-projects-grid { text-align: left; }
 .featured-projects-cta {
   margin-top: 56px;
@@ -737,9 +737,11 @@ picture {
 }
 @media (max-width: 900px) {
   .featured-projects h2 { margin-bottom: 40px; }
+  .featured-projects-heading { font-size: 48px; }
 }
 @media (max-width: 600px) {
   .featured-projects-cta { margin-top: 40px; }
+  .featured-projects-heading { font-size: 36px; }
 }
 
 /* City Navigator (Where We Build lead section) */
