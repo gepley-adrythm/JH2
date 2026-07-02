@@ -25,7 +25,7 @@ export function CTA() {
         >
           <div className="cta-content">
             <span className="eyebrow" style={{ color: 'var(--color-bone)' }}>Build With Us</span>
-            <h2 className="heading-lg">Begin Your Build</h2>
+            <h2 className="heading-lg" style={{ textTransform: 'uppercase' }}>Begin Your Build</h2>
             <p style={{ marginInline: "auto" }}>
               Relax while we manage every detail, throughout the entire process. Tell us about your vision, and we’ll be in touch to schedule a consultation.
             </p>
