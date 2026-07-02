@@ -2022,13 +2022,16 @@ a.contact-info-card:hover {
   background: var(--color-bg);
   padding: 72px 0 80px;
 }
+.contact-intro .container {
+  max-width: 1600px;
+}
 .contact-intro-split {
   display: flex;
   align-items: center;
   gap: 64px;
 }
 .contact-intro-text {
-  flex: 0 1 260px;
+  flex: 0 1 380px;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -2037,9 +2040,9 @@ a.contact-info-card:hover {
   text-align: left;
 }
 .contact-intro-form {
-  flex: 1 1 560px;
+  flex: 1 1 480px;
   min-width: 0;
-  max-width: 640px;
+  max-width: 720px;
 }
 .cf-inline-fallback {
   width: 100%;
