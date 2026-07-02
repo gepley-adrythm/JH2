@@ -2024,7 +2024,7 @@ a.contact-info-card:hover {
 }
 .contact-intro-split {
   display: grid;
-  grid-template-columns: 300px 24px 1fr 1fr;
+  grid-template-columns: 300px 24px 0.7fr 1.3fr;
   align-items: center;
 }
 .contact-intro-text {
