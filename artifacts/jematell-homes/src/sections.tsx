@@ -70,7 +70,7 @@ export function About() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55, ease: EASE_OUT_EXPO }}
           >
-            <span className="eyebrow">Get to know us</span>
+            <span className="eyebrow text-[15px]">Get to know us</span>
             <h2 className="heading-lg" style={{ marginBottom: '32px' }}>A family-owned builder for Arizona</h2>
             <p>
               As a family-owned Arizona home builder, we take pride in creating well-built homes that feel thoughtful, comfortable, and made to last.
