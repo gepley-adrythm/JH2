@@ -730,12 +730,14 @@ picture {
 }
 .featured-projects h2 { margin-bottom: 64px; }
 .featured-projects-heading { color: #000; font-size: 64px; }
-.featured-projects .container { max-width: 1440px; }
+.featured-projects .container {
+  max-width: none;
+  padding: 0 clamp(24px, 4vw, 80px);
+}
 .featured-projects-grid {
   text-align: left;
   gap: 32px;
 }
-.featured-projects-grid .gallery-card-media { aspect-ratio: 16/10; }
 .featured-projects-cta {
   margin-top: 56px;
   display: flex;
