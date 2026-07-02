@@ -4,5 +4,9 @@ export const modules: ModuleMap = {
   "./components/mockups/font-pairings/A_CormorantGaramond.tsx": () => import("../components/mockups/font-pairings/A_CormorantGaramond.tsx"),
   "./components/mockups/font-pairings/B_PlayfairDisplay.tsx": () => import("../components/mockups/font-pairings/B_PlayfairDisplay.tsx"),
   "./components/mockups/font-pairings/C_BodoniModa.tsx": () => import("../components/mockups/font-pairings/C_BodoniModa.tsx"),
-  "./components/mockups/font-pairings/D_Lora.tsx": () => import("../components/mockups/font-pairings/D_Lora.tsx")
+  "./components/mockups/font-pairings/D_Lora.tsx": () => import("../components/mockups/font-pairings/D_Lora.tsx"),
+  "./components/mockups/process-section/ConnectedTimeline.tsx": () => import("../components/mockups/process-section/ConnectedTimeline.tsx"),
+  "./components/mockups/process-section/Current.tsx": () => import("../components/mockups/process-section/Current.tsx"),
+  "./components/mockups/process-section/FeaturedBento.tsx": () => import("../components/mockups/process-section/FeaturedBento.tsx"),
+  "./components/mockups/process-section/StackedMilestones.tsx": () => import("../components/mockups/process-section/StackedMilestones.tsx")
 };

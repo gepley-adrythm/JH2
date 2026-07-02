@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+.jh-scope {
+  --color-bg: #f4f2ec;
+  --color-text: #2a2a2a;
+  --color-text-muted: #5c5c5c;
+  --color-accent: #3b617f;
+  --color-accent-hover: #2d4c63;
+  --color-warm: #8c5a45;
+  --color-dark: #121415;
+  --color-cream: #ece9e2;
+  --color-bone: #e2ddd3;
+  --color-border: rgba(0, 0, 0, 0.08);
+
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'DM Sans', sans-serif;
+
+  --container-max: 1440px;
+
+  font-family: var(--font-body);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.jh-scope * {
+  box-sizing: border-box;
+}
+
+.jh-scope h1, .jh-scope h2, .jh-scope h3, .jh-scope h4 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--color-dark);
+  margin: 0;
+}
+
+.jh-scope p {
+  margin: 0;
+}
+
+.jh-scope .jh-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 clamp(24px, 5vw, 64px);
+}
+
+.jh-scope .jh-eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 24px;
+}
+
+.jh-scope .jh-heading-lg {
+  font-size: clamp(36px, 5vw, 64px);
+  letter-spacing: -0.02em;
+}
+
+/* --- Current (exact extraction) --- */
+.jh-scope .process {
+  background: var(--color-accent);
+  color: #fff;
+  padding: clamp(80px, 10vw, 160px) 0;
+}
+.jh-scope .process .jh-heading-lg { color: #fff; margin-bottom: 80px; }
+.jh-scope .process .jh-eyebrow { color: #000; }
+.jh-scope .process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.jh-scope .process-card {
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.5);
+}
+.jh-scope .process-card h3 {
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.jh-scope .process-card p {
+  color: rgba(255,255,255,0.6);
+  font-size: 15px;
+}
+@media (max-width: 1024px) { .jh-scope .process-grid { grid-template-columns: repeat(2, 1fr); gap: 48px 24px; } }
+@media (max-width: 600px) { .jh-scope .process-grid { grid-template-columns: 1fr; } }
