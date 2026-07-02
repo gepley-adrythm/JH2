@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useContactForm } from "./contact-form";
 import { EASE_OUT_EXPO, FADE_IN_UP_PROPS } from "./motion";
 import { locations, locationHref } from "./config/siteConfig";
+import { Star } from "lucide-react";
 
 // --- Data ---
 const REVIEWS = [
@@ -204,7 +205,14 @@ export function Reviews() {
       <div className="container">
         <div className="reviews-container">
           <div className="reviews-left">
-            <span className="eyebrow">Reviews</span>
+            <span className="eyebrow" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+              Reviews
+              <span style={{ display: 'inline-flex', gap: '2px' }}>
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} size={12} fill="var(--color-accent)" stroke="var(--color-accent)" />
+                ))}
+              </span>
+            </span>
             <h2 className="heading-lg">What our homeowners say</h2>
             <div style={{ display: 'flex', gap: '8px', marginTop: '32px' }}>
               {REVIEWS.map((_, i) => (
