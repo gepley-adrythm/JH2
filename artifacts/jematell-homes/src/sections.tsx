@@ -71,7 +71,7 @@ export function About() {
             transition={{ duration: 0.55, ease: EASE_OUT_EXPO }}
           >
             <span className="eyebrow" style={{ fontSize: '15px' }}>Get to know us</span>
-            <h2 className="heading-lg" style={{ marginBottom: '32px', textTransform: 'uppercase' }}>A family-owned builder for Arizona</h2>
+            <h2 className="heading-lg text-[55px]" style={{ marginBottom: '32px', textTransform: 'uppercase' }}>A family-owned builder for Arizona</h2>
             <p>
               As a family-owned Arizona home builder, we take pride in creating well-built homes that feel thoughtful, comfortable, and made to last.
             </p>
