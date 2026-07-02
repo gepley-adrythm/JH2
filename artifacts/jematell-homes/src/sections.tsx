@@ -5,7 +5,7 @@ import { img } from "./layout";
 import { Link } from "react-router-dom";
 import { useContactForm } from "./contact-form";
 import { EASE_OUT_EXPO, FADE_IN_UP_PROPS } from "./motion";
-import { locations, locationHref } from "./config/siteConfig";
+import { GALLERY_PROJECTS } from "./data/galleryProjects";
 
 // --- Data ---
 const REVIEWS = [
@@ -183,21 +183,63 @@ export function Process() {
   );
 }
 
-export function WhereWeBuild() {
+// Hardcoded (not sourced from the full clone-data/pages.json — that dataset
+// is large and only meant to be pulled into route-level lazy chunks, never
+// the eagerly-loaded homepage bundle).
+const FEATURED_PROJECT_IMAGES: Record<string, string> = {
+  crist: "/images/gallery/crist/kitchen-hero.png",
+  "modern-farmhouse": "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/93d24cd6-9eca-4991-89d1-c49f47317fbe/Exterior.jpg",
+  "rio-verde-farmhouse": "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/0c3ef3d5-b63d-4958-982e-6b5ecce0629c/DJI_20260125135231_0049_D.jpg",
+};
+
+const FEATURED_PROJECT_SLUGS = ["crist", "modern-farmhouse", "rio-verde-farmhouse"];
+
+export function FeaturedProjects() {
+  const projects = FEATURED_PROJECT_SLUGS.map((slug) => {
+    const proj = GALLERY_PROJECTS.find((p) => p.slug === slug);
+    if (!proj) return null;
+    return { ...proj, image: FEATURED_PROJECT_IMAGES[slug] ?? "" };
+  }).filter((p): p is NonNullable<typeof p> => p !== null);
+
   return (
-    <section className="where-we-build section-pad">
+    <section className="featured-projects section-pad">
       <div className="container">
         <m.div {...FADE_IN_UP_PROPS}>
-          <span className="eyebrow">Locations</span>
-          <h2 className="heading-md">Where We Build</h2>
+          <span className="eyebrow">Recent Work</span>
+          <h2 className="heading-md">Homes We've Built</h2>
         </m.div>
-        <div className="pill-grid">
-          {locations.map((loc) => (
-            <Link key={loc.slug} to={locationHref(loc.slug)} className="loc-pill" viewTransition>
-              {loc.name}
-            </Link>
+        <div className="gallery-grid featured-projects-grid">
+          {projects.map((proj, i) => (
+            <m.div
+              key={proj.slug}
+              className="gallery-card"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: i * 0.08, duration: 0.5, ease: EASE_OUT_EXPO }}
+            >
+              <Link to={`/gallery/${proj.slug}`} data-testid={`featured-project-${proj.slug}`} viewTransition>
+                <div className={`gallery-card-media${proj.image ? "" : " gallery-card-placeholder"}`}>
+                  {proj.image && <img src={proj.image} alt={proj.title} loading="lazy" />}
+                  <div className="gallery-card-overlay">
+                    <h3 className="gallery-card-title">{proj.title}</h3>
+                  </div>
+                </div>
+                <div className="gallery-card-meta">
+                  <div className="gallery-card-text">
+                    <span className="gallery-card-sub">{proj.meta}</span>
+                  </div>
+                  <span className="gallery-card-arrow">→</span>
+                </div>
+              </Link>
+            </m.div>
           ))}
         </div>
+        <m.div className="featured-projects-cta" {...FADE_IN_UP_PROPS}>
+          <Link to="/gallery" className="btn btn-primary" data-testid="link-view-full-gallery" viewTransition>
+            View Full Gallery
+          </Link>
+        </m.div>
       </div>
     </section>
   );

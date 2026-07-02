@@ -722,34 +722,23 @@ picture {
   .process-card--04 { min-height: 350px; }
 }
 
-/* Where We Build */
-.where-we-build {
+/* Featured Projects (homepage) */
+.featured-projects {
   background: var(--color-bg);
   text-align: center;
 }
-.where-we-build h2 { margin-bottom: 64px; }
-.pill-grid {
+.featured-projects h2 { margin-bottom: 64px; }
+.featured-projects-grid { text-align: left; }
+.featured-projects-cta {
+  margin-top: 56px;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 16px;
-  max-width: 900px;
-  margin: 0 auto;
 }
-.loc-pill {
-  padding: 14px 28px;
-  background: var(--color-cream);
-  border: 1px solid var(--color-bone);
-  border-radius: 100px;
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--color-text);
-  transition: all 0.3s ease;
+@media (max-width: 900px) {
+  .featured-projects h2 { margin-bottom: 40px; }
 }
-.loc-pill:hover {
-  background: var(--color-accent);
-  color: #fff;
-  border-color: var(--color-accent);
+@media (max-width: 600px) {
+  .featured-projects-cta { margin-top: 40px; }
 }
 
 /* City Navigator (Where We Build lead section) */
