@@ -105,7 +105,7 @@ export function ServicesSplit() {
         <div className="service-overlay" />
         <div className="service-content">
           <span className="eyebrow" style={{ color: '#fff' }}>Portfolio</span>
-          <h3>Build a Custom Home</h3>
+          <h3 style={{ whiteSpace: 'nowrap' }}>Build a Custom Home</h3>
           <p>
             Is a custom home what you’re envisioning? Explore our portfolio of past projects, learn more about our process, and discover how we bring your unique vision to life in the desert.
           </p>
