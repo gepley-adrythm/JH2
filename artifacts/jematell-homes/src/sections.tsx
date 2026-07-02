@@ -265,7 +265,7 @@ export function Reviews() {
                 ★★★★★
               </span>
             </span>
-            <h2 className="heading-lg" style={{ textTransform: 'uppercase' }}>What our homeowners say</h2>
+            <h2 className="heading-lg text-[55px]" style={{ textTransform: 'uppercase' }}>What our homeowners say</h2>
             <div style={{ display: 'flex', gap: '8px', marginTop: '32px' }}>
               {REVIEWS.map((_, i) => (
                 <button
