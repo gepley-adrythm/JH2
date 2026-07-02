@@ -37,7 +37,6 @@ export default function Contact() {
       <section className="contact-intro">
         <div className="container contact-intro-split">
           <div className="contact-intro-text">
-            <span className="eyebrow">Let's Get Started</span>
             <h2 className="contact-intro-heading">We're excited to hear about your ideas!</h2>
             <p className="contact-intro-body">
               To begin the process, please share some details about your project using the form to the right.
