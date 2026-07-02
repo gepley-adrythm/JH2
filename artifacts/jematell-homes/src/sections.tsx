@@ -47,7 +47,7 @@ export function Hero() {
         <div className="hero-copy">
           <h1 className="heading-xl hero-title">
             <span style={{ textTransform: 'uppercase' }}>Let's Make Your</span>
-            <span>Dream a Reality</span>
+            <span style={{ textTransform: 'uppercase' }}>Dream a Reality</span>
           </h1>
           <button type="button" className="btn btn-outline-light hero-cta" data-testid="hero-cta" onClick={openContactForm}>
             Start Your Build
