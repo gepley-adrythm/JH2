@@ -125,7 +125,7 @@ export function ServicesSplit() {
         <div className="service-overlay" />
         <div className="service-content">
           <span className="eyebrow" style={{ color: '#fff' }}>Available</span>
-          <h3>Buy One of Our Homes</h3>
+          <h3 style={{ whiteSpace: 'nowrap' }}>Buy One of Our Homes</h3>
           <p>
             Explore stunning Arizona properties and find a home that perfectly suits your unique preferences and lifestyle. Move-in ready luxury, crafted with our signature attention to detail.
           </p>
