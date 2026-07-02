@@ -44,7 +44,7 @@ export function Hero() {
       <div className="hero-overlay" />
       <div className="container hero-content">
         <div className="hero-copy">
-          <h1 className="heading-xl hero-title">
+          <h1 className="heading-xl hero-title" style={{ textTransform: 'uppercase', fontSize: '85px' }}>
             <span>Let's Make Your</span>
             <span>Dream a Reality</span>
           </h1>
