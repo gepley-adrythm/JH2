@@ -2049,7 +2049,7 @@ a.contact-info-card:hover {
 }
 .contact-intro-heading {
   font-family: var(--font-serif);
-  font-size: clamp(1.15rem, 1.7vw, 1.5rem);
+  font-size: clamp(1.15rem, 2.1vw, 1.85rem);
   font-weight: 400;
   color: var(--color-dark);
   line-height: 1.2;
