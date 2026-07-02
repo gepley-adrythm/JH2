@@ -189,7 +189,7 @@ export function Process() {
 const FEATURED_PROJECT_IMAGES: Record<string, string> = {
   crist: "/images/gallery/crist/kitchen-hero.png",
   "modern-farmhouse": "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/93d24cd6-9eca-4991-89d1-c49f47317fbe/Exterior.jpg",
-  "rio-verde-farmhouse": "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/0c3ef3d5-b63d-4958-982e-6b5ecce0629c/DJI_20260125135231_0049_D.jpg",
+  "rio-verde-farmhouse": "/images/gallery/rio-verde-farmhouse/kitchen-hero.jpg",
 };
 
 const FEATURED_PROJECT_SLUGS = ["crist", "modern-farmhouse", "rio-verde-farmhouse"];
