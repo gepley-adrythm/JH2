@@ -341,7 +341,7 @@ function ServiceGridSection({ section }: { section: Section }) {
     <section className="page-services section-pad">
       <div className="container">
         <m.div className="page-section-head" {...FADE_IN}>
-          <span className="eyebrow">What we do</span>
+          <span className="eyebrow text-[15px]">What we do</span>
           <h2 className="heading-lg text-[55px]">{section.heading?.text}</h2>
         </m.div>
         <div className="page-services-grid">
