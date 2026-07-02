@@ -73,10 +73,13 @@ export function About() {
             <span className="eyebrow">Get to know us</span>
             <h2 className="heading-lg" style={{ marginBottom: '32px' }}>A family-owned builder for Arizona</h2>
             <p>
-              At Jematell Homes, we’re a family-owned home builder dedicated to crafting quality homes in Arizona. We combine traditional craftsmanship with modern design to bring your dream home to life.
+              As a family-owned Arizona home builder, we take pride in creating well-built homes that feel thoughtful, comfortable, and made to last.
             </p>
             <p>
-              Our focus is on delivering excellence from the first consultation to the final walk-through, making your cherished moments possible. We offer both custom and spec home options to suit your needs. Welcome to Jematell Homes, where we turn your dream home into a reality.
+              From the first conversation to the final walk-through, we focus on honest communication, quality craftsmanship, and the details that make a house feel like home. Whether you’re looking for a custom build or a move-in-ready spec home, we’re here to help bring your vision to life.
+            </p>
+            <p>
+              Welcome to Jematell Homes, where we turn your dream home into a reality.
             </p>
           </m.div>
         </div>
