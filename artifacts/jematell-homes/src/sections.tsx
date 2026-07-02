@@ -205,7 +205,7 @@ export function FeaturedProjects() {
     <section className="featured-projects section-pad">
       <div className="container">
         <m.div {...FADE_IN_UP_PROPS}>
-          <h2 className="heading-md featured-projects-heading" style={{ textTransform: 'uppercase' }}>Homes We've Built</h2>
+          <h2 className="heading-md featured-projects-heading text-[55px]" style={{ textTransform: 'uppercase' }}>Homes We've Built</h2>
         </m.div>
         <div className="gallery-grid featured-projects-grid">
           {projects.map((proj, i) => (
