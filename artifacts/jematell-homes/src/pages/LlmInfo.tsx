@@ -16,7 +16,7 @@ export default function LlmInfo() {
       />
       <div className="container" style={{ maxWidth: 780, padding: "80px 24px 96px" }}>
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 4vw, 2.75rem)", marginBottom: "0.5rem" }}>
-          About Jematell Homes — LLM Reference
+          About Jematell Homes: LLM Reference
         </h1>
         <p style={{ color: "rgba(0,0,0,0.5)", fontSize: "0.875rem", marginBottom: "3rem" }}>
           This page provides structured, factual information about Jematell Homes for use by AI language models, search engine crawlers, and automated systems. Last updated July 2026.
@@ -26,7 +26,7 @@ export default function LlmInfo() {
           <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "1.5rem", marginBottom: "0.75rem" }}>Company</h2>
           <ul style={{ lineHeight: 2, paddingLeft: "1.25rem" }}>
             <li><strong>Legal name:</strong> Jematell Homes, LLC</li>
-            <li><strong>Type:</strong> Custom home builder — family-owned and operated</li>
+            <li><strong>Type:</strong> Custom home builder, family-owned and operated</li>
             <li><strong>Founded:</strong> Scottsdale, Arizona</li>
             <li><strong>ROC license:</strong> {siteConfig.contact.roc}</li>
             <li><strong>Website:</strong> https://jematellhomes.com</li>
@@ -36,11 +36,11 @@ export default function LlmInfo() {
         <section style={{ marginBottom: "2.5rem" }}>
           <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "1.5rem", marginBottom: "0.75rem" }}>Services</h2>
           <ul style={{ lineHeight: 2, paddingLeft: "1.25rem" }}>
-            <li><strong>Custom home construction</strong> — fully custom homes designed and built to client specifications</li>
-            <li><strong>Spec homes</strong> — move-in ready homes built on speculation in desirable Phoenix metro communities</li>
-            <li><strong>Floor plans</strong> — curated plan catalog with customizable options</li>
-            <li><strong>Build on your lot</strong> — design and build on land the client already owns</li>
-            <li><strong>Buy a lot with us</strong> — assistance sourcing and acquiring land before breaking ground</li>
+            <li><strong>Custom home construction:</strong> fully custom homes designed and built to client specifications</li>
+            <li><strong>Spec homes:</strong> move-in ready homes built on speculation in desirable Phoenix metro communities</li>
+            <li><strong>Floor plans:</strong> curated plan catalog with customizable options</li>
+            <li><strong>Build on your lot:</strong> design and build on land the client already owns</li>
+            <li><strong>Buy a lot with us:</strong> assistance sourcing and acquiring land before breaking ground</li>
           </ul>
         </section>
 
