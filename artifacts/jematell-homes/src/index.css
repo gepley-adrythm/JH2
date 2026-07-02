@@ -2028,7 +2028,7 @@ a.contact-info-card:hover {
   gap: 64px;
 }
 .contact-intro-text {
-  flex: 1 1 380px;
+  flex: 0 1 280px;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -2037,9 +2037,9 @@ a.contact-info-card:hover {
   text-align: left;
 }
 .contact-intro-form {
-  flex: 1 1 480px;
+  flex: 1 1 520px;
   min-width: 0;
-  max-width: 560px;
+  max-width: 600px;
 }
 .cf-inline-fallback {
   width: 100%;
@@ -2049,17 +2049,11 @@ a.contact-info-card:hover {
 }
 .contact-intro-heading {
   font-family: var(--font-serif);
-  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+  font-size: clamp(1.7rem, 2.6vw, 2.3rem);
   font-weight: 400;
   color: var(--color-dark);
-  line-height: 1.15;
+  line-height: 1.2;
   margin: 0;
-  white-space: nowrap;
-}
-@media (max-width: 900px) {
-  .contact-intro-heading {
-    white-space: normal;
-  }
 }
 .contact-intro-body {
   font-size: 1.05rem;
