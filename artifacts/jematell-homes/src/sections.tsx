@@ -147,7 +147,7 @@ export function Process() {
   return (
     <section className="process section-pad">
       <div className="container">
-        <span className="eyebrow">Our Process</span>
+        <span className="eyebrow" style={{ fontSize: '15px' }}>Our Process</span>
         <h2 className="heading-lg">How we build with you</h2>
         <div className="process-grid">
           {steps.map((step, i) => (
