@@ -188,7 +188,7 @@ export function Process() {
 // the eagerly-loaded homepage bundle).
 const FEATURED_PROJECT_IMAGES: Record<string, string> = {
   crist: "/images/gallery/crist/kitchen-hero.png",
-  "modern-farmhouse": "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/93d24cd6-9eca-4991-89d1-c49f47317fbe/Exterior.jpg",
+  "modern-farmhouse": "/images/gallery/modern-farmhouse/kitchen-hero.jpg",
   "rio-verde-farmhouse": "/images/gallery/rio-verde-farmhouse/kitchen-hero.jpg",
 };
 
