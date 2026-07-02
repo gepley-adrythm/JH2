@@ -2028,6 +2028,7 @@ a.contact-info-card:hover {
 .contact-intro-split {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 64px;
 }
 .contact-intro-text {
