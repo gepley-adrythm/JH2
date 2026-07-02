@@ -298,14 +298,16 @@ function IntroSection({
   if (!subtitle && !intro && !image) return null;
   return (
     <section
-      className="page-intro bg-[color:var(--color-bone)]"
-      style={centered ? { display: "flex", alignItems: "center", justifyContent: "center", minHeight: "30vh", padding: "4rem 0" } : undefined}
+      className="page-intro"
+      style={centered
+        ? { backgroundColor: 'var(--color-bone)', display: "flex", alignItems: "center", justifyContent: "center", minHeight: "30vh", padding: "4rem 0" }
+        : { backgroundColor: 'var(--color-bone)' }}
     >
       <div className="container">
         <div className={`page-intro-grid ${image ? "with-image" : "no-image"}${centered ? " centered" : ""}`}>
           <m.div className="page-intro-copy" {...FADE_IN} style={centered ? { textAlign: "center" } : undefined}>
             {subtitle ? (
-              <h2 className="heading-lg page-intro-title text-[54px]">{subtitle}</h2>
+              <h2 className="heading-lg page-intro-title" style={{ fontSize: '54px' }}>{subtitle}</h2>
             ) : null}
             {intro ? <p className="page-intro-p">{intro}</p> : null}
           </m.div>
@@ -341,8 +343,8 @@ function ServiceGridSection({ section }: { section: Section }) {
     <section className="page-services section-pad">
       <div className="container">
         <m.div className="page-section-head" {...FADE_IN}>
-          <span className="eyebrow text-[15px]">What we do</span>
-          <h2 className="heading-lg text-[55px]">{section.heading?.text}</h2>
+          <span className="eyebrow" style={{ fontSize: '15px' }}>What we do</span>
+          <h2 className="heading-lg" style={{ fontSize: '55px' }}>{section.heading?.text}</h2>
         </m.div>
         <div className="page-services-grid">
           {items.map((it, i) => {

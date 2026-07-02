@@ -70,7 +70,7 @@ export function About() {
             transition={{ duration: 0.55, ease: EASE_OUT_EXPO }}
           >
             <span className="eyebrow" style={{ fontSize: '15px' }}>Get to know us</span>
-            <h2 className="heading-lg text-[55px]" style={{ marginBottom: '32px', textTransform: 'uppercase' }}>A family-owned builder for Arizona</h2>
+            <h2 className="heading-lg" style={{ fontSize: '55px', marginBottom: '32px', textTransform: 'uppercase' }}>A family-owned builder for Arizona</h2>
             <p>
               As a family-owned Arizona home builder, we take pride in creating well-built homes that feel thoughtful, comfortable, and made to last.
             </p>
@@ -147,7 +147,7 @@ export function Process() {
     <section className="process section-pad">
       <div className="container">
         <span className="eyebrow" style={{ fontSize: '15px' }}>Our Process</span>
-        <h2 className="heading-lg text-[55px]" style={{ textTransform: 'uppercase' }}>How we build your dream home</h2>
+        <h2 className="heading-lg" style={{ fontSize: '55px', textTransform: 'uppercase' }}>How we build your dream home</h2>
         <div className="process-grid">
           {steps.map((step, i) => (
             <m.div
@@ -204,7 +204,7 @@ export function FeaturedProjects() {
     <section className="featured-projects section-pad">
       <div className="container">
         <m.div {...FADE_IN_UP_PROPS}>
-          <h2 className="heading-md featured-projects-heading text-[55px]" style={{ textTransform: 'uppercase' }}>Homes We've Built</h2>
+          <h2 className="heading-md featured-projects-heading" style={{ fontSize: '55px', textTransform: 'uppercase' }}>Homes We've Built</h2>
         </m.div>
         <div className="gallery-grid featured-projects-grid">
           {projects.map((proj, i) => (
@@ -264,7 +264,7 @@ export function Reviews() {
                 ★★★★★
               </span>
             </span>
-            <h2 className="heading-lg text-[55px]" style={{ textTransform: 'uppercase' }}>What our homeowners say</h2>
+            <h2 className="heading-lg" style={{ fontSize: '55px', textTransform: 'uppercase' }}>What our homeowners say</h2>
             <div style={{ display: 'flex', gap: '8px', marginTop: '32px' }}>
               {REVIEWS.map((_, i) => (
                 <button
