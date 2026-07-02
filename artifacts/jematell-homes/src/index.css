@@ -2059,7 +2059,7 @@ a.contact-info-card:hover {
   font-size: 1.05rem;
   color: var(--color-text-muted);
   line-height: 1.7;
-  max-width: 500px;
+  max-width: none;
   margin: 0;
 }
 @media (max-width: 900px) {
