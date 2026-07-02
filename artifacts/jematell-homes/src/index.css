@@ -504,7 +504,7 @@ picture {
 /* About / Intro Section */
 .about {
   background: var(--color-bg);
-  padding: clamp(56px, 6vw, 96px) 0;
+  padding: clamp(44px, 4.5vw, 72px) 0;
 }
 .about-grid {
   display: grid;
