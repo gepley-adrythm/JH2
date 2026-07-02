@@ -982,7 +982,7 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
           noindex={key === "thankyou"}
           jsonLd={pageJsonLd.length ? pageJsonLd : undefined}
         />
-        <PageHero data={data} citySlug={isRegion ? key : undefined} hideDescription={heroDescDup} />
+        <PageHero data={data} citySlug={isRegion ? key : undefined} hideDescription={heroDescDup} galleryStyle={key === "warranty" || key === "privacypolicy"} />
         {key === "where-we-build" ? <CityNavigator /> : null}
         <IntroSection
           subtitle={subtitle}
