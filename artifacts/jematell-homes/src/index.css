@@ -702,7 +702,7 @@ picture {
 }
 .process-card--04:hover .process-bg { opacity: 0.8; transform: scale(1.05); }
 .process-card--04 > *:not(.process-bg) { position: relative; z-index: 1; }
-.process-card--04 .process-num { color: rgba(255, 255, 255, 0.8); }
+.process-card--04 .process-num { color: #4a7fb5; }
 .process-card--04 h3 { color: #fff; font-size: 36px; }
 .process-card--04 p { color: rgba(255, 255, 255, 0.9); font-size: 18px; }
 
