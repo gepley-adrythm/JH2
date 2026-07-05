@@ -99,6 +99,13 @@ function visibleText(html) {
     .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
     .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
     .replace(/<noscript\b[^>]*>[\s\S]*?<\/noscript>/gi, " ")
+    // Verbatim source citations are exempt from the em-dash / AI-word rules: we
+    // quote sources (statute names, code sections, published titles) exactly as
+    // published. Reference/glossary pages mark those regions with
+    // `data-citations` (the Sources list, primary-source attribution) and
+    // <blockquote> (quoted source text); everything outside them is still checked.
+    .replace(/<(aside|div)\b[^>]*\bdata-citations\b[^>]*>[\s\S]*?<\/\1>/gi, " ")
+    .replace(/<blockquote\b[^>]*>[\s\S]*?<\/blockquote>/gi, " ")
     .replace(/<[^>]+>/g, " ")
     .replace(/&mdash;/gi, "\u2014")
     .replace(/&nbsp;/gi, " ")
