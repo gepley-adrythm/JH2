@@ -8,7 +8,7 @@ import { Seo } from "../seo/seo";
 import { definedTermSetJsonLd } from "../seo/jsonld";
 
 const INTRO =
-  "Plain-English definitions for the terms that come up on a custom build in Arizona — allowances, draw schedules, setbacks, NAOS, post-tension slabs, the ROC, and dozens more, each with the sources behind it.";
+  "Plain-English definitions for the terms that come up on a custom build in Arizona: allowances, draw schedules, setbacks, NAOS, post-tension slabs, the ROC, and dozens more, each with the sources behind it.";
 
 export default function GlossaryIndex() {
   const { open } = useContactForm();
@@ -76,7 +76,7 @@ export default function GlossaryIndex() {
                 </li>
               ))}
               {results.length === 0 ? (
-                <li className="faq-empty">No matches — try fewer or different words.</li>
+                <li className="faq-empty">No matches. Try fewer or different words.</li>
               ) : null}
             </ul>
           </div>
