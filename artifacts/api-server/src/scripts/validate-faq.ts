@@ -100,18 +100,62 @@ for (const it of faqSeed.items) {
 }
 
 // Duplicate intent across questions.
+//
+// A pure question-similarity check misfires on intentional programmatic series
+// (per-city, per-room, per-type pages) that share a question template but carry
+// genuinely different content. A pair is only a HARD duplicate when the
+// questions are similar, the answers are ALSO similar, and the two questions do
+// not differ by a distinguishing "series" entity (a city / room / structure-type
+// token that marks a legitimate parameterized page). Everything else that trips
+// the lexical check is surfaced as a warning for human review rather than
+// failing the build.
+const SERIES_ENTITIES = new Set([
+  // cities / jurisdictions
+  "scottsdale", "phoenix", "mesa", "chandler", "gilbert", "tempe", "glendale",
+  "peoria", "surprise", "buckeye", "goodyear", "avondale", "carefree", "cave",
+  "creek", "fountain", "hills", "paradise", "valley", "casa", "grande", "apache",
+  "junction", "rio", "verde", "maricopa", "pinal", "county", "anthem", "tucson",
+  "prescott", "sedona", "flagstaff",
+  // rooms / spaces / structures
+  "kitchen", "bathroom", "bath", "primary", "bedroom", "garage", "casita",
+  "patio", "ramada", "pool", "spa", "closet", "pantry", "scullery", "laundry",
+  "office", "gym", "theater", "basement", "attic", "guest", "courtyard",
+  "kitchenette", "workshop", "shed", "barn", "barndominium", "container",
+  "landscape", "landscaping",
+  // unit / build types and actions that parameterize a series
+  "adu", "guesthouse", "rv", "adobe", "icf", "addition", "remodel", "renovation",
+  "conversion", "teardown", "rebuild", "attached", "detached",
+  // architectural styles
+  "hacienda", "spanish", "pueblo", "territorial", "tuscan", "mediterranean",
+  "contemporary", "modern", "farmhouse", "ranch", "santa", "barbara",
+  "southwest", "desert", "colonial", "tudor", "craftsman",
+]);
+function differsBySeriesEntity(a: string, b: string): boolean {
+  const sa = tokens(a);
+  const sb = tokens(b);
+  for (const t of sa) if (!sb.has(t) && SERIES_ENTITIES.has(t)) return true;
+  for (const t of sb) if (!sa.has(t) && SERIES_ENTITIES.has(t)) return true;
+  return false;
+}
 for (let i = 0; i < faqSeed.items.length; i++) {
   for (let j = i + 1; j < faqSeed.items.length; j++) {
     const a = faqSeed.items[i];
     const b = faqSeed.items[j];
-    const score = similarity(a.question, b.question);
-    if (score >= 0.6) {
+    const qs = similarity(a.question, b.question);
+    if (qs < 0.4) continue;
+    const as = similarity(a.answer, b.answer);
+    const series = differsBySeriesEntity(a.question, b.question);
+    if (qs >= 0.6 && as >= 0.55 && !series) {
       errors.push(
-        `Duplicate intent (${score.toFixed(2)}): "${a.slug}" vs "${b.slug}"`,
+        `Duplicate intent (q=${qs.toFixed(2)}, a=${as.toFixed(2)}): "${a.slug}" vs "${b.slug}"`,
       );
-    } else if (score >= 0.4) {
+    } else if (qs >= 0.6) {
       warnings.push(
-        `Possible overlapping intent (${score.toFixed(2)}): "${a.slug}" vs "${b.slug}"`,
+        `${series ? "Series sibling" : "Overlapping intent"} (q=${qs.toFixed(2)}, a=${as.toFixed(2)}): "${a.slug}" vs "${b.slug}"`,
+      );
+    } else {
+      warnings.push(
+        `Possible overlapping intent (${qs.toFixed(2)}): "${a.slug}" vs "${b.slug}"`,
       );
     }
   }
