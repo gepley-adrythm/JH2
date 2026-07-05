@@ -15,14 +15,14 @@ interface ResourceSection {
   cta: string;
 }
 
-// FAQ and Blog are live today. Guides, Glossary, and the Reference Library are
+// FAQ, Glossary, and Blog are live today. Guides and the Reference Library are
 // being populated from the content engine (~600 pages); flip each `href` on as
 // that section ships onto the site.
 const SECTIONS: ResourceSection[] = [
   {
     title: "FAQ",
     description:
-      "Straight answers to the questions people actually ask before they build — timelines, budgets, lots, permits, water, design, and what it is like to work with a family-owned builder.",
+      "Straight answers to the questions people actually ask before they build: timelines, budgets, lots, permits, water, design, and what it is like to work with a family-owned builder.",
     href: "/faq",
     cta: "Browse the FAQ",
   },
@@ -35,8 +35,9 @@ const SECTIONS: ResourceSection[] = [
   {
     title: "Glossary",
     description:
-      "Clear definitions for the terms that come up on a custom build — allowances, draw schedules, setbacks, NAOS, the ROC, post-tension slabs, and dozens more.",
-    cta: "Coming soon",
+      "Clear definitions for the terms that come up on a custom build: allowances, draw schedules, setbacks, NAOS, the ROC, post-tension slabs, and dozens more.",
+    href: "/glossary",
+    cta: "Browse the glossary",
   },
   {
     title: "Reference Library",

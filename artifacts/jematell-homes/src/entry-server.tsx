@@ -6,6 +6,7 @@ import { pages } from "./data/pages";
 import { blogs } from "./data/blogs";
 import { locations, locationHref } from "./config/siteConfig";
 import { faqRoutes } from "./data/faq";
+import { glossaryRoutes } from "./data/glossary";
 
 export { SITE_URL } from "./seo/siteMeta";
 
@@ -54,6 +55,7 @@ export function getRoutes(): string[] {
     "/thank-you",
     "/blog",
     "/llm-info",
+    "/resources",
   ]);
   for (const loc of locations) routes.add(locationHref(loc.slug));
   routes.add("/gallery/crist");
@@ -66,5 +68,6 @@ export function getRoutes(): string[] {
     if (isRealPost(slug)) routes.add(`/blog/${slug}`);
   }
   for (const r of faqRoutes()) routes.add(r);
+  for (const r of glossaryRoutes()) routes.add(r);
   return Array.from(routes);
 }

@@ -33,6 +33,8 @@ let FaqTopic: RouteComp;
 let FaqDetail: RouteComp;
 let LlmInfo: RouteComp;
 let Resources: RouteComp;
+let GlossaryIndex: RouteComp;
+let GlossaryDetail: RouteComp;
 
 if (import.meta.env.SSR) {
   Gallery = (await import("./pages/Gallery")).default;
@@ -46,6 +48,8 @@ if (import.meta.env.SSR) {
   FaqDetail = (await import("./pages/FaqDetail")).default;
   LlmInfo = (await import("./pages/LlmInfo")).default;
   Resources = (await import("./pages/Resources")).default;
+  GlossaryIndex = (await import("./pages/GlossaryIndex")).default;
+  GlossaryDetail = (await import("./pages/GlossaryDetail")).default;
 } else {
   Gallery = React.lazy(() => import("./pages/Gallery"));
   GalleryDetail = React.lazy(() => import("./pages/GalleryDetail"));
@@ -58,6 +62,8 @@ if (import.meta.env.SSR) {
   FaqDetail = React.lazy(() => import("./pages/FaqDetail"));
   LlmInfo = React.lazy(() => import("./pages/LlmInfo"));
   Resources = React.lazy(() => import("./pages/Resources"));
+  GlossaryIndex = React.lazy(() => import("./pages/GlossaryIndex"));
+  GlossaryDetail = React.lazy(() => import("./pages/GlossaryDetail"));
 }
 
 export {
@@ -72,4 +78,6 @@ export {
   FaqDetail,
   LlmInfo,
   Resources,
+  GlossaryIndex,
+  GlossaryDetail,
 };

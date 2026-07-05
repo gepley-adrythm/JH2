@@ -109,3 +109,62 @@ export function collectionJsonLd(opts: {
     isPartOf: { "@id": SITE_URL + "/#website" },
   };
 }
+
+export function definedTermJsonLd(opts: {
+  term: string;
+  definition: string;
+  url: string;
+  termSetName?: string;
+}): object {
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    name: opts.term,
+    description: opts.definition,
+    url: absoluteUrl(opts.url),
+    inDefinedTermSet: {
+      "@type": "DefinedTermSet",
+      name: opts.termSetName ?? "Custom Home Building Glossary",
+      url: absoluteUrl("/glossary"),
+    },
+  };
+}
+
+export function definedTermSetJsonLd(opts: {
+  name: string;
+  description?: string;
+  url: string;
+  terms: Array<{ term: string; url: string }>;
+}): object {
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTermSet",
+    name: opts.name,
+    ...(opts.description ? { description: opts.description } : {}),
+    url: absoluteUrl(opts.url),
+    hasDefinedTerm: opts.terms.map((t) => ({
+      "@type": "DefinedTerm",
+      name: t.term,
+      url: absoluteUrl(t.url),
+    })),
+  };
+}
+
+export function techArticleJsonLd(opts: {
+  title: string;
+  description?: string;
+  url: string;
+  section?: string;
+}): object {
+  return {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: opts.title,
+    ...(opts.description ? { description: opts.description } : {}),
+    ...(opts.section ? { articleSection: opts.section } : {}),
+    url: absoluteUrl(opts.url),
+    mainEntityOfPage: absoluteUrl(opts.url),
+    author: { "@id": SITE_URL + "/#organization" },
+    publisher: { "@id": SITE_URL + "/#organization" },
+  };
+}
