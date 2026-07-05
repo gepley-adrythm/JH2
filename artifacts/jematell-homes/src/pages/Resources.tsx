@@ -89,17 +89,15 @@ export default function Resources() {
         />
         <div className="page-hero-overlay" />
         <div className="container page-hero-content">
-          <p className="page-hero-eyebrow">The Jematell Homes resource library</p>
-          <h1 className="page-hero-title">Resources</h1>
-          <p className="page-hero-sub">{INTRO}</p>
+          <span className="eyebrow" style={{ color: "var(--color-bone)" }}>Explore the library</span>
+          <h1 className="page-hero-title" style={{ textTransform: "uppercase" }}>
+            Everything you need to build with confidence
+          </h1>
         </div>
       </section>
 
       <section className="resources-hub section-pad">
         <div className="container">
-          <span className="eyebrow">Explore the library</span>
-          <h2 className="heading-lg">Everything you need to build with confidence</h2>
-
           <div className="resources-grid" data-testid="resources-grid">
             {SECTIONS.map((s) => (
               <Link

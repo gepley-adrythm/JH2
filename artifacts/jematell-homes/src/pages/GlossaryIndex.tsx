@@ -44,8 +44,8 @@ export default function GlossaryIndex() {
         />
         <div className="page-hero-overlay" />
         <div className="container page-hero-content">
-          <h1 className="faq-hero-title hero-title">Glossary</h1>
-          <p className="page-hero-sub hero-subtitle">{INTRO}</p>
+          <span className="eyebrow" style={{ color: "var(--color-bone)" }}>The custom-home glossary</span>
+          <h1 className="page-hero-title" style={{ textTransform: "uppercase" }}>Glossary</h1>
           <div className="faq-search hero-cta" role="search">
             <Search size={18} aria-hidden="true" />
             <input
@@ -82,39 +82,34 @@ export default function GlossaryIndex() {
           </div>
         </section>
       ) : (
-        <section className="section-pad" style={{ background: "var(--color-cream, #ece9e2)" }}>
+        <section className="glossary-index section-pad">
           <div className="container">
-            <div className="faq-topics" data-testid="glossary-letters">
-              <div className="faq-topic-chips">
-                {letters.map((g) => (
-                  <a key={g.letter} href={`#letter-${g.letter}`} className="faq-topic-chip">
-                    {g.letter}
-                  </a>
-                ))}
-              </div>
+            <div className="glossary-az" data-testid="glossary-letters">
+              {letters.map((g) => (
+                <a key={g.letter} href={`#letter-${g.letter}`}>{g.letter}</a>
+              ))}
             </div>
 
             {letters.map((g) => (
               <div
                 key={g.letter}
                 id={`letter-${g.letter}`}
-                className="faq-category"
+                className="glossary-letter"
                 data-testid={`glossary-letter-${g.letter}`}
               >
-                <h2 className="faq-category-title">{g.letter}</h2>
-                <div className="faq-card-grid">
+                <div className="glossary-letter-mark">{g.letter}</div>
+                <div className="glossary-term-grid">
                   {g.terms.map((t) => (
                     <Link
                       key={t.slug}
                       to={`/glossary/${t.slug}`}
-                      className="faq-q-card"
+                      className="glossary-term"
                       data-testid={`glossary-term-${t.slug}`}
                     >
-                      <span className="faq-q-card-q">{t.term}</span>
-                      <span className="faq-category-desc">{t.shortDefinition}</span>
-                      <span className="faq-q-card-more">
-                        Read definition <ArrowRight size={15} aria-hidden="true" />
+                      <span className="glossary-term-name">
+                        {t.term} <ArrowRight size={16} aria-hidden="true" />
                       </span>
+                      <span className="glossary-term-def">{t.shortDefinition}</span>
                     </Link>
                   ))}
                 </div>
