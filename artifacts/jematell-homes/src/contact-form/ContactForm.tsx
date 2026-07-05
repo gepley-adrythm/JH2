@@ -8,7 +8,7 @@ import { useSafeTimeouts } from "./useSafeTimeouts";
 import {
   formatPhone,
   validEmail,
-  statusClause,
+  getArticle,
   statusChips,
   actionChips,
   topicChips,
@@ -220,13 +220,15 @@ export default function ContactForm({ onClose, variant = "modal" }: ContactFormP
     }
     const tVal = topicValue === "other" && otherTopicValue.trim() ? otherTopicValue.trim() : topicValue;
     if (isExistingClient && actionValue && !actionNeedsTopicChips && actionChosen) {
-      let msg = statusClause(statusValue) + " and I would like to " + actionValue + ".";
+      const article = getArticle(statusValue);
+      let msg = "I am " + article + " " + statusValue + " and I would like to " + actionValue + ".";
       if (actionDetailValue.trim()) msg += " Details: " + actionDetailValue.trim();
       if (formData.referralName) msg += " Referral from " + formData.referralName + ".";
       return msg;
     } else if (statusValue && actionValue && tVal) {
+      const article = getArticle(statusValue);
       const connector = isExistingClient ? "regarding" : "about";
-      let msg = statusClause(statusValue) + " and I would like to " + actionValue + " " + connector + " " + tVal + ".";
+      let msg = "I am " + article + " " + statusValue + " and I would like to " + actionValue + " " + connector + " " + tVal + ".";
       if (actionValue === "ask a question" && questionValue.trim()) msg += " Question: " + questionValue.trim();
       if (isExistingClient && actionNeedsTopicChips && elaborationValue.trim()) msg += " Additional details: " + elaborationValue.trim();
       if (formData.referralName) msg += " Referral from " + formData.referralName + ".";
@@ -267,7 +269,7 @@ export default function ContactForm({ onClose, variant = "modal" }: ContactFormP
     setManualMessage("");
     setSentenceComplete(false);
     setActiveChipGroup("status");
-    typing.resetAndType("I am ");
+    typing.resetAndType("I am a ");
   }, [typing]);
 
   useEffect(() => {
@@ -282,7 +284,8 @@ export default function ContactForm({ onClose, variant = "modal" }: ContactFormP
     setStatusChosen(true);
     const isExisting = value === "existing client";
     setIsExistingClient(isExisting);
-    const prefix = statusClause(value);
+    const article = getArticle(value);
+    const prefix = "I am " + article + " " + value;
     typingRef.current.appendTo(prefix, () => {
       setActiveChipGroup("fade-status");
       safeTimeout(() => {
@@ -299,7 +302,8 @@ export default function ContactForm({ onClose, variant = "modal" }: ContactFormP
 
     if (isExistingClient && value === "discuss a change to my build") {
       setActionNeedsTopicChips(true);
-      const prefix = statusClause(statusValue) + " and I would like to ";
+      const article = getArticle(statusValue);
+      const prefix = "I am " + article + " " + statusValue + " and I would like to ";
       typingRef.current.appendTo(prefix + value, () => {
         setActiveChipGroup("fade-action");
         safeTimeout(() => {
@@ -314,7 +318,8 @@ export default function ContactForm({ onClose, variant = "modal" }: ContactFormP
       setTopicValue("");
       const cfg = actionDetailConfigs[value] || { label: "Tell us more", placeholder: "" };
       setActionDetailPlaceholder(cfg.placeholder);
-      const prefix = statusClause(statusValue) + " and I would like to ";
+      const article = getArticle(statusValue);
+      const prefix = "I am " + article + " " + statusValue + " and I would like to ";
       typingRef.current.appendTo(prefix + value, () => {
         setActiveChipGroup("fade-action");
         safeTimeout(() => {
@@ -325,7 +330,8 @@ export default function ContactForm({ onClose, variant = "modal" }: ContactFormP
       });
     } else {
       setActionNeedsTopicChips(false);
-      const prefix = statusClause(statusValue) + " and I would like to ";
+      const article = getArticle(statusValue);
+      const prefix = "I am " + article + " " + statusValue + " and I would like to ";
       typingRef.current.appendTo(prefix + value, () => {
         setActiveChipGroup("fade-action");
         safeTimeout(() => {
@@ -340,8 +346,9 @@ export default function ContactForm({ onClose, variant = "modal" }: ContactFormP
   const handleTopicChipClick = useCallback((value: string) => {
     setTopicValue(value);
     setTopicChosen(true);
+    const article = getArticle(statusValue);
     const connector = isExistingClient ? "regarding" : "about";
-    const prefix = statusClause(statusValue) + " and I would like to " + actionValue + " " + connector + " ";
+    const prefix = "I am " + article + " " + statusValue + " and I would like to " + actionValue + " " + connector + " ";
 
     if (value === "other") {
       setActiveChipGroup("fade-topic");
@@ -423,25 +430,28 @@ export default function ContactForm({ onClose, variant = "modal" }: ContactFormP
       setManualMessage("");
       if (!statusChosen) {
         setActiveChipGroup("status");
-        typing.resetAndType("I am ");
+        typing.resetAndType("I am a ");
       } else if (!actionChosen) {
-        typing.setText(statusClause(statusValue) + " and I would like to ");
+        const article = getArticle(statusValue);
+        typing.setText("I am " + article + " " + statusValue + " and I would like to ");
         setActiveChipGroup(isExistingClient ? "existingAction" : "action");
         typing.setShowCursor(true);
       } else if (!topicChosen) {
+        const article = getArticle(statusValue);
         const connector = isExistingClient ? "regarding" : "about";
-        typing.setText(statusClause(statusValue) + " and I would like to " + actionValue + " " + connector + " ");
+        typing.setText("I am " + article + " " + statusValue + " and I would like to " + actionValue + " " + connector + " ");
         setActiveChipGroup(isExistingClient ? "existingTopic" : "topic");
         typing.setShowCursor(true);
       } else {
+        const article = getArticle(statusValue);
         const connector = isExistingClient ? "regarding" : "about";
         const tVal = topicValue === "other" ? otherTopicValue || "" : topicValue;
         if (isExistingClient && !actionNeedsTopicChips) {
-          typing.setText(statusClause(statusValue) + " and I would like to " + actionValue + ".");
+          typing.setText("I am " + article + " " + statusValue + " and I would like to " + actionValue + ".");
         } else if (tVal) {
-          typing.setText(statusClause(statusValue) + " and I would like to " + actionValue + " " + connector + " " + tVal + ".");
+          typing.setText("I am " + article + " " + statusValue + " and I would like to " + actionValue + " " + connector + " " + tVal + ".");
         } else {
-          typing.setText(statusClause(statusValue) + " and I would like to " + actionValue + " " + connector + " ");
+          typing.setText("I am " + article + " " + statusValue + " and I would like to " + actionValue + " " + connector + " ");
           setActiveChipGroup(isExistingClient ? "existingTopic" : "topic");
           typing.setShowCursor(true);
           return;

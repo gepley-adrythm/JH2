@@ -1,12 +1,7 @@
 export const statusChips = [
-  { value: "new client", label: "Planning a New Home", clause: "I am planning a new home" },
-  { value: "existing client", label: "Current Client", clause: "I am a current client" },
+  { value: "new client", label: "Planning a New Home" },
+  { value: "existing client", label: "Current Client" },
 ];
-
-export function statusClause(value: string): string {
-  const chip = statusChips.find((c) => c.value === value);
-  return chip?.clause ?? "I am " + getArticle(value) + " " + value;
-}
 
 export const actionChips = [
   { value: "schedule a consultation", label: "Schedule a Consultation" },
