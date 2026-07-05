@@ -15,9 +15,8 @@ interface ResourceSection {
   cta: string;
 }
 
-// FAQ, Glossary, and Blog are live today. Guides and the Reference Library are
-// being populated from the content engine (~600 pages); flip each `href` on as
-// that section ships onto the site.
+// FAQ, Glossary, Reference Library, and Blog are live. Guides ship next; flip
+// its `href` on when that section lands.
 const SECTIONS: ResourceSection[] = [
   {
     title: "FAQ",
@@ -43,7 +42,8 @@ const SECTIONS: ResourceSection[] = [
     title: "Reference Library",
     description:
       "The source material, in plain language: adopted building codes for every city we serve, Arizona building-law statutes section by section, the residential code explained, and the design guidelines of the guard-gated communities.",
-    cta: "Coming soon",
+    href: "/reference-library",
+    cta: "Open the reference library",
   },
   {
     title: "Blog",

@@ -22,6 +22,9 @@ import {
   Resources,
   GlossaryIndex,
   GlossaryDetail,
+  ReferenceIndex,
+  ReferenceModule,
+  ReferenceDetail,
 } from "./routes";
 
 function ScrollToTop() {
@@ -79,6 +82,9 @@ export default function AppShell() {
           <Route path="/resources" element={<Resources />} />
           <Route path="/glossary" element={<GlossaryIndex />} />
           <Route path="/glossary/:slug" element={<GlossaryDetail />} />
+          <Route path="/reference-library" element={<ReferenceIndex />} />
+          <Route path="/reference-library/:module" element={<ReferenceModule />} />
+          <Route path="/reference-library/:module/:slug" element={<ReferenceDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </Suspense>
