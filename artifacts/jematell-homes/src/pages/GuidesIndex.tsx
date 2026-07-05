@@ -36,27 +36,28 @@ export default function GuidesIndex() {
         />
         <div className="page-hero-overlay" />
         <div className="container page-hero-content">
-          <h1 className="faq-hero-title hero-title">Guides</h1>
-          <p className="page-hero-sub hero-subtitle">{INTRO}</p>
+          <span className="eyebrow" style={{ color: "var(--color-bone)" }}>The complete guides</span>
+          <h1 className="page-hero-title" style={{ textTransform: "uppercase" }}>Guides</h1>
         </div>
       </section>
 
-      <section className="section-pad" style={{ background: "var(--color-cream, #ece9e2)" }}>
+      <section className="lib-hub section-pad">
         <div className="container">
           {groups.map((g) => (
-            <div key={g.label} className="faq-category" data-testid={`guides-group-${g.label.replace(/\s+/g, "-").toLowerCase()}`}>
-              <h2 className="faq-category-title">{g.label}</h2>
-              <div className="faq-card-grid">
+            <div key={g.label} className="lib-group" data-testid={`guides-group-${g.label.replace(/\s+/g, "-").toLowerCase()}`}>
+              <div className="lib-group-label">{g.label}</div>
+              <div className="lib-grid">
                 {g.guides.map((guide) => (
                   <Link
                     key={guide.slug}
                     to={`/guides/${guide.slug}`}
-                    className="faq-q-card"
+                    className="lib-card"
                     data-testid={`guide-${guide.slug}`}
                   >
-                    <span className="faq-q-card-q">{guide.city || guide.title}</span>
-                    <span className="faq-category-desc">{guide.summary}</span>
-                    <span className="faq-q-card-more">
+                    <span className="lib-card-count">{guide.city ? "City guide" : "Pillar guide"}</span>
+                    <h3 className="lib-card-title">{guide.city || guide.title}</h3>
+                    <p className="lib-card-desc">{guide.summary}</p>
+                    <span className="lib-card-more">
                       Read the guide <ArrowRight size={15} aria-hidden="true" />
                     </span>
                   </Link>

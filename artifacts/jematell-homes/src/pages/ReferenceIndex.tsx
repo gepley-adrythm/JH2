@@ -35,25 +35,26 @@ export default function ReferenceIndex() {
         />
         <div className="page-hero-overlay" />
         <div className="container page-hero-content">
-          <h1 className="faq-hero-title hero-title">Reference Library</h1>
-          <p className="page-hero-sub hero-subtitle">{INTRO}</p>
+          <span className="eyebrow" style={{ color: "var(--color-bone)" }}>The source material</span>
+          <h1 className="page-hero-title" style={{ textTransform: "uppercase" }}>Reference Library</h1>
         </div>
       </section>
 
-      <section className="section-pad" style={{ background: "var(--color-cream, #ece9e2)" }}>
+      <section className="lib-hub section-pad">
         <div className="container">
-          <div className="faq-card-grid" data-testid="reference-modules">
+          <div className="lib-grid" data-testid="reference-modules">
             {REFERENCE_MODULES.map((m) => (
               <Link
                 key={m.slug}
                 to={`/reference-library/${m.slug}`}
-                className="faq-q-card"
+                className="lib-card"
                 data-testid={`reference-module-${m.slug}`}
               >
-                <span className="faq-q-card-q">{m.title}</span>
-                <span className="faq-category-desc">{m.description}</span>
-                <span className="faq-q-card-more">
-                  {moduleCount(m.slug)} entries <ArrowRight size={15} aria-hidden="true" />
+                <span className="lib-card-count">{moduleCount(m.slug)} entries</span>
+                <h2 className="lib-card-title">{m.title}</h2>
+                <p className="lib-card-desc">{m.description}</p>
+                <span className="lib-card-more">
+                  Browse <ArrowRight size={15} aria-hidden="true" />
                 </span>
               </Link>
             ))}
