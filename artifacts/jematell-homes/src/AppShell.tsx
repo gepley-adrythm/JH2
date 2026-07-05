@@ -19,6 +19,7 @@ import {
   FaqTopic,
   FaqDetail,
   LlmInfo,
+  Resources,
 } from "./routes";
 
 function ScrollToTop() {
@@ -73,6 +74,7 @@ export default function AppShell() {
           <Route path="/faq/topics/:slug" element={<FaqTopic />} />
           <Route path="/faq/:slug" element={<FaqDetail />} />
           <Route path="/llm-info" element={<LlmInfo />} />
+          <Route path="/resources" element={<Resources />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </Suspense>

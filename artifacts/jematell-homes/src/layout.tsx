@@ -302,8 +302,7 @@ export function Footer() {
           <nav className="footer-links" aria-label="Footer navigation">
             <Link to="/contact" viewTransition>Contact</Link>
             <Link to="/spec-homes" viewTransition>Spec Homes</Link>
-            <Link to="/blog" viewTransition>Blog</Link>
-            <a href="/faq">FAQ</a>
+            <Link to="/resources" viewTransition>Resources</Link>
             <Link to="/warranty" viewTransition>Warranty</Link>
             <Link to="/privacy" viewTransition>Privacy Policy</Link>
             <Link to="/llm-info" viewTransition>LLM Info</Link>

@@ -32,6 +32,7 @@ let FaqIndex: RouteComp;
 let FaqTopic: RouteComp;
 let FaqDetail: RouteComp;
 let LlmInfo: RouteComp;
+let Resources: RouteComp;
 
 if (import.meta.env.SSR) {
   Gallery = (await import("./pages/Gallery")).default;
@@ -44,6 +45,7 @@ if (import.meta.env.SSR) {
   FaqTopic = (await import("./pages/FaqTopic")).default;
   FaqDetail = (await import("./pages/FaqDetail")).default;
   LlmInfo = (await import("./pages/LlmInfo")).default;
+  Resources = (await import("./pages/Resources")).default;
 } else {
   Gallery = React.lazy(() => import("./pages/Gallery"));
   GalleryDetail = React.lazy(() => import("./pages/GalleryDetail"));
@@ -55,6 +57,7 @@ if (import.meta.env.SSR) {
   FaqTopic = React.lazy(() => import("./pages/FaqTopic"));
   FaqDetail = React.lazy(() => import("./pages/FaqDetail"));
   LlmInfo = React.lazy(() => import("./pages/LlmInfo"));
+  Resources = React.lazy(() => import("./pages/Resources"));
 }
 
 export {
@@ -68,4 +71,5 @@ export {
   FaqTopic,
   FaqDetail,
   LlmInfo,
+  Resources,
 };
