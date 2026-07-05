@@ -15,9 +15,7 @@ interface ResourceSection {
   cta: string;
 }
 
-// FAQ, Glossary, and Blog are live today. Guides and the Reference Library are
-// being populated from the content engine (~600 pages); flip each `href` on as
-// that section ships onto the site.
+// All sections are live: FAQ, Guides, Glossary, Reference Library, and Blog.
 const SECTIONS: ResourceSection[] = [
   {
     title: "FAQ",
@@ -30,7 +28,8 @@ const SECTIONS: ResourceSection[] = [
     title: "Guides",
     description:
       "In-depth guides that walk the whole journey end to end: how to build a custom home in Arizona, construction financing, the pre-construction permit layer, building on rural land, and a complete guide for every city we build in.",
-    cta: "Coming soon",
+    href: "/guides",
+    cta: "Read the guides",
   },
   {
     title: "Glossary",
@@ -43,7 +42,8 @@ const SECTIONS: ResourceSection[] = [
     title: "Reference Library",
     description:
       "The source material, in plain language: adopted building codes for every city we serve, Arizona building-law statutes section by section, the residential code explained, and the design guidelines of the guard-gated communities.",
-    cta: "Coming soon",
+    href: "/reference-library",
+    cta: "Open the reference library",
   },
   {
     title: "Blog",
