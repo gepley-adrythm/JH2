@@ -8,6 +8,7 @@ import { locations, locationHref } from "./config/siteConfig";
 import { faqRoutes } from "./data/faq";
 import { glossaryRoutes } from "./data/glossary";
 import { referenceRoutes } from "./data/reference";
+import { guideRoutes } from "./data/guides";
 
 export { SITE_URL } from "./seo/siteMeta";
 
@@ -71,5 +72,6 @@ export function getRoutes(): string[] {
   for (const r of faqRoutes()) routes.add(r);
   for (const r of glossaryRoutes()) routes.add(r);
   for (const r of referenceRoutes()) routes.add(r);
+  for (const r of guideRoutes()) routes.add(r);
   return Array.from(routes);
 }

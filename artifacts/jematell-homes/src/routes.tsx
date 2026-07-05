@@ -38,6 +38,8 @@ let GlossaryDetail: RouteComp;
 let ReferenceIndex: RouteComp;
 let ReferenceModule: RouteComp;
 let ReferenceDetail: RouteComp;
+let GuidesIndex: RouteComp;
+let GuideDetail: RouteComp;
 
 if (import.meta.env.SSR) {
   Gallery = (await import("./pages/Gallery")).default;
@@ -56,6 +58,8 @@ if (import.meta.env.SSR) {
   ReferenceIndex = (await import("./pages/ReferenceIndex")).default;
   ReferenceModule = (await import("./pages/ReferenceModule")).default;
   ReferenceDetail = (await import("./pages/ReferenceDetail")).default;
+  GuidesIndex = (await import("./pages/GuidesIndex")).default;
+  GuideDetail = (await import("./pages/GuideDetail")).default;
 } else {
   Gallery = React.lazy(() => import("./pages/Gallery"));
   GalleryDetail = React.lazy(() => import("./pages/GalleryDetail"));
@@ -73,6 +77,8 @@ if (import.meta.env.SSR) {
   ReferenceIndex = React.lazy(() => import("./pages/ReferenceIndex"));
   ReferenceModule = React.lazy(() => import("./pages/ReferenceModule"));
   ReferenceDetail = React.lazy(() => import("./pages/ReferenceDetail"));
+  GuidesIndex = React.lazy(() => import("./pages/GuidesIndex"));
+  GuideDetail = React.lazy(() => import("./pages/GuideDetail"));
 }
 
 export {
@@ -92,4 +98,6 @@ export {
   ReferenceIndex,
   ReferenceModule,
   ReferenceDetail,
+  GuidesIndex,
+  GuideDetail,
 };

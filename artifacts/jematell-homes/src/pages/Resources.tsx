@@ -15,8 +15,7 @@ interface ResourceSection {
   cta: string;
 }
 
-// FAQ, Glossary, Reference Library, and Blog are live. Guides ship next; flip
-// its `href` on when that section lands.
+// All sections are live: FAQ, Guides, Glossary, Reference Library, and Blog.
 const SECTIONS: ResourceSection[] = [
   {
     title: "FAQ",
@@ -29,7 +28,8 @@ const SECTIONS: ResourceSection[] = [
     title: "Guides",
     description:
       "In-depth guides that walk the whole journey end to end: how to build a custom home in Arizona, construction financing, the pre-construction permit layer, building on rural land, and a complete guide for every city we build in.",
-    cta: "Coming soon",
+    href: "/guides",
+    cta: "Read the guides",
   },
   {
     title: "Glossary",

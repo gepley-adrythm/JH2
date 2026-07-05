@@ -25,6 +25,8 @@ import {
   ReferenceIndex,
   ReferenceModule,
   ReferenceDetail,
+  GuidesIndex,
+  GuideDetail,
 } from "./routes";
 
 function ScrollToTop() {
@@ -85,6 +87,8 @@ export default function AppShell() {
           <Route path="/reference-library" element={<ReferenceIndex />} />
           <Route path="/reference-library/:module" element={<ReferenceModule />} />
           <Route path="/reference-library/:module/:slug" element={<ReferenceDetail />} />
+          <Route path="/guides" element={<GuidesIndex />} />
+          <Route path="/guides/:slug" element={<GuideDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </Suspense>
