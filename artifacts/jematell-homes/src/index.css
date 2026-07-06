@@ -200,6 +200,11 @@ h1, h2, h3, h4, h5, h6 {
 .site-header:not(.scrolled) .brand-logo img {
   filter: brightness(0) invert(1);
 }
+/* When the mobile menu is open over the light panel, the transparent-header
+   white logo would be invisible — force it back to its natural dark tone. */
+.site-header:not(.scrolled):has(.mobile-menu-btn.is-open) .brand-logo img {
+  filter: none;
+}
 .site-header:not(.scrolled) .main-nav > a,
 .site-header:not(.scrolled) .main-nav .nav-trigger {
   color: #fff;
