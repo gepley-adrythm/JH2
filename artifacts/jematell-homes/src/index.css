@@ -494,7 +494,7 @@ picture {
 }
 .hero-content .heading-xl.hero-title {
   text-transform: uppercase;
-  font-size: clamp(30px, 7vw, 85px);
+  font-size: clamp(40px, 9vw, 85px);
 }
 .hero-content .heading-xl span {
   display: block;
