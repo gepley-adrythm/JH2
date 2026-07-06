@@ -1,12 +1,15 @@
 import React, { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight, Clock } from "lucide-react";
 import { faqDataset, SERVICE_LINKS } from "../data/faq";
 import { blogs } from "../data/blogs";
 import { useContactForm } from "../contact-form";
 import { ResponsiveImage } from "../components/ResponsiveImage";
 import { Seo } from "../seo/seo";
 import { qaPageJsonLd, breadcrumbJsonLd } from "../seo/jsonld";
+import { annotateHeadings, readingTime } from "../lib/detail";
+import { useReadingProgress } from "../lib/useReadingProgress";
+import { DetailProgress, DetailToc, DetailMore, type MoreColumn } from "../components/DetailParts";
 import NotFound from "./not-found";
 
 function cleanTitle(t: string) {
@@ -20,14 +23,14 @@ export default function FaqDetail() {
   const item = useMemo(() => (slug ? faqDataset.getItem(slug) : undefined), [slug]);
   const detail = useMemo(() => (item ? faqDataset.toDetail(item) : undefined), [item]);
   const related = useMemo(() => (item ? faqDataset.related(item) : []), [item]);
+  const article = useMemo(() => annotateHeadings(detail?.answerHtml || ""), [detail]);
+  const minutes = useMemo(() => readingTime(detail?.answerHtml || detail?.answer || ""), [detail]);
+
+  const { progressRef, activeId } = useReadingProgress(article.toc);
 
   if (!item || !detail) return <NotFound />;
 
   const path = `/faq/${detail.slug}`;
-  // The breadcrumb parent is the item's first resolvable topic (topics have real
-  // pages at /faq/topics/:slug). Categories live only as sections on the hub, so
-  // they are not link-worthy breadcrumb nodes. Items without a topic fall back to
-  // a 3-level trail (Home > FAQ > Question).
   const primaryTopic = (() => {
     for (const ts of detail.topicSlugs) {
       const t = faqDataset.getTopic(ts);
@@ -38,9 +41,7 @@ export default function FaqDetail() {
   const crumbs = [
     { name: "Home", url: "/" },
     { name: "FAQ", url: "/faq" },
-    ...(primaryTopic
-      ? [{ name: primaryTopic.title, url: `/faq/topics/${primaryTopic.slug}` }]
-      : []),
+    ...(primaryTopic ? [{ name: primaryTopic.title, url: `/faq/topics/${primaryTopic.slug}` }] : []),
     { name: detail.question, url: path },
   ];
   const services = detail.relatedServiceSlugs
@@ -50,8 +51,35 @@ export default function FaqDetail() {
     detail.pillarBlogSlug && blogs[detail.pillarBlogSlug]
       ? { slug: detail.pillarBlogSlug, title: cleanTitle(blogs[detail.pillarBlogSlug].title) }
       : null;
-
   const paragraphs = detail.answer.split(/\n{2,}/).filter(Boolean);
+
+  const columns: MoreColumn[] = [
+    { label: "Related questions", items: related.map((r) => ({ to: `/faq/${r.slug}`, label: r.question })) },
+    { label: "Related services", items: services.map((s) => ({ to: s.href, label: s.label })) },
+    ...(pillar ? [{ label: "Go deeper", items: [{ to: `/blog/${pillar.slug}`, label: pillar.title }] }] : []),
+  ];
+
+  const body = (
+    <div className="dt-main">
+      {detail.shortAnswer ? (
+        <div className="dt-answer-card" data-testid="faq-short-answer">
+          <span className="dt-answer-card-label">The short answer</span>
+          <p>{detail.shortAnswer}</p>
+        </div>
+      ) : null}
+      <div className="dt-prose" data-testid="faq-answer">
+        {detail.answerHtml ? (
+          <div dangerouslySetInnerHTML={{ __html: article.html }} />
+        ) : (
+          paragraphs.map((p, i) => <p key={i}>{p}</p>)
+        )}
+      </div>
+      <DetailMore columns={columns} testid="faq-related" />
+      <Link to="/faq" className="dt-back" data-testid="faq-detail-all">
+        All questions <ArrowRight size={14} aria-hidden="true" />
+      </Link>
+    </div>
+  );
 
   return (
     <main className="page faq-page faq-detail">
@@ -65,114 +93,48 @@ export default function FaqDetail() {
         ]}
       />
 
-      <section className="page-hero faq-hero faq-detail-hero">
-        <ResponsiveImage
-          name="cta-bg"
-          className="page-hero-bg"
-          alt=""
-          widths={[768, 1280, 1920, 2500]}
-          sizes="100vw"
-          width={2500}
-          height={1667}
-          priority
-        />
+      <DetailProgress innerRef={progressRef} />
+
+      <section className="page-hero faq-hero faq-detail-hero page-hero-short">
+        <ResponsiveImage name="cta-bg" className="page-hero-bg" alt="" widths={[768, 1280, 1920, 2500]} sizes="100vw" width={2500} height={1667} priority />
         <div className="page-hero-overlay" />
         <div className="container page-hero-content">
           <nav className="faq-crumbs hero-eyebrow" aria-label="Breadcrumb">
             <Link to="/faq" data-testid="faq-detail-crumb">FAQ</Link>
             <ChevronRight size={14} aria-hidden="true" />
             {primaryTopic ? (
-              <Link
-                to={`/faq/topics/${primaryTopic.slug}`}
-                data-testid="faq-detail-crumb-topic"
-              >
-                {primaryTopic.title}
-              </Link>
+              <Link to={`/faq/topics/${primaryTopic.slug}`} data-testid="faq-detail-crumb-topic">{primaryTopic.title}</Link>
             ) : (
               <span>{detail.categoryTitle}</span>
             )}
           </nav>
           <h1 className="faq-detail-title hero-title">{detail.question}</h1>
-          {detail.shortAnswer ? (
-            <p className="faq-detail-lede" data-testid="faq-detail-lede">
-              {detail.shortAnswer}
-            </p>
-          ) : null}
+          <div className="dt-hero-meta">
+            <span><Clock size={14} aria-hidden="true" /> {minutes} min read</span>
+          </div>
         </div>
       </section>
 
-      <section className="section-pad" style={{ background: "var(--color-bg)" }}>
-        <div className="container container-narrow">
-          <div className="faq-answer" data-testid="faq-answer">
-            {detail.answerHtml ? (
-              <div dangerouslySetInnerHTML={{ __html: detail.answerHtml }} />
-            ) : (
-              paragraphs.map((p, i) => <p key={i}>{p}</p>)
-            )}
-          </div>
-
-          {services.length > 0 ? (
-            <div className="faq-aside" data-testid="faq-related-services">
-              <h2 className="faq-aside-title">Related services</h2>
-              <ul className="faq-aside-links">
-                {services.map((s) => (
-                  <li key={s.href}>
-                    <Link to={s.href} data-testid={`faq-service-${s.href.replace(/^\//, "")}`}>
-                      {s.label} <ArrowRight size={14} aria-hidden="true" />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+      <section className="dt-section">
+        <div className="container">
+          {article.toc.length > 1 ? (
+            <div className="dt-shell">
+              {body}
+              <aside className="dt-rail">
+                <DetailToc toc={article.toc} activeId={activeId} />
+              </aside>
             </div>
-          ) : null}
-
-          {pillar ? (
-            <div className="faq-aside" data-testid="faq-pillar">
-              <h2 className="faq-aside-title">Go deeper</h2>
-              <Link
-                to={`/blog/${pillar.slug}`}
-                className="faq-pillar-link"
-                data-testid={`faq-pillar-${pillar.slug}`}
-              >
-                {pillar.title} <ArrowRight size={14} aria-hidden="true" />
-              </Link>
-            </div>
-          ) : null}
-
-          {related.length > 0 ? (
-            <div className="faq-aside" data-testid="faq-related">
-              <h2 className="faq-aside-title">Related questions</h2>
-              <ul className="faq-list">
-                {related.map((r) => (
-                  <li key={r.slug}>
-                    <Link to={`/faq/${r.slug}`} data-testid={`faq-related-${r.slug}`}>
-                      <span>{r.question}</span>
-                      <ArrowRight size={16} aria-hidden="true" />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-
-          <Link to="/faq" className="faq-back" data-testid="faq-detail-all">
-            All questions <ArrowRight size={14} aria-hidden="true" />
-          </Link>
+          ) : (
+            <div style={{ maxWidth: 720, marginInline: "auto" }}>{body}</div>
+          )}
         </div>
       </section>
 
       <section className="faq-cta">
         <div className="container faq-cta-inner">
           <h2 className="faq-cta-title">Ready to talk it through?</h2>
-          <p className="faq-cta-sub">
-            Every build starts with a conversation. Tell us what you have in mind.
-          </p>
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => open()}
-            data-testid="faq-detail-cta-contact"
-          >
+          <p className="faq-cta-sub">Every build starts with a conversation. Tell us what you have in mind.</p>
+          <button type="button" className="btn btn-primary" onClick={() => open()} data-testid="faq-detail-cta-contact">
             Start the conversation
           </button>
         </div>

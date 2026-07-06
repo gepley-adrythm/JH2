@@ -1,12 +1,14 @@
 import React, { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight, Clock } from "lucide-react";
 import { getGlossaryTerm } from "../data/glossary";
 import { faqDataset } from "../data/faq";
 import { useContactForm } from "../contact-form";
 import { ResponsiveImage } from "../components/ResponsiveImage";
 import { Seo } from "../seo/seo";
 import { definedTermJsonLd, breadcrumbJsonLd } from "../seo/jsonld";
+import { annotateHeadings, readingTime } from "../lib/detail";
+import { DetailMore, type MoreColumn } from "../components/DetailParts";
 import NotFound from "./not-found";
 
 export default function GlossaryDetail() {
@@ -14,17 +16,14 @@ export default function GlossaryDetail() {
   const { open } = useContactForm();
 
   const term = useMemo(() => (slug ? getGlossaryTerm(slug) : undefined), [slug]);
+  const article = useMemo(() => annotateHeadings(term?.definitionHtml || ""), [term]);
+  const minutes = useMemo(() => readingTime(term?.definitionHtml || ""), [term]);
   const relatedTerms = useMemo(
     () => (term ? term.relatedTerms.map(getGlossaryTerm).filter((t): t is NonNullable<typeof t> => Boolean(t)) : []),
     [term],
   );
   const relatedFaqs = useMemo(
-    () =>
-      term
-        ? term.relatedFaqs
-            .map((s) => faqDataset.getItem(s))
-            .filter((i): i is NonNullable<typeof i> => Boolean(i))
-        : [],
+    () => (term ? term.relatedFaqs.map((s) => faqDataset.getItem(s)).filter((i): i is NonNullable<typeof i> => Boolean(i)) : []),
     [term],
   );
 
@@ -35,6 +34,9 @@ export default function GlossaryDetail() {
     { name: "Home", url: "/" },
     { name: "Glossary", url: "/glossary" },
     { name: term.term, url: path },
+  ];
+  const columns: MoreColumn[] = [
+    { label: "Related questions", items: relatedFaqs.map((r) => ({ to: `/faq/${r.slug}`, label: r.question })) },
   ];
 
   return (
@@ -49,17 +51,8 @@ export default function GlossaryDetail() {
         ]}
       />
 
-      <section className="page-hero faq-hero faq-detail-hero">
-        <ResponsiveImage
-          name="cta-bg"
-          className="page-hero-bg"
-          alt=""
-          widths={[768, 1280, 1920, 2500]}
-          sizes="100vw"
-          width={2500}
-          height={1667}
-          priority
-        />
+      <section className="page-hero faq-hero faq-detail-hero page-hero-short">
+        <ResponsiveImage name="cta-bg" className="page-hero-bg" alt="" widths={[768, 1280, 1920, 2500]} sizes="100vw" width={2500} height={1667} priority />
         <div className="page-hero-overlay" />
         <div className="container page-hero-content">
           <nav className="faq-crumbs hero-eyebrow" aria-label="Breadcrumb">
@@ -68,70 +61,53 @@ export default function GlossaryDetail() {
             <span>{term.category || "Term"}</span>
           </nav>
           <h1 className="faq-detail-title hero-title">{term.term}</h1>
-          {term.shortDefinition ? (
-            <p className="faq-detail-lede" data-testid="glossary-detail-lede">
-              {term.shortDefinition}
-            </p>
-          ) : null}
+          <div className="dt-hero-meta">
+            <span><Clock size={14} aria-hidden="true" /> {minutes} min read</span>
+          </div>
         </div>
       </section>
 
-      <section className="section-pad" style={{ background: "var(--color-bg)" }}>
-        <div className="container container-narrow">
-          <div className="faq-answer" data-testid="glossary-definition">
-            <div dangerouslySetInnerHTML={{ __html: term.definitionHtml }} />
+      <section className="dt-section">
+        <div className="container">
+          <div style={{ maxWidth: 720, marginInline: "auto" }}>
+            <div className="dt-main">
+              {term.shortDefinition ? (
+                <div className="dt-answer-card" data-testid="glossary-short">
+                  <span className="dt-answer-card-label">In short</span>
+                  <p>{term.shortDefinition}</p>
+                </div>
+              ) : null}
+
+              <div className="dt-prose" data-testid="glossary-definition" dangerouslySetInnerHTML={{ __html: article.html }} />
+
+              {relatedTerms.length > 0 ? (
+                <div className="dt-more" data-testid="glossary-related-terms">
+                  <h2 className="dt-more-title">Related terms</h2>
+                  <div className="dt-chips" style={{ marginTop: 22 }}>
+                    {relatedTerms.map((r) => (
+                      <Link key={r.slug} to={`/glossary/${r.slug}`} className="dt-chip" data-testid={`glossary-related-${r.slug}`}>
+                        {r.term}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+
+              <DetailMore columns={columns} testid="glossary-related-faqs" />
+
+              <Link to="/glossary" className="dt-back" data-testid="glossary-detail-all">
+                All terms <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </div>
           </div>
-
-          {relatedTerms.length > 0 ? (
-            <div className="faq-aside" data-testid="glossary-related-terms">
-              <h2 className="faq-aside-title">Related terms</h2>
-              <ul className="faq-list">
-                {relatedTerms.map((r) => (
-                  <li key={r.slug}>
-                    <Link to={`/glossary/${r.slug}`} data-testid={`glossary-related-${r.slug}`}>
-                      <span>{r.term}</span>
-                      <ArrowRight size={16} aria-hidden="true" />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-
-          {relatedFaqs.length > 0 ? (
-            <div className="faq-aside" data-testid="glossary-related-faqs">
-              <h2 className="faq-aside-title">Related questions</h2>
-              <ul className="faq-list">
-                {relatedFaqs.map((r) => (
-                  <li key={r.slug}>
-                    <Link to={`/faq/${r.slug}`} data-testid={`glossary-faq-${r.slug}`}>
-                      <span>{r.question}</span>
-                      <ArrowRight size={16} aria-hidden="true" />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-
-          <Link to="/glossary" className="faq-back" data-testid="glossary-detail-all">
-            All terms <ArrowRight size={14} aria-hidden="true" />
-          </Link>
         </div>
       </section>
 
       <section className="faq-cta">
         <div className="container faq-cta-inner">
-          <h2 className="faq-cta-title">Ready to talk it through?</h2>
-          <p className="faq-cta-sub">
-            Every build starts with a conversation. Tell us what you have in mind.
-          </p>
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => open()}
-            data-testid="glossary-detail-cta-contact"
-          >
+          <h2 className="faq-cta-title">Building and want a straight answer?</h2>
+          <p className="faq-cta-sub">Tell us about your project and we'll walk you through the details in plain language.</p>
+          <button type="button" className="btn btn-primary" onClick={() => open()} data-testid="glossary-detail-cta-contact">
             Start the conversation
           </button>
         </div>
