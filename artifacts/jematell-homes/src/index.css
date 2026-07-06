@@ -490,15 +490,28 @@ picture {
 .hero-content h1 {
   color: #fff;
   margin-bottom: 32px;
-  max-width: 16ch;
+  max-width: none;
+}
+.hero-content .heading-xl.hero-title {
+  text-transform: uppercase;
+  font-size: clamp(30px, 7vw, 85px);
 }
 .hero-content .heading-xl span {
   display: block;
+  white-space: normal;
 }
 .hero-content .heading-xl span:nth-child(2) {
-  margin-left: clamp(20px, 5vw, 80px);
+  margin-left: 0;
   font-style: italic;
   color: var(--color-bone);
+}
+@media (min-width: 992px) {
+  .hero-content .heading-xl span {
+    white-space: nowrap;
+  }
+  .hero-content .heading-xl span:nth-child(2) {
+    margin-left: clamp(20px, 5vw, 80px);
+  }
 }
 
 /* About / Intro Section */
