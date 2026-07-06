@@ -4,44 +4,55 @@ import type { TocEntry } from "./detail";
 /**
  * Reading-progress bar fill + scroll-spy for the active table-of-contents
  * section, shared by the content detail pages. Returns a ref to attach to the
- * progress element and the id of the heading currently in view. Browser-only —
- * the effect never runs during SSG, so the prerendered HTML is untouched and
+ * progress element and the id of the heading currently in view.
+ *
+ * Both are computed from a single rAF-throttled scroll handler using
+ * getBoundingClientRect (viewport-relative, so it is correct regardless of
+ * which element actually scrolls). The active section is the last heading that
+ * has scrolled up past a threshold just below the fixed site header. Browser
+ * only — the effect never runs during SSG, so prerendered HTML is untouched and
  * the TOC still works as plain anchor links with no JavaScript.
  */
+const HEADER_OFFSET = 130; // fixed site header (~91px) plus a little breathing room
+
 export function useReadingProgress(toc: TocEntry[]) {
   const progressRef = useRef<HTMLDivElement>(null);
   const [activeId, setActiveId] = useState("");
 
   useEffect(() => {
-    const bar = progressRef.current;
-    const onScroll = () => {
-      if (!bar) return;
-      const el = document.documentElement;
-      const max = el.scrollHeight - el.clientHeight;
-      bar.style.width = `${max > 0 ? Math.min(100, (el.scrollTop / max) * 100) : 0}%`;
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const doc = document.documentElement;
+      const scrollTop = window.scrollY || doc.scrollTop || document.body.scrollTop || 0;
 
-    const headings = toc
-      .map((t) => document.getElementById(t.id))
-      .filter((el): el is HTMLElement => Boolean(el));
-    let io: IntersectionObserver | undefined;
-    if (headings.length && typeof IntersectionObserver !== "undefined") {
-      io = new IntersectionObserver(
-        (entries) => {
-          const visible = entries
-            .filter((e) => e.isIntersecting)
-            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-          if (visible[0]) setActiveId(visible[0].target.id);
-        },
-        { rootMargin: "-96px 0px -68% 0px", threshold: 0 },
-      );
-      headings.forEach((h) => io!.observe(h));
-    }
+      const bar = progressRef.current;
+      if (bar) {
+        const max = Math.max(doc.scrollHeight, document.body.scrollHeight) - window.innerHeight;
+        bar.style.width = `${max > 0 ? Math.min(100, (scrollTop / max) * 100) : 0}%`;
+      }
+
+      // Active section = the last heading whose top has passed under the header.
+      let current = "";
+      for (const t of toc) {
+        const el = document.getElementById(t.id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= HEADER_OFFSET) current = t.id;
+        else break;
+      }
+      setActiveId(current || (toc[0] ? toc[0].id : ""));
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
-      io?.disconnect();
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
     };
   }, [toc]);
 

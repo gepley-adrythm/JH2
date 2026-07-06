@@ -76,7 +76,23 @@ export function annotateHeadings(html: string): { html: string; toc: TocEntry[] 
     },
   );
 
-  return { html: out + tail, toc };
+  // Lift link-dense "see also" paragraphs (3+ links that are mostly link text)
+  // into a callout so they read as an intentional element, not a spammy inline
+  // link dump. Contextual prose that merely cites a link is left alone.
+  const enhanced = out.replace(/<p>([\s\S]*?)<\/p>/gi, (m, inner: string) => {
+    const links = (inner.match(/<a\s/gi) || []).length;
+    if (links < 3) return m;
+    const total = inner.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+    const linkText = (inner.match(/<a\b[^>]*>([\s\S]*?)<\/a>/gi) || [])
+      .map((a) => a.replace(/<[^>]+>/g, ""))
+      .join(" ")
+      .replace(/\s+/g, " ")
+      .trim();
+    const ratio = total.length ? linkText.length / total.length : 0;
+    return ratio >= 0.5 ? `<p class="dt-seealso">${inner}</p>` : m;
+  });
+
+  return { html: enhanced + tail, toc };
 }
 
 /**
