@@ -3090,3 +3090,482 @@ a.contact-info-card:hover {
 }
 @media (max-width: 560px) { .lib-grid { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .lib-card, .lib-card-more svg { transition: none; } }
+
+/* ============================================================
+   PREMIUM DETAIL SYSTEM  (.dt-*)
+   Shared by the content detail pages — guide / reference / faq /
+   glossary. A two-column long-read: a capped reading column plus a
+   sticky rail (table of contents + "at a glance"), an editorial
+   prose upgrade, bespoke callouts (answer card, source card, stat,
+   timeline, pull-quote, chips), and a "keep exploring" footer.
+   Reuses the home tokens. Degrades gracefully with no JS: the TOC is
+   real anchor links, the progress bar simply stays empty.
+   ============================================================ */
+
+/* Reading progress — fixed hairline the client fills on scroll. */
+.dt-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-warm));
+  z-index: 60;
+  transition: width 0.12s linear;
+  pointer-events: none;
+}
+
+/* Hero meta row — updated date / read time / sources, under the lede. */
+.dt-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  margin-top: 24px;
+}
+.dt-hero-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.72);
+}
+.dt-hero-meta svg { opacity: 0.7; flex: none; }
+
+/* Two-column shell — centered reading column + sticky right rail. */
+.dt-section { padding: clamp(48px, 6vw, 92px) 0; background: var(--color-bg); }
+.dt-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 720px) 296px;
+  gap: clamp(40px, 5vw, 88px);
+  justify-content: center;
+  align-items: start;
+}
+.dt-main { min-width: 0; max-width: 720px; }
+.dt-rail {
+  position: sticky;
+  top: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Table of contents — a <details open> so mobile can collapse it. */
+.dt-toc {
+  border-left: 1px solid var(--color-border);
+  padding-left: 4px;
+}
+.dt-toc-summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 0 4px 16px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+.dt-toc-summary::-webkit-details-marker { display: none; }
+.dt-toc-summary svg { transition: transform 0.3s ease; flex: none; }
+.dt-toc[open] .dt-toc-summary svg { transform: rotate(180deg); }
+.dt-toc-nav {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+}
+.dt-toc-link {
+  padding: 7px 0 7px 16px;
+  margin-left: -1px;
+  border-left: 2px solid transparent;
+  color: var(--color-text-muted);
+  font-size: 13.5px;
+  line-height: 1.4;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.dt-toc-link:hover { color: var(--color-accent); }
+.dt-toc-link.is-active {
+  color: var(--color-dark);
+  border-left-color: var(--color-accent);
+  font-weight: 500;
+}
+
+/* At-a-glance — key/value facts card (rail on desktop, inline on mobile). */
+.dt-facts {
+  background: var(--color-cream);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 20px 22px 22px;
+}
+.dt-facts-title {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-warm);
+  margin-bottom: 6px;
+}
+.dt-facts-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 14px;
+}
+.dt-facts-row:last-child { border-bottom: none; padding-bottom: 0; }
+.dt-facts-k { color: var(--color-text-muted); flex: none; }
+.dt-facts-v { color: var(--color-dark); font-weight: 500; text-align: right; }
+.dt-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background: rgba(59, 97, 127, 0.12);
+  color: var(--color-accent);
+}
+.dt-badge--warm { background: rgba(140, 90, 69, 0.14); color: var(--color-warm); }
+
+/* Editorial prose — the upgraded body typography for injected HTML. */
+.dt-prose { font-size: 18.5px; line-height: 1.75; color: var(--color-text); }
+.dt-prose > p:first-of-type { font-size: 20.5px; line-height: 1.62; color: #1c1e1f; }
+.dt-prose p { margin: 0 0 22px; }
+.dt-prose h2 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(27px, 3vw, 38px);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--color-dark);
+  margin: 50px 0 18px;
+  padding-top: 30px;
+  border-top: 1px solid var(--color-border);
+  scroll-margin-top: 96px;
+}
+.dt-prose h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+.dt-prose h3 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(21px, 2vw, 27px);
+  line-height: 1.2;
+  color: var(--color-dark);
+  margin: 34px 0 12px;
+  scroll-margin-top: 96px;
+}
+.dt-prose ul, .dt-prose ol { margin: 0 0 22px; padding-left: 24px; }
+.dt-prose ul { list-style: disc; }
+.dt-prose ol { list-style: decimal; }
+.dt-prose li { margin-bottom: 9px; padding-left: 4px; }
+.dt-prose li::marker { color: var(--color-accent); }
+.dt-prose a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(59, 97, 127, 0.4);
+}
+.dt-prose a:hover { color: var(--color-accent-hover); text-decoration-color: currentColor; }
+.dt-prose strong { font-weight: 600; color: var(--color-dark); }
+.dt-prose blockquote {
+  margin: 30px 0;
+  padding: 4px 0 4px 26px;
+  border-left: 3px solid var(--color-warm);
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(22px, 2.5vw, 29px);
+  line-height: 1.4;
+  color: var(--color-dark);
+}
+.dt-prose blockquote p { margin: 0; }
+
+/* Premium tables — cost breakdowns, code-edition grids, comparisons. */
+.dt-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 30px 0;
+  font-size: 15.5px;
+  line-height: 1.5;
+}
+.dt-prose thead th {
+  text-align: left;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  padding: 0 16px 12px;
+  border-bottom: 2px solid var(--color-accent);
+}
+.dt-prose tbody td {
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+}
+.dt-prose tbody tr:nth-child(even) { background: rgba(0, 0, 0, 0.025); }
+.dt-prose th:first-child, .dt-prose td:first-child { padding-left: 6px; }
+.dt-prose th:last-child, .dt-prose td:last-child { padding-right: 6px; }
+
+/* Sources / citations block appended to the body (verbatim, lint-exempt). */
+.dt-prose aside[data-citations],
+.dt-prose .citations {
+  margin-top: 46px;
+  padding: 22px 26px 24px;
+  background: var(--color-cream);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.dt-prose aside[data-citations] :is(h2, h3, h4),
+.dt-prose .citations :is(h2, h3, h4) {
+  margin: 0 0 12px;
+  padding: 0;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-warm);
+}
+.dt-prose aside[data-citations] ul,
+.dt-prose .citations ul { list-style: none; padding: 0; margin: 0; }
+.dt-prose aside[data-citations] li,
+.dt-prose .citations li { margin-bottom: 9px; padding-left: 0; }
+.dt-prose aside[data-citations] li:last-child,
+.dt-prose .citations li:last-child { margin-bottom: 0; }
+
+/* Answer card — FAQ short answer, lifted out as a serif statement. */
+.dt-answer-card {
+  margin: 0 0 42px;
+  padding: 26px 30px 28px;
+  background: var(--color-cream);
+  border-radius: 16px;
+  border-left: 3px solid var(--color-accent);
+}
+.dt-answer-card-label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+.dt-answer-card p {
+  margin: 12px 0 0;
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(21px, 2.4vw, 27px);
+  line-height: 1.44;
+  color: var(--color-dark);
+}
+
+/* Source card — the primary authority behind a reference entry. */
+.dt-source-card {
+  display: block;
+  margin: 0 0 36px;
+  padding: 22px 26px;
+  background: var(--color-dark);
+  color: #fff;
+  border-radius: 14px;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+a.dt-source-card:hover { transform: translateY(-2px); }
+.dt-source-card-label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-bone);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.dt-source-card-title {
+  margin-top: 10px;
+  font-family: var(--font-heading);
+  font-size: clamp(19px, 2vw, 24px);
+  line-height: 1.25;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dt-source-card-title svg { flex: none; opacity: 0.7; }
+.dt-source-card-note { margin-top: 10px; font-size: 13.5px; color: rgba(255, 255, 255, 0.66); line-height: 1.5; }
+
+/* Stat callout — pull a single number into a big serif figure. */
+.dt-stat {
+  margin: 30px 0;
+  padding: 26px 30px;
+  background: var(--color-cream);
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+}
+.dt-stat-num {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(40px, 6vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-accent);
+}
+.dt-stat-label { margin-top: 10px; font-size: 15px; color: var(--color-text-muted); max-width: 46ch; }
+
+/* Timeline — numbered vertical sequence (build phases, process steps). */
+.dt-timeline { margin: 30px 0; padding: 0; list-style: none; }
+.dt-timeline-item {
+  position: relative;
+  padding: 0 0 26px 60px;
+  list-style: none;
+}
+.dt-timeline-item:last-child { padding-bottom: 0; }
+.dt-timeline-item::before {
+  counter-increment: dt-step;
+  content: counter(dt-step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-dark);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  z-index: 1;
+}
+.dt-timeline-item::after {
+  content: "";
+  position: absolute;
+  left: 19px;
+  top: 40px;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-border);
+}
+.dt-timeline-item:last-child::after { display: none; }
+.dt-timeline { counter-reset: dt-step; }
+.dt-timeline-h {
+  font-family: var(--font-heading);
+  font-size: clamp(19px, 2vw, 23px);
+  color: var(--color-dark);
+  margin: 6px 0 8px;
+}
+.dt-timeline-item p { margin: 0; color: var(--color-text-muted); font-size: 16px; line-height: 1.6; }
+
+/* Chips — related glossary terms, tags. */
+.dt-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.dt-chip {
+  padding: 8px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-dark);
+  transition: background 0.3s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s, border-color 0.3s;
+}
+.dt-chip:hover { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+
+/* Keep exploring — the related-content footer (replaces stacked asides). */
+.dt-more { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--color-border); }
+.dt-more-title {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(24px, 2.6vw, 32px);
+  color: var(--color-dark);
+}
+.dt-more-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 8px 44px;
+  margin-top: 26px;
+}
+.dt-more-col-label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-warm);
+  padding-bottom: 6px;
+}
+.dt-more-links { list-style: none; margin: 0; padding: 0; }
+.dt-more-links li { border-bottom: 1px solid var(--color-border); }
+.dt-more-links a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 2px;
+  font-size: 15.5px;
+  font-weight: 500;
+  color: var(--color-dark);
+  line-height: 1.35;
+  transition: color 0.3s cubic-bezier(0.22, 1, 0.36, 1), padding-left 0.3s;
+}
+.dt-more-links a:hover { color: var(--color-accent); padding-left: 8px; }
+.dt-more-links a svg { color: var(--color-accent); flex: none; }
+
+.dt-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 40px;
+  font-weight: 500;
+  color: var(--color-accent);
+}
+.dt-back:hover { color: var(--color-accent-hover); }
+
+/* Responsive — collapse the rail below the reading column. */
+@media (max-width: 1024px) {
+  .dt-shell { grid-template-columns: 1fr; gap: 32px; }
+  .dt-rail {
+    position: static;
+    top: auto;
+    order: -1;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .dt-toc { border-left: none; padding-left: 0; }
+  .dt-toc-summary { cursor: pointer; }
+  .dt-toc-nav { max-height: 44vh; overflow-y: auto; }
+}
+@media (min-width: 1025px) {
+  .dt-toc-summary { cursor: default; }
+  .dt-toc-summary svg { display: none; }
+}
+@media (max-width: 560px) {
+  .dt-prose { font-size: 17.5px; }
+  .dt-prose > p:first-of-type { font-size: 19px; }
+  .dt-answer-card, .dt-stat { padding-left: 22px; padding-right: 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dt-progress, .dt-toc-summary svg, .dt-chip, .dt-source-card, .dt-more-links a { transition: none; }
+}
+
+@media print {
+  .dt-progress, .dt-rail, .dt-more, .dt-back, .faq-cta { display: none !important; }
+  .dt-shell { display: block; }
+  .dt-main { max-width: none; }
+}

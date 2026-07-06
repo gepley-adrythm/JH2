@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight, Calendar, Clock, BookOpen } from "lucide-react";
 import { getGuide } from "../data/guides";
 import { getReferenceByKey } from "../data/reference";
 import { getGlossaryTerm } from "../data/glossary";
@@ -9,6 +9,9 @@ import { useContactForm } from "../contact-form";
 import { ResponsiveImage } from "../components/ResponsiveImage";
 import { Seo } from "../seo/seo";
 import { articleJsonLd, breadcrumbJsonLd } from "../seo/jsonld";
+import { annotateHeadings, readingTime, formatDate, prepareGuideBody } from "../lib/detail";
+import { useReadingProgress } from "../lib/useReadingProgress";
+import { DetailProgress, DetailToc, DetailMore, type MoreColumn } from "../components/DetailParts";
 import NotFound from "./not-found";
 
 export default function GuideDetail() {
@@ -16,12 +19,16 @@ export default function GuideDetail() {
   const { open } = useContactForm();
 
   const guide = useMemo(() => (slug ? getGuide(slug) : undefined), [slug]);
+  const prepared = useMemo(() => (guide ? prepareGuideBody(guide.bodyHtml, guide.title) : ""), [guide]);
+  const article = useMemo(() => annotateHeadings(prepared), [prepared]);
+  const minutes = useMemo(() => readingTime(prepared), [prepared]);
+
   const relatedGuides = useMemo(
-    () => (guide ? guide.relatedGuides.map(getGuide).filter((g): g is NonNullable<typeof g> => Boolean(g)) : []),
+    () => (guide ? guide.relatedGuides.map(getGuide).filter((g): g is NonNullable<typeof g> => Boolean(g)).slice(0, 6) : []),
     [guide],
   );
   const relatedRefs = useMemo(
-    () => (guide ? guide.relatedRefs.map(getReferenceByKey).filter((r): r is NonNullable<typeof r> => Boolean(r)) : []),
+    () => (guide ? guide.relatedRefs.map(getReferenceByKey).filter((r): r is NonNullable<typeof r> => Boolean(r)).slice(0, 6) : []),
     [guide],
   );
   const relatedFaqs = useMemo(
@@ -33,6 +40,8 @@ export default function GuideDetail() {
     [guide],
   );
 
+  const { progressRef, activeId } = useReadingProgress(article.toc);
+
   if (!guide) return <NotFound />;
 
   const path = `/guides/${guide.slug}`;
@@ -41,6 +50,23 @@ export default function GuideDetail() {
     { name: "Guides", url: "/guides" },
     { name: guide.title, url: path },
   ];
+
+  const columns: MoreColumn[] = [
+    { label: "Related questions", items: relatedFaqs.map((r) => ({ to: `/faq/${r.slug}`, label: r.question })) },
+    { label: "Related guides", items: relatedGuides.map((r) => ({ to: `/guides/${r.slug}`, label: r.title })) },
+    { label: "In the reference library", items: relatedRefs.map((r) => ({ to: `/reference-library/${r.module}/${r.slug}`, label: r.title })) },
+    { label: "Related terms", items: relatedTerms.map((r) => ({ to: `/glossary/${r.slug}`, label: r.term })) },
+  ];
+
+  const body = (
+    <div className="dt-main">
+      <div className="dt-prose" data-testid="guide-body" dangerouslySetInnerHTML={{ __html: article.html }} />
+      <DetailMore columns={columns} testid="guide-related" />
+      <Link to="/guides" className="dt-back" data-testid="guide-detail-all">
+        All guides <ArrowRight size={14} aria-hidden="true" />
+      </Link>
+    </div>
+  );
 
   return (
     <main className="page faq-page faq-detail guide-detail">
@@ -54,17 +80,10 @@ export default function GuideDetail() {
         ]}
       />
 
+      <DetailProgress innerRef={progressRef} />
+
       <section className="page-hero faq-hero faq-detail-hero">
-        <ResponsiveImage
-          name="cta-bg"
-          className="page-hero-bg"
-          alt=""
-          widths={[768, 1280, 1920, 2500]}
-          sizes="100vw"
-          width={2500}
-          height={1667}
-          priority
-        />
+        <ResponsiveImage name="cta-bg" className="page-hero-bg" alt="" widths={[768, 1280, 1920, 2500]} sizes="100vw" width={2500} height={1667} priority />
         <div className="page-hero-overlay" />
         <div className="container page-hero-content">
           <nav className="faq-crumbs hero-eyebrow" aria-label="Breadcrumb">
@@ -74,101 +93,40 @@ export default function GuideDetail() {
           </nav>
           <h1 className="faq-detail-title hero-title">{guide.title}</h1>
           {guide.summary ? (
-            <p className="faq-detail-lede" data-testid="guide-detail-lede">
-              {guide.summary}
-            </p>
+            <p className="faq-detail-lede" data-testid="guide-detail-lede">{guide.summary}</p>
           ) : null}
+          <div className="dt-hero-meta">
+            {guide.updatedDate ? (
+              <span><Calendar size={14} aria-hidden="true" /> Updated {formatDate(guide.updatedDate)}</span>
+            ) : null}
+            <span><Clock size={14} aria-hidden="true" /> {minutes} min read</span>
+            {guide.sources?.length ? (
+              <span><BookOpen size={14} aria-hidden="true" /> {guide.sources.length} sources</span>
+            ) : null}
+          </div>
         </div>
       </section>
 
-      <section className="section-pad" style={{ background: "var(--color-bg)" }}>
-        <div className="container container-narrow">
-          <div className="faq-answer" data-testid="guide-body">
-            <div dangerouslySetInnerHTML={{ __html: guide.bodyHtml }} />
-          </div>
-
-          {relatedGuides.length > 0 ? (
-            <div className="faq-aside" data-testid="guide-related-guides">
-              <h2 className="faq-aside-title">Related guides</h2>
-              <ul className="faq-list">
-                {relatedGuides.map((r) => (
-                  <li key={r.slug}>
-                    <Link to={`/guides/${r.slug}`} data-testid={`guide-related-${r.slug}`}>
-                      <span>{r.title}</span>
-                      <ArrowRight size={16} aria-hidden="true" />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+      <section className="dt-section">
+        <div className="container">
+          {article.toc.length > 0 ? (
+            <div className="dt-shell">
+              {body}
+              <aside className="dt-rail">
+                <DetailToc toc={article.toc} activeId={activeId} />
+              </aside>
             </div>
-          ) : null}
-
-          {relatedFaqs.length > 0 ? (
-            <div className="faq-aside" data-testid="guide-related-faqs">
-              <h2 className="faq-aside-title">Related questions</h2>
-              <ul className="faq-list">
-                {relatedFaqs.map((r) => (
-                  <li key={r.slug}>
-                    <Link to={`/faq/${r.slug}`} data-testid={`guide-faq-${r.slug}`}>
-                      <span>{r.question}</span>
-                      <ArrowRight size={16} aria-hidden="true" />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-
-          {relatedRefs.length > 0 ? (
-            <div className="faq-aside" data-testid="guide-related-refs">
-              <h2 className="faq-aside-title">In the reference library</h2>
-              <ul className="faq-list">
-                {relatedRefs.map((r) => (
-                  <li key={`${r.module}/${r.slug}`}>
-                    <Link to={`/reference-library/${r.module}/${r.slug}`} data-testid={`guide-ref-${r.slug}`}>
-                      <span>{r.title}</span>
-                      <ArrowRight size={16} aria-hidden="true" />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-
-          {relatedTerms.length > 0 ? (
-            <div className="faq-aside" data-testid="guide-related-terms">
-              <h2 className="faq-aside-title">Related terms</h2>
-              <ul className="faq-list">
-                {relatedTerms.map((r) => (
-                  <li key={r.slug}>
-                    <Link to={`/glossary/${r.slug}`} data-testid={`guide-term-${r.slug}`}>
-                      <span>{r.term}</span>
-                      <ArrowRight size={16} aria-hidden="true" />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-
-          <Link to="/guides" className="faq-back" data-testid="guide-detail-all">
-            All guides <ArrowRight size={14} aria-hidden="true" />
-          </Link>
+          ) : (
+            <div style={{ maxWidth: 720, marginInline: "auto" }}>{body}</div>
+          )}
         </div>
       </section>
 
       <section className="faq-cta">
         <div className="container faq-cta-inner">
           <h2 className="faq-cta-title">Ready to talk it through?</h2>
-          <p className="faq-cta-sub">
-            Every build starts with a conversation. Tell us what you have in mind.
-          </p>
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => open()}
-            data-testid="guide-detail-cta-contact"
-          >
+          <p className="faq-cta-sub">Every build starts with a conversation. Tell us what you have in mind.</p>
+          <button type="button" className="btn btn-primary" onClick={() => open()} data-testid="guide-detail-cta-contact">
             Start the conversation
           </button>
         </div>
