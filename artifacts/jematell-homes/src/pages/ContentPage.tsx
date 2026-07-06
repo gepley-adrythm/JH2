@@ -858,20 +858,33 @@ function FloorPlanWidgets() {
 
 function PageCTA({ title, body }: { title?: string; body?: string }) {
   return (
-    <section className="page-cta">
+    <section className="cta">
+      <ResponsiveImage
+        name="page-cta-bg"
+        className="cta-bg"
+        alt="Custom kitchen island in a completed Jematell home"
+        widths={[768, 1280, 1920, 2500]}
+        sizes="100vw"
+        width={2500}
+        height={1667}
+      />
+      <div className="cta-overlay" />
       <div className="container">
-        <div className="page-cta-inner">
-          <div>
-            <span className="eyebrow">Get started</span>
-            <h2 className="heading-lg">{title || "Let's build your dream home."}</h2>
-            <p>
+        <div
+          className="cta-grid"
+          style={{ gridTemplateColumns: "1fr", textAlign: "center", maxWidth: 760, marginInline: "auto" }}
+        >
+          <div className="cta-content">
+            <span className="eyebrow" style={{ color: "var(--color-bone)" }}>Get started</span>
+            <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>{title || "Let's build your dream home."}</h2>
+            <p style={{ marginInline: "auto" }}>
               {body ||
                 "Schedule a consultation with our team and tell us about your land, your lifestyle, and what home means to you."}
             </p>
+            <Link to="/contact" className="btn btn-primary" data-testid="page-cta" style={{ marginTop: 32 }}>
+              Start your build <ArrowRight size={16} />
+            </Link>
           </div>
-          <Link to="/contact" className="btn btn-primary" data-testid="page-cta">
-            Start your build <ArrowRight size={16} />
-          </Link>
         </div>
       </div>
     </section>

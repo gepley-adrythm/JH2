@@ -28,6 +28,7 @@ const SOURCES = {
   "spec-home.jpg": [768, 1280, 1600],
   "completion-reveal.jpg": [768, 1280, 1600],
   "cta-bg.jpg": [768, 1280, 1920, 2500],
+  "page-cta-bg.jpg": [768, 1280, 1920, 2500],
   // City landing page heroes — widths capped at each source's intrinsic width.
   // 1500px sources: scottsdale, rio-verde, cave-creek, carefree, casa-grande, apache-junction
   // 2500px sources: phoenix, fountain-hills
