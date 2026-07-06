@@ -317,6 +317,17 @@ function IntroSection({
   );
 }
 
+const SERVICE_GRID_ORDER = [
+  "funding",
+  "site selection",
+  "design",
+  "material selection",
+  "permitting",
+  "pre-construction",
+  "pre construction",
+  "weekly updates",
+];
+
 function ServiceGridSection({ section }: { section: Section }) {
   const items: Array<{ title: string; body: string }> = [];
   let title: string | null = null;
@@ -328,6 +339,14 @@ function ServiceGridSection({ section }: { section: Section }) {
       title = null;
     }
   }
+  items.sort((a, b) => {
+    const ai = SERVICE_GRID_ORDER.indexOf(a.title.toLowerCase());
+    const bi = SERVICE_GRID_ORDER.indexOf(b.title.toLowerCase());
+    if (ai === -1 && bi === -1) return 0;
+    if (ai === -1) return 1;
+    if (bi === -1) return -1;
+    return ai - bi;
+  });
   return (
     <section className="page-services section-pad">
       <div className="container">
