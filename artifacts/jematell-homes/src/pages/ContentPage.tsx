@@ -20,6 +20,8 @@ import { Seo } from "../seo/seo";
 import { serviceJsonLd, breadcrumbJsonLd } from "../seo/jsonld";
 import NotFound from "./not-found";
 import { CityNavigator } from "../components/CityNavigator";
+import { ResponsiveImage } from "../components/ResponsiveImage";
+import { EASE_OUT_EXPO } from "../motion";
 
 const SERVICE_KEYS = new Set(["custom-homes", "spechomes", "floorplans"]);
 const WHERE_NESTED_KEYS = new Set(["build-on-your-lot", "buy-a-lot-with-us"]);
@@ -383,31 +385,69 @@ function ProcessSection({ section }: { section: Section }) {
       title = null;
     }
   }
+  const isFeaturedLayout = steps.length === 4;
+
   return (
-    <section className="page-process section-pad">
+    <section className={isFeaturedLayout ? "process section-pad" : "page-process section-pad"}>
       <div className="container">
         <m.div className="page-section-head centered" {...FADE_IN}>
           <span className="eyebrow">The process</span>
           <h2 className="heading-lg">{section.heading?.text}</h2>
         </m.div>
-        <ol className="page-process-list">
-          {steps.map((s, i) => (
-            <m.li
-              key={i}
-              className="page-process-step"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-            >
-              <div className="page-process-num">{String(i + 1).padStart(2, "0")}</div>
-              <div className="page-process-body">
-                <h3 className="page-process-title">{s.title.replace(/^(step\s*\d+:?\s*|[1-9]\.\s*)/i, "")}</h3>
-                <p>{s.body}</p>
-              </div>
-            </m.li>
-          ))}
-        </ol>
+        {isFeaturedLayout ? (
+          <div className="process-grid">
+            {steps.map((s, i) => {
+              const num = String(i + 1).padStart(2, "0");
+              const featured = i === steps.length - 1;
+              return (
+                <m.div
+                  key={i}
+                  className={`process-card process-card--${num}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ delay: Math.min(i, 5) * 0.06, duration: 0.5, ease: EASE_OUT_EXPO }}
+                >
+                  {featured && (
+                    <ResponsiveImage
+                      name="completion-reveal"
+                      className="process-bg"
+                      alt="Finished primary bathroom in a completed Jematell home"
+                      widths={[768, 1280, 1600]}
+                      sizes="(min-width: 900px) 33vw, 100vw"
+                      width={1600}
+                      height={1066}
+                    />
+                  )}
+                  <div className="process-num">{num}</div>
+                  <div>
+                    <h3>{s.title.replace(/^(step\s*\d+:?\s*|[1-9]\.\s*)/i, "")}</h3>
+                    <p>{s.body}</p>
+                  </div>
+                </m.div>
+              );
+            })}
+          </div>
+        ) : (
+          <ol className="page-process-list">
+            {steps.map((s, i) => (
+              <m.li
+                key={i}
+                className="page-process-step"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+              >
+                <div className="page-process-num">{String(i + 1).padStart(2, "0")}</div>
+                <div className="page-process-body">
+                  <h3 className="page-process-title">{s.title.replace(/^(step\s*\d+:?\s*|[1-9]\.\s*)/i, "")}</h3>
+                  <p>{s.body}</p>
+                </div>
+              </m.li>
+            ))}
+          </ol>
+        )}
       </div>
     </section>
   );
