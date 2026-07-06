@@ -15,29 +15,16 @@ import {
   Check,
 } from "lucide-react";
 import { pages, type PageData, type Block } from "../data/pages";
-import { relatedFaqsForServices } from "../data/faq";
 import { Seo } from "../seo/seo";
 import { serviceJsonLd, breadcrumbJsonLd } from "../seo/jsonld";
 import NotFound from "./not-found";
 import { CityNavigator } from "../components/CityNavigator";
 import { ResponsiveImage } from "../components/ResponsiveImage";
 import { EASE_OUT_EXPO } from "../motion";
+import { FeaturedProjects } from "../sections";
 
 const SERVICE_KEYS = new Set(["custom-homes", "spechomes", "floorplans"]);
 const WHERE_NESTED_KEYS = new Set(["build-on-your-lot", "buy-a-lot-with-us"]);
-
-// Map a page (by its content key) to the FAQ `relatedServiceSlugs` it should
-// surface "Common questions" for. Location pages (isRegion) are about buying
-// land and building in a specific AZ city, so they share the lot-due-diligence
-// FAQ set used by Build on Your Lot / Buy a Lot With Us.
-const FAQ_SERVICE_MAP: Record<string, string[]> = {
-  "custom-homes": ["custom-homes"],
-  spechomes: ["spec-homes"],
-  floorplans: ["floor-plans"],
-  "build-on-your-lot": ["build-on-your-lot"],
-  "buy-a-lot-with-us": ["buy-a-lot-with-us"],
-};
-const REGION_FAQ_SERVICES = ["build-on-your-lot", "buy-a-lot-with-us"];
 
 function buildPageJsonLd(
   key: string,
@@ -907,34 +894,6 @@ function PageCTA({ title, body }: { title?: string; body?: string }) {
   );
 }
 
-function RelatedFaqsSection({ services }: { services: string[] }) {
-  const faqs = useMemo(() => relatedFaqsForServices(services), [services]);
-  if (faqs.length === 0) return null;
-  return (
-    <section className="section-pad post-faqs" style={{ background: "var(--color-cream, #ece9e2)" }}>
-      <div className="container container-narrow">
-        <m.div className="page-section-head" {...FADE_IN}>
-          <span className="eyebrow">Before you build</span>
-          <h2 className="heading-lg">Common questions</h2>
-        </m.div>
-        <ul className="post-faq-list" data-testid="page-related-faqs">
-          {faqs.map((f) => (
-            <li key={f.slug}>
-              <Link to={`/faq/${f.slug}`} data-testid={`page-faq-${f.slug}`}>
-                {f.question}
-                <ArrowRight size={16} />
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <Link to="/faq" className="post-faq-all" data-testid="page-faq-all">
-          See all FAQs <ArrowRight size={14} />
-        </Link>
-      </div>
-    </section>
-  );
-}
-
 interface Props {
   pageKey?: string;
   isRegion?: boolean;
@@ -1031,14 +990,6 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
 
   const tierEyebrow = key === "floorplans" ? "Floor plans" : undefined;
 
-  // High-intent service and location pages surface a short "Common questions"
-  // block sourced from the FAQ dataset's relatedServiceSlugs. Legal pages skip it.
-  const faqServices = isLegal
-    ? []
-    : isRegion
-      ? REGION_FAQ_SERVICES
-      : FAQ_SERVICE_MAP[key] ?? [];
-
   const pageTitle = cleanTitle(data.title);
   const pageJsonLd = buildPageJsonLd(key, isRegion, data, pageTitle, location.pathname);
 
@@ -1080,7 +1031,7 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
               return <SplitSection key={i} section={s} index={i} />;
             })}
 
-        {faqServices.length ? <RelatedFaqsSection services={faqServices} /> : null}
+        <FeaturedProjects />
 
         {key !== "warranty" && <PageCTA title={ctaTitle ? cleanTitle(ctaTitle) : undefined} body={ctaBody} />}
       </main>
