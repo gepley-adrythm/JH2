@@ -199,7 +199,7 @@ function isTierListSection(s: Section): boolean {
   return !s.heading && h3s >= 2 && ps < h3s;
 }
 
-const CTA_KEYWORDS = /\b(begin|start|ready|let'?s|contact us|schedule|get in touch|book|inquire|reach out)\b/i;
+const CTA_KEYWORDS = /\b(begin|start|ready|let['\u2019]?s|contact us|schedule|get in touch|book|inquire|reach out)\b/i;
 function isLikelyCTA(text: string | undefined): boolean {
   if (!text) return false;
   if (text.length > 80) return false;
