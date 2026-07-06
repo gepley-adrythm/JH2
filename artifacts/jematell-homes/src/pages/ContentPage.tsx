@@ -856,6 +856,20 @@ function FloorPlanWidgets() {
   );
 }
 
+function renderCtaTitle(title: string) {
+  const words = title.trim().split(/\s+/);
+  if (words.length < 2) return title;
+  const mid = Math.ceil(words.length / 2);
+  const first = words.slice(0, mid).join(" ");
+  const second = words.slice(mid).join(" ");
+  return (
+    <>
+      <span className="cta-title-line">{first}</span>
+      <span className="cta-title-line cta-title-line--accent">{second}</span>
+    </>
+  );
+}
+
 function PageCTA({ title, body }: { title?: string; body?: string }) {
   return (
     <section className="cta">
@@ -876,10 +890,12 @@ function PageCTA({ title, body }: { title?: string; body?: string }) {
         >
           <div className="cta-content">
             <span className="eyebrow" style={{ color: "var(--color-bone)" }}>Get started</span>
-            <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>{title || "Let's build your dream home."}</h2>
+            <h2 className="heading-lg cta-title" style={{ textTransform: "uppercase" }}>
+              {renderCtaTitle(title || "Let's build your dream home.")}
+            </h2>
             <p style={{ marginInline: "auto" }}>
               {body ||
-                "Schedule a consultation with our team and tell us about your land, your lifestyle, and what home means to you."}
+                "Relax while we manage every detail, throughout the entire process. Tell us about your vision, and we'll be in touch to schedule a consultation."}
             </p>
             <Link to="/contact" className="btn btn-primary" data-testid="page-cta" style={{ marginTop: 32 }}>
               Start your build <ArrowRight size={16} />

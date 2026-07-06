@@ -1036,6 +1036,14 @@ picture {
   color: #fff;
   margin-bottom: 24px;
 }
+.cta-content h2.cta-title .cta-title-line {
+  display: block;
+  white-space: normal;
+}
+.cta-content h2.cta-title .cta-title-line--accent {
+  font-style: italic;
+  color: var(--color-bone);
+}
 .cta-content p {
   font-size: 18px;
   color: rgba(255,255,255,0.7);
