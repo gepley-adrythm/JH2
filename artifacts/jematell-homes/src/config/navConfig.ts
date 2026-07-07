@@ -35,11 +35,15 @@ export const navItems: NavItem[] = [
     id: "where-we-build",
     label: "Where We Build",
     href: "/where-we-build",
-    children: locations.map((l) => ({
-      id: l.slug,
-      label: l.name,
-      href: locationHref(l.slug),
-    })),
+    children: [
+      ...locations.map((l) => ({
+        id: l.slug,
+        label: l.name,
+        href: locationHref(l.slug),
+      })),
+      { id: "build-on-your-lot", label: "Build on Your Lot", href: "/build-on-your-lot" },
+      { id: "buy-a-lot-with-us", label: "Buy a Lot With Us", href: "/buy-a-lot-with-us" },
+    ],
   },
   { id: "gallery", label: "Gallery", href: "/gallery" },
   { id: "about", label: "About", href: "/about" },

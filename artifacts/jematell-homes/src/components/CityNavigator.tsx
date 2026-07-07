@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { m } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, MapPin, ShoppingBag } from "lucide-react";
 import { locations, locationHref } from "../config/siteConfig";
 import { pages } from "../data/pages";
 import { FADE_IN_UP_PROPS } from "../motion";
@@ -90,6 +90,25 @@ export function CityNavigator() {
             );
           })}
         </ul>
+
+        <m.div className="city-nav-lot-ctas" {...FADE_IN_UP_PROPS}>
+          <Link to="/build-on-your-lot" className="city-nav-lot-card" data-testid="city-nav-build-on-your-lot" viewTransition>
+            <span className="city-nav-lot-icon"><MapPin size={20} /></span>
+            <span className="city-nav-lot-text">
+              <span className="city-nav-lot-title">Build on Your Lot</span>
+              <span className="city-nav-lot-sub">Already own land? We build on your homesite.</span>
+            </span>
+            <ArrowUpRight size={18} className="city-nav-lot-arrow" />
+          </Link>
+          <Link to="/buy-a-lot-with-us" className="city-nav-lot-card" data-testid="city-nav-buy-a-lot-with-us" viewTransition>
+            <span className="city-nav-lot-icon"><ShoppingBag size={20} /></span>
+            <span className="city-nav-lot-text">
+              <span className="city-nav-lot-title">Buy a Lot With Us</span>
+              <span className="city-nav-lot-sub">We help you find and secure the perfect homesite.</span>
+            </span>
+            <ArrowUpRight size={18} className="city-nav-lot-arrow" />
+          </Link>
+        </m.div>
       </div>
     </section>
   );

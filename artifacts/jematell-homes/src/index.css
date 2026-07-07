@@ -969,6 +969,44 @@ picture {
   }
 }
 
+/* City Nav — lot CTA cards */
+.city-nav-lot-ctas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 32px;
+}
+.city-nav-lot-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 28px;
+  background: var(--color-cream);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.city-nav-lot-card:hover { background: var(--color-bone); border-color: rgba(0,0,0,0.18); transform: translateY(-2px); }
+.city-nav-lot-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-dark);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.city-nav-lot-text { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.city-nav-lot-title { font-family: var(--font-serif); font-size: 18px; font-weight: 600; line-height: 1.2; }
+.city-nav-lot-sub { font-size: 14px; color: var(--color-text-muted); line-height: 1.4; }
+.city-nav-lot-arrow { flex-shrink: 0; color: var(--color-text-muted); transition: transform 0.2s; }
+.city-nav-lot-card:hover .city-nav-lot-arrow { transform: translate(2px, -2px); }
+@media (max-width: 600px) { .city-nav-lot-ctas { grid-template-columns: 1fr; } }
+
 /* Reviews */
 .reviews {
   background: var(--color-bone);
