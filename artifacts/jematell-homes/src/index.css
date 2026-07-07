@@ -775,7 +775,6 @@ picture {
   background: var(--color-bg);
 }
 .city-nav-head {
-  max-width: 720px;
   margin: 0 auto 56px;
   text-align: center;
 }
