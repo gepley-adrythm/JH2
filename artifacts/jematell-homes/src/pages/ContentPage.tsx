@@ -398,7 +398,6 @@ function ProcessSection({ section }: { section: Section }) {
     <section className={isFeaturedLayout ? "process page-process-featured section-pad" : "page-process section-pad"}>
       <div className="container">
         <m.div className="page-section-head centered" {...FADE_IN}>
-          <span className="eyebrow">The process</span>
           <h2 className="heading-lg">{section.heading?.text}</h2>
         </m.div>
         {isFeaturedLayout ? (
