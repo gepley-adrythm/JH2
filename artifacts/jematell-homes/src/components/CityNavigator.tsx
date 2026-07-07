@@ -34,7 +34,7 @@ export function CityNavigator() {
       <div className="container">
         <m.div className="city-nav-head" {...FADE_IN_UP_PROPS}>
           <span className="eyebrow">Explore by community</span>
-          <h2 className="heading-lg" id="city-nav-heading">
+          <h2 className="heading-lg" id="city-nav-heading" style={{ textTransform: "uppercase" }}>
             Find your place in the desert
           </h2>
           <p className="city-nav-intro">
