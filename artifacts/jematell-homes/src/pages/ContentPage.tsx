@@ -325,6 +325,7 @@ const SERVICE_GRID_ORDER = [
   "permitting",
   "pre-construction",
   "pre construction",
+  "final inspections",
   "weekly updates",
 ];
 
