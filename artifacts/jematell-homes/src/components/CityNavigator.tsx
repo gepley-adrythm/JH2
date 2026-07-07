@@ -33,7 +33,7 @@ export function CityNavigator() {
     <section className="city-nav section-pad" aria-labelledby="city-nav-heading">
       <div className="container">
         <m.div className="city-nav-head" {...FADE_IN_UP_PROPS}>
-          <span className="eyebrow">Explore by community</span>
+          <span className="eyebrow">Explore by Region</span>
           <h2 className="heading-lg" id="city-nav-heading" style={{ textTransform: "uppercase" }}>
             Find your place in the desert
           </h2>
