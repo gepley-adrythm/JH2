@@ -292,24 +292,28 @@ function IntroSection({
     return (
       <section className="page-intro page-intro--horizontal" style={{ backgroundColor: 'var(--color-bone)' }}>
         <div className="container">
-          <m.div className="page-intro-h-text" {...FADE_IN}>
-            {subtitle ? (
-              <h2 className="heading-lg page-intro-title" style={{ fontSize: '54px' }}>{subtitle}</h2>
+          {subtitle ? (
+            <m.div className="page-intro-h-heading" {...FADE_IN}>
+              <h2 className="heading-lg page-intro-title">{subtitle}</h2>
+            </m.div>
+          ) : null}
+          <div className="page-intro-h-body">
+            {intro ? (
+              <m.p className="page-intro-p page-intro-h-copy" {...FADE_IN}>{intro}</m.p>
             ) : null}
-            {intro ? <p className="page-intro-p">{intro}</p> : null}
-          </m.div>
+            {image ? (
+              <m.figure
+                className="page-intro-h-figure"
+                initial={{ opacity: 0, scale: 0.97 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.65 }}
+              >
+                <img src={image.src} alt={image.alt || ""} loading="lazy" />
+              </m.figure>
+            ) : null}
+          </div>
         </div>
-        {image ? (
-          <m.figure
-            className="page-intro-h-figure"
-            initial={{ opacity: 0, scale: 1.02 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.7 }}
-          >
-            <img src={image.src} alt={image.alt || ""} loading="lazy" />
-          </m.figure>
-        ) : null}
       </section>
     );
   }

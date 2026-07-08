@@ -2339,22 +2339,39 @@ a.contact-info-card:hover {
   .page-intro-figure { aspect-ratio: 16/10; }
 }
 
-/* Horizontal intro variant — text full-width at top, wide image below */
-.page-intro--horizontal { padding-bottom: 0; }
-.page-intro-h-text {
-  max-width: 1100px;
-  padding-bottom: clamp(32px, 4vw, 60px);
+/* Horizontal intro variant — heading full-width, then body-left / photo-right */
+.page-intro--horizontal { padding-bottom: clamp(48px, 6vw, 96px); }
+.page-intro-h-heading { margin-bottom: clamp(28px, 3vw, 48px); }
+.page-intro-h-heading .page-intro-title {
+  font-size: clamp(28px, 3.6vw, 54px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  max-width: 100%;
+  margin-bottom: 0;
 }
-.page-intro-h-text .page-intro-title { font-size: clamp(28px, 3.4vw, 54px); }
-.page-intro-h-text .page-intro-p { max-width: 780px; }
+.page-intro-h-body {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: clamp(32px, 5vw, 80px);
+  align-items: start;
+}
+.page-intro-h-copy {
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.75;
+  color: var(--color-text);
+  padding-top: 6px;
+}
 .page-intro-h-figure {
   margin: 0;
-  width: 100%;
-  aspect-ratio: 21/9;
+  border-radius: 4px;
   overflow: hidden;
+  aspect-ratio: 4/5;
 }
-.page-intro-h-figure img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
-@media (max-width: 760px) { .page-intro-h-figure { aspect-ratio: 16/9; } }
+.page-intro-h-figure img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+@media (max-width: 900px) {
+  .page-intro-h-body { grid-template-columns: 1fr; }
+  .page-intro-h-figure { aspect-ratio: 16/9; }
+}
 
 /* Service icon grid */
 .page-services { background: var(--color-bg); }
