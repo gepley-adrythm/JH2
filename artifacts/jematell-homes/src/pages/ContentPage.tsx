@@ -21,7 +21,6 @@ import NotFound from "./not-found";
 import { CityNavigator } from "../components/CityNavigator";
 import { ResponsiveImage } from "../components/ResponsiveImage";
 import { EASE_OUT_EXPO } from "../motion";
-import { FeaturedProjects } from "../sections";
 
 const SERVICE_KEYS = new Set(["custom-homes", "spechomes", "floorplans"]);
 const WHERE_NESTED_KEYS = new Set(["build-on-your-lot", "buy-a-lot-with-us"]);
@@ -1095,7 +1094,7 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
               return <SplitSection key={i} section={s} index={i} forceReverse={key === "where-we-build"} />;
             })}
 
-        <FeaturedProjects />
+
 
         {key !== "warranty" && <PageCTA title={ctaTitle ? cleanTitle(ctaTitle) : undefined} body={ctaBody} />}
       </main>
