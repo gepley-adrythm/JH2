@@ -735,7 +735,10 @@ function SplitSection({
   return (
     <section className={`page-split section-pad ${isOdd ? "alt-bg" : ""}`}>
       <div className="container">
-        <div className={`page-split-grid ${img ? "with-media" : "no-media"} ${isOdd ? "reverse" : ""}`}>
+        <div
+          className={`page-split-grid ${img ? "with-media" : "no-media"} ${isOdd ? "reverse" : ""}`}
+          style={forceReverse && img ? { gridTemplateColumns: "560px 1fr" } : undefined}
+        >
           <m.div className="page-split-copy" {...FADE_IN}>
             {section.heading ? (
               <h2 className="heading-lg page-split-title">{section.heading.text}</h2>
