@@ -278,13 +278,42 @@ function IntroSection({
   intro,
   image,
   centered,
+  horizontal,
 }: {
   subtitle?: string;
   intro?: string;
   image?: { src: string; alt?: string };
   centered?: boolean;
+  horizontal?: boolean;
 }) {
   if (!subtitle && !intro && !image) return null;
+
+  if (horizontal) {
+    return (
+      <section className="page-intro page-intro--horizontal" style={{ backgroundColor: 'var(--color-bone)' }}>
+        <div className="container">
+          <m.div className="page-intro-h-text" {...FADE_IN}>
+            {subtitle ? (
+              <h2 className="heading-lg page-intro-title" style={{ fontSize: '54px' }}>{subtitle}</h2>
+            ) : null}
+            {intro ? <p className="page-intro-p">{intro}</p> : null}
+          </m.div>
+        </div>
+        {image ? (
+          <m.figure
+            className="page-intro-h-figure"
+            initial={{ opacity: 0, scale: 1.02 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.7 }}
+          >
+            <img src={image.src} alt={image.alt || ""} loading="lazy" />
+          </m.figure>
+        ) : null}
+      </section>
+    );
+  }
+
   return (
     <section
       className="page-intro"
@@ -1030,8 +1059,11 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
           intro={key === "warranty" && intro
             ? intro.replace("Please contact Jematell Homes or call", "Please contact your Jematell Homes contact or call")
             : intro}
-          image={introImg}
+          image={key === "where-we-build"
+            ? { src: "/images/where-we-build-interior.jpg", alt: "Luxury primary bathroom in a completed Jematell home in Arizona" }
+            : introImg}
           centered={key === "warranty"}
+          horizontal={key === "where-we-build"}
         />
 
         {isLegal
