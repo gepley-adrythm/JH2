@@ -702,9 +702,11 @@ function LocationEditorialSection({ section }: { section: Section }) {
 function SplitSection({
   section,
   index,
+  forceReverse,
 }: {
   section: Section;
   index: number;
+  forceReverse?: boolean;
 }) {
   // Generic alternating section: title + paragraphs (+ first image as media)
   const paras: string[] = [];
@@ -728,7 +730,7 @@ function SplitSection({
   }
   if (currentSub) subheads.push(currentSub);
 
-  const isOdd = index % 2 === 1;
+  const isOdd = forceReverse || index % 2 === 1;
 
   return (
     <section className={`page-split section-pad ${isOdd ? "alt-bg" : ""}`}>
@@ -1083,7 +1085,7 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
               if (isLocationEditorialSection(s)) return <LocationEditorialSection key={i} section={s} />;
               if (isTierListSection(s))
                 return <TierListSection key={i} section={s} eyebrow={tierEyebrow} />;
-              return <SplitSection key={i} section={s} index={i} />;
+              return <SplitSection key={i} section={s} index={i} forceReverse={key === "where-we-build"} />;
             })}
 
         <FeaturedProjects />
