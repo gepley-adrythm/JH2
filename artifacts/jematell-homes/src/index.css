@@ -2351,7 +2351,7 @@ a.contact-info-card:hover {
 }
 .page-intro-h-body {
   display: grid;
-  grid-template-columns: 1fr 420px;
+  grid-template-columns: 1fr 560px;
   gap: clamp(32px, 5vw, 80px);
   align-items: start;
 }
