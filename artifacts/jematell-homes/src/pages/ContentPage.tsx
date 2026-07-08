@@ -733,11 +733,14 @@ function SplitSection({
   const isOdd = forceReverse || index % 2 === 1;
 
   return (
-    <section className={`page-split section-pad ${isOdd ? "alt-bg" : ""}`}>
+    <section
+      className={`page-split section-pad ${isOdd ? "alt-bg" : ""}`}
+      style={forceReverse ? { paddingTop: "clamp(24px, 3vw, 48px)" } : undefined}
+    >
       <div className="container">
         <div
           className={`page-split-grid ${img ? "with-media" : "no-media"} ${isOdd ? "reverse" : ""}`}
-          style={forceReverse && img ? { gridTemplateColumns: "560px 1fr" } : undefined}
+          style={forceReverse && img ? { gridTemplateColumns: "560px 1fr", gap: "clamp(32px, 5vw, 80px)" } : undefined}
         >
           <m.div className="page-split-copy" {...FADE_IN}>
             {section.heading ? (
