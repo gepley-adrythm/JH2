@@ -290,7 +290,7 @@ function IntroSection({
 
   if (horizontal) {
     return (
-      <section className="page-intro page-intro--horizontal" style={{ backgroundColor: 'var(--color-bone)' }}>
+      <section className="page-intro page-intro--horizontal bg-[color:var(--color-cream)]" style={{ backgroundColor: 'var(--color-bone)' }}>
         <div className="container">
           {subtitle ? (
             <m.div className="page-intro-h-heading" {...FADE_IN}>
