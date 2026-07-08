@@ -2365,7 +2365,7 @@ a.contact-info-card:hover {
   margin: 0;
   border-radius: 4px;
   overflow: hidden;
-  aspect-ratio: 4/5;
+  aspect-ratio: 4/3;
 }
 .page-intro-h-figure img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
 @media (max-width: 900px) {
