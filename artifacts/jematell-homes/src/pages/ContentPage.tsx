@@ -225,19 +225,27 @@ function CityHeroPicture({ slug }: { slug: string }) {
   );
 }
 
+const LOCAL_HERO_IMAGES: Record<string, string> = {
+  "where-we-build": "/images/where-we-build-hero.jpg",
+};
+
 function PageHero({
   data,
+  slug,
   citySlug,
   hideDescription,
   galleryStyle,
 }: {
   data: PageData;
+  slug?: string;
   citySlug?: string;
   hideDescription?: boolean;
   galleryStyle?: boolean;
 }) {
   const title = cleanTitle(data.title);
   const hasCityHero = citySlug != null && citySlug in CITY_HERO_WIDTHS;
+  const localHero = slug ? LOCAL_HERO_IMAGES[slug] : undefined;
+  const heroSrc = localHero || data.ogImage;
   return (
     <section
       className="page-hero"
@@ -246,8 +254,8 @@ function PageHero({
     >
       {hasCityHero ? (
         <CityHeroPicture slug={citySlug!} />
-      ) : data.ogImage ? (
-        <img src={data.ogImage} alt="" className="page-hero-bg" loading="eager" />
+      ) : heroSrc ? (
+        <img src={heroSrc} alt="" className="page-hero-bg" loading="eager" fetchPriority="high" />
       ) : null}
       <div
         className="page-hero-overlay"
@@ -1065,7 +1073,7 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
           noindex={key === "thankyou"}
           jsonLd={pageJsonLd.length ? pageJsonLd : undefined}
         />
-        <PageHero data={data} citySlug={isRegion ? key : undefined} hideDescription={heroDescDup} galleryStyle={key === "warranty" || key === "privacypolicy" || key === "custom-homes" || key === "where-we-build"} />
+        <PageHero data={data} slug={key} citySlug={isRegion ? key : undefined} hideDescription={heroDescDup} galleryStyle={key === "warranty" || key === "privacypolicy" || key === "custom-homes" || key === "where-we-build"} />
         {key === "where-we-build" ? <CityNavigator /> : null}
         <IntroSection
           subtitle={subtitle}
