@@ -747,7 +747,7 @@ function SplitSection({
               <h2 className="heading-lg page-split-title">{section.heading.text}</h2>
             ) : null}
             {paras.map((p, i) => (
-              <p key={i} className="page-split-p text-[20px]">
+              <p key={i} className="page-split-p" style={{ fontSize: '20px' }}>
                 {p}
               </p>
             ))}
