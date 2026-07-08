@@ -973,39 +973,40 @@ picture {
 .city-nav-lot-ctas {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-top: 32px;
+  gap: 0;
+  margin-top: 40px;
 }
 .city-nav-lot-card {
   display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 24px 28px;
-  background: var(--color-cream);
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 4px;
+  flex-direction: column;
+  gap: 10px;
+  padding: 28px 36px 28px 0;
+  border-top: 2px solid var(--color-text);
   text-decoration: none;
   color: var(--color-text);
-  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  transition: opacity 0.2s;
 }
-.city-nav-lot-card:hover { background: var(--color-bone); border-color: rgba(0,0,0,0.18); transform: translateY(-2px); }
-.city-nav-lot-icon {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--color-dark);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.city-nav-lot-card:first-child {
+  border-right: 1px solid var(--color-bone);
+  padding-right: 36px;
+  padding-left: 0;
 }
-.city-nav-lot-text { flex: 1; display: flex; flex-direction: column; gap: 4px; }
-.city-nav-lot-title { font-family: var(--font-serif); font-size: 18px; font-weight: 600; line-height: 1.2; }
-.city-nav-lot-sub { font-size: 14px; color: var(--color-text-muted); line-height: 1.4; }
-.city-nav-lot-arrow { flex-shrink: 0; color: var(--color-text-muted); transition: transform 0.2s; }
-.city-nav-lot-card:hover .city-nav-lot-arrow { transform: translate(2px, -2px); }
-@media (max-width: 600px) { .city-nav-lot-ctas { grid-template-columns: 1fr; } }
+.city-nav-lot-card:last-child {
+  padding-left: 36px;
+  padding-right: 0;
+}
+.city-nav-lot-card:hover { opacity: 0.75; }
+.city-nav-lot-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); font-weight: 600; }
+.city-nav-lot-title-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.city-nav-lot-title { font-family: var(--font-serif); font-size: 24px; font-weight: 500; line-height: 1.15; letter-spacing: -0.01em; }
+.city-nav-lot-arrow { flex-shrink: 0; margin-top: 4px; color: var(--color-accent); transition: transform 0.2s; }
+.city-nav-lot-card:hover .city-nav-lot-arrow { transform: translateX(3px); }
+.city-nav-lot-sub { font-size: 14px; color: var(--color-text-muted); line-height: 1.55; margin: 0; }
+@media (max-width: 600px) {
+  .city-nav-lot-ctas { grid-template-columns: 1fr; }
+  .city-nav-lot-card:first-child { border-right: none; padding-right: 0; padding-bottom: 28px; }
+  .city-nav-lot-card:last-child { padding-left: 0; border-top: 2px solid var(--color-text); }
+}
 
 /* Reviews */
 .reviews {
