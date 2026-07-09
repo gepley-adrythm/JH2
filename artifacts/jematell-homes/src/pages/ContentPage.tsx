@@ -265,17 +265,21 @@ function PageHero({
         className="container page-hero-content"
         style={galleryStyle ? { textAlign: "center", maxWidth: "100%" } : undefined}
       >
-        <m.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55 }}
-        >
-          {!galleryStyle && <span className="eyebrow page-hero-eyebrow">Jematell Homes</span>}
-          <h1 className="page-hero-title" style={galleryStyle ? { textTransform: "uppercase" } : undefined}>{title}</h1>
-          {data.description && !hideDescription && !galleryStyle ? (
-            <p className="page-hero-sub">{data.description}</p>
-          ) : null}
-        </m.div>
+        {galleryStyle ? (
+          <h1 className="page-hero-title hero-title" style={{ textTransform: "uppercase" }}>{title}</h1>
+        ) : (
+          <m.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55 }}
+          >
+            <span className="eyebrow page-hero-eyebrow">Jematell Homes</span>
+            <h1 className="page-hero-title">{title}</h1>
+            {data.description && !hideDescription ? (
+              <p className="page-hero-sub">{data.description}</p>
+            ) : null}
+          </m.div>
+        )}
       </div>
     </section>
   );
