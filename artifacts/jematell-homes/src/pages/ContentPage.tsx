@@ -1077,7 +1077,7 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
           noindex={key === "thankyou"}
           jsonLd={pageJsonLd.length ? pageJsonLd : undefined}
         />
-        <PageHero data={data} slug={key} citySlug={isRegion ? key : undefined} hideDescription={heroDescDup} galleryStyle={key === "warranty" || key === "privacypolicy" || key === "custom-homes" || key === "where-we-build"} />
+        <PageHero data={data} slug={key} citySlug={isRegion ? key : undefined} hideDescription={heroDescDup} galleryStyle={key === "warranty" || key === "privacypolicy" || key === "custom-homes" || key === "where-we-build" || key === "build-on-your-lot" || key === "buy-a-lot-with-us"} />
         {key === "where-we-build" ? <CityNavigator /> : null}
         <IntroSection
           subtitle={subtitle}
