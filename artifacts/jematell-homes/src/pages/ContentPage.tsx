@@ -240,6 +240,7 @@ function CityHeroPicture({ slug }: { slug: string }) {
 
 const LOCAL_HERO_IMAGES: Record<string, string> = {
   "where-we-build": "/images/where-we-build-hero.jpg",
+  "surprise": "/images/city-hero-surprise.jpg",
 };
 
 function PageHero({
