@@ -2330,7 +2330,7 @@ a.contact-info-card:hover {
   align-items: center;
 }
 .page-intro-grid.with-image { grid-template-columns: 1fr 1fr; }
-.page-intro-grid.with-image > * { min-width: 0; overflow: hidden; }
+.page-intro-grid.with-image > * { min-width: 0; }
 .page-intro-grid.no-image { grid-template-columns: 1fr; max-width: 880px; margin: 0 auto; }
 .page-intro-title { font-size: clamp(28px, 3.4vw, 48px); line-height: 1.1; letter-spacing: -0.015em; margin-bottom: 24px; }
 .page-intro-p { font-size: clamp(17px, 1.4vw, 20px); line-height: 1.7; color: var(--color-text); }
