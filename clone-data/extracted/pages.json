@@ -4648,5 +4648,198 @@
         "text": "Relax while we manage every detail, throughout the entire process."
       }
     ]
+  },
+  "surprise": {
+    "sourceUrl": "https://jematellhomes.com/surprise",
+    "title": "Surprise",
+    "description": "Jematell Homes is a premier custom home builder in Surprise, AZ, crafting luxury homes in the heart of the West Valley. From Marley Park to Prasada, we deliver exceptional craftsmanship, personalized design, and a smooth building experience tailored to your lifestyle.",
+    "ogImage": "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/8ad66e11-d811-44f2-ae0c-36fe64b7933c/03-DJI_20260202163642_0038_D.jpg",
+    "blocks": [
+      {
+        "type": "img",
+        "src": "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/8ad66e11-d811-44f2-ae0c-36fe64b7933c/03-DJI_20260202163642_0038_D.jpg",
+        "alt": ""
+      },
+      {
+        "type": "h1",
+        "text": "SURPRISE"
+      },
+      {
+        "type": "h2",
+        "text": "BUILD A HOME IN SURPRISE"
+      },
+      {
+        "type": "p",
+        "text": "Surprise, Arizona is one of the West Valley’s fastest-growing cities, offering master-planned communities, excellent schools, and a family-friendly lifestyle at a compelling value. Known for Surprise Stadium (spring training home of the Kansas City Royals and Texas Rangers), vibrant new retail corridors, and thoughtfully designed neighborhoods like Marley Park and Prasada, Surprise is an ideal place to build a custom home. Jematell Homes brings the same luxury craftsmanship and personal attention we deliver across the greater Phoenix metro to every build in Surprise."
+      },
+      {
+        "type": "img",
+        "src": "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/b18f7d85-8296-4d7f-97db-6f820b8adf26/custom-home-builder-scottsdale-az.jpg",
+        "alt": "Custom home construction by an experienced Arizona home builder"
+      },
+      {
+        "type": "h2",
+        "text": "Full-Service Design & Project Management"
+      },
+      {
+        "type": "h4",
+        "text": "Site Selection"
+      },
+      {
+        "type": "p",
+        "text": "Find the perfect lot in Surprise’s thriving communities"
+      },
+      {
+        "type": "h4",
+        "text": "Material Selection"
+      },
+      {
+        "type": "p",
+        "text": "Choose quality materials for every detail"
+      },
+      {
+        "type": "h4",
+        "text": "Funding"
+      },
+      {
+        "type": "p",
+        "text": "Navigate financing options with expert guidance"
+      },
+      {
+        "type": "h4",
+        "text": "Final Inspections"
+      },
+      {
+        "type": "p",
+        "text": "Rigorous quality checks throughout"
+      },
+      {
+        "type": "h4",
+        "text": "Design"
+      },
+      {
+        "type": "p",
+        "text": "Collaborate with our architects on your vision"
+      },
+      {
+        "type": "h4",
+        "text": "Weekly Updates"
+      },
+      {
+        "type": "p",
+        "text": "Stay informed on your project’s progress"
+      },
+      {
+        "type": "h4",
+        "text": "Pre-Construction"
+      },
+      {
+        "type": "p",
+        "text": "Thorough planning before breaking ground"
+      },
+      {
+        "type": "h4",
+        "text": "Permitting"
+      },
+      {
+        "type": "p",
+        "text": "Handle all permits and regulatory requirements with the City of Surprise"
+      },
+      {
+        "type": "h3",
+        "text": "Building In Surprise"
+      },
+      {
+        "type": "p",
+        "text": "Jematell Homes is a trusted custom home builder in Surprise, AZ, delivering luxury craftsmanship across the West Valley’s most desirable master-planned communities. From architectural planning through final walkthrough, we manage every detail so you can focus on the exciting milestones — not the paperwork."
+      },
+      {
+        "type": "p",
+        "text": "Whether you’re building in an established neighborhood or on a private lot, our team brings deep local knowledge and a commitment to delivering your home on time and exactly as envisioned."
+      },
+      {
+        "type": "h3",
+        "text": "Construction In Surprise"
+      },
+      {
+        "type": "p",
+        "text": "We manage Surprise’s permitting process and Maricopa County requirements to keep your build moving efficiently. Our familiarity with the City of Surprise Community Development department helps prevent delays and ensures your project stays fully compliant from start to finish."
+      },
+      {
+        "type": "p",
+        "text": "From groundbreaking to final walkthrough, we provide clear communication, accurate scheduling, and uncompromising quality. Our dedicated team keeps you informed and involved at every milestone."
+      },
+      {
+        "type": "h3",
+        "text": "Activities In Surprise"
+      },
+      {
+        "type": "p",
+        "text": "Surprise offers a rich lifestyle with something for every age. Residents enjoy spring training baseball at Surprise Stadium, extensive trail systems, community parks, and a growing dining and retail scene anchored by Prasada and Bell Road corridors. Families take advantage of splash pads, youth sports leagues, and easy access to Lake Pleasant Regional Park for boating and hiking."
+      },
+      {
+        "type": "h3",
+        "text": "Education In Surprise"
+      },
+      {
+        "type": "p",
+        "text": "Surprise is served primarily by the Dysart Unified School District, recognized for strong academic programs, athletics, and career and technical education pathways. The area also offers a range of charter and private school options, and is within driving distance of multiple higher education campuses in the northwest Valley, making it an excellent choice for families at every stage."
+      },
+      {
+        "type": "h1",
+        "text": "Explore Floor Plans"
+      },
+      {
+        "type": "p",
+        "text": "Every home begins with the floor plan. Browse various styles, sizes, and configurations to find the perfect foundation for your vision."
+      },
+      {
+        "type": "img",
+        "src": "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/983545ec-db2e-4602-a7be-c4d2e224e657/1849+Square+Foot+Floor+Plan",
+        "alt": "Custom home floor plan layout showcasing open-concept living, bedrooms, and modern design"
+      },
+      {
+        "type": "h4",
+        "text": "Under 2,000 Sq Ft"
+      },
+      {
+        "type": "p",
+        "text": "Efficient designs from under 2,000 sq ft3-4 Bedrooms | 2-2.5 Baths"
+      },
+      {
+        "type": "img",
+        "src": "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/2cd21098-b966-4836-96ff-1694ab9e0fec/2616+Square+Foot+Floor+Plan",
+        "alt": "Single-story custom home floor plan designed for modern living"
+      },
+      {
+        "type": "h4",
+        "text": "2,000 - 3,000 Sq Ft"
+      },
+      {
+        "type": "p",
+        "text": "Spacious living from 2,000 - 3,000 sq ft3-4 Bedrooms | 2.5-3.5 Baths"
+      },
+      {
+        "type": "img",
+        "src": "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/280d2393-74f2-473b-95d6-92343503f01a/3771+Square+Foot+Floor+Plan",
+        "alt": "Luxury home floor plan with open living areas and spacious bedrooms"
+      },
+      {
+        "type": "h4",
+        "text": "Over 3,000 Sq Ft"
+      },
+      {
+        "type": "p",
+        "text": "Luxury homes over 3,000 sq ft4+ Bedrooms | 3.5+ Baths"
+      },
+      {
+        "type": "h2",
+        "text": "BEGIN YOUR BUILD"
+      },
+      {
+        "type": "p",
+        "text": "Relax while we manage every detail, throughout the entire process."
+      }
+    ]
   }
 }
