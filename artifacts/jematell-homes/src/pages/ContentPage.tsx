@@ -605,28 +605,28 @@ function WhyChooseSection({ section }: { section: Section }) {
           <span className="eyebrow">Why us</span>
           <h2 className="heading-lg">{section.heading?.text}</h2>
         </m.div>
-        <div className="page-why-grid">
+        <div className="page-why-list-rows">
           {features.map((f, i) => (
             <m.div
               key={i}
-              className="page-why-card"
-              initial={{ opacity: 0, y: 24 }}
+              className="page-why-row"
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.5, delay: i * 0.04 }}
             >
               <div className="page-why-num">{String(i + 1).padStart(2, "0")}</div>
               <h3 className="page-why-title">{f.title}</h3>
-              {f.body ? <p className="page-why-body">{f.body}</p> : null}
-              {f.bullets.length ? (
-                <ul className="page-why-list">
-                  {f.bullets.map((bl, j) => (
-                    <li key={j}>
-                      <Check size={14} /> {bl}
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
+              <div className="page-why-right">
+                {f.body ? <p className="page-why-body">{f.body}</p> : null}
+                {f.bullets.length ? (
+                  <ul className="page-why-bullets">
+                    {f.bullets.map((bl, j) => (
+                      <li key={j}><span className="page-why-dot" />{bl}</li>
+                    ))}
+                  </ul>
+                ) : null}
+              </div>
             </m.div>
           ))}
         </div>
