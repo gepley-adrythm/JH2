@@ -343,7 +343,7 @@ function IntroSection({
         <div className={`page-intro-grid ${image ? "with-image" : "no-image"}${centered ? " centered" : ""}`}>
           <m.div className="page-intro-copy" {...FADE_IN} style={centered ? { textAlign: "center" } : undefined}>
             {subtitle ? (
-              <h2 className="heading-lg page-intro-title" style={{ fontSize: 'clamp(16px, 2vw, 28px)', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>{subtitle}</h2>
+              <h2 className="heading-lg page-intro-title" style={{ fontSize: 'clamp(20px, 2.6vw, 36px)', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>{subtitle}</h2>
             ) : null}
             {intro ? <p className="page-intro-p">{intro}</p> : null}
           </m.div>
