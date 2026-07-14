@@ -729,6 +729,10 @@ function SplitSection({
 
   const BLOCKED_IMGS = ["ac32514a-52c9-496a-970e-ccea56485718"];
   const BLOCKED_PARAS = ["Whether you already have an area in mind or are just beginning your search"];
+  const REWRITE_PARAS: Record<string, string> = {
+    "We help you avoid costly mistakes by identifying potential issues early, including:":
+      "We help you avoid costly mistakes by identifying potential issues early.",
+  };
   for (const b of section.blocks) {
     if (b.type === "img" && b.src && !img && !BLOCKED_IMGS.some(id => b.src!.includes(id))) {
       img = { src: b.src, alt: b.alt };
@@ -736,8 +740,9 @@ function SplitSection({
       if (currentSub) subheads.push(currentSub);
       currentSub = { title: b.text || "", body: [] };
     } else if (b.type === "p" && b.text && !BLOCKED_PARAS.some(s => b.text!.startsWith(s))) {
-      if (currentSub) currentSub.body.push(b.text);
-      else paras.push(b.text);
+      const t = REWRITE_PARAS[b.text] ?? b.text;
+      if (currentSub) currentSub.body.push(t);
+      else paras.push(t);
     } else if (b.type === "li" && b.text) {
       bullets.push(b.text);
     }
