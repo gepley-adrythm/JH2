@@ -728,13 +728,14 @@ function SplitSection({
   const bullets: string[] = [];
 
   const BLOCKED_IMGS = ["ac32514a-52c9-496a-970e-ccea56485718"];
+  const BLOCKED_PARAS = ["Whether you already have an area in mind or are just beginning your search"];
   for (const b of section.blocks) {
     if (b.type === "img" && b.src && !img && !BLOCKED_IMGS.some(id => b.src!.includes(id))) {
       img = { src: b.src, alt: b.alt };
     } else if (b.type === "h3" || b.type === "h4") {
       if (currentSub) subheads.push(currentSub);
       currentSub = { title: b.text || "", body: [] };
-    } else if (b.type === "p" && b.text) {
+    } else if (b.type === "p" && b.text && !BLOCKED_PARAS.some(s => b.text!.startsWith(s))) {
       if (currentSub) currentSub.body.push(b.text);
       else paras.push(b.text);
     } else if (b.type === "li" && b.text) {
