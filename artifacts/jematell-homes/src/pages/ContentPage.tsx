@@ -241,7 +241,10 @@ function PageHero({
   hideDescription?: boolean;
   galleryStyle?: boolean;
 }) {
-  const title = cleanTitle(data.title);
+  const rawTitle = cleanTitle(data.title);
+  const title = citySlug
+    ? rawTitle.replace(/^Custom Home Builder in /i, "").replace(/, AZ.*$/i, "")
+    : rawTitle;
   const hasCityHero = citySlug != null && citySlug in CITY_HERO_WIDTHS;
   const localHero = slug ? LOCAL_HERO_IMAGES[slug] : undefined;
   const heroSrc = localHero || data.ogImage;
