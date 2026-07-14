@@ -252,10 +252,7 @@ function PageHero({
       style={galleryStyle ? { alignItems: "center", minHeight: "65vh" } : undefined}
     >
       {hasCityHero ? (
-        <picture>
-          <source srcSet="/images/gallery-hero.webp" type="image/webp" />
-          <img src="/images/gallery-hero.jpg" alt="" className="page-hero-bg" loading="eager" fetchPriority="high" />
-        </picture>
+        <CityHeroPicture slug={citySlug!} />
       ) : heroSrc ? (
         <img src={heroSrc} alt="" className="page-hero-bg" loading="eager" fetchPriority="high" />
       ) : null}
@@ -1124,7 +1121,7 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
           noindex={key === "thankyou"}
           jsonLd={pageJsonLd.length ? pageJsonLd : undefined}
         />
-        <PageHero data={data} slug={key} citySlug={isRegion ? key : undefined} hideDescription={heroDescDup} galleryStyle={isRegion || key === "warranty" || key === "privacypolicy" || key === "custom-homes" || key === "where-we-build" || key === "build-on-your-lot" || key === "buy-a-lot-with-us"} />
+        <PageHero data={data} slug={key} citySlug={isRegion ? key : undefined} hideDescription={heroDescDup} galleryStyle={key === "warranty" || key === "privacypolicy" || key === "custom-homes" || key === "where-we-build" || key === "build-on-your-lot" || key === "buy-a-lot-with-us"} />
         {key === "where-we-build" ? <CityNavigator /> : null}
         <IntroSection
           subtitle={subtitle}
