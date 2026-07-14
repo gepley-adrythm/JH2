@@ -2629,6 +2629,55 @@ a.contact-info-card:hover {
   flex-shrink: 0;
   display: inline-block;
 }
+/* Why-choose due-diligence interstitial */
+.page-why-dd {
+  margin-top: clamp(40px, 5vw, 64px);
+  padding: clamp(32px, 4vw, 52px) clamp(28px, 4vw, 56px);
+  background: var(--color-cream);
+  border-left: 3px solid var(--color-accent);
+}
+.page-why-dd-title {
+  font-family: var(--font-heading);
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 600;
+  color: var(--color-dark);
+  margin: 0 0 16px;
+}
+.page-why-dd-lead {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin: 0 0 12px;
+}
+.page-why-dd-intro {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin: 0 0 14px;
+}
+.page-why-dd-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.page-why-dd-bullets li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--color-text-muted);
+}
+.page-why-dd-close {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text);
+  font-weight: 500;
+  margin: 0;
+}
+
 /* Why-choose CTA footer */
 .page-why-cta-block {
   margin-top: clamp(48px, 6vw, 80px);

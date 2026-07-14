@@ -580,7 +580,7 @@ function FloorPlanTiersSection({ section }: { section: Section }) {
   );
 }
 
-function WhyChooseSection({ section }: { section: Section }) {
+function WhyChooseSection({ section, extraSection }: { section: Section; extraSection?: Section }) {
   type Feature = { title: string; body: string; bullets: string[] };
   const features: Feature[] = [];
   let current: Partial<Feature> | null = null;
@@ -629,6 +629,31 @@ function WhyChooseSection({ section }: { section: Section }) {
             </m.div>
           ))}
         </div>
+        {extraSection ? (() => {
+          const ddParas: string[] = [];
+          const ddBullets: string[] = [];
+          for (const b of extraSection.blocks) {
+            if (b.type === "p" && b.text) ddParas.push(b.text);
+            else if (b.type === "li" && b.text) ddBullets.push(b.text);
+          }
+          return (
+            <m.div className="page-why-dd" {...FADE_IN}>
+              {extraSection.heading ? (
+                <h2 className="page-why-dd-title">{extraSection.heading.text}</h2>
+              ) : null}
+              {ddParas[0] ? <p className="page-why-dd-lead">{ddParas[0]}</p> : null}
+              {ddParas[1] ? <p className="page-why-dd-intro">{ddParas[1]}</p> : null}
+              {ddBullets.length ? (
+                <ul className="page-why-dd-bullets">
+                  {ddBullets.map((bl, j) => (
+                    <li key={j}><span className="page-why-dot" />{bl}</li>
+                  ))}
+                </ul>
+              ) : null}
+              {ddParas[2] ? <p className="page-why-dd-close">{ddParas[2]}</p> : null}
+            </m.div>
+          );
+        })() : null}
         <m.div className="page-why-cta-block" {...FADE_IN}>
           <h2 className="page-why-cta-title">Start Your Search Today</h2>
           <p className="page-why-cta-body">
@@ -1124,7 +1149,12 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
               if (isProcessSection(s)) return <ProcessSection key={i} section={s} />;
               if (isFloorPlanTiersSection(s, sections.slice(i + 1)))
                 return <FloorPlanTiersSection key={i} section={s} />;
-              if (isWhyChooseSection(s)) return <WhyChooseSection key={i} section={s} />;
+              if (isWhyChooseSection(s)) {
+                const next = sections[i + 1];
+                const isDueDiligence = next?.heading?.text?.toLowerCase().includes("due diligence");
+                return <WhyChooseSection key={i} section={s} extraSection={isDueDiligence ? next : undefined} />;
+              }
+              if (sections[i - 1] && isWhyChooseSection(sections[i - 1]) && s.heading?.text?.toLowerCase().includes("due diligence")) return null;
               if (isLocationEditorialSection(s)) return <LocationEditorialSection key={i} section={s} />;
               if (isTierListSection(s))
                 return <TierListSection key={i} section={s} eyebrow={tierEyebrow} />;
