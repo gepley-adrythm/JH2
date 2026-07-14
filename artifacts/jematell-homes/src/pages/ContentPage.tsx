@@ -185,6 +185,20 @@ function isTierListSection(s: Section): boolean {
   return !s.heading && h3s >= 2 && ps < h3s;
 }
 
+const REGION_PROCESS_SECTION: Section = {
+  heading: { type: "h2", text: "Our Process" },
+  blocks: [
+    { type: "h3", text: "INTRODUCTION" },
+    { type: "p", text: "Contact us via our contact form and we will reach out to you to learn more about your project's budget, timeline, and vision." },
+    { type: "h3", text: "DESIGN" },
+    { type: "p", text: "We will collaborate with our architect who will turn your ideas into plans, carefully refining every detail to bring your vision to life." },
+    { type: "h3", text: "BUILD" },
+    { type: "p", text: "Construction begins! We will work to build your house on time and within budget. We provide weekly updates and perform project milestone walkthroughs with you." },
+    { type: "h3", text: "COMPLETION" },
+    { type: "p", text: "Your house is finished! We will do a thorough final walkthrough to address any final adjustments. You'll then receive the keys to your dream home." },
+  ],
+};
+
 const CTA_KEYWORDS = /\b(begin|start|ready|let['\u2019]?s|contact us|schedule|get in touch|book|inquire|reach out)\b/i;
 function isLikelyCTA(text: string | undefined): boolean {
   if (!text) return false;
@@ -1147,7 +1161,12 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
           : key === "floorplans"
           ? <FloorPlanWidgets />
           : sections.map((s, i) => {
-              if (isServiceGridSection(s)) return <ServiceGridSection key={i} section={s} />;
+              if (isServiceGridSection(s)) return (
+                <React.Fragment key={i}>
+                  <ServiceGridSection section={s} />
+                  {isRegion && <ProcessSection section={REGION_PROCESS_SECTION} />}
+                </React.Fragment>
+              );
               if (isProcessSection(s)) return <ProcessSection key={i} section={s} />;
               if (isFloorPlanTiersSection(s, sections.slice(i + 1)))
                 return <FloorPlanTiersSection key={i} section={s} />;
