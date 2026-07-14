@@ -2576,6 +2576,9 @@ a.contact-info-card:hover {
   gap: clamp(24px, 3vw, 40px);
   margin-top: clamp(40px, 5vw, 64px);
 }
+.page-why-cards > *:last-child:nth-child(3n+1) {
+  grid-column: 2 / 3;
+}
 .page-why-card {
   background: var(--color-cream);
   border-top: 3px solid var(--color-accent);
