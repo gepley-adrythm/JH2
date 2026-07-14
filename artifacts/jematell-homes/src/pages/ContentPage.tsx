@@ -744,6 +744,11 @@ function SplitSection({
   }
   if (currentSub) subheads.push(currentSub);
 
+  const headingVisible = section.heading && section.heading.text !== "Start Your Search Today";
+  if (!headingVisible && !img && paras.length === 0 && bullets.length === 0 && subheads.length === 0) {
+    return null;
+  }
+
   const isOdd = forceReverse || index % 2 === 1;
 
   return (
