@@ -727,8 +727,9 @@ function SplitSection({
   let currentSub: { title: string; body: string[] } | null = null;
   const bullets: string[] = [];
 
+  const BLOCKED_IMGS = ["ac32514a-52c9-496a-970e-ccea56485718"];
   for (const b of section.blocks) {
-    if (b.type === "img" && b.src && !img) {
+    if (b.type === "img" && b.src && !img && !BLOCKED_IMGS.some(id => b.src!.includes(id))) {
       img = { src: b.src, alt: b.alt };
     } else if (b.type === "h3" || b.type === "h4") {
       if (currentSub) subheads.push(currentSub);
