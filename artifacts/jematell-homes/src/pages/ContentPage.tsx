@@ -1086,6 +1086,8 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
             : intro}
           image={key === "where-we-build"
             ? { src: "/images/where-we-build-interior.jpg", alt: "Luxury primary bathroom in a completed Jematell home in Arizona" }
+            : key === "build-on-your-lot"
+            ? { src: "/images/build-on-your-lot-intro.jpg", alt: "Bright white kitchen with quartz island in a completed Jematell home" }
             : introImg}
           centered={key === "warranty"}
           horizontal={key === "where-we-build"}
