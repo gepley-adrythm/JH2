@@ -756,7 +756,7 @@ function SplitSection({
           style={forceReverse && img ? { gridTemplateColumns: "560px 1fr", gap: "clamp(32px, 5vw, 80px)" } : undefined}
         >
           <m.div className="page-split-copy" {...FADE_IN}>
-            {section.heading ? (
+            {section.heading && section.heading.text !== "Start Your Search Today" ? (
               <h2 className="heading-lg page-split-title">{section.heading.text}</h2>
             ) : null}
             {paras.map((p, i) => (
