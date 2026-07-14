@@ -11,5 +11,8 @@ export const modules: ModuleMap = {
   "./components/mockups/process-section/ConnectedTimeline.tsx": () => import("../components/mockups/process-section/ConnectedTimeline.tsx"),
   "./components/mockups/process-section/Current.tsx": () => import("../components/mockups/process-section/Current.tsx"),
   "./components/mockups/process-section/FeaturedBento.tsx": () => import("../components/mockups/process-section/FeaturedBento.tsx"),
-  "./components/mockups/process-section/StackedMilestones.tsx": () => import("../components/mockups/process-section/StackedMilestones.tsx")
+  "./components/mockups/process-section/StackedMilestones.tsx": () => import("../components/mockups/process-section/StackedMilestones.tsx"),
+  "./components/mockups/why-choose/VariantA.tsx": () => import("../components/mockups/why-choose/VariantA.tsx"),
+  "./components/mockups/why-choose/VariantB.tsx": () => import("../components/mockups/why-choose/VariantB.tsx"),
+  "./components/mockups/why-choose/VariantC.tsx": () => import("../components/mockups/why-choose/VariantC.tsx")
 };
