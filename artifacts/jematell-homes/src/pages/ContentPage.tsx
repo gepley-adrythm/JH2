@@ -1088,6 +1088,8 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
             ? { src: "/images/where-we-build-interior.jpg", alt: "Luxury primary bathroom in a completed Jematell home in Arizona" }
             : key === "build-on-your-lot"
             ? { src: "/images/build-on-your-lot-intro.jpg", alt: "Bright white kitchen with quartz island in a completed Jematell home" }
+            : key === "buy-a-lot-with-us"
+            ? { src: "/images/buy-a-lot-with-us-intro.jpg", alt: "Spa-style primary bathroom with walk-in shower and freestanding tub in a completed Jematell home" }
             : introImg}
           centered={key === "warranty"}
           horizontal={key === "where-we-build"}
