@@ -2568,39 +2568,99 @@ a.contact-info-card:hover {
   .page-plan-embed { padding-bottom: 75%; }
 }
 
-/* Why-choose feature grid */
-.page-why-list-rows { display: flex; flex-direction: column; }
-.page-why-row {
+/* Why-choose feature cards */
+.page-why-cards {
   display: grid;
-  grid-template-columns: 72px 1fr 1fr;
-  gap: 0 48px;
-  padding: 32px 0;
-  border-top: 1px solid var(--color-border);
-  align-items: start;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 3vw, 40px);
+  margin-top: clamp(40px, 5vw, 64px);
 }
-.page-why-num {
+.page-why-card {
+  background: var(--color-cream);
+  border-top: 3px solid var(--color-accent);
+  padding: clamp(28px, 3vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.page-why-card-num {
   font-family: var(--font-heading);
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0.05em;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1;
   color: var(--color-accent);
-  padding-top: 4px;
+  opacity: 0.45;
 }
-.page-why-title {
+.page-why-card-title {
   font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1.25;
   color: var(--color-dark);
+  margin: 0;
 }
-.page-why-right { display: flex; flex-direction: column; gap: 12px; }
-.page-why-body { color: var(--color-text-muted); font-size: 15.5px; line-height: 1.7; margin: 0; }
-.page-why-bullets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
-.page-why-bullets li { display: flex; align-items: center; gap: 10px; font-size: 14.5px; color: var(--color-text-muted); }
-.page-why-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--color-accent); flex-shrink: 0; display: inline-block; }
-@media (max-width: 768px) {
-  .page-why-row { grid-template-columns: 40px 1fr; grid-template-rows: auto auto; gap: 8px 16px; }
-  .page-why-right { grid-column: 2; }
+.page-why-card-body {
+  color: var(--color-text-muted);
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+  flex: 1;
+}
+.page-why-card-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.page-why-card-bullets li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+.page-why-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  flex-shrink: 0;
+  display: inline-block;
+}
+/* Why-choose CTA footer */
+.page-why-cta-block {
+  margin-top: clamp(48px, 6vw, 80px);
+  padding-top: clamp(36px, 4vw, 56px);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+.page-why-cta-title {
+  font-family: var(--font-heading);
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--color-dark);
+  margin: 0;
+}
+.page-why-cta-body {
+  max-width: 560px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+@media (max-width: 900px) {
+  .page-why-cards { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .page-why-cards { grid-template-columns: 1fr; }
+  .page-why-cta-block { text-align: left; align-items: flex-start; }
 }
 
 /* Location editorial cards */
