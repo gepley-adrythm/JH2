@@ -603,7 +603,6 @@ function WhyChooseSection({ section, extraSection }: { section: Section; extraSe
     <section className="page-why section-pad">
       <div className="container">
         <m.div className="page-section-head" {...FADE_IN}>
-          <span className="eyebrow">Why us</span>
           <h2 className="heading-lg">{section.heading?.text}</h2>
         </m.div>
         <div className="page-why-cards">
