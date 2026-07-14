@@ -166,10 +166,8 @@ function isFloorPlanTiersSection(s: Section, nextSections: Section[]): boolean {
 function isWhyChooseSection(s: Section): boolean {
   const h = s.heading?.text?.toLowerCase() || "";
   if (!h.includes("why")) return false;
-  const numbered = s.blocks.filter(
-    (b) => b.type === "h3" && b.text && /^[1-9]\./.test(b.text.trim()),
-  );
-  return numbered.length >= 2;
+  const h3s = s.blocks.filter((b) => b.type === "h3" && b.text).length;
+  return h3s >= 2;
 }
 
 function isLocationEditorialSection(s: Section): boolean {
