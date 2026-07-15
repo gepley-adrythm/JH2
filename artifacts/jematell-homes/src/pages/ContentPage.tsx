@@ -953,15 +953,6 @@ function FloorPlanWidgets() {
             >
               <div className="page-plan-head">
                 <h3 className="page-plan-title">{c.title}</h3>
-                <a
-                  className="page-plan-browse"
-                  href={c.browse}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-testid={`floor-plan-browse-${c.id}`}
-                >
-                  Browse all plans <ArrowRight size={14} />
-                </a>
               </div>
               <div style={{ paddingBottom: "56.25%", position: "relative", display: "block", width: "100%" }}>
                 <iframe
