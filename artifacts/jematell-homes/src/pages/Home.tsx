@@ -17,7 +17,6 @@ export default function Home() {
         <About />
         <ServicesSplit />
         <Process />
-        <FeaturedProjects />
         <Reviews />
         <CTA />
       </main>
