@@ -913,7 +913,7 @@ const FLOOR_PLAN_COLLECTIONS: Array<{
     id: "under-2000",
     title: "Homes Under 2,000 Sq Ft",
     widget:
-      "https://www.architecturaldesigns.com/house-plan-collections/sub-2000-square-foot-homes/widget?new_window=false",
+      "https://www.architecturaldesigns.com/house-plan-collections/sub-2000-square-foot-homes/widget?new_window=true",
     browse:
       "https://www.architecturaldesigns.com/house-plan-collections/sub-2000-square-foot-homes",
   },
@@ -921,7 +921,7 @@ const FLOOR_PLAN_COLLECTIONS: Array<{
     id: "2000-3000",
     title: "Homes Between 2,000 and 3,000 Sq Ft",
     widget:
-      "https://www.architecturaldesigns.com/house-plan-collections/homes-between-2000-3000-square-feet/widget?new_window=false",
+      "https://www.architecturaldesigns.com/house-plan-collections/homes-between-2000-3000-square-feet/widget?new_window=true",
     browse:
       "https://www.architecturaldesigns.com/house-plan-collections/homes-between-2000-3000-square-feet",
   },
@@ -929,7 +929,7 @@ const FLOOR_PLAN_COLLECTIONS: Array<{
     id: "over-3000",
     title: "Homes Over 3,000 Sq Ft",
     widget:
-      "https://www.architecturaldesigns.com/house-plan-collections/over-3000-square-foot-homes/widget?new_window=false",
+      "https://www.architecturaldesigns.com/house-plan-collections/over-3000-square-foot-homes/widget?new_window=true",
     browse:
       "https://www.architecturaldesigns.com/house-plan-collections/over-3000-square-foot-homes",
   },
