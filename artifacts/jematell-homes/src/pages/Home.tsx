@@ -1,6 +1,6 @@
 import React from "react";
 import { MotionConfig } from "framer-motion";
-import { Hero, About, ServicesSplit, Process, FeaturedProjects, Reviews } from "../sections";
+import { Hero, About, ServicesSplit, Process, Reviews } from "../sections";
 import { CTA } from "../cta";
 import { Seo } from "../seo/seo";
 

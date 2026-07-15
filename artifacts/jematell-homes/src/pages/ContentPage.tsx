@@ -18,7 +18,6 @@ import { pages, type PageData, type Block } from "../data/pages";
 import { Seo } from "../seo/seo";
 import { serviceJsonLd, breadcrumbJsonLd } from "../seo/jsonld";
 import NotFound from "./not-found";
-import { FeaturedProjects } from "../sections";
 import { CityNavigator } from "../components/CityNavigator";
 import { ResponsiveImage } from "../components/ResponsiveImage";
 import { useContactForm } from "../contact-form";
@@ -1201,7 +1200,6 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
 
 
 
-        {key !== "where-we-build" && <FeaturedProjects />}
         {key !== "warranty" && <PageCTA title={ctaTitle ? cleanTitle(ctaTitle) : undefined} body={ctaBody} />}
       </main>
     </MotionConfig>
