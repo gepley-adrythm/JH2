@@ -1161,7 +1161,7 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
             : introImg}
           centered={key === "warranty"}
           horizontal={key === "where-we-build"}
-          subtitleNowrap={key === "scottsdale"}
+          subtitleNowrap={key === "scottsdale" || key === "rio-verde"}
         />
 
         {isLegal
