@@ -913,7 +913,7 @@ const FLOOR_PLAN_COLLECTIONS: Array<{
     id: "under-2000",
     title: "Homes Under 2,000 Sq Ft",
     widget:
-      "https://www.architecturaldesigns.com/house-plan-collections/sub-2000-square-foot-homes/widget",
+      "https://www.architecturaldesigns.com/house-plan-collections/sub-2000-square-foot-homes/widget?new_window=false",
     browse:
       "https://www.architecturaldesigns.com/house-plan-collections/sub-2000-square-foot-homes",
   },
@@ -968,13 +968,17 @@ function FloorPlanWidgets() {
                   Browse all plans <ArrowRight size={14} />
                 </a>
               </div>
-              <div className="page-plan-embed">
+              <div style={{ paddingBottom: "56.25%", position: "relative", display: "block", width: "100%" }}>
                 <iframe
                   src={c.widget}
                   title={`${c.title} house plan collection`}
-                  loading="lazy"
+                  width="100%"
+                  height="100%"
+                  frameBorder={0}
                   allowFullScreen
+                  loading="lazy"
                   data-testid={`floor-plan-iframe-${c.id}`}
+                  style={{ position: "absolute", top: 0, left: 0 }}
                 />
               </div>
             </m.div>
