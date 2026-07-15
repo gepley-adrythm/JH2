@@ -921,7 +921,7 @@ const FLOOR_PLAN_COLLECTIONS: Array<{
     id: "2000-3000",
     title: "Homes Between 2,000 and 3,000 Sq Ft",
     widget:
-      "https://www.architecturaldesigns.com/house-plan-collections/homes-between-2000-3000-square-feet/widget",
+      "https://www.architecturaldesigns.com/house-plan-collections/homes-between-2000-3000-square-feet/widget?new_window=false",
     browse:
       "https://www.architecturaldesigns.com/house-plan-collections/homes-between-2000-3000-square-feet",
   },
