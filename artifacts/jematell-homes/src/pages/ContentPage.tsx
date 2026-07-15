@@ -1159,7 +1159,7 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
         />
         <PageHero data={data} slug={key} citySlug={isRegion ? key : undefined} hideDescription={heroDescDup} galleryStyle={isRegion || key === "warranty" || key === "privacypolicy" || key === "custom-homes" || key === "where-we-build" || key === "build-on-your-lot" || key === "buy-a-lot-with-us" || key === "floorplans"} />
         {key === "where-we-build" ? <CityNavigator /> : null}
-        <IntroSection
+        {key !== "floorplans" && <IntroSection
           subtitle={subtitle}
           intro={key === "warranty" && intro
             ? intro.replace("Please contact Jematell Homes or call", "Please contact your Jematell Homes contact or call")
@@ -1174,7 +1174,7 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
           centered={key === "warranty"}
           horizontal={key === "where-we-build"}
           subtitleNowrap={key === "scottsdale" || key === "rio-verde" || key === "cave-creek" || key === "fountain-hills" || key === "carefree" || key === "casa-grande" || key === "apache-junction"}
-        />
+        />}
 
         {isLegal
           ? sections.map((s, i) => <ProseSection key={i} section={s} />)
