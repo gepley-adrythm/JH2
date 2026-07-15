@@ -999,12 +999,13 @@ function renderCtaTitle(title: string) {
 }
 
 function PageCTA({ title, body }: { title?: string; body?: string }) {
+  const { open: openContactForm } = useContactForm();
   return (
     <section className="cta">
       <ResponsiveImage
-        name="page-cta-bg"
+        name="cta-bg"
         className="cta-bg"
-        alt="Custom kitchen island in a completed Jematell home"
+        alt="Desert landscape"
         widths={[768, 1280, 1920, 2500]}
         sizes="100vw"
         width={2500}
@@ -1017,17 +1018,23 @@ function PageCTA({ title, body }: { title?: string; body?: string }) {
           style={{ gridTemplateColumns: "1fr", textAlign: "center", maxWidth: 760, marginInline: "auto" }}
         >
           <div className="cta-content">
-            <span className="eyebrow" style={{ color: "var(--color-bone)" }}>Get started</span>
-            <h2 className="heading-lg cta-title" style={{ textTransform: "uppercase" }}>
-              {renderCtaTitle(title || "Let's build your dream home.")}
+            <span className="eyebrow" style={{ color: "var(--color-bone)" }}>Build With Us</span>
+            <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>
+              {title || "Begin Your Build"}
             </h2>
             <p style={{ marginInline: "auto" }}>
               {body ||
                 "Relax while we manage every detail, throughout the entire process. Tell us about your vision, and we'll be in touch to schedule a consultation."}
             </p>
-            <Link to="/contact" className="btn btn-primary" data-testid="page-cta" style={{ marginTop: 32 }}>
-              Start your build <ArrowRight size={16} />
-            </Link>
+            <button
+              type="button"
+              className="btn btn-primary"
+              data-testid="page-cta"
+              onClick={openContactForm}
+              style={{ marginTop: 32 }}
+            >
+              Start Your Build <ArrowRight size={18} />
+            </button>
           </div>
         </div>
       </div>
