@@ -929,7 +929,7 @@ const FLOOR_PLAN_COLLECTIONS: Array<{
     id: "over-3000",
     title: "Homes Over 3,000 Sq Ft",
     widget:
-      "https://www.architecturaldesigns.com/house-plan-collections/over-3000-square-foot-homes/widget",
+      "https://www.architecturaldesigns.com/house-plan-collections/over-3000-square-foot-homes/widget?new_window=false",
     browse:
       "https://www.architecturaldesigns.com/house-plan-collections/over-3000-square-foot-homes",
   },
