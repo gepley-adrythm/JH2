@@ -358,7 +358,7 @@ function IntroSection({
         <div className={`page-intro-grid ${image ? "with-image" : "no-image"}${centered ? " centered" : ""}`}>
           <m.div className="page-intro-copy" {...FADE_IN} style={centered ? { textAlign: "center" } : undefined}>
             {subtitle ? (
-              <h2 className="heading-lg page-intro-title" style={{ fontSize: 'clamp(20px, 2.6vw, 36px)', textTransform: 'uppercase' }}>
+              <h2 className="heading-lg page-intro-title" style={{ fontSize: 'clamp(28px, 3.6vw, 48px)', textTransform: 'uppercase' }}>
                 {subtitle.split('\n').map((line, i, arr) => (
                   <span key={i}>{line}{i < arr.length - 1 ? <br /> : null}</span>
                 ))}
