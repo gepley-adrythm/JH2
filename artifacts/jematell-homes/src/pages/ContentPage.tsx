@@ -257,7 +257,9 @@ function PageHero({
   galleryStyle?: boolean;
 }) {
   const rawTitle = cleanTitle(data.title);
-  const title = citySlug
+  const title = slug === "floorplans"
+    ? "Floor Plans"
+    : citySlug
     ? rawTitle.replace(/^Custom Home Builder in /i, "").replace(/, AZ.*$/i, "")
     : rawTitle;
   const hasCityHero = citySlug != null && citySlug in CITY_HERO_WIDTHS;
