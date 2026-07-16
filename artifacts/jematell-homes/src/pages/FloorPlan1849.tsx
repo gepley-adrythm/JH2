@@ -96,7 +96,7 @@ export default function FloorPlan1849() {
               <m.figure className="fp1849-drawing-figure" {...FADE_IN}>
                 <span className="fp1849-drawing-label">Elevations</span>
                 <img
-                  src="/images/plans/1849-2.png"
+                  src="/images/plans/1849-elev-1.png"
                   alt="1849 floor plan — all four exterior elevations"
                   className="fp1849-drawing-img"
                   loading="lazy"
