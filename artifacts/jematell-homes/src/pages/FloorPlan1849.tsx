@@ -150,7 +150,7 @@ export default function FloorPlan1849() {
         <section className="fp1849-gallery-section alt-bg">
           <div className="container" style={{ paddingTop: "clamp(40px, 6vw, 80px)" }}>
             <m.div className="page-section-head centered" {...FADE_IN}>
-              <h2 className="heading-lg">See the Finished Home</h2>
+              <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>See the Finished Home</h2>
               <p className="fp1849-gallery-body">
                 The McCartney Spec — built on this exact plan in Casa Grande, AZ.
               </p>
