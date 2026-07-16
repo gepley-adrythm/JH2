@@ -37,7 +37,7 @@ export default function FloorPlan1849() {
             fetchPriority="high"
           />
           <div className="fp1849-hero-overlay" />
-          <div className="container fp1849-hero-content">
+          <div className="container fp1849-hero-content" style={{ textAlign: "center", justifyContent: "center" }}>
             <m.div {...FADE_IN}>
               <Link to="/floor-plans" className="fp1849-back" data-testid="fp1849-back">
                 <ArrowLeft size={14} /> Floor Plans
