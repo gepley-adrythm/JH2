@@ -937,7 +937,7 @@ const FLOOR_PLAN_COLLECTIONS: Array<{
 
 function FloorPlanWidgets() {
   return (
-    <section className="page-plans section-pad" style={{ background: "var(--color-cream)" }} data-testid="floor-plan-widgets">
+    <section className="page-plans section-pad" style={{ background: "#fff" }} data-testid="floor-plan-widgets">
       <div className="container">
         <m.div className="page-section-head centered" {...FADE_IN}>
           <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>Browse plans by size</h2>
@@ -964,7 +964,7 @@ function FloorPlanWidgets() {
                   allowFullScreen
                   loading="lazy"
                   data-testid={`floor-plan-iframe-${c.id}`}
-                  style={{ display: "block", width: "calc(100% + 20px)", marginRight: -20, mixBlendMode: "multiply" }}
+                  style={{ display: "block", width: "calc(100% + 20px)", marginRight: -20 }}
                 />
               </div>
             </m.div>
