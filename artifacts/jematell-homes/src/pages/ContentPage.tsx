@@ -946,37 +946,6 @@ function FloorPlanWidgets() {
           </m.div>
         </div>
       </section>
-      <section className="page-plans section-pad fp-exclusives-section" data-testid="floor-plan-exclusives">
-        <div className="container">
-          <m.div className="page-section-head" {...FADE_IN}>
-            <span className="eyebrow">Our Designs</span>
-            <h2 className="heading-lg">Jematell Exclusives</h2>
-            <p className="fp-exclusives-intro">Proprietary plans designed and built by Jematell Homes — available exclusively through us.</p>
-          </m.div>
-          <div className="page-tiers-grid">
-            <m.article
-              className="page-tier-card"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Link to="/floor-plans/1849" className="page-tier-media fp-exclusive-media" data-testid="fp-exclusive-1849-img">
-                <img src="/images/1849-rendering-v2.png" alt="Rendered exterior of the 1849 sq ft Jematell Homes floor plan" loading="lazy" />
-              </Link>
-              <div className="page-tier-body">
-                <span className="eyebrow">1,849 Sq Ft</span>
-                <h3 className="page-tier-title">The 1849 Plan</h3>
-                <p>3 bed · 2 bath · 3-car garage. A proven single-story design built in Casa Grande — available for your lot.</p>
-                <Link to="/floor-plans/1849" className="page-tier-link" data-testid="fp-exclusive-1849-cta">
-                  View Plan &amp; Elevations <ArrowRight size={14} />
-                </Link>
-              </div>
-            </m.article>
-          </div>
-        </div>
-      </section>
-
       <section className="page-plans section-pad" style={{ background: "#fff", paddingTop: "clamp(24px, 3vw, 48px)" }} data-testid="floor-plan-widgets">
         <div className="container">
           <div className="page-plans-list">
@@ -990,6 +959,34 @@ function FloorPlanWidgets() {
                 <div className="page-plan-head">
                   <h3 className="page-plan-title">{c.title}</h3>
                 </div>
+                {c.id === "under-2000" && (
+                  <div className="fp-exclusives-inline" data-testid="floor-plan-exclusives">
+                    <div className="fp-exclusives-inline-label">
+                      <span className="eyebrow">Jematell Exclusives</span>
+                    </div>
+                    <div className="page-tiers-grid">
+                      <m.article
+                        className="page-tier-card"
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.15 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <Link to="/floor-plans/1849" className="page-tier-media fp-exclusive-media" data-testid="fp-exclusive-1849-img">
+                          <img src="/images/1849-rendering-v2.png" alt="Rendered exterior of the 1849 sq ft Jematell Homes floor plan" loading="lazy" />
+                        </Link>
+                        <div className="page-tier-body">
+                          <span className="eyebrow">1,849 Sq Ft</span>
+                          <h3 className="page-tier-title">The 1849 Plan</h3>
+                          <p>3 bed · 2 bath · 3-car garage. A proven single-story design built in Casa Grande — available for your lot.</p>
+                          <Link to="/floor-plans/1849" className="page-tier-link" data-testid="fp-exclusive-1849-cta">
+                            View Plan &amp; Elevations <ArrowRight size={14} />
+                          </Link>
+                        </div>
+                      </m.article>
+                    </div>
+                  </div>
+                )}
                 <div style={{ overflow: "hidden" }}>
                   <iframe
                     src={c.widget}

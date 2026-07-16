@@ -3922,3 +3922,11 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   text-decoration: none;
   cursor: pointer;
 }
+
+/* Inline Jematell Exclusives block (inside widget section) */
+.fp-exclusives-inline {
+  margin-bottom: 28px;
+}
+.fp-exclusives-inline-label {
+  margin-bottom: 14px;
+}
