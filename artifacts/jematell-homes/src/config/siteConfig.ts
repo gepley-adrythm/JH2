@@ -32,7 +32,7 @@ export const locations: LocationItem[] = [
     name: "Apache Junction",
     tagline: "Superstition Mountain backdrops",
   },
-  { slug: "surprise", name: "Surprise", tagline: "Master-planned living in the West Valley" },
+  { slug: "surprise", name: "Surprise", tagline: "Sun-drenched West Valley living" },
 ];
 
 /** The "Homes" offering pages. */
