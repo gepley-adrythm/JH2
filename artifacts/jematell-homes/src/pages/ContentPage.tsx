@@ -937,44 +937,49 @@ const FLOOR_PLAN_COLLECTIONS: Array<{
 
 function FloorPlanWidgets() {
   return (
-    <section className="page-plans section-pad" style={{ background: "#fff" }} data-testid="floor-plan-widgets">
-      <div className="container">
-        <m.div className="page-section-head centered" {...FADE_IN}>
-          <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>Browse plans by size</h2>
-          <p className="page-plans-intro">Every home begins with the floor plan and we have plenty to choose from. Browse various styles, sizes, and configurations to find the perfect foundation for your vision. If you don’t see one you like don’t worry, our architect can create your dream home from scratch. You're also more than welcome to find a plan you want and bring it to us.</p>
-        </m.div>
-        <div className="page-plans-list">
-          {FLOOR_PLAN_COLLECTIONS.map((c) => (
-            <m.div
-              key={c.id}
-              className="page-plan-block"
-              {...FADE_IN}
-              data-testid={`floor-plan-${c.id}`}
-            >
-              <div className="page-plan-head">
-                <h3 className="page-plan-title">{c.title}</h3>
-              </div>
-              <div style={{ overflow: "hidden" }}>
-                <iframe
-                  src={c.widget}
-                  title={`${c.title} house plan collection`}
-                  scrolling="no"
-                  height="520"
-                  frameBorder={0}
-                  allowFullScreen
-                  loading="lazy"
-                  data-testid={`floor-plan-iframe-${c.id}`}
-                  style={{ display: "block", width: "calc(100% + 20px)", marginRight: -20 }}
-                />
-              </div>
-            </m.div>
-          ))}
+    <>
+      <section className="section-pad" style={{ background: "var(--color-cream)" }}>
+        <div className="container">
+          <m.div className="page-section-head centered" {...FADE_IN}>
+            <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>Browse plans by size</h2>
+            <p className="page-plans-intro">Every home begins with the floor plan and we have plenty to choose from. Browse various styles, sizes, and configurations to find the perfect foundation for your vision. If you don’t see one you like don’t worry, our architect can create your dream home from scratch. You're also more than welcome to find a plan you want and bring it to us.</p>
+          </m.div>
         </div>
-      </div>
-    </section>
+      </section>
+      <section className="page-plans section-pad" style={{ background: "#fff" }} data-testid="floor-plan-widgets">
+        <div className="container">
+          <div className="page-plans-list">
+            {FLOOR_PLAN_COLLECTIONS.map((c) => (
+              <m.div
+                key={c.id}
+                className="page-plan-block"
+                {...FADE_IN}
+                data-testid={`floor-plan-${c.id}`}
+              >
+                <div className="page-plan-head">
+                  <h3 className="page-plan-title">{c.title}</h3>
+                </div>
+                <div style={{ overflow: "hidden" }}>
+                  <iframe
+                    src={c.widget}
+                    title={`${c.title} house plan collection`}
+                    scrolling="no"
+                    height="520"
+                    frameBorder={0}
+                    allowFullScreen
+                    loading="lazy"
+                    data-testid={`floor-plan-iframe-${c.id}`}
+                    style={{ display: "block", width: "calc(100% + 20px)", marginRight: -20 }}
+                  />
+                </div>
+              </m.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
-
 function renderCtaTitle(title: string) {
   const words = title.trim().split(/\s+/);
   if (words.length < 2) return title;
