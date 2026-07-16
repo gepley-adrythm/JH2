@@ -147,8 +147,8 @@ export default function FloorPlan1849() {
           </div>
         </section>
 
-        <section className="section-pad fp1849-gallery-section alt-bg">
-          <div className="container">
+        <section className="fp1849-gallery-section alt-bg">
+          <div className="container" style={{ paddingTop: "clamp(40px, 6vw, 80px)" }}>
             <m.div className="page-section-head centered" {...FADE_IN}>
               <span className="eyebrow">Completed Build</span>
               <h2 className="heading-lg">See the Finished Home</h2>
@@ -156,50 +156,57 @@ export default function FloorPlan1849() {
                 The McCartney Spec — built on this exact plan in Casa Grande, AZ.
               </p>
             </m.div>
+          </div>
 
-            <m.div className="fp1849-carousel" {...FADE_IN}>
-              <button
-                className="fp1849-carousel-btn fp1849-carousel-prev"
-                onClick={prev}
-                aria-label="Previous photo"
-                data-testid="fp1849-carousel-prev"
-              >
-                <ChevronLeft size={22} />
-              </button>
+          <m.div className="fp1849-carousel" {...FADE_IN}>
+            <button
+              className="fp1849-carousel-btn fp1849-carousel-prev"
+              onClick={prev}
+              aria-label="Previous photo"
+              data-testid="fp1849-carousel-prev"
+            >
+              <ChevronLeft size={22} />
+            </button>
 
-              <div className="fp1849-carousel-track">
-                <img
-                  key={slideIndex}
-                  src={GALLERY_IMGS[slideIndex].src}
-                  alt={GALLERY_IMGS[slideIndex].alt}
-                  className="fp1849-carousel-img"
-                  loading="lazy"
-                />
-              </div>
-
-              <button
-                className="fp1849-carousel-btn fp1849-carousel-next"
-                onClick={next}
-                aria-label="Next photo"
-                data-testid="fp1849-carousel-next"
-              >
-                <ChevronRight size={22} />
-              </button>
-
-              <div className="fp1849-carousel-dots" role="tablist">
-                {GALLERY_IMGS.map((_, i) => (
-                  <button
-                    key={i}
-                    className={`fp1849-carousel-dot${i === slideIndex ? " active" : ""}`}
-                    onClick={() => setSlideIndex(i)}
-                    aria-label={`Photo ${i + 1}`}
-                    aria-selected={i === slideIndex}
-                    role="tab"
+            <div className="fp1849-carousel-track">
+              {[0, 1, 2].map((offset) => {
+                const img = GALLERY_IMGS[(slideIndex + offset) % GALLERY_IMGS.length];
+                return (
+                  <img
+                    key={`${slideIndex}-${offset}`}
+                    src={img.src}
+                    alt={img.alt}
+                    className="fp1849-carousel-img"
+                    loading="lazy"
                   />
-                ))}
-              </div>
-            </m.div>
+                );
+              })}
+            </div>
 
+            <button
+              className="fp1849-carousel-btn fp1849-carousel-next"
+              onClick={next}
+              aria-label="Next photo"
+              data-testid="fp1849-carousel-next"
+            >
+              <ChevronRight size={22} />
+            </button>
+
+            <div className="fp1849-carousel-dots" role="tablist">
+              {GALLERY_IMGS.map((_, i) => (
+                <button
+                  key={i}
+                  className={`fp1849-carousel-dot${i === slideIndex ? " active" : ""}`}
+                  onClick={() => setSlideIndex(i)}
+                  aria-label={`Photo ${i + 1}`}
+                  aria-selected={i === slideIndex}
+                  role="tab"
+                />
+              ))}
+            </div>
+          </m.div>
+
+          <div className="container" style={{ paddingBottom: "clamp(40px, 6vw, 80px)" }}>
             <m.div style={{ textAlign: "center", marginTop: "32px" }} {...FADE_IN}>
               <Link
                 to="/gallery/mccartney-spec-1849"

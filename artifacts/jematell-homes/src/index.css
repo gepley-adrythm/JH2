@@ -4007,38 +4007,36 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 /* Carousel */
 .fp1849-carousel {
   position: relative;
+  width: 100%;
   margin-top: clamp(24px, 4vw, 40px);
-  max-width: 860px;
-  margin-inline: auto;
 }
 .fp1849-carousel-track {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   width: 100%;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  border-radius: 4px;
   background: var(--color-dark);
 }
 .fp1849-carousel-img {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   display: block;
   animation: fp1849-slide-in 0.35s ease;
 }
 @keyframes fp1849-slide-in {
-  from { opacity: 0; transform: scale(1.02); }
-  to   { opacity: 1; transform: scale(1); }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 .fp1849-carousel-btn {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(calc(-50% - 24px));
   z-index: 2;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   border: 1px solid rgba(255,255,255,0.3);
-  background: rgba(18,20,21,0.55);
+  background: rgba(18,20,21,0.6);
   color: #fff;
   display: flex;
   align-items: center;
@@ -4047,9 +4045,9 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   transition: background 0.2s;
   backdrop-filter: blur(4px);
 }
-.fp1849-carousel-btn:hover { background: rgba(18,20,21,0.85); }
-.fp1849-carousel-prev { left: 12px; }
-.fp1849-carousel-next { right: 12px; }
+.fp1849-carousel-btn:hover { background: rgba(18,20,21,0.9); }
+.fp1849-carousel-prev { left: 16px; }
+.fp1849-carousel-next { right: 16px; }
 .fp1849-carousel-dots {
   display: flex;
   justify-content: center;
@@ -4071,9 +4069,11 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   transform: scale(1.3);
 }
 @media (max-width: 600px) {
-  .fp1849-carousel-btn { width: 36px; height: 36px; }
-  .fp1849-carousel-prev { left: 6px; }
-  .fp1849-carousel-next { right: 6px; }
+  .fp1849-carousel-track { grid-template-columns: 1fr; }
+  .fp1849-carousel-img:not(:first-child) { display: none; }
+  .fp1849-carousel-btn { width: 40px; height: 40px; }
+  .fp1849-carousel-prev { left: 8px; }
+  .fp1849-carousel-next { right: 8px; }
 }
 
 /* Jematell Exclusives section on floor plans page */
