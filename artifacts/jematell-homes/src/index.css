@@ -3805,3 +3805,120 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   .dt-shell { display: block; }
   .dt-main { max-width: none; }
 }
+
+/* ============================================================
+   Floor Plan 1849 detail page
+   ============================================================ */
+
+.fp1849-hero {
+  position: relative;
+  height: clamp(420px, 60vh, 700px);
+  overflow: hidden;
+  background: var(--color-charcoal);
+}
+.fp1849-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+.fp1849-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(18,20,21,0.25) 0%, rgba(18,20,21,0.65) 100%);
+}
+.fp1849-hero-content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: clamp(40px, 6vw, 80px);
+}
+.fp1849-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,0.72);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-bottom: 16px;
+  transition: color 0.2s;
+}
+.fp1849-back:hover { color: #fff; }
+.fp1849-eyebrow { color: var(--color-bone) !important; display: block; }
+.fp1849-title { color: #fff; margin-top: 8px; }
+.fp1849-hero-sub {
+  color: rgba(255,255,255,0.78);
+  font-size: 17px;
+  margin-top: 10px;
+  letter-spacing: 0.02em;
+}
+
+/* Plans section */
+.fp1849-plan-section { background: var(--color-bg); }
+.fp1849-plan-lead {
+  max-width: 560px;
+  margin-inline: auto;
+  margin-top: 1rem;
+  color: var(--color-muted);
+}
+.fp1849-pdf-wrap {
+  margin-top: clamp(32px, 4vw, 56px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.fp1849-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.fp1849-pdf-embed {
+  width: 100%;
+  max-width: 900px;
+  border: 1px solid var(--color-rule);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.fp1849-pdf-object {
+  display: block;
+  width: 100%;
+  height: clamp(500px, 75vh, 860px);
+}
+.fp1849-pdf-fallback {
+  padding: 40px;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+/* Gallery CTA section */
+.fp1849-gallery-section { text-align: center; }
+.fp1849-gallery-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 560px;
+  margin-inline: auto;
+}
+.fp1849-gallery-icon { color: var(--color-warm); }
+.fp1849-gallery-body { color: var(--color-muted); }
+
+/* Jematell Exclusives section on floor plans page */
+.fp-exclusives-section { background: var(--color-cream); }
+.fp-exclusives-intro {
+  margin-top: 12px;
+  color: var(--color-muted);
+  max-width: 560px;
+}
+.fp-exclusive-media {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+}

@@ -102,7 +102,7 @@ export function CityNavigator() {
               <span className="city-nav-lot-title">Build on Your Lot</span>
               <ArrowRight size={20} className="city-nav-lot-arrow" />
             </span>
-            <p className="city-nav-lot-sub">We build on your homesite — design-to-keys management on land you own.</p>
+            <p className="city-nav-lot-sub">We build on your homesite. Full design-to-keys management on land you own.</p>
           </Link>
           <Link to="/buy-a-lot-with-us" className="city-nav-lot-card" data-testid="city-nav-buy-a-lot-with-us" viewTransition>
             <span className="city-nav-lot-eyebrow">Need land first?</span>
