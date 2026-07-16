@@ -85,7 +85,7 @@ export default function FloorPlan1849() {
             </m.div>
             <div className="fp1849-drawings-grid">
               <m.figure className="fp1849-drawing-figure" {...FADE_IN}>
-                <span className="fp1849-drawing-label">Floor Plan</span>
+                <span className="fp1849-drawing-label">Elevations</span>
                 <img
                   src="/images/plans/1849-2.png"
                   alt="1849 floor plan layout — 3 bed, 2 bath, 2-car garage"
@@ -94,7 +94,7 @@ export default function FloorPlan1849() {
                 />
               </m.figure>
               <m.figure className="fp1849-drawing-figure" {...FADE_IN}>
-                <span className="fp1849-drawing-label">Elevations</span>
+                <span className="fp1849-drawing-label">Floor Plan</span>
                 <img
                   src="/images/plans/1849-1.png"
                   alt="1849 floor plan — all four exterior elevations"
