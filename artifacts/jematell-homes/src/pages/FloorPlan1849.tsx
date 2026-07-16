@@ -42,9 +42,7 @@ export default function FloorPlan1849() {
               <Link to="/floor-plans" className="fp1849-back" data-testid="fp1849-back">
                 <ArrowLeft size={14} /> Floor Plans
               </Link>
-              <span className="eyebrow fp1849-eyebrow">Jematell Exclusives</span>
-              <h1 className="heading-xl hero-title fp1849-title">1849 Floor Plan</h1>
-              <p className="fp1849-hero-sub">1,849 sq ft &nbsp;·&nbsp; 3 bed &nbsp;·&nbsp; 2 bath &nbsp;·&nbsp; 3-car garage</p>
+              <h1 className="heading-xl hero-title fp1849-title" style={{ textTransform: "uppercase" }}>1849 Floor Plan</h1>
             </m.div>
           </div>
         </section>
