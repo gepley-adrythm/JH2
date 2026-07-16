@@ -28,22 +28,22 @@ export default function FloorPlan1849() {
           ]}
         />
 
-        <section className="fp1849-hero">
-          <img
-            src="/images/1849-rendering-v2.png"
-            alt="Rendered exterior elevation of the 1849 sq ft Jematell Homes floor plan"
-            className="fp1849-hero-img"
-            loading="eager"
-            fetchPriority="high"
-          />
-          <div className="fp1849-hero-overlay" />
-          <div className="container fp1849-hero-content" style={{ textAlign: "center", justifyContent: "center" }}>
-            <m.div {...FADE_IN}>
-              <Link to="/floor-plans" className="fp1849-back" data-testid="fp1849-back">
-                <ArrowLeft size={14} /> Floor Plans
-              </Link>
-              <h1 className="heading-xl hero-title fp1849-title" style={{ textTransform: "uppercase" }}>1849 Floor Plan</h1>
-            </m.div>
+        <section className="gallery-detail-hero">
+          <picture className="gallery-detail-hero-picture">
+            <img
+              src="/images/1849-rendering-v2.png"
+              alt="Rendered exterior elevation of the 1849 sq ft Jematell Homes floor plan"
+              className="page-hero-bg"
+              loading="eager"
+              fetchPriority="high"
+            />
+          </picture>
+          <div className="page-hero-overlay" style={{ background: "linear-gradient(to top, rgba(22,22,22,0.72) 0%, rgba(22,22,22,0.2) 60%, transparent 100%)" }} />
+          <div className="container page-hero-content gallery-detail-hero-content">
+            <Link to="/floor-plans" className="fp1849-back" data-testid="fp1849-back">
+              <ArrowLeft size={14} /> Floor Plans
+            </Link>
+            <h1 className="page-hero-title hero-title">1849 Floor Plan</h1>
           </div>
         </section>
 
