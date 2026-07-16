@@ -938,8 +938,8 @@ const FLOOR_PLAN_COLLECTIONS: Array<{
 function FloorPlanWidgets() {
   return (
     <>
-      <section className="section-pad" style={{ background: "var(--color-cream)", paddingBlock: "clamp(20px, 2.5vw, 40px)", paddingInline: "clamp(48px, 12vw, 220px)" }}>
-        <div className="container">
+      <section className="section-pad" style={{ background: "var(--color-cream)", paddingBlock: "clamp(20px, 2.5vw, 40px)", paddingInline: "clamp(48px, 12vw, 220px)", display: "flex", justifyContent: "center" }}>
+        <div className="container" style={{ width: "100%" }}>
           <m.div className="page-section-head centered" {...FADE_IN}>
             <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>Browse plans by size</h2>
             <p className="page-plans-intro">Every home begins with the floor plan and we have plenty to choose from. Browse various styles, sizes, and configurations to find the perfect foundation for your vision. If you don’t see one you like don’t worry, our architect can create your dream home from scratch. You're also more than welcome to find a plan you want and bring it to us.</p>
