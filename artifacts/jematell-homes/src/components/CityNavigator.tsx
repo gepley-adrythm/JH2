@@ -22,8 +22,12 @@ import { FADE_IN_UP_PROPS } from "../motion";
 const FALLBACK_IMAGE =
   "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/cb106191-10f5-42ca-bd2a-4b2f12503dae/53-DJI_20260125135120_0044_D.jpg";
 
+const LOCAL_CITY_HERO: Record<string, string> = {
+  "surprise": "/images/city-hero-surprise.jpg",
+};
+
 function cityImage(slug: string): string {
-  return pages[slug]?.ogImage || FALLBACK_IMAGE;
+  return LOCAL_CITY_HERO[slug] || pages[slug]?.ogImage || FALLBACK_IMAGE;
 }
 
 export function CityNavigator() {
