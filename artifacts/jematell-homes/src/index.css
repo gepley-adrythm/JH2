@@ -4013,9 +4013,9 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 .fp1849-carousel-track {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
+  gap: 8px;
   width: 100%;
-  background: var(--color-dark);
+  background: var(--color-cream);
 }
 .fp1849-carousel-img {
   width: 100%;
