@@ -2507,11 +2507,11 @@ a.contact-info-card:hover {
 
 /* Floor-plan widget embeds (Architectural Designs collections) */
 .page-plans-intro {
-  max-width: 640px;
+  max-width: 680px;
   margin: 16px auto 0;
   color: var(--color-text-muted);
-  font-size: 16px;
-  line-height: 1.65;
+  font-size: clamp(17px, 1.35vw, 20px);
+  line-height: 1.7;
 }
 .page-plans-list {
   display: flex;
