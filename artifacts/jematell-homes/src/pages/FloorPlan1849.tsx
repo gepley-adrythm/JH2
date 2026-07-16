@@ -81,7 +81,6 @@ export default function FloorPlan1849() {
         <section className="section-pad fp1849-plan-section">
           <div className="container">
             <m.div className="page-section-head centered" {...FADE_IN}>
-              <span className="eyebrow">Architectural Drawings</span>
               <h2 className="heading-lg">Floor Plan &amp; Elevations</h2>
             </m.div>
             <div className="fp1849-drawings-grid">
