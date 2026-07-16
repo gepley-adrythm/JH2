@@ -946,7 +946,7 @@ function FloorPlanWidgets() {
           </m.div>
         </div>
       </section>
-      <section className="page-plans section-pad" style={{ background: "#fff" }} data-testid="floor-plan-widgets">
+      <section className="page-plans section-pad" style={{ background: "#fff", paddingTop: "clamp(24px, 3vw, 48px)" }} data-testid="floor-plan-widgets">
         <div className="container">
           <div className="page-plans-list">
             {FLOOR_PLAN_COLLECTIONS.map((c) => (
