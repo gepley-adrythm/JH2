@@ -78,7 +78,7 @@ export default function FloorPlan1849() {
           </div>
         </div>
 
-        <section className="section-pad fp1849-plan-section">
+        <section className="section-pad fp1849-plan-section" style={{ paddingTop: "clamp(24px, 3vw, 40px)" }}>
           <div className="container">
             <m.div className="page-section-head centered" {...FADE_IN}>
               <h2 className="heading-lg">Floor Plan &amp; Elevations</h2>
