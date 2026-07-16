@@ -122,7 +122,7 @@ export default function FloorPlan1849() {
         <section className="section-pad fp1849-plan-section" style={{ paddingTop: "clamp(24px, 3vw, 40px)" }}>
           <div className="container">
             <m.div className="page-section-head centered" {...FADE_IN}>
-              <h2 className="heading-lg">Floor Plan &amp; Elevations</h2>
+              <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>Floor Plan &amp; Elevations</h2>
             </m.div>
             <m.p className="fp1849-plan-desc" {...FADE_IN}>
               This thoughtfully designed single-level home combines modern comfort with efficient living. Two secondary bedrooms and a full bathroom are positioned near the front of the home, creating a private retreat for family or guests. The foyer opens into a spacious great room that flows seamlessly into the dining area and well-appointed kitchen with a large island and walk-in pantry. A covered patio extends the living space outdoors, while the secluded owner's suite offers a spa-inspired bathroom, generous walk-in closet, and convenient access to the nearby laundry room.
