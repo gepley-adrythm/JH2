@@ -2507,7 +2507,7 @@ a.contact-info-card:hover {
 
 /* Floor-plan widget embeds (Architectural Designs collections) */
 .page-plans-intro {
-  max-width: 680px;
+  max-width: 860px;
   margin: 16px auto 0;
   color: var(--color-text-muted);
   font-size: clamp(17px, 1.35vw, 20px);
