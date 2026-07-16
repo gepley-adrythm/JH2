@@ -3876,7 +3876,8 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 /* Drawing figures */
 .fp1849-plan-section { background: var(--color-bg); }
 .fp1849-plan-desc {
-  max-width: 92ch;
+  width: 100%;
+  max-width: 100%;
   margin: 16px auto 0;
   color: var(--color-muted);
   font-size: clamp(15px, 1.3vw, 17px);
