@@ -1,6 +1,7 @@
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { m, MotionConfig } from "framer-motion";
-import { ArrowLeft, ArrowRight, Download, Images } from "lucide-react";
+import { ArrowLeft, ArrowRight, Download, Images, X, ZoomIn } from "lucide-react";
 import { Seo } from "../seo/seo";
 import { breadcrumbJsonLd } from "../seo/jsonld";
 
@@ -11,7 +12,27 @@ const FADE_IN = {
   transition: { duration: 0.5 },
 };
 
+const DRAWINGS = [
+  { label: "Floor Plan", src: "/images/plans/1849-1.png", alt: "1849 floor plan layout — 3 bed, 2 bath, 2-car garage" },
+  { label: "Elevations", src: "/images/plans/1849-elev-1.png", alt: "1849 floor plan — all four exterior elevations" },
+];
+
 export default function FloorPlan1849() {
+  const [lightbox, setLightbox] = useState<number | null>(null);
+
+  const close = useCallback(() => setLightbox(null), []);
+
+  useEffect(() => {
+    if (lightbox === null) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") close(); };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [lightbox, close]);
+
   return (
     <MotionConfig reducedMotion="user">
       <main className="page" data-testid="page-floor-plan-1849">
@@ -84,24 +105,21 @@ export default function FloorPlan1849() {
               <h2 className="heading-lg">Floor Plan &amp; Elevations</h2>
             </m.div>
             <div className="fp1849-drawings-grid">
-              <m.figure className="fp1849-drawing-figure" {...FADE_IN}>
-                <span className="fp1849-drawing-label">Floor Plan</span>
-                <img
-                  src="/images/plans/1849-1.png"
-                  alt="1849 floor plan layout — 3 bed, 2 bath, 2-car garage"
-                  className="fp1849-drawing-img"
-                  loading="lazy"
-                />
-              </m.figure>
-              <m.figure className="fp1849-drawing-figure" {...FADE_IN}>
-                <span className="fp1849-drawing-label">Elevations</span>
-                <img
-                  src="/images/plans/1849-elev-1.png"
-                  alt="1849 floor plan — all four exterior elevations"
-                  className="fp1849-drawing-img"
-                  loading="lazy"
-                />
-              </m.figure>
+              {DRAWINGS.map((d, i) => (
+                <m.figure
+                  key={d.label}
+                  className="fp1849-drawing-figure fp1849-drawing-clickable"
+                  {...FADE_IN}
+                  onClick={() => setLightbox(i)}
+                  data-testid={`fp1849-drawing-${i}`}
+                >
+                  <span className="fp1849-drawing-label">
+                    {d.label}
+                    <span className="fp1849-zoom-hint" aria-hidden="true"><ZoomIn size={13} /> Enlarge</span>
+                  </span>
+                  <img src={d.src} alt={d.alt} className="fp1849-drawing-img" loading="lazy" />
+                </m.figure>
+              ))}
             </div>
           </div>
         </section>
@@ -148,6 +166,32 @@ export default function FloorPlan1849() {
           </div>
         </section>
       </main>
+
+      {lightbox !== null && (
+        <div
+          className="fp1849-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={DRAWINGS[lightbox].label}
+          data-testid="fp1849-lightbox"
+          onClick={close}
+        >
+          <button
+            className="fp1849-lightbox-close"
+            onClick={close}
+            aria-label="Close"
+            data-testid="fp1849-lightbox-close"
+          >
+            <X size={22} />
+          </button>
+          <img
+            src={DRAWINGS[lightbox].src}
+            alt={DRAWINGS[lightbox].alt}
+            className="fp1849-lightbox-img"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </MotionConfig>
   );
 }
