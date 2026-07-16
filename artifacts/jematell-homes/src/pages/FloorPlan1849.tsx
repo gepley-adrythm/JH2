@@ -151,9 +151,7 @@ export default function FloorPlan1849() {
           <div className="container" style={{ paddingTop: "clamp(40px, 6vw, 80px)" }}>
             <m.div className="page-section-head centered" {...FADE_IN}>
               <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>See the Finished Home</h2>
-              <p className="fp1849-gallery-body">
-                The McCartney Spec — built on this exact plan in Casa Grande, AZ.
-              </p>
+              <p className="fp1849-gallery-body">The 1849 floor plan built in Casa Grande, AZ.</p>
             </m.div>
           </div>
 
@@ -218,7 +216,6 @@ export default function FloorPlan1849() {
           </div>
         </section>
       </main>
-
       {lightbox !== null && (
         <div
           className="fp1849-lightbox"
