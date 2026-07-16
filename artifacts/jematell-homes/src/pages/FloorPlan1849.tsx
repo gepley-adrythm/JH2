@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { m, MotionConfig } from "framer-motion";
-import { ArrowLeft, ArrowRight, Download, Images, X, ZoomIn } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 import { Seo } from "../seo/seo";
 import { breadcrumbJsonLd } from "../seo/jsonld";
 
@@ -13,25 +13,45 @@ const FADE_IN = {
 };
 
 const DRAWINGS = [
-  { label: "Floor Plan", src: "/images/plans/1849-1.png", alt: "1849 floor plan layout — 3 bed, 2 bath, 2-car garage" },
-  { label: "Elevations", src: "/images/plans/1849-elev-1.png", alt: "1849 floor plan — all four exterior elevations" },
+  { label: "Floor Plan",  src: "/images/plans/1849-1.png",     alt: "1849 floor plan layout — 3 bed, 2 bath, 2-car garage" },
+  { label: "Elevations",  src: "/images/plans/1849-elev-1.png", alt: "1849 floor plan — all four exterior elevations" },
 ];
 
-export default function FloorPlan1849() {
-  const [lightbox, setLightbox] = useState<number | null>(null);
+const BASE = "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/";
+const GALLERY_IMGS = [
+  { id: "1ba888b8-0141-46cf-8039-3b4916c05f43", alt: "McCartney Spec 1849 — front exterior" },
+  { id: "91065380-605d-47aa-8f28-98e69a43e6c3", alt: "McCartney Spec 1849 — front entry" },
+  { id: "b338ed75-826c-49ff-a608-da8bcbffa985", alt: "McCartney Spec 1849 — living area" },
+  { id: "2b8a6232-3cdd-420c-9f05-a7dcbeda89cb", alt: "McCartney Spec 1849 — interior" },
+  { id: "8865b6bc-a6db-4e71-b4b6-b7c2304af9eb", alt: "McCartney Spec 1849 — kitchen" },
+  { id: "8892f787-2762-4516-9eb0-9f43cd0d1e68", alt: "McCartney Spec 1849 — dining" },
+  { id: "66be2a89-20de-43e7-a780-38ef5e0f8d7c", alt: "McCartney Spec 1849 — bedroom" },
+  { id: "36d97099-ee7a-4c69-92cc-50dd527f691f", alt: "McCartney Spec 1849 — bathroom" },
+  { id: "cc827fac-3a22-46de-a076-cd4d859a016f", alt: "McCartney Spec 1849 — hallway" },
+  { id: "1aae17a6-fade-4007-83b9-310288e9e2fd", alt: "McCartney Spec 1849 — detail" },
+].map((img) => ({ ...img, src: `${BASE}${img.id}` }));
 
-  const close = useCallback(() => setLightbox(null), []);
+export default function FloorPlan1849() {
+  const [lightbox, setLightbox]     = useState<number | null>(null);
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  const closeLightbox = useCallback(() => setLightbox(null), []);
+
+  const prev = useCallback(() =>
+    setSlideIndex((i) => (i - 1 + GALLERY_IMGS.length) % GALLERY_IMGS.length), []);
+  const next = useCallback(() =>
+    setSlideIndex((i) => (i + 1) % GALLERY_IMGS.length), []);
 
   useEffect(() => {
     if (lightbox === null) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") close(); };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeLightbox(); };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
-  }, [lightbox, close]);
+  }, [lightbox, closeLightbox]);
 
   return (
     <MotionConfig reducedMotion="user">
@@ -124,24 +144,66 @@ export default function FloorPlan1849() {
           </div>
         </section>
 
-
         <section className="section-pad fp1849-gallery-section alt-bg">
           <div className="container">
-            <m.div className="fp1849-gallery-cta" {...FADE_IN}>
-              <span className="fp1849-gallery-icon" aria-hidden="true">
-                <Images size={36} />
-              </span>
+            <m.div className="page-section-head centered" {...FADE_IN}>
               <span className="eyebrow">Completed Build</span>
               <h2 className="heading-lg">See the Finished Home</h2>
               <p className="fp1849-gallery-body">
-                Browse photos of the McCartney Spec — built on this exact plan in Casa Grande, AZ.
+                The McCartney Spec — built on this exact plan in Casa Grande, AZ.
               </p>
+            </m.div>
+
+            <m.div className="fp1849-carousel" {...FADE_IN}>
+              <button
+                className="fp1849-carousel-btn fp1849-carousel-prev"
+                onClick={prev}
+                aria-label="Previous photo"
+                data-testid="fp1849-carousel-prev"
+              >
+                <ChevronLeft size={22} />
+              </button>
+
+              <div className="fp1849-carousel-track">
+                <img
+                  key={slideIndex}
+                  src={GALLERY_IMGS[slideIndex].src}
+                  alt={GALLERY_IMGS[slideIndex].alt}
+                  className="fp1849-carousel-img"
+                  loading="lazy"
+                />
+              </div>
+
+              <button
+                className="fp1849-carousel-btn fp1849-carousel-next"
+                onClick={next}
+                aria-label="Next photo"
+                data-testid="fp1849-carousel-next"
+              >
+                <ChevronRight size={22} />
+              </button>
+
+              <div className="fp1849-carousel-dots" role="tablist">
+                {GALLERY_IMGS.map((_, i) => (
+                  <button
+                    key={i}
+                    className={`fp1849-carousel-dot${i === slideIndex ? " active" : ""}`}
+                    onClick={() => setSlideIndex(i)}
+                    aria-label={`Photo ${i + 1}`}
+                    aria-selected={i === slideIndex}
+                    role="tab"
+                  />
+                ))}
+              </div>
+            </m.div>
+
+            <m.div style={{ textAlign: "center", marginTop: "32px" }} {...FADE_IN}>
               <Link
                 to="/gallery/mccartney-spec-1849"
                 className="btn btn-primary"
                 data-testid="fp1849-gallery-link"
               >
-                View Gallery <ArrowRight size={16} />
+                View Full Gallery <ArrowRight size={16} />
               </Link>
             </m.div>
           </div>
@@ -155,11 +217,11 @@ export default function FloorPlan1849() {
           aria-modal="true"
           aria-label={DRAWINGS[lightbox].label}
           data-testid="fp1849-lightbox"
-          onClick={close}
+          onClick={closeLightbox}
         >
           <button
             className="fp1849-lightbox-close"
-            onClick={close}
+            onClick={closeLightbox}
             aria-label="Close"
             data-testid="fp1849-lightbox-close"
           >
