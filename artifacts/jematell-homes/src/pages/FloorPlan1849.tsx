@@ -82,33 +82,28 @@ export default function FloorPlan1849() {
           <div className="container">
             <m.div className="page-section-head centered" {...FADE_IN}>
               <span className="eyebrow">Architectural Drawings</span>
-              <h2 className="heading-lg">Floor Plan</h2>
+              <h2 className="heading-lg">Floor Plan &amp; Elevations</h2>
             </m.div>
-            <m.figure className="fp1849-drawing-figure" {...FADE_IN}>
-              <img
-                src="/images/plans/1849-2.png"
-                alt="1849 floor plan layout — 3 bed, 2 bath, 2-car garage"
-                className="fp1849-drawing-img"
-                loading="lazy"
-              />
-            </m.figure>
-          </div>
-        </section>
-
-        <section className="section-pad fp1849-elevations-section alt-bg">
-          <div className="container">
-            <m.div className="page-section-head centered" {...FADE_IN}>
-              <span className="eyebrow">Architectural Drawings</span>
-              <h2 className="heading-lg">Elevations</h2>
-            </m.div>
-            <m.figure className="fp1849-drawing-figure" {...FADE_IN}>
-              <img
-                src="/images/plans/1849-1.png"
-                alt="1849 floor plan — all four exterior elevations"
-                className="fp1849-drawing-img"
-                loading="lazy"
-              />
-            </m.figure>
+            <div className="fp1849-drawings-grid">
+              <m.figure className="fp1849-drawing-figure" {...FADE_IN}>
+                <span className="fp1849-drawing-label">Floor Plan</span>
+                <img
+                  src="/images/plans/1849-2.png"
+                  alt="1849 floor plan layout — 3 bed, 2 bath, 2-car garage"
+                  className="fp1849-drawing-img"
+                  loading="lazy"
+                />
+              </m.figure>
+              <m.figure className="fp1849-drawing-figure" {...FADE_IN}>
+                <span className="fp1849-drawing-label">Elevations</span>
+                <img
+                  src="/images/plans/1849-1.png"
+                  alt="1849 floor plan — all four exterior elevations"
+                  className="fp1849-drawing-img"
+                  loading="lazy"
+                />
+              </m.figure>
+            </div>
           </div>
         </section>
 

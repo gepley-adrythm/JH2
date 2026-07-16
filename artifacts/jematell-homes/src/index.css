@@ -3875,14 +3875,31 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 
 /* Drawing figures */
 .fp1849-plan-section { background: var(--color-bg); }
-.fp1849-elevations-section { background: var(--color-cream); }
+.fp1849-drawings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 2vw, 32px);
+  margin-top: clamp(24px, 4vw, 48px);
+}
+@media (max-width: 700px) {
+  .fp1849-drawings-grid { grid-template-columns: 1fr; }
+}
 .fp1849-drawing-figure {
-  margin: clamp(24px, 4vw, 48px) auto 0;
-  max-width: 960px;
+  margin: 0;
   border: 1px solid var(--color-border);
   border-radius: 4px;
   overflow: hidden;
   background: #fff;
+}
+.fp1849-drawing-label {
+  display: block;
+  padding: 10px 16px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-cream);
 }
 .fp1849-drawing-img {
   display: block;
