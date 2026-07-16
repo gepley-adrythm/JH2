@@ -995,7 +995,7 @@ function FloorPlanWidgets() {
                     src={c.widget}
                     title={`${c.title} house plan collection`}
                     scrolling="no"
-                    height="520"
+                    height="580"
                     frameBorder={0}
                     allowFullScreen
                     loading="lazy"
