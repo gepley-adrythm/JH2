@@ -3810,91 +3810,102 @@ a.dt-source-card:hover { transform: translateY(-2px); }
    Floor Plan 1849 detail page
    ============================================================ */
 
-.fp1849-hero {
-  position: relative;
-  height: clamp(420px, 60vh, 700px);
-  overflow: hidden;
-  background: var(--color-charcoal);
-}
-.fp1849-hero-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
-}
-.fp1849-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(18,20,21,0.25) 0%, rgba(18,20,21,0.65) 100%);
-}
-.fp1849-hero-content {
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  display: flex;
-  align-items: flex-end;
-  padding-bottom: clamp(40px, 6vw, 80px);
+/* Breadcrumb strip */
+.fp1849-breadcrumb {
+  background: var(--color-cream);
+  border-bottom: 1px solid var(--color-border);
+  padding: 14px 0;
 }
 .fp1849-back {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: rgba(255,255,255,0.72);
+  color: var(--color-muted);
   font-size: 13px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   text-decoration: none;
-  margin-bottom: 16px;
   transition: color 0.2s;
 }
-.fp1849-back:hover { color: #fff; }
-.fp1849-eyebrow { color: var(--color-bone) !important; display: block; }
-.fp1849-title { color: #fff; margin-top: 8px; }
-.fp1849-hero-sub {
-  color: rgba(255,255,255,0.78);
-  font-size: 17px;
-  margin-top: 10px;
-  letter-spacing: 0.02em;
-}
+.fp1849-back:hover { color: var(--color-text); }
 
-/* Plans section */
-.fp1849-plan-section { background: var(--color-bg); }
-.fp1849-plan-lead {
-  max-width: 560px;
-  margin-inline: auto;
-  margin-top: 1rem;
-  color: var(--color-muted);
+/* Stats bar */
+.fp1849-stats {
+  background: var(--color-cream);
+  border-bottom: 1px solid var(--color-border);
+  padding: 28px 0;
 }
-.fp1849-pdf-wrap {
-  margin-top: clamp(32px, 4vw, 56px);
+.fp1849-stats-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
+}
+.fp1849-stat {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 4px;
+  padding: 8px 40px;
 }
+.fp1849-stat-value {
+  font-family: var(--font-heading);
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 400;
+  color: var(--color-text);
+  line-height: 1;
+}
+.fp1849-stat-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.fp1849-stat-divider {
+  width: 1px;
+  height: 36px;
+  background: var(--color-border);
+  flex-shrink: 0;
+}
+@media (max-width: 480px) {
+  .fp1849-stat { padding: 8px 20px; }
+  .fp1849-stat-divider { height: 28px; }
+}
+
+/* Drawing figures */
+.fp1849-plan-section { background: var(--color-bg); }
+.fp1849-elevations-section { background: var(--color-cream); }
+.fp1849-drawing-figure {
+  margin: clamp(24px, 4vw, 48px) auto 0;
+  max-width: 960px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+}
+.fp1849-drawing-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Download section */
+.fp1849-download-section { background: var(--color-bg); }
+.fp1849-download-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  max-width: 560px;
+  margin-inline: auto;
+}
+.fp1849-download-body { color: var(--color-muted); }
 .fp1849-download {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-}
-.fp1849-pdf-embed {
-  width: 100%;
-  max-width: 900px;
-  border: 1px solid var(--color-rule);
-  border-radius: 4px;
-  overflow: hidden;
-}
-.fp1849-pdf-object {
-  display: block;
-  width: 100%;
-  height: clamp(500px, 75vh, 860px);
-}
-.fp1849-pdf-fallback {
-  padding: 40px;
-  text-align: center;
-  color: var(--color-muted);
 }
 
 /* Gallery CTA section */

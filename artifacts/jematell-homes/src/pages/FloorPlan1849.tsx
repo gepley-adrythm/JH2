@@ -17,7 +17,7 @@ export default function FloorPlan1849() {
       <main className="page" data-testid="page-floor-plan-1849">
         <Seo
           title="1849 Floor Plan"
-          description="The Jematell Homes 1849 sq ft floor plan — view full architectural drawings, all four elevations, and photos of the completed home."
+          description="The Jematell Homes 1849 sq ft floor plan — 3 bed, 2 bath, 2-car garage. View full architectural drawings, all four elevations, and photos of the completed home."
           canonical="/floor-plans/1849"
           jsonLd={[
             breadcrumbJsonLd([
@@ -40,23 +40,86 @@ export default function FloorPlan1849() {
           </picture>
           <div className="page-hero-overlay" style={{ background: "linear-gradient(to top, rgba(22,22,22,0.72) 0%, rgba(22,22,22,0.2) 60%, transparent 100%)" }} />
           <div className="container page-hero-content gallery-detail-hero-content">
-            <Link to="/floor-plans" className="fp1849-back" data-testid="fp1849-back">
-              <ArrowLeft size={14} /> Floor Plans
-            </Link>
             <h1 className="page-hero-title hero-title">1849 Floor Plan</h1>
           </div>
         </section>
 
+        <div className="fp1849-breadcrumb">
+          <div className="container">
+            <Link to="/floor-plans" className="fp1849-back" data-testid="fp1849-back">
+              <ArrowLeft size={14} /> Floor Plans
+            </Link>
+          </div>
+        </div>
+
+        <div className="fp1849-stats">
+          <div className="container">
+            <div className="fp1849-stats-inner">
+              <div className="fp1849-stat">
+                <span className="fp1849-stat-value">1,849</span>
+                <span className="fp1849-stat-label">Sq Ft</span>
+              </div>
+              <div className="fp1849-stat-divider" />
+              <div className="fp1849-stat">
+                <span className="fp1849-stat-value">3</span>
+                <span className="fp1849-stat-label">Bedrooms</span>
+              </div>
+              <div className="fp1849-stat-divider" />
+              <div className="fp1849-stat">
+                <span className="fp1849-stat-value">2</span>
+                <span className="fp1849-stat-label">Bathrooms</span>
+              </div>
+              <div className="fp1849-stat-divider" />
+              <div className="fp1849-stat">
+                <span className="fp1849-stat-value">2-Car</span>
+                <span className="fp1849-stat-label">Garage</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <section className="section-pad fp1849-plan-section">
           <div className="container">
             <m.div className="page-section-head centered" {...FADE_IN}>
-              <span className="eyebrow">Plans &amp; Elevations</span>
-              <h2 className="heading-lg">Floor Plan &amp; Elevations</h2>
-              <p className="fp1849-plan-lead">
-                Full architectural drawings including all four elevations, floor plan, and roof plan.
-              </p>
+              <span className="eyebrow">Architectural Drawings</span>
+              <h2 className="heading-lg">Floor Plan</h2>
             </m.div>
-            <m.div className="fp1849-pdf-wrap" {...FADE_IN}>
+            <m.figure className="fp1849-drawing-figure" {...FADE_IN}>
+              <img
+                src="/images/plans/1849-2.png"
+                alt="1849 floor plan layout — 3 bed, 2 bath, 2-car garage"
+                className="fp1849-drawing-img"
+                loading="lazy"
+              />
+            </m.figure>
+          </div>
+        </section>
+
+        <section className="section-pad fp1849-elevations-section alt-bg">
+          <div className="container">
+            <m.div className="page-section-head centered" {...FADE_IN}>
+              <span className="eyebrow">Architectural Drawings</span>
+              <h2 className="heading-lg">Elevations</h2>
+            </m.div>
+            <m.figure className="fp1849-drawing-figure" {...FADE_IN}>
+              <img
+                src="/images/plans/1849-1.png"
+                alt="1849 floor plan — all four exterior elevations"
+                className="fp1849-drawing-img"
+                loading="lazy"
+              />
+            </m.figure>
+          </div>
+        </section>
+
+        <section className="section-pad fp1849-download-section">
+          <div className="container">
+            <m.div className="fp1849-download-wrap" {...FADE_IN}>
+              <span className="eyebrow">Full Package</span>
+              <h2 className="heading-lg">Download the Plans</h2>
+              <p className="fp1849-download-body">
+                All five sheets — floor plan, four elevations, and roof plan — in a single PDF.
+              </p>
               <a
                 href="/plans/1849-floor-plan.pdf"
                 download
@@ -65,19 +128,6 @@ export default function FloorPlan1849() {
               >
                 <Download size={16} /> Download PDF
               </a>
-              <div className="fp1849-pdf-embed">
-                <object
-                  data="/plans/1849-floor-plan.pdf"
-                  type="application/pdf"
-                  className="fp1849-pdf-object"
-                  aria-label="1849 floor plan and elevations PDF"
-                >
-                  <p className="fp1849-pdf-fallback">
-                    PDF preview not available in this browser.{" "}
-                    <a href="/plans/1849-floor-plan.pdf" download>Download the PDF</a>.
-                  </p>
-                </object>
-              </div>
             </m.div>
           </div>
         </section>
