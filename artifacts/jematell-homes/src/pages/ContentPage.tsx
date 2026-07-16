@@ -954,17 +954,19 @@ function FloorPlanWidgets() {
               <div className="page-plan-head">
                 <h3 className="page-plan-title">{c.title}</h3>
               </div>
-              <iframe
-                src={c.widget}
-                title={`${c.title} house plan collection`}
-                width="100%"
-                height="520"
-                frameBorder={0}
-                allowFullScreen
-                loading="lazy"
-                data-testid={`floor-plan-iframe-${c.id}`}
-                style={{ display: "block", mixBlendMode: "multiply" }}
-              />
+              <div style={{ overflow: "hidden", borderRadius: 4 }}>
+                <iframe
+                  src={c.widget}
+                  title={`${c.title} house plan collection`}
+                  width="calc(100% + 20px)"
+                  height="520"
+                  frameBorder={0}
+                  allowFullScreen
+                  loading="lazy"
+                  data-testid={`floor-plan-iframe-${c.id}`}
+                  style={{ display: "block", marginRight: -20, mixBlendMode: "multiply" }}
+                />
+              </div>
             </m.div>
           ))}
         </div>
