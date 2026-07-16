@@ -124,25 +124,6 @@ export default function FloorPlan1849() {
           </div>
         </section>
 
-        <section className="section-pad fp1849-download-section">
-          <div className="container">
-            <m.div className="fp1849-download-wrap" {...FADE_IN}>
-              <span className="eyebrow">Full Package</span>
-              <h2 className="heading-lg">Download the Plans</h2>
-              <p className="fp1849-download-body">
-                All five sheets — floor plan, four elevations, and roof plan — in a single PDF.
-              </p>
-              <a
-                href="/plans/1849-floor-plan.pdf"
-                download
-                className="btn btn-secondary fp1849-download"
-                data-testid="fp1849-download"
-              >
-                <Download size={16} /> Download PDF
-              </a>
-            </m.div>
-          </div>
-        </section>
 
         <section className="section-pad fp1849-gallery-section alt-bg">
           <div className="container">
