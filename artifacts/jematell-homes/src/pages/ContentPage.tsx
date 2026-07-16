@@ -962,7 +962,7 @@ function FloorPlanWidgets() {
               transition={{ duration: 0.5 }}
             >
               <Link to="/floor-plans/1849" className="page-tier-media fp-exclusive-media" data-testid="fp-exclusive-1849-img">
-                <img src="/images/1849-rendering.png" alt="Rendered exterior of the 1849 sq ft Jematell Homes floor plan" loading="lazy" />
+                <img src="/images/1849-rendering-v2.png" alt="Rendered exterior of the 1849 sq ft Jematell Homes floor plan" loading="lazy" />
               </Link>
               <div className="page-tier-body">
                 <span className="eyebrow">1,849 Sq Ft</span>

@@ -30,7 +30,7 @@ export default function FloorPlan1849() {
 
         <section className="fp1849-hero">
           <img
-            src="/images/1849-rendering.png"
+            src="/images/1849-rendering-v2.png"
             alt="Rendered exterior elevation of the 1849 sq ft Jematell Homes floor plan"
             className="fp1849-hero-img"
             loading="eager"
