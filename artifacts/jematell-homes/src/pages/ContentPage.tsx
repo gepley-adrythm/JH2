@@ -15,6 +15,7 @@ import {
   Check,
 } from "lucide-react";
 import { pages, type PageData, type Block } from "../data/pages";
+import { FeaturedProjects } from "../sections";
 import { Seo } from "../seo/seo";
 import { serviceJsonLd, breadcrumbJsonLd } from "../seo/jsonld";
 import NotFound from "./not-found";
@@ -1222,6 +1223,8 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
             })}
 
 
+
+        {key === "custom-homes" && <FeaturedProjects />}
 
         {key !== "warranty" && <PageCTA title={ctaTitle ? cleanTitle(ctaTitle) : undefined} body={ctaBody} />}
       </main>
