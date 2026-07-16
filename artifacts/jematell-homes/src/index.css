@@ -3882,6 +3882,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   color: var(--color-muted);
   font-size: clamp(15px, 1.3vw, 17px);
   line-height: 1.7;
+  text-align: center;
 }
 .fp1849-drawings-grid {
   display: grid;
