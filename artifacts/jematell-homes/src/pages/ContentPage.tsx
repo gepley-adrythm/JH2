@@ -963,7 +963,7 @@ function FloorPlanWidgets() {
                 allowFullScreen
                 loading="lazy"
                 data-testid={`floor-plan-iframe-${c.id}`}
-                style={{ display: "block" }}
+                style={{ display: "block", mixBlendMode: "multiply" }}
               />
             </m.div>
           ))}
