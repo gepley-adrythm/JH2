@@ -2519,9 +2519,6 @@ a.contact-info-card:hover {
   flex-direction: column;
   gap: 64px;
   margin-top: 56px;
-  max-width: 960px;
-  margin-left: auto;
-  margin-right: auto;
 }
 .page-plan-head {
   display: flex;
