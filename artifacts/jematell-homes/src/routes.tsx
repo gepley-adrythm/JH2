@@ -41,6 +41,7 @@ let ReferenceDetail: RouteComp;
 let GuidesIndex: RouteComp;
 let GuideDetail: RouteComp;
 let FloorPlan1849: RouteComp;
+let FloorPlan1644: RouteComp;
 
 if (import.meta.env.SSR) {
   Gallery = (await import("./pages/Gallery")).default;
@@ -62,6 +63,7 @@ if (import.meta.env.SSR) {
   GuidesIndex = (await import("./pages/GuidesIndex")).default;
   GuideDetail = (await import("./pages/GuideDetail")).default;
   FloorPlan1849 = (await import("./pages/FloorPlan1849")).default;
+  FloorPlan1644 = (await import("./pages/FloorPlan1644")).default;
 } else {
   Gallery = React.lazy(() => import("./pages/Gallery"));
   GalleryDetail = React.lazy(() => import("./pages/GalleryDetail"));
@@ -82,6 +84,7 @@ if (import.meta.env.SSR) {
   GuidesIndex = React.lazy(() => import("./pages/GuidesIndex"));
   GuideDetail = React.lazy(() => import("./pages/GuideDetail"));
   FloorPlan1849 = React.lazy(() => import("./pages/FloorPlan1849"));
+  FloorPlan1644 = React.lazy(() => import("./pages/FloorPlan1644"));
 }
 
 export {
@@ -104,4 +107,5 @@ export {
   GuidesIndex,
   GuideDetail,
   FloorPlan1849,
+  FloorPlan1644,
 };

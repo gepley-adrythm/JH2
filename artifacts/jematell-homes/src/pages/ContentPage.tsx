@@ -985,6 +985,25 @@ function FloorPlanWidgets() {
                           </Link>
                         </div>
                       </m.article>
+                      <m.article
+                        className="page-tier-card"
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.15 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <Link to="/floor-plans/1644" className="page-tier-media fp-exclusive-media" data-testid="fp-exclusive-1644-img">
+                          <img src="/images/plans/1644-rendering.png" alt="Rendered exterior of the 1644 sq ft Jematell Homes floor plan" loading="lazy" />
+                        </Link>
+                        <div className="page-tier-body">
+                          <span className="eyebrow">1,644 Sq Ft</span>
+                          <h3 className="page-tier-title">The 1644 Plan</h3>
+                          <p>3 bed · 2 bath · 3-car garage. A proven single-story design built in Casa Grande. Available for your lot.</p>
+                          <Link to="/floor-plans/1644" className="page-tier-link" data-testid="fp-exclusive-1644-cta">
+                            View Plan &amp; Elevations <ArrowRight size={14} />
+                          </Link>
+                        </div>
+                      </m.article>
                     </div>
                   </div>
                 )}

@@ -28,6 +28,7 @@ import {
   GuidesIndex,
   GuideDetail,
   FloorPlan1849,
+  FloorPlan1644,
 } from "./routes";
 
 function ScrollToTop() {
@@ -68,6 +69,7 @@ export default function AppShell() {
           <Route path="/spec-homes" element={<ContentPage pageKey="spechomes" />} />
           <Route path="/floor-plans" element={<ContentPage pageKey="floorplans" />} />
           <Route path="/floor-plans/1849" element={<FloorPlan1849 />} />
+          <Route path="/floor-plans/1644" element={<FloorPlan1644 />} />
           <Route path="/where-we-build" element={<ContentPage pageKey="where-we-build" />} />
           <Route path="/build-on-your-lot" element={<ContentPage pageKey="build-on-your-lot" />} />
           <Route path="/buy-a-lot-with-us" element={<ContentPage pageKey="buy-a-lot-with-us" />} />
