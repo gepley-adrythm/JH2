@@ -4,6 +4,7 @@ import { m, MotionConfig } from "framer-motion";
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 import { Seo } from "../seo/seo";
 import { breadcrumbJsonLd } from "../seo/jsonld";
+import { CTA } from "../cta";
 
 const FADE_IN = {
   initial: { opacity: 0, y: 16 },
@@ -215,6 +216,8 @@ export default function FloorPlan1849() {
             </m.div>
           </div>
         </section>
+
+        <CTA />
       </main>
       {lightbox !== null && (
         <div
