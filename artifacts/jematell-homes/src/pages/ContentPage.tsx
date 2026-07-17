@@ -1004,6 +1004,25 @@ function FloorPlanWidgets() {
                           </Link>
                         </div>
                       </m.article>
+                      <m.article
+                        className="page-tier-card"
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.15 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <Link to="/floor-plans/1604" className="page-tier-media fp-exclusive-media" data-testid="fp-exclusive-1604-img">
+                          <img src="/images/plans/1604-rendering.png" alt="Rendered exterior of the 1604 sq ft Jematell Homes floor plan" loading="lazy" />
+                        </Link>
+                        <div className="page-tier-body">
+                          <span className="eyebrow">1,604 Sq Ft</span>
+                          <h3 className="page-tier-title">The 1604 Plan</h3>
+                          <p>3 bed · 2 bath · 2-car garage. A proven single-story design built in Arizona City. Available for your lot.</p>
+                          <Link to="/floor-plans/1604" className="page-tier-link" data-testid="fp-exclusive-1604-cta">
+                            View Plan &amp; Elevations <ArrowRight size={14} />
+                          </Link>
+                        </div>
+                      </m.article>
                     </div>
                   </div>
                 )}
