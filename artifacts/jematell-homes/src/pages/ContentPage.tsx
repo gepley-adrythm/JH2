@@ -1044,7 +1044,7 @@ function PageCTA({ title, body }: { title?: string; body?: string }) {
         >
           <div className="cta-content">
             <span className="eyebrow" style={{ color: "var(--color-bone)" }}>Build With Us</span>
-            <h2 className="heading-xl cta-title" style={{ textTransform: "uppercase" }}>
+            <h2 className="heading-lg cta-title" style={{ textTransform: "uppercase" }}>
               {renderCtaTitle(title || "Begin Your Build")}
             </h2>
             <p style={{ marginInline: "auto" }}>

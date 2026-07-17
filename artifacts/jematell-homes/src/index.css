@@ -1076,7 +1076,7 @@ picture {
 }
 .cta-content h2.cta-title .cta-title-line {
   display: block;
-  white-space: normal;
+  white-space: nowrap;
 }
 .cta-content h2.cta-title .cta-title-line--accent {
   font-style: italic;
