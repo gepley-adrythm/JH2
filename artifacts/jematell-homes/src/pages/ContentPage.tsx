@@ -963,7 +963,7 @@ function FloorPlanWidgets() {
                 {c.id === "under-2000" && (
                   <div className="fp-exclusives-inline" data-testid="floor-plan-exclusives">
                     <div className="fp-exclusives-inline-label">
-                      <span className="eyebrow">Jematell Exclusives</span>
+                      <span className="eyebrow text-[15px]">Jematell Exclusives</span>
                     </div>
                     <div className="page-tiers-grid">
                       <m.article
