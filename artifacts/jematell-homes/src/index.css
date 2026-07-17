@@ -4095,6 +4095,9 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   margin-bottom: 28px;
 }
 .fp-exclusives-inline-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 14px;
 }
 .fp-exclusives-inline { padding-inline: 116px 86px; }
@@ -4104,4 +4107,3 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 .fp-exclusives-inline .page-tier-title { font-size: 20px; }
 .fp-exclusives-inline .page-tier-body p { font-size: 13px; }
 .fp-exclusives-inline .page-tier-link { font-size: 12px; margin-top: 4px; }
-.fp-partnered-label { margin: 20px 0 10px; }

@@ -962,8 +962,9 @@ function FloorPlanWidgets() {
                 </div>
                 {c.id === "under-2000" && (
                   <div className="fp-exclusives-inline" data-testid="floor-plan-exclusives">
-                    <div className="fp-exclusives-inline-label text-[20px]">
+                    <div className="fp-exclusives-inline-label">
                       <span className="eyebrow">Jematell Exclusives</span>
+                      <span className="eyebrow" style={{ color: "var(--color-accent)" }}>Partnered Plans</span>
                     </div>
                     <div className="page-tiers-grid">
                       <m.article
@@ -1024,11 +1025,6 @@ function FloorPlanWidgets() {
                         </div>
                       </m.article>
                     </div>
-                  </div>
-                )}
-                {c.id === "under-2000" && (
-                  <div className="fp-partnered-label">
-                    <span className="eyebrow" style={{ color: "var(--color-accent)" }}>Partnered Plans</span>
                   </div>
                 )}
                 <div style={{ overflow: "hidden" }}>
