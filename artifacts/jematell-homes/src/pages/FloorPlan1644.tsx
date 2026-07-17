@@ -125,9 +125,7 @@ export default function FloorPlan1644() {
             <m.div className="page-section-head centered" {...FADE_IN}>
               <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>Floor Plan &amp; Elevations</h2>
             </m.div>
-            <m.p className="fp1849-plan-desc" {...FADE_IN}>
-              This thoughtfully designed single-level home maximizes every square foot with an open and inviting layout. The heart of the home features a spacious great room that flows into the dining area and island kitchen, creating the perfect setting for everyday living and entertaining. Two secondary bedrooms are privately positioned near the front of the home with a shared full bath, while the secluded owner's suite is tucked away at the rear and offers a spa-inspired bathroom, generous walk-in closet, and direct access to the covered patio. Additional conveniences, including a dedicated laundry room, welcoming covered entry, and three-car garage, provide both comfort and functionality.
-            </m.p>
+            <m.p className="fp1849-plan-desc" {...FADE_IN}>This thoughtfully designed single-level home maximizes every square foot with an open and inviting layout. The heart of the home features a spacious great room that flows into the dining area and island kitchen, creating the perfect setting for everyday living and entertaining. Two secondary bedrooms are privately positioned near the front of the home with a shared full bath, while the secluded owner's suite is tucked away at the rear and offers a spa-inspired bathroom, generous walk-in closet, and direct access to the covered patio. Additional conveniences, including a dedicated laundry room, welcoming covered entry, and two-car garage, provide both comfort and functionality.</m.p>
             <div className="fp1849-drawings-grid">
               {DRAWINGS.map((d, i) => (
                 <m.figure
