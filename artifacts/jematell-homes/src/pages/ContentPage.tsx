@@ -1023,19 +1023,22 @@ function renderCtaTitle(title: string) {
   );
 }
 
-function PageCTA({ title, body }: { title?: string; body?: string }) {
+function PageCTA({ title, body, bgImage }: { title?: string; body?: string; bgImage?: string }) {
   const { open: openContactForm } = useContactForm();
   return (
     <section className="cta">
-      <ResponsiveImage
-        name="cta-bg"
-        className="cta-bg"
-        alt="Desert landscape"
-        widths={[768, 1280, 1920, 2500]}
-        sizes="100vw"
-        width={2500}
-        height={1667}
-      />
+      {bgImage
+        ? <img src={bgImage} className="cta-bg" alt="" aria-hidden="true" loading="lazy" />
+        : <ResponsiveImage
+            name="cta-bg"
+            className="cta-bg"
+            alt="Desert landscape"
+            widths={[768, 1280, 1920, 2500]}
+            sizes="100vw"
+            width={2500}
+            height={1667}
+          />
+      }
       <div className="cta-overlay" />
       <div className="container">
         <div
@@ -1226,7 +1229,7 @@ export default function ContentPage({ pageKey, isRegion }: Props) {
 
         {key === "custom-homes" && <FeaturedProjects />}
 
-        {key !== "warranty" && <PageCTA title={ctaTitle ? cleanTitle(ctaTitle) : undefined} body={ctaBody} />}
+        {key !== "warranty" && <PageCTA title={ctaTitle ? cleanTitle(ctaTitle) : undefined} body={ctaBody} bgImage={key === "custom-homes" ? "/images/custom-homes-cta.jpg" : undefined} />}
       </main>
     </MotionConfig>
   );
