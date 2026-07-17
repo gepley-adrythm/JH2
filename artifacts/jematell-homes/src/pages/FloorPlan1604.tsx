@@ -128,7 +128,7 @@ export default function FloorPlan1604() {
               <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>Floor Plan &amp; Elevations</h2>
             </m.div>
             <m.p className="fp1849-plan-desc" {...FADE_IN}>
-              A thoughtfully proportioned single-story home designed for comfortable everyday living. The covered front porch and entry open into a great room that anchors the center of the plan, with the kitchen and dining area positioned to the side for easy flow and natural conversation. Two secondary bedrooms share a full bathroom near the front of the home, while the private owner's suite at the rear includes a walk-in closet, dual-vanity bathroom with a soaking tub, and a dedicated shower. A covered back patio and an attached two-car garage round out this clean, functional layout.
+              This thoughtfully designed single-level home offers a comfortable and functional layout centered around an open-concept great room, dining area, and island kitchen. Two secondary bedrooms and a full bathroom are positioned along one side of the home, while the private owner's suite is tucked away at the rear and features a spacious bathroom and walk-in closet. A dedicated laundry room, convenient drop zone, covered front porch, two-car garage, and covered rear patio complete the home with practical spaces for everyday living and entertaining.
             </m.p>
             <div className="fp1849-drawings-grid">
               {DRAWINGS.map((d, i) => (
