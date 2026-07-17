@@ -1026,6 +1026,11 @@ function FloorPlanWidgets() {
                     </div>
                   </div>
                 )}
+                {c.id === "under-2000" && (
+                  <div className="fp-partnered-label">
+                    <span className="eyebrow" style={{ color: "var(--color-accent)" }}>Partnered Plans</span>
+                  </div>
+                )}
                 <div style={{ overflow: "hidden" }}>
                   <iframe
                     src={c.widget}
