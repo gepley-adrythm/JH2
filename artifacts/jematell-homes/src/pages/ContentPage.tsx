@@ -998,7 +998,7 @@ function FloorPlanWidgets() {
                         <div className="page-tier-body">
                           <span className="eyebrow">1,644 Sq Ft</span>
                           <h3 className="page-tier-title">The 1644 Plan</h3>
-                          <p>3 bed · 2 bath · 2-car garage. A proven single-story design built in Casa Grande. Available for your lot.</p>
+                          <p>3 bed · 2 bath · 2-car garage. A proven single-story design — available for your lot.</p>
                           <Link to="/floor-plans/1644" className="page-tier-link" data-testid="fp-exclusive-1644-cta">
                             View Plan &amp; Elevations <ArrowRight size={14} />
                           </Link>
