@@ -113,7 +113,7 @@ export default function FloorPlan1644() {
               </div>
               <div className="fp1849-stat-divider" />
               <div className="fp1849-stat">
-                <span className="fp1849-stat-value">3-Car</span>
+                <span className="fp1849-stat-value">2-Car</span>
                 <span className="fp1849-stat-label">Garage</span>
               </div>
             </div>
