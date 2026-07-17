@@ -979,7 +979,7 @@ function FloorPlanWidgets() {
                         <div className="page-tier-body">
                           <span className="eyebrow">1,604 Sq Ft</span>
                           <h3 className="page-tier-title">The 1604 Plan</h3>
-                          <p>3 bed · 2 bath · 2-car garage. A proven single-story design built in Arizona City. Available for your lot.</p>
+                          <p>3 bed · 2 bath · 2-car garage. A proven single-story design — available for your lot.</p>
                           <Link to="/floor-plans/1604" className="page-tier-link" data-testid="fp-exclusive-1604-cta">
                             View Plan &amp; Elevations <ArrowRight size={14} />
                           </Link>
