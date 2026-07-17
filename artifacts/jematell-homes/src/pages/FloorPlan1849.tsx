@@ -217,7 +217,7 @@ export default function FloorPlan1849() {
           </div>
         </section>
 
-        <CTA />
+        <CTA bgImage="/images/fp1849-cta.jpg" />
       </main>
       {lightbox !== null && (
         <div
