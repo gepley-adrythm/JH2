@@ -973,14 +973,14 @@ function FloorPlanWidgets() {
                         viewport={{ once: true, amount: 0.15 }}
                         transition={{ duration: 0.5 }}
                       >
-                        <Link to="/floor-plans/1849" className="page-tier-media fp-exclusive-media" data-testid="fp-exclusive-1849-img">
-                          <img src="/images/1849-rendering-v2.png" alt="Rendered exterior of the 1849 sq ft Jematell Homes floor plan" loading="lazy" />
+                        <Link to="/floor-plans/1604" className="page-tier-media fp-exclusive-media" data-testid="fp-exclusive-1604-img">
+                          <img src="/images/plans/1604-rendering.png" alt="Rendered exterior of the 1604 sq ft Jematell Homes floor plan" loading="lazy" />
                         </Link>
                         <div className="page-tier-body">
-                          <span className="eyebrow">1,849 Sq Ft</span>
-                          <h3 className="page-tier-title">The 1849 Plan</h3>
-                          <p>3 bed · 2 bath · 2-car garage. A proven single-story design built in Casa Grande. Available for your lot.</p>
-                          <Link to="/floor-plans/1849" className="page-tier-link" data-testid="fp-exclusive-1849-cta">
+                          <span className="eyebrow">1,604 Sq Ft</span>
+                          <h3 className="page-tier-title">The 1604 Plan</h3>
+                          <p>3 bed · 2 bath · 2-car garage. A proven single-story design built in Arizona City. Available for your lot.</p>
+                          <Link to="/floor-plans/1604" className="page-tier-link" data-testid="fp-exclusive-1604-cta">
                             View Plan &amp; Elevations <ArrowRight size={14} />
                           </Link>
                         </div>
@@ -1011,14 +1011,14 @@ function FloorPlanWidgets() {
                         viewport={{ once: true, amount: 0.15 }}
                         transition={{ duration: 0.5 }}
                       >
-                        <Link to="/floor-plans/1604" className="page-tier-media fp-exclusive-media" data-testid="fp-exclusive-1604-img">
-                          <img src="/images/plans/1604-rendering.png" alt="Rendered exterior of the 1604 sq ft Jematell Homes floor plan" loading="lazy" />
+                        <Link to="/floor-plans/1849" className="page-tier-media fp-exclusive-media" data-testid="fp-exclusive-1849-img">
+                          <img src="/images/1849-rendering-v2.png" alt="Rendered exterior of the 1849 sq ft Jematell Homes floor plan" loading="lazy" />
                         </Link>
                         <div className="page-tier-body">
-                          <span className="eyebrow">1,604 Sq Ft</span>
-                          <h3 className="page-tier-title">The 1604 Plan</h3>
-                          <p>3 bed · 2 bath · 2-car garage. A proven single-story design built in Arizona City. Available for your lot.</p>
-                          <Link to="/floor-plans/1604" className="page-tier-link" data-testid="fp-exclusive-1604-cta">
+                          <span className="eyebrow">1,849 Sq Ft</span>
+                          <h3 className="page-tier-title">The 1849 Plan</h3>
+                          <p>3 bed · 2 bath · 2-car garage. A proven single-story design built in Casa Grande. Available for your lot.</p>
+                          <Link to="/floor-plans/1849" className="page-tier-link" data-testid="fp-exclusive-1849-cta">
                             View Plan &amp; Elevations <ArrowRight size={14} />
                           </Link>
                         </div>
