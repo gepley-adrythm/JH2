@@ -126,7 +126,7 @@ export default function FloorPlan1644() {
               <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>Floor Plan &amp; Elevations</h2>
             </m.div>
             <m.p className="fp1849-plan-desc" {...FADE_IN}>
-              This efficient single-level design makes every square foot count. The foyer leads past two secondary bedrooms and a full bathroom into an open great room where the kitchen, dining area, and living space flow together beneath nine-foot ceilings. The kitchen features a large island and generous counter space, while a covered patio extends everyday living outdoors. The private owner's suite sits at the back of the home with a walk-in closet and dual-vanity bathroom, and the oversized three-car garage provides room for vehicles, storage, and toys alike.
+              This thoughtfully designed single-level home maximizes every square foot with an open and inviting layout. The heart of the home features a spacious great room that flows into the dining area and island kitchen, creating the perfect setting for everyday living and entertaining. Two secondary bedrooms are privately positioned near the front of the home with a shared full bath, while the secluded owner's suite is tucked away at the rear and offers a spa-inspired bathroom, generous walk-in closet, and direct access to the covered patio. Additional conveniences, including a dedicated laundry room, welcoming covered entry, and three-car garage, provide both comfort and functionality.
             </m.p>
             <div className="fp1849-drawings-grid">
               {DRAWINGS.map((d, i) => (
