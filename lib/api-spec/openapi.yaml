@@ -339,10 +339,6 @@ components:
           type: string
         message:
           type: string
-        referralSource:
-          type: string
-        textOptIn:
-          type: boolean
         tracking:
           $ref: "#/components/schemas/ContactTracking"
       required:
@@ -350,8 +346,6 @@ components:
         - email
         - phone
         - message
-        - referralSource
-        - textOptIn
         - tracking
     ContactResponse:
       type: object

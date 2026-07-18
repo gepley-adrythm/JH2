@@ -70,8 +70,6 @@ function buildHtml(data: ContactBody): string {
           ${row("Name", data.name)}
           ${row("Email", data.email)}
           ${row("Phone", data.phone)}
-          ${row("How they heard", data.referralSource)}
-          ${row("Text opt-in", data.textOptIn ? "Yes" : "No")}
         </table>
         <div style="margin-top:18px">
           <div style="color:#6b5d4f;font-size:13px;margin-bottom:6px">Message</div>
@@ -108,8 +106,6 @@ function buildText(data: ContactBody): string {
     `Name: ${data.name}`,
     `Email: ${data.email}`,
     `Phone: ${data.phone || "(none)"}`,
-    `How they heard: ${data.referralSource || "(none)"}`,
-    `Text opt-in: ${data.textOptIn ? "Yes" : "No"}`,
     "",
     "Message:",
     data.message || "(no message)",

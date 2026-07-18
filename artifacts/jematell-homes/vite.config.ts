@@ -132,6 +132,12 @@ export default defineConfig({
     strictPort: true,
     host: "0.0.0.0",
     allowedHosts: true,
+    // Dev-only: forward /api to the api-server artifact (run it on port 5000)
+    // so contact-form submissions reach it from the workspace preview the same
+    // way the production deployment routes /api to the api-server.
+    proxy: {
+      "/api": "http://localhost:5000",
+    },
     fs: {
       strict: true,
     },

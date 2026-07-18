@@ -110,8 +110,6 @@ export const SubmitContactBody = zod.object({
   "email": zod.string().email(),
   "phone": zod.string(),
   "message": zod.string(),
-  "referralSource": zod.string(),
-  "textOptIn": zod.boolean(),
   "tracking": zod.object({
   "gclid": zod.string(),
   "utm_source": zod.string(),

@@ -13,7 +13,5 @@ export interface ContactRequest {
   email: string;
   phone: string;
   message: string;
-  referralSource: string;
-  textOptIn: boolean;
   tracking: ContactTracking;
 }

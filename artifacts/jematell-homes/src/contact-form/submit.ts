@@ -10,8 +10,6 @@ export interface ContactSubmission {
   email: string;
   phone: string;
   message: string;
-  referralSource: string;
-  textOptIn: boolean;
   tracking: TrackingData;
 }
 
