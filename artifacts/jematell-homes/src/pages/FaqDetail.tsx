@@ -9,7 +9,7 @@ import { Seo } from "../seo/seo";
 import { qaPageJsonLd, breadcrumbJsonLd } from "../seo/jsonld";
 import { annotateHeadings, readingTime } from "../lib/detail";
 import { useReadingProgress } from "../lib/useReadingProgress";
-import { DetailProgress, DetailToc, DetailMore, type MoreColumn } from "../components/DetailParts";
+import { DetailProgress, DetailToc, DetailMore, DetailDisclaimer, type MoreColumn } from "../components/DetailParts";
 import NotFound from "./not-found";
 
 function cleanTitle(t: string) {
@@ -78,6 +78,7 @@ export default function FaqDetail() {
       <Link to="/faq" className="dt-back" data-testid="faq-detail-all">
         All questions <ArrowRight size={14} aria-hidden="true" />
       </Link>
+      <DetailDisclaimer />
     </div>
   );
 

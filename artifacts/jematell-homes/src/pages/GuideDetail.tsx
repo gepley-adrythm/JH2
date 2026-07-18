@@ -11,7 +11,7 @@ import { Seo } from "../seo/seo";
 import { articleJsonLd, breadcrumbJsonLd } from "../seo/jsonld";
 import { annotateHeadings, readingTime, formatDate, prepareGuideBody } from "../lib/detail";
 import { useReadingProgress } from "../lib/useReadingProgress";
-import { DetailProgress, DetailToc, DetailMore, type MoreColumn } from "../components/DetailParts";
+import { DetailProgress, DetailToc, DetailMore, DetailDisclaimer, type MoreColumn } from "../components/DetailParts";
 import NotFound from "./not-found";
 
 export default function GuideDetail() {
@@ -65,6 +65,7 @@ export default function GuideDetail() {
       <Link to="/guides" className="dt-back" data-testid="guide-detail-all">
         All guides <ArrowRight size={14} aria-hidden="true" />
       </Link>
+      <DetailDisclaimer />
     </div>
   );
 

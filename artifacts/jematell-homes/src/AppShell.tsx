@@ -19,6 +19,7 @@ import {
   FaqTopic,
   FaqDetail,
   LlmInfo,
+  Disclaimer,
   Resources,
   GlossaryIndex,
   GlossaryDetail,
@@ -87,6 +88,7 @@ export default function AppShell() {
           <Route path="/faq/topics/:slug" element={<FaqTopic />} />
           <Route path="/faq/:slug" element={<FaqDetail />} />
           <Route path="/llm-info" element={<LlmInfo />} />
+          <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/glossary" element={<GlossaryIndex />} />
           <Route path="/glossary/:slug" element={<GlossaryDetail />} />

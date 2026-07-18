@@ -60,6 +60,7 @@ export function getRoutes(): string[] {
     "/thank-you",
     "/blog",
     "/llm-info",
+    "/disclaimer",
     "/resources",
   ]);
   for (const loc of locations) routes.add(locationHref(loc.slug));

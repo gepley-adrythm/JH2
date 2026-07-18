@@ -43,6 +43,26 @@ export function DetailToc({
   );
 }
 
+/**
+ * Standard educational-content disclaimer for resource pages (FAQ, guides,
+ * glossary, reference library). Requested by the client so every generated
+ * resource page states plainly that it is education, not professional advice.
+ */
+export function DetailDisclaimer() {
+  return (
+    <aside className="dt-disclaimer" data-testid="resource-disclaimer">
+      <p>
+        The information on this page is for general education only. It is not legal, financial,
+        design, or construction advice, and it is not a substitute for guidance from a licensed
+        professional or from your local building authority. Jematell Homes is not affiliated with
+        or endorsed by any government agency. Codes, fees, and requirements change often, so
+        confirm the current rules with the official source before you act on them. Read our full{" "}
+        <Link to="/disclaimer">website disclaimer</Link>.
+      </p>
+    </aside>
+  );
+}
+
 export interface MoreColumn {
   label: string;
   items: { to: string; label: string }[];

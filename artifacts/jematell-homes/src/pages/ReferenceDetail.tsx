@@ -14,7 +14,7 @@ import { Seo } from "../seo/seo";
 import { techArticleJsonLd, breadcrumbJsonLd } from "../seo/jsonld";
 import { annotateHeadings, readingTime, formatDate } from "../lib/detail";
 import { useReadingProgress } from "../lib/useReadingProgress";
-import { DetailProgress, DetailToc, DetailMore, type MoreColumn } from "../components/DetailParts";
+import { DetailProgress, DetailToc, DetailMore, DetailDisclaimer, type MoreColumn } from "../components/DetailParts";
 import NotFound from "./not-found";
 
 export default function ReferenceDetail() {
@@ -91,6 +91,7 @@ export default function ReferenceDetail() {
       <Link to={`/reference-library/${meta.slug}`} className="dt-back" data-testid="reference-detail-all">
         All {meta.title} <ArrowRight size={14} aria-hidden="true" />
       </Link>
+      <DetailDisclaimer />
     </div>
   );
 

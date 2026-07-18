@@ -8,7 +8,7 @@ import { ResponsiveImage } from "../components/ResponsiveImage";
 import { Seo } from "../seo/seo";
 import { definedTermJsonLd, breadcrumbJsonLd } from "../seo/jsonld";
 import { annotateHeadings, readingTime } from "../lib/detail";
-import { DetailMore, type MoreColumn } from "../components/DetailParts";
+import { DetailMore, DetailDisclaimer, type MoreColumn } from "../components/DetailParts";
 import NotFound from "./not-found";
 
 export default function GlossaryDetail() {
@@ -98,6 +98,7 @@ export default function GlossaryDetail() {
               <Link to="/glossary" className="dt-back" data-testid="glossary-detail-all">
                 All terms <ArrowRight size={14} aria-hidden="true" />
               </Link>
+              <DetailDisclaimer />
             </div>
           </div>
         </div>

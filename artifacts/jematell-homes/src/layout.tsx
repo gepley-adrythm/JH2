@@ -305,6 +305,7 @@ export function Footer() {
             <Link to="/resources" viewTransition>Resources</Link>
             <Link to="/warranty" viewTransition>Warranty</Link>
             <Link to="/privacy" viewTransition>Privacy Policy</Link>
+            <Link to="/disclaimer" viewTransition>Disclaimer</Link>
             <Link to="/llm-info" viewTransition>LLM Info</Link>
           </nav>
         </div>
@@ -351,6 +352,10 @@ export function Footer() {
             <span className="footer-bottom-sep" aria-hidden="true">·</span>
             <span>{siteConfig.contact.roc}</span>
           </span>
+        </div>
+        <div className="container footer-disclaimer-line">
+          Content on this site is for general information only and is not legal, financial, or
+          construction advice. <Link to="/disclaimer" viewTransition>Read our full disclaimer</Link>.
         </div>
       </div>
     </footer>
