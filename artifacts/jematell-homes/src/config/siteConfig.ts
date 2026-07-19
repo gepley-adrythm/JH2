@@ -70,4 +70,19 @@ export const siteConfig = {
     instagram: "https://www.instagram.com/jematellhomes/",
     facebook: "https://www.facebook.com/JematellHomes/",
   },
+  /**
+   * The preferred construction lender featured on /financing. Contact fields
+   * render only when filled in, so leave any unknown value as "" until the
+   * lender provides it.
+   */
+  financing: {
+    lender: {
+      bank: "Western Bank",
+      officer: "Naceem Pagani",
+      phone: { display: "", href: "" },
+      email: "",
+      url: "",
+      nmls: "",
+    },
+  },
 } as const;

@@ -45,6 +45,7 @@ export const navItems: NavItem[] = [
       { id: "buy-a-lot-with-us", label: "Buy a Lot With Us", href: "/buy-a-lot-with-us" },
     ],
   },
+  { id: "financing", label: "Financing", href: "/financing" },
   { id: "gallery", label: "Gallery", href: "/gallery" },
   { id: "about", label: "About", href: "/about" },
 ];
