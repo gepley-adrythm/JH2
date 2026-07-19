@@ -210,6 +210,25 @@ export function ConstructionLoanCalculator() {
     }
   }, []);
 
+  // Fetch the live 30-yr fixed rate from the API server and apply it as the
+  // perm-rate default — but only when the user hasn't loaded a shared link
+  // that already contains a "pr" param (so shared estimates stay stable).
+  useEffect(() => {
+    const sp = new URLSearchParams(window.location.search);
+    if (sp.get("pr") !== null) return;
+    let cancelled = false;
+    fetch("/api/mortgage-rate")
+      .then((r) => r.json())
+      .then((data: { rate?: number }) => {
+        if (cancelled) return;
+        if (typeof data.rate === "number" && Number.isFinite(data.rate) && data.rate > 0) {
+          setPermRate(Math.round(data.rate * 8) / 8);
+        }
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
+
   const onShare = () => {
     const p = new URLSearchParams();
     p.set("cost", String(Math.round(cost)));
