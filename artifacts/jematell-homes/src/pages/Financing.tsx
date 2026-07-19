@@ -2,7 +2,6 @@ import { useContactForm } from "../contact-form";
 import { ResponsiveImage } from "../components/ResponsiveImage";
 import { Seo } from "../seo/seo";
 import { breadcrumbJsonLd } from "../seo/jsonld";
-import { siteConfig } from "../config/siteConfig";
 import { ConstructionLoanCalculator } from "../components/ConstructionLoanCalculator";
 import { DetailMore, DetailDisclaimer, type MoreColumn } from "../components/DetailParts";
 
@@ -45,7 +44,6 @@ const financingTerms = [
 
 export default function Financing() {
   const { open } = useContactForm();
-  const lender = siteConfig.financing.lender;
 
   const columns: MoreColumn[] = [
     { label: "Financing questions", items: financingFaqs.map((f) => ({ to: `/faq/${f.slug}`, label: f.question })) },
@@ -96,39 +94,23 @@ export default function Financing() {
             </p>
             <ConstructionLoanCalculator />
 
-            <div className="fin-lender" data-testid="preferred-lender">
-              <span className="fin-lender-label">Preferred lender</span>
-              <h2>{lender.officer}</h2>
-              <span className="fin-lender-bank">{lender.bank}</span>
-              <p className="fin-lender-intro">
-                We work with a preferred lender who knows construction loans and knows how we build,
-                which keeps draws and closings on schedule. The choice is always yours, though, and
-                we are happy to work with any lender you trust.
+            <div className="fin-lenders" data-testid="preferred-lender">
+              <h2 className="fin-h2">Bring any lender, or ask us</h2>
+              <p>
+                Our clients finance their builds with all kinds of construction lenders: local
+                Arizona banks, credit unions, and national construction-to-permanent programs. Work
+                with whoever fits you best, and we will coordinate draws, inspections, and closing
+                paperwork with any lender you choose. If you want a starting point, ask us and we
+                will introduce you to loan officers we know handle custom builds well.{" "}
+                <button type="button" onClick={() => open()} className="fin-lenders-link" data-testid="lender-intro-cta">
+                  Ask us for an introduction
+                </button>
               </p>
-              {lender.phone.display || lender.email || lender.nmls ? (
-                <div className="fin-lender-contact">
-                  {lender.phone.display ? (
-                    <p>
-                      Call <a href={lender.phone.href}>{lender.phone.display}</a>
-                    </p>
-                  ) : null}
-                  {lender.email ? (
-                    <p>
-                      Email <a href={`mailto:${lender.email}`}>{lender.email}</a>
-                    </p>
-                  ) : null}
-                  {lender.nmls ? <p className="fin-lender-nmls">NMLS #{lender.nmls}</p> : null}
-                </div>
-              ) : null}
-              <button type="button" className="btn btn-primary" onClick={() => open()} data-testid="lender-intro-cta">
-                Ask us for an introduction
-              </button>
+              <p className="fin-referral-note">
+                Jematell Homes is a home builder, not a lender or loan broker. An introduction is
+                free, completely optional, and never required to build with us.
+              </p>
             </div>
-            <p className="fin-referral-note">
-              Jematell Homes is a home builder, not a lender or loan broker; our lender
-              recommendation is free and completely optional, and you are welcome to finance your
-              build with any lender you choose.
-            </p>
 
             <DetailMore columns={columns} testid="financing-related" />
             <DetailDisclaimer />

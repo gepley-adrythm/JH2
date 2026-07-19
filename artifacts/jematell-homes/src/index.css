@@ -4485,3 +4485,27 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   .fin-steps { grid-template-columns: 1fr; }
   .fin-lender { padding: 24px; }
 }
+
+/* Subtle lender-agnostic note (replaces the featured-lender card) */
+.fin-lenders {
+  margin-block: 46px;
+  padding-top: 26px;
+  border-top: 1px solid var(--color-border);
+}
+.fin-lenders p {
+  max-width: 68ch;
+  line-height: 1.7;
+  margin-block: 12px 0;
+}
+.fin-lenders-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.fin-lenders-link:hover { color: var(--color-dark); }
+.fin-lenders .fin-referral-note { margin-block: 14px 0; }
