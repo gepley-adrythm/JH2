@@ -278,7 +278,7 @@ export function ConstructionLoanCalculator() {
   const chartH = 190;
   const plotX0 = 6;
   const plotX1 = 714;
-  const plotY0 = 14;
+  const plotY0 = 28;
   const plotY1 = 158;
   const slot = (plotX1 - plotX0) / totalBars;
   const barW = r2(Math.max(2, slot - 2));
