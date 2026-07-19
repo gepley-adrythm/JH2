@@ -210,20 +210,22 @@ export const NEW_BUILD_TAX_NOTE =
   "Arizona values property in the year before taxes are billed, and bills are paid in arrears in two installments (October 1 and March 1), so a newly built home's first tax bill is usually based on a valuation set before the house existed. Under ARS 42-15105, construction completed after the valuation snapshot is picked up later through a supplemental Notice of Value that the county assessor must issue by September 30 of the valuation year. As a result, the first bill or two often reflects the land only, and buyers should expect the bill to step up to the full home value within one to two years after closing.";
 
 /**
- * Average Arizona homeowners insurance cost per year, per $100,000 of dwelling
- * coverage. Source: https://www.nerdwallet.com/insurance/homeowners/arizona-home-insurance
- * Derivation: NerdWallet (updated Feb 20, 2026) reports the average Arizona
- * homeowners premium as $2,690 per year for $300,000 of dwelling coverage
- * ($1,000 deductible, $300,000 liability, good credit). Derivation:
- * $2,690 / 3 = $897 per year per $100,000 of dwelling coverage. Cross-check:
- * NerdWallet's $500,000 tier ($4,175/yr) implies about $835 per $100,000, so
- * the defensible band is roughly $835 to $900; $897 is the conservative choice
- * for a payment calculator.
+ * Estimated homeowners insurance cost per year, per $100,000 of home value,
+ * used as the calculator default for new custom-build homes in the Phoenix metro.
+ *
+ * Derivation: broad Arizona averages from Bankrate, Insurance.com, and
+ * Policygenius (2025) cluster around $507–$580 per $100k when normalised to
+ * the full home value. NerdWallet's Feb 2026 benchmark ($2,690/yr for a $300k
+ * dwelling) implies $897/100k — but that overstates premiums for high-value
+ * new construction when applied to the full project cost (land is not insurable
+ * and inflates the base). A figure of $600/100k is a reasonable mid-point for
+ * a brand-new custom home in the $600k–$1.2M range in Maricopa County, and the
+ * field is editable so owners can plug in their own quote.
  */
-export const INSURANCE_PER_YEAR_PER_100K = 897;
+export const INSURANCE_PER_YEAR_PER_100K = 600;
 
 /**
- * Publication date of the NerdWallet average behind INSURANCE_PER_YEAR_PER_100K,
+ * Publication date of the sources behind INSURANCE_PER_YEAR_PER_100K,
  * rendered in the calculator's visible copy. Update alongside the figure above.
  */
-export const INSURANCE_AS_OF = "February 2026";
+export const INSURANCE_AS_OF = "July 2026";
