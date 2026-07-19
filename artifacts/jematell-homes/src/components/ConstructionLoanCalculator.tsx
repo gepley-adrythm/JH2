@@ -96,6 +96,7 @@ export function ConstructionLoanCalculator() {
   const [insStr, setInsStr] = useState("");
   const [insEdited, setInsEdited] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [hoveredBarIdx, setHoveredBarIdx] = useState<number | null>(null);
   const { safeTimeout } = useSafeTimeouts();
 
   const cost = parseMoney(costStr);
@@ -286,6 +287,24 @@ export function ConstructionLoanCalculator() {
   const markerX = r2(plotX0 + months * slot);
   const markerLabelLeft = months / totalBars > 0.7;
   const tickMonths = Array.from(new Set([1, months, totalBars]));
+
+  // Tooltip for the hovered bar.
+  const TT_W = 160;
+  const TT_H = 55;
+  const tooltipInfo = hoveredBarIdx === null ? null : (() => {
+    const isBuild = hoveredBarIdx < months;
+    const val = isBuild ? (buildSeries[hoveredBarIdx] ?? 0) : allInMonthly;
+    const barCenterX = r2(plotX0 + hoveredBarIdx * slot + slot / 2);
+    const ttX = r2(Math.max(0, Math.min(chartW - TT_W, barCenterX - TT_W / 2)));
+    const ttY = r2(Math.max(2, barY(val) - TT_H - 8));
+    return {
+      label: isBuild ? `Month ${hoveredBarIdx + 1} of ${months}` : "After move-in",
+      amount: fmtMoney(val),
+      sub: isBuild ? "interest only" : "all-in per month",
+      ttX,
+      ttY,
+    };
+  })();
 
   return (
     <div className="fin-calc" data-testid="loan-calculator">
@@ -605,33 +624,53 @@ export function ConstructionLoanCalculator() {
             role="img"
             aria-labelledby="fin-timeline-title fin-timeline-desc"
             preserveAspectRatio="xMidYMid meet"
+            onMouseLeave={() => setHoveredBarIdx(null)}
           >
             <title id="fin-timeline-title">Monthly payment timeline</title>
             <desc id="fin-timeline-desc">
               {`Interest-only payments ramp up over the ${months}-month build, from ${fmtMoney(buildSeries[0] ?? 0)} in month 1 to ${fmtMoney(finalMonthInterest)} in month ${months}, then the all-in payment of ${fmtMoney(allInMonthly)} per month begins after move-in.`}
             </desc>
+            {hoveredBarIdx !== null && (
+              <rect
+                x={r2(plotX0 + hoveredBarIdx * slot)}
+                y={plotY0}
+                width={r2(slot)}
+                height={r2(plotY1 - plotY0)}
+                fill="rgba(255,255,255,0.05)"
+                style={{ pointerEvents: "none" }}
+              />
+            )}
             {buildSeries.map((val, i) => (
               <rect
                 key={`b-${i}`}
+                className="fin-bar"
                 x={r2(plotX0 + i * slot + 1)}
                 y={barY(val)}
                 width={barW}
                 height={r2(plotY1 - barY(val))}
                 fill="var(--color-bone)"
-                fillOpacity={0.85}
+                fillOpacity={hoveredBarIdx === i ? 1 : hoveredBarIdx !== null ? 0.45 : 0.85}
+                onMouseEnter={() => setHoveredBarIdx(i)}
+                onMouseLeave={() => setHoveredBarIdx(null)}
               />
             ))}
-            {[0, 1, 2, 3, 4, 5].map((k) => (
-              <rect
-                key={`a-${k}`}
-                x={r2(plotX0 + (months + k) * slot + 1)}
-                y={barY(allInMonthly)}
-                width={barW}
-                height={r2(plotY1 - barY(allInMonthly))}
-                fill="#fff"
-                fillOpacity={0.95}
-              />
-            ))}
+            {[0, 1, 2, 3, 4, 5].map((k) => {
+              const barIdx = months + k;
+              return (
+                <rect
+                  key={`a-${k}`}
+                  className="fin-bar"
+                  x={r2(plotX0 + barIdx * slot + 1)}
+                  y={barY(allInMonthly)}
+                  width={barW}
+                  height={r2(plotY1 - barY(allInMonthly))}
+                  fill="#fff"
+                  fillOpacity={hoveredBarIdx === barIdx ? 1 : hoveredBarIdx !== null ? 0.45 : 0.95}
+                  onMouseEnter={() => setHoveredBarIdx(barIdx)}
+                  onMouseLeave={() => setHoveredBarIdx(null)}
+                />
+              );
+            })}
             <line
               x1={markerX}
               y1={8}
@@ -670,6 +709,48 @@ export function ConstructionLoanCalculator() {
                 {`Mo ${m}`}
               </text>
             ))}
+            {tooltipInfo && (
+              <g aria-hidden="true" style={{ pointerEvents: "none" }}>
+                <rect
+                  x={tooltipInfo.ttX}
+                  y={tooltipInfo.ttY}
+                  width={TT_W}
+                  height={TT_H}
+                  rx={7}
+                  fill="rgba(20,18,15,0.93)"
+                  stroke="rgba(226,221,211,0.22)"
+                  strokeWidth={1}
+                />
+                <text
+                  x={r2(tooltipInfo.ttX + TT_W / 2)}
+                  y={tooltipInfo.ttY + 17}
+                  textAnchor="middle"
+                  fontSize={12}
+                  fill="rgba(226,221,211,0.6)"
+                >
+                  {tooltipInfo.label}
+                </text>
+                <text
+                  x={r2(tooltipInfo.ttX + TT_W / 2)}
+                  y={tooltipInfo.ttY + 38}
+                  textAnchor="middle"
+                  fontSize={21}
+                  fontWeight="600"
+                  fill="#E2DDD3"
+                >
+                  {tooltipInfo.amount}
+                </text>
+                <text
+                  x={r2(tooltipInfo.ttX + TT_W / 2)}
+                  y={tooltipInfo.ttY + 50}
+                  textAnchor="middle"
+                  fontSize={10}
+                  fill="rgba(226,221,211,0.4)"
+                >
+                  {tooltipInfo.sub}
+                </text>
+              </g>
+            )}
           </svg>
         </div>
 
