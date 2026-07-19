@@ -97,6 +97,8 @@ export function ConstructionLoanCalculator() {
   const [insEdited, setInsEdited] = useState(false);
   const [copied, setCopied] = useState(false);
   const [hoveredBarIdx, setHoveredBarIdx] = useState<number | null>(null);
+  const [downDollarFocused, setDownDollarFocused] = useState(false);
+  const [downDollarStr, setDownDollarStr] = useState("");
   const { safeTimeout } = useSafeTimeouts();
 
   const cost = parseMoney(costStr);
@@ -428,6 +430,35 @@ export function ConstructionLoanCalculator() {
             </div>
           </div>
           <div className="fin-field">
+            <label className="fin-label" htmlFor="fin-down-dollar">Down payment ($)</label>
+            <div className="fin-input-wrap">
+              <span className="fin-prefix" aria-hidden="true">$</span>
+              <input
+                id="fin-down-dollar"
+                data-testid="calc-down-dollar"
+                type="text"
+                inputMode="numeric"
+                value={downDollarFocused ? downDollarStr : Math.round(cashDown).toLocaleString("en-US")}
+                onFocus={() => {
+                  setDownDollarFocused(true);
+                  setDownDollarStr(Math.round(cashDown).toLocaleString("en-US"));
+                }}
+                onChange={(e) => {
+                  setDownDollarStr(e.target.value);
+                  const dollars = parseMoney(e.target.value);
+                  if (financedBase > 0) {
+                    setDownPct(Math.round(clamp((dollars / financedBase) * 100, 0, 100) * 10) / 10);
+                  }
+                }}
+                onBlur={() => setDownDollarFocused(false)}
+                className="fin-input fin-input--money"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="fin-field-row">
+          <div className="fin-field">
             <label className="fin-label" htmlFor="fin-months">Build time (months)</label>
             <div className="fin-input-wrap">
               <input
@@ -444,9 +475,6 @@ export function ConstructionLoanCalculator() {
               <span className="fin-suffix" aria-hidden="true">mo</span>
             </div>
           </div>
-        </div>
-
-        <div className="fin-field-row">
           <div className="fin-field">
             <label className="fin-label" htmlFor="fin-buildrate">Construction rate</label>
             <div className="fin-input-wrap">
@@ -464,22 +492,23 @@ export function ConstructionLoanCalculator() {
               <span className="fin-suffix" aria-hidden="true">%</span>
             </div>
           </div>
-          <div className="fin-field">
-            <label className="fin-label" htmlFor="fin-permrate">Mortgage rate after</label>
-            <div className="fin-input-wrap">
-              <input
-                id="fin-permrate"
-                data-testid="calc-permrate"
-                type="number"
-                min={0}
-                max={30}
-                step={0.125}
-                value={permRate}
-                onChange={(e) => setPermRate(Number(e.target.value))}
-                className="fin-input"
-              />
-              <span className="fin-suffix" aria-hidden="true">%</span>
-            </div>
+        </div>
+
+        <div className="fin-field">
+          <label className="fin-label" htmlFor="fin-permrate">Mortgage rate after</label>
+          <div className="fin-input-wrap">
+            <input
+              id="fin-permrate"
+              data-testid="calc-permrate"
+              type="number"
+              min={0}
+              max={30}
+              step={0.125}
+              value={permRate}
+              onChange={(e) => setPermRate(Number(e.target.value))}
+              className="fin-input"
+            />
+            <span className="fin-suffix" aria-hidden="true">%</span>
           </div>
         </div>
 
