@@ -15,7 +15,7 @@ const steps = [
   {
     title: "Pay interest only during construction",
     body:
-      "While your home goes up, you pay interest only on the money drawn so far, not the full loan amount. The lender releases funds to your builder in stages called draws, each tied to completed work like the foundation, framing, or roof. An inspector confirms the work before each draw is paid.",
+      "While your home goes up, you pay interest only on the money drawn so far, not the full loan amount. The lender releases funds to your builder in stages called draws, each tied to completed work like the foundation, framing, or roof. When those interest payments are made depends on your lender: many bill monthly during the build, and some set up an interest reserve so you pay nothing out of pocket until the loan converts.",
   },
   {
     title: "Convert to your permanent mortgage",
