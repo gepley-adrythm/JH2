@@ -90,8 +90,9 @@ export default function Financing() {
             <h2 className="fin-h2">Estimate your payments</h2>
             <p className="fin-intro">
               Use this calculator to get a feel for what your construction loan and monthly payment
-              might look like. The results are estimates only, not a loan offer, and your lender will
-              confirm actual rates and terms.
+              might look like, including property taxes for the city you build in, insurance, and
+              HOA dues if any. The results are estimates only, not a loan offer, and your lender
+              will confirm actual rates and terms.
             </p>
             <ConstructionLoanCalculator />
 

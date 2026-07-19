@@ -4338,6 +4338,89 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   margin-top: 16px;
 }
 
+/* Resolved-ZIP hint under the ZIP input. Kept mounted (empty) so the
+   role="status" live region announces the hint when it appears. */
+.fin-zip-hint {
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+  margin-top: 6px;
+}
+
+.fin-zip-hint:empty {
+  margin-top: 0;
+}
+
+/* Location select, styled like .fin-input with a drawn caret. */
+.fin-location {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 32px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%235c5c5c' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+/* "I already own my lot" toggle */
+.fin-toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-block: 2px;
+}
+.fin-toggle-row input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-accent);
+  cursor: pointer;
+}
+.fin-toggle-label {
+  font-size: 14px;
+  color: var(--color-text);
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Payment timeline chart */
+.fin-timeline {
+  display: grid;
+  gap: 6px;
+  margin-block: 8px 0;
+}
+.fin-timeline svg {
+  width: 100%;
+  height: 180px;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Location tax note under the chart */
+.fin-tax-note {
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+  margin-top: 10px;
+}
+
+/* Copy-link share button: small and quiet */
+.fin-share {
+  justify-self: start;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-accent);
+  cursor: pointer;
+}
+.fin-share:hover { text-decoration: underline; text-underline-offset: 2px; }
+.fin-share-copied,
+.fin-share-copied:hover {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  cursor: default;
+}
+
 /* Preferred lender card */
 .fin-lender {
   background: var(--color-dark);
@@ -4395,6 +4478,8 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 
 @media (max-width: 860px) {
   .fin-calc { grid-template-columns: 1fr; padding: 22px; }
+  .fin-timeline { overflow-x: auto; }
+  .fin-timeline svg { min-width: 480px; }
 }
 @media (max-width: 760px) {
   .fin-steps { grid-template-columns: 1fr; }
