@@ -85,15 +85,24 @@ export default function Financing() {
               ))}
             </div>
 
-            <h2 className="fin-h2">Estimate your payments</h2>
-            <p className="fin-intro">
+          </div>
+        </div>
+
+        <section className="fin-calc-band">
+          <div className="container fin-calc-band-inner">
+            <h2 className="fin-band-h2">Estimate your payments</h2>
+            <p className="fin-band-intro">
               Use this calculator to get a feel for what your construction loan and monthly payment
               might look like, including property taxes for the city you build in, insurance, and
               HOA dues if any. The results are estimates only, not a loan offer, and your lender
               will confirm actual rates and terms.
             </p>
             <ConstructionLoanCalculator />
+          </div>
+        </section>
 
+        <div className="container">
+          <div style={{ maxWidth: 860, marginInline: "auto" }}>
             <div className="fin-lenders" data-testid="preferred-lender">
               <h2 className="fin-h2">Bring any lender, or ask us</h2>
               <p>

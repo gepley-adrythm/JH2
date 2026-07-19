@@ -4210,27 +4210,53 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   color: var(--color-text-muted);
 }
 
-.fin-intro {
-  margin-top: 10px;
+/* Full-bleed dark band around the calculator */
+.fin-calc-band {
+  background: var(--color-dark);
+  color: rgba(255, 255, 255, 0.92);
+  padding-block: clamp(56px, 7vw, 92px);
+  margin-block: 52px;
+}
+.fin-calc-band-inner { max-width: 1240px; }
+.fin-band-h2 {
+  font-family: var(--font-serif, var(--font-heading));
+  font-weight: 400;
+  font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.fin-band-intro {
   max-width: 62ch;
-  color: var(--color-text-muted);
+  color: var(--color-bone);
+  opacity: 0.8;
+  margin-bottom: 38px;
 }
 
-/* Loan calculator */
+/* Loan calculator: light inputs card beside results set on the dark band.
+   Rows: 1 lead stat, 2 stat grid, 3 timeline (1fr so it absorbs the slack
+   the tall inputs card forces, keeping the chart directly under the stat
+   grid), 4 notes spanning both columns. */
 .fin-calc {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 28px;
-  background: var(--color-cream);
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  padding: 28px;
-  margin-block: 22px 46px;
+  grid-template-columns: minmax(380px, 470px) 1fr;
+  grid-template-rows: auto auto 1fr auto;
+  column-gap: 48px;
+  row-gap: 28px;
+  align-items: start;
 }
 .fin-calc-inputs {
+  grid-column: 1;
+  grid-row: 1 / span 3;
   display: grid;
   gap: 16px;
   align-content: start;
+  background: var(--color-cream);
+  color: var(--color-dark);
+  border-radius: 16px;
+  padding: 30px 28px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
 }
 .fin-field { display: grid; gap: 6px; }
 .fin-field-row {
@@ -4243,22 +4269,26 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  /* #5c5c5c on the cream card is about 5.5:1, clearing WCAG AA 4.5:1 for
+     these small uppercase labels. Do not swap in a low-alpha ink here. */
   color: var(--color-text-muted);
 }
 .fin-input {
   width: 100%;
+  height: 48px;
   padding: 10px 12px;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: 10px;
   background: #fff;
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: 16px;
   color: var(--color-text);
   font-variant-numeric: tabular-nums;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
-.fin-input:focus {
+.fin-input:focus-visible {
   outline: 2px solid var(--color-accent);
-  outline-offset: -1px;
+  outline-offset: 1px;
 }
 .fin-input-wrap { position: relative; }
 .fin-prefix,
@@ -4281,9 +4311,10 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   gap: 8px;
 }
 .fin-term-btn {
-  padding: 10px 12px;
+  min-height: 44px;
+  padding: 10px 20px;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: 999px;
   background: #fff;
   font-family: var(--font-body);
   font-size: 14px;
@@ -4292,50 +4323,110 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 .fin-term-btn:hover { border-color: var(--color-accent); }
+/* One focus language per surface: accent outlines on the cream and white
+   controls (accent is 6.6:1 on white and 5.4:1 on cream, both clear of
+   the 3:1 non-text minimum). The accent is only 2.8:1 on the dark band,
+   so dark-band controls use the bone rules further down instead. */
+.fin-term-btn:focus-visible,
+.fin-toggle-row input:focus-visible,
+.fin-lenders-link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
 .fin-term-btn--active,
 .fin-term-btn--active:hover {
   background: var(--color-dark);
   border-color: var(--color-dark);
   color: var(--color-cream);
 }
-.fin-calc-results {
-  display: grid;
-  gap: 14px;
-  align-content: start;
+/* The results wrapper is the aria-live="polite" region and must keep the
+   lead stat, stat grid, timeline, and notes as DOM children so screen
+   readers announce recalculations, the tax note, and the share button's
+   "Copied" state. display: contents lets those children participate in
+   the .fin-calc grid directly, so layout is CSS placement only and the
+   live region's DOM stays intact at every width. */
+.fin-calc-results { display: contents; }
+.fin-stat--lead {
+  grid-column: 2;
+  grid-row: 1;
 }
-.fin-stat { display: grid; gap: 3px; }
+.fin-stat {
+  display: grid;
+  gap: 3px;
+  align-content: start;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
 .fin-stat-k {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-text-muted);
+  color: var(--color-bone);
+  opacity: 0.7;
+}
+.fin-stat--lead .fin-stat-k {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  opacity: 0.75;
 }
 .fin-stat-v {
   font-family: var(--font-serif, var(--font-heading));
   font-weight: 500;
-  font-size: 1.35rem;
+  font-size: 1.45rem;
   line-height: 1.15;
+  color: #fff;
   font-variant-numeric: tabular-nums;
 }
-.fin-stat--lead .fin-stat-v { font-size: 2rem; }
+.fin-stat--lead .fin-stat-v {
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  line-height: 1.05;
+}
 .fin-stat-v em {
   font-style: normal;
-  font-size: 0.55em;
-  color: var(--color-text-muted);
+  font-size: 0.35em;
+  color: var(--color-bone);
 }
 .fin-stat-sub {
-  font-size: 12.5px;
+  font-size: 12px;
   line-height: 1.55;
-  color: var(--color-text-muted);
+  color: var(--color-bone);
+  opacity: 0.7;
+}
+.fin-stat--lead .fin-stat-sub {
+  font-size: 14.5px;
+  opacity: 0.85;
+}
+
+/* Quiet stat cells beneath the lead stat. Width-driven columns so the
+   1.45rem serif values never clip in narrow results columns. */
+.fin-stat-grid {
+  grid-column: 2;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+}
+.fin-stat-grid .fin-stat {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+
+/* Notes and share row under the timeline, spanning both columns */
+.fin-calc-notes {
+  grid-column: 1 / -1;
+  grid-row: 4;
+  display: grid;
+  gap: 14px;
 }
 .fin-calc-note {
   font-size: 12px;
   line-height: 1.65;
-  color: var(--color-text-muted);
-  border-top: 1px solid var(--color-border);
+  color: rgba(226, 221, 211, 0.62);
+  max-width: 78ch;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
   padding-top: 12px;
-  margin-top: 16px;
 }
 
 /* Resolved-ZIP hint under the ZIP input. Kept mounted (empty) so the
@@ -4361,35 +4452,55 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   background-position: right 12px center;
 }
 
-/* "I already own my lot" toggle */
+/* "I already own my lot" toggle, styled as a tappable pill */
 .fin-toggle-row {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding-block: 2px;
+  min-height: 44px;
+  padding-inline: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: #fff;
 }
 .fin-toggle-row input[type="checkbox"] {
   width: 18px;
   height: 18px;
   accent-color: var(--color-accent);
   cursor: pointer;
+  flex-shrink: 0;
 }
 .fin-toggle-label {
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
   font-size: 14px;
   color: var(--color-text);
   cursor: pointer;
   user-select: none;
 }
 
-/* Payment timeline chart */
+/* Payment timeline chart, filling the results column under the stat grid */
 .fin-timeline {
+  grid-column: 2;
+  grid-row: 3;
   display: grid;
-  gap: 6px;
-  margin-block: 8px 0;
+  gap: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  padding: 22px;
+  background: rgba(255, 255, 255, 0.03);
 }
+.fin-timeline:focus-visible {
+  outline: 2px solid var(--color-bone);
+  outline-offset: 2px;
+}
+/* height: auto keeps the rendered chart on the 720x190 viewBox aspect, so
+   it fills the card edge to edge at every width with no letterboxing. */
 .fin-timeline svg {
   width: 100%;
-  height: 180px;
+  height: auto;
   font-family: var(--font-body);
   font-variant-numeric: tabular-nums;
 }
@@ -4398,26 +4509,35 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 .fin-tax-note {
   font-size: 12.5px;
   line-height: 1.65;
-  color: var(--color-text-muted);
-  margin-top: 10px;
+  color: rgba(226, 221, 211, 0.62);
+  max-width: 78ch;
 }
 
-/* Copy-link share button: small and quiet */
+/* Copy-link share button: outline pill on the dark band */
 .fin-share {
   justify-self: start;
+  min-height: 44px;
   background: none;
-  border: none;
-  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  padding: 10px 20px;
   font-family: var(--font-body);
   font-size: 13px;
-  color: var(--color-accent);
+  color: #fff;
   cursor: pointer;
+  transition: background 0.2s;
 }
-.fin-share:hover { text-decoration: underline; text-underline-offset: 2px; }
+.fin-share:hover { background: rgba(255, 255, 255, 0.08); }
+/* Bone, not accent, on the dark band: bone on #121415 is 13.6:1 while the
+   accent would land below the 3:1 non-text minimum. */
+.fin-share:focus-visible {
+  outline: 2px solid var(--color-bone);
+  outline-offset: 2px;
+}
 .fin-share-copied,
 .fin-share-copied:hover {
-  color: var(--color-text-muted);
-  text-decoration: none;
+  color: var(--color-bone);
+  background: none;
   cursor: default;
 }
 
@@ -4476,14 +4596,44 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   color: var(--color-text-muted);
 }
 
-@media (max-width: 860px) {
-  .fin-calc { grid-template-columns: 1fr; padding: 22px; }
+@media (max-width: 900px) {
+  .fin-calc {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 28px;
+  }
+  /* The results wrapper is display: contents at every width (see the base
+     rule), so its children join this flex column directly and the lead
+     stat moves above the inputs card with CSS order only. DOM order is
+     unchanged, so aria-live announcements keep working. */
+  .fin-stat--lead { order: -1; }
+  .fin-calc-inputs { padding: 26px 22px; }
   .fin-timeline { overflow-x: auto; }
   .fin-timeline svg { min-width: 480px; }
 }
 @media (max-width: 760px) {
   .fin-steps { grid-template-columns: 1fr; }
   .fin-lender { padding: 24px; }
+}
+@media print {
+  .fin-calc-band { background: #fff; color: #000; }
+  .fin-band-h2 { color: #000; }
+  .fin-band-intro,
+  .fin-stat-k,
+  .fin-stat-sub,
+  .fin-stat-v em,
+  .fin-tax-note,
+  .fin-calc-note { color: #444; opacity: 1; }
+  .fin-stat-v { color: #000; }
+  .fin-calc-inputs { border: 1px solid #ccc; box-shadow: none; }
+  .fin-stat-grid .fin-stat,
+  .fin-timeline,
+  .fin-calc-note { border-color: #ccc; }
+  .fin-share { color: #000; border-color: #999; }
+  .fin-timeline svg rect { fill: #555; }
+  .fin-timeline svg text { fill: #444; }
+  .fin-timeline svg line { stroke: #999; }
 }
 
 /* Subtle lender-agnostic note (replaces the featured-lender card) */

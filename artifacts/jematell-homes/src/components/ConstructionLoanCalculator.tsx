@@ -537,29 +537,48 @@ export function ConstructionLoanCalculator() {
             {hoaMonthly > 0 ? ` + HOA ${fmtMoney(hoaMonthly)}` : ""}
           </span>
         </div>
-        <div className="fin-stat">
-          <span className="fin-stat-k">Loan amount</span>
-          <span className="fin-stat-v" data-testid="calc-loan">{fmtMoney(loan)}</span>
-          {landOwned ? (
+        <div className="fin-stat-grid">
+          <div className="fin-stat">
+            <span className="fin-stat-k">Loan amount</span>
+            <span className="fin-stat-v" data-testid="calc-loan">{fmtMoney(loan)}</span>
+            {landOwned ? (
+              <span className="fin-stat-sub">
+                Financing covers the build only; your lot is your equity. Total project value {fmtMoney(totalCost)} with land.
+              </span>
+            ) : null}
+          </div>
+          <div className="fin-stat">
+            <span className="fin-stat-k">Cash to plan for</span>
+            <span className="fin-stat-v" data-testid="calc-cash">{fmtMoney(cashToPlanFor)}</span>
+            <span className="fin-stat-sub">Down payment plus interest paid during the build</span>
+          </div>
+          <div className="fin-stat">
+            <span className="fin-stat-k">Interest during the build</span>
+            <span className="fin-stat-v" data-testid="calc-build-interest">{fmtMoney(totalBuildInterest)} total</span>
             <span className="fin-stat-sub">
-              Financing covers the build only; your lot is your equity. Total project value {fmtMoney(totalCost)} with land.
+              Payments start small and grow with each draw, reaching about {fmtMoney(finalMonthInterest)}/mo in the final month
             </span>
-          ) : null}
-        </div>
-        <div className="fin-stat">
-          <span className="fin-stat-k">Cash to plan for</span>
-          <span className="fin-stat-v" data-testid="calc-cash">{fmtMoney(cashToPlanFor)}</span>
-          <span className="fin-stat-sub">Down payment plus interest paid during the build</span>
-        </div>
-        <div className="fin-stat">
-          <span className="fin-stat-k">Interest during the build</span>
-          <span className="fin-stat-v" data-testid="calc-build-interest">{fmtMoney(totalBuildInterest)} total</span>
-          <span className="fin-stat-sub">
-            Payments start small and grow with each draw, reaching about {fmtMoney(finalMonthInterest)}/mo in the final month
-          </span>
+          </div>
         </div>
 
-        <div className="fin-timeline">
+        {/*
+          The timeline and the notes block stay inside this aria-live
+          container so screen readers keep announcing the recalculated
+          timeline description, the location-dependent tax note, and the
+          share button's "Copied" confirmation. Layout (full-width or
+          column placement) is handled in CSS via display: contents on
+          .fin-calc-results, never by re-parenting this DOM.
+
+          The wrapper is focusable (tabIndex) because at narrow widths it
+          becomes a horizontal scroll region; keyboard users need focus on
+          it to scroll the hidden months into view.
+        */}
+        <div
+          className="fin-timeline"
+          tabIndex={0}
+          role="group"
+          aria-label="Payment timeline chart, scrollable"
+        >
           <span className="fin-stat-k">Payment timeline</span>
           <svg
             data-testid="calc-timeline"
@@ -579,7 +598,8 @@ export function ConstructionLoanCalculator() {
                 y={barY(val)}
                 width={barW}
                 height={r2(plotY1 - barY(val))}
-                fill="var(--color-accent)"
+                fill="var(--color-bone)"
+                fillOpacity={0.85}
               />
             ))}
             {[0, 1, 2, 3, 4, 5].map((k) => (
@@ -589,7 +609,8 @@ export function ConstructionLoanCalculator() {
                 y={barY(allInMonthly)}
                 width={barW}
                 height={r2(plotY1 - barY(allInMonthly))}
-                fill="var(--color-dark)"
+                fill="#fff"
+                fillOpacity={0.95}
               />
             ))}
             <line
@@ -597,7 +618,7 @@ export function ConstructionLoanCalculator() {
               y1={8}
               x2={markerX}
               y2={plotY1 + 4}
-              stroke="var(--color-text-muted)"
+              stroke="var(--color-bone)"
               strokeWidth={1}
               strokeDasharray="3 3"
             />
@@ -605,8 +626,8 @@ export function ConstructionLoanCalculator() {
               x={markerLabelLeft ? markerX - 5 : markerX + 5}
               y={16}
               textAnchor={markerLabelLeft ? "end" : "start"}
-              fontSize={11}
-              fill="var(--color-text-muted)"
+              fontSize={15}
+              fill="var(--color-bone)"
             >
               Move-in
             </text>
@@ -615,7 +636,7 @@ export function ConstructionLoanCalculator() {
               y1={plotY1}
               x2={plotX1}
               y2={plotY1}
-              stroke="var(--color-border, rgba(0,0,0,0.15))"
+              stroke="rgba(255, 255, 255, 0.18)"
               strokeWidth={1}
             />
             {tickMonths.map((m) => (
@@ -624,8 +645,8 @@ export function ConstructionLoanCalculator() {
                 x={r2(plotX0 + (m - 1) * slot + slot / 2)}
                 y={plotY1 + 16}
                 textAnchor="middle"
-                fontSize={10}
-                fill="var(--color-text-muted)"
+                fontSize={15}
+                fill="rgba(226, 221, 211, 0.6)"
               >
                 {`Mo ${m}`}
               </text>
@@ -633,29 +654,31 @@ export function ConstructionLoanCalculator() {
           </svg>
         </div>
 
-        <p className="fin-tax-note" data-testid="calc-tax-note">
-          Property taxes default to {activeLoc.effectiveRatePct.toFixed(2)}% for {activeLoc.name}
-          {activeLoc.county === "Statewide" ? " (statewide average)" : ` (${activeLoc.county} County)`}, the average
-          effective rate as of {TAX_AS_OF}, and are editable. Your parcel will differ. Insurance defaults to the
-          Arizona average of about {fmtMoney(INSURANCE_PER_YEAR_PER_100K)} per year per $100,000 of home value as
-          of {INSURANCE_AS_OF}, and is editable. {NEW_BUILD_TAX_NOTE}
-        </p>
+        <div className="fin-calc-notes">
+          <p className="fin-tax-note" data-testid="calc-tax-note">
+            Property taxes default to {activeLoc.effectiveRatePct.toFixed(2)}% for {activeLoc.name}
+            {activeLoc.county === "Statewide" ? " (statewide average)" : ` (${activeLoc.county} County)`}, the average
+            effective rate as of {TAX_AS_OF}, and are editable. Your parcel will differ. Insurance defaults to the
+            Arizona average of about {fmtMoney(INSURANCE_PER_YEAR_PER_100K)} per year per $100,000 of home value as
+            of {INSURANCE_AS_OF}, and is editable. {NEW_BUILD_TAX_NOTE}
+          </p>
 
-        <button
-          type="button"
-          data-testid="calc-share"
-          onClick={onShare}
-          className={`fin-share ${copied ? "fin-share-copied" : ""}`}
-        >
-          {copied ? "Copied" : "Copy link to this estimate"}
-        </button>
+          <button
+            type="button"
+            data-testid="calc-share"
+            onClick={onShare}
+            className={`fin-share ${copied ? "fin-share-copied" : ""}`}
+          >
+            {copied ? "Copied" : "Copy link to this estimate"}
+          </button>
 
-        <p className="fin-calc-note">
-          Estimates only, not a loan offer, quote, or preapproval. Assumes draws spread evenly across
-          the build and excludes closing costs. Taxes, insurance, and HOA dues are editable estimates
-          based on published averages, not your parcel or policy. Your lender's terms will differ.
-          Enter the rates from your own quote for the closest estimate.
-        </p>
+          <p className="fin-calc-note">
+            Estimates only, not a loan offer, quote, or preapproval. Assumes draws spread evenly across
+            the build and excludes closing costs. Taxes, insurance, and HOA dues are editable estimates
+            based on published averages, not your parcel or policy. Your lender's terms will differ.
+            Enter the rates from your own quote for the closest estimate.
+          </p>
+        </div>
       </div>
     </div>
   );
