@@ -12,14 +12,14 @@ version = "1.0.0"
 [[services]]
 name = "web"
 paths = [ "/" ]
-localPort = 24862
+localPort = 8080
 
 [services.development]
 run = "pnpm --filter @workspace/jematell-homes run dev"
 
 [services.production]
 build = [ "pnpm", "--filter", "@workspace/jematell-homes", "run", "build" ]
-publicDir = "artifacts/jematell-homes/dist/public"
+publicDir = "artifacts/jematell-homes/out"
 serve = "static"
 
 [[services.production.rewrites]]
@@ -27,5 +27,4 @@ from = "/*"
 to = "/index.html"
 
 [services.env]
-PORT = "24862"
-BASE_PATH = "/"
+PORT = "8080"
