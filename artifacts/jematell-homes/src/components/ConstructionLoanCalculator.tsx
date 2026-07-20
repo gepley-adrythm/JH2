@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { useSafeTimeouts } from "../contact-form/useSafeTimeouts";
 import {
   INSURANCE_AS_OF,
@@ -55,6 +55,12 @@ function r2(n: number): number {
 /** Slug of the statewide-average row in TAX_LOCATIONS. */
 const STATEWIDE_SLUG = "elsewhere-in-arizona";
 
+/** Donut geometry: radius 80 in a 200x200 viewBox, 26px ring stroke. */
+const DONUT_R = 80;
+const DONUT_C = 2 * Math.PI * DONUT_R;
+
+type CalcView = "breakdown" | "timeline";
+
 type ZipResolution =
   | { kind: "city"; slug: string; name: string }
   | { kind: "statewide" }
@@ -97,6 +103,8 @@ export function ConstructionLoanCalculator() {
   const [insStr, setInsStr] = useState("");
   const [insEdited, setInsEdited] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [activeView, setActiveView] = useState<CalcView>("breakdown");
+  const [donutReady, setDonutReady] = useState(false);
   const [hoveredBarIdx, setHoveredBarIdx] = useState<number | null>(null);
   const [downDollarFocused, setDownDollarFocused] = useState(false);
   const [downDollarStr, setDownDollarStr] = useState("");
@@ -214,6 +222,15 @@ export function ConstructionLoanCalculator() {
     }
   }, []);
 
+  // Trigger the donut sweep-in one frame after mount: the first painted
+  // frame has zero-length arcs, then the CSS transition animates them to
+  // their real sizes. Reduced-motion users get the final state instantly
+  // via the transition: none override in CSS.
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setDonutReady(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
   // Fetch the live 30-yr fixed rate from the API server and apply it as the
   // perm-rate default — but only when the user hasn't loaded a shared link
   // that already contains a "pr" param (so shared estimates stay stable).
@@ -308,6 +325,48 @@ export function ConstructionLoanCalculator() {
       ttY,
     };
   })();
+
+  // Payment-breakdown donut. Segments reuse the exact monthly values shown
+  // in the stats (permMonthly, monthlyTax, monthlyInsurance, hoaMonthly),
+  // so the ring, the legend, and the stat text can never disagree. Angles
+  // are normalized over the sum of the parts themselves, never over the
+  // displayed all-in total, so display rounding cannot make the ring over-
+  // or under-shoot a full turn. Zero or non-finite parts contribute a
+  // zero-length dash, which draws nothing (butt line caps).
+  //
+  // Colors on the #121415 band: #8fb0c9 is the accent (#3b617f) lightened
+  // for the dark background (about 8.2:1), bone is 13.6:1, #c08468 is the
+  // warm tone (#8c5a45) lightened to about 6:1, and the HOA grey #9aa0a3
+  // is about 7:1. All clear the 3:1 non-text minimum; legend text is bone
+  // and white, both far above 4.5:1.
+  const donutParts = [
+    { key: "pi", label: "P&I", value: Number.isFinite(permMonthly) ? permMonthly : 0, color: "#8fb0c9" },
+    { key: "tax", label: "Property tax", value: monthlyTax, color: "var(--color-bone)" },
+    { key: "ins", label: "Insurance", value: monthlyInsurance, color: "#c08468" },
+    { key: "hoa", label: "HOA", value: hoaMonthly, color: "#9aa0a3" },
+  ];
+  const donutSum = donutParts.reduce((acc, p) => acc + (p.value > 0 ? p.value : 0), 0);
+  let donutAcc = 0;
+  const donutSegs = donutParts.map((p) => {
+    const frac = donutSum > 0 && p.value > 0 ? p.value / donutSum : 0;
+    const seg = { ...p, len: r2(frac * DONUT_C), offset: r2(donutAcc * DONUT_C) };
+    donutAcc += frac;
+    return seg;
+  });
+  // P&I, tax, and insurance rows always show (a typed-in $0 is information);
+  // the HOA row appears only when there are dues, matching the lead stat sub.
+  const donutLegend = donutParts.filter((p) => p.key !== "hoa" || p.value > 0);
+
+  // WAI-ARIA tabs pattern: roving tabindex, ArrowLeft/ArrowRight move
+  // selection and focus. With exactly two tabs both arrows toggle.
+  const onTabKeyDown = (e: ReactKeyboardEvent<HTMLButtonElement>) => {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    e.preventDefault();
+    const next: CalcView = activeView === "breakdown" ? "timeline" : "breakdown";
+    setActiveView(next);
+    const el = document.getElementById(next === "breakdown" ? "fin-tab-breakdown" : "fin-tab-timeline");
+    if (el) el.focus();
+  };
 
   return (
     <div className="fin-calc" data-testid="loan-calculator">
@@ -630,23 +689,132 @@ export function ConstructionLoanCalculator() {
         </div>
 
         {/*
-          The timeline and the notes block stay inside this aria-live
-          container so screen readers keep announcing the recalculated
-          timeline description, the location-dependent tax note, and the
-          share button's "Copied" confirmation. Layout (full-width or
-          column placement) is handled in CSS via display: contents on
-          .fin-calc-results, never by re-parenting this DOM.
+          The chart views live inside the aria-live results container in
+          the DOM, but the wrapper opts its whole subtree out of the live
+          computation with aria-live="off". Two reasons: (1) toggling the
+          hidden attribute on a tabpanel inside a polite region counts as
+          an "addition", so every tab switch would announce the entire
+          newly revealed panel even though no value changed; (2) the donut
+          center total and legend repeat the same P&I / tax / insurance /
+          all-in figures the lead stat and stat grid already announce, so
+          leaving them live would read every recompute twice. Each value
+          is still announced exactly once from the stats and notes (which
+          remain inside the polite region), and the charts stay fully
+          readable in browse mode. Layout (full-width or column placement)
+          is handled in CSS via display: contents on .fin-calc-results,
+          never by re-parenting this DOM, and no second announcing
+          aria-live region is ever added here.
 
-          The wrapper is focusable (tabIndex) because at narrow widths it
-          becomes a horizontal scroll region; keyboard users need focus on
-          it to scroll the hidden months into view.
+          Two WAI-ARIA tabs (payment breakdown donut, payment timeline).
+          Both panels stay mounted so the timeline keeps its state and the
+          live region keeps its DOM; the inactive panel is hidden with the
+          hidden attribute only. The donut SVG is decorative (aria-hidden):
+          the legend text beside it and the real-text center total carry
+          the same information.
         */}
-        <div
-          className="fin-timeline"
-          tabIndex={0}
-          role="group"
-          aria-label="Payment timeline chart, scrollable"
-        >
+        <div className="fin-views" aria-live="off">
+          <div className="fin-view-tabs" role="tablist" aria-label="Payment charts">
+            <button
+              type="button"
+              role="tab"
+              id="fin-tab-breakdown"
+              data-testid="calc-tab-breakdown"
+              aria-selected={activeView === "breakdown"}
+              aria-controls="fin-panel-breakdown"
+              tabIndex={activeView === "breakdown" ? 0 : -1}
+              onClick={() => setActiveView("breakdown")}
+              onKeyDown={onTabKeyDown}
+              className={`fin-view-tab ${activeView === "breakdown" ? "fin-view-tab--active" : ""}`}
+            >
+              Payment breakdown
+            </button>
+            <button
+              type="button"
+              role="tab"
+              id="fin-tab-timeline"
+              data-testid="calc-tab-timeline"
+              aria-selected={activeView === "timeline"}
+              aria-controls="fin-panel-timeline"
+              tabIndex={activeView === "timeline" ? 0 : -1}
+              onClick={() => setActiveView("timeline")}
+              onKeyDown={onTabKeyDown}
+              className={`fin-view-tab ${activeView === "timeline" ? "fin-view-tab--active" : ""}`}
+            >
+              Payment timeline
+            </button>
+          </div>
+
+          <div
+            role="tabpanel"
+            id="fin-panel-breakdown"
+            aria-labelledby="fin-tab-breakdown"
+            className="fin-view-panel"
+            hidden={activeView !== "breakdown"}
+            tabIndex={0}
+          >
+            <div className="fin-donut-wrap" data-testid="calc-breakdown">
+              <div className="fin-donut">
+                <svg viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+                  <g transform="rotate(-90 100 100)">
+                    <circle
+                      cx="100"
+                      cy="100"
+                      r={DONUT_R}
+                      fill="none"
+                      stroke="rgba(255, 255, 255, 0.08)"
+                      strokeWidth="26"
+                    />
+                    {donutSegs.map((s) => (
+                      <circle
+                        key={s.key}
+                        className="fin-donut-arc"
+                        cx="100"
+                        cy="100"
+                        r={DONUT_R}
+                        stroke={s.color}
+                        strokeDasharray={
+                          donutReady ? `${s.len} ${r2(DONUT_C - s.len)}` : `0 ${r2(DONUT_C)}`
+                        }
+                        strokeDashoffset={-s.offset}
+                      />
+                    ))}
+                  </g>
+                </svg>
+                <div className="fin-donut-center">
+                  <span className="fin-donut-total" data-testid="calc-donut-total">{fmtMoney(allInMonthly)}</span>
+                  <span className="fin-donut-per">per month</span>
+                </div>
+              </div>
+              <ul className="fin-donut-legend" data-testid="calc-donut-legend">
+                {donutLegend.map((p) => (
+                  <li key={p.key} className="fin-legend-row">
+                    <span className="fin-legend-dot" style={{ background: p.color }} aria-hidden="true" />
+                    <span className="fin-legend-label">{p.label}</span>
+                    <span className="fin-legend-value">{fmtMoney(p.value)}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div
+            role="tabpanel"
+            id="fin-panel-timeline"
+            aria-labelledby="fin-tab-timeline"
+            className="fin-view-panel"
+            hidden={activeView !== "timeline"}
+          >
+            {/*
+              The timeline wrapper is focusable (tabIndex) because at narrow
+              widths it becomes a horizontal scroll region; keyboard users
+              need focus on it to scroll the hidden months into view.
+            */}
+            <div
+              className="fin-timeline"
+              tabIndex={0}
+              role="group"
+              aria-label="Payment timeline chart, scrollable"
+            >
           <span className="fin-stat-k">Payment timeline</span>
           <svg
             data-testid="calc-timeline"
@@ -782,6 +950,8 @@ export function ConstructionLoanCalculator() {
               </g>
             )}
           </svg>
+            </div>
+          </div>
         </div>
 
         <div className="fin-calc-notes">

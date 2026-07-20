@@ -4225,7 +4225,11 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   padding-block: clamp(56px, 7vw, 92px);
   margin-block: 52px;
 }
-.fin-calc-band-inner { max-width: 1240px; }
+/* The calculator is the working surface of this page, so its band opens
+   wider than the standard container: full width up to 1680px, keeping the
+   .container clamp() padding. The inputs card stays capped by its own
+   minmax column below, so the extra room all goes to the results side. */
+.fin-calc-band-inner { max-width: min(1680px, 100%); }
 .fin-band-h2 {
   font-family: var(--font-serif, var(--font-heading));
   font-weight: 400;
@@ -4243,9 +4247,9 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 }
 
 /* Loan calculator: light inputs card beside results set on the dark band.
-   Rows: 1 lead stat, 2 stat grid, 3 timeline (1fr so it absorbs the slack
-   the tall inputs card forces, keeping the chart directly under the stat
-   grid), 4 notes spanning both columns. */
+   Rows: 1 lead stat, 2 stat grid, 3 chart views (1fr so they absorb the
+   slack the tall inputs card forces, keeping the charts directly under
+   the stat grid), 4 notes spanning both columns. */
 .fin-calc {
   display: grid;
   grid-template-columns: minmax(380px, 470px) 1fr;
@@ -4489,10 +4493,163 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   user-select: none;
 }
 
-/* Payment timeline chart, filling the results column under the stat grid */
-.fin-timeline {
+/* Chart views: tab bar plus two tabpanels (payment breakdown donut,
+   payment timeline), filling the results column under the stat grid.
+   The wrapper takes the grid placement the timeline card used to own. */
+.fin-views {
   grid-column: 2;
   grid-row: 3;
+  display: grid;
+  gap: 16px;
+  align-content: start;
+  min-width: 0;
+}
+.fin-view-tabs {
+  display: flex;
+  gap: 8px;
+}
+/* Pill tabs in the band's outline language (see .fin-share); the active
+   tab flips to the cream pill so selection reads without color alone. */
+.fin-view-tab {
+  min-height: 44px;
+  padding: 10px 22px;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.fin-view-tab:hover { background: rgba(255, 255, 255, 0.08); }
+/* Bone, not accent, for focus on the dark band (see the .fin-share note). */
+.fin-view-tab:focus-visible {
+  outline: 2px solid var(--color-bone);
+  outline-offset: 2px;
+}
+.fin-view-tab--active,
+.fin-view-tab--active:hover {
+  background: var(--color-cream);
+  border-color: var(--color-cream);
+  color: var(--color-dark);
+  cursor: default;
+}
+/* Panels swap with a compositor-only fade. Both stay mounted; the hidden
+   attribute hides the inactive one, and the explicit [hidden] rule keeps
+   that true even if a display value is ever set on the class. */
+.fin-view-panel { min-width: 0; }
+.fin-view-panel[hidden] { display: none; }
+.fin-view-panel:not([hidden]) { animation: fin-panel-fade 0.2s ease; }
+.fin-view-panel:focus-visible {
+  outline: 2px solid var(--color-bone);
+  outline-offset: 2px;
+}
+@keyframes fin-panel-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Payment-breakdown donut: ring left, legend right, matching the timeline
+   card's surface. The SVG is aria-hidden; the center total and the legend
+   are real text inside the existing aria-live results region. */
+.fin-donut-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(24px, 4vw, 56px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  padding: clamp(22px, 2.5vw, 34px);
+  background: rgba(255, 255, 255, 0.03);
+}
+.fin-donut {
+  position: relative;
+  width: clamp(200px, 22vw, 264px);
+  flex-shrink: 0;
+}
+.fin-donut svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* Arcs sweep in on mount and glide when inputs change. Dash geometry only,
+   so the work stays cheap; reduced motion snaps instead (media block at
+   the end of the fin styles). */
+.fin-donut-arc {
+  fill: none;
+  stroke-width: 26;
+  transition: stroke-dasharray 0.6s ease, stroke-dashoffset 0.6s ease;
+}
+.fin-donut-center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 2px;
+  text-align: center;
+  pointer-events: none;
+}
+/* Compact serif total: the lead all-in stat above stays the hero figure. */
+.fin-donut-total {
+  font-family: var(--font-serif, var(--font-heading));
+  font-weight: 500;
+  font-size: clamp(1.4rem, 1.8vw, 1.8rem);
+  line-height: 1.1;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+.fin-donut-per {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-bone);
+  opacity: 0.75;
+}
+/* max-width keeps each legend row's label-to-value span readable: in the
+   widened band the results column reaches ~1034px, and an uncapped flex:1
+   legend would stretch rows to 600px+ with a huge empty track between
+   label and right-aligned value. With the cap, justify-content: center on
+   the wrap centers the ring + legend group in the card. */
+.fin-donut-legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  min-width: 220px;
+  max-width: 380px;
+  display: grid;
+  align-content: center;
+  gap: 0;
+}
+.fin-legend-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding-block: 10px;
+  font-size: 14.5px;
+}
+.fin-legend-row + .fin-legend-row {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.fin-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+/* Bone (13.6:1) and white on #121415: both far above 4.5:1. */
+.fin-legend-label { color: var(--color-bone); }
+.fin-legend-value {
+  color: #fff;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Payment timeline chart card (now inside the second tabpanel) */
+.fin-timeline {
   display: grid;
   gap: 10px;
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -4504,10 +4661,16 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   outline: 2px solid var(--color-bone);
   outline-offset: 2px;
 }
-/* height: auto keeps the rendered chart on the 720x190 viewBox aspect, so
-   it fills the card edge to edge at every width with no letterboxing. */
+/* height: auto keeps the rendered chart on the 720x190 viewBox aspect.
+   max-width caps the render near the width the viewBox font sizes were
+   tuned for (~11-14px effective text): in the widened 1680px band the
+   results column reaches ~1034px, and an uncapped chart would scale its
+   15px viewBox labels past 20px. margin-inline centers the capped chart
+   in the card. */
 .fin-timeline svg {
   width: 100%;
+  max-width: 760px;
+  margin-inline: auto;
   height: auto;
   font-family: var(--font-body);
   font-variant-numeric: tabular-nums;
@@ -4605,6 +4768,16 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   color: var(--color-text-muted);
 }
 
+/* Slimmer tab-pill padding wherever the tabs get squeezed: below 900px the
+   flex:1 pills are ~160px at common phone widths (375/390) and "Payment
+   breakdown" at 13px needs ~118px, so the full 22px inline padding forces a
+   two-line wrap; the 901-1000px window squeezes the tabs into a ~330px
+   column with zero slack. 12px padding keeps both labels single-line with
+   room to spare while min-height: 44px preserves the tap target. */
+@media (max-width: 1000px) {
+  .fin-view-tab { padding: 10px 12px; }
+}
+
 @media (max-width: 900px) {
   .fin-calc {
     display: flex;
@@ -4620,6 +4793,24 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   .fin-calc-inputs { padding: 26px 22px; }
   .fin-timeline { overflow-x: auto; }
   .fin-timeline svg { min-width: 480px; }
+  .fin-view-tabs { width: 100%; }
+  .fin-view-tab { flex: 1; }
+  .fin-donut-wrap {
+    flex-direction: column;
+    align-items: center;
+  }
+  .fin-donut { width: 180px; }
+  .fin-donut-legend {
+    width: 100%;
+    min-width: 0;
+    flex: none;
+  }
+}
+/* Reduced motion: arcs and panel swaps snap to their final state. */
+@media (prefers-reduced-motion: reduce) {
+  .fin-donut-arc { transition: none; }
+  .fin-view-panel:not([hidden]) { animation: none; }
+  .fin-view-tab { transition: none; }
 }
 @media (max-width: 760px) {
   .fin-steps { grid-template-columns: 1fr; }
@@ -4643,6 +4834,41 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   .fin-timeline svg rect { fill: #555; }
   .fin-timeline svg text { fill: #444; }
   .fin-timeline svg line { stroke: #999; }
+  /* Tabs are dead UI on paper: hide the pills and print BOTH chart panels
+     by overriding the [hidden] display: none (this rule comes after the
+     base one, so it wins at equal specificity). */
+  .fin-view-tabs { display: none; }
+  .fin-view-panel[hidden] { display: block; }
+  .fin-donut-wrap { border-color: #ccc; }
+  .fin-donut-total { color: #000; }
+  .fin-donut-per,
+  .fin-legend-label { color: #444; opacity: 1; }
+  .fin-legend-value { color: #000; }
+  /* The inline arc strokes are tuned for the dark band (the bone tax arc
+     is ~1.2:1 on white) and the track is near-invisible white; remap the
+     ring to distinguishable greys like the #555 timeline treatment. The
+     <g> holds the track circle first, then the four arcs (P&I, tax,
+     insurance, HOA), so nth-child(2..5) addresses them in order. */
+  .fin-donut svg g > circle:first-child { stroke: #ddd; }
+  .fin-donut-arc { stroke: #777; }
+  .fin-donut-arc:nth-child(2) { stroke: #333; }
+  .fin-donut-arc:nth-child(3) { stroke: #777; }
+  .fin-donut-arc:nth-child(4) { stroke: #999; }
+  .fin-donut-arc:nth-child(5) { stroke: #bbb; }
+  /* Legend dots are CSS backgrounds, which default print settings drop:
+     keep a visible outline either way, ask for exact colors, and remap
+     each dot to the same grey as its arc (!important beats the inline
+     background). Rows render in the same P&I/tax/insurance/HOA order as
+     the arcs; the HOA row is last when present. */
+  .fin-legend-dot {
+    border: 1px solid #333;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .fin-legend-row:nth-child(1) .fin-legend-dot { background: #333 !important; }
+  .fin-legend-row:nth-child(2) .fin-legend-dot { background: #777 !important; }
+  .fin-legend-row:nth-child(3) .fin-legend-dot { background: #999 !important; }
+  .fin-legend-row:nth-child(4) .fin-legend-dot { background: #bbb !important; }
 }
 
 /* Subtle lender-agnostic note (replaces the featured-lender card) */
