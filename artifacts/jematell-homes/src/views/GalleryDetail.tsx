@@ -210,6 +210,7 @@ export default function GalleryDetail({ slug, title = "", ogImage, images = [] }
                   initialImages={devImages}
                   slug="crist"
                   masonryClass="gallery-masonry gallery-masonry-crist"
+                  onImageClick={openLightbox}
                 />
               </React.Suspense>
             ) : (
@@ -311,6 +312,7 @@ export default function GalleryDetail({ slug, title = "", ogImage, images = [] }
                 initialImages={devImages}
                 slug={slug}
                 masonryClass="gallery-masonry"
+                onImageClick={openLightbox}
               />
             </React.Suspense>
           ) : (
