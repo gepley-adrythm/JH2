@@ -28,6 +28,23 @@ const nextConfig = {
   ...(process.env.NODE_ENV === "development"
     ? { pageExtensions: ["tsx", "ts", "jsx", "js", "dev.tsx", "dev.ts"] }
     : {}),
+  // Dev-only /api proxy to the api-server (contact form, mortgage rate) —
+  // replaces the old Vite dev proxy. Same-namespace localhost in the Replit
+  // workflow; production doesn't need it (the api-server serves the site AND
+  // mounts /api itself). rewrites are unsupported under output:"export", so
+  // this must stay inside the development conditional.
+  ...(process.env.NODE_ENV === "development"
+    ? {
+        async rewrites() {
+          return [
+            {
+              source: "/api/:path*",
+              destination: "http://localhost:5000/api/:path*",
+            },
+          ];
+        },
+      }
+    : {}),
   experimental: {
     // Restores the cross-route fade the Vite build had via react-router's
     // `viewTransition` Link prop: with this flag on, the <ViewTransition>
