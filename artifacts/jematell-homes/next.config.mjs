@@ -11,6 +11,8 @@ import path from "node:path";
  */
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Allow HMR/dev resources through Replit's proxied preview domains.
+  allowedDevOrigins: ["*.picard.replit.dev", "*.replit.dev"],
   // Static export for builds. Under `next dev` output is unset: export mode
   // would reject the dev-only /__dev/gallery-order route handler (dynamic GET
   // + POST), and dev runs a real server anyway. `next build` always runs with
