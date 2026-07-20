@@ -1,4 +1,6 @@
+"use client";
 import { useState, useRef, useCallback, useEffect } from "react";
+import { BASE } from "../lib/paths";
 
 export interface DevImg {
   key: string;
@@ -15,9 +17,13 @@ interface Props {
 }
 
 const STORAGE_KEY = (slug: string) => `jh-gallery-order-${slug}`;
-// DEV-ONLY endpoint, served by the Vite dev middleware in vite.config.ts.
-// Absent from the static production build. BASE_URL keeps it correct behind the proxy.
-const ENDPOINT = `${import.meta.env.BASE_URL}__dev/gallery-order`;
+// DEV-ONLY endpoint, served under `next dev` by the dev-only route handler
+// app/%5F_dev/gallery-order/route.dev.ts (the port of the old Vite middleware).
+// It persists the order to src/data/gallery-orders.json. Both saveServer and
+// loadServer below still treat any failure (non-ok or thrown) as a soft miss:
+// order persists to localStorage and the UI shows "Save failed" instead of
+// crashing.
+const ENDPOINT = `${BASE}__dev/gallery-order`;
 
 function applyOrder(images: DevImg[], keys: string[]): DevImg[] {
   const byKey = Object.fromEntries(images.map((img) => [img.key, img]));

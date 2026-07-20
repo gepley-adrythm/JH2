@@ -1,14 +1,14 @@
-import { useLocation } from "react-router-dom";
-import { getRouteBg } from "./routeBackground";
+"use client";
+import { usePathname } from "next/navigation";
+import { getRouteBg } from "./lib/routeBackgroundMap";
 
 /**
  * Paints the per-route background color into the `--route-bg` CSS variable so
- * the page never flashes white during a client-side navigation. Mount once,
- * high in the tree (App.tsx). Adapted from the kit's Next.js version by swapping
- * `usePathname` for React Router's `useLocation`.
+ * the page never flashes white during a client-side navigation. Mounted once,
+ * high in the tree (Providers).
  */
 export default function RouteBackground() {
-  const { pathname } = useLocation();
+  const pathname = usePathname();
   const color = getRouteBg(pathname);
   return (
     <style

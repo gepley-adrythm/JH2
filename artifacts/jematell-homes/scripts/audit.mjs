@@ -1,7 +1,7 @@
 /**
  * audit.mjs — Automated speed & accessibility regression guard.
  *
- * Runs against the static build in dist/public (produced by `pnpm run build`).
+ * Runs against the static Next export in out/ (produced by `pnpm run build`).
  * It is deterministic and browser-free: it parses the prerendered HTML and the
  * built asset bundles, then runs axe-core inside jsdom. This keeps it fast and
  * reliable enough to wire into the validation step.
@@ -9,12 +9,13 @@
  * What it asserts (budgets in CONFIG below):
  *   1. Real <h1> with text in the raw, pre-JS HTML (SEO + a11y).
  *   2. <html lang> and a non-empty <title> on every checked route.
- *   3. No render-blocking resources: every local <script src> is type="module"
- *      (defer semantics), no @import in built CSS (chain-blocking), and the
+ *   3. No render-blocking resources: every local <script src> is async, defer,
+ *      or type="module"; no @import in built CSS (chain-blocking); and the
  *      number of render-blocking local stylesheets stays at/under budget.
- *   4. Initial JS budget: entry chunk + all <link rel="modulepreload"> deps,
- *      summed gzipped, stays under budget. (Route chunks are lazy, so this set
- *      is identical across prerendered routes.)
+ *   4. Per-route JS budget: every local <script src> (plus modulepreload /
+ *      preload-as-script hints) on each checked route, summed gzipped, stays
+ *      under budget. Under the App Router this varies per route, so it runs
+ *      per checked route rather than once (the Vite build's set was uniform).
  *   5. Accessibility budget: zero GATED axe-core violations per route. A
  *      violation is gated when its impact is serious/critical OR its rule id is
  *      in alwaysFailRules (heading-order — an explicit regression target, even
@@ -28,7 +29,7 @@
  * intentional fixed element outside landmarks). See CONFIG.ignoredRules.
  *
  * Usage:
- *   BASE_PATH=/ PORT=5000 pnpm --filter @workspace/jematell-homes run build
+ *   pnpm --filter @workspace/jematell-homes run build
  *   pnpm --filter @workspace/jematell-homes run audit
  * Or in one shot:
  *   pnpm --filter @workspace/jematell-homes run audit:ci
@@ -42,7 +43,7 @@ import axe from "axe-core";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, "..");
-const distPublic = join(root, "dist", "public");
+const outDir = join(root, "out");
 
 const CONFIG = {
   // Representative routes: home + portfolio, content page, blog index,
@@ -56,10 +57,11 @@ const CONFIG = {
     "/faq",
     "/contact",
   ],
-  // Initial JS = entry + modulepreloads, summed gzipped. Measured ~139KB;
-  // budget leaves headroom but catches a meaningful regression.
-  initialJsGzipBudgetKB: 180,
-  // Render-blocking local stylesheets injected by the bundler.
+  // Per-route JS: local scripts + preload hints, summed gzipped. The old Vite
+  // budget was 180KB; the Next runtime + page chunk must stay inside the same
+  // envelope on every checked route.
+  routeJsGzipBudgetKB: 180,
+  // Render-blocking local stylesheets injected by the framework.
   maxBlockingStylesheets: 3,
   // --- Accessibility budget ---
   // The budget is ZERO gated axe-core violations per route. A violation is gated
@@ -86,11 +88,16 @@ function fail(route, msg) {
   failures.push(`[${route}] ${msg}`);
 }
 
+/** Resolve a route to its exported HTML file: /foo -> out/foo.html or out/foo/index.html. */
 function readRoute(route) {
-  const dir = route === "/" ? distPublic : join(distPublic, route);
-  const file = join(dir, "index.html");
-  if (!existsSync(file)) return null;
-  return readFileSync(file, "utf-8");
+  const candidates =
+    route === "/"
+      ? [join(outDir, "index.html")]
+      : [join(outDir, `${route.slice(1)}.html`), join(outDir, route.slice(1), "index.html")];
+  for (const file of candidates) {
+    if (existsSync(file)) return readFileSync(file, "utf-8");
+  }
+  return null;
 }
 
 function textContent(html, tagRe) {
@@ -99,65 +106,90 @@ function textContent(html, tagRe) {
   return m[1].replace(/<[^>]*>/g, "").replace(/&[^;]+;/g, " ").trim();
 }
 
-// --- Speed checks (run once; the prerender template is shared across routes) ---
-function checkInitialJsBudget(html) {
+// --- Speed checks (per route: App Router page chunks differ by route) ---
+
+/**
+ * Local script srcs carrying the `nomodule` attribute. Next always emits one
+ * such legacy-polyfill chunk; browsers that support ES modules (every browser
+ * this site targets, and everything Lighthouse models) never download or
+ * execute nomodule scripts, so they are excluded from both the render-blocking
+ * check and the per-route JS budget. The Vite build never emitted them, which
+ * is why the ported checks did not account for the attribute.
+ */
+function nomoduleSrcs(html) {
+  const srcs = new Set();
+  const scriptRe = /<script\b([^>]*?)\bsrc="(\/[^"]+)"([^>]*)>/gi;
+  let m;
+  while ((m = scriptRe.exec(html))) {
+    if (/\bnomodule\b/i.test(m[1] + m[3])) srcs.add(m[2]);
+  }
+  return srcs;
+}
+
+function checkRouteJsBudget(route, html) {
   const re =
-    /(?:<script[^>]*type="module"[^>]*src="([^"]+)")|(?:rel="modulepreload"[^>]*href="([^"]+)")/g;
+    /(?:<script[^>]*\bsrc="(\/[^"]+)")|(?:rel="modulepreload"[^>]*href="(\/[^"]+)")|(?:rel="preload"[^>]*as="script"[^>]*href="(\/[^"]+)")/g;
+  const legacy = nomoduleSrcs(html);
   const files = new Set();
   let m;
-  while ((m = re.exec(html))) files.add(m[1] || m[2]);
+  while ((m = re.exec(html))) {
+    const src = m[1] || m[2] || m[3];
+    if (!legacy.has(src)) files.add(src);
+  }
 
   let gz = 0;
   for (const f of files) {
-    const asset = join(distPublic, f.replace(/^\//, ""));
+    const asset = join(outDir, f.split("?")[0].replace(/^\//, ""));
     if (!existsSync(asset)) {
-      fail("speed", `initial JS references missing asset: ${f}`);
+      fail(route, `JS references missing asset: ${f}`);
       continue;
     }
     gz += gzipSync(readFileSync(asset)).length;
   }
   const gzKB = gz / 1024;
   notes.push(
-    `initial JS: ${files.size} files, ${gzKB.toFixed(1)}KB gzip (budget ${CONFIG.initialJsGzipBudgetKB}KB)`,
+    `js ${route}: ${files.size} files, ${gzKB.toFixed(1)}KB gzip (budget ${CONFIG.routeJsGzipBudgetKB}KB)`,
   );
-  if (gzKB > CONFIG.initialJsGzipBudgetKB) {
+  if (gzKB > CONFIG.routeJsGzipBudgetKB) {
     fail(
-      "speed",
-      `initial JS ${gzKB.toFixed(1)}KB gzip exceeds budget ${CONFIG.initialJsGzipBudgetKB}KB`,
+      route,
+      `route JS ${gzKB.toFixed(1)}KB gzip exceeds budget ${CONFIG.routeJsGzipBudgetKB}KB`,
     );
   }
 }
 
-function checkRenderBlocking(html) {
-  // Every local script must be a non-blocking module.
+function checkRenderBlocking(route, html) {
+  // Every local script must be non-blocking (async, defer, or module).
+  // nomodule scripts are skipped: module-supporting browsers ignore them
+  // entirely, so they can never block rendering.
   const scriptRe = /<script\b([^>]*?)\bsrc="(\/[^"]+)"([^>]*)>/g;
   let m;
   while ((m = scriptRe.exec(html))) {
     const attrs = m[1] + m[3];
-    if (!/type="module"/.test(attrs)) {
-      fail("speed", `render-blocking local script (not type=module): ${m[2]}`);
+    if (!/type="module"|\basync\b|\bdefer\b|\bnomodule\b/i.test(attrs)) {
+      fail(route, `render-blocking local script (not async/defer/module): ${m[2]}`);
     }
   }
 
   // Count render-blocking local stylesheets and reject @import chains.
-  const cssRe = /rel="stylesheet"[^>]*href="(\/assets\/[^"]+\.css)"/g;
+  const cssRe = /rel="stylesheet"[^>]*href="(\/[^"]+\.css[^"]*)"/g;
   let blocking = 0;
   while ((m = cssRe.exec(html))) {
     blocking++;
-    const asset = join(distPublic, m[1].replace(/^\//, ""));
+    const asset = join(outDir, m[1].split("?")[0].replace(/^\//, ""));
     if (existsSync(asset)) {
       const css = readFileSync(asset, "utf-8");
       if (/@import\s+(url\()?["']/.test(css)) {
-        fail("speed", `built CSS uses render-blocking @import: ${m[1]}`);
+        fail(route, `built CSS uses render-blocking @import: ${m[1]}`);
       }
     }
   }
   notes.push(
-    `render-blocking local stylesheets: ${blocking} (budget ${CONFIG.maxBlockingStylesheets})`,
+    `stylesheets ${route}: ${blocking} render-blocking (budget ${CONFIG.maxBlockingStylesheets})`,
   );
   if (blocking > CONFIG.maxBlockingStylesheets) {
     fail(
-      "speed",
+      route,
       `${blocking} render-blocking stylesheets exceeds budget ${CONFIG.maxBlockingStylesheets}`,
     );
   }
@@ -215,24 +247,22 @@ async function checkA11y(route, html) {
 }
 
 async function main() {
-  if (!existsSync(join(distPublic, "index.html"))) {
+  if (!existsSync(join(outDir, "index.html"))) {
     console.error(
-      "✗ dist/public/index.html not found. Run the build first:\n" +
-        "  BASE_PATH=/ PORT=5000 pnpm --filter @workspace/jematell-homes run build",
+      "✗ out/index.html not found. Run the build first:\n" +
+        "  pnpm --filter @workspace/jematell-homes run build",
     );
     process.exit(2);
   }
 
-  const template = readRoute("/");
-  checkInitialJsBudget(template);
-  checkRenderBlocking(template);
-
   for (const route of CONFIG.routes) {
     const html = readRoute(route);
     if (!html) {
-      fail(route, "prerendered index.html not found (route missing from build)");
+      fail(route, "exported HTML not found (route missing from build)");
       continue;
     }
+    checkRouteJsBudget(route, html);
+    checkRenderBlocking(route, html);
     checkStaticHtml(route, html);
     await checkA11y(route, html);
   }

@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useRef, useCallback, useState } from "react";
 import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Check, Phone, ArrowRight, ChevronLeft, Send, X } from "lucide-react";

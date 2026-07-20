@@ -1,4 +1,4 @@
-import { img } from "../layout";
+import { img } from "../lib/paths";
 
 interface ResponsiveImageProps {
   /** Base filename without extension, e.g. "hero" (expects hero.jpg + hero-<w>.webp). */

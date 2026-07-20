@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import { useSafeTimeouts } from "../contact-form/useSafeTimeouts";
 import {

@@ -1,0 +1,254 @@
+"use client";
+import Link from "next/link";
+import { m } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import type { Block } from "../data/pages";
+
+/**
+ * Floor-plan-only ContentPage sections, moved verbatim out of ContentPage.tsx.
+ * Both components render exclusively on /floor-plans (FloorPlanWidgets when
+ * key === "floorplans"; FloorPlanTiersSection only matches tier sections that
+ * exist on that page), so ContentPage dynamic-imports this module and every
+ * other content route (about, custom-homes, warranty, regions, ...) ships none
+ * of this JS.
+ */
+
+// Same FADE_IN + Section shape as ContentPage.tsx (kept local so this chunk
+// has no runtime import back into ContentPage; Section is structural).
+const FADE_IN = {
+  initial: { opacity: 0, y: 18 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.2 } as const,
+  transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const },
+};
+
+interface Section {
+  heading: Block | null;
+  blocks: Block[];
+}
+
+export function FloorPlanTiersSection({ section }: { section: Section }) {
+  // Cards are image-on-top: in the source each tier image PRECEDES its h4 heading
+  // (e.g. img "3771 Square Foot Floor Plan" then h4 "Over 3,000 Sq Ft"). Hold each
+  // image as pending and attach it to the next tier's h4. Any trailing image after
+  // the final tier's body is decorative (e.g. an aerial photo) and is discarded.
+  type Tier = { title: string; body: string; img?: string; alt?: string };
+  const tiers: Tier[] = [];
+  let current: Partial<Tier> = {};
+  let pendingImg: string | undefined;
+  let pendingAlt: string | undefined;
+  for (const b of section.blocks) {
+    if (b.type === "h4" && b.text) {
+      if (current.title) {
+        tiers.push(current as Tier);
+        current = {};
+      }
+      current.title = b.text;
+      if (pendingImg) {
+        current.img = pendingImg;
+        current.alt = pendingAlt;
+        pendingImg = undefined;
+        pendingAlt = undefined;
+      }
+    } else if (b.type === "p" && b.text && current.title && !current.body) {
+      current.body = b.text;
+    } else if (b.type === "img" && b.src) {
+      // image belongs to the upcoming tier; close the current tier first
+      if (current.title) {
+        tiers.push(current as Tier);
+        current = {};
+      }
+      pendingImg = b.src;
+      pendingAlt = b.alt;
+    }
+  }
+  if (current.title) tiers.push(current as Tier);
+
+  if (!tiers.length) return null;
+
+  return (
+    <section className="page-tiers section-pad alt-bg">
+      <div className="container">
+        <m.div className="page-section-head centered" {...FADE_IN}>
+          <span className="eyebrow">Floor plans</span>
+          <h2 className="heading-lg">{section.heading?.text}</h2>
+        </m.div>
+        <div className="page-tiers-grid">
+          {tiers.map((t, i) => (
+            <m.article
+              key={i}
+              className="page-tier-card"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+            >
+              {t.img ? (
+                <div className="page-tier-media">
+                  <img src={t.img} alt={t.alt || t.title} loading="lazy" />
+                </div>
+              ) : null}
+              <div className="page-tier-body">
+                <span className="eyebrow">Tier {String.fromCharCode(64 + i + 1)}</span>
+                <h3 className="page-tier-title">{t.title}</h3>
+                <p>{t.body}</p>
+                <Link href="/contact" className="page-tier-link" data-testid={`tier-${i}-cta`}>
+                  Discuss this plan <ArrowRight size={14} />
+                </Link>
+              </div>
+            </m.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const FLOOR_PLAN_COLLECTIONS: Array<{
+  id: string;
+  title: string;
+  widget: string;
+  browse: string;
+}> = [
+  {
+    id: "under-2000",
+    title: "Homes Under 2,000 Sq Ft",
+    widget:
+      "https://www.architecturaldesigns.com/house-plan-collections/sub-2000-square-foot-homes/widget?new_window=true",
+    browse:
+      "https://www.architecturaldesigns.com/house-plan-collections/sub-2000-square-foot-homes",
+  },
+  {
+    id: "2000-3000",
+    title: "Homes Between 2,000 and 3,000 Sq Ft",
+    widget:
+      "https://www.architecturaldesigns.com/house-plan-collections/homes-between-2000-3000-square-feet/widget?new_window=true",
+    browse:
+      "https://www.architecturaldesigns.com/house-plan-collections/homes-between-2000-3000-square-feet",
+  },
+  {
+    id: "over-3000",
+    title: "Homes Over 3,000 Sq Ft",
+    widget:
+      "https://www.architecturaldesigns.com/house-plan-collections/over-3000-square-foot-homes/widget?new_window=true",
+    browse:
+      "https://www.architecturaldesigns.com/house-plan-collections/over-3000-square-foot-homes",
+  },
+];
+
+export function FloorPlanWidgets() {
+  return (
+    <>
+      <section style={{ background: "var(--color-cream)", padding: "clamp(20px, 2.5vw, 40px) clamp(48px, 12vw, 220px)", display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <div className="container" style={{ width: "100%" }}>
+          <m.div className="page-section-head centered" {...FADE_IN} style={{ marginBottom: 0 }}>
+            <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>Browse plans by size</h2>
+            <p className="page-plans-intro">Every home begins with the floor plan and we have plenty to choose from. Browse various styles, sizes, and configurations to find the perfect foundation for your vision. If you don’t see one you like don’t worry, our architect can create your dream home from scratch. You're also more than welcome to find a plan you want and bring it to us.</p>
+          </m.div>
+        </div>
+      </section>
+      <section className="page-plans section-pad" style={{ background: "#fff", paddingTop: "clamp(24px, 3vw, 48px)" }} data-testid="floor-plan-widgets">
+        <div className="container">
+          <div className="page-plans-list">
+            {FLOOR_PLAN_COLLECTIONS.map((c) => (
+              <m.div
+                key={c.id}
+                className="page-plan-block"
+                {...FADE_IN}
+                data-testid={`floor-plan-${c.id}`}
+              >
+                <div className="page-plan-head">
+                  <h3 className="page-plan-title">{c.title}</h3>
+                </div>
+                {c.id === "under-2000" && (
+                  <div className="fp-exclusives-inline" data-testid="floor-plan-exclusives">
+                    <div className="fp-exclusives-inline-label">
+                      <span className="eyebrow text-[15px]">Jematell Exclusives</span>
+                    </div>
+                    <div className="page-tiers-grid">
+                      <m.article
+                        className="page-tier-card"
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.15 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <Link href="/floor-plans/1604" className="page-tier-media fp-exclusive-media" data-testid="fp-exclusive-1604-img">
+                          <img src="/images/plans/1604-rendering.png" alt="Rendered exterior of the 1604 sq ft Jematell Homes floor plan" loading="lazy" />
+                        </Link>
+                        <div className="page-tier-body">
+                          <span className="eyebrow">1,604 Sq Ft</span>
+                          <h3 className="page-tier-title">The 1604 Plan</h3>
+                          <p>3 bed · 2 bath · 2-car garage. A thoughtfully designed single-story home, available to build on your lot.</p>
+                          <Link href="/floor-plans/1604" className="page-tier-link" data-testid="fp-exclusive-1604-cta">
+                            View Plan &amp; Elevations <ArrowRight size={14} />
+                          </Link>
+                        </div>
+                      </m.article>
+                      <m.article
+                        className="page-tier-card"
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.15 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <Link href="/floor-plans/1644" className="page-tier-media fp-exclusive-media" data-testid="fp-exclusive-1644-img">
+                          <img src="/images/plans/1644-rendering.png" alt="Rendered exterior of the 1644 sq ft Jematell Homes floor plan" loading="lazy" />
+                        </Link>
+                        <div className="page-tier-body">
+                          <span className="eyebrow">1,644 Sq Ft</span>
+                          <h3 className="page-tier-title">The 1644 Plan</h3>
+                          <p>3 bed · 2 bath · 2-car garage. A timeless single-story design, available to be built for your lot.</p>
+                          <Link href="/floor-plans/1644" className="page-tier-link" data-testid="fp-exclusive-1644-cta">
+                            View Plan &amp; Elevations <ArrowRight size={14} />
+                          </Link>
+                        </div>
+                      </m.article>
+                      <m.article
+                        className="page-tier-card"
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.15 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <Link href="/floor-plans/1849" className="page-tier-media fp-exclusive-media" data-testid="fp-exclusive-1849-img">
+                          <img src="/images/1849-rendering-v2.png" alt="Rendered exterior of the 1849 sq ft Jematell Homes floor plan" loading="lazy" />
+                        </Link>
+                        <div className="page-tier-body">
+                          <span className="eyebrow">1,849 Sq Ft</span>
+                          <h3 className="page-tier-title">The 1849 Plan</h3>
+                          <p>3 bed · 2 bath · 2-car garage. A proven single-story design, available for your lot.</p>
+                          <Link href="/floor-plans/1849" className="page-tier-link" data-testid="fp-exclusive-1849-cta">
+                            View Plan &amp; Elevations <ArrowRight size={14} />
+                          </Link>
+                        </div>
+                      </m.article>
+                    </div>
+                  </div>
+                )}
+                {c.id === "under-2000" && (
+                  <div className="fp-partnered-label">
+                    <span className="eyebrow text-[15px]" style={{ color: "var(--color-accent)" }}>Partnered Plans</span>
+                  </div>
+                )}
+                <div style={{ overflow: "hidden" }}>
+                  <iframe
+                    src={c.widget}
+                    title={`${c.title} house plan collection`}
+                    scrolling="no"
+                    height="580"
+                    frameBorder={0}
+                    allowFullScreen
+                    loading="lazy"
+                    data-testid={`floor-plan-iframe-${c.id}`}
+                    style={{ display: "block", width: "calc(100% + 20px)", marginRight: -20 }}
+                  />
+                </div>
+              </m.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

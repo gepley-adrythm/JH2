@@ -9,7 +9,9 @@
  * the end of the interior run.
  */
 
-const BASE = import.meta.env.BASE_URL + "images/gallery/crist/";
+import { BASE as SITE_BASE } from "../lib/paths";
+
+const BASE = SITE_BASE + "images/gallery/crist/";
 
 const FILENAMES = [
   // — Exterior opener —

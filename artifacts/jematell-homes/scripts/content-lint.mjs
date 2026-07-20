@@ -1,9 +1,9 @@
 /**
  * content-lint.mjs — Editorial content guard for the prerendered site.
  *
- * Runs against the static build in dist/public (produced by `pnpm run build`),
- * mirroring audit.mjs: deterministic, browser-free. It walks EVERY prerendered
- * index.html, extracts the visible text (scripts/styles/JSON-LD stripped), and
+ * Runs against the static Next export in out/ (produced by `pnpm run build`),
+ * mirroring audit.mjs: deterministic, browser-free. It walks EVERY exported
+ * .html file, extracts the visible text (scripts/styles/JSON-LD stripped), and
  * asserts two editorial rules the project cares about:
  *
  *   1. NO EM DASHES. The em dash (U+2014) / horizontal bar (U+2015) must not
@@ -23,7 +23,7 @@
  * vibrant, bustling, stunning, luxurious) and architectural terms (elevation).
  *
  * Usage:
- *   BASE_PATH=/ PORT=5000 pnpm --filter @workspace/jematell-homes run build
+ *   pnpm --filter @workspace/jematell-homes run build
  *   pnpm --filter @workspace/jematell-homes run lint:content
  * Or in one shot:
  *   pnpm --filter @workspace/jematell-homes run lint:content:ci
@@ -34,7 +34,7 @@ import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, "..");
-const distPublic = join(root, "dist", "public");
+const outDir = join(root, "out");
 
 const CONFIG = {
   // Em dash + horizontal bar.
@@ -82,7 +82,7 @@ function walkHtml(dir) {
     const full = join(dir, entry);
     if (statSync(full).isDirectory()) {
       out.push(...walkHtml(full));
-    } else if (entry === "index.html") {
+    } else if (entry.endsWith(".html")) {
       out.push(full);
     }
   }
@@ -90,7 +90,10 @@ function walkHtml(dir) {
 }
 
 function routeOf(file) {
-  const rel = relative(distPublic, dirname(file)).split(sep).join("/");
+  let rel = relative(outDir, file).split(sep).join("/");
+  rel = rel.replace(/\.html$/, "");
+  if (rel === "index") return "";
+  if (rel.endsWith("/index")) rel = rel.slice(0, -"/index".length);
   return rel; // "" for the home route
 }
 
@@ -163,15 +166,18 @@ function checkRoute(route, text) {
 }
 
 function main() {
-  if (!existsSync(join(distPublic, "index.html"))) {
+  if (!existsSync(join(outDir, "index.html"))) {
     console.error(
-      "✗ dist/public/index.html not found. Run the build first:\n" +
-        "  BASE_PATH=/ PORT=5000 pnpm --filter @workspace/jematell-homes run build",
+      "✗ out/index.html not found. Run the build first:\n" +
+        "  pnpm --filter @workspace/jematell-homes run build",
     );
     process.exit(2);
   }
 
-  const files = walkHtml(distPublic);
+  // Skip the framework error pages (they carry no owned marketing copy).
+  const files = walkHtml(outDir).filter(
+    (f) => !/[\\/](404|500)\.html$/.test(f),
+  );
   for (const file of files) {
     checkRoute(routeOf(file), visibleText(readFileSync(file, "utf-8")));
   }

@@ -1,11 +1,16 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { ResponsiveImage } from "./components/ResponsiveImage";
-import { img } from "./layout";
-import { Link } from "react-router-dom";
+import { img } from "./lib/paths";
+import Link from "next/link";
 import { useContactForm } from "./contact-form";
-import { EASE_OUT_EXPO, FADE_IN_UP_PROPS } from "./motion";
-import { GALLERY_PROJECTS } from "./data/galleryProjects";
+import { EASE_OUT_EXPO } from "./motion";
+
+// FeaturedProjects lives in its own module (it is also rendered by ContentPage
+// on /custom-homes, which must not pull the rest of the home sections into its
+// route JS). Re-exported here so the home page import path is unchanged.
+export { FeaturedProjects } from "./components/FeaturedProjects";
 
 // --- Data ---
 const REVIEWS = [
@@ -108,7 +113,7 @@ export function ServicesSplit() {
           <p>
             Is a custom home what you’re envisioning? Explore our portfolio of past projects, learn more about our process, and discover how we bring your unique vision to life in the desert.
           </p>
-          <Link to="/custom-homes" className="btn btn-outline-light" viewTransition>Explore Custom</Link>
+          <Link href="/custom-homes" className="btn btn-outline-light">Explore Custom</Link>
         </div>
       </div>
       <div className="service-pane" data-testid="card-spec">
@@ -128,7 +133,7 @@ export function ServicesSplit() {
           <p>
             Explore stunning Arizona properties and find a home that perfectly suits your unique preferences and lifestyle. Move-in ready luxury, crafted with our signature attention to detail.
           </p>
-          <Link to="/spec-homes" className="btn btn-outline-light" viewTransition>View Spec Homes</Link>
+          <Link href="/spec-homes" className="btn btn-outline-light">View Spec Homes</Link>
         </div>
       </div>
     </section>
@@ -177,67 +182,6 @@ export function Process() {
             </m.div>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-// Hardcoded (not sourced from the full clone-data/pages.json — that dataset
-// is large and only meant to be pulled into route-level lazy chunks, never
-// the eagerly-loaded homepage bundle).
-const FEATURED_PROJECT_IMAGES: Record<string, string> = {
-  crist: "/images/gallery/crist/10-DSC05808.jpg",
-  "modern-farmhouse": "/images/gallery/modern-farmhouse/kitchen-hero.jpg",
-  "rio-verde-farmhouse": "/images/gallery/rio-verde-farmhouse/kitchen-hero.jpg",
-};
-
-const FEATURED_PROJECT_SLUGS = ["crist", "modern-farmhouse", "rio-verde-farmhouse"];
-
-export function FeaturedProjects() {
-  const projects = FEATURED_PROJECT_SLUGS.map((slug) => {
-    const proj = GALLERY_PROJECTS.find((p) => p.slug === slug);
-    if (!proj) return null;
-    return { ...proj, image: FEATURED_PROJECT_IMAGES[slug] ?? "" };
-  }).filter((p): p is NonNullable<typeof p> => p !== null);
-
-  return (
-    <section className="featured-projects section-pad">
-      <div className="container">
-        <m.div {...FADE_IN_UP_PROPS}>
-          <h2 className="heading-md featured-projects-heading" style={{ fontSize: '55px', textTransform: 'uppercase' }}>CUSTOM Homes We've Built</h2>
-        </m.div>
-        <div className="gallery-grid featured-projects-grid">
-          {projects.map((proj, i) => (
-            <m.div
-              key={proj.slug}
-              className="gallery-card"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ delay: i * 0.08, duration: 0.5, ease: EASE_OUT_EXPO }}
-            >
-              <Link to={`/gallery/${proj.slug}`} data-testid={`featured-project-${proj.slug}`} viewTransition>
-                <div className={`gallery-card-media${proj.image ? "" : " gallery-card-placeholder"}`}>
-                  {proj.image && <img src={proj.image} alt={proj.title} loading="lazy" />}
-                  <div className="gallery-card-overlay">
-                    <h3 className="gallery-card-title">{proj.title}</h3>
-                  </div>
-                </div>
-                <div className="gallery-card-meta">
-                  <div className="gallery-card-text">
-                    <span className="gallery-card-sub">{proj.meta}</span>
-                  </div>
-                  <span className="gallery-card-arrow">→</span>
-                </div>
-              </Link>
-            </m.div>
-          ))}
-        </div>
-        <m.div className="featured-projects-cta" {...FADE_IN_UP_PROPS}>
-          <Link to="/gallery" className="btn btn-primary" data-testid="link-view-full-gallery" viewTransition>
-            View Full Gallery
-          </Link>
-        </m.div>
       </div>
     </section>
   );

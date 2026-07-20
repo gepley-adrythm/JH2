@@ -1,9 +1,9 @@
+"use client";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { m } from "framer-motion";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { locations, locationHref } from "../config/siteConfig";
-import { pages } from "../data/pages";
 import { FADE_IN_UP_PROPS } from "../motion";
 
 /**
@@ -26,11 +26,11 @@ const LOCAL_CITY_HERO: Record<string, string> = {
   "surprise": "/images/city-hero-surprise.jpg",
 };
 
-function cityImage(slug: string): string {
-  return LOCAL_CITY_HERO[slug] || pages[slug]?.ogImage || FALLBACK_IMAGE;
+function cityImage(slug: string, images?: Record<string, string>): string {
+  return LOCAL_CITY_HERO[slug] || images?.[slug] || FALLBACK_IMAGE;
 }
 
-export function CityNavigator() {
+export function CityNavigator({ images }: { images?: Record<string, string> } = {}) {
   const [active, setActive] = useState(0);
 
   return (
@@ -64,9 +64,8 @@ export function CityNavigator() {
                 style={{ flexGrow: isActive ? 5 : 1 }}
               >
                 <Link
-                  to={locationHref(loc.slug)}
+                  href={locationHref(loc.slug)}
                   className="city-nav-link"
-                  viewTransition
                   data-testid={`city-nav-${loc.slug}`}
                   aria-label={`Explore building a custom home in ${loc.name}`}
                   onMouseEnter={() => setActive(i)}
@@ -74,7 +73,7 @@ export function CityNavigator() {
                 >
                   <img
                     className="city-nav-img"
-                    src={cityImage(loc.slug)}
+                    src={cityImage(loc.slug, images)}
                     alt=""
                     loading={i === 0 ? "eager" : "lazy"}
                   />
@@ -96,7 +95,7 @@ export function CityNavigator() {
         </ul>
 
         <m.div className="city-nav-lot-ctas" {...FADE_IN_UP_PROPS}>
-          <Link to="/build-on-your-lot" className="city-nav-lot-card" data-testid="city-nav-build-on-your-lot" viewTransition>
+          <Link href="/build-on-your-lot" className="city-nav-lot-card" data-testid="city-nav-build-on-your-lot">
             <span className="city-nav-lot-eyebrow">Already own land?</span>
             <span className="city-nav-lot-title-row">
               <span className="city-nav-lot-title">Build on Your Lot</span>
@@ -104,7 +103,7 @@ export function CityNavigator() {
             </span>
             <p className="city-nav-lot-sub">We build on your homesite. Full design-to-keys management on land you own.</p>
           </Link>
-          <Link to="/buy-a-lot-with-us" className="city-nav-lot-card" data-testid="city-nav-buy-a-lot-with-us" viewTransition>
+          <Link href="/buy-a-lot-with-us" className="city-nav-lot-card" data-testid="city-nav-buy-a-lot-with-us">
             <span className="city-nav-lot-eyebrow">Need land first?</span>
             <span className="city-nav-lot-title-row">
               <span className="city-nav-lot-title">Buy a Lot With Us</span>

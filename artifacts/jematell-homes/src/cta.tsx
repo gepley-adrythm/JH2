@@ -1,3 +1,4 @@
+"use client";
 import { ResponsiveImage } from "./components/ResponsiveImage";
 import { ArrowRight } from "lucide-react";
 import { useContactForm } from "./contact-form";

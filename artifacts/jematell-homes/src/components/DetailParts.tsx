@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import type { TocEntry } from "../lib/detail";
 
@@ -57,7 +57,7 @@ export function DetailDisclaimer() {
         professional or from your local building authority. Jematell Homes is not affiliated with
         or endorsed by any government agency. Codes, fees, and requirements change often, so
         confirm the current rules with the official source before you act on them. Read our full{" "}
-        <Link to="/disclaimer">website disclaimer</Link>.
+        <Link href="/disclaimer">website disclaimer</Link>.
       </p>
     </aside>
   );
@@ -94,7 +94,7 @@ export function DetailMore({
             <ul className="dt-more-links">
               {col.items.map((it) => (
                 <li key={it.to}>
-                  <Link to={it.to}>
+                  <Link href={it.to}>
                     <span>{it.label}</span>
                     <ArrowRight size={15} aria-hidden="true" />
                   </Link>
