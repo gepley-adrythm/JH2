@@ -350,6 +350,10 @@ export function Footer() {
             <span>{siteConfig.contact.roc}</span>
           </span>
         </div>
+        <div className="container footer-disclaimer-line">
+          Content on this site is for general information only and is not legal, financial, or
+          construction advice. <Link href="/disclaimer">Read our full disclaimer</Link>.
+        </div>
       </div>
     </footer>
   );
