@@ -28,6 +28,13 @@ const nextConfig = {
   ...(process.env.NODE_ENV === "development"
     ? { pageExtensions: ["tsx", "ts", "jsx", "js", "dev.tsx", "dev.ts"] }
     : {}),
+  // The Replit workspace preview reaches next dev through *.replit.dev, a
+  // cross-origin hostname. Without this allowance Next's dev-mode CSRF
+  // protection quietly rejects the RSC/hydration requests: static chunks
+  // serve, the page renders, but nothing hydrates (zero React fibers) and
+  // every whileInView reveal stays at its SSR opacity:0. Dev-only key,
+  // ignored by production builds.
+  allowedDevOrigins: ["*.replit.dev", "*.picard.replit.dev"],
   // Dev-only /api proxy to the api-server (contact form, mortgage rate) —
   // replaces the old Vite dev proxy. Same-namespace localhost in the Replit
   // workflow; production doesn't need it (the api-server serves the site AND
