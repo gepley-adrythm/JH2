@@ -21,8 +21,8 @@
   --color-bone: #e2ddd3;
   --color-border: rgba(0, 0, 0, 0.08);
 
-  --font-heading: 'Cormorant Garamond', serif;
-  --font-body: 'DM Sans', sans-serif;
+  --font-heading: var(--font-cormorant), 'Cormorant Garamond', serif;
+  --font-body: var(--font-dmsans), 'DM Sans', sans-serif;
 
   --container-max: 1440px;
   --section-pad: clamp(80px, 10vw, 160px);
