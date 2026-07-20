@@ -14,6 +14,7 @@ interface Props {
   initialImages: DevImg[];
   slug: string;
   masonryClass: string;
+  onImageClick?: (index: number) => void;
 }
 
 const STORAGE_KEY = (slug: string) => `jh-gallery-order-${slug}`;
@@ -70,7 +71,7 @@ async function loadServer(slug: string): Promise<string[] | null> {
 
 type SaveState = "idle" | "saving" | "saved" | "error";
 
-export function DevDraggableGallery({ initialImages, slug, masonryClass }: Props) {
+export function DevDraggableGallery({ initialImages, slug, masonryClass, onImageClick }: Props) {
   const [images, setImages] = useState<DevImg[]>(() => loadLocal(slug, initialImages));
   const [dragIndex, setDragIndex] = useState<number | null>(null);
   const [dropIndex, setDropIndex] = useState<number | null>(null);
@@ -79,6 +80,8 @@ export function DevDraggableGallery({ initialImages, slug, masonryClass }: Props
   const [preview, setPreview] = useState(false);
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const copyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Track whether a drag actually started so a plain click still opens the lightbox.
+  const wasDragged = useRef(false);
 
   // Server is the source of truth — hydrate from it on mount so the order
   // survives a localStorage wipe (different browser, cleared cache, etc.).
@@ -121,6 +124,7 @@ export function DevDraggableGallery({ initialImages, slug, masonryClass }: Props
   const handleDragStart = useCallback((e: React.DragEvent, i: number) => {
     e.dataTransfer.effectAllowed = "move";
     e.dataTransfer.setData("text/plain", String(i));
+    wasDragged.current = true;
     setDragIndex(i);
   }, []);
 
@@ -144,6 +148,8 @@ export function DevDraggableGallery({ initialImages, slug, masonryClass }: Props
   const handleDragEnd = useCallback(() => {
     setDragIndex(null);
     setDropIndex(null);
+    // Reset after the click event fires (click fires after dragend).
+    setTimeout(() => { wasDragged.current = false; }, 0);
   }, []);
 
   // Auto-scroll when dragging near the top or bottom edge of the viewport.
@@ -232,8 +238,13 @@ export function DevDraggableGallery({ initialImages, slug, masonryClass }: Props
     return (
       <>
         <div className={masonryClass}>
-          {images.map((img) => (
-            <figure key={img.key} className="gallery-masonry-item">
+          {images.map((img, i) => (
+            <figure
+              key={img.key}
+              className="gallery-masonry-item"
+              onClick={() => onImageClick?.(i)}
+              style={onImageClick ? { cursor: "zoom-in" } : undefined}
+            >
               {img.webp ? (
                 <picture>
                   <source srcSet={img.webp} type="image/webp" />
@@ -429,6 +440,7 @@ export function DevDraggableGallery({ initialImages, slug, masonryClass }: Props
               onDragOver={(e) => handleDragOver(e, i)}
               onDrop={(e) => handleDrop(e, i)}
               onDragEnd={handleDragEnd}
+              onClick={() => { if (!wasDragged.current) onImageClick?.(i); }}
               style={{
                 cursor: isDragging ? "grabbing" : "grab",
                 opacity: isDragging ? 0.35 : 1,

@@ -1864,6 +1864,107 @@ picture {
   gap: 6px;
 }
 
+/* Clickable gallery items */
+.gallery-masonry-item-clickable {
+  cursor: zoom-in;
+}
+.gallery-masonry-item-clickable img {
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+.gallery-masonry-item-clickable:hover img {
+  transform: scale(1.03);
+}
+
+/* Gallery lightbox */
+.gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(10, 12, 14, 0.96);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 80px;
+  animation: gallery-lb-in 0.2s ease;
+}
+@keyframes gallery-lb-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.gallery-lightbox-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  max-height: 100%;
+}
+.gallery-lightbox-content picture {
+  display: flex;
+  max-width: 100%;
+  max-height: 100%;
+}
+.gallery-lightbox-img {
+  max-width: 100%;
+  max-height: calc(100vh - 120px);
+  object-fit: contain;
+  border-radius: 2px;
+  box-shadow: 0 32px 96px rgba(0,0,0,0.7);
+  cursor: default;
+}
+.gallery-lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.18s;
+  z-index: 1;
+}
+.gallery-lightbox-close:hover { background: rgba(255,255,255,0.22); }
+.gallery-lightbox-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.18s;
+  z-index: 1;
+}
+.gallery-lightbox-nav:hover { background: rgba(255,255,255,0.22); }
+.gallery-lightbox-prev { left: 16px; }
+.gallery-lightbox-next { right: 16px; }
+.gallery-lightbox-counter {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.5);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  font-family: var(--font-body);
+}
+@media (max-width: 600px) {
+  .gallery-lightbox { padding: 60px 16px 48px; }
+  .gallery-lightbox-prev { left: 6px; }
+  .gallery-lightbox-next { right: 6px; }
+}
+
 @media (max-width: 900px) {
   .gallery-masonry { grid-template-columns: repeat(2, 1fr); }
 }
