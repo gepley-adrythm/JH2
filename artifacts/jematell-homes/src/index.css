@@ -613,10 +613,18 @@ picture {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  /* The pane's flex animation changes this image's layout width every frame,
+     and a simultaneous un-promoted scale() forced a re-rasterize per frame:
+     the two together showed as visible vibration on hover. translateZ(0) +
+     will-change pin the image to its own compositor layer, and the duration
+     matches the pane's flex transition so both motions settle together. */
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .service-pane:hover .service-bg {
-  transform: scale(1.05);
+  transform: translateZ(0) scale(1.05);
 }
 .service-overlay {
   position: absolute;
