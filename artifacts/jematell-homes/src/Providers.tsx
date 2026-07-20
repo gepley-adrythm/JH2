@@ -1,15 +1,15 @@
 "use client";
 import { useEffect } from "react";
-import { LazyMotion, MotionConfig } from "framer-motion";
+import { LazyMotion, domAnimation, MotionConfig } from "framer-motion";
 import { Header, Footer, ContactWidget } from "./layout";
 import { ContactFormProvider } from "./contact-form";
 import RouteBackground from "./RouteBackground";
 
-// domAnimation is loaded async (LazyMotion's code-splitting pattern) so the
-// feature bundle stays out of the initial route JS; m. components render
-// their server-rendered initial styles until it lands just after hydration.
-const loadMotionFeatures = () =>
-  import("./motionFeatures").then((mod) => mod.default);
+// domAnimation loads SYNCHRONOUSLY on purpose. The async LazyMotion pattern
+// (features={() => import(...)}) left every m. component inert under the App
+// Router: whileInView reveals kept their server-rendered opacity:0 style and
+// entire sections stayed invisible. ~16KB gzip back in the shared bundle is
+// the price of animations actually running; the audit budget accounts for it.
 
 /**
  * Providers — the client shell around every page. Pages themselves are server
@@ -27,7 +27,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <LazyMotion features={loadMotionFeatures} strict>
+    <LazyMotion features={domAnimation} strict>
       <MotionConfig reducedMotion="user">
         <ContactFormProvider>
           <RouteBackground />

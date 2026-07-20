@@ -1,6 +1,4 @@
-/// <reference types="react/canary" />
 import type { Metadata, Viewport } from "next";
-import { ViewTransition } from "react";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import Providers from "@/Providers";
 import { SITE_URL, DEFAULT_DESCRIPTION, buildSiteJsonLd } from "@/seo/siteMeta";
@@ -70,14 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             dangerouslySetInnerHTML={{ __html: jsonLdScript(obj) }}
           />
         ))}
-        {/* Opts client-side navigations into the View Transitions API
-            (experimental.viewTransition in next.config.mjs), replacing the
-            react-router `viewTransition` Link prop from the Vite build. The
-            actual cross-fade is the ::view-transition-old/new(root) CSS in
-            src/transitions.css. */}
-        <Providers>
-          <ViewTransition>{children}</ViewTransition>
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

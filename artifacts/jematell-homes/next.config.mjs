@@ -45,14 +45,11 @@ const nextConfig = {
         },
       }
     : {}),
-  experimental: {
-    // Restores the cross-route fade the Vite build had via react-router's
-    // `viewTransition` Link prop: with this flag on, the <ViewTransition>
-    // boundary in app/layout.tsx opts client navigations into
-    // document.startViewTransition, so the ::view-transition-old/new(root)
-    // keyframes in src/transitions.css fire again.
-    viewTransition: true,
-  },
+  // NOTE: experimental.viewTransition + a React <ViewTransition> boundary were
+  // tried here to restore the old cross-route fade, but the experimental
+  // wrapper broke framer-motion's whileInView reveals (sections rendered stuck
+  // at their SSR opacity:0). Cross-route fades can return when that React API
+  // stabilizes; scroll reveals matter more.
 };
 
 export default nextConfig;
