@@ -11,10 +11,31 @@ import path from "node:path";
  */
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
+  // Static export for builds. Under `next dev` output is unset: export mode
+  // would reject the dev-only /__dev/gallery-order route handler (dynamic GET
+  // + POST), and dev runs a real server anyway. `next build` always runs with
+  // NODE_ENV=production, so the deployed artifact is still the pure export.
+  ...(process.env.NODE_ENV === "development" ? {} : { output: "export" }),
   trailingSlash: false,
   images: { unoptimized: true },
   outputFileTracingRoot: path.join(import.meta.dirname, "..", ".."),
+  // Dev-only route handlers use the extra ".dev.ts" page extension, so files
+  // like app/%5F_dev/gallery-order/route.dev.ts (the %5F folder prefix encodes
+  // the leading underscore of the /__dev URL segment, which a bare _ folder
+  // would make private) exist ONLY under `next dev`. Production `next build`
+  // ignores them; POST handlers are not allowed in output:"export" builds, and
+  // this endpoint must never ship anyway.
+  ...(process.env.NODE_ENV === "development"
+    ? { pageExtensions: ["tsx", "ts", "jsx", "js", "dev.tsx", "dev.ts"] }
+    : {}),
+  experimental: {
+    // Restores the cross-route fade the Vite build had via react-router's
+    // `viewTransition` Link prop: with this flag on, the <ViewTransition>
+    // boundary in app/layout.tsx opts client navigations into
+    // document.startViewTransition, so the ::view-transition-old/new(root)
+    // keyframes in src/transitions.css fire again.
+    viewTransition: true,
+  },
 };
 
 export default nextConfig;

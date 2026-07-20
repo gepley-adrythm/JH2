@@ -1,6 +1,6 @@
 import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { pageMetadata } from "@/seo/metadata";
-import { breadcrumbJsonLd } from "@/seo/jsonld";
+import { breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { ConstructionLoanCalculator } from "@/components/ConstructionLoanCalculator";
 import { DetailMore, DetailDisclaimer, type MoreColumn } from "@/components/DetailParts";

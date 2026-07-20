@@ -6,7 +6,7 @@ import { faqDataset, SERVICE_LINKS } from "@/data/faq";
 import { blogs } from "@/data/blogs";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { pageMetadata } from "@/seo/metadata";
-import { qaPageJsonLd, breadcrumbJsonLd } from "@/seo/jsonld";
+import { qaPageJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { annotateHeadings, readingTime } from "@/lib/detail";
 import { DetailShell } from "@/components/DetailShell";

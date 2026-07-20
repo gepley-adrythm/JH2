@@ -14,8 +14,8 @@ export interface ContactSubmission {
 }
 
 // The api-server is a separate artifact mounted at the proxy root path `/api`
-// (most-specific-first routing), so a root-relative URL is correct here — unlike
-// same-artifact assets, this must NOT be prefixed with import.meta.env.BASE_URL.
+// (most-specific-first routing), so a root-relative URL is correct here: unlike
+// same-artifact assets, this must NOT be prefixed with the site BASE path.
 const CONTACT_ENDPOINT = "/api/contact";
 
 export async function submitContactForm(data: ContactSubmission): Promise<SubmitResult> {

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev -H 0.0.0.0",
-    "build": "next build",
+    "build": "next build && node scripts/precompress.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "audit": "node scripts/audit.mjs",
     "audit:ci": "NODE_ENV=production pnpm run build && node scripts/audit.mjs && node scripts/content-lint.mjs",

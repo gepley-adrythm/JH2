@@ -42,6 +42,9 @@ for (const file of walk(outDir)) {
   if (!file.endsWith(".html")) continue;
   let rel = relative(outDir, file).replace(/\\/g, "/");
   if (rel === "404.html" || rel === "500.html") continue;
+  // Next's static export emits an internal /_not-found route (the source of
+  // 404.html); it is not a servable page and is not part of the route set.
+  if (rel === "_not-found.html" || rel === "_not-found/index.html") continue;
   rel = rel.replace(/\.html$/, "");
   if (rel === "index") rel = "";
   else if (rel.endsWith("/index")) rel = rel.slice(0, -"/index".length);

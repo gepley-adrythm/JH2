@@ -3,6 +3,7 @@ import cors from "cors";
 import pinoHttp from "pino-http";
 import router from "./routes";
 import { logger } from "./lib/logger";
+import { staticSite, staticSiteAvailable, staticSiteInfo } from "./middlewares/staticSite";
 
 const app: Express = express();
 
@@ -36,5 +37,15 @@ app.use("/api", router);
 // service keeps the database, the FAQ seed sync, and the /api/faqs JSON API. The
 // FAQ renderers in lib/faq are retained because the build-time validator
 // (faq:validate) reuses them to assert schema/H1 on every seed entry.
+
+// Serve the Next static export (artifacts/jematell-homes/out) when it exists,
+// so one process owns both /api and the site in production. Skipped when the
+// site build is absent (e.g. API-only dev), where /api keeps working alone.
+if (staticSiteAvailable()) {
+  logger.info(`serving static site from ${staticSiteInfo()}`);
+  app.use(staticSite);
+} else {
+  logger.info("static site build not found; serving /api only");
+}
 
 export default app;

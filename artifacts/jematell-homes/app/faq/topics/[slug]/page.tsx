@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { faqDataset } from "@/data/faq";
 import { pageMetadata } from "@/seo/metadata";
-import { faqPageJsonLd, breadcrumbJsonLd } from "@/seo/jsonld";
+import { faqPageJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { ContactCta } from "@/components/ContactCta";
 

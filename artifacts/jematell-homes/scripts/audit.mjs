@@ -107,12 +107,35 @@ function textContent(html, tagRe) {
 }
 
 // --- Speed checks (per route: App Router page chunks differ by route) ---
+
+/**
+ * Local script srcs carrying the `nomodule` attribute. Next always emits one
+ * such legacy-polyfill chunk; browsers that support ES modules (every browser
+ * this site targets, and everything Lighthouse models) never download or
+ * execute nomodule scripts, so they are excluded from both the render-blocking
+ * check and the per-route JS budget. The Vite build never emitted them, which
+ * is why the ported checks did not account for the attribute.
+ */
+function nomoduleSrcs(html) {
+  const srcs = new Set();
+  const scriptRe = /<script\b([^>]*?)\bsrc="(\/[^"]+)"([^>]*)>/gi;
+  let m;
+  while ((m = scriptRe.exec(html))) {
+    if (/\bnomodule\b/i.test(m[1] + m[3])) srcs.add(m[2]);
+  }
+  return srcs;
+}
+
 function checkRouteJsBudget(route, html) {
   const re =
     /(?:<script[^>]*\bsrc="(\/[^"]+)")|(?:rel="modulepreload"[^>]*href="(\/[^"]+)")|(?:rel="preload"[^>]*as="script"[^>]*href="(\/[^"]+)")/g;
+  const legacy = nomoduleSrcs(html);
   const files = new Set();
   let m;
-  while ((m = re.exec(html))) files.add(m[1] || m[2] || m[3]);
+  while ((m = re.exec(html))) {
+    const src = m[1] || m[2] || m[3];
+    if (!legacy.has(src)) files.add(src);
+  }
 
   let gz = 0;
   for (const f of files) {
@@ -137,11 +160,13 @@ function checkRouteJsBudget(route, html) {
 
 function checkRenderBlocking(route, html) {
   // Every local script must be non-blocking (async, defer, or module).
+  // nomodule scripts are skipped: module-supporting browsers ignore them
+  // entirely, so they can never block rendering.
   const scriptRe = /<script\b([^>]*?)\bsrc="(\/[^"]+)"([^>]*)>/g;
   let m;
   while ((m = scriptRe.exec(html))) {
     const attrs = m[1] + m[3];
-    if (!/type="module"|\basync\b|\bdefer\b/.test(attrs)) {
+    if (!/type="module"|\basync\b|\bdefer\b|\bnomodule\b/i.test(attrs)) {
       fail(route, `render-blocking local script (not async/defer/module): ${m[2]}`);
     }
   }

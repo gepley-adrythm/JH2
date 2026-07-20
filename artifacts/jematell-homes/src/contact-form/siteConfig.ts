@@ -1,4 +1,4 @@
-const BASE = import.meta.env.BASE_URL || "/";
+import { BASE } from "@/lib/paths";
 
 export const siteConfig = {
   businessName: "Jematell Homes",

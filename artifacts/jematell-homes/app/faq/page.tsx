@@ -2,10 +2,10 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { faqDataset } from "@/data/faq";
 import { pageMetadata } from "@/seo/metadata";
-import { faqPageJsonLd } from "@/seo/jsonld";
+import { faqPageJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { ContactCta } from "@/components/ContactCta";
-import { FaqIndexClient, type FaqSearchItem } from "@/pages/FaqIndexClient";
+import { FaqIndexClient, type FaqSearchItem } from "@/views/FaqIndexClient";
 
 const INTRO =
   "Straight answers about building a custom home in Arizona: timelines, budgets, lots, floor plans, and what it's like to work with a family-owned builder.";

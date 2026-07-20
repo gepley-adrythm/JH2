@@ -11,8 +11,9 @@
  * motion feels like one system. It matches EASE_OUT_EXPO in motion.ts.
  *
  * The cross-fade only fires when the router opts a navigation into the View
- * Transitions API. With React Router this is the `viewTransition` prop on
- * <Link> (or `navigate(to, { viewTransition: true })`); it is NOT automatic.
+ * Transitions API. Under Next this is the <ViewTransition> boundary around
+ * {children} in app/layout.tsx plus experimental.viewTransition in
+ * next.config.mjs; it is NOT automatic.
  */
 
 /* 1. CROSS-ROUTE FADE (native View Transitions API) */

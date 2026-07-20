@@ -1,12 +1,12 @@
+"use client";
 import React, { useEffect, useState, useRef } from "react";
 import { MessageSquare, MessageCircle, Phone, Mail, Instagram, Facebook, Menu, X, ChevronDown } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useContactForm } from "./contact-form";
 import { siteConfig, services, locations, locationHref } from "./config/siteConfig";
 import { navItems, isNavActive, isSectionActive, type SubNavItem } from "./config/navConfig";
-
-const BASE = import.meta.env.BASE_URL || "/";
-export const img = (name: string) => `${BASE}images/${name}`;
+import { img } from "./lib/paths";
 
 /** Renders a sub-nav child as a client Link, or a hard <a> for routes the app
  * does not own yet (e.g. /faq). Shared by desktop dropdowns and mobile sub-nav. */
@@ -17,7 +17,7 @@ function SubNavLink({
   onNavigate,
 }: {
   item: SubNavItem;
-  pathname: string;
+  pathname: string | null;
   testIdPrefix: string;
   onNavigate?: () => void;
 }) {
@@ -33,12 +33,11 @@ function SubNavLink({
   }
   return (
     <Link
-      to={item.href}
+      href={item.href}
       role="menuitem"
       className={className}
       data-testid={testId}
       aria-current={active ? "page" : undefined}
-      viewTransition
       onClick={onNavigate}
     >
       {item.label}
@@ -79,12 +78,11 @@ function NavDropdown({ label, testId, to, active, children }: NavDropdownProps) 
 
   const trigger = to ? (
     <Link
-      to={to}
+      href={to}
       className={triggerClass}
       data-testid={testId}
       aria-haspopup="true"
       aria-expanded={open}
-      viewTransition
       onClick={() => setOpen(false)}
       onMouseEnter={() => setOpen(true)}
       onFocus={() => setOpen(true)}
@@ -124,7 +122,8 @@ function NavDropdown({ label, testId, to, active, children }: NavDropdownProps) 
 
 // Routes whose top hero is light/cream — header must always render in solid/light style
 // so the dark nav text stays readable. Everything else has a dark image hero.
-function isLightHeroPath(pathname: string): boolean {
+function isLightHeroPath(pathname: string | null): boolean {
+  if (!pathname) return false;
   // Normalize trailing slash so /blog/ matches /blog
   const p = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
   if (p === "/blog") return true;
@@ -136,7 +135,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>(null);
-  const { pathname } = useLocation();
+  const pathname = usePathname();
   const { open: openContactForm } = useContactForm();
   const forceSolid = isLightHeroPath(pathname);
 
@@ -170,7 +169,7 @@ export function Header() {
       <header className={`site-header ${scrolled || forceSolid ? "scrolled" : ""}`}>
       <div className="container header-inner">
         <div className="header-left">
-        <Link to="/" className="brand-logo" aria-label={siteConfig.brand.name} data-testid="nav-logo">
+        <Link href="/" className="brand-logo" aria-label={siteConfig.brand.name} data-testid="nav-logo">
           <img src={img("logo.png")} alt={siteConfig.brand.name} />
         </Link>
 
@@ -191,11 +190,10 @@ export function Header() {
             ) : (
               <Link
                 key={item.id}
-                to={item.href!}
+                href={item.href!}
                 className={isNavActive(pathname, item.href!) ? "is-active" : undefined}
                 data-testid={`nav-${item.id}`}
                 aria-current={isNavActive(pathname, item.href!) ? "page" : undefined}
-                viewTransition
               >
                 {item.label}
               </Link>
@@ -261,11 +259,10 @@ export function Header() {
             ) : (
               <Link
                 key={item.id}
-                to={item.href!}
+                href={item.href!}
                 onClick={close}
                 className={isNavActive(pathname, item.href!) ? "is-active" : undefined}
                 data-testid={`mobile-nav-${item.id}`}
-                viewTransition
               >
                 {item.label}
               </Link>
@@ -300,13 +297,13 @@ export function Footer() {
             <p>{siteConfig.blurb}</p>
           </div>
           <nav className="footer-links" aria-label="Footer navigation">
-            <Link to="/contact" viewTransition>Contact</Link>
-            <Link to="/spec-homes" viewTransition>Spec Homes</Link>
-            <Link to="/resources" viewTransition>Resources</Link>
-            <Link to="/warranty" viewTransition>Warranty</Link>
-            <Link to="/privacy" viewTransition>Privacy Policy</Link>
-            <Link to="/disclaimer" viewTransition>Disclaimer</Link>
-            <Link to="/llm-info" viewTransition>LLM Info</Link>
+            <Link href="/contact">Contact</Link>
+            <Link href="/spec-homes">Spec Homes</Link>
+            <Link href="/resources">Resources</Link>
+            <Link href="/warranty">Warranty</Link>
+            <Link href="/privacy">Privacy Policy</Link>
+            <Link href="/disclaimer">Disclaimer</Link>
+            <Link href="/llm-info">LLM Info</Link>
           </nav>
         </div>
 
@@ -355,7 +352,7 @@ export function Footer() {
         </div>
         <div className="container footer-disclaimer-line">
           Content on this site is for general information only and is not legal, financial, or
-          construction advice. <Link to="/disclaimer" viewTransition>Read our full disclaimer</Link>.
+          construction advice. <Link href="/disclaimer">Read our full disclaimer</Link>.
         </div>
       </div>
     </footer>
@@ -364,7 +361,7 @@ export function Footer() {
 
 export function ContactWidget() {
   const { open: openContactForm } = useContactForm();
-  const { pathname } = useLocation();
+  const pathname = usePathname();
   const isHomepage = pathname === "/";
   const [isOpen, setIsOpen] = useState(false);
   const [pastHero, setPastHero] = useState(false);

@@ -1,8 +1,11 @@
+"use client";
 import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from "react";
-import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import "./contact-form.css";
 
-const ContactForm = React.lazy(() => import("./ContactForm"));
+// The animated overlay (AnimatePresence + m.div + lazy ContactForm) lives in
+// ContactPortal, loaded on first open, so this provider adds no framer-motion
+// weight to the shared client entry that every route ships.
+const ContactPortal = React.lazy(() => import("./ContactPortal"));
 
 interface ContactFormContextValue {
   open: () => void;
@@ -20,12 +23,15 @@ export function useContactForm(): ContactFormContextValue {
 
 export function ContactFormProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const reduced = useReducedMotion();
+  // Latches true on first open and stays true, so ContactPortal remains
+  // mounted afterwards and AnimatePresence can animate the exit fade.
+  const [hasOpened, setHasOpened] = useState(false);
   const openerRef = useRef<HTMLElement | null>(null);
   const portalRef = useRef<HTMLDivElement>(null);
 
   const open = useCallback(() => {
     openerRef.current = (document.activeElement as HTMLElement) ?? null;
+    setHasOpened(true);
     setIsOpen(true);
   }, []);
   const close = useCallback(() => setIsOpen(false), []);
@@ -73,25 +79,11 @@ export function ContactFormProvider({ children }: { children: React.ReactNode })
   return (
     <ContactFormContext.Provider value={{ open, close, isOpen }}>
       {children}
-      <AnimatePresence>
-        {isOpen && (
-          <m.div
-            ref={portalRef}
-            className="cf-portal"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: reduced ? 0 : 0.3 }}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Contact Jematell Homes"
-          >
-            <React.Suspense fallback={null}>
-              <ContactForm onClose={close} />
-            </React.Suspense>
-          </m.div>
-        )}
-      </AnimatePresence>
+      {hasOpened && (
+        <React.Suspense fallback={null}>
+          <ContactPortal isOpen={isOpen} onClose={close} portalRef={portalRef} />
+        </React.Suspense>
+      )}
     </ContactFormContext.Provider>
   );
 }
