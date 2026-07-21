@@ -4233,18 +4233,18 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
 }
 .fp-exclusive-specs li {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--color-text);
-  line-height: 1.4;
+  line-height: 1.35;
 }
 .fp-exclusive-specs li:first-child {
   font-weight: 600;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--color-muted);
 }
 .fp-exclusive-desc {
