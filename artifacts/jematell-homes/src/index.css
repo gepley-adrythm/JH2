@@ -3985,6 +3985,10 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 /* Drawing figures */
 .fp1849-plan-section { background: var(--color-bg); }
 .fp1849-plan-section .page-section-head { margin-bottom: 16px; }
+.fp1849-plan-section .container {
+  max-width: 1800px;
+  padding-inline: clamp(16px, 2.5vw, 40px);
+}
 .fp1849-plan-desc {
   width: 100%;
   max-width: 100%;
