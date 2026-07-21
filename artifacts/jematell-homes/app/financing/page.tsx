@@ -70,8 +70,7 @@ export default function Financing() {
         </picture>
         <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.55) 100%)" }} />
         <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
-          <span className="hero-eyebrow">Plan your build</span>
-          <h1 className="page-hero-title hero-title">Financing Your Custom Home</h1>
+          <h1 className="page-hero-title hero-title">FINANCING YOUR BUILD</h1>
         </div>
       </section>
 
