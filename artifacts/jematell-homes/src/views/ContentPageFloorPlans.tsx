@@ -180,7 +180,7 @@ const FP_EXCLUSIVES: Record<string, ExclusiveCard[]> = {
       slug: "2616",
       sqft: "2,616 Sq Ft",
       title: "The 2616 Plan",
-      body: "3 bed · 2.5 bath · 3-car garage. A spacious single-story design with a private study and gated courtyard, available to build on your lot.",
+      body: "3 bed · 2.5 bath · 1 Den/Office · 3-car garage. A spacious single-story design with a private study and gated courtyard, available to build on your lot.",
       img: "/images/plans/2616-rendering.png",
       alt: "Rendered exterior of the 2616 sq ft Jematell Homes floor plan",
     },
