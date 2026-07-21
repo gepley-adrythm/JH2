@@ -29,14 +29,6 @@ task = "workflow.run"
 args = "prewarm"
 
 [[workflows.workflow]]
-name = "site dev"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "pnpm --filter @workspace/jematell-homes run dev"
-
-[[workflows.workflow]]
 name = "api server"
 author = "agent"
 

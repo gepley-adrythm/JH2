@@ -11,6 +11,7 @@
     "moduleResolution": "bundler",
     "allowJs": true,
     "incremental": true,
+    "tsBuildInfoFile": ".next/tsbuildinfo",
     "types": ["node"],
     "plugins": [{ "name": "next" }],
     "paths": {

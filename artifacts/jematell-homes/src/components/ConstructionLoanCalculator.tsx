@@ -293,7 +293,10 @@ export function ConstructionLoanCalculator() {
   for (let m = 1; m <= months; m++) {
     buildSeries.push(loan * (m / months) * iBuild);
   }
-  const totalBars = months + 6;
+  // Build ramp bars + a single post-move-in bar representing the ongoing
+  // all-in monthly payment (the payment is flat once the loan converts, so one
+  // bar conveys it; earlier versions drew six identical bars).
+  const totalBars = months + 1;
   const chartW = 720;
   const chartH = 190;
   const plotX0 = 6;
@@ -306,7 +309,7 @@ export function ConstructionLoanCalculator() {
   const barY = (val: number) => r2(plotY1 - (val / maxVal) * (plotY1 - plotY0));
   const markerX = r2(plotX0 + months * slot);
   const markerLabelLeft = months / totalBars > 0.7;
-  const tickMonths = Array.from(new Set([1, months, totalBars]));
+  const tickMonths = Array.from(new Set([1, months]));
 
   // Tooltip for the hovered bar.
   const TT_W = 160;
@@ -852,11 +855,14 @@ export function ConstructionLoanCalculator() {
                 onMouseLeave={() => setHoveredBarIdx(null)}
               />
             ))}
-            {[0, 1, 2, 3, 4, 5].map((k) => {
-              const barIdx = months + k;
+            {(() => {
+              // Single post-move-in bar: the all-in monthly payment is flat
+              // once the loan converts, so one bar stands in for every month
+              // after move-in.
+              const barIdx = months;
               return (
                 <rect
-                  key={`a-${k}`}
+                  key="a-0"
                   className="fin-bar"
                   x={r2(plotX0 + barIdx * slot + 1)}
                   y={barY(allInMonthly)}
@@ -868,7 +874,7 @@ export function ConstructionLoanCalculator() {
                   onMouseLeave={() => setHoveredBarIdx(null)}
                 />
               );
-            })}
+            })()}
             <line
               x1={markerX}
               y1={8}
