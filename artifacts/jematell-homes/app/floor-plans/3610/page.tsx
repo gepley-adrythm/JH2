@@ -36,7 +36,7 @@ export default function Page() {
         stats={[
           { value: "3,610", label: "Sq Ft" },
           { value: "4", label: "Bedrooms" },
-          { value: "3.5", label: "Bathrooms" },
+          { value: "3", label: "Bathrooms" },
           { value: "1", label: "Study" },
           { value: "4-Car", label: "Garage" },
         ]}

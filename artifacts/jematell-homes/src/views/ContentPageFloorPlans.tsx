@@ -237,7 +237,7 @@ const FP_EXCLUSIVES: Record<string, ExclusiveCard[]> = {
     {
       slug: "3610",
       title: "The 3610 Plan",
-      specs: ["3,610 Sq Ft", "4 Bedrooms", "3.5 Bathrooms", "1 Study", "4-Car Garage + Shop"],
+      specs: ["3,610 Sq Ft", "4 Bedrooms", "3 Bathrooms", "1 Study", "4-Car Garage + Shop"],
       desc: "A single-story farmhouse with a dedicated shop and detached out building, available to build on your lot.",
       img: "/images/plans/3610-rendering.png",
       alt: "Rendered exterior of the 3610 sq ft Jematell Homes floor plan",
