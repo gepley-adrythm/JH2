@@ -34,7 +34,7 @@ export default function Page() {
           { value: "2.5", label: "Bathrooms" },
           { value: "3-Car", label: "Garage" },
         ]}
-        planDesc="A single-level home with a private guest retreat all its own. The main house opens to a great room, island kitchen, and dining space that flow to a covered patio, with the owner's suite tucked privately at the rear beside a spa bath and oversized closet. Two more bedrooms, a full bath, a guest powder room, and a dedicated study round out the main home, served by a three-car garage. Beyond it, a detached 844 sq ft casita adds its own bedroom, bath, kitchen, living room, and garage for guests, family, or a home office."
+        planDesc="A single-level home built for comfortable, open living. The great room, island kitchen, and dining space flow to a covered patio, with the owner's suite tucked privately at the rear beside a spa bath and oversized closet. Two more bedrooms, a full bath, a guest powder room, and a dedicated study round out the plan, all served by a three-car garage."
         drawings={[
           { label: "Floor Plan", src: "/images/plans/2867-1.png", alt: "2867 main-home floor plan layout — 3 bedrooms, study, 2.5 baths, 3-car garage" },
           { label: "Elevations", src: "/images/plans/2867-2.png", alt: "2867 plan — front, rear, left, and right exterior elevations of the main home" },
