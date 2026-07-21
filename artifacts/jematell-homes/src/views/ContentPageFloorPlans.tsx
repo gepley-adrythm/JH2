@@ -179,7 +179,7 @@ const FP_EXCLUSIVES: Record<string, ExclusiveCard[]> = {
     {
       slug: "2045",
       title: "The 2045 Plan",
-      specs: ["2,045 Sq Ft", "2 Bedrooms", "2.5 Bathrooms", "Attached Casita", "2.5-Car + RV Garage"],
+      specs: ["2,045 Sq Ft", "2 Bedrooms", "2.5 Bathrooms", "Attached Casita", "2.5-Car Garage"],
       desc: "A single-story home with an attached casita, available to build on your lot.",
       img: "/images/plans/2045-rendering.png",
       alt: "Rendered exterior of the 2045 sq ft Jematell Homes floor plan",
