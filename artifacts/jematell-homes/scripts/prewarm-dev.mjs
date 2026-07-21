@@ -32,7 +32,7 @@ const ROUTES = [
   "/blog",
   "/blog/arizona-home-design-trends-for-2026",
   "/faq",
-  "/faq/topics/cost-budget",
+  "/faq/topics/building-permits-arizona",
   "/faq/construction-loan-requirements-arizona",
   "/glossary",
   "/glossary/draw-schedule",
