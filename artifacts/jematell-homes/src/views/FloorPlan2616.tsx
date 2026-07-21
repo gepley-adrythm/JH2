@@ -95,13 +95,13 @@ export default function FloorPlan2616({
               </div>
               <div className="fp1849-stat-divider" />
               <div className="fp1849-stat">
-                <span className="fp1849-stat-value">3-Car</span>
-                <span className="fp1849-stat-label">Garage</span>
+                <span className="fp1849-stat-value">1</span>
+                <span className="fp1849-stat-label">Den/Study</span>
               </div>
               <div className="fp1849-stat-divider" />
               <div className="fp1849-stat">
-                <span className="fp1849-stat-value">1</span>
-                <span className="fp1849-stat-label">Den/Study</span>
+                <span className="fp1849-stat-value">3-Car</span>
+                <span className="fp1849-stat-label">Garage</span>
               </div>
             </div>
           </div>
