@@ -27,6 +27,12 @@ interface Section {
   blocks: Block[];
 }
 
+const TIER_IMG_OVERRIDES = [
+  { src: "/images/plans/1849-1.png", alt: "1849 sq ft Jematell Homes floor plan drawing" },
+  { src: "/images/plans/2616-1.png", alt: "2616 sq ft Jematell Homes floor plan drawing" },
+  { src: "/images/plans/3610-1.png", alt: "3610 sq ft Jematell Homes floor plan drawing" },
+];
+
 export function FloorPlanTiersSection({ section }: { section: Section }) {
   // Cards are image-on-top: in the source each tier image PRECEDES its h4 heading
   // (e.g. img "3771 Square Foot Floor Plan" then h4 "Over 3,000 Sq Ft"). Hold each
@@ -83,9 +89,13 @@ export function FloorPlanTiersSection({ section }: { section: Section }) {
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
             >
-              {t.img ? (
+              {(TIER_IMG_OVERRIDES[i] || t.img) ? (
                 <div className="page-tier-media">
-                  <img src={t.img} alt={t.alt || t.title} loading="lazy" />
+                  <img
+                    src={TIER_IMG_OVERRIDES[i]?.src ?? t.img}
+                    alt={TIER_IMG_OVERRIDES[i]?.alt ?? t.alt ?? t.title}
+                    loading="lazy"
+                  />
                 </div>
               ) : null}
               <div className="page-tier-body">
