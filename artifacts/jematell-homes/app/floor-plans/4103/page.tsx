@@ -33,6 +33,7 @@ export default function Page() {
           { value: "3", label: "Bedrooms" },
           { value: "4.5", label: "Bathrooms" },
           { value: "1", label: "Bonus Room" },
+          { value: "1", label: "Den/Office" },
           { value: "4-Car", label: "Garage" },
         ]}
         planDesc="Our largest single-level plan is built for luxury and gathering. A soaring great room and gourmet kitchen with a walk-in pantry and wine room open to a covered patio and pool, served by a dedicated pool bath. The owner's suite is a private retreat with a spa bath and oversized closet, and a separate bonus room and den add flexible space for a theater, gym, or office. Two more en-suite bedrooms, a guest powder room, and two large garage bays complete a home with room for everything."
