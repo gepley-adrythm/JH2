@@ -32,7 +32,7 @@ export default function Page() {
           { value: "3,102", label: "Sq Ft" },
           { value: "4", label: "Bedrooms" },
           { value: "3.5", label: "Bathrooms" },
-          { value: "1", label: "Office" },
+          { value: "1", label: "Den/Office" },
           { value: "2-Car", label: "Garage" },
         ]}
         planDesc="A roomy single-level plan that lives large. A central great room and island kitchen with a breakfast nook open to a deep covered patio, and the owner's suite is tucked privately at the back with a spa bath and an oversized walk-in closet. Three secondary bedrooms and two more baths sit on the opposite wing, with a guest powder room near the entry and a dedicated office up front. A two-car garage and a walk-in pantry keep everyday life organized."
