@@ -2623,6 +2623,7 @@ a.contact-info-card:hover {
   line-height: 1.7;
   text-align: center;
 }
+.page-plans { text-align: left; }
 .page-plans-list {
   display: flex;
   flex-direction: column;
@@ -4222,7 +4223,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 .fp-exclusives-inline .page-tiers-grid { gap: 16px; }
 .fp-exclusives-inline .page-tier-media { aspect-ratio: 16/9; }
 .fp-exclusives-inline .page-tier-body { padding: 18px 20px 22px; gap: 8px; }
-.fp-exclusives-inline .page-tier-title { font-size: 20px; font-weight: 600; color: var(--color-accent); }
+.fp-exclusives-inline .page-tier-title { font-size: 25px; font-weight: 600; color: var(--color-accent); text-align: center; }
 .fp-exclusives-inline .page-tier-body p { font-size: 13px; }
 .fp-exclusives-inline .page-tier-link { font-size: 14px; margin-top: 4px; }
 
