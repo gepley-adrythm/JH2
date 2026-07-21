@@ -32,7 +32,7 @@ export default function Page() {
           { value: "3,094", label: "Sq Ft" },
           { value: "3", label: "Bedrooms" },
           { value: "3", label: "Bathrooms" },
-          { value: "1", label: "Study" },
+          { value: "1", label: "Den/Office" },
           { value: "4-Car", label: "Garage" },
         ]}
         planDesc="A single-level home built for space and privacy. The great room, island kitchen, and dining area open to a generous covered patio, while the owner's suite is set apart with a spa bath and his-and-hers walk-in closets. Two more bedrooms and two full baths anchor the far wing, and a dedicated study off the entry works as an office or den. Two separate two-car garages give you a full four bays for vehicles, storage, or a workshop."

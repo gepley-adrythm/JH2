@@ -221,7 +221,7 @@ const FP_EXCLUSIVES: Record<string, ExclusiveCard[]> = {
     {
       slug: "3094",
       title: "The 3094 Plan",
-      specs: ["3,094 Sq Ft", "3 Bedrooms", "3 Bathrooms", "1 Study", "4-Car Garage"],
+      specs: ["3,094 Sq Ft", "3 Bedrooms", "3 Bathrooms", "1 Den/Office", "4-Car Garage"],
       desc: "A single-story home with dual garages and a private study, available to build on your lot.",
       img: "/images/plans/3094-rendering.png",
       alt: "Rendered exterior of the 3094 sq ft Jematell Homes floor plan",
@@ -237,7 +237,7 @@ const FP_EXCLUSIVES: Record<string, ExclusiveCard[]> = {
     {
       slug: "3610",
       title: "The 3610 Plan",
-      specs: ["3,610 Sq Ft", "4 Bedrooms", "3 Bathrooms", "1 Study", "4-Car Garage + Shop"],
+      specs: ["3,610 Sq Ft", "4 Bedrooms", "3 Bathrooms", "1 Den/Office", "4-Car Garage + Shop"],
       desc: "A single-story farmhouse with a dedicated shop and detached out building, available to build on your lot.",
       img: "/images/plans/3610-rendering.png",
       alt: "Rendered exterior of the 3610 sq ft Jematell Homes floor plan",
@@ -253,7 +253,7 @@ const FP_EXCLUSIVES: Record<string, ExclusiveCard[]> = {
     {
       slug: "3970",
       title: "The 3970 Plan",
-      specs: ["3,970 Sq Ft", "4 Bedrooms", "4.5 Bathrooms", "1 Study", "3-Car Garage"],
+      specs: ["3,970 Sq Ft", "4 Bedrooms", "4.5 Bathrooms", "1 Den/Office", "3-Car Garage"],
       desc: "A grand single-story home built for entertaining, available to build on your lot.",
       img: "/images/plans/3970-rendering.png",
       alt: "Rendered exterior of the 3970 sq ft Jematell Homes floor plan",

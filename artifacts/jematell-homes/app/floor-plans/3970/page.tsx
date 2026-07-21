@@ -32,7 +32,7 @@ export default function Page() {
           { value: "3,970", label: "Sq Ft" },
           { value: "4", label: "Bedrooms" },
           { value: "4.5", label: "Bathrooms" },
-          { value: "1", label: "Study" },
+          { value: "1", label: "Den/Office" },
           { value: "3-Car", label: "Garage" },
         ]}
         planDesc="A grand single-level home designed for entertaining. A vaulted great room and island kitchen flow into both a breakfast nook and a formal dining room, with a bright morning room and dual covered patios extending the living space outdoors. The owner's suite enjoys a spa bath and his-and-hers closets, three more bedrooms each sit near a bath, and a dedicated study, mud room, and walk-in pantry keep the household running. A split three-car garage rounds out the plan."

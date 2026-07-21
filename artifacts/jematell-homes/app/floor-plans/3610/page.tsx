@@ -37,7 +37,7 @@ export default function Page() {
           { value: "3,610", label: "Sq Ft" },
           { value: "4", label: "Bedrooms" },
           { value: "3", label: "Bathrooms" },
-          { value: "1", label: "Study" },
+          { value: "1", label: "Den/Office" },
           { value: "4-Car", label: "Garage" },
         ]}
         planDesc="A sprawling single-level farmhouse made for room to roam. The great room opens through a wall of glass to a covered patio, and a separate game room gives the family a second place to gather. The owner's suite has its own private patio, spa bath, and enormous closet, while three more bedrooms sit on their own wing. Beyond the four-car garage, the plan adds a dedicated shop and a detached out building, so there is space for every vehicle, project, and hobby."
