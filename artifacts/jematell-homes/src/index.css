@@ -4224,7 +4224,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 .fp-exclusives-inline .page-tier-body { padding: 18px 20px 22px; gap: 8px; }
 .fp-exclusives-inline .page-tier-title { font-size: 20px; color: var(--color-accent); }
 .fp-exclusives-inline .page-tier-body p { font-size: 13px; }
-.fp-exclusives-inline .page-tier-link { font-size: 12px; margin-top: 4px; }
+.fp-exclusives-inline .page-tier-link { font-size: 14px; margin-top: 4px; }
 
 /* Specs list + description inside exclusive cards */
 .fp-exclusive-specs {
