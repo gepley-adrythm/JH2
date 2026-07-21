@@ -218,8 +218,8 @@ export function FloorPlanWidgets() {
         <div className="container" style={{ width: "100%" }}>
           <m.div className="page-section-head centered" {...FADE_IN} style={{ marginBottom: 0 }}>
             <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>Browse plans by size</h2>
-            <p className="page-plans-intro">Every home begins with the floor plan and we have plenty to choose from. Browse various styles, sizes, and configurations to find the perfect foundation for your vision. If you don’t see one you like don’t worry, our architect can create your dream home from scratch. You're also more than welcome to find a plan you want and bring it to us.</p>
           </m.div>
+          <m.p className="page-plans-intro" {...FADE_IN}>Every home begins with the floor plan and we have plenty to choose from. Browse various styles, sizes, and configurations to find the perfect foundation for your vision. If you don’t see one you like don’t worry, our architect can create your dream home from scratch. You're also more than welcome to find a plan you want and bring it to us.</m.p>
         </div>
       </section>
       <section className="page-plans section-pad" style={{ background: "#fff", paddingTop: "clamp(24px, 3vw, 48px)" }} data-testid="floor-plan-widgets">
