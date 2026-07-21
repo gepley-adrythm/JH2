@@ -7,6 +7,9 @@
 /floor-plans/1644
 /floor-plans/1604
 /floor-plans/2616
+/floor-plans/2086
+/floor-plans/2194
+/floor-plans/2997
 /where-we-build
 /build-on-your-lot
 /buy-a-lot-with-us

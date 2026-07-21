@@ -141,9 +141,9 @@ const FLOOR_PLAN_COLLECTIONS: Array<{
 // entry here renders just the partnered widget (e.g. over-3000).
 type ExclusiveCard = {
   slug: string;
-  sqft: string;
   title: string;
-  body: string;
+  specs: string[];
+  desc: string;
   img: string;
   alt: string;
 };
@@ -152,37 +152,61 @@ const FP_EXCLUSIVES: Record<string, ExclusiveCard[]> = {
   "under-2000": [
     {
       slug: "1604",
-      sqft: "1,604 Sq Ft",
       title: "The 1604 Plan",
-      body: "3 bed · 2 bath · 2-car garage. A thoughtfully designed single-story home, available to build on your lot.",
+      specs: ["1,604 Sq Ft", "3 Bedrooms", "2 Bathrooms", "2-Car Garage"],
+      desc: "A thoughtfully designed single-story home, available to build on your lot.",
       img: "/images/plans/1604-rendering.png",
       alt: "Rendered exterior of the 1604 sq ft Jematell Homes floor plan",
     },
     {
       slug: "1644",
-      sqft: "1,644 Sq Ft",
       title: "The 1644 Plan",
-      body: "3 bed · 2 bath · 2-car garage. A timeless single-story design, available to be built for your lot.",
+      specs: ["1,644 Sq Ft", "3 Bedrooms", "2 Bathrooms", "2-Car Garage"],
+      desc: "A timeless single-story design, available to be built for your lot.",
       img: "/images/plans/1644-rendering.png",
       alt: "Rendered exterior of the 1644 sq ft Jematell Homes floor plan",
     },
     {
       slug: "1849",
-      sqft: "1,849 Sq Ft",
       title: "The 1849 Plan",
-      body: "3 bed · 2 bath · 2-car garage. A proven single-story design, available for your lot.",
+      specs: ["1,849 Sq Ft", "3 Bedrooms", "2 Bathrooms", "2-Car Garage"],
+      desc: "A proven single-story design, available for your lot.",
       img: "/images/1849-rendering-v2.png",
       alt: "Rendered exterior of the 1849 sq ft Jematell Homes floor plan",
     },
   ],
   "2000-3000": [
     {
+      slug: "2086",
+      title: "The 2086 Plan",
+      specs: ["2,086 Sq Ft", "3 Bedrooms", "2 Bathrooms", "1 Office", "3-Car Garage"],
+      desc: "A single-story home with an open great room and a roomy three-car garage, available to build on your lot.",
+      img: "/images/plans/2086-rendering.png",
+      alt: "Rendered exterior of the 2086 sq ft Jematell Homes floor plan",
+    },
+    {
+      slug: "2194",
+      title: "The 2194 Plan",
+      specs: ["2,194 Sq Ft", "3 Bedrooms", "2 Bathrooms", "1 Office", "2-Car + RV Garage"],
+      desc: "A single-story plan with a dedicated RV garage, available to build on your lot.",
+      img: "/images/plans/2194-rendering.png",
+      alt: "Rendered exterior of the 2194 sq ft Jematell Homes floor plan",
+    },
+    {
       slug: "2616",
-      sqft: "2,616 Sq Ft",
       title: "The 2616 Plan",
-      body: "3 bed · 2.5 bath · 1 Den/Office · 3-car garage. A spacious single-story design with a private study and gated courtyard, available to build on your lot.",
+      specs: ["2,616 Sq Ft", "3 Bedrooms", "2.5 Bathrooms", "1 Den/Office", "3-Car Garage"],
+      desc: "A spacious single-story design with a private study and gated courtyard, available to build on your lot.",
       img: "/images/plans/2616-rendering.png",
       alt: "Rendered exterior of the 2616 sq ft Jematell Homes floor plan",
+    },
+    {
+      slug: "2997",
+      title: "The 2997 Plan",
+      specs: ["2,997 Sq Ft", "5 Bedrooms", "3.5 Bathrooms", "2-Car Garage"],
+      desc: "A two-story modern farmhouse with an upstairs bonus room, available to build on your lot.",
+      img: "/images/plans/2997-rendering.png",
+      alt: "Rendered exterior of the 2997 sq ft Jematell Homes floor plan",
     },
   ],
 };
@@ -230,9 +254,13 @@ export function FloorPlanWidgets() {
                             <img src={card.img} alt={card.alt} loading="lazy" />
                           </Link>
                           <div className="page-tier-body">
-                            <span className="eyebrow">{card.sqft}</span>
                             <h3 className="page-tier-title">{card.title}</h3>
-                            <p>{card.body}</p>
+                            <ul className="fp-exclusive-specs" aria-label="Plan specifications">
+                              {card.specs.map((s) => (
+                                <li key={s}>{s}</li>
+                              ))}
+                            </ul>
+                            <p className="fp-exclusive-desc">{card.desc}</p>
                             <Link href={`/floor-plans/${card.slug}`} className="page-tier-link" data-testid={`fp-exclusive-${card.slug}-cta`}>
                               View Plan &amp; Elevations <ArrowRight size={14} />
                             </Link>

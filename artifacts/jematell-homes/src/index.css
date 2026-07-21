@@ -4222,6 +4222,35 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 .fp-exclusives-inline .page-tier-body p { font-size: 13px; }
 .fp-exclusives-inline .page-tier-link { font-size: 12px; margin-top: 4px; }
 
+/* Specs list + description inside exclusive cards */
+.fp-exclusive-specs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.fp-exclusive-specs li {
+  font-size: 13px;
+  color: var(--color-text);
+  line-height: 1.4;
+}
+.fp-exclusive-specs li:first-child {
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: var(--color-muted);
+}
+.fp-exclusive-desc {
+  font-size: 13px;
+  color: var(--color-muted);
+  margin: 0;
+  padding-top: 6px;
+  border-top: 1px solid var(--color-border);
+}
+
 /* ============================================
    Disclaimers (resource pages + footer)
    ============================================ */
