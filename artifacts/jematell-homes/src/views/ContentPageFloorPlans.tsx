@@ -203,7 +203,7 @@ const FP_EXCLUSIVES: Record<string, ExclusiveCard[]> = {
     {
       slug: "2997",
       title: "The 2997 Plan",
-      specs: ["2,997 Sq Ft", "5 Bedrooms", "3.5 Bathrooms", "2.5-Car Garage"],
+      specs: ["2,997 Sq Ft", "5 Bedrooms", "3.5 Bathrooms", "1 Bonus Room", "2.5-Car Garage"],
       desc: "A two-story modern farmhouse with an upstairs bonus room, available to build on your lot.",
       img: "/images/plans/2997-rendering.png",
       alt: "Rendered exterior of the 2997 sq ft Jematell Homes floor plan",
