@@ -1,0 +1,51 @@
+import { pageMetadata } from "@/seo/metadata";
+import { breadcrumbJsonLd } from "@/seo/jsonldBuilders";
+import { JsonLd } from "@/seo/JsonLd";
+import FloorPlanDetail from "@/views/FloorPlanDetail";
+import { CUSTOM_HOMES_SHOWCASE } from "@/lib/customHomesShowcase";
+
+export const metadata = pageMetadata({
+  title: "2045 Floor Plan",
+  description:
+    "The Jematell Homes 2045 sq ft floor plan: 2 bedrooms, 2.5 baths, a 2.5-car garage, and a dedicated RV garage. View the architectural floor plan and talk to us about building it on your lot.",
+  canonical: "/floor-plans/2045",
+});
+
+export default function Page() {
+  return (
+    <>
+      <JsonLd
+        data={[
+          breadcrumbJsonLd([
+            { name: "Home", url: "/" },
+            { name: "Floor Plans", url: "/floor-plans" },
+            { name: "2045 Floor Plan", url: "/floor-plans/2045" },
+          ]),
+        ]}
+      />
+      <FloorPlanDetail
+        planId="2045"
+        title="2045 Floor Plan"
+        heroSrc="/images/plans/2045-rendering.png"
+        heroAlt="Rendered exterior of the 2045 sq ft Jematell Homes floor plan"
+        stats={[
+          { value: "2,045", label: "Sq Ft" },
+          { value: "2", label: "Bedrooms" },
+          { value: "2.5", label: "Bathrooms" },
+          { value: "2.5-Car + RV", label: "Garage" },
+        ]}
+        planDesc="A single-level home designed around the toys as much as the family. An open great room, island kitchen, and dining space share one bright footprint that opens to a covered patio, while the owner's suite sits privately at the rear with its own bath and walk-in closet. A second bedroom and a full bath, plus a guest powder room, round out the living space. The signature feature is the garage: a roomy two-and-a-half-car bay alongside a dedicated, oversized RV garage."
+        drawings={[
+          { label: "Floor Plan", src: "/images/plans/2045-1.png", alt: "2045 floor plan layout — 2 bedrooms, 2.5 baths, 2.5-car plus RV garage" },
+        ]}
+        gallery={{
+          heading: "Custom Homes We've Built",
+          subtext: "A look at some of the custom homes we've built for families across the Valley.",
+          images: CUSTOM_HOMES_SHOWCASE,
+          linkHref: "/gallery",
+          linkLabel: "View Full Gallery",
+        }}
+      />
+    </>
+  );
+}
