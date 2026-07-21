@@ -96,6 +96,11 @@ export default function FloorPlan2086({
               </div>
               <div className="fp1849-stat-divider" />
               <div className="fp1849-stat">
+                <span className="fp1849-stat-value">1</span>
+                <span className="fp1849-stat-label">Den/Office</span>
+              </div>
+              <div className="fp1849-stat-divider" />
+              <div className="fp1849-stat">
                 <span className="fp1849-stat-value">3-Car</span>
                 <span className="fp1849-stat-label">Garage</span>
               </div>
