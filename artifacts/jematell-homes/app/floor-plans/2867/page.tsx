@@ -32,7 +32,6 @@ export default function Page() {
           { value: "2,867", label: "Sq Ft" },
           { value: "3", label: "Bedrooms" },
           { value: "2.5", label: "Bathrooms" },
-          { value: "1", label: "Casita" },
           { value: "3-Car", label: "Garage" },
         ]}
         planDesc="A single-level home with a private guest retreat all its own. The main house opens to a great room, island kitchen, and dining space that flow to a covered patio, with the owner's suite tucked privately at the rear beside a spa bath and oversized closet. Two more bedrooms, a full bath, a guest powder room, and a dedicated study round out the main home, served by a three-car garage. Beyond it, a detached 844 sq ft casita adds its own bedroom, bath, kitchen, living room, and garage for guests, family, or a home office."
