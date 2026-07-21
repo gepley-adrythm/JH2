@@ -4000,7 +4000,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 }
 .fp1849-drawings-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
   gap: clamp(16px, 2vw, 32px);
   margin-top: clamp(24px, 4vw, 48px);
 }
