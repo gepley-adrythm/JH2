@@ -136,6 +136,57 @@ const FLOOR_PLAN_COLLECTIONS: Array<{
   },
 ];
 
+// Jematell in-house plans that get a card above the partnered (Architectural
+// Designs) widget, keyed by the collection they belong to. A collection with no
+// entry here renders just the partnered widget (e.g. over-3000).
+type ExclusiveCard = {
+  slug: string;
+  sqft: string;
+  title: string;
+  body: string;
+  img: string;
+  alt: string;
+};
+
+const FP_EXCLUSIVES: Record<string, ExclusiveCard[]> = {
+  "under-2000": [
+    {
+      slug: "1604",
+      sqft: "1,604 Sq Ft",
+      title: "The 1604 Plan",
+      body: "3 bed · 2 bath · 2-car garage. A thoughtfully designed single-story home, available to build on your lot.",
+      img: "/images/plans/1604-rendering.png",
+      alt: "Rendered exterior of the 1604 sq ft Jematell Homes floor plan",
+    },
+    {
+      slug: "1644",
+      sqft: "1,644 Sq Ft",
+      title: "The 1644 Plan",
+      body: "3 bed · 2 bath · 2-car garage. A timeless single-story design, available to be built for your lot.",
+      img: "/images/plans/1644-rendering.png",
+      alt: "Rendered exterior of the 1644 sq ft Jematell Homes floor plan",
+    },
+    {
+      slug: "1849",
+      sqft: "1,849 Sq Ft",
+      title: "The 1849 Plan",
+      body: "3 bed · 2 bath · 2-car garage. A proven single-story design, available for your lot.",
+      img: "/images/1849-rendering-v2.png",
+      alt: "Rendered exterior of the 1849 sq ft Jematell Homes floor plan",
+    },
+  ],
+  "2000-3000": [
+    {
+      slug: "2616",
+      sqft: "2,616 Sq Ft",
+      title: "The 2616 Plan",
+      body: "3 bed · 2.5 bath · 3-car garage. A spacious single-story design with a private study and gated courtyard, available to build on your lot.",
+      img: "/images/plans/2616-rendering.png",
+      alt: "Rendered exterior of the 2616 sq ft Jematell Homes floor plan",
+    },
+  ],
+};
+
 export function FloorPlanWidgets() {
   return (
     <>
@@ -160,73 +211,38 @@ export function FloorPlanWidgets() {
                 <div className="page-plan-head">
                   <h3 className="page-plan-title">{c.title}</h3>
                 </div>
-                {c.id === "under-2000" && (
+                {FP_EXCLUSIVES[c.id] && (
                   <div className="fp-exclusives-inline" data-testid="floor-plan-exclusives">
                     <div className="fp-exclusives-inline-label">
                       <span className="eyebrow text-[15px]">Jematell Exclusives</span>
                     </div>
                     <div className="page-tiers-grid">
-                      <m.article
-                        className="page-tier-card"
-                        initial={{ opacity: 0, y: 24 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.15 }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        <Link href="/floor-plans/1604" className="page-tier-media fp-exclusive-media" data-testid="fp-exclusive-1604-img">
-                          <img src="/images/plans/1604-rendering.png" alt="Rendered exterior of the 1604 sq ft Jematell Homes floor plan" loading="lazy" />
-                        </Link>
-                        <div className="page-tier-body">
-                          <span className="eyebrow">1,604 Sq Ft</span>
-                          <h3 className="page-tier-title">The 1604 Plan</h3>
-                          <p>3 bed · 2 bath · 2-car garage. A thoughtfully designed single-story home, available to build on your lot.</p>
-                          <Link href="/floor-plans/1604" className="page-tier-link" data-testid="fp-exclusive-1604-cta">
-                            View Plan &amp; Elevations <ArrowRight size={14} />
+                      {FP_EXCLUSIVES[c.id].map((card) => (
+                        <m.article
+                          key={card.slug}
+                          className="page-tier-card"
+                          initial={{ opacity: 0, y: 24 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true, amount: 0.15 }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          <Link href={`/floor-plans/${card.slug}`} className="page-tier-media fp-exclusive-media" data-testid={`fp-exclusive-${card.slug}-img`}>
+                            <img src={card.img} alt={card.alt} loading="lazy" />
                           </Link>
-                        </div>
-                      </m.article>
-                      <m.article
-                        className="page-tier-card"
-                        initial={{ opacity: 0, y: 24 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.15 }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        <Link href="/floor-plans/1644" className="page-tier-media fp-exclusive-media" data-testid="fp-exclusive-1644-img">
-                          <img src="/images/plans/1644-rendering.png" alt="Rendered exterior of the 1644 sq ft Jematell Homes floor plan" loading="lazy" />
-                        </Link>
-                        <div className="page-tier-body">
-                          <span className="eyebrow">1,644 Sq Ft</span>
-                          <h3 className="page-tier-title">The 1644 Plan</h3>
-                          <p>3 bed · 2 bath · 2-car garage. A timeless single-story design, available to be built for your lot.</p>
-                          <Link href="/floor-plans/1644" className="page-tier-link" data-testid="fp-exclusive-1644-cta">
-                            View Plan &amp; Elevations <ArrowRight size={14} />
-                          </Link>
-                        </div>
-                      </m.article>
-                      <m.article
-                        className="page-tier-card"
-                        initial={{ opacity: 0, y: 24 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.15 }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        <Link href="/floor-plans/1849" className="page-tier-media fp-exclusive-media" data-testid="fp-exclusive-1849-img">
-                          <img src="/images/1849-rendering-v2.png" alt="Rendered exterior of the 1849 sq ft Jematell Homes floor plan" loading="lazy" />
-                        </Link>
-                        <div className="page-tier-body">
-                          <span className="eyebrow">1,849 Sq Ft</span>
-                          <h3 className="page-tier-title">The 1849 Plan</h3>
-                          <p>3 bed · 2 bath · 2-car garage. A proven single-story design, available for your lot.</p>
-                          <Link href="/floor-plans/1849" className="page-tier-link" data-testid="fp-exclusive-1849-cta">
-                            View Plan &amp; Elevations <ArrowRight size={14} />
-                          </Link>
-                        </div>
-                      </m.article>
+                          <div className="page-tier-body">
+                            <span className="eyebrow">{card.sqft}</span>
+                            <h3 className="page-tier-title">{card.title}</h3>
+                            <p>{card.body}</p>
+                            <Link href={`/floor-plans/${card.slug}`} className="page-tier-link" data-testid={`fp-exclusive-${card.slug}-cta`}>
+                              View Plan &amp; Elevations <ArrowRight size={14} />
+                            </Link>
+                          </div>
+                        </m.article>
+                      ))}
                     </div>
                   </div>
                 )}
-                {c.id === "under-2000" && (
+                {FP_EXCLUSIVES[c.id] && (
                   <div className="fp-partnered-label">
                     <span className="eyebrow text-[15px]" style={{ color: "var(--color-accent)" }}>Partnered Plans</span>
                   </div>

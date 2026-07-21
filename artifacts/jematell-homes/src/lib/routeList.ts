@@ -46,6 +46,7 @@ export function getAllRoutes(): string[] {
     "/floor-plans/1849",
     "/floor-plans/1644",
     "/floor-plans/1604",
+    "/floor-plans/2616",
     "/where-we-build",
     "/build-on-your-lot",
     "/buy-a-lot-with-us",
