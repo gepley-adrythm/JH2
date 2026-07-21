@@ -1,4 +1,3 @@
-import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { pageMetadata } from "@/seo/metadata";
 import { breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
@@ -65,12 +64,14 @@ export default function Financing() {
         ])}
       />
 
-      <section className="page-hero faq-hero faq-detail-hero page-hero-short">
-        <ResponsiveImage name="cta-bg" className="page-hero-bg" alt="" widths={[768, 1280, 1920, 2500]} sizes="100vw" width={2500} height={1667} priority />
-        <div className="page-hero-overlay" />
-        <div className="container page-hero-content">
+      <section className="page-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
+        <picture>
+          <img src="/images/financing-hero.jpg" alt="" className="page-hero-bg" loading="eager" />
+        </picture>
+        <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.55) 100%)" }} />
+        <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
           <span className="hero-eyebrow">Plan your build</span>
-          <h1 className="faq-detail-title hero-title">Financing Your Custom Home</h1>
+          <h1 className="page-hero-title hero-title">Financing Your Custom Home</h1>
         </div>
       </section>
 
