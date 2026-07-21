@@ -95,7 +95,12 @@ export default function FloorPlan2997({
               </div>
               <div className="fp1849-stat-divider" />
               <div className="fp1849-stat">
-                <span className="fp1849-stat-value">2-Car</span>
+                <span className="fp1849-stat-value">1</span>
+                <span className="fp1849-stat-label">Bonus Room</span>
+              </div>
+              <div className="fp1849-stat-divider" />
+              <div className="fp1849-stat">
+                <span className="fp1849-stat-value">2.5-Car</span>
                 <span className="fp1849-stat-label">Garage</span>
               </div>
             </div>
