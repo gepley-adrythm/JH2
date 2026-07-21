@@ -56,6 +56,12 @@ const nextConfig = {
   // wrapper broke framer-motion's whileInView reveals (sections rendered stuck
   // at their SSR opacity:0). Cross-route fades can return when that React API
   // stabilizes; scroll reveals matter more.
+  experimental: {
+    // Persist Turbopack's dev compilation cache to disk so dev-server restarts
+    // and revisited routes skip recompilation. Dev-only behavior; production
+    // builds are unaffected.
+    turbopackFileSystemCacheForDev: true,
+  },
 };
 
 export default nextConfig;
