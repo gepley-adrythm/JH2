@@ -30,6 +30,7 @@ export interface NavItem {
 
 export const navItems: NavItem[] = [
   { id: "custom-homes", label: "Custom Homes", href: "/custom-homes" },
+  { id: "gallery", label: "Gallery", href: "/gallery" },
   { id: "floor-plans", label: "Floor Plans", href: "/floor-plans" },
   {
     id: "where-we-build",
@@ -46,7 +47,6 @@ export const navItems: NavItem[] = [
     ],
   },
   { id: "financing", label: "Financing", href: "/financing" },
-  { id: "gallery", label: "Gallery", href: "/gallery" },
   { id: "about", label: "About", href: "/about" },
 ];
 
