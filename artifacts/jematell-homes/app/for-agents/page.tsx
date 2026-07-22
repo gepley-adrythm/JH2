@@ -104,7 +104,7 @@ export default function ForAgents() {
         </div>
 
         <div style={{ borderTop: "1px solid var(--color-border)", paddingTop: "2.5rem" }}>
-          <h2 className="heading-md" style={{ marginBottom: "0.75rem" }}>Ready to refer a client?</h2>
+          <h2 className="heading-md" style={{ marginBottom: "0.75rem", textTransform: "uppercase" }}>Ready to refer a client?</h2>
           <p style={{ lineHeight: 1.8, color: "var(--color-text-muted)", marginBottom: "1.5rem", maxWidth: 640 }}>
             Reach out and we will walk you through the referral process and answer any questions. You can call
             us at {siteConfig.contact.phone.display} or send a note through our contact form.
