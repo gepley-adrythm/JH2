@@ -4,6 +4,7 @@ import { breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { SITE_URL } from "@/seo/siteMeta";
 import { AboutCta } from "@/components/AboutCta";
+import { ContactCta } from "@/components/ContactCta";
 
 export const metadata = pageMetadata(contentPageMeta({ pageKey: "aboutus" }));
 
@@ -230,6 +231,9 @@ export default function About() {
                 Contact us today to discuss your home building needs and let us guide you on the journey to creating the
                 home you have always dreamed of.
               </p>
+              <div style={{ textAlign: "center", marginTop: 32 }}>
+                <ContactCta className="btn btn-primary" testid="about-contact-cta">Contact Us</ContactCta>
+              </div>
             </div>
           </div>
         </section>
