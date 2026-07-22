@@ -17,12 +17,12 @@ const STEPS: { title: string; body: string }[] = [
     body: "Connect us with a client who wants to build a custom home. You can send them our way or reach out on their behalf.",
   },
   {
-    title: "We build their home",
-    body: "We guide your client through design, financing, and construction, and keep you in the loop from first meeting to final walkthrough.",
-  },
-  {
     title: "You earn your fee",
     body: "When your client signs a contract to build with us, you receive a 1% referral fee. Your relationship with your client stays yours.",
+  },
+  {
+    title: "We build their home",
+    body: "We guide your client through design, financing, and construction, and keep you in the loop from first meeting to final walkthrough.",
   },
 ];
 
