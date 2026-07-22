@@ -297,7 +297,7 @@ export function FloorPlanWidgets() {
                           <div className="page-tier-body">
                             <h3 className="page-tier-title">{card.title}</h3>
                             <ul className="fp-exclusive-specs" aria-label="Plan specifications">
-                              {card.specs.map((s) => (
+                              {card.specs.filter((s) => s !== "11 Foot Ceilings").map((s) => (
                                 <li key={s}>{s}</li>
                               ))}
                             </ul>
