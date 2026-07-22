@@ -44,7 +44,7 @@ export default function ForAgents() {
       </section>
 
       <div className="container" style={{ maxWidth: 820, padding: "80px 24px 96px" }}>
-        <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 4vw, 2.75rem)", marginBottom: "1rem", textTransform: "uppercase" }}>
+        <h2 className="heading-lg" style={{ marginBottom: "1rem", textTransform: "uppercase" }}>
           Partner With Jematell Homes
         </h2>
         <p style={{ lineHeight: 1.8, fontSize: "1.05rem", color: "var(--color-text-muted)", marginBottom: "2.5rem", maxWidth: 680 }}>
@@ -63,7 +63,7 @@ export default function ForAgents() {
             marginBottom: "3.5rem",
           }}
         >
-          <div style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2.75rem, 7vw, 4rem)", lineHeight: 1, color: "var(--color-accent)" }}>
+          <div style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(2.75rem, 7vw, 4rem)", lineHeight: 1, color: "var(--color-accent)" }}>
             1%
           </div>
           <div style={{ fontSize: "1.1rem", fontWeight: 500, marginTop: "0.5rem", letterSpacing: "0.02em" }}>Referral Fee</div>
@@ -73,7 +73,7 @@ export default function ForAgents() {
           </p>
         </div>
 
-        <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "1.75rem", marginBottom: "1.5rem" }}>How it works</h2>
+        <h2 className="heading-md" style={{ marginBottom: "1.5rem" }}>How it works</h2>
         <div style={{ display: "grid", gap: "1.5rem", marginBottom: "3.5rem" }}>
           {STEPS.map((step, i) => (
             <div key={step.title} style={{ display: "flex", gap: "1.25rem", alignItems: "flex-start" }}>
@@ -89,7 +89,7 @@ export default function ForAgents() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  fontFamily: "var(--font-serif)",
+                  fontFamily: "var(--font-heading)",
                   fontSize: "1.1rem",
                 }}
               >
@@ -104,7 +104,7 @@ export default function ForAgents() {
         </div>
 
         <div style={{ borderTop: "1px solid var(--color-border)", paddingTop: "2.5rem" }}>
-          <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "1.5rem", marginBottom: "0.75rem" }}>Ready to refer a client?</h2>
+          <h2 className="heading-md" style={{ marginBottom: "0.75rem" }}>Ready to refer a client?</h2>
           <p style={{ lineHeight: 1.8, color: "var(--color-text-muted)", marginBottom: "1.5rem", maxWidth: 640 }}>
             Reach out and we will walk you through the referral process and answer any questions. You can call
             us at {siteConfig.contact.phone.display} or send a note through our contact form.
