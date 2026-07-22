@@ -140,7 +140,7 @@ const FP_EXCLUSIVES: Record<string, ExclusiveCard[]> = {
     {
       slug: "1849",
       title: "The 1849 Plan",
-      specs: ["1,849 Sq Ft", "3 Bedrooms", "2 Bathrooms", "2-Car Garage"],
+      specs: ["1,849 Sq Ft", "3 Bedrooms", "2 Bathrooms", "2-Car Garage", "11 Foot Ceilings"],
       desc: "A proven single-story design, available for your lot.",
       img: "/images/1849-rendering-v2.png",
       alt: "Rendered exterior of the 1849 sq ft Jematell Homes floor plan",
