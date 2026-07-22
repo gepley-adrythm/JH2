@@ -64,11 +64,12 @@ export default function SpecHomes() {
                   Contact Us
                 </Link>
               </div>
-              <div className="spec-intro-media">
+              <div className="spec-intro-media" style={{ minHeight: 480 }}>
                 <img
                   src="/images/spec-homes-kitchen.jpg"
                   alt="Kitchen in a Jematell Homes spec home with a quartz waterfall island, subway-tile backsplash, and stainless appliances"
                   loading="lazy"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 />
               </div>
             </div>
