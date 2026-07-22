@@ -75,8 +75,8 @@ export default function Financing() {
       </section>
 
       <section className="dt-section fin-page">
-        <div className="container">
-          <h2 className="fin-h2" style={{ textTransform: "uppercase", maxWidth: 860, marginInline: "auto" }}>How construction financing works</h2>
+        <div className="container" style={{ display: "flex", flexDirection: "column", justifyContent: "center", minHeight: "50vh" }}>
+          <h2 className="fin-h2" style={{ textTransform: "uppercase", textAlign: "center", marginBottom: "clamp(24px, 3vw, 40px)" }}>How construction financing works</h2>
           <div className="fin-steps">
             {steps.map((step, i) => (
               <article key={step.title} className="fin-step">
