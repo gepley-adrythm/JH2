@@ -285,6 +285,7 @@ function IntroSection({
   centered,
   horizontal,
   subtitleNowrap,
+  subtitleTwoLine,
 }: {
   subtitle?: string;
   intro?: string;
@@ -292,6 +293,7 @@ function IntroSection({
   centered?: boolean;
   horizontal?: boolean;
   subtitleNowrap?: boolean;
+  subtitleTwoLine?: boolean;
 }) {
   if (!subtitle && !intro && !image) return null;
 
@@ -336,7 +338,7 @@ function IntroSection({
         <div className={`page-intro-grid ${image ? "with-image" : "no-image"}${centered ? " centered" : ""}`}>
           <m.div className="page-intro-copy" {...FADE_IN} style={centered ? { textAlign: "center" } : undefined}>
             {subtitle ? (
-              <h2 className="heading-lg page-intro-title" style={{ fontSize: subtitleNowrap ? 'clamp(18px, 2.4vw, 36px)' : 'clamp(28px, 3.6vw, 48px)', textTransform: 'uppercase', ...(subtitleNowrap ? { whiteSpace: 'nowrap' } : {}) }}>
+              <h2 className="heading-lg page-intro-title" style={{ fontSize: subtitleNowrap ? 'clamp(18px, 2.4vw, 36px)' : subtitleTwoLine ? 'clamp(22px, 2.7vw, 38px)' : 'clamp(28px, 3.6vw, 48px)', textTransform: 'uppercase', ...(subtitleNowrap ? { whiteSpace: 'nowrap' } : {}) }}>
                 {subtitle.split('\n').map((line, i, arr) => (
                   <span key={i}>{line}{i < arr.length - 1 ? <br /> : null}</span>
                 ))}
@@ -971,7 +973,8 @@ export default function ContentPage({ pageKey, isRegion, region, data, cityImage
             : introImg}
           centered={key === "warranty"}
           horizontal={key === "where-we-build"}
-          subtitleNowrap={key === "scottsdale" || key === "rio-verde" || key === "cave-creek" || key === "fountain-hills" || key === "carefree" || key === "casa-grande" || key === "apache-junction" || key === "buy-a-lot-with-us"}
+          subtitleNowrap={key === "scottsdale" || key === "rio-verde" || key === "cave-creek" || key === "fountain-hills" || key === "carefree" || key === "casa-grande" || key === "apache-junction"}
+          subtitleTwoLine={key === "buy-a-lot-with-us"}
         />}
 
         {isLegal
