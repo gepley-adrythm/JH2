@@ -304,6 +304,7 @@ export function Footer() {
             <Link href="/privacy">Privacy Policy</Link>
             <Link href="/disclaimer">Disclaimer</Link>
             <Link href="/llm-info">LLM Info</Link>
+            <Link href="/for-agents">For Agents</Link>
           </nav>
         </div>
 

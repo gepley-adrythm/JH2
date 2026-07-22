@@ -212,6 +212,7 @@ function CityHeroPicture({ slug }: { slug: string }) {
 const LOCAL_HERO_IMAGES: Record<string, string> = {
   "where-we-build": "/images/where-we-build-hero.jpg",
   "surprise": "/images/city-hero-surprise.jpg",
+  "spechomes": "/images/spec-homes-hero.jpg",
 };
 
 function PageHero({
@@ -963,7 +964,7 @@ export default function ContentPage({ pageKey, isRegion, region, data, cityImage
   return (
     <MotionConfig reducedMotion="user">
       <main className="page" data-testid={`page-${key}`}>
-        <PageHero data={data} slug={key} citySlug={isRegion ? key : undefined} hideDescription={heroDescDup} galleryStyle={isRegion || key === "warranty" || key === "privacypolicy" || key === "custom-homes" || key === "where-we-build" || key === "build-on-your-lot" || key === "buy-a-lot-with-us" || key === "floorplans"} />
+        <PageHero data={data} slug={key} citySlug={isRegion ? key : undefined} hideDescription={heroDescDup} galleryStyle={isRegion || key === "warranty" || key === "privacypolicy" || key === "custom-homes" || key === "where-we-build" || key === "build-on-your-lot" || key === "buy-a-lot-with-us" || key === "floorplans" || key === "spechomes"} />
         {key === "where-we-build" ? <CityNavigator images={cityImages} /> : null}
         {key !== "floorplans" && <IntroSection
           subtitle={subtitle}

@@ -28,6 +28,7 @@
 /thank-you
 /blog
 /llm-info
+/for-agents
 /disclaimer
 /financing
 /resources

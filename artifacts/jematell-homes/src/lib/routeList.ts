@@ -68,6 +68,7 @@ export function getAllRoutes(): string[] {
     "/thank-you",
     "/blog",
     "/llm-info",
+    "/for-agents",
     "/disclaimer",
     "/financing",
     "/resources",
