@@ -47,8 +47,7 @@ export default function SpecHomes() {
           <div className="container">
             <div className="spec-intro-grid">
               <div className="spec-intro-copy">
-                <span className="eyebrow">Move-in ready</span>
-                <h2 className="heading-lg">High quality, stylish homes at affordable pricing</h2>
+                <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>High quality, stylish homes at affordable pricing</h2>
                 <p>
                   Our homes are designed with current trends in mind, and we never choose a price tag over quality.
                   Experience the satisfaction of owning a thoughtfully designed and impeccably constructed spec home,
@@ -75,7 +74,7 @@ export default function SpecHomes() {
           <div className="container">
             <div className="page-section-head centered">
               <span className="eyebrow">Homes Coming Soon</span>
-              <h2 className="heading-lg">New spec homes in Casa Grande</h2>
+              <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>New spec homes in Casa Grande</h2>
               <p className="spec-coming-intro">
                 A new collection of spec homes is underway on N. Roland Drive in Casa Grande. Explore the locations on
                 the map, then see the two plans we are building across these lots.
