@@ -27,50 +27,11 @@ interface Section {
   blocks: Block[];
 }
 
-const TIER_IMG_OVERRIDES = [
-  { src: "/images/plans/1849-1.png", alt: "1849 sq ft Jematell Homes floor plan drawing" },
-  { src: "/images/plans/2616-1.png", alt: "2616 sq ft Jematell Homes floor plan drawing" },
-  { src: "/images/plans/3610-1.png", alt: "3610 sq ft Jematell Homes floor plan drawing" },
-];
+const FEATURED_PLAN_SLUGS = ["1849", "2616", "3610"];
 
 export function FloorPlanTiersSection({ section }: { section: Section }) {
-  // Cards are image-on-top: in the source each tier image PRECEDES its h4 heading
-  // (e.g. img "3771 Square Foot Floor Plan" then h4 "Over 3,000 Sq Ft"). Hold each
-  // image as pending and attach it to the next tier's h4. Any trailing image after
-  // the final tier's body is decorative (e.g. an aerial photo) and is discarded.
-  type Tier = { title: string; body: string; img?: string; alt?: string };
-  const tiers: Tier[] = [];
-  let current: Partial<Tier> = {};
-  let pendingImg: string | undefined;
-  let pendingAlt: string | undefined;
-  for (const b of section.blocks) {
-    if (b.type === "h4" && b.text) {
-      if (current.title) {
-        tiers.push(current as Tier);
-        current = {};
-      }
-      current.title = b.text;
-      if (pendingImg) {
-        current.img = pendingImg;
-        current.alt = pendingAlt;
-        pendingImg = undefined;
-        pendingAlt = undefined;
-      }
-    } else if (b.type === "p" && b.text && current.title && !current.body) {
-      current.body = b.text;
-    } else if (b.type === "img" && b.src) {
-      // image belongs to the upcoming tier; close the current tier first
-      if (current.title) {
-        tiers.push(current as Tier);
-        current = {};
-      }
-      pendingImg = b.src;
-      pendingAlt = b.alt;
-    }
-  }
-  if (current.title) tiers.push(current as Tier);
-
-  if (!tiers.length) return null;
+  const allCards = Object.values(FP_EXCLUSIVES).flat();
+  const featured = FEATURED_PLAN_SLUGS.map((slug) => allCards.find((c) => c.slug === slug)).filter(Boolean) as ExclusiveCard[];
 
   return (
     <section className="page-tiers section-pad alt-bg">
@@ -80,30 +41,26 @@ export function FloorPlanTiersSection({ section }: { section: Section }) {
           <h2 className="heading-lg">{section.heading?.text}</h2>
         </m.div>
         <div className="page-tiers-grid">
-          {tiers.map((t, i) => (
+          {featured.map((card, i) => (
             <m.article
-              key={i}
+              key={card.slug}
               className="page-tier-card"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
             >
-              {(TIER_IMG_OVERRIDES[i] || t.img) ? (
-                <div className="page-tier-media">
-                  <img
-                    src={TIER_IMG_OVERRIDES[i]?.src ?? t.img}
-                    alt={TIER_IMG_OVERRIDES[i]?.alt ?? t.alt ?? t.title}
-                    loading="lazy"
-                  />
-                </div>
-              ) : null}
+              <Link href={`/floor-plans/${card.slug}`} className="page-tier-media fp-exclusive-media" data-testid={`fp-featured-${card.slug}-img`}>
+                <img src={card.img} alt={card.alt} loading="lazy" />
+              </Link>
               <div className="page-tier-body">
-                <span className="eyebrow">Tier {String.fromCharCode(64 + i + 1)}</span>
-                <h3 className="page-tier-title">{t.title}</h3>
-                <p>{t.body}</p>
-                <Link href="/contact" className="page-tier-link" data-testid={`tier-${i}-cta`}>
-                  Discuss this plan <ArrowRight size={14} />
+                <h3 className="page-tier-title">{card.title}</h3>
+                <ul className="fp-exclusive-specs" aria-label="Plan specifications">
+                  {card.specs.map((s) => <li key={s}>{s}</li>)}
+                </ul>
+                <p className="fp-exclusive-desc">{card.desc}</p>
+                <Link href={`/floor-plans/${card.slug}`} className="page-tier-link" data-testid={`fp-featured-${card.slug}-cta`}>
+                  View Plan &amp; Elevations <ArrowRight size={14} />
                 </Link>
               </div>
             </m.article>
