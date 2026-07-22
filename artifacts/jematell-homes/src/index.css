@@ -2587,6 +2587,7 @@ a.contact-info-card:hover {
   box-shadow: 0 24px 60px -20px rgba(18, 20, 21, 0.18);
 }
 .page-tier-media { aspect-ratio: 4/3; overflow: hidden; }
+.page-tiers .page-tier-media { aspect-ratio: 16/9; }
 .page-tier-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
 .page-tier-card:hover .page-tier-media img { transform: scale(1.04); }
 .page-tier-body { padding: 32px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
