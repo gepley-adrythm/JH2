@@ -66,6 +66,11 @@ export function FloorPlanTiersSection({ section }: { section: Section }) {
             </m.article>
           ))}
         </div>
+        <div style={{ textAlign: "center", marginTop: "clamp(32px, 4vw, 48px)" }}>
+          <Link href="/floor-plans" className="btn btn-primary" data-testid="fp-tiers-view-all">
+            View All Floor Plans
+          </Link>
+        </div>
       </div>
     </section>
   );
