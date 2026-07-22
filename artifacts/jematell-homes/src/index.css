@@ -5095,6 +5095,5 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   .spec-homes-cards { grid-template-columns: 1fr; max-width: 460px; }
 }
 .spec-card-address { font-size: 14px; color: var(--color-text-muted); margin: 0; }
-.spec-homes-cards .page-tier-media img { object-fit: contain; background: var(--color-cream); }
 
 .spec-map .leaflet-container { font-family: var(--font-body); }
