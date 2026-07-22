@@ -4335,6 +4335,9 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   border: 1px solid var(--color-border);
   border-radius: 10px;
   padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .fin-step-num {
   display: block;
