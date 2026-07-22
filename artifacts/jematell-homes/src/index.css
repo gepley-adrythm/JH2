@@ -1006,7 +1006,7 @@ picture {
 .city-nav-lot-card:hover { opacity: 0.75; }
 .city-nav-lot-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); font-weight: 600; }
 .city-nav-lot-title-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-.city-nav-lot-title { font-family: var(--font-serif); font-size: 24px; font-weight: 500; line-height: 1.15; letter-spacing: -0.01em; }
+.city-nav-lot-title { font-family: var(--font-heading); font-size: 24px; font-weight: 500; line-height: 1.15; letter-spacing: -0.01em; }
 .city-nav-lot-arrow { flex-shrink: 0; margin-top: 4px; color: var(--color-accent); transition: transform 0.2s; }
 .city-nav-lot-card:hover .city-nav-lot-arrow { transform: translateX(3px); }
 .city-nav-lot-sub { font-size: 14px; color: var(--color-text-muted); line-height: 1.55; margin: 0; }
@@ -2270,7 +2270,7 @@ a.contact-info-card:hover {
   background: var(--color-dark);
 }
 .contact-intro-heading {
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   font-size: clamp(1.15rem, 2.1vw, 1.85rem);
   font-weight: 400;
   color: var(--color-dark);
@@ -4316,7 +4316,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 .fin-page { padding-bottom: clamp(56px, 7vw, 96px); }
 
 .fin-h2 {
-  font-family: var(--font-serif, var(--font-heading));
+  font-family: var(--font-heading);
   font-weight: 400;
   font-size: clamp(1.6rem, 3vw, 2.1rem);
   line-height: 1.15;
@@ -4338,14 +4338,14 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 }
 .fin-step-num {
   display: block;
-  font-family: var(--font-serif, var(--font-heading));
+  font-family: var(--font-heading);
   font-size: 16px;
   line-height: 1;
   color: var(--color-accent);
   margin-bottom: 12px;
 }
 .fin-step-title {
-  font-family: var(--font-serif, var(--font-heading));
+  font-family: var(--font-heading);
   font-weight: 500;
   font-size: 1.15rem;
   line-height: 1.25;
@@ -4370,7 +4370,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
    minmax column below, so the extra room all goes to the results side. */
 .fin-calc-band-inner { max-width: min(1680px, 100%); }
 .fin-band-h2 {
-  font-family: var(--font-serif, var(--font-heading));
+  font-family: var(--font-heading);
   font-weight: 400;
   font-size: clamp(1.9rem, 3.5vw, 2.6rem);
   line-height: 1.15;
@@ -4522,7 +4522,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   opacity: 0.75;
 }
 .fin-stat-v {
-  font-family: var(--font-serif, var(--font-heading));
+  font-family: var(--font-heading);
   font-weight: 500;
   font-size: 1.45rem;
   line-height: 1.15;
@@ -4732,7 +4732,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 }
 /* Compact serif total: the lead all-in stat above stays the hero figure. */
 .fin-donut-total {
-  font-family: var(--font-serif, var(--font-heading));
+  font-family: var(--font-heading);
   font-weight: 500;
   font-size: clamp(1.4rem, 1.8vw, 1.8rem);
   line-height: 1.1;
@@ -4870,7 +4870,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   margin-bottom: 14px;
 }
 .fin-lender h2 {
-  font-family: var(--font-serif, var(--font-heading));
+  font-family: var(--font-heading);
   font-weight: 400;
   font-size: clamp(1.7rem, 3vw, 2.2rem);
   line-height: 1.1;
@@ -5099,3 +5099,29 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 .spec-card-address { font-size: 14px; color: var(--color-text-muted); margin: 0; }
 
 .spec-map .leaflet-container { font-family: var(--font-body); }
+
+/* Satellite / Map base-layer toggle */
+.spec-map .leaflet-control-layers {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+  background: #fff;
+}
+.spec-map .leaflet-control-layers-expanded {
+  padding: 8px 12px 8px 10px;
+}
+.spec-map .leaflet-control-layers-base label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 3px 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+  cursor: pointer;
+}
+.spec-map .leaflet-control-layers-base label input {
+  accent-color: var(--color-accent);
+  margin: 0;
+}

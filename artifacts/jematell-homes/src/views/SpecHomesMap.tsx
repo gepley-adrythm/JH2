@@ -5,9 +5,10 @@ import "leaflet/dist/leaflet.css";
 /**
  * Interactive "homes coming soon" map. Leaflet is imported dynamically inside
  * the effect so it only loads client-side (it touches `window`) and stays out
- * of the initial route bundle. Satellite base layer is Esri World Imagery
- * (no API key). One marker per home; clicking a pin opens a popup with the
- * plan, address, and a link to the floor plan.
+ * of the initial route bundle. Two base layers — Esri World Imagery satellite
+ * and OpenStreetMap street (both keyless) — are toggled with a Leaflet layers
+ * control. One marker per home; clicking a pin opens a popup with the plan,
+ * address, and a link to the floor plan.
  */
 
 export interface SpecMapHome {
@@ -40,13 +41,29 @@ export function SpecHomesMap({ homes }: { homes: SpecMapHome[] }) {
       const bounds = L.latLngBounds(homes.map((h) => [h.lat, h.lon] as [number, number]));
       map.fitBounds(bounds, { padding: [50, 50], maxZoom: 18 });
 
-      L.tileLayer(
+      const satellite = L.tileLayer(
         "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
         {
           maxZoom: 19,
           attribution: "Tiles &copy; Esri, Maxar, Earthstar Geographics",
         },
       ).addTo(map);
+
+      const street = L.tileLayer(
+        "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+          maxZoom: 19,
+          attribution: "&copy; OpenStreetMap contributors",
+        },
+      );
+
+      L.control
+        .layers(
+          { Satellite: satellite, Map: street },
+          {},
+          { position: "topright", collapsed: false },
+        )
+        .addTo(map);
 
       const icon = L.divIcon({
         html: PIN_SVG,
