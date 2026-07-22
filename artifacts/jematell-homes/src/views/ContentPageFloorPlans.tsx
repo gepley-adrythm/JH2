@@ -38,7 +38,7 @@ export function FloorPlanTiersSection({ section }: { section: Section }) {
       <div className="container">
         <m.div className="page-section-head centered" {...FADE_IN}>
           <span className="eyebrow">Floor plans</span>
-          <h2 className="heading-lg">{section.heading?.text}</h2>
+          <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>{section.heading?.text}</h2>
         </m.div>
         <div className="page-tiers-grid">
           {featured.map((card, i) => (
