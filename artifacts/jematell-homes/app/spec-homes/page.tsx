@@ -38,7 +38,7 @@ export default function SpecHomes() {
       <main className="page" data-testid="page-spec-homes">
         {/* Hero — kept as-is */}
         <section className="page-hero" data-testid="page-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
-          <img src="/images/spec-homes-hero.jpg" alt="" className="page-hero-bg" loading="eager" fetchPriority="high" />
+          <img src="/images/spec-homes-hero-3.jpg" alt="" className="page-hero-bg" loading="eager" fetchPriority="high" />
           <div
             className="page-hero-overlay"
             style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }}
