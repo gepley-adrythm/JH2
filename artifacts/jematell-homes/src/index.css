@@ -4203,6 +4203,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   text-decoration: none;
   cursor: pointer;
 }
+.fp-exclusive-media img { object-fit: contain !important; background: var(--color-cream); }
 
 /* Inline Jematell Exclusives block (inside widget section) */
 .fp-exclusives-inline {
