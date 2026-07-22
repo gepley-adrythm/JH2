@@ -45,8 +45,8 @@ export default function SpecHomes() {
         {/* Intro: reworked copy + kitchen photo */}
         <section className="section-pad">
           <div className="container">
-            <div className="spec-intro-grid">
-              <div className="spec-intro-copy">
+            <div className="spec-intro-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(32px, 5vw, 72px)", alignItems: "stretch" }}>
+              <div className="spec-intro-copy" style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
                 <h2 className="heading-lg" style={{ textTransform: "uppercase", fontSize: "48px" }}>High quality, stylish homes at affordable pricing</h2>
                 <p>
                   Our homes are designed with current trends in mind, and we never choose a price tag over quality.
@@ -54,15 +54,16 @@ export default function SpecHomes() {
                   built by a team that treats every detail like it matters. Contact us today to learn more about our
                   available spec homes.
                 </p>
-                <Link href="/contact" className="btn btn-primary" data-testid="spec-intro-cta">
+                <Link href="/contact" className="btn btn-primary" data-testid="spec-intro-cta" style={{ alignSelf: "flex-start" }}>
                   Contact Us
                 </Link>
               </div>
-              <div className="spec-intro-media">
+              <div className="spec-intro-media" style={{ overflow: "hidden", borderRadius: 4 }}>
                 <img
                   src="/images/spec-homes-kitchen.jpg"
                   alt="Kitchen in a Jematell Homes spec home with a quartz waterfall island, subway-tile backsplash, and stainless appliances"
                   loading="lazy"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 />
               </div>
             </div>
