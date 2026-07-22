@@ -5064,7 +5064,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   .spec-intro-media { order: -1; }
 }
 
-.spec-coming-intro { max-width: 640px; margin-inline: auto; }
+.spec-coming-intro { max-width: 780px; margin-inline: auto; }
 
 .spec-map {
   position: relative;
