@@ -518,8 +518,6 @@ function WhyChooseSection({ section, extraSection }: { section: Section; extraSe
   }
   if (current?.title) features.push({ ...(current as Feature), bullets: current.bullets || [] });
 
-  const { open } = useContactForm();
-
   return (
     <section className="page-why section-pad">
       <div className="container">
@@ -574,15 +572,6 @@ function WhyChooseSection({ section, extraSection }: { section: Section; extraSe
             </m.div>
           );
         })() : null}
-        <m.div className="page-why-cta-block" {...FADE_IN}>
-          <h2 className="page-why-cta-title">Start Your Search Today</h2>
-          <p className="page-why-cta-body">
-            Whether you already have an area in mind or are just beginning your search, we're here to help you find the perfect lot and move forward with confidence.
-          </p>
-          <button className="btn btn-primary" onClick={open} data-testid="why-cta-btn">
-            Start your build <ArrowRight size={16} />
-          </button>
-        </m.div>
       </div>
     </section>
   );
