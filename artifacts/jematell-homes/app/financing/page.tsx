@@ -74,7 +74,7 @@ export default function Financing() {
         </div>
       </section>
 
-      <section className="dt-section fin-page">
+      <section className="dt-section fin-page" style={{ paddingTop: "clamp(24px, 3vw, 40px)" }}>
         <div className="container">
           <h2 className="fin-h2" style={{ textTransform: "uppercase", textAlign: "center", marginBottom: "clamp(24px, 3vw, 40px)" }}>How construction financing works</h2>
           <div className="fin-steps">
