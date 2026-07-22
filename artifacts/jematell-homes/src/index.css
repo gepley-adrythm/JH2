@@ -1006,7 +1006,7 @@ picture {
 .city-nav-lot-card:hover { opacity: 0.75; }
 .city-nav-lot-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); font-weight: 600; }
 .city-nav-lot-title-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-.city-nav-lot-title { font-family: var(--font-heading); font-size: 24px; font-weight: 500; line-height: 1.15; letter-spacing: -0.01em; }
+.city-nav-lot-title { font-family: var(--font-serif); font-size: 24px; font-weight: 500; line-height: 1.15; letter-spacing: -0.01em; }
 .city-nav-lot-arrow { flex-shrink: 0; margin-top: 4px; color: var(--color-accent); transition: transform 0.2s; }
 .city-nav-lot-card:hover .city-nav-lot-arrow { transform: translateX(3px); }
 .city-nav-lot-sub { font-size: 14px; color: var(--color-text-muted); line-height: 1.55; margin: 0; }
@@ -2270,7 +2270,7 @@ a.contact-info-card:hover {
   background: var(--color-dark);
 }
 .contact-intro-heading {
-  font-family: var(--font-heading);
+  font-family: var(--font-serif);
   font-size: clamp(1.15rem, 2.1vw, 1.85rem);
   font-weight: 400;
   color: var(--color-dark);
@@ -4316,7 +4316,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 .fin-page { padding-bottom: clamp(56px, 7vw, 96px); }
 
 .fin-h2 {
-  font-family: var(--font-heading);
+  font-family: var(--font-serif, var(--font-heading));
   font-weight: 400;
   font-size: clamp(1.6rem, 3vw, 2.1rem);
   line-height: 1.15;
@@ -4335,18 +4335,17 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   border: 1px solid var(--color-border);
   border-radius: 10px;
   padding: 22px;
-  min-width: 0;
 }
 .fin-step-num {
   display: block;
-  font-family: var(--font-heading);
+  font-family: var(--font-serif, var(--font-heading));
   font-size: 16px;
   line-height: 1;
   color: var(--color-accent);
   margin-bottom: 12px;
 }
 .fin-step-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-serif, var(--font-heading));
   font-weight: 500;
   font-size: 1.15rem;
   line-height: 1.25;
@@ -4371,14 +4370,13 @@ a.dt-source-card:hover { transform: translateY(-2px); }
    minmax column below, so the extra room all goes to the results side. */
 .fin-calc-band-inner { max-width: min(1680px, 100%); }
 .fin-band-h2 {
-  font-family: var(--font-heading);
+  font-family: var(--font-serif, var(--font-heading));
   font-weight: 400;
   font-size: clamp(1.9rem, 3.5vw, 2.6rem);
   line-height: 1.15;
   letter-spacing: -0.01em;
   color: #fff;
   margin-bottom: 10px;
-  text-transform: uppercase;
 }
 .fin-band-intro {
   max-width: 62ch;
@@ -4524,7 +4522,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   opacity: 0.75;
 }
 .fin-stat-v {
-  font-family: var(--font-heading);
+  font-family: var(--font-serif, var(--font-heading));
   font-weight: 500;
   font-size: 1.45rem;
   line-height: 1.15;
@@ -4734,7 +4732,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 }
 /* Compact serif total: the lead all-in stat above stays the hero figure. */
 .fin-donut-total {
-  font-family: var(--font-heading);
+  font-family: var(--font-serif, var(--font-heading));
   font-weight: 500;
   font-size: clamp(1.4rem, 1.8vw, 1.8rem);
   line-height: 1.1;
@@ -4872,7 +4870,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   margin-bottom: 14px;
 }
 .fin-lender h2 {
-  font-family: var(--font-heading);
+  font-family: var(--font-serif, var(--font-heading));
   font-weight: 400;
   font-size: clamp(1.7rem, 3vw, 2.2rem);
   line-height: 1.1;
@@ -5126,4 +5124,181 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 .spec-map .leaflet-control-layers-base label input {
   accent-color: var(--color-accent);
   margin: 0;
+}
+
+/* ============================ About page ============================ */
+.about-h2 {
+  text-transform: uppercase;
+  font-size: clamp(26px, 3.2vw, 42px);
+  line-height: 1.12;
+  margin: 12px 0 0;
+}
+.about-split {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+.about-split.reverse {
+  grid-template-columns: 0.95fr 1.05fr;
+}
+.about-copy .eyebrow {
+  display: block;
+}
+.about-copy .about-h2 {
+  margin-bottom: 20px;
+}
+.about-lead {
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.7;
+  color: var(--color-text);
+  font-weight: 500;
+}
+.about-copy p + p {
+  margin-top: 16px;
+}
+.about-copy p:not(.about-lead) {
+  color: var(--color-text-muted);
+  line-height: 1.8;
+}
+.about-figure {
+  margin: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  box-shadow: 0 18px 48px rgba(20, 24, 28, 0.14);
+}
+.about-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+@media (max-width: 820px) {
+  .about-split,
+  .about-split.reverse {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .about-split.reverse .about-figure {
+    order: 2;
+  }
+  .about-split.reverse .about-copy {
+    order: 1;
+  }
+}
+
+.about-narrow {
+  max-width: 760px;
+  margin-inline: auto;
+}
+.about-centered-lead {
+  text-align: center;
+  max-width: 760px;
+  margin: clamp(16px, 2vw, 24px) auto 0;
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.85;
+  color: var(--color-text-muted);
+}
+
+.about-values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+  margin-top: clamp(32px, 4vw, 52px);
+}
+.about-value {
+  padding-top: 20px;
+  border-top: 2px solid var(--color-warm);
+}
+.about-value h3 {
+  font-size: 21px;
+  margin: 0 0 10px;
+}
+.about-value p {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+@media (max-width: 820px) {
+  .about-values {
+    grid-template-columns: 1fr;
+    max-width: 460px;
+    margin-inline: auto;
+  }
+}
+
+.about-assurance {
+  list-style: none;
+  padding: 0;
+  margin: clamp(24px, 3vw, 32px) auto 0;
+  display: grid;
+  gap: 14px;
+  max-width: 520px;
+}
+.about-assurance li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+.about-assurance li svg {
+  color: var(--color-accent);
+  flex: none;
+  margin-top: 2px;
+}
+
+.about-team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 32px);
+  margin-top: clamp(36px, 4vw, 56px);
+}
+.about-team-card {
+  background: var(--color-bone);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: clamp(26px, 3vw, 34px);
+  text-align: center;
+}
+.about-monogram {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  background: var(--color-warm);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 27px;
+  letter-spacing: 0.03em;
+}
+.about-team-card h3 {
+  font-size: 23px;
+  margin: 0 0 4px;
+}
+.about-team-role {
+  color: var(--color-warm);
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+}
+.about-team-card p:last-child {
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin: 0;
+  font-size: 15px;
+}
+@media (max-width: 820px) {
+  .about-team-grid {
+    grid-template-columns: 1fr;
+    max-width: 440px;
+    margin-inline: auto;
+  }
 }

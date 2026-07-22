@@ -57,6 +57,12 @@ export function buildSiteJsonLd(): object[] {
     description: DEFAULT_DESCRIPTION,
     slogan: siteConfig.tagline,
     foundingDate: "2022-07-13",
+    founder: {
+      "@type": "Person",
+      "@id": SITE_URL + "/#founder",
+      name: "Joseph Telles",
+      jobTitle: "Founder & Owner",
+    },
     email: contact.email.display,
     telephone: contact.phone.display,
     address: postalAddress,
