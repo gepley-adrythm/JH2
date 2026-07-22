@@ -214,6 +214,7 @@ const LOCAL_HERO_IMAGES: Record<string, string> = {
   "surprise": "/images/city-hero-surprise.jpg",
   "spechomes": "/images/spec-homes-hero-2.jpg",
   "build-on-your-lot": "/images/build-on-your-lot-hero.jpg",
+  "buy-a-lot-with-us": "/images/buy-a-lot-with-us-hero.jpg",
 };
 
 function PageHero({
