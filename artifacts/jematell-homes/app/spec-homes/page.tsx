@@ -7,27 +7,21 @@ import { SpecHomesMap } from "@/views/SpecHomesMap";
 
 export const metadata = pageMetadata(contentPageMeta({ pageKey: "spechomes" }));
 
-const HOMES = [
-  {
-    plan: "1849 Plan",
-    href: "/floor-plans/1849",
-    img: "/images/1849-rendering-v2.png",
-    address: "7948 N. Roland Dr, Casa Grande, AZ 85194",
-    lat: 32.952139,
-    lon: -111.685667,
-    specs: ["1,849 Sq Ft", "3 Bedrooms", "2 Bathrooms", "2-Car Garage"],
-    status: "Coming Soon",
-  },
-  {
-    plan: "1644 Plan",
-    href: "/floor-plans/1644",
-    img: "/images/plans/1644-rendering.png",
-    address: "7924 N. Roland Dr, Casa Grande, AZ 85194",
-    lat: 32.952000,
-    lon: -111.685639,
-    specs: ["1,644 Sq Ft", "3 Bedrooms", "2 Bathrooms", "2-Car Garage"],
-    status: "Coming Soon",
-  },
+// Every lot we're building on N. Roland Dr (one map pin each), north to south.
+const LOTS: { plan: "1849" | "1644"; address: string; lat: number; lon: number }[] = [
+  { plan: "1849", address: "7948 N. Roland Dr, Casa Grande, AZ 85194", lat: 32.952139, lon: -111.685667 },
+  { plan: "1644", address: "7924 N. Roland Dr, Casa Grande, AZ 85194", lat: 32.952000, lon: -111.685639 },
+  { plan: "1644", address: "7616 N. Roland Dr, Casa Grande, AZ 85194", lat: 32.950250, lon: -111.685806 },
+  { plan: "1849", address: "7654 N. Roland Dr, Casa Grande, AZ 85194", lat: 32.950056, lon: -111.685806 },
+  { plan: "1644", address: "7686 N. Roland Dr, Casa Grande, AZ 85194", lat: 32.949694, lon: -111.685833 },
+  { plan: "1849", address: "7718 N. Roland Dr, Casa Grande, AZ 85194", lat: 32.949361, lon: -111.685889 },
+  { plan: "1644", address: "7744 N. Roland Dr, Casa Grande, AZ 85194", lat: 32.949111, lon: -111.685972 },
+];
+
+// The two plan types being built (one card each, with a coming-soon count).
+const PLANS: { id: "1849" | "1644"; href: string; img: string; specs: string[] }[] = [
+  { id: "1849", href: "/floor-plans/1849", img: "/images/1849-rendering-v2.png", specs: ["1,849 Sq Ft", "3 Bedrooms", "2 Bathrooms", "2-Car Garage"] },
+  { id: "1644", href: "/floor-plans/1644", img: "/images/plans/1644-rendering.png", specs: ["1,644 Sq Ft", "3 Bedrooms", "2 Bathrooms", "2-Car Garage"] },
 ];
 
 export default function SpecHomes() {
@@ -38,7 +32,7 @@ export default function SpecHomes() {
       <main className="page" data-testid="page-spec-homes">
         {/* Hero — kept as-is */}
         <section className="page-hero" data-testid="page-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
-          <img src="/images/spec-homes-hero-3.jpg" alt="" className="page-hero-bg" loading="eager" fetchPriority="high" />
+          <img src="/images/spec-homes-hero.jpg" alt="" className="page-hero-bg" loading="eager" fetchPriority="high" />
           <div
             className="page-hero-overlay"
             style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }}
@@ -53,7 +47,8 @@ export default function SpecHomes() {
           <div className="container">
             <div className="spec-intro-grid">
               <div className="spec-intro-copy">
-                <h2 className="heading-lg" style={{ textTransform: "uppercase", fontSize: "48px" }}>High quality, stylish homes at affordable pricing</h2>
+                <span className="eyebrow">Move-in ready</span>
+                <h2 className="heading-lg">High quality, stylish homes at affordable pricing</h2>
                 <p>
                   Our homes are designed with current trends in mind, and we never choose a price tag over quality.
                   Experience the satisfaction of owning a thoughtfully designed and impeccably constructed spec home,
@@ -64,12 +59,11 @@ export default function SpecHomes() {
                   Contact Us
                 </Link>
               </div>
-              <div className="spec-intro-media" style={{ minHeight: 480 }}>
+              <div className="spec-intro-media">
                 <img
                   src="/images/spec-homes-kitchen.jpg"
                   alt="Kitchen in a Jematell Homes spec home with a quartz waterfall island, subway-tile backsplash, and stainless appliances"
                   loading="lazy"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 />
               </div>
             </div>
@@ -83,43 +77,48 @@ export default function SpecHomes() {
               <span className="eyebrow">Homes Coming Soon</span>
               <h2 className="heading-lg">New spec homes in Casa Grande</h2>
               <p className="spec-coming-intro">
-                Two brand-new spec homes are underway on N. Roland Drive. Explore the location on the map, then see the
-                plans we are building on each lot.
+                A new collection of spec homes is underway on N. Roland Drive in Casa Grande. Explore the locations on
+                the map, then see the two plans we are building across these lots.
               </p>
             </div>
 
             <SpecHomesMap
-              homes={HOMES.map((h) => ({
-                lat: h.lat,
-                lon: h.lon,
-                plan: `The ${h.plan}`,
-                address: h.address,
-                status: h.status,
-                href: h.href,
+              homes={LOTS.map((l) => ({
+                lat: l.lat,
+                lon: l.lon,
+                plan: `The ${l.plan} Plan`,
+                address: l.address,
+                status: "Coming Soon",
+                href: `/floor-plans/${l.plan}`,
               }))}
             />
 
             <div className="spec-homes-cards">
-              {HOMES.map((h) => (
-                <article className="page-tier-card" key={h.plan} data-testid={`spec-card-${h.plan.split(" ")[0]}`}>
-                  <Link href={h.href} className="page-tier-media fp-exclusive-media">
-                    <img src={h.img} alt={`Rendered exterior of the ${h.plan} by Jematell Homes`} loading="lazy" />
-                  </Link>
-                  <div className="page-tier-body">
-                    <span className="eyebrow" style={{ color: "var(--color-warm)" }}>{h.status}</span>
-                    <h3 className="page-tier-title">The {h.plan}</h3>
-                    <p className="spec-card-address">{h.address}</p>
-                    <ul className="fp-exclusive-specs" aria-label="Plan specifications">
-                      {h.specs.map((s) => (
-                        <li key={s}>{s}</li>
-                      ))}
-                    </ul>
-                    <Link href={h.href} className="page-tier-link" data-testid={`spec-card-${h.plan.split(" ")[0]}-cta`}>
-                      View Plan &amp; Elevations <ArrowRight size={14} />
+              {PLANS.map((p) => {
+                const count = LOTS.filter((l) => l.plan === p.id).length;
+                return (
+                  <article className="page-tier-card" key={p.id} data-testid={`spec-card-${p.id}`}>
+                    <Link href={p.href} className="page-tier-media fp-exclusive-media">
+                      <img src={p.img} alt={`Rendered exterior of the ${p.id} Plan by Jematell Homes`} loading="lazy" />
                     </Link>
-                  </div>
-                </article>
-              ))}
+                    <div className="page-tier-body">
+                      <span className="eyebrow" style={{ color: "var(--color-warm)" }}>
+                        {count} {count === 1 ? "Home" : "Homes"} Coming Soon
+                      </span>
+                      <h3 className="page-tier-title">The {p.id} Plan</h3>
+                      <p className="spec-card-address">On N. Roland Dr, Casa Grande, AZ 85194</p>
+                      <ul className="fp-exclusive-specs" aria-label="Plan specifications">
+                        {p.specs.map((s) => (
+                          <li key={s}>{s}</li>
+                        ))}
+                      </ul>
+                      <Link href={p.href} className="page-tier-link" data-testid={`spec-card-${p.id}-cta`}>
+                        View Plan &amp; Elevations <ArrowRight size={14} />
+                      </Link>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>

@@ -36,14 +36,9 @@ export function SpecHomesMap({ homes }: { homes: SpecMapHome[] }) {
       const L = (await import("leaflet")).default;
       if (cancelled || !ref.current || !homes.length) return;
 
-      const lats = homes.map((h) => h.lat);
-      const lons = homes.map((h) => h.lon);
-      const center: [number, number] = [
-        (Math.min(...lats) + Math.max(...lats)) / 2,
-        (Math.min(...lons) + Math.max(...lons)) / 2,
-      ];
-
-      map = L.map(ref.current, { scrollWheelZoom: false, attributionControl: true }).setView(center, 18);
+      map = L.map(ref.current, { scrollWheelZoom: false, attributionControl: true });
+      const bounds = L.latLngBounds(homes.map((h) => [h.lat, h.lon] as [number, number]));
+      map.fitBounds(bounds, { padding: [50, 50], maxZoom: 18 });
 
       L.tileLayer(
         "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
