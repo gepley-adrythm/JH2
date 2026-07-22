@@ -986,7 +986,7 @@ export default function ContentPage({ pageKey, isRegion, region, data, cityImage
               );
               if (isProcessSection(s)) return <ProcessSection key={i} section={s} />;
               if (isFloorPlanTiersSection(s, sections.slice(i + 1)))
-                return <FloorPlanTiersSection key={i} section={s} />;
+                return <FloorPlanTiersSection key={i} section={s} pageKey={key} />;
               if (isWhyChooseSection(s)) {
                 const next = sections[i + 1];
                 const isDueDiligence = next?.heading?.text?.toLowerCase().includes("due diligence");

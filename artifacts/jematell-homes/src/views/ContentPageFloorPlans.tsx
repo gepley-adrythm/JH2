@@ -29,9 +29,13 @@ interface Section {
 
 const FEATURED_PLAN_SLUGS = ["1849", "2616", "3610"];
 
-export function FloorPlanTiersSection({ section }: { section: Section }) {
+export function FloorPlanTiersSection({ section, pageKey }: { section: Section; pageKey?: string }) {
   const allCards = Object.values(FP_EXCLUSIVES).flat();
   const featured = FEATURED_PLAN_SLUGS.map((slug) => allCards.find((c) => c.slug === slug)).filter(Boolean) as ExclusiveCard[];
+  const isFloorPlansIndex = pageKey === "floorplans";
+  const visibleCards = isFloorPlansIndex
+    ? featured.map((c) => ({ ...c, specs: c.specs.filter((s) => s !== "11 Foot Ceilings") }))
+    : featured;
 
   return (
     <section className="page-tiers section-pad alt-bg">
@@ -40,7 +44,7 @@ export function FloorPlanTiersSection({ section }: { section: Section }) {
           <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>{section.heading?.text}</h2>
         </m.div>
         <div className="page-tiers-grid">
-          {featured.map((card, i) => (
+          {visibleCards.map((card, i) => (
             <m.article
               key={card.slug}
               className="page-tier-card"
@@ -140,7 +144,7 @@ const FP_EXCLUSIVES: Record<string, ExclusiveCard[]> = {
     {
       slug: "1849",
       title: "The 1849 Plan",
-      specs: ["1,849 Sq Ft", "3 Bedrooms", "2 Bathrooms", "2-Car Garage"],
+      specs: ["1,849 Sq Ft", "3 Bedrooms", "2 Bathrooms", "2-Car Garage", "11 Foot Ceilings"],
       desc: "A proven single-story design, with soaring ceilings available for your lot.",
       img: "/images/1849-rendering-v2.png",
       alt: "Rendered exterior of the 1849 sq ft Jematell Homes floor plan",
