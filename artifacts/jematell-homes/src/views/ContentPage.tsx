@@ -440,7 +440,7 @@ function ProcessSection({ section }: { section: Section }) {
     <section className={isFeaturedLayout ? "process page-process-featured section-pad" : "page-process section-pad"}>
       <div className="container">
         <m.div className="page-section-head centered" {...FADE_IN}>
-          <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>{section.heading?.text}</h2>
+          <h2 className="heading-lg" style={{ textTransform: "uppercase", fontSize: "clamp(24px, 3vw, 44px)", whiteSpace: "nowrap" }}>{section.heading?.text}</h2>
         </m.div>
         {isFeaturedLayout ? (
           <div className="process-grid">
