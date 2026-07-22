@@ -53,7 +53,7 @@ export default function SpecHomes() {
           <div className="container">
             <div className="spec-intro-grid">
               <div className="spec-intro-copy">
-                <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>High quality, stylish homes at affordable pricing</h2>
+                <h2 className="heading-lg" style={{ textTransform: "uppercase", fontSize: "48px" }}>High quality, stylish homes at affordable pricing</h2>
                 <p>
                   Our homes are designed with current trends in mind, and we never choose a price tag over quality.
                   Experience the satisfaction of owning a thoughtfully designed and impeccably constructed spec home,
