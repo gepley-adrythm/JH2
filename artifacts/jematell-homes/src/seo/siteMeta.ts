@@ -38,19 +38,35 @@ export function buildSiteJsonLd(): object[] {
     postalCode: addr.postalCode,
     addressCountry: addr.country,
   };
-  const sameAs = [social.instagram, social.facebook];
+  const sameAs = [
+    social.instagram,
+    social.facebook,
+    // Google Business Profile
+    "https://maps.app.goo.gl/pSjm2LpxCc5CcTVD8",
+  ];
 
   const organization = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": SITE_URL + "/#organization",
     name: brand.name,
+    legalName: "Jematell Homes, LLC",
     url: SITE_URL,
     logo: absoluteUrl("/images/logo.png"),
     image: absoluteUrl(DEFAULT_OG_IMAGE),
+    description: DEFAULT_DESCRIPTION,
+    slogan: siteConfig.tagline,
+    foundingDate: "2022-07-13",
     email: contact.email.display,
     telephone: contact.phone.display,
     address: postalAddress,
+    knowsAbout: [
+      "Custom home construction",
+      "Spec homes",
+      "Home building in Arizona",
+      "Build on your lot",
+      "Semi-custom homes",
+    ],
     sameAs,
   };
 
@@ -65,6 +81,7 @@ export function buildSiteJsonLd(): object[] {
     telephone: contact.phone.display,
     email: contact.email.display,
     priceRange: "$$$",
+    foundingDate: "2022-07-13",
     address: postalAddress,
     areaServed: [
       "Scottsdale",
