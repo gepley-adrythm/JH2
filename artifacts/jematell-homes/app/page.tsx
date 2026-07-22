@@ -1,7 +1,7 @@
 import { preload } from "react-dom";
 import { pageMetadata } from "@/seo/metadata";
 import { absoluteUrl } from "@/seo/siteMeta";
-import { Hero, About, ServicesSplit, Process, Reviews, FeaturedProjects } from "@/sections";
+import { Hero, About, ServicesSplit, Process, Reviews, FeaturedProjects, HomepageFloorPlans } from "@/sections";
 import { CTA } from "@/cta";
 
 export const metadata = pageMetadata({
@@ -28,6 +28,7 @@ export default function Home() {
       <Process />
       <FeaturedProjects />
       <Reviews />
+      <HomepageFloorPlans />
       <CTA />
     </main>
   );

@@ -12,6 +12,8 @@ import { EASE_OUT_EXPO } from "./motion";
 // route JS). Re-exported here so the home page import path is unchanged.
 export { FeaturedProjects } from "./components/FeaturedProjects";
 
+export { HomepageFloorPlans } from "./components/HomepageFloorPlans";
+
 // --- Data ---
 const REVIEWS = [
   {
