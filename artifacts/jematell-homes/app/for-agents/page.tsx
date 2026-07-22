@@ -35,11 +35,18 @@ export default function ForAgents() {
           { name: "For Real Estate Agents", url: "/for-agents" },
         ])}
       />
+      <section className="page-hero" data-testid="page-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
+        <img src="/images/for-agents-hero.jpg" alt="" className="page-hero-bg" loading="eager" fetchPriority="high" />
+        <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }} />
+        <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
+          <h1 className="page-hero-title hero-title" style={{ textTransform: "uppercase" }}>For Real Estate Agents</h1>
+        </div>
+      </section>
+
       <div className="container" style={{ maxWidth: 820, padding: "80px 24px 96px" }}>
-        <span className="hero-eyebrow" style={{ display: "block", marginBottom: "0.75rem" }}>For Real Estate Agents</span>
-        <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 4vw, 2.75rem)", marginBottom: "1rem" }}>
+        <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 4vw, 2.75rem)", marginBottom: "1rem" }}>
           Partner With Jematell Homes
-        </h1>
+        </h2>
         <p style={{ lineHeight: 1.8, fontSize: "1.05rem", color: "var(--color-text-muted)", marginBottom: "2.5rem", maxWidth: 680 }}>
           We love working with real estate agents. If you have a client who wants to build a custom home,
           bring them to us. We handle the design and construction, keep you involved throughout, and reward
