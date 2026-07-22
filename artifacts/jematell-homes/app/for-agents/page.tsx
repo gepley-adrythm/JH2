@@ -14,7 +14,7 @@ export const metadata = pageMetadata({
 const STEPS: { title: string; body: string }[] = [
   {
     title: "Introduce your client",
-    body: "Connect us with a client who wants to build a custom home anywhere in the Phoenix metro. Send them our way or reach out on their behalf.",
+    body: "Connect us with a client who wants to build a custom home. You can send them our way or reach out on their behalf.",
   },
   {
     title: "We build their home",
