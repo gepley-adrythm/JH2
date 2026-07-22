@@ -4,6 +4,7 @@ import { JsonLd } from "@/seo/JsonLd";
 import { ConstructionLoanCalculator } from "@/components/ConstructionLoanCalculator";
 import { DetailMore, DetailDisclaimer, type MoreColumn } from "@/components/DetailParts";
 import { ContactCta } from "@/components/ContactCta";
+import { CTA } from "@/cta";
 
 export const metadata = pageMetadata({
   title: "Construction Financing in Arizona",
@@ -127,13 +128,7 @@ export default function Financing() {
         </div>
       </section>
 
-      <section className="faq-cta">
-        <div className="container faq-cta-inner">
-          <h2 className="faq-cta-title">Ready to run the real numbers?</h2>
-          <p className="faq-cta-sub">Tell us about your project and we will walk you through budget and financing in plain language.</p>
-          <ContactCta testid="financing-cta-contact">Start the conversation</ContactCta>
-        </div>
-      </section>
+      <CTA />
     </main>
   );
 }
