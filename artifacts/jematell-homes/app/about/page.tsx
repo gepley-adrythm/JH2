@@ -190,7 +190,7 @@ export default function About() {
               </figure>
               <div className="about-copy">
                 <span className="eyebrow">Our Story</span>
-                <h2 className="heading-lg about-h2">A family built on decades of experience</h2>
+                <h2 className="heading-lg about-h2">A family built on<br /> decades of experience</h2>
                 <p className="about-lead">
                   Founded in 2022, Jematell Homes brings together a team whose experience spans home building, finance,
                   and land development.
