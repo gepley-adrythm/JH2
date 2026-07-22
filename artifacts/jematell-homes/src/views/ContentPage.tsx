@@ -524,7 +524,7 @@ function WhyChooseSection({ section, extraSection }: { section: Section; extraSe
     <section className="page-why section-pad">
       <div className="container">
         <m.div className="page-section-head" {...FADE_IN}>
-          <h2 className="heading-lg">{section.heading?.text}</h2>
+          <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>{section.heading?.text}</h2>
         </m.div>
         <div className="page-why-cards">
           {features.map((f, i) => (
