@@ -91,7 +91,7 @@ export default function Financing() {
 
         <section className="fin-calc-band">
           <div className="container fin-calc-band-inner">
-            <h2 className="fin-band-h2">Estimate your payments</h2>
+            <h2 className="fin-band-h2" style={{ textTransform: "uppercase" }}>Estimate your payments</h2>
             <p className="fin-band-intro">
               Use this calculator to get a feel for what your construction loan and monthly payment
               might look like, including property taxes for the city you build in, insurance, and
