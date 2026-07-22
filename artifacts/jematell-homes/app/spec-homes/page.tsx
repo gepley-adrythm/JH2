@@ -71,7 +71,7 @@ export default function SpecHomes() {
         </section>
 
         {/* Homes coming soon: interactive map + cards */}
-        <section className="section-pad alt-bg" data-testid="spec-coming-soon">
+        <section className="section-pad alt-bg" data-testid="spec-coming-soon" style={{ paddingTop: "clamp(32px, 4vw, 56px)" }}>
           <div className="container">
             <div className="page-section-head centered">
               <span className="eyebrow">Homes Coming Soon</span>
