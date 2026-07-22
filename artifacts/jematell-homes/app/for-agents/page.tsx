@@ -44,7 +44,7 @@ export default function ForAgents() {
       </section>
 
       <div className="container" style={{ maxWidth: 820, padding: "80px 24px 96px" }}>
-        <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 4vw, 2.75rem)", marginBottom: "1rem" }}>
+        <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 4vw, 2.75rem)", marginBottom: "1rem", textTransform: "uppercase" }}>
           Partner With Jematell Homes
         </h2>
         <p style={{ lineHeight: 1.8, fontSize: "1.05rem", color: "var(--color-text-muted)", marginBottom: "2.5rem", maxWidth: 680 }}>
