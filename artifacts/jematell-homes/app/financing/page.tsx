@@ -81,7 +81,7 @@ export default function Financing() {
             {steps.map((step, i) => (
               <article key={step.title} className="fin-step">
                 <span className="fin-step-num" style={{ fontSize: "24px", color: "var(--color-text)" }}>{i + 1}</span>
-                <h3 className="fin-step-title" style={{ fontSize: "20px", color: "#3b617f" }}>{step.title}</h3>
+                <h3 className="fin-step-title" style={{ fontSize: "20px", color: "#3b617f", textTransform: "uppercase" }}>{step.title}</h3>
                 <p>{step.body}</p>
               </article>
             ))}
