@@ -120,6 +120,11 @@ export default function SpecHomes() {
                 );
               })}
             </div>
+            <div style={{ textAlign: "center", marginTop: "clamp(32px, 4vw, 48px)" }}>
+              <Link href="/contact" className="btn btn-primary" data-testid="spec-coming-soon-cta">
+                Contact Us
+              </Link>
+            </div>
           </div>
         </section>
       </main>
