@@ -73,7 +73,7 @@ export default function ForAgents() {
           </p>
         </div>
 
-        <h2 className="heading-md" style={{ marginBottom: "1.5rem" }}>How it works</h2>
+        <h2 className="heading-md" style={{ marginBottom: "1.5rem", textTransform: "uppercase" }}>How it works</h2>
         <div style={{ display: "grid", gap: "1.5rem", marginBottom: "3.5rem" }}>
           {STEPS.map((step, i) => (
             <div key={step.title} style={{ display: "flex", gap: "1.25rem", alignItems: "flex-start" }}>
