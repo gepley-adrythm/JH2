@@ -111,7 +111,7 @@ export default async function GuideDetailPage({
     <main className="page faq-page faq-detail guide-detail">
       <JsonLd
         data={[
-          articleJsonLd({ title: guide.title, description: guide.summary, url: path }),
+          articleJsonLd({ title: guide.title, description: guide.summary, url: path, dateModified: guide.updatedDate }),
           breadcrumbJsonLd(crumbs),
         ]}
       />

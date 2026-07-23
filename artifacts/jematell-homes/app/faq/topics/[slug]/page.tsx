@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
 import { faqDataset } from "@/data/faq";
 import { pageMetadata } from "@/seo/metadata";
-import { faqPageJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
+import { collectionJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { CTA } from "@/cta";
 
@@ -44,12 +44,10 @@ export default async function FaqTopicPage({
     <main className="page faq-page faq-topic">
       <JsonLd
         data={[
-          faqPageJsonLd({
+          collectionJsonLd({
+            name: topic.title,
+            description: topic.description,
             url: path,
-            items: topic.items.map((i) => ({
-              question: i.question,
-              shortAnswer: i.shortAnswer,
-            })),
           }),
           breadcrumbJsonLd([
             { name: "Home", url: "/" },

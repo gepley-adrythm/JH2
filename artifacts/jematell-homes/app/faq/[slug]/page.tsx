@@ -6,7 +6,7 @@ import { faqDataset, SERVICE_LINKS } from "@/data/faq";
 import { blogs } from "@/data/blogs";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { pageMetadata } from "@/seo/metadata";
-import { qaPageJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
+import { faqPageJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { annotateHeadings } from "@/lib/detail";
 import { DetailShell } from "@/components/DetailShell";
@@ -93,7 +93,7 @@ export default async function FaqDetailPage({
     <main className="page faq-page faq-detail">
       <JsonLd
         data={[
-          qaPageJsonLd({ url: path, question: detail.question, answer: detail.answer }),
+          faqPageJsonLd({ url: path, items: [{ question: detail.question, shortAnswer: detail.shortAnswer || detail.answer }] }),
           breadcrumbJsonLd(crumbs),
         ]}
       />

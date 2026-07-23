@@ -138,7 +138,7 @@ export default async function ReferenceDetailPage({
     <main className="page faq-page faq-detail reference-detail">
       <JsonLd
         data={[
-          techArticleJsonLd({ title: entry.title, description: entry.shortSummary, url: path, section: meta.title }),
+          techArticleJsonLd({ title: entry.title, description: entry.shortSummary, url: path, section: meta.title, dateModified: entry.updatedDate }),
           breadcrumbJsonLd(crumbs),
         ]}
       />

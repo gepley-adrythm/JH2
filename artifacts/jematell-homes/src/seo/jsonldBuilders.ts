@@ -29,6 +29,8 @@ export function articleJsonLd(opts: {
   description?: string;
   url: string;
   image?: string;
+  dateModified?: string;
+  datePublished?: string;
 }): object {
   return {
     "@context": "https://schema.org",
@@ -40,6 +42,8 @@ export function articleJsonLd(opts: {
     mainEntityOfPage: absoluteUrl(opts.url),
     author: { "@id": SITE_URL + "/#organization" },
     publisher: { "@id": SITE_URL + "/#organization" },
+    ...(opts.datePublished ? { datePublished: opts.datePublished } : {}),
+    ...(opts.dateModified ? { dateModified: opts.dateModified } : {}),
   };
 }
 
@@ -69,7 +73,6 @@ export function faqPageJsonLd(opts: {
     mainEntity: opts.items.map((i) => ({
       "@type": "Question",
       name: i.question,
-      // shortAnswer is the schema/AI answer — concise, never rendered visibly.
       acceptedAnswer: { "@type": "Answer", text: i.shortAnswer },
     })),
   };
@@ -155,6 +158,8 @@ export function techArticleJsonLd(opts: {
   description?: string;
   url: string;
   section?: string;
+  dateModified?: string;
+  datePublished?: string;
 }): object {
   return {
     "@context": "https://schema.org",
@@ -166,5 +171,7 @@ export function techArticleJsonLd(opts: {
     mainEntityOfPage: absoluteUrl(opts.url),
     author: { "@id": SITE_URL + "/#organization" },
     publisher: { "@id": SITE_URL + "/#organization" },
+    ...(opts.datePublished ? { datePublished: opts.datePublished } : {}),
+    ...(opts.dateModified ? { dateModified: opts.dateModified } : {}),
   };
 }
