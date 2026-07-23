@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowRight, ChevronRight, Clock } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronRight, Clock } from "lucide-react";
 import { faqDataset, SERVICE_LINKS } from "@/data/faq";
 import { blogs } from "@/data/blogs";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
@@ -114,6 +114,14 @@ export default async function FaqDetailPage({
 
       <DetailShell toc={article.toc} hero={hero}>
         <div className="dt-main">
+          <Link
+            href={primaryTopic ? `/faq/topics/${primaryTopic.slug}` : "/faq"}
+            className="dt-back dt-back--top"
+            data-testid="faq-detail-back"
+          >
+            <ArrowLeft size={14} aria-hidden="true" />
+            {primaryTopic ? primaryTopic.title : "All questions"}
+          </Link>
           {detail.shortAnswer ? (
             <div className="dt-answer-card" data-testid="faq-short-answer">
               <span className="dt-answer-card-label">The short answer</span>

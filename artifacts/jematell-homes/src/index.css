@@ -3899,6 +3899,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   color: var(--color-accent);
 }
 .dt-back:hover { color: var(--color-accent-hover); }
+.dt-back--top { margin-top: 0; margin-bottom: 32px; }
 
 /* Responsive — collapse the rail below the reading column. */
 @media (max-width: 1024px) {
