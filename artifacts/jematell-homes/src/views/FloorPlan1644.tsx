@@ -17,19 +17,19 @@ const DRAWINGS = [
   { label: "Elevations", src: "/images/plans/1644-2.png", alt: "1644 floor plan — all four exterior elevations" },
 ];
 
-const BASE = "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/";
+// Gallery images self-hosted from public/images/cdn (was Squarespace CDN).
 const GALLERY_IMGS = [
-  { id: "a291783f-5471-4d99-b5b0-fb1332393921/Mccartney+Lot+3+Front.png", alt: "McCartney Spec 1644 — front exterior" },
-  { id: "eba33962-2329-47c6-87d4-bb67bff4c3fd/10-IMG_7202.jpg", alt: "McCartney Spec 1644 — living area" },
-  { id: "2d2f86e9-03ec-4007-b378-d82ed906309f/12-IMG_7208.jpg", alt: "McCartney Spec 1644 — great room" },
-  { id: "00ec9454-5496-42a7-9546-c67943192a6a/09-IMG_7223.jpg", alt: "McCartney Spec 1644 — interior" },
-  { id: "2cb592e8-3ff4-450b-a67c-fee0dd56fdc4/08-IMG_7196.jpg", alt: "McCartney Spec 1644 — kitchen" },
-  { id: "550dfd32-db8c-4e91-aa2c-090dd10c9abe/06-IMG_7193.jpg", alt: "McCartney Spec 1644 — kitchen island" },
-  { id: "7830319f-f614-485d-a308-33346aceecf7/07-IMG_7190.jpg", alt: "McCartney Spec 1644 — dining" },
-  { id: "8809b55d-5280-4cdf-b63c-b7513507b41f/13-IMG_7211.jpg", alt: "McCartney Spec 1644 — hallway" },
-  { id: "e7eb120e-9a1e-42e9-9cdb-01e4e6848722/14-IMG_7220.jpg", alt: "McCartney Spec 1644 — bedroom" },
-  { id: "e0549060-2dc6-4fde-b66b-cd15a1666f89/15-IMG_7214.jpg", alt: "McCartney Spec 1644 — bathroom" },
-].map((img) => ({ ...img, src: `${BASE}${img.id}` }));
+  { src: "/images/cdn/a291783f-5471-4d99-b5b0-fb1332393921__Mccartney-Lot-3-Front.webp", alt: "McCartney Spec 1644 — front exterior" },
+  { src: "/images/cdn/eba33962-2329-47c6-87d4-bb67bff4c3fd__10-IMG_7202.webp", alt: "McCartney Spec 1644 — living area" },
+  { src: "/images/cdn/2d2f86e9-03ec-4007-b378-d82ed906309f__12-IMG_7208.webp", alt: "McCartney Spec 1644 — great room" },
+  { src: "/images/cdn/00ec9454-5496-42a7-9546-c67943192a6a__09-IMG_7223.webp", alt: "McCartney Spec 1644 — interior" },
+  { src: "/images/cdn/2cb592e8-3ff4-450b-a67c-fee0dd56fdc4__08-IMG_7196.webp", alt: "McCartney Spec 1644 — kitchen" },
+  { src: "/images/cdn/550dfd32-db8c-4e91-aa2c-090dd10c9abe__06-IMG_7193.webp", alt: "McCartney Spec 1644 — kitchen island" },
+  { src: "/images/cdn/7830319f-f614-485d-a308-33346aceecf7__07-IMG_7190.webp", alt: "McCartney Spec 1644 — dining" },
+  { src: "/images/cdn/8809b55d-5280-4cdf-b63c-b7513507b41f__13-IMG_7211.webp", alt: "McCartney Spec 1644 — hallway" },
+  { src: "/images/cdn/e7eb120e-9a1e-42e9-9cdb-01e4e6848722__14-IMG_7220.webp", alt: "McCartney Spec 1644 — bedroom" },
+  { src: "/images/cdn/e0549060-2dc6-4fde-b66b-cd15a1666f89__15-IMG_7214.webp", alt: "McCartney Spec 1644 — bathroom" },
+];
 
 export default function FloorPlan1644() {
   const [lightbox, setLightbox]     = useState<number | null>(null);

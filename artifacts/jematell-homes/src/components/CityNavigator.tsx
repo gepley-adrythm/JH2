@@ -20,7 +20,7 @@ import { FADE_IN_UP_PROPS } from "../motion";
  */
 
 const FALLBACK_IMAGE =
-  "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/cb106191-10f5-42ca-bd2a-4b2f12503dae/53-DJI_20260125135120_0044_D.jpg";
+  "/images/cdn/cb106191-10f5-42ca-bd2a-4b2f12503dae__53-DJI_20260125135120_0044_D.webp";
 
 const LOCAL_CITY_HERO: Record<string, string> = {
   "surprise": "/images/city-hero-surprise.jpg",
