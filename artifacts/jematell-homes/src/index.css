@@ -3938,10 +3938,16 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   color: var(--color-dark);
 }
 .dt-more-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 8px 44px;
+  columns: 2;
+  column-gap: 44px;
   margin-top: 26px;
+}
+.dt-more-grid > div {
+  break-inside: avoid;
+  margin-bottom: 8px;
+}
+@media (max-width: 540px) {
+  .dt-more-grid { columns: 1; }
 }
 .dt-more-col-label {
   font-family: var(--font-body);

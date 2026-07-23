@@ -75,8 +75,8 @@ export default async function GuideDetailPage({
 
   const columns: MoreColumn[] = [
     { label: "Related questions", items: relatedFaqs.map((r) => ({ to: `/faq/${r.slug}`, label: r.question })) },
-    { label: "Related guides", items: relatedGuides.map((r) => ({ to: `/guides/${r.slug}`, label: r.title })) },
     { label: "In the reference library", items: relatedRefs.map((r) => ({ to: `/reference-library/${r.module}/${r.slug}`, label: r.title })) },
+    { label: "Related guides", items: relatedGuides.map((r) => ({ to: `/guides/${r.slug}`, label: r.title })) },
     { label: "Related terms", items: relatedTerms.map((r) => ({ to: `/glossary/${r.slug}`, label: r.term })) },
   ];
 
