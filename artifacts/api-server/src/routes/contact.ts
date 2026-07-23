@@ -10,7 +10,8 @@ const connectors = new ReplitConnectors();
 
 // Recipients of new-lead notifications. Configurable via env (comma-separated);
 // defaults to the two business inboxes requested by the client.
-const DEFAULT_RECIPIENTS = ["gepley@adrythm.com", "info@jematellhomes.com"];
+const DEFAULT_RECIPIENTS = ["info@jematellhomes.com"];
+const DEFAULT_CC = ["gepley@adrythm.com"];
 
 function getRecipients(): string[] {
   const raw = process.env.CONTACT_NOTIFY_TO;
@@ -20,6 +21,16 @@ function getRecipients(): string[] {
     .map((s) => s.trim())
     .filter(Boolean);
   return parsed.length > 0 ? parsed : DEFAULT_RECIPIENTS;
+}
+
+function getCc(): string[] {
+  const raw = process.env.CONTACT_NOTIFY_CC;
+  if (!raw) return DEFAULT_CC;
+  const parsed = raw
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+  return parsed;
 }
 
 function escapeHtml(value: string): string {
@@ -124,11 +135,12 @@ function buildText(data: ContactBody): string {
   return lines.join("\n");
 }
 
-function buildRawMessage(data: ContactBody, recipients: string[]): string {
+function buildRawMessage(data: ContactBody, recipients: string[], cc: string[]): string {
   const subject = sanitizeHeader(`New website lead: ${data.name}`);
   const boundary = `jh_${Date.now().toString(36)}`;
   const headers = [
     `To: ${recipients.join(", ")}`,
+    ...(cc.length ? [`Cc: ${cc.join(", ")}`] : []),
     `Reply-To: ${sanitizeHeader(data.name)} <${sanitizeHeader(data.email)}>`,
     `Subject: ${subject}`,
     "MIME-Version: 1.0",
@@ -162,9 +174,10 @@ router.post("/contact", async (req: Request, res: Response): Promise<void> => {
   }
   const data = parsed.data;
   const recipients = getRecipients();
+  const cc = getCc();
 
   try {
-    const raw = base64Url(buildRawMessage(data, recipients));
+    const raw = base64Url(buildRawMessage(data, recipients, cc));
     const response = await connectors.proxy(
       "google-mail",
       "/gmail/v1/users/me/messages/send",
