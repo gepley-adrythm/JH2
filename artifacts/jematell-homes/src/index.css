@@ -1796,6 +1796,13 @@ picture {
   background: var(--color-cream);
   border-bottom: 1px solid var(--color-border);
   padding: 28px 0;
+  position: relative;
+}
+.gallery-detail-stats-back {
+  position: absolute;
+  left: clamp(16px, 4vw, 48px);
+  top: 50%;
+  transform: translateY(-50%);
 }
 .gallery-detail-stats-inner {
   display: flex;

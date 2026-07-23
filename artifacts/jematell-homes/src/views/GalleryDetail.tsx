@@ -183,7 +183,11 @@ export default function GalleryDetail({ slug, title = "", ogImage, images = [] }
             <h1 className="page-hero-title">Skinner Custom</h1>
           </div>
         </section>
-        <div className="gallery-detail-stats">
+        <div className="gallery-detail-stats" style={{ position: "relative" }}>
+          <Link href="/gallery" className="dt-back gallery-detail-stats-back" data-testid="gallery-detail-back-crist">
+            <ArrowLeft size={14} aria-hidden="true" />
+            Gallery
+          </Link>
           <div className="container">
             <div className="gallery-detail-stats-inner">
               <div className="gallery-detail-stat">
@@ -202,12 +206,6 @@ export default function GalleryDetail({ slug, title = "", ogImage, images = [] }
               </div>
             </div>
           </div>
-        </div>
-        <div className="container" style={{ paddingTop: "32px" }}>
-          <Link href="/gallery" className="dt-back" data-testid="gallery-detail-back-crist">
-            <ArrowLeft size={14} aria-hidden="true" />
-            Gallery
-          </Link>
         </div>
 
         <section className="section-pad" style={{ background: "var(--color-bg)", paddingTop: 0 }}>
@@ -295,7 +293,11 @@ export default function GalleryDetail({ slug, title = "", ogImage, images = [] }
       </section>
 
       {stats.length > 0 && (
-        <div className="gallery-detail-stats">
+        <div className="gallery-detail-stats" style={{ position: "relative" }}>
+          <Link href="/gallery" className="dt-back gallery-detail-stats-back" data-testid="gallery-detail-back">
+            <ArrowLeft size={14} aria-hidden="true" />
+            Gallery
+          </Link>
           <div className="container">
             <div className="gallery-detail-stats-inner">
               {stats.map((s, i) => (
@@ -311,13 +313,6 @@ export default function GalleryDetail({ slug, title = "", ogImage, images = [] }
           </div>
         </div>
       )}
-
-      <div className="container" style={{ paddingTop: "32px" }}>
-        <Link href="/gallery" className="dt-back" data-testid="gallery-detail-back">
-          <ArrowLeft size={14} aria-hidden="true" />
-          Gallery
-        </Link>
-      </div>
 
       <section className="section-pad" style={{ background: "var(--color-bg)", paddingTop: 0 }}>
         <div className="gallery-masonry-wrap">
