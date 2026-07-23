@@ -17,21 +17,21 @@ const DRAWINGS = [
   { label: "Elevations", src: "/images/plans/1604-2.png", alt: "1604 floor plan — all four exterior elevations" },
 ];
 
-const BASE = "https://images.squarespace-cdn.com/content/v1/6451acc5216e2b14e01b3bc3/";
+// Gallery images self-hosted from public/images/cdn (was Squarespace CDN).
 const GALLERY_IMGS = [
-  { id: "20a67096-ea0b-4af9-b596-1df9d45d4795/Front.jpg",                    alt: "AZ City Custom 1604 — front exterior" },
-  { id: "ec060b6d-06b4-418d-84fb-cc6d7f213ca5/Kitchen.jpg",                  alt: "AZ City Custom 1604 — kitchen" },
-  { id: "edea42f1-e4f4-4a7b-83b2-d8e2b93b1ce9/Kitchen+2.jpg",               alt: "AZ City Custom 1604 — kitchen detail" },
-  { id: "1b2295b7-888c-4c97-a0fd-bb21e0e0e161/Kitchen-Great+Room.jpg",      alt: "AZ City Custom 1604 — kitchen and great room" },
-  { id: "4b8a57da-1f14-4b22-a2d7-92e033a773c6/Kitchen-Great+Room+2.jpg",   alt: "AZ City Custom 1604 — great room" },
-  { id: "ee1b360e-5afb-40b4-88f8-eba823705a2d/Master+Bathroom.jpg",         alt: "AZ City Custom 1604 — master bathroom" },
-  { id: "3265e675-3b55-4dd2-8d75-75f89a29d9fc/Master+Bathroom+Tub.jpg",    alt: "AZ City Custom 1604 — master bathroom tub" },
-  { id: "3743ae3a-e297-49df-ad35-c24c29e4c58a/Master+Bathroom+Shower.jpg", alt: "AZ City Custom 1604 — master bathroom shower" },
-  { id: "7024afbd-09a3-4243-945c-21d79e54cedf/Bath+2+2.jpg",               alt: "AZ City Custom 1604 — second bathroom" },
-  { id: "9bb6f08a-52f4-4b02-aeed-4061d5625f13/Bath+2.jpg",                 alt: "AZ City Custom 1604 — second bathroom vanity" },
-  { id: "6eede665-a8ed-4408-b5e6-154cc8136ded/Bed+2.jpg",                  alt: "AZ City Custom 1604 — bedroom two" },
-  { id: "97a824ee-108d-4b76-a11d-492442d0fdf2/Bed+3.jpg",                  alt: "AZ City Custom 1604 — bedroom three" },
-].map((img) => ({ ...img, src: `${BASE}${img.id}` }));
+  { src: "/images/cdn/20a67096-ea0b-4af9-b596-1df9d45d4795__Front.webp", alt: "AZ City Custom 1604 — front exterior" },
+  { src: "/images/cdn/ec060b6d-06b4-418d-84fb-cc6d7f213ca5__Kitchen.webp", alt: "AZ City Custom 1604 — kitchen" },
+  { src: "/images/cdn/edea42f1-e4f4-4a7b-83b2-d8e2b93b1ce9__Kitchen-2.webp", alt: "AZ City Custom 1604 — kitchen detail" },
+  { src: "/images/cdn/1b2295b7-888c-4c97-a0fd-bb21e0e0e161__Kitchen-Great-Room.webp", alt: "AZ City Custom 1604 — kitchen and great room" },
+  { src: "/images/cdn/4b8a57da-1f14-4b22-a2d7-92e033a773c6__Kitchen-Great-Room-2.webp", alt: "AZ City Custom 1604 — great room" },
+  { src: "/images/cdn/ee1b360e-5afb-40b4-88f8-eba823705a2d__Master-Bathroom.webp", alt: "AZ City Custom 1604 — master bathroom" },
+  { src: "/images/cdn/3265e675-3b55-4dd2-8d75-75f89a29d9fc__Master-Bathroom-Tub.webp", alt: "AZ City Custom 1604 — master bathroom tub" },
+  { src: "/images/cdn/3743ae3a-e297-49df-ad35-c24c29e4c58a__Master-Bathroom-Shower.webp", alt: "AZ City Custom 1604 — master bathroom shower" },
+  { src: "/images/cdn/7024afbd-09a3-4243-945c-21d79e54cedf__Bath-2-2.webp", alt: "AZ City Custom 1604 — second bathroom" },
+  { src: "/images/cdn/9bb6f08a-52f4-4b02-aeed-4061d5625f13__Bath-2.webp", alt: "AZ City Custom 1604 — second bathroom vanity" },
+  { src: "/images/cdn/6eede665-a8ed-4408-b5e6-154cc8136ded__Bed-2.webp", alt: "AZ City Custom 1604 — bedroom two" },
+  { src: "/images/cdn/97a824ee-108d-4b76-a11d-492442d0fdf2__Bed-3.webp", alt: "AZ City Custom 1604 — bedroom three" },
+];
 
 export default function FloorPlan1604() {
   const [lightbox, setLightbox]     = useState<number | null>(null);
