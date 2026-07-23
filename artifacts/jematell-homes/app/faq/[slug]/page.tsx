@@ -82,7 +82,7 @@ export default async function FaqDetailPage({
   const hero = (
     <section className="page-hero faq-detail-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
       <ResponsiveImage name="spec-home" className="page-hero-bg" alt="" widths={[768, 1280, 1600, 2000, 2500]} sizes="100vw" width={2500} height={1667} priority />
-      <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }} />
+      <div className="page-hero-overlay" />
       <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
         <h1 className="page-hero-title hero-title">{detail.question}</h1>
       </div>
