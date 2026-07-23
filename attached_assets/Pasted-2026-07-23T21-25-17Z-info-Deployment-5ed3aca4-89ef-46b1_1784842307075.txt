@@ -1,0 +1,958 @@
+2026-07-23T21:25:17Z info: Deployment: 5ed3aca4-89ef-46b1-b8d6-49671af92ac2
+2026-07-23T21:25:17Z info: Build: 83c2ab74-ba44-4be9-8806-c4e101d8c3f7
+2026-07-23T21:25:23Z info: Running Security Scan
+2026-07-23T21:25:28Z info: Installing packages
+--> uv lock
+
+Using CPython 3.11.14 interpreter at: /nix/store/flbj8bq2vznkcwss7sm0ky8rd0k6kar7-python-wrapped-0.1.0/bin/python3
+
+Resolved 1 package in 1ms
+
+--> uv sync
+
+Using CPython 3.11.14 interpreter at: /nix/store/flbj8bq2vznkcwss7sm0ky8rd0k6kar7-python-wrapped-0.1.0/bin/python3
+Creating virtual environment at: .pythonlibs
+
+Resolved 1 package in 0.52ms
+
+Audited in 0.02ms
+
+--> pnpm install
+
+--> pnpm install
+
+Scope: all 10 workspace projects
+
+Scope: all 10 workspace projects
+
+
+   ╭──────────────────────────────────────────╮
+   │                                          │
+   │   Update available! 10.26.1 → 11.17.0.   │
+   │   Changelog: https://pnpm.io/v/11.17.0   │
+   │     To update, run: pnpm add -g pnpm     │
+   │                                          │
+   ╰──────────────────────────────────────────╯
+
+
+
+   ╭──────────────────────────────────────────╮
+   │                                          │
+   │   Update available! 10.26.1 → 11.17.0.   │
+   │   Changelog: https://pnpm.io/v/11.17.0   │
+   │     To update, run: pnpm add -g pnpm     │
+   │                                          │
+   ╰──────────────────────────────────────────╯
+
+
+Lockfile is up to date, resolution step is skipped
+
+Lockfile is up to date, resolution step is skipped
+
+Already up to date
+
+Already up to date
+
+. preinstall$ sh -c 'rm -f package-lock.json yarn.lock; case "$npm_config_user_agent" in pnpm/*) ;; *) echo "Use pnpm instead" >&2; exit 1 ;; esac'
+
+. preinstall$ sh -c 'rm -f package-lock.json yarn.lock; case "$npm_config_user_agent" in pnpm/*) ;; *) echo "Use pnpm instead" >&2; exit 1 ;; esac'
+
+. preinstall: Done
+
+. preinstall: Done
+
+╭ Warning ─────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│   Ignored build scripts: sharp@0.34.5.                                       │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+│   to run scripts.                                                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭ Warning ─────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│   Ignored build scripts: sharp@0.34.5.                                       │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+│   to run scripts.                                                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Done in 3.6s using pnpm v10.26.1
+
+Done in 3.6s using pnpm v10.26.1
+
+2026-07-23T21:25:33Z info: Starting Build
+
+> @workspace/api-server@0.0.0 prebuild /home/runner/workspace/artifacts/api-server
+> tsx src/scripts/validate-faq.ts
+
+
+WARN  Possible overlapping intent (0.57): "are-home-elevators-worth-it-in-an-arizona-custom-home" vs "is-building-a-custom-home-worth-it-in-arizona"
+
+WARN  Possible overlapping intent (0.40): "are-home-elevators-worth-it-in-an-arizona-custom-home" vs "what-are-the-steps-to-building-a-custom-home-in-arizona"
+WARN  Overlapping intent (q=1.00, a=0.46): "attached-vs-detached-garage-for-an-arizona-custom-home" vs "attached-vs-detached-rv-garage-arizona"
+WARN  Possible overlapping intent (0.42): "attached-vs-detached-garage-for-an-arizona-custom-home" vs "single-story-vs-two-story-home-in-arizona"
+WARN  Possible overlapping intent (0.50): "can-you-build-a-house-with-a-basement-in-arizona" vs "can-i-build-my-own-house-in-arizona"
+WARN  Possible overlapping intent (0.40): "do-i-need-combustion-or-makeup-air-for-a-gas-fireplace-in-a-tight-arizona-home" vs "do-i-need-makeup-air-for-a-high-cfm-range-hood-in-a-new-arizona-home"
+WARN  Possible overlapping intent (0.50): "do-i-need-makeup-air-for-a-high-cfm-range-hood-in-a-new-arizona-home" vs "how-much-makeup-air-does-a-second-kitchen-or-high-cfm-hood-need-in-an-arizona-home"
+WARN  Overlapping intent (q=0.60, a=0.45): "how-big-should-a-luxury-or-car-collector-garage-be-in-arizona" vs "how-deep-should-a-garage-be-for-a-car-collector-in-arizona"
+WARN  Possible overlapping intent (0.43): "how-to-design-a-custom-home-to-stay-cool-in-the-arizona-heat" vs "how-do-you-design-an-arizona-custom-home-for-aging-in-place-or-universal-design"
+WARN  Possible overlapping intent (0.40): "how-to-design-a-custom-home-to-stay-cool-in-the-arizona-heat" vs "how-do-you-design-indoor-outdoor-living-flow-for-an-arizona-custom-home"
+WARN  Possible overlapping intent (0.42): "how-do-you-wire-a-new-arizona-custom-home-for-ev-charging" vs "how-do-i-choose-an-architectural-style-for-my-arizona-custom-home"
+WARN  Possible overlapping intent (0.46): "how-do-you-wire-a-new-arizona-custom-home-for-ev-charging" vs "how-do-you-design-an-arizona-custom-home-for-aging-in-place-or-universal-design"
+WARN  Possible overlapping intent (0.43): "how-do-you-wire-a-new-arizona-custom-home-for-ev-charging" vs "how-do-you-design-indoor-outdoor-living-flow-for-an-arizona-custom-home"
+WARN  Possible overlapping intent (0.45): "how-long-do-design-selections-take-for-a-custom-home" vs "how-long-does-it-take-to-build-a-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-long-do-design-selections-take-for-a-custom-home" vs "how-do-you-design-a-home-office-in-a-custom-home-for-working-from-home"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-backyard-sport-court-or-putting-green-cost-in-arizona" vs "how-much-does-it-cost-to-build-a-barndominium-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-backyard-sport-court-or-putting-green-cost-in-arizona" vs "how-much-does-an-outdoor-kitchen-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-backyard-sport-court-or-putting-green-cost-in-arizona" vs "cost-to-build-an-rv-garage-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-backyard-sport-court-or-putting-green-cost-in-arizona" vs "cost-to-build-casita-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-backyard-sport-court-or-putting-green-cost-in-arizona" vs "cost-to-build-adu-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-backyard-sport-court-or-putting-green-cost-in-arizona" vs "building-permit-cost-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-backyard-sport-court-or-putting-green-cost-in-arizona" vs "how-much-does-a-garage-conversion-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-backyard-sport-court-or-putting-green-cost-in-arizona" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-backyard-sport-court-or-putting-green-cost-in-arizona" vs "how-much-does-a-kitchen-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.46): "how-much-does-a-home-gym-or-sauna-cost-to-build-in-arizona" vs "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home"
+WARN  Possible overlapping intent (0.58): "how-much-does-a-home-gym-or-sauna-co
+WARN  Overlapping intent (q=0.64, a=0.22): "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-build-a-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-build-a-custom-home-in-carefree"
+WARN  Possible overlapping intent (0.46): "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-build-a-custom-home-in-casa-grande"
+WARN  Possible overlapping intent (0.46): "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-build-a-custom-home-in-cave-creek"
+WARN  Possible overlapping intent (0.46): "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-build-a-custom-home-in-fountain-hills"
+WARN  Possible overlapping intent (0.46): "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-build-a-custom-home-in-paradise-valley"
+WARN  Possible overlapping intent (0.50): "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-build-a-custom-home-in-phoenix"
+WARN  Possible overlapping intent (0.46): "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-build-a-custom-home-in-rio-verde"
+WARN  Possible overlapping intent (0.50): "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-build-a-custom-home-in-scottsdale"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home" vs "cost-to-build-an-rv-garage-in-arizona"
+WARN  Possible overlapping intent (0.58): "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home" vs "how-much-do-custom-house-plans-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home" vs "cost-to-build-casita-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home" vs "cost-to-build-adu-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home" vs "building-permit-cost-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home" vs "how-much-does-a-garage-conversion-cost-in-arizona"
+WARN  Possible overlapping intent (0.55): "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home" vs "how-much-does-a-kitchen-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.46): "how-much-does-a-home-steam-shower-cost-to-add-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-add-a-second-story-in-arizona"
+WARN  Possible overlapping intent (0.46): "how-much-does-a-home-theater-or-media-room-cost-to-build-in-arizona" vs "how-much-does-a-luxury-or-custom-garage-cost-to-build-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-a-home-theater-or-media-room-cost-to-build-in-arizona" vs "how-much-does-a-safe-room-or-storm-shelter-cost-in-an-arizona-custom-home"
+WARN  Possible overlapping intent (0.50): "how-much-does-a-home-theater-or-media-room-cost-to-build-in-arizona" vs "how-much-does-a-wine-room-or-wine-cellar-cost-in-arizona"
+WARN  Possible overlapping intent (0.55): "how-much-does-a-home-theater-or-media-room-cost-to-build-in-arizona" v
+WARN  Possible overlapping intent (0.46): "how-much-does-a-safe-room-or-storm-shelter-cost-in-an-arizona-custom-home" vs "how-much-does-a-wine-room-or-wine-cellar-cost-in-arizona"
+WARN  Possible overlapping intent (0.43): "how-much-does-a-safe-room-or-storm-shelter-cost-in-an-arizona-custom-home" vs "cost-to-add-a-pool-to-a-new-home-in-arizona"
+WARN  Possible overlapping intent (0.43): "how-much-does-a-safe-room-or-storm-shelter-cost-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-build-a-custom-home-in-apache-junction"
+WARN  Possible overlapping intent (0.58): "how-much-does-a-safe-room-or-storm-shelter-cost-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-build-a-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.46): "how-much-does-a-safe-room-or-storm-shelter-cost-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-build-a-custom-home-in-carefree"
+WARN  Possible overlapping intent (0.43): "how-much-does-a-safe-room-or-storm-shelter-cost-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-build-a-custom-home-in-casa-grande"
+WARN  Possible overlapping intent (0.43): "how-much-does-a-safe-room-or-storm-shelter-cost-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-build-a-custom-home-in-cave-creek"
+WARN  Possible overlapping intent (0.43): "how-much-does-a-safe-room-or-storm-shelter-cost-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-build-a-custom-home-in-fountain-hills"
+WARN  Possible overlapping intent (0.43): "how-much-does-a-safe-room-or-storm-shelter-cost-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-build-a-custom-home-in-paradise-valley"
+WARN  Possible overlapping intent (0.46): "how-much-does-a-safe-room-or-storm-shelter-cost-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-build-a-custom-home-in-phoenix"
+WARN  Possible overlapping intent (0.43): "how-much-does-a-safe-room-or-storm-shelter-cost-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-build-a-custom-home-in-rio-verde"
+WARN  Possible overlapping intent (0.46): "how-much-does-a-safe-room-or-storm-shelter-cost-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-build-a-custom-home-in-scottsdale"
+WARN  Possible overlapping intent (0.54): "how-much-does-a-safe-room-or-storm-shelter-cost-in-an-arizona-custom-home" vs "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-a-safe-room-or-storm-shelter-cost-in-an-arizona-custom-home" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.46): "how-much-does-a-safe-room-or-storm-shelter-cost-in-an-arizona-custom-home" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-a-wine-room-or-wine-cellar-cost-in-arizona" vs "how-much-does-it-cost-to-build-a-barndominium-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-a-wine-room-or-wine-cellar-cost-in-arizona" vs "how-much-does-it-cost-to-build-an-icf-house-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-a-wine-room-or-wine-cellar-cost-in-arizona" vs "how-much-does-an-outdoor-kitchen-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-wine-room-or-wine-cellar-cost-in-arizona" vs "cost-to-add-a-pool-to-a-new-home-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-a-wine-room-or-wine-cellar-cost-in-arizona" vs "how-much-does-it-cost-to-build-a-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-wine-room-or-wine-cellar-cost-in-arizona" vs "how-much-does-it-cost-to-build-a-ramada-or-covered-patio-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-a-wine-room-or-wine-cellar-cost-in-arizona" vs "cost-to-build-an-rv-garage-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-wine-room-or-wine-cellar-cost-in-arizona" vs "how-much-does-it-cost-to-extend-power-or-utilities-to-a-rural-arizona-lot"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-wine-room-or-wine-cellar-cost-in-arizona" vs 
+WARN  Series sibling (q=0.67, a=0.24): "how-much-does-it-cost-to-build-an-icf-house-in-arizona" vs "cost-to-build-casita-arizona"
+WARN  Series sibling (q=0.67, a=0.23): "how-much-does-it-cost-to-build-an-icf-house-in-arizona" vs "cost-to-build-adu-arizona"
+WARN  Possible overlapping intent (0.40): "how-much-does-it-cost-to-build-an-icf-house-in-arizona" vs "how-do-i-buy-land-to-build-a-house-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-an-icf-house-in-arizona" vs "building-permit-cost-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-an-icf-house-in-arizona" vs "how-much-does-a-garage-conversion-cost-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-an-icf-house-in-arizona" vs "how-much-does-a-garage-renovation-or-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-an-icf-house-in-arizona" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-an-icf-house-in-arizona" vs "how-much-does-a-kitchen-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-an-icf-house-in-arizona" vs "how-much-does-a-primary-bathroom-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-an-icf-house-in-arizona" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-an-icf-house-in-arizona" vs "how-much-does-asbestos-abatement-cost-on-an-arizona-teardown-or-remodel"
+WARN  Possible overlapping intent (0.55): "how-much-does-it-cost-to-build-an-icf-house-in-arizona" vs "how-much-does-it-cost-to-add-a-second-story-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-an-icf-house-in-arizona" vs "how-much-does-it-cost-to-tear-down-and-rebuild-a-house-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-an-icf-house-in-arizona" vs "how-much-does-it-cost-to-deepen-a-well-in-arizona"
+WARN  Possible overlapping intent (0.50): "modular-vs-stick-built-vs-custom-home-arizona" vs "tract-home-vs-custom-home"
+WARN  Possible overlapping intent (0.42): "modular-vs-stick-built-vs-custom-home-arizona" vs "spec-home-vs-custom-home"
+WARN  Possible overlapping intent (0.42): "modular-vs-stick-built-vs-custom-home-arizona" vs "what-are-the-steps-to-building-a-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.56): "tract-home-vs-custom-home" vs "spec-home-vs-custom-home"
+WARN  Possible overlapping intent (0.45): "tract-home-vs-custom-home" vs "what-is-the-difference-between-standard-and-upgrade-finishes"
+WARN  Possible overlapping intent (0.50): "tract-home-vs-custom-home" vs "builder-warranty-vs-home-warranty"
+WARN  Possible overlapping intent (0.40): "tract-home-vs-custom-home" vs "what-are-the-steps-to-building-a-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.44): "tract-home-vs-custom-home" vs "what-happens-at-the-end-of-a-custom-home-build"
+WARN  Possible overlapping intent (0.45): "tract-home-vs-custom-home" vs "custom-home-builder-vs-general-contractor"
+WARN  Possible overlapping intent (0.42): "what-finishes-add-the-most-value-to-a-custom-home-in-arizona" vs "what-are-the-steps-to-building-a-custom-home-in-arizona"
+
+WARN  Possible overlapping intent (0.42): "what-hvac-system-is-best-for-an-arizona-custom-home" vs "what-is-the-best-indoor-humidity-level-for-an-arizona-home"
+WARN  Possible overlapping intent (0.40): "what-hvac-system-is-best-for-an-arizona-custom-home" vs "what-is-a-modern-or-contemporary-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.42): "what-is-a-barndominium-and-can-you-build-one-in-arizona" vs "what-is-a-garage-mezzanine-or-loft-and-can-i-add-one-in-arizona"
+WARN  Possible overlapping intent (0.42): "what-is-a-barndominium-and-can-you-build-one-in-arizona" vs "what-is-a-will-serve-letter-and-do-i-need-one-to-build-in-arizona"
+WARN  Possible overlapping intent (0.42): "what-is-a-butlers-pantry-or-prep-kitchen-and-is-it-worth-it-in-a-custom-home" vs "what-is-a-smart-electrical-panel-and-is-it-worth-it-in-a-custom-home"
+WARN  Possible overlapping intent (0.46): "what-is-a-courtyard-home-and-does-the-design-work-in-the-arizona-desert" vs "what-is-a-mid-century-modern-home-and-does-it-work-in-arizona"
+
+WARN  Possible overlapping intent (0.54): "what-is-a-multigenerational-or-next-gen-home-and-how-do-you-design-one" vs "what-is-a-great-room-and-how-do-you-design-one-in-a-custom-home"
+WARN  Possible overlapping intent (0.43): "what-is-a-multigenerational-or-next-gen-home-and-how-do-you-design-one" vs "what-is-a-mudroom-or-drop-zone-and-how-do-you-design-one-in-arizona"
+WARN  Overlapping intent (q=0.64, a=0.22): "spec-home-vs-custom-home" vs "what-is-the-difference-between-standard-and-upgrade-finishes"
+WARN  Possible overlapping intent (0.40): "spec-home-vs-custom-home" vs "builder-warranty-vs-home-warranty"
+WARN  Overlapping intent (q=0.64, a=0.25): "spec-home-vs-custom-home" vs "custom-home-builder-vs-general-contractor"
+WARN  Possible overlapping intent (0.42): "spec-home-vs-custom-home" vs "whats-the-difference-between-a-remodel-a-renovation-and-an-addition-in-arizona"
+WARN  Possible overlapping intent (0.50): "spec-home-vs-custom-home" vs "design-build-vs-design-bid-build"
+WARN  Possible overlapping intent (0.54): "what-is-the-difference-between-standard-and-upgrade-finishes" vs "custom-home-builder-vs-general-contractor"
+WARN  Possible overlapping intent (0.44): "what-is-the-difference-between-standard-and-upgrade-finishes" vs "design-build-vs-design-bid-build"
+WARN  Possible overlapping intent (0.40): "builder-warranty-vs-home-warranty" vs "new-home-builder-warranty-arizona"
+WARN  Possible overlapping intent (0.45): "builder-warranty-vs-home-warranty" vs "custom-home-builder-vs-general-contractor"
+WARN  Possible overlapping intent (0.50): "can-i-be-my-own-general-contractor-arizona" vs "can-i-build-my-own-house-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-does-closing-work-on-a-newly-built-custom-home-in-arizona" vs "how-does-the-custom-home-building-process-work"
+WARN  Possible overlapping intent (0.42): "how-does-closing-work-on-a-newly-built-custom-home-in-arizona" vs "how-long-does-it-take-to-build-a-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-does-closing-work-on-a-newly-built-custom-home-in-arizona" vs "how-much-does-it-cost-to-build-a-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.55): "how-does-the-custom-home-building-process-work" vs "how-does-the-appraisal-work-on-a-custom-home-construction-loan"
+WARN  Possible overlapping intent (0.42): "how-does-the-custom-home-building-process-work" vs "how-does-hoa-design-review-affect-building-a-custom-home"
+WARN  Possible overlapping intent (0.50): "how-long-does-a-builder-warranty-last-arizona" vs "how-long-does-it-take-to-build-a-custom-home-in-arizona"
+
+WARN  Possible overlapping intent (0.50): "how-long-does-a-builder-warranty-last-arizona" vs "new-home-builder-warranty-arizona"
+WARN  Possible overlapping intent (0.46): "how-long-does-a-builder-warranty-last-arizona" vs "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-long-does-a-builder-warranty-last-arizona" vs "how-long-does-a-home-remodel-take-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-long-does-it-take-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-build-a-custom-home-in-apache-junction"
+WARN  Overlapping intent (q=0.60, a=0.28): "how-long-does-it-take-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-build-a-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-long-does-it-take-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-build-a-custom-home-in-carefree"
+WARN  Possible overlapping intent (0.42): "how-long-does-it-take-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-build-a-custom-home-in-casa-grande"
+WARN  Possible overlapping intent (0.42): "how-long-does-it-take-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-build-a-custom-home-in-cave-creek"
+WARN  Possible overlapping intent (0.42): "how-long-does-it-take-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-build-a-custom-home-in-fountain-hills"
+WARN  Possible overlapping intent (0.42): "how-long-does-it-take-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-build-a-custom-home-in-paradise-valley"
+WARN  Possible overlapping intent (0.45): "how-long-does-it-take-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-build-a-custom-home-in-phoenix"
+WARN  Possible overlapping intent (0.42): "how-long-does-it-take-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-build-a-custom-home-in-rio-verde"
+WARN  Possible overlapping intent (0.45): "how-long-does-it-take-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-build-a-custom-home-in-scottsdale"
+WARN  Possible overlapping intent (0.42): "how-long-does-it-take-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.40): "how-long-does-it-take-to-build-a-custom-home-in-arizona" vs "do-i-need-an-architect-to-build-a-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.40): "how-long-does-it-take-to-build-a-custom-home-in-arizona" vs "how-tall-can-a-custom-home-be-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-long-does-it-take-to-build-a-custom-home-in-arizona" vs "how-long-does-it-take-to-get-a-building-permit-in-arizona"
+WARN  Series sibling (q=0.67, a=0.31): "how-long-does-it-take-to-build-a-custom-home-in-arizona" vs "how-long-does-a-home-remodel-take-in-arizona"
+WARN  Possible overlapping intent (0.44): "is-building-a-custom-home-worth-it-in-arizona" vs "what-are-the-steps-to-building-a-custom-home-in-arizona"
+
+WARN  Possible overlapping intent (0.40): "is-building-a-custom-home-worth-it-in-arizona" vs "what-drives-the-cost-of-building-a-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.54): "what-are-the-green-flags-of-a-good-custom-home-builder" vs "red-flags-a-custom-home-builder-is-not-legitimate-arizona"
+WARN  Possible overlapping intent (0.42): "what-are-the-green-flags-of-a-good-custom-home-builder" vs "what-are-the-steps-to-building-a-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.42): "what-are-the-steps-to-building-a-custom-home-in-arizona" vs "what-happens-during-the-design-phase-of-a-custom-home"
+WARN  Possible overlapping intent (0.55): "what-are-the-steps-to-building-a-custom-home-in-arizona" vs "what-drives-the-cost-of-building-a-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.40): "what-are-the-steps-to-building-a-custom-home-in-arizona" vs "what-is-a-modern-or-contemporary-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.45): "what-happens-at-the-end-of-a-custom-home-build" vs "what-happens-during-the-design-phase-of-a-custom-home"
+WARN  Possible overlapping intent (0.40): "what-is-a-builders-bond-or-completion-deposit-on-an-arizona-custom-home" vs "what-is-a-modern-or-contemporary-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.42): "what-questions-should-i-ask-a-custom-home-builder-before-hiring" vs "what-to-include-in-custom-home-contract"
+WARN  Possible overlapping intent (0.44): "custom-home-builder-vs-general-contractor" vs "design-build-vs-design-bid-build"
+WARN  Possible overlapping intent (0.40): "when-can-i-move-into-my-new-custom-home-in-arizona" vs "how-tall-can-a-custom-home-be-in-arizona"
+WARN  Possible overlapping intent (0.42): "attached-vs-detached-rv-garage-arizona" vs "single-story-vs-two-story-home-in-arizona"
+WARN  Possible overlapping intent (0.44): "do-i-need-a-soils-report-for-a-construction-loan-in-arizona" vs "do-i-need-flood-insurance-on-a-construction-loan-in-arizona"
+WARN  Possible overlapping intent (0.50): "do-i-need-a-soils-report-for-a-construction-loan-in-arizona" vs "what-credit-score-do-i-need-for-a-construction-loan-in-arizona"
+WARN  Possible overlapping intent (0.50): "do-i-need-flood-insurance-on-a-construction-loan-in-arizona" vs "do-i-need-homeowners-insurance-during-construction-arizona"
+WARN  Possible overlapping intent (0.50): "do-i-need-flood-insurance-on-a-construction-loan-in-arizona" vs "do-i-need-title-insurance-on-new-construction-arizona"
+WARN  Possible overlapping intent (0.40): "do-i-need-flood-insurance-on-a-construction-loan-in-arizona" vs "what-credit-score-do-i-need-for-a-construction-loan-in-arizona"
+WARN  Possible overlapping intent (0.50): "do-i-need-homeowners-insurance-during-construction-arizona" vs "do-i-need-title-insurance-on-new-construction-arizona"
+WARN  Possible overlapping intent (0.42): "single-story-vs-two-story-custom-home-cost-in-arizona" vs "how-much-does-it-cost-to-build-a-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.55): "single-story-vs-two-story-custom-home-cost-in-arizona" vs "single-story-vs-two-story-home-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-an-outdoor-kitchen-cost-in-arizona" vs "cost-to-add-a-pool-to-a-new-home-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-an-outdoor-kitchen-cost-in-arizona" vs "how-much-does-it-cost-to-build-a-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-an-outdoor-kitchen-cost-in-arizona" vs "how-much-does-it-cost-to-build-a-ramada-or-covered-patio-in-arizona"
+WARN  Possible overlapping intent (0.56): "how-much-does-an-outdoor-kitchen-cost-in-arizona" vs "cost-to-build-an-rv-garage-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-an-outdoor-kitchen-cost-in-arizona" vs "how-much-does-it-cost-to-extend-power-or-utilities-to-a-rural-arizona-lot"
+WARN  Possible overlapping intent (0.45): "how-much-does-an-outdoor-kitchen-cost-in-arizona" vs "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona"
+WARN  Possible overla
+WARN  Possible overlapping intent (0.45): "cost-to-add-a-pool-to-a-new-home-in-arizona" vs "how-much-does-a-garage-conversion-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "cost-to-add-a-pool-to-a-new-home-in-arizona" vs "how-much-does-a-garage-renovation-or-remodel-cost-in-arizona"
+WARN  Series sibling (q=0.60, a=0.27): "cost-to-add-a-pool-to-a-new-home-in-arizona" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.45): "cost-to-add-a-pool-to-a-new-home-in-arizona" vs "how-much-does-a-kitchen-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "cost-to-add-a-pool-to-a-new-home-in-arizona" vs "how-much-does-a-primary-bathroom-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.55): "cost-to-add-a-pool-to-a-new-home-in-arizona" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "cost-to-add-a-pool-to-a-new-home-in-arizona" vs "how-much-does-asbestos-abatement-cost-on-an-arizona-teardown-or-remodel"
+WARN  Possible overlapping intent (0.50): "cost-to-add-a-pool-to-a-new-home-in-arizona" vs "how-much-does-it-cost-to-add-a-second-story-in-arizona"
+WARN  Possible overlapping intent (0.42): "cost-to-add-a-pool-to-a-new-home-in-arizona" vs "how-much-does-it-cost-to-deepen-a-well-in-arizona"
+WARN  Series sibling (q=0.70, a=0.36): "how-much-does-it-cost-to-build-a-custom-home-in-apache-junction" vs "how-much-does-it-cost-to-build-a-custom-home-in-arizona"
+WARN  Series sibling (q=0.70, a=0.29): "how-much-does-it-cost-to-build-a-custom-home-in-apache-junction" vs "how-much-does-it-cost-to-build-a-custom-home-in-carefree"
+WARN  Series sibling (q=0.64, a=0.57): "how-much-does-it-cost-to-build-a-custom-home-in-apache-junction" vs "how-much-does-it-cost-to-build-a-custom-home-in-casa-grande"
+WARN  Series sibling (q=0.64, a=0.32): "how-much-does-it-cost-to-build-a-custom-home-in-apache-junction" vs "how-much-does-it-cost-to-build-a-custom-home-in-cave-creek"
+WARN  Series sibling (q=0.64, a=0.30): "how-much-does-it-cost-to-build-a-custom-home-in-apache-junction" vs "how-much-does-it-cost-to-build-a-custom-home-in-fountain-hills"
+WARN  Series sibling (q=0.64, a=0.31): "how-much-does-it-cost-to-build-a-custom-home-in-apache-junction" vs "how-much-does-it-cost-to-build-a-custom-home-in-paradise-valley"
+WARN  Series sibling (q=0.70, a=0.34): "how-much-does-it-cost-to-build-a-custom-home-in-apache-junction" vs "how-much-does-it-cost-to-build-a-custom-home-in-phoenix"
+WARN  Series sibling (q=0.64, a=0.31): "how-much-does-it-cost-to-build-a-custom-home-in-apache-junction" vs "how-much-does-it-cost-to-build-a-custom-home-in-rio-verde"
+WARN  Series sibling (q=0.70, a=0.33): "how-much-does-it-cost-to-build-a-custom-home-in-apache-junction" vs "how-much-does-it-cost-to-build-a-custom-home-in-scottsdale"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-apache-junction" vs "cost-to-build-an-rv-garage-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-apache-junction" vs "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-apache-junction" vs "cost-to-build-casita-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-apache-junction" vs "cost-to-build-adu-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-apache-junction" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-build-a-custom-home-in-apache-junction" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Series sibling (q=0.78, a=0.32): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-build-a-custom-home-in-carefree"
+WARN  Series sibling (q=0.70, a=0.39): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-build-a-custom-home-in-casa-grand
+WARN  Series sibling (q=0.78, a=0.32): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-build-a-custom-home-in-phoenix"
+WARN  Series sibling (q=0.70, a=0.31): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-build-a-custom-home-in-rio-verde"
+WARN  Series sibling (q=0.78, a=0.33): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-build-a-custom-home-in-scottsdale"
+WARN  Possible overlapping intent (0.55): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-build-a-ramada-or-covered-patio-in-arizona"
+WARN  Series sibling (q=0.67, a=0.27): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "cost-to-build-an-rv-garage-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-extend-power-or-utilities-to-a-rural-arizona-lot"
+WARN  Series sibling (q=0.70, a=0.24): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "how-much-do-custom-house-plans-cost-in-arizona"
+WARN  Series sibling (q=0.67, a=0.35): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "cost-to-build-casita-arizona"
+WARN  Series sibling (q=0.67, a=0.38): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "cost-to-build-adu-arizona"
+WARN  Possible overlapping intent (0.40): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "do-i-need-an-architect-to-build-a-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.40): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "how-tall-can-a-custom-home-be-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "building-permit-cost-arizona"
+
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "how-much-does-a-garage-conversion-cost-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "how-much-does-a-garage-renovation-or-remodel-cost-in-arizona"
+WARN  Series sibling (q=0.67, a=0.31): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "how-much-does-a-kitchen-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "how-much-does-a-primary-bathroom-remodel-cost-in-arizona"
+WARN  Series sibling (q=0.60, a=0.27): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "how-much-does-asbestos-abatement-cost-on-an-arizona-teardown-or-remodel"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-add-a-second-story-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-arizona" vs "how-much-does-it-cost-to-deepen-a-well-in-arizona"
+WARN  Series sibling (q=0.70, a=0.28): "how-much-does-it-cost-to-build-a-custom-home-in-carefree" vs "how-much-does-it-cost-to-build-a-custom-home-in-casa-grande"
+WARN  Series sibling (q=0.70, a=0.46): "how-much-does-it-cost-to-build-a-custom-home-in-carefree" vs "how-much-does-it-cost-to-build-a-custom-home-in-cave-creek"
+WARN  Series sibling (q=0.70, a=0.38): "how-much-does-it-cost-to-build-a-custom-home-in-carefree" vs "how-much-does-it-cost-to-build-a-custom-home-in-fountain-hills"
+WARN  Series sibling (q=0.70, a=0.40): "how-much-does-it-cost-to-build-a-custom-home-in-carefree" vs "how-much-does-it-cost-to-build-a-custom-home-in-paradise-valley"
+WARN  Series sibling (q=0.78, a=0.32): "how-much-does-it-cost-to-build-a-custom-home-in-carefree" vs "how-much-does-it-cost-to-build-a-custom-home-in-phoenix"
+
+WARN  Series sibling (q=0.70, a=0.36): "how-much-does-it-cost-to-build-a-custom-home-in-carefree" vs "how-much-does-it-cost-to-build-a-custom-home-in-rio-verde"
+WARN  Series sibling (q=0.78, a=0.42): "how-much-does-it-cost-to-build-a-custom-home-in-carefree" vs "how-much-does-it-cost-to-build-a-custom-home-in-scottsdale"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-build-a-custom-home-in-carefree" vs "how-much-does-it-cost-to-build-a-ramada-or-covered-patio-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-carefree" vs "cost-to-build-an-rv-garage-in-arizona"
+WARN  Possible overlapping intent (0.55): "how-much-does-it-cost-to-build-a-custom-home-in-carefree" vs "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-carefree" vs "cost-to-build-casita-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-carefree" vs "cost-to-build-adu-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-carefree" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-carefree" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Series sibling (q=0.64, a=0.31): "how-much-does-it-cost-to-build-a-custom-home-in-casa-grande" vs "how-much-does-it-cost-to-build-a-custom-home-in-cave-creek"
+WARN  Series sibling (q=0.64, a=0.30): "how-much-does-it-cost-to-build-a-custom-home-in-casa-grande" vs "how-much-does-it-cost-to-build-a-custom-home-in-fountain-hills"
+
+WARN  Series sibling (q=0.64, a=0.32): "how-much-does-it-cost-to-build-a-custom-home-in-casa-grande" vs "how-much-does-it-cost-to-build-a-custom-home-in-paradise-valley"
+WARN  Series sibling (q=0.70, a=0.32): "how-much-does-it-cost-to-build-a-custom-home-in-casa-grande" vs "how-much-does-it-cost-to-build-a-custom-home-in-phoenix"
+WARN  Series sibling (q=0.64, a=0.32): "how-much-does-it-cost-to-build-a-custom-home-in-casa-grande" vs "how-much-does-it-cost-to-build-a-custom-home-in-rio-verde"
+WARN  Series sibling (q=0.70, a=0.31): "how-much-does-it-cost-to-build-a-custom-home-in-casa-grande" vs "how-much-does-it-cost-to-build-a-custom-home-in-scottsdale"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-casa-grande" vs "cost-to-build-an-rv-garage-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-casa-grande" vs "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-casa-grande" vs "cost-to-build-casita-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-casa-grande" vs "cost-to-build-adu-arizona"
+
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-casa-grande" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-build-a-custom-home-in-casa-grande" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Series sibling (q=0.64, a=0.39): "how-much-does-it-cost-to-build-a-custom-home-in-cave-creek" vs "how-much-does-it-cost-to-build-a-custom-home-in-fountain-hills"
+WARN  Series sibling (q=0.64, a=0.39): "how-much-does-it-cost-to-build-a-custom-home-in-cave-creek" vs "how-much-does-it-cost-to-build-a-custom-home-in-paradise-valley"
+WARN  Series sibling (q=0.70, a=0.34): "how-much-does-it-cost-to-build-a-custom-home-in-cave-creek" vs "how-much-does-it-cost-to-build-a-custom-home-in-phoenix"
+WARN  Series sibling (q=0.64, a=0.39): "how-much-does-it-cost-to-build-a-custom-home-in-cave-creek" vs "how-much-does-it-cost-to-build-a-custom-home-in-rio-verde"
+WARN  Series sibling (q=0.70, a=0.36): "how-much-does-it-cost-to-build-a-custom-home-in-cave-creek" vs "how-much-does-it-cost-to-build-a-custom-home-in-scottsdale"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-cave-creek" vs "cost-to-build-an-rv-garage-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-cave-creek" vs "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-cave-creek" vs "cost-to-build-casita-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-cave-creek" vs "cost-to-build-adu-arizona"
+
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-cave-creek" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-build-a-custom-home-in-cave-creek" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Series sibling (q=0.64, a=0.36): "how-much-does-it-cost-to-build-a-custom-home-in-fountain-hills" vs "how-much-does-it-cost-to-build-a-custom-home-in-paradise-valley"
+WARN  Series sibling (q=0.70, a=0.32): "how-much-does-it-cost-to-build-a-custom-home-in-fountain-hills" vs "how-much-does-it-cost-to-build-a-custom-home-in-phoenix"
+WARN  Series sibling (q=0.64, a=0.28): "how-much-does-it-cost-to-build-a-custom-home-in-fountain-hills" vs "how-much-does-it-cost-to-build-a-custom-home-in-rio-verde"
+WARN  Series sibling (q=0.70, a=0.38): "how-much-does-it-cost-to-build-a-custom-home-in-fountain-hills" vs "how-much-does-it-cost-to-build-a-custom-home-in-scottsdale"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-fountain-hills" vs "cost-to-build-an-rv-garage-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-fountain-hills" vs "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-fountain-hills" vs "cost-to-build-casita-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-fountain-hills" vs "cost-to-build-adu-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-fountain-hills" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-build-a-custom-home-in-fountain-hills" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Series sibling (q=0.70, a=0.37): "how-much-does-it-cost-to-build-a-custom-home-in-paradise-valley" vs "how-much-does-it-cost-to-build-a-custom-home-in-phoenix"
+WARN  Series sibling (q=0.64, a=0.30): "how-much-does-it-cost-to-build-a-custom-home-in-paradise-valley" vs "how-much-does-it-cost-to-build-a-custom-home-in-rio-verde"
+WARN  Series sibling (q=0.70, a=0.37): "how-much-does-it-cost-to-build-a-custom-home-in-paradise-valley" vs "how-much-does-it-cost-to-build-a-custom-home-in-scottsdale"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-paradise-valley" vs "cost-to-build-an-rv-garage-in-arizona"
+
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-paradise-valley" vs "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-paradise-valley" vs "cost-to-build-casita-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-paradise-valley" vs "cost-to-build-adu-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-paradise-valley" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-build-a-custom-home-in-paradise-valley" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Series sibling (q=0.70, a=0.31): "how-much-does-it-cost-to-build-a-custom-home-in-phoenix" vs "how-much-does-it-cost-to-build-a-custom-home-in-rio-verde"
+WARN  Series sibling (q=0.78, a=0.35): "how-much-does-it-cost-to-build-a-custom-home-in-phoenix" vs "how-much-does-it-cost-to-build-a-custom-home-in-scottsdale"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-build-a-custom-home-in-phoenix" vs "how-much-does-it-cost-to-build-a-ramada-or-covered-patio-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-phoenix" vs "cost-to-build-an-rv-garage-in-arizona"
+WARN  Possible overlapping intent (0.55): "how-much-does-it-cost-to-build-a-custom-home-in-phoenix" vs "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-phoenix" vs "cost-to-build-casita-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-phoenix" vs "cost-to-build-adu-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-phoenix" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-phoenix" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Series sibling (q=0.70, a=0.32): "how-much-does-it-cost-to-build-a-custom-home-in-rio-verde" vs "how-much-does-it-cost-to-build-a-custom-home-in-scottsdale"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-rio-verde" vs "cost-to-build-an-rv-garage-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-rio-verde" vs "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-rio-verde" vs "cost-to-build-casita-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-rio-verde" vs "cost-to-build-adu-arizona"
+
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-rio-verde" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-build-a-custom-home-in-rio-verde" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-rio-verde" vs "how-much-does-it-cost-to-haul-water-in-rio-verde-foothills"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-build-a-custom-home-in-scottsdale" vs "how-much-does-it-cost-to-build-a-ramada-or-covered-patio-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-scottsdale" vs "cost-to-build-an-rv-garage-in-arizona"
+WARN  Possible overlapping intent (0.55): "how-much-does-it-cost-to-build-a-custom-home-in-scottsdale" vs "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-scottsdale" vs "cost-to-build-casita-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-scottsdale" vs "cost-to-build-adu-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-it-cost-to-build-a-custom-home-in-scottsdale" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-custom-home-in-scottsdale" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Series sibling (q=0.60, a=0.31): "how-much-does-it-cost-to-build-a-ramada-or-covered-patio-in-arizona" vs "cost-to-build-an-rv-garage-in-arizona"
+WARN  Series sibling (q=0.60, a=0.30): "how-much-does-it-cost-to-build-a-ramada-or-covered-patio-in-arizona" vs "cost-to-build-casita-arizona"
+WARN  Series sibling (q=0.60, a=0.31): "how-much-does-it-cost-to-build-a-ramada-or-covered-patio-in-arizona" vs "cost-to-build-adu-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-ramada-or-covered-patio-in-arizona" vs "building-permit-cost-arizona"
+
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-ramada-or-covered-patio-in-arizona" vs "how-much-does-a-garage-conversion-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-build-a-ramada-or-covered-patio-in-arizona" vs "how-much-does-a-garage-renovation-or-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-ramada-or-covered-patio-in-arizona" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-build-a-ramada-or-covered-patio-in-arizona" vs "how-much-does-a-kitchen-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-build-a-ramada-or-covered-patio-in-arizona" vs "how-much-does-a-primary-bathroom-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-build-a-ramada-or-covered-patio-in-arizona" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-build-a-ramada-or-covered-patio-in-arizona" vs "how-much-does-asbestos-abatement-cost-on-an-arizona-teardown-or-remodel"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-build-a-ramada-or-covered-patio-in-arizona" vs "how-much-does-it-cost-to-deepen-a-well-in-arizona"
+WARN  Possible overlapping intent (0.45): "cost-to-build-an-rv-garage-in-arizona" vs "how-much-does-it-cost-to-extend-power-or-utilities-to-a-rural-arizona-lot"
+WARN  Possible overlapping intent (0.45): "cost-to-build-an-rv-garage-in-arizona" vs "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.40): "cost-to-build-an-rv-garage-in-arizona" vs "how-much-do-custom-house-plans-cost-in-arizona"
+WARN  Series sibling (q=0.75, a=0.30): "cost-to-build-an-rv-garage-in-arizona" vs "cost-to-build-casita-arizona"
+
+WARN  Series sibling (q=0.75, a=0.32): "cost-to-build-an-rv-garage-in-arizona" vs "cost-to-build-adu-arizona"
+WARN  Possible overlapping intent (0.56): "cost-to-build-an-rv-garage-in-arizona" vs "building-permit-cost-arizona"
+WARN  Series sibling (q=0.75, a=0.25): "cost-to-build-an-rv-garage-in-arizona" vs "how-much-does-a-garage-conversion-cost-in-arizona"
+WARN  Series sibling (q=0.67, a=0.27): "cost-to-build-an-rv-garage-in-arizona" vs "how-much-does-a-garage-renovation-or-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.56): "cost-to-build-an-rv-garage-in-arizona" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.56): "cost-to-build-an-rv-garage-in-arizona" vs "how-much-does-a-kitchen-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "cost-to-build-an-rv-garage-in-arizona" vs "how-much-does-a-primary-bathroom-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "cost-to-build-an-rv-garage-in-arizona" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+
+WARN  Possible overlapping intent (0.50): "cost-to-build-an-rv-garage-in-arizona" vs "how-much-does-asbestos-abatement-cost-on-an-arizona-teardown-or-remodel"
+WARN  Possible overlapping intent (0.45): "cost-to-build-an-rv-garage-in-arizona" vs "how-much-does-it-cost-to-add-a-second-story-in-arizona"
+WARN  Possible overlapping intent (0.42): "cost-to-build-an-rv-garage-in-arizona" vs "how-much-does-it-cost-to-tear-down-and-rebuild-a-house-in-arizona"
+WARN  Possible overlapping intent (0.50): "cost-to-build-an-rv-garage-in-arizona" vs "how-much-does-it-cost-to-deepen-a-well-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-extend-power-or-utilities-to-a-rural-arizona-lot" vs "cost-to-build-casita-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-extend-power-or-utilities-to-a-rural-arizona-lot" vs "cost-to-build-adu-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-extend-power-or-utilities-to-a-rural-arizona-lot" vs "building-permit-cost-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-extend-power-or-utilities-to-a-rural-arizona-lot" vs "how-much-does-a-garage-conversion-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-extend-power-or-utilities-to-a-rural-arizona-lot" vs "how-much-does-a-garage-renovation-or-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-extend-power-or-utilities-to-a-rural-arizona-lot" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-extend-power-or-utilities-to-a-rural-arizona-lot" vs "how-much-does-a-kitchen-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-extend-power-or-utilities-to-a-rural-arizona-lot" vs "how-much-does-a-primary-bathroom-remodel-cost-in-arizona"
+
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-extend-power-or-utilities-to-a-rural-arizona-lot" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-extend-power-or-utilities-to-a-rural-arizona-lot" vs "how-much-does-asbestos-abatement-cost-on-an-arizona-teardown-or-remodel"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-extend-power-or-utilities-to-a-rural-arizona-lot" vs "how-much-does-it-cost-to-deepen-a-well-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona" vs "how-much-do-custom-house-plans-cost-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona" vs "cost-to-build-casita-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona" vs "cost-to-build-adu-arizona"
+
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona" vs "building-permit-cost-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona" vs "how-much-does-a-garage-conversion-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona" vs "how-much-does-a-garage-renovation-or-remodel-cost-in-arizona"
+WARN  Series sibling (q=0.60, a=0.22): "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona" vs "how-much-does-a-kitchen-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona" vs "how-much-does-a-primary-bathroom-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.55): "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona" vs "how-much-does-asbestos-abatement-cost-on-an-arizona-teardown-or-remodel"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-landscape-a-new-custom-home-in-arizona" vs "how-much-does-it-cost-to-deepen-a-well-in-arizona"
+WARN  Possible overlapping intent (0.43): "is-it-cheaper-to-buy-or-build-a-house-in-arizona" vs "can-i-build-my-own-house-in-arizona"
+WARN  Possible overlapping intent (0.57): "is-it-cheaper-to-buy-or-build-a-house-in-arizona" vs "how-do-i-buy-land-to-build-a-house-in-arizona"
+WARN  Possible overlapping intent (0.40): "construction-loan-requirements-arizona" vs "what-credit-score-do-i-need-for-a-construction-loan-in-arizona"
+WARN  Possible overlapping intent (0.57): "construction-loan-requirements-arizona" vs "construction-to-permanent-loan-arizona"
+WARN  Possible overlapping intent (0.40): "construction-loan-requirements-arizona" vs "land-and-construction-loan-arizona"
+
+WARN  Possible overlapping intent (0.50): "construction-loan-requirements-arizona" vs "owner-builder-construction-loan-arizona"
+WARN  Overlapping intent (q=0.67, a=0.46): "what-credit-score-and-down-payment-do-you-need-for-a-construction-loan-in-arizona" vs "what-credit-score-do-i-need-for-a-construction-loan-in-arizona"
+WARN  Possible overlapping intent (0.44): "what-credit-score-do-i-need-for-a-construction-loan-in-arizona" vs "construction-to-permanent-loan-arizona"
+WARN  Possible overlapping intent (0.40): "what-credit-score-do-i-need-for-a-construction-loan-in-arizona" vs "owner-builder-construction-loan-arizona"
+WARN  Possible overlapping intent (0.43): "construction-to-permanent-loan-arizona" vs "what-is-a-contingency-reserve-on-a-construction-loan"
+WARN  Possible overlapping intent (0.44): "construction-to-permanent-loan-arizona" vs "land-and-construction-loan-arizona"
+WARN  Possible overlapping intent (0.57): "construction-to-permanent-loan-arizona" vs "owner-builder-construction-loan-arizona"
+WARN  Overlapping intent (q=0.64, a=0.40): "land-and-construction-loan-arizona" vs "what-is-a-lot-loan-or-land-loan-and-how-is-it-different-from-a-construction-loan-in-arizona"
+WARN  Possible overlapping intent (0.40): "land-and-construction-loan-arizona" vs "owner-builder-construction-loan-arizona"
+WARN  Overlapping intent (q=0.60, a=0.45): "what-is-builders-risk-insurance-arizona" vs "who-pays-for-builders-risk-insurance-arizona"
+WARN  Possible overlapping intent (0.40): "what-is-builders-risk-insurance-arizona" vs "what-ceiling-height-is-standard-in-an-arizona-custom-home"
+WARN  Possible overlapping intent (0.44): "what-is-builders-risk-insurance-arizona" vs "what-is-a-modern-or-contemporary-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.40): "what-is-builders-risk-insurance-arizona" vs "what-is-a-tuscan-or-mediterranean-style-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.42): "cost-to-build-a-house-per-square-foot-in-arizona" vs "what-is-the-biggest-house-i-can-build-on-my-lot-in-arizona"
+WARN  Possible overlapping intent (0.42): "casita-vs-guest-house-vs-adu-arizona" vs "adu-and-casita-rules-in-mesa-arizona"
+
+WARN  Possible overlapping intent (0.42): "casita-vs-guest-house-vs-adu-arizona" vs "adu-and-casita-rules-in-phoenix-arizona"
+WARN  Possible overlapping intent (0.42): "casita-vs-guest-house-vs-adu-arizona" vs "adu-and-casita-rules-in-scottsdale-arizona"
+WARN  Possible overlapping intent (0.40): "how-big-should-a-custom-home-be-and-how-do-you-plan-the-room-program" vs "what-is-a-great-room-and-how-do-you-design-one-in-a-custom-home"
+
+WARN  Possible overlapping intent (0.40): "how-big-should-a-walk-in-closet-be-in-a-custom-home" vs "how-many-square-feet-should-a-custom-home-be"
+WARN  Possible overlapping intent (0.40): "how-big-should-a-walk-in-closet-be-in-a-custom-home" vs "what-is-a-walk-in-pantry-and-how-big-should-it-be"
+WARN  Possible overlapping intent (0.40): "how-do-i-choose-an-architectural-style-for-my-arizona-custom-home" vs "how-tall-can-a-custom-home-be-in-arizona"
+WARN  Possible overlapping intent (0.46): "how-do-you-design-a-home-office-in-a-custom-home-for-working-from-home" vs "how-do-you-design-an-arizona-custom-home-for-aging-in-place-or-universal-design"
+
+WARN  Possible overlapping intent (0.43): "how-do-you-design-a-home-office-in-a-custom-home-for-working-from-home" vs "how-do-you-design-indoor-outdoor-living-flow-for-an-arizona-custom-home"
+WARN  Possible overlapping intent (0.50): "how-do-you-design-an-arizona-custom-home-for-aging-in-place-or-universal-design" vs "how-do-you-design-indoor-outdoor-living-flow-for-an-arizona-custom-home"
+WARN  Possible overlapping intent (0.40): "how-do-you-design-an-arizona-custom-home-for-aging-in-place-or-universal-design" vs "how-much-are-hoa-design-review-fees-for-a-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.40): "how-much-do-custom-house-plans-cost-in-arizona" vs "cost-to-build-casita-arizona"
+WARN  Possible overlapping intent (0.40): "how-much-do-custom-house-plans-cost-in-arizona" vs "cost-to-build-adu-arizona"
+WARN  Possible overlapping intent (0.40): "how-much-do-custom-house-plans-cost-in-arizona" vs "building-permit-cost-arizona"
+WARN  Possible overlapping intent (0.40): "how-much-do-custom-house-plans-cost-in-arizona" vs "how-much-does-a-garage-conversion-cost-in-arizona"
+WARN  Possible overlapping intent (0.40): "how-much-do-custom-house-plans-cost-in-arizona" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.40): "how-much-do-custom-house-plans-cost-in-arizona" vs "how-much-does-a-kitchen-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-do-custom-house-plans-cost-in-arizona" vs "how-much-does-it-cost-to-add-a-second-story-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-do-custom-house-plans-cost-in-arizona" vs "how-much-does-it-cost-to-tear-down-and-rebuild-a-house-in-arizona"
+WARN  Series sibling (q=0.75, a=0.64): "cost-to-build-casita-arizona" vs "cost-to-build-adu-arizona"
+WARN  Possible overlapping intent (0.56): "cost-to-build-casita-arizona" vs "building-permit-cost-arizona"
+WARN  Possible overlapping intent (0.56): "cost-to-build-casita-arizona" vs "how-much-does-a-garage-conversion-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "cost-to-build-casita-arizona" vs "how-much-does-a-garage-renovation-or-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.56): "cost-to-build-casita-arizona" vs "how-much-does-a-home-addition-cost-in-arizona"
+
+WARN  Possible overlapping intent (0.56): "cost-to-build-casita-arizona" vs "how-much-does-a-kitchen-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "cost-to-build-casita-arizona" vs "how-much-does-a-primary-bathroom-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "cost-to-build-casita-arizona" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "cost-to-build-casita-arizona" vs "how-much-does-asbestos-abatement-cost-on-an-arizona-teardown-or-remodel"
+WARN  Possible overlapping intent (0.45): "cost-to-build-casita-arizona" vs "how-much-does-it-cost-to-add-a-second-story-in-arizona"
+WARN  Possible overlapping intent (0.42): "cost-to-build-casita-arizona" vs "how-much-does-it-cost-to-tear-down-and-rebuild-a-house-in-arizona"
+WARN  Possible overlapping intent (0.50): "cost-to-build-casita-arizona" vs "how-much-does-it-cost-to-deepen-a-well-in-arizona"
+WARN  Possible overlapping intent (0.56): "cost-to-build-adu-arizona" vs "building-permit-cost-arizona"
+WARN  Possible overlapping intent (0.56): "cost-to-build-adu-arizona" vs "how-much-does-a-garage-conversion-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "cost-to-build-adu-arizona" vs "how-much-does-a-garage-renovation-or-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.56): "cost-to-build-adu-arizona" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.56): "cost-to-build-adu-arizona" vs "how-much-does-a-kitchen-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "cost-to-build-adu-arizona" vs "how-much-does-a-primary-bathroom-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "cost-to-build-adu-arizona" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+
+WARN  Possible overlapping intent (0.50): "cost-to-build-adu-arizona" vs "how-much-does-asbestos-abatement-cost-on-an-arizona-teardown-or-remodel"
+WARN  Possible overlapping intent (0.45): "cost-to-build-adu-arizona" vs "how-much-does-it-cost-to-add-a-second-story-in-arizona"
+WARN  Possible overlapping intent (0.42): "cost-to-build-adu-arizona" vs "how-much-does-it-cost-to-tear-down-and-rebuild-a-house-in-arizona"
+WARN  Possible overlapping intent (0.50): "cost-to-build-adu-arizona" vs "how-much-does-it-cost-to-deepen-a-well-in-arizona"
+WARN  Possible overlapping intent (0.42): "spanish-colonial-vs-mediterranean-vs-tuscan-whats-the-difference-for-an-arizona-home" vs "what-is-a-tuscan-or-mediterranean-style-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.43): "arizona-adu-requirements" vs "adu-setback-and-size-rules-by-city-in-arizona"
+WARN  Possible overlapping intent (0.42): "arizona-adu-requirements" vs "what-is-an-adu-arizona"
+WARN  Series sibling (q=0.80, a=0.41): "adu-and-casita-rules-in-mesa-arizona" vs "adu-and-casita-rules-in-phoenix-arizona"
+WARN  Series sibling (q=0.80, a=0.39): "adu-and-casita-rules-in-mesa-arizona" vs "adu-and-casita-rules-in-scottsdale-arizona"
+WARN  Possible overlapping intent (0.58): "adu-and-casita-rules-in-mesa-arizona" vs "adu-setback-and-size-rules-by-city-in-arizona"
+WARN  Series sibling (q=0.78, a=0.32): "adu-and-casita-rules-in-mesa-arizona" vs "what-is-an-adu-arizona"
+WARN  Series sibling (q=0.80, a=0.42): "adu-and-casita-rules-in-phoenix-arizona" vs "adu-and-casita-rules-in-scottsdale-arizona"
+WARN  Possible overlapping intent (0.58): "adu-and-casita-rules-in-phoenix-arizona" vs "adu-setback-and-size-rules-by-city-in-arizona"
+WARN  Series sibling (q=0.78, a=0.38): "adu-and-casita-rules-in-phoenix-arizona" vs "what-is-an-adu-arizona"
+WARN  Possible overlapping intent (0.58): "adu-and-casita-rules-in-scottsdale-arizona" vs "adu-setback-and-size-rules-by-city-in-arizona"
+
+WARN  Series sibling (q=0.78, a=0.37): "adu-and-casita-rules-in-scottsdale-arizona" vs "what-is-an-adu-arizona"
+
+WARN  Overlapping intent (q=0.70, a=0.33): "adu-setback-and-size-rules-by-city-in-arizona" vs "what-is-an-adu-arizona"
+WARN  Possible overlapping intent (0.44): "what-ceiling-height-is-standard-in-an-arizona-custom-home" vs "what-is-a-modern-or-contemporary-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.40): "what-ceiling-height-is-standard-in-an-arizona-custom-home" vs "what-is-a-tuscan-or-mediterranean-style-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.50): "what-is-a-flex-room-and-how-do-you-plan-one" vs "what-is-a-great-room-and-how-do-you-design-one-in-a-custom-home"
+WARN  Possible overlapping intent (0.43): "what-is-a-great-room-and-how-do-you-design-one-in-a-custom-home" vs "what-is-a-mudroom-or-drop-zone-and-how-do-you-design-one-in-arizona"
+WARN  Possible overlapping intent (0.40): "what-is-a-hacienda-or-spanish-ranch-style-home-in-arizona" vs "what-is-a-pueblo-revival-or-southwest-style-home-in-arizona"
+WARN  Series sibling (q=0.63, a=0.40): "what-is-a-hacienda-or-spanish-ranch-style-home-in-arizona" vs "what-is-a-ranch-or-desert-ranch-style-home-in-arizona"
+WARN  Possible overlapping intent (0.45): "what-is-a-hacienda-or-spanish-ranch-style-home-in-arizona" vs "what-is-a-santa-barbara-or-spanish-colonial-style-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.50): "what-is-a-hacienda-or-spanish-ranch-style-home-in-arizona" vs "what-is-a-territorial-style-home-in-arizona"
+WARN  Possible overlapping intent (0.40): "what-is-a-hacienda-or-spanish-ranch-style-home-in-arizona" vs "what-is-a-tuscan-or-mediterranean-style-custom-home-in-arizona"
+
+WARN  Possible overlapping intent (0.44): "what-is-a-modern-or-contemporary-custom-home-in-arizona" vs "what-is-a-tuscan-or-mediterranean-style-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.44): "what-is-a-pueblo-revival-or-southwest-style-home-in-arizona" vs "what-is-a-ranch-or-desert-ranch-style-home-in-arizona"
+WARN  Possible overlapping intent (0.50): "what-is-a-pueblo-revival-or-southwest-style-home-in-arizona" vs "what-is-a-territorial-style-home-in-arizona"
+WARN  Possible overlapping intent (0.40): "what-is-a-pueblo-revival-or-southwest-style-home-in-arizona" vs "what-is-a-tuscan-or-mediterranean-style-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.57): "what-is-a-ranch-or-desert-ranch-style-home-in-arizona" vs "what-is-a-territorial-style-home-in-arizona"
+WARN  Possible overlapping intent (0.44): "what-is-a-ranch-or-desert-ranch-style-home-in-arizona" vs "what-is-a-tuscan-or-mediterranean-style-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.40): "what-is-a-santa-barbara-or-spanish-colonial-style-custom-home-in-arizona" vs "what-is-a-territorial-style-home-in-arizona"
+WARN  Possible overlapping intent (0.40): "what-is-a-santa-barbara-or-spanish-colonial-style-custom-home-in-arizona" vs "what-is-a-transitional-style-custom-home"
+
+WARN  Possible overlapping intent (0.45): "what-is-a-santa-barbara-or-spanish-colonial-style-custom-home-in-arizona" vs "what-is-a-tuscan-or-mediterranean-style-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.43): "what-is-a-territorial-style-home-in-arizona" vs "what-is-a-transitional-style-custom-home"
+WARN  Possible overlapping intent (0.50): "what-is-a-territorial-style-home-in-arizona" vs "what-is-a-tuscan-or-mediterranean-style-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.50): "what-is-a-transitional-style-custom-home" vs "what-is-a-tuscan-or-mediterranean-style-custom-home-in-arizona"
+WARN  Possible overlapping intent (0.44): "can-i-build-my-own-house-in-arizona" vs "what-is-the-biggest-house-i-can-build-on-my-lot-in-arizona"
+WARN  Possible overlapping intent (0.56): "do-i-need-an-architect-to-build-a-custom-home-in-arizona" vs "do-i-need-a-dust-control-permit-to-build-a-custom-home-in-arizona"
+WARN  Overlapping intent (q=0.67, a=0.36): "how-tall-can-a-custom-home-be-in-a-gated-or-hillside-community-in-arizona" vs "how-tall-can-a-custom-home-be-in-arizona"
+WARN  Possible overlapping intent (0.42): "what-is-a-will-serve-letter-and-do-i-need-one-to-build-in-arizona" vs "what-is-a-shared-well-agreement-in-arizona"
+WARN  Possible overlapping intent (0.40): "do-i-need-a-dust-control-permit-to-build-a-custom-home-in-arizona" vs "do-i-need-a-permit-for-a-home-addition-in-arizona"
+WARN  Possible overlapping intent (0.40): "do-i-need-a-permit-for-a-backyard-sport-court-or-pickleball-court-in-arizona" vs "do-i-need-a-permit-for-a-sunroom-or-arizona-room"
+
+WARN  Possible overlapping intent (0.40): "do-i-need-a-permit-for-a-backyard-sport-court-or-pickleball-court-in-arizona" vs "do-i-need-a-permit-for-a-home-addition-in-arizona"
+WARN  Possible overlapping intent (0.40): "do-i-need-a-permit-for-a-fire-pit-or-outdoor-fireplace-in-arizona" vs "do-i-need-a-permit-for-a-sunroom-or-arizona-room"
+WARN  Possible overlapping intent (0.40): "do-i-need-a-permit-for-a-fire-pit-or-outdoor-fireplace-in-arizona" vs "do-i-need-a-permit-for-a-home-addition-in-arizona"
+WARN  Possible overlapping intent (0.44): "do-i-need-a-permit-for-a-ramada-or-shade-structure-in-arizona" vs "do-i-need-a-permit-for-a-sunroom-or-arizona-room"
+WARN  Possible overlapping intent (0.40): "do-i-need-a-permit-for-a-ramada-or-shade-structure-in-arizona" vs "do-i-need-a-permit-to-build-a-shed-or-detached-structure-in-arizona"
+WARN  Possible overlapping intent (0.44): "do-i-need-a-permit-for-a-ramada-or-shade-structure-in-arizona" vs "do-i-need-a-permit-for-a-home-addition-in-arizona"
+WARN  Possible overlapping intent (0.50): "do-i-need-a-permit-for-a-sunroom-or-arizona-room" vs "do-i-need-a-permit-for-a-home-addition-in-arizona"
+WARN  Possible overlapping intent (0.43): "do-i-need-a-permit-to-enclose-a-patio-in-arizona" vs "do-i-need-a-permit-to-remodel-my-house-in-arizona"
+WARN  Possible overlapping intent (0.44): "how-to-look-up-a-building-permit-in-arizona" vs "how-long-does-it-take-to-get-a-building-permit-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-to-look-up-a-building-permit-in-arizona" vs "building-permit-cost-arizona"
+WARN  Possible overlapping intent (0.50): "how-long-does-it-take-to-get-a-building-permit-in-arizona" vs "building-permit-cost-arizona"
+WARN  Possible overlapping intent (0.50): "how-long-does-it-take-to-get-a-building-permit-in-arizona" vs "how-long-does-a-home-remodel-take-in-arizona"
+WARN  Possible overlapping intent (0.56): "building-permit-cost-arizona" vs "how-much-does-a-garage-conversion-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "building-permit-cost-arizona" vs "how-much-does-a-garage-renovation-or-remodel-cost-in-arizona"
+
+WARN  Possible overlapping intent (0.56): "building-permit-cost-arizona" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.56): "building-permit-cost-arizona" vs "how-much-does-a-kitchen-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "building-permit-cost-arizona" vs "how-much-does-a-primary-bathroom-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "building-permit-cost-arizona" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "building-permit-cost-arizona" vs "how-much-does-asbestos-abatement-cost-on-an-arizona-teardown-or-remodel"
+WARN  Possible overlapping intent (0.45): "building-permit-cost-arizona" vs "how-much-does-it-cost-to-add-a-second-story-in-arizona"
+WARN  Possible overlapping intent (0.42): "building-permit-cost-arizona" vs "how-much-does-it-cost-to-tear-down-and-rebuild-a-house-in-arizona"
+WARN  Possible overlapping intent (0.50): "building-permit-cost-arizona" vs "how-much-does-it-cost-to-deepen-a-well-in-arizona"
+WARN  Series sibling (q=0.63, a=0.70): "what-building-codes-apply-in-carefree-arizona" vs "what-building-codes-apply-in-cave-creek-arizona"
+WARN  Series sibling (q=0.63, a=0.64): "what-building-codes-apply-in-carefree-arizona" vs "what-building-codes-apply-in-fountain-hills-arizona"
+WARN  Series sibling (q=0.71, a=0.64): "what-building-codes-apply-in-carefree-arizona" vs "what-building-codes-apply-in-phoenix-arizona"
+WARN  Possible overlapping intent (0.56): "what-building-codes-apply-in-carefree-arizona" vs "what-building-codes-apply-in-rio-verde-foothills-arizona"
+WARN  Series sibling (q=0.71, a=0.62): "what-building-codes-apply-in-carefree-arizona" vs "what-building-codes-apply-in-scottsdale-arizona"
+
+WARN  Possible overlapping intent (0.56): "what-building-codes-apply-in-cave-creek-arizona" vs "what-building-codes-apply-in-fountain-hills-arizona"
+WARN  Series sibling (q=0.63, a=0.65): "what-building-codes-apply-in-cave-creek-arizona" vs "what-building-codes-apply-in-phoenix-arizona"
+WARN  Possible overlapping intent (0.50): "what-building-codes-apply-in-cave-creek-arizona" vs "what-building-codes-apply-in-rio-verde-foothills-arizona"
+WARN  Series sibling (q=0.63, a=0.60): "what-building-codes-apply-in-cave-creek-arizona" vs "what-building-codes-apply-in-scottsdale-arizona"
+WARN  Series sibling (q=0.63, a=0.64): "what-building-codes-apply-in-fountain-hills-arizona" vs "what-building-codes-apply-in-phoenix-arizona"
+WARN  Possible overlapping intent (0.50): "what-building-codes-apply-in-fountain-hills-arizona" vs "what-building-codes-apply-in-rio-verde-foothills-arizona"
+WARN  Series sibling (q=0.63, a=0.63): "what-building-codes-apply-in-fountain-hills-arizona" vs "what-building-codes-apply-in-scottsdale-arizona"
+WARN  Possible overlapping intent (0.56): "what-building-codes-apply-in-phoenix-arizona" vs "what-building-codes-apply-in-rio-verde-foothills-arizona"
+WARN  Series sibling (q=0.71, a=0.77): "what-building-codes-apply-in-phoenix-arizona" vs "what-building-codes-apply-in-scottsdale-arizona"
+WARN  Possible overlapping intent (0.56): "what-building-codes-apply-in-rio-verde-foothills-arizona" vs "what-building-codes-apply-in-scottsdale-arizona"
+WARN  Possible overlapping intent (0.43): "dust-control-permit-vs-stormwater-swppp-permit-in-arizona" vs "whats-the-difference-between-a-remodel-a-renovation-and-an-addition-in-arizona"
+WARN  Possible overlapping intent (0.40): "can-i-tear-down-an-existing-house-and-rebuild-on-the-same-lot-in-arizona" vs "how-much-does-it-cost-to-tear-down-and-rebuild-a-house-in-arizona"
+WARN  Possible overlapping intent (0.40): "how-long-does-a-home-remodel-take-in-arizona" vs "how-much-does-a-home-addition-cost-in-arizona"
+
+WARN  Possible overlapping intent (0.40): "how-long-does-a-home-remodel-take-in-arizona" vs "how-much-does-a-kitchen-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-long-does-a-home-remodel-take-in-arizona" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Series sibling (q=0.67, a=0.33): "how-much-does-a-garage-conversion-cost-in-arizona" vs "how-much-does-a-garage-renovation-or-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.56): "how-much-does-a-garage-conversion-cost-in-arizona" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Possible overlapping intent (0.56): "how-much-does-a-garage-conversion-cost-in-arizona" vs "how-much-does-a-kitchen-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-a-garage-conversion-cost-in-arizona" vs "how-much-does-a-primary-bathroom-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-a-garage-conversion-cost-in-arizona" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-a-garage-conversion-cost-in-arizona" vs "how-much-does-asbestos-abatement-cost-on-an-arizona-teardown-or-remodel"
+WARN  Possible overlapping intent (0.45): "how-much-does-a-garage-conversion-cost-in-arizona" vs "how-much-does-it-cost-to-add-a-second-story-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-garage-conversion-cost-in-arizona" vs "how-much-does-it-cost-to-tear-down-and-rebuild-a-house-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-a-garage-conversion-cost-in-arizona" vs "how-much-does-it-cost-to-deepen-a-well-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-a-garage-renovation-or-remodel-cost-in-arizona" vs "how-much-does-a-home-addition-cost-in-arizona"
+WARN  Series sibling (q=0.67, a=0.26): "how-much-does-a-garage-renovation-or-remodel-cost-in-arizona" vs "how-much-does-a-kitchen-remodel-cost-in-arizona"
+
+WARN  Series sibling (q=0.60, a=0.26): "how-much-does-a-garage-renovation-or-remodel-cost-in-arizona" vs "how-much-does-a-primary-bathroom-remodel-cost-in-arizona"
+WARN  Series sibling (q=0.60, a=0.28): "how-much-does-a-garage-renovation-or-remodel-cost-in-arizona" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-a-garage-renovation-or-remodel-cost-in-arizona" vs "how-much-does-asbestos-abatement-cost-on-an-arizona-teardown-or-remodel"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-garage-renovation-or-remodel-cost-in-arizona" vs "how-much-does-it-cost-to-add-a-second-story-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-a-garage-renovation-or-remodel-cost-in-arizona" vs "how-much-does-it-cost-to-deepen-a-well-in-arizona"
+WARN  Possible overlapping intent (0.56): "how-much-does-a-home-addition-cost-in-arizona" vs "how-much-does-a-kitchen-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-a-home-addition-cost-in-arizona" vs "how-much-does-a-primary-bathroom-remodel-cost-in-arizona"
+WARN  Series sibling (q=0.67, a=0.39): "how-much-does-a-home-addition-cost-in-arizona" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-a-home-addition-cost-in-arizona" vs "how-much-does-asbestos-abatement-cost-on-an-arizona-teardown-or-remodel"
+WARN  Possible overlapping intent (0.45): "how-much-does-a-home-addition-cost-in-arizona" vs "how-much-does-it-cost-to-add-a-second-story-in-arizona"
+
+WARN  Possible overlapping intent (0.42): "how-much-does-a-home-addition-cost-in-arizona" vs "how-much-does-it-cost-to-tear-down-and-rebuild-a-house-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-a-home-addition-cost-in-arizona" vs "how-much-does-it-cost-to-deepen-a-well-in-arizona"
+WARN  Series sibling (q=0.67, a=0.48): "how-much-does-a-kitchen-remodel-cost-in-arizona" vs "how-much-does-a-primary-bathroom-remodel-cost-in-arizona"
+WARN  Series sibling (q=0.67, a=0.34): "how-much-does-a-kitchen-remodel-cost-in-arizona" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-a-kitchen-remodel-cost-in-arizona" vs "how-much-does-asbestos-abatement-cost-on-an-arizona-teardown-or-remodel"
+WARN  Possible overlapping intent (0.45): "how-much-does-a-kitchen-remodel-cost-in-arizona" vs "how-much-does-it-cost-to-add-a-second-story-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-kitchen-remodel-cost-in-arizona" vs "how-much-does-it-cost-to-tear-down-and-rebuild-a-house-in-arizona"
+WARN  Possible overlapping intent (0.50): "how-much-does-a-kitchen-remodel-cost-in-arizona" vs "how-much-does-it-cost-to-deepen-a-well-in-arizona"
+WARN  Series sibling (q=0.60, a=0.36): "how-much-does-a-primary-bathroom-remodel-cost-in-arizona" vs "how-much-does-a-whole-home-remodel-cost-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-a-primary-bathroom-remodel-cost-in-arizona" vs "how-much-does-asbestos-abatement-cost-on-an-arizona-teardown-or-remodel"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-primary-bathroom-remodel-cost-in-arizona" vs "how-much-does-it-cost-to-add-a-second-story-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-a-primary-bathroom-remodel-cost-in-arizona" vs "how-much-does-it-cost-to-deepen-a-well-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-a-whole-home-remodel-cost-in-arizona" vs "how-much-does-asbestos-abatement-cost-on-an-arizona-teardown-or-remodel"
+WARN  Possible overlapping intent (0.42): "how-much-does-a-whole-home-remodel-cost-in-arizona" vs "how-much-does-it-cost-to-add-a-second-story-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-a-whole-home-remodel-cost-in-arizona" vs "how-much-does-it-cost-to-deepen-a-well-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-asbestos-abatement-cost-on-an-arizona-teardown-or-remodel" vs "how-much-does-it-cost-to-add-a-second-story-in-arizona"
+WARN  Possible overlapping intent (0.45): "how-much-does-asbestos-abatement-cost-on-an-arizona-teardown-or-remodel" vs "how-much-does-it-cost-to-deepen-a-well-in-arizona"
+WARN  Possible overlapping intent (0.46): "how-much-does-it-cost-to-add-a-second-story-in-arizona" vs "how-much-does-it-cost-to-tear-down-and-rebuild-a-house-in-arizona"
+WARN  Possible overlapping intent (0.42): "how-much-does-it-cost-to-add-a-second-story-in-arizona" vs "how-much-does-it-cost-to-deepen-a-well-in-arizona"
+WARN  Possible overlapping intent (0.40): "building-in-rio-verde-foothills-water-rules" vs "can-you-build-a-custom-home-in-rio-verde-foothills-without-city-water"
+WARN  Possible overlapping intent (0.46): "can-you-build-a-custom-home-in-rio-verde-foothills-without-city-water" vs "how-to-get-water-to-a-home-in-rio-verde-foothills"
+WARN  Possible overlapping intent (0.42): "how-to-get-water-to-a-home-in-rio-verde-foothills" vs "how-much-does-it-cost-to-haul-water-in-rio-verde-foothills"
+WARN  Possible overlapping intent (0.40): "what-is-a-domestic-water-improvement-district-and-how-does-it-work-in-arizona" vs "what-is-a-wildcat-lot-split-in-arizona-and-how-does-it-affect-water-and-permits"
+WARN  Possible overlapping intent (0.53): "lot-grading-and-drainage-keeping-water-away-from-the-house" vs "protecting-a-desert-home-from-monsoon-and-dust"
+
+
+FAQ validation: 350 items, 18 topics, 8 categories — 0 error(s), 713 warning(s).
+
+
+> @workspace/api-server@0.0.0 build /home/runner/workspace/artifacts/api-server
+> node ./build.mjs
+
+
+
+  dist/index.mjs                       5.5mb ⚠️
+  dist/pino-worker.mjs               153.4kb
+  dist/pino-file.mjs                 142.1kb
+  dist/pino-pretty.mjs               114.6kb
+  dist/thread-stream-worker.mjs        7.3kb
+  dist/index.mjs.map                   7.2mb
+  dist/pino-worker.mjs.map           256.9kb
+  dist/pino-file.mjs.map             229.0kb
+  dist/pino-pretty.mjs.map           204.0kb
+  dist/thread-stream-worker.mjs.map   12.0kb
+
+⚡ Done in 693ms
+
+
+> @workspace/jematell-homes@0.0.0 build /home/runner/workspace/artifacts/jematell-homes
+> next build && node scripts/precompress.mjs
+
+
+⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+
+▲ Next.js 16.2.10 (Turbopack)
+
+  Creating an optimized production build ...
+
+✓ Compiled successfully in 6.5s
+
+  Running TypeScript ...
+
+  Finished TypeScript in 7.1s ...
+
+  Collecting page data using 3 workers ...
+
+  Generating static pages using 3 workers (0/748) ...
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <__next_viewport_boundary__>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+
+Error occurred prerendering page "/glossary/lien-waiver". Read more: https://nextjs.org/docs/messages/prerender-error
+TypeError: Cannot read properties of null (reading 'useEffect')
+    at <unknown> (.next/server/chunks/ssr/_1ki23ss._.js:4:63383) {
+  digest: '1525970343'
+}
+Export encountered an error on /glossary/[slug]/page: /glossary/lien-waiver, exiting the build.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <html>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <meta>. See https://react.dev/link/warning-keys for more information.
+Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <head>. See https://react.dev/link/warning-keys for more information.
+
+⨯ Next.js build worker exited with code: 1 and signal: null
+
+/home/runner/workspace/artifacts/jematell-homes:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @workspace/jematell-homes@0.0.0 build: `next build && node scripts/precompress.mjs`
+Exit status 1
+
+2026-07-23T21:26:12Z warn: Security scan skipped: connection lost

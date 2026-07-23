@@ -61,6 +61,12 @@ const nextConfig = {
     // revisited routes skip recompilation entirely. Dev-only; production builds
     // are unaffected.
     turbopackFileSystemCacheForDev: true,
+    // Pin static generation to a single worker in production builds. The
+    // deployment build machine intermittently crashed parallel SSG workers
+    // with "Cannot read properties of null (reading 'useEffect'/'useContext')"
+    // on a different random page each attempt; one worker removes that
+    // failure mode at the cost of a slower (but reliable) publish build.
+    ...(process.env.NODE_ENV === "development" ? {} : { cpus: 1 }),
   },
 };
 
