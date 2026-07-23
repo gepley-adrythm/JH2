@@ -43,7 +43,21 @@ export default function GuidesIndexPage() {
       </section>
 
       <div className="container" style={{ paddingTop: "clamp(20px, 3vw, 32px)" }}>
-        <Link href="/resources" className="btn btn-secondary" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+        <Link
+          href="/resources"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 6,
+            fontFamily: "var(--font-body)",
+            fontSize: "13px",
+            fontWeight: 500,
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            color: "var(--color-muted)",
+            textDecoration: "none",
+          }}
+        >
           ← Resources
         </Link>
       </div>
