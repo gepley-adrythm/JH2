@@ -5,7 +5,7 @@ import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { pageMetadata } from "@/seo/metadata";
 import { collectionJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
-import { ContactCta } from "@/components/ContactCta";
+import { CTA } from "@/cta";
 
 const INTRO =
   "In-depth guides that walk the whole journey end to end: how to build a custom home in Arizona, construction financing, the pre-construction permit layer, building on rural land, choosing a builder, and a complete guide for every city we build in.";
@@ -89,15 +89,7 @@ export default function GuidesIndexPage() {
         </div>
       </section>
 
-      <section className="faq-cta">
-        <div className="container faq-cta-inner">
-          <h2 className="faq-cta-title">Ready to start your build?</h2>
-          <p className="faq-cta-sub">
-            Tell us about your project and we'll help you take the first step.
-          </p>
-          <ContactCta testid="guides-cta-contact">Start the conversation</ContactCta>
-        </div>
-      </section>
+      <CTA />
     </main>
   );
 }
