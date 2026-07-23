@@ -187,7 +187,7 @@ export default function GalleryDetail({ slug, title = "", ogImage, images = [] }
           <div className="container">
             <div className="gallery-detail-stats-layout">
               <div className="gallery-detail-stats-nav">
-                <Link href="/gallery" className="dt-back gallery-detail-stats-back" data-testid="gallery-detail-back-crist">
+                <Link href="/gallery" className="dt-back gallery-detail-stats-back" data-testid="gallery-detail-back-crist" style={{ marginTop: 0 }}>
                   <ArrowLeft size={14} aria-hidden="true" />
                   Gallery
                 </Link>
@@ -302,7 +302,7 @@ export default function GalleryDetail({ slug, title = "", ogImage, images = [] }
           <div className="container">
             <div className="gallery-detail-stats-layout">
               <div className="gallery-detail-stats-nav">
-                <Link href="/gallery" className="dt-back gallery-detail-stats-back" data-testid="gallery-detail-back">
+                <Link href="/gallery" className="dt-back gallery-detail-stats-back" data-testid="gallery-detail-back" style={{ marginTop: 0 }}>
                   <ArrowLeft size={14} aria-hidden="true" />
                   Gallery
                 </Link>
