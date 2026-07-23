@@ -10,7 +10,7 @@ const connectors = new ReplitConnectors();
 
 // Recipients of new-lead notifications. Configurable via env (comma-separated);
 // defaults to the two business inboxes requested by the client.
-const DEFAULT_RECIPIENTS = ["gepley@adrythm.com", "tyler@jematellhomes.com"];
+const DEFAULT_RECIPIENTS = ["gepley@adrythm.com", "info@jematellhomes.com"];
 
 function getRecipients(): string[] {
   const raw = process.env.CONTACT_NOTIFY_TO;
