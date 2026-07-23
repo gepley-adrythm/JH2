@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useCallback, useState } from "react";
+import { createPortal } from "react-dom";
 import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Check, Phone, ArrowRight, ChevronLeft, Send, X } from "lucide-react";
 import { loadGTM, reportConversion, getTrackingData } from "./analytics";
@@ -398,6 +399,38 @@ export default function ContactForm({ onClose, variant = "modal" }: ContactFormP
     }
   }, [isSubmitting, formData, safeTimeout]);
 
+  // When the inline form advances past step 1, lift into a full-screen portal
+  // so the sentence builder has the same room as the regular floating modal.
+  const showAsModal = isInline && step !== "details";
+
+  // Reset the inline form back to empty details (used when closing the expanded modal)
+  const resetInlineForm = useCallback(() => {
+    typing.clearTyping();
+    setStep("details");
+    setFormData({ name: "", phone: "", email: "" });
+    setErrors({});
+    setMessageInitialized(false);
+    setActionValue("");
+    setTopicValue("");
+    setActionChosen(false);
+    setTopicChosen(false);
+    setOtherTopicValue("");
+    setQuestionValue("");
+    setManualMode(false);
+    setManualMessage("");
+    setSentenceComplete(false);
+  }, [typing]);
+
+  // Scroll-lock while expanded as a modal
+  useEffect(() => {
+    if (!showAsModal) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [showAsModal]);
+
   const progress = getProgress();
 
   const renderChipGroup = (
@@ -745,9 +778,17 @@ export default function ContactForm({ onClose, variant = "modal" }: ContactFormP
     }
   };
 
-  return (
-    <div className={isInline ? "cf-overlay cf-overlay--inline" : "cf-overlay"}>
-      {!isInline && (
+  const showBg = !isInline || showAsModal;
+  const overlayClass = showAsModal || !isInline ? "cf-overlay" : "cf-overlay cf-overlay--inline";
+
+  // Close handler for the expanded inline modal:
+  // — message step: go back to inline details
+  // — thankYou step: reset the whole form back to inline details
+  const inlineModalClose = step === "thankYou" ? resetInlineForm : goBack;
+
+  const overlay = (
+    <div className={overlayClass}>
+      {showBg && (
         <div className="cf-bg">
           <m.div
             className="cf-bg-pan"
@@ -785,8 +826,14 @@ export default function ContactForm({ onClose, variant = "modal" }: ContactFormP
         <m.div className="cf-progress-fill" animate={{ width: `${progress * 100}%` }} transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 80, damping: 20 }} />
       </div>
 
-      {onClose && (
-        <button type="button" onClick={onClose} data-testid="button-modal-close" aria-label="Close" className="cf-close">
+      {(onClose || showAsModal) && (
+        <button
+          type="button"
+          onClick={showAsModal ? inlineModalClose : onClose!}
+          data-testid="button-modal-close"
+          aria-label="Close"
+          className="cf-close"
+        >
           <X size={20} />
         </button>
       )}
@@ -800,4 +847,13 @@ export default function ContactForm({ onClose, variant = "modal" }: ContactFormP
       </div>
     </div>
   );
+
+  if (showAsModal) {
+    return createPortal(
+      <div className="cf-portal">{overlay}</div>,
+      document.body,
+    );
+  }
+
+  return overlay;
 }
