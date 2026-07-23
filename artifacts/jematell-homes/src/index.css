@@ -5340,6 +5340,10 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   .fin-step {
     min-width: 0;
   }
+  /* Step titles carry an inline white-space:nowrap; let them wrap on phones. */
+  .fin-step-title {
+    white-space: normal !important;
+  }
 }
 /* where-we-build editorial split uses an inline 560px column; stack it in the
    same range the base split collapses so it does not overflow. */
