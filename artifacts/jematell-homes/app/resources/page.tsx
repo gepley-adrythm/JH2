@@ -79,7 +79,7 @@ export default function Resources() {
         }}
       />
 
-      <section className="page-hero">
+      <section className="page-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
         <ResponsiveImage
           name="spec-home"
           className="page-hero-bg"
@@ -90,10 +90,9 @@ export default function Resources() {
           height={1066}
           priority
         />
-        <div className="page-hero-overlay" />
-        <div className="container page-hero-content">
-          <span className="eyebrow" style={{ color: "var(--color-bone)" }}>Explore the library</span>
-          <h1 className="page-hero-title" style={{ textTransform: "uppercase" }}>
+        <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }} />
+        <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
+          <h1 className="page-hero-title hero-title" style={{ textTransform: "uppercase" }}>
             Everything you need to build with confidence
           </h1>
         </div>
@@ -101,6 +100,7 @@ export default function Resources() {
 
       <section className="resources-hub section-pad">
         <div className="container">
+          <span className="eyebrow" style={{ display: "block", marginBottom: "clamp(20px, 3vw, 32px)" }}>Explore the library</span>
           <div className="resources-grid" data-testid="resources-grid">
             {SECTIONS.map((s) => (
               <Link
