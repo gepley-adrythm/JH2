@@ -5311,6 +5311,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 .page-services .heading-lg,
 .page-process .heading-lg,
 .page-process-featured .heading-lg,
+.city-nav-head .heading-lg,
 .page-intro-title {
   white-space: normal !important;
 }
@@ -5350,5 +5351,12 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 @media (max-width: 880px) {
   .page-split-grid {
     grid-template-columns: 1fr !important;
+  }
+}
+/* Why-choose cards: force a single column on phones (a 2-column rule was
+   winning the cascade and pushing ~8px past the edge). */
+@media (max-width: 600px) {
+  .page-why-cards {
+    grid-template-columns: minmax(0, 1fr) !important;
   }
 }
