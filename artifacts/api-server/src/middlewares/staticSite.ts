@@ -216,6 +216,16 @@ export async function staticSite(req: Request, res: Response, next: NextFunction
       return;
     }
 
+    // 1b. Squarespace blog category/tag/author archive listings have no new-site
+    //     equivalent; consolidate them all to the blog index rather than 404.
+    //     Individual posts (/blog-articles/<slug>) are exact entries handled in
+    //     step 1, so only archive URLs reach this rule.
+    if (/^\/blog-articles\/(category|tag|author)[/_]/.test(key)) {
+      res.set("Cache-Control", "no-cache");
+      res.redirect(301, "/blog");
+      return;
+    }
+
     // 2. Canonical 301: trailing-slash request for a page that exists slashless.
     if (rawPath !== "/" && /\/+$/.test(rawPath) && !isFilePath(key) && resolveFile(key)) {
       res.set("Cache-Control", "no-cache");
