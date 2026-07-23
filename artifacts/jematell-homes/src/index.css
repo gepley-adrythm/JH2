@@ -1338,7 +1338,7 @@ picture {
   align-items: center;
   flex-wrap: wrap;
   gap: 6px 0;
-  opacity: 0.55;
+  opacity: 0.82; /* was .55 -> 3.4:1 contrast on the black bar; .82 clears WCAG 4.5:1 */
   font-size: 12px;
 }
 .footer-bottom-contact a { color: inherit; text-decoration: none; }

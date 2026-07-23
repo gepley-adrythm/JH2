@@ -135,7 +135,7 @@ function cacheControlFor(file: string, ext: string): string {
   const norm = file.replace(/\\/g, "/");
   if (norm.includes("/_next/static/")) return "public, max-age=31536000, immutable";
   if (ext === ".html") return "public, max-age=0, must-revalidate";
-  if (IMAGE_OR_FONT.has(ext)) return "public, max-age=604800"; // 7 days, not content-hashed
+  if (IMAGE_OR_FONT.has(ext)) return "public, max-age=2592000"; // 30 days, not content-hashed
   return "public, max-age=3600"; // sitemap/robots/manifest etc.
 }
 

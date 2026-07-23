@@ -40,12 +40,14 @@ export function Hero() {
   return (
     <section className="hero">
       <div className="hero-bg">
-        <img
-          src={img("hero.jpg")}
+        <ResponsiveImage
+          name="hero"
           alt="Aerial view of Jematell Home"
+          widths={[768, 1280, 1920, 2500]}
+          sizes="100vw"
           width={2500}
           height={1406}
-          fetchPriority="high"
+          priority
         />
       </div>
       <div className="hero-overlay" />
@@ -217,7 +219,7 @@ export function Reviews() {
               </span>
             </span>
             <h2 className="heading-lg" style={{ fontSize: '55px', textTransform: 'uppercase' }}>What our homeowners say</h2>
-            <div style={{ display: 'flex', gap: '8px', marginTop: '32px' }}>
+            <div style={{ display: 'flex', marginTop: '32px' }}>
               {REVIEWS.map((_, i) => (
                 <button
                   key={i}
@@ -225,18 +227,33 @@ export function Reviews() {
                   data-testid={`review-pager-${i}`}
                   className="review-pager"
                   style={{
-                    width: i === current ? '32px' : '8px',
-                    height: '8px',
-                    borderRadius: '4px',
+                    // 24px minimum touch target (WCAG 2.5.8); the visible pill
+                    // lives on the inner span so the dot looks exactly the same.
+                    width: i === current ? '32px' : '24px',
+                    height: '24px',
                     border: 'none',
                     padding: 0,
-                    background: i === current ? 'var(--color-accent)' : 'var(--color-border)',
-                    transition: 'all 0.3s ease',
+                    background: 'transparent',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     cursor: 'pointer'
                   }}
                   aria-label={`Go to review ${i + 1}`}
                   aria-current={i === current}
-                />
+                >
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      display: 'block',
+                      width: i === current ? '32px' : '8px',
+                      height: '8px',
+                      borderRadius: '4px',
+                      background: i === current ? 'var(--color-accent)' : 'var(--color-border)',
+                      transition: 'all 0.3s ease'
+                    }}
+                  />
+                </button>
               ))}
             </div>
           </div>
