@@ -7,7 +7,7 @@ import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { pageMetadata } from "@/seo/metadata";
 import { collectionJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
-import { ContactCta } from "@/components/ContactCta";
+import { CTA } from "@/cta";
 
 export const dynamicParams = false;
 
@@ -101,13 +101,7 @@ export default async function ReferenceModulePage({
         </div>
       </section>
 
-      <section className="faq-cta">
-        <div className="container faq-cta-inner">
-          <h2 className="faq-cta-title">Building somewhere specific?</h2>
-          <p className="faq-cta-sub">Tell us your city and lot and we'll walk you through the codes and rules that apply.</p>
-          <ContactCta testid="reference-module-cta-contact">Start the conversation</ContactCta>
-        </div>
-      </section>
+      <CTA />
     </main>
   );
 }

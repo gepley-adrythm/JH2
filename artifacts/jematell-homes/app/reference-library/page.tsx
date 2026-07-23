@@ -5,7 +5,7 @@ import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { pageMetadata } from "@/seo/metadata";
 import { collectionJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
-import { ContactCta } from "@/components/ContactCta";
+import { CTA } from "@/cta";
 
 const INTRO =
   "The source material behind every answer, in plain language: the adopted building codes for each city we serve, the Arizona statutes that govern a build, the residential code explained section by section, and the design guidelines of the guard-gated communities.";
@@ -82,15 +82,7 @@ export default function ReferenceIndexPage() {
         </div>
       </section>
 
-      <section className="faq-cta">
-        <div className="container faq-cta-inner">
-          <h2 className="faq-cta-title">Building somewhere specific?</h2>
-          <p className="faq-cta-sub">
-            Tell us your city and lot and we'll walk you through the codes and rules that apply.
-          </p>
-          <ContactCta testid="reference-cta-contact">Start the conversation</ContactCta>
-        </div>
-      </section>
+      <CTA />
     </main>
   );
 }

@@ -16,7 +16,7 @@ import { techArticleJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { annotateHeadings, readingTime, formatDate } from "@/lib/detail";
 import { DetailMore, DetailDisclaimer, type MoreColumn } from "@/components/DetailParts";
-import { ContactCta } from "@/components/ContactCta";
+import { CTA } from "@/cta";
 import { ReferenceDetailShell } from "@/views/ReferenceDetailShell";
 
 export const dynamicParams = false;
@@ -177,13 +177,7 @@ export default async function ReferenceDetailPage({
         </div>
       </ReferenceDetailShell>
 
-      <section className="faq-cta">
-        <div className="container faq-cta-inner">
-          <h2 className="faq-cta-title">Building somewhere specific?</h2>
-          <p className="faq-cta-sub">Tell us your city and lot and we'll walk you through the codes and rules that apply.</p>
-          <ContactCta testid="reference-detail-cta-contact">Start the conversation</ContactCta>
-        </div>
-      </section>
+      <CTA />
     </main>
   );
 }

@@ -10,7 +10,7 @@ import { definedTermJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { annotateHeadings, readingTime } from "@/lib/detail";
 import { DetailMore, DetailDisclaimer, type MoreColumn } from "@/components/DetailParts";
-import { ContactCta } from "@/components/ContactCta";
+import { CTA } from "@/cta";
 
 export const dynamicParams = false;
 
@@ -129,13 +129,7 @@ export default async function GlossaryDetailPage({
         </div>
       </section>
 
-      <section className="faq-cta">
-        <div className="container faq-cta-inner">
-          <h2 className="faq-cta-title">Building and want a straight answer?</h2>
-          <p className="faq-cta-sub">Tell us about your project and we'll walk you through the details in plain language.</p>
-          <ContactCta testid="glossary-detail-cta-contact">Start the conversation</ContactCta>
-        </div>
-      </section>
+      <CTA />
     </main>
   );
 }

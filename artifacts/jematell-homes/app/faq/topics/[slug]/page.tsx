@@ -6,7 +6,7 @@ import { faqDataset } from "@/data/faq";
 import { pageMetadata } from "@/seo/metadata";
 import { faqPageJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
-import { ContactCta } from "@/components/ContactCta";
+import { CTA } from "@/cta";
 
 export const dynamicParams = false;
 
@@ -90,15 +90,7 @@ export default async function FaqTopicPage({
         </div>
       </section>
 
-      <section className="faq-cta">
-        <div className="container faq-cta-inner">
-          <h2 className="faq-cta-title">Still have a question?</h2>
-          <p className="faq-cta-sub">
-            Tell us about your project and we'll get back to you personally.
-          </p>
-          <ContactCta testid="faq-topic-cta-contact">Start the conversation</ContactCta>
-        </div>
-      </section>
+      <CTA />
     </main>
   );
 }
