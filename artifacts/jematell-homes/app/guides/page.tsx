@@ -52,7 +52,7 @@ export default function GuidesIndexPage() {
         <div className="container">
           {groups.map((g) => (
             <div key={g.label} className="lib-group" data-testid={`guides-group-${g.label.replace(/\s+/g, "-").toLowerCase()}`}>
-              <div className="lib-group-label">{g.label}</div>
+              <div className="lib-group-label" style={{ fontSize: "20px" }}>{g.label}</div>
               <div className="lib-grid">
                 {g.guides.map((guide) => (
                   <Link
