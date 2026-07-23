@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
 import { faqDataset } from "@/data/faq";
 import { pageMetadata } from "@/seo/metadata";
 import { faqPageJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
@@ -74,6 +74,12 @@ export default async function FaqTopicPage({
 
       <section className="section-pad" style={{ background: "var(--color-bg)" }}>
         <div className="container container-narrow">
+          <div className="dt-back-row">
+            <Link href="/faq" className="dt-back dt-back--top" data-testid="faq-topic-back">
+              <ArrowLeft size={14} aria-hidden="true" />
+              FAQ
+            </Link>
+          </div>
           <ul className="faq-list" data-testid="faq-topic-list">
             {topic.items.map((i) => (
               <li key={i.slug}>
