@@ -23,7 +23,7 @@ export default function ReferenceIndexPage() {
         data={collectionJsonLd({ name: "Reference Library", description: INTRO, url: "/reference-library" })}
       />
 
-      <section className="page-hero faq-hero">
+      <section className="page-hero faq-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
         <ResponsiveImage
           name="spec-home"
           className="page-hero-bg"
@@ -34,14 +34,33 @@ export default function ReferenceIndexPage() {
           height={1066}
           priority
         />
-        <div className="page-hero-overlay" />
-        <div className="container page-hero-content">
-          <span className="eyebrow" style={{ color: "var(--color-bone)" }}>The source material</span>
-          <h1 className="page-hero-title" style={{ textTransform: "uppercase" }}>Reference Library</h1>
+        <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }} />
+        <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
+          <h1 className="page-hero-title hero-title" style={{ textTransform: "uppercase" }}>Reference Library</h1>
         </div>
       </section>
 
-      <section className="lib-hub section-pad">
+      <div className="container" style={{ paddingTop: "clamp(20px, 3vw, 32px)" }}>
+        <Link
+          href="/resources"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 6,
+            fontFamily: "var(--font-body)",
+            fontSize: "13px",
+            fontWeight: 500,
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            color: "var(--color-muted)",
+            textDecoration: "none",
+          }}
+        >
+          ← Resources
+        </Link>
+      </div>
+
+      <section className="lib-hub section-pad" style={{ paddingTop: "clamp(24px, 3vw, 40px)" }}>
         <div className="container">
           <div className="lib-grid" data-testid="reference-modules">
             {REFERENCE_MODULES.map((m) => (
