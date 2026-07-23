@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
 import { m, useReducedMotion } from "framer-motion";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
+import Link from "next/link";
 import { GALLERY_BY_SLUG } from "../data/galleryProjects";
 import { cristImages, CRIST_HERO_JPG, CRIST_HERO_WEBP } from "../data/crist";
 
@@ -202,6 +203,13 @@ export default function GalleryDetail({ slug, title = "", ogImage, images = [] }
             </div>
           </div>
         </div>
+        <div className="container" style={{ paddingTop: "32px" }}>
+          <Link href="/gallery" className="dt-back" data-testid="gallery-detail-back-crist">
+            <ArrowLeft size={14} aria-hidden="true" />
+            Gallery
+          </Link>
+        </div>
+
         <section className="section-pad" style={{ background: "var(--color-bg)", paddingTop: 0 }}>
           <div className="gallery-masonry-wrap">
             {isDev && DevDraggableGallery && devImages ? (
@@ -303,6 +311,13 @@ export default function GalleryDetail({ slug, title = "", ogImage, images = [] }
           </div>
         </div>
       )}
+
+      <div className="container" style={{ paddingTop: "32px" }}>
+        <Link href="/gallery" className="dt-back" data-testid="gallery-detail-back">
+          <ArrowLeft size={14} aria-hidden="true" />
+          Gallery
+        </Link>
+      </div>
 
       <section className="section-pad" style={{ background: "var(--color-bg)", paddingTop: 0 }}>
         <div className="gallery-masonry-wrap">
