@@ -123,10 +123,10 @@ export function ServicesSplit() {
           name="spec-home"
           className="service-bg"
           alt="Twilight House spec home front exterior"
-          widths={[768, 1280, 1600]}
+          widths={[768, 1280, 1600, 2000, 2500]}
           sizes="(min-width: 900px) 50vw, 100vw"
-          width={1600}
-          height={1066}
+          width={2500}
+          height={1667}
         />
         <div className="service-overlay" />
         <div className="service-content">
