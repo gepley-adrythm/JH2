@@ -9,6 +9,7 @@ export const metadata = pageMetadata({
   description:
     "The Jematell Homes 3771 sq ft floor plan: 3 bedrooms, a bonus room, a den, 4.5 baths, and a 3-car garage. View the floor plan, all four elevations, and photos of the completed Skinner Custom home.",
   canonical: "/floor-plans/3771",
+  image: "/images/plans/3771-rendering.png",
 });
 
 const GALLERY = cristImages()

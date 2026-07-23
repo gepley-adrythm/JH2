@@ -55,7 +55,7 @@ function jsonLdScript(obj: object): string {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
+    <html lang="en-US" className={`${cormorant.variable} ${dmSans.variable}`}>
       <body>
         {/* Site-wide JSON-LD graph (Organization + GeneralContractor + WebSite),
             emitted exactly once per page. Page-specific JSON-LD is added by each

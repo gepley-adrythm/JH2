@@ -9,6 +9,7 @@ export const metadata = pageMetadata({
   description:
     "The Jematell Homes 3610 sq ft floor plan: 4 bedrooms, a study, 3.5 baths, and a 4-car garage with a shop. View the floor plan, all four elevations, and photos of the completed Rio Verde Farmhouse.",
   canonical: "/floor-plans/3610",
+  image: "/images/plans/3610-rendering.png",
 });
 
 const GALLERY = (pages["gallery_rio-verde-farmhouse"]?.blocks ?? [])
