@@ -19,6 +19,7 @@ export const GALLERY_PROJECTS: GalleryProject[] = [
   { slug: "mccartney-spec-1849", title: "McCartney Spec 1849", meta: "Casa Grande · Spec Home",       buildType: "Spec", location: "Casa Grande", completed: "2026" },
   { slug: "mccartney-spec-1644", title: "McCartney Spec 1644", meta: "Casa Grande · Spec Home",       buildType: "Spec", location: "Casa Grande", completed: "2026" },
   { slug: "az-city-custom",      title: "AZ City Custom",      meta: "Arizona City · Custom Home",   buildType: "Custom", location: "Arizona City", completed: "2025" },
+  { slug: "cozy-comfort",        title: "Cozy Comfort",        meta: "Rio Verde · Custom Home",      buildType: "Custom", location: "Rio Verde", completed: "2024" },
 ];
 
 export const GALLERY_BY_SLUG = Object.fromEntries(GALLERY_PROJECTS.map((p) => [p.slug, p]));

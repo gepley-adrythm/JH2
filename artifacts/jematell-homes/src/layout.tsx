@@ -300,6 +300,11 @@ export function Footer() {
             <Link href="/contact">Contact</Link>
             <Link href="/spec-homes">Spec Homes</Link>
             <Link href="/resources">Resources</Link>
+            <Link href="/faq">FAQ</Link>
+            <Link href="/blog">Blog</Link>
+            <Link href="/guides">Guides</Link>
+            <Link href="/glossary">Glossary</Link>
+            <Link href="/reference-library">Reference Library</Link>
             <Link href="/warranty">Warranty</Link>
             <Link href="/privacy">Privacy Policy</Link>
             <Link href="/disclaimer">Disclaimer</Link>

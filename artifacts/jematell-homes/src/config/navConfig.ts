@@ -48,6 +48,18 @@ export const navItems: NavItem[] = [
   },
   { id: "financing", label: "Financing", href: "/financing" },
   { id: "about", label: "About", href: "/about" },
+  {
+    id: "resources",
+    label: "Resources",
+    href: "/resources",
+    children: [
+      { id: "faq", label: "FAQ", href: "/faq" },
+      { id: "blog", label: "Blog", href: "/blog" },
+      { id: "guides", label: "Guides", href: "/guides" },
+      { id: "glossary", label: "Glossary", href: "/glossary" },
+      { id: "reference-library", label: "Reference Library", href: "/reference-library" },
+    ],
+  },
 ];
 
 /**
