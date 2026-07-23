@@ -148,22 +148,6 @@ export function GlossaryIndexClient({
         </section>
       )}
 
-      <section className="faq-cta">
-        <div className="container faq-cta-inner">
-          <h2 className="faq-cta-title">Building and want a straight answer?</h2>
-          <p className="faq-cta-sub">
-            Tell us about your project and we'll walk you through the details in plain language.
-          </p>
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => open()}
-            data-testid="glossary-cta-contact"
-          >
-            Start the conversation
-          </button>
-        </div>
-      </section>
     </>
   );
 }
