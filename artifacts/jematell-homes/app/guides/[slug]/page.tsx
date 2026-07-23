@@ -13,7 +13,7 @@ import { JsonLd } from "@/seo/JsonLd";
 import { annotateHeadings, readingTime, formatDate, prepareGuideBody } from "@/lib/detail";
 import { DetailShell } from "@/components/DetailShell";
 import { DetailMore, DetailDisclaimer, type MoreColumn } from "@/components/DetailParts";
-import { ContactCta } from "@/components/ContactCta";
+import { CTA } from "@/cta";
 
 export const dynamicParams = false;
 
@@ -127,13 +127,7 @@ export default async function GuideDetailPage({
         </div>
       </DetailShell>
 
-      <section className="faq-cta">
-        <div className="container faq-cta-inner">
-          <h2 className="faq-cta-title">Ready to talk it through?</h2>
-          <p className="faq-cta-sub">Every build starts with a conversation. Tell us what you have in mind.</p>
-          <ContactCta testid="guide-detail-cta-contact">Start the conversation</ContactCta>
-        </div>
-      </section>
+      <CTA />
     </main>
   );
 }
