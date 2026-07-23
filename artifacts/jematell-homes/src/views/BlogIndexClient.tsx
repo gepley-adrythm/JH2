@@ -70,7 +70,7 @@ export function BlogIndexClient({ posts }: { posts: BlogPostMeta[] }) {
       <section className="section-pad" style={{ background: "var(--color-bg)", paddingTop: "clamp(24px, 3vw, 40px)" }}>
         <div className="container">
           <p className="page-hero-sub" style={{ color: "var(--color-text)", marginBottom: 24, textAlign: "center" }}>{INTRO}</p>
-          <div className="faq-search" role="search" style={{ maxWidth: 560, marginBottom: 32 }}>
+          <div className="faq-search" role="search" style={{ maxWidth: 560, marginBottom: 32, marginInline: "auto" }}>
             <Search size={18} aria-hidden="true" />
             <input
               type="search"
