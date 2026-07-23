@@ -1863,11 +1863,15 @@ picture {
   padding: 28px 0;
   position: relative;
 }
+.gallery-detail-stats-layout {
+  display: flex;
+  align-items: center;
+}
+.gallery-detail-stats-nav {
+  flex: 1;
+}
 .gallery-detail-stats-back {
-  position: absolute;
-  left: clamp(16px, 4vw, 48px);
-  top: 50%;
-  transform: translateY(-50%);
+  margin-top: 0;
 }
 .gallery-detail-stats-inner {
   display: flex;

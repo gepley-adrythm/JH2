@@ -183,27 +183,32 @@ export default function GalleryDetail({ slug, title = "", ogImage, images = [] }
             <h1 className="page-hero-title">Skinner Custom</h1>
           </div>
         </section>
-        <div className="gallery-detail-stats" style={{ position: "relative" }}>
-          <Link href="/gallery" className="dt-back gallery-detail-stats-back" data-testid="gallery-detail-back-crist">
-            <ArrowLeft size={14} aria-hidden="true" />
-            Gallery
-          </Link>
+        <div className="gallery-detail-stats">
           <div className="container">
-            <div className="gallery-detail-stats-inner">
-              <div className="gallery-detail-stat">
-                <span className="gallery-detail-stat-value">Custom</span>
-                <span className="gallery-detail-stat-label">Build Type</span>
+            <div className="gallery-detail-stats-layout">
+              <div className="gallery-detail-stats-nav">
+                <Link href="/gallery" className="dt-back gallery-detail-stats-back" data-testid="gallery-detail-back-crist">
+                  <ArrowLeft size={14} aria-hidden="true" />
+                  Gallery
+                </Link>
               </div>
-              <div className="gallery-detail-stat-divider" />
-              <div className="gallery-detail-stat">
-                <span className="gallery-detail-stat-value">Surprise</span>
-                <span className="gallery-detail-stat-label">Location</span>
+              <div className="gallery-detail-stats-inner">
+                <div className="gallery-detail-stat">
+                  <span className="gallery-detail-stat-value">Custom</span>
+                  <span className="gallery-detail-stat-label">Build Type</span>
+                </div>
+                <div className="gallery-detail-stat-divider" />
+                <div className="gallery-detail-stat">
+                  <span className="gallery-detail-stat-value">Surprise</span>
+                  <span className="gallery-detail-stat-label">Location</span>
+                </div>
+                <div className="gallery-detail-stat-divider" />
+                <div className="gallery-detail-stat">
+                  <span className="gallery-detail-stat-value">2026</span>
+                  <span className="gallery-detail-stat-label">Completed</span>
+                </div>
               </div>
-              <div className="gallery-detail-stat-divider" />
-              <div className="gallery-detail-stat">
-                <span className="gallery-detail-stat-value">2026</span>
-                <span className="gallery-detail-stat-label">Completed</span>
-              </div>
+              <div className="gallery-detail-stats-nav" />
             </div>
           </div>
         </div>
@@ -293,22 +298,27 @@ export default function GalleryDetail({ slug, title = "", ogImage, images = [] }
       </section>
 
       {stats.length > 0 && (
-        <div className="gallery-detail-stats" style={{ position: "relative" }}>
-          <Link href="/gallery" className="dt-back gallery-detail-stats-back" data-testid="gallery-detail-back">
-            <ArrowLeft size={14} aria-hidden="true" />
-            Gallery
-          </Link>
+        <div className="gallery-detail-stats">
           <div className="container">
-            <div className="gallery-detail-stats-inner">
-              {stats.map((s, i) => (
-                <React.Fragment key={s.label}>
-                  {i > 0 && <div className="gallery-detail-stat-divider" />}
-                  <div className="gallery-detail-stat">
-                    <span className="gallery-detail-stat-value">{s.value}</span>
-                    <span className="gallery-detail-stat-label">{s.label}</span>
-                  </div>
-                </React.Fragment>
-              ))}
+            <div className="gallery-detail-stats-layout">
+              <div className="gallery-detail-stats-nav">
+                <Link href="/gallery" className="dt-back gallery-detail-stats-back" data-testid="gallery-detail-back">
+                  <ArrowLeft size={14} aria-hidden="true" />
+                  Gallery
+                </Link>
+              </div>
+              <div className="gallery-detail-stats-inner">
+                {stats.map((s, i) => (
+                  <React.Fragment key={s.label}>
+                    {i > 0 && <div className="gallery-detail-stat-divider" />}
+                    <div className="gallery-detail-stat">
+                      <span className="gallery-detail-stat-value">{s.value}</span>
+                      <span className="gallery-detail-stat-label">{s.label}</span>
+                    </div>
+                  </React.Fragment>
+                ))}
+              </div>
+              <div className="gallery-detail-stats-nav" />
             </div>
           </div>
         </div>
