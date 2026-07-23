@@ -42,6 +42,12 @@ export default function GuidesIndexPage() {
         </div>
       </section>
 
+      <div className="container" style={{ paddingTop: "clamp(20px, 3vw, 32px)" }}>
+        <Link href="/resources" className="btn btn-secondary" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+          ← Resources
+        </Link>
+      </div>
+
       <section className="lib-hub section-pad">
         <div className="container">
           {groups.map((g) => (
