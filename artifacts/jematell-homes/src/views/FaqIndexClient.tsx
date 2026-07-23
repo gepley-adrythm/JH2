@@ -4,11 +4,6 @@ import Link from "next/link";
 import { ArrowRight, Search } from "lucide-react";
 import { ResponsiveImage } from "../components/ResponsiveImage";
 
-/**
- * The searchable slice of a FAQ item. Summary-only fields (never the full
- * dataset): exactly what faqDataset.search() matches against, so the island
- * reproduces the old client-side search without shipping answer bodies.
- */
 export interface FaqSearchItem {
   slug: string;
   question: string;
@@ -16,7 +11,6 @@ export interface FaqSearchItem {
   tags: string[];
 }
 
-/** Mirrors normalizeTokens in @workspace/faq dataset.ts. */
 function normalizeTokens(text: string): string[] {
   return text
     .toLowerCase()
@@ -25,7 +19,6 @@ function normalizeTokens(text: string): string[] {
     .filter((t) => t.length > 2);
 }
 
-/** Mirrors faqDataset.search(): token hits over question + shortAnswer + tags. */
 function searchFaqItems(items: FaqSearchItem[], query: string): FaqSearchItem[] {
   const tokens = normalizeTokens(query);
   if (tokens.length === 0) return [];
@@ -40,12 +33,6 @@ function searchFaqItems(items: FaqSearchItem[], query: string): FaqSearchItem[] 
     .map((x) => x.i);
 }
 
-/**
- * FaqIndexClient is the interactive part of /faq: the hero with the search box
- * plus the section below it, which swaps between the server-rendered browse
- * content (`children`: topic chips + category grids) and live search results.
- * The rest of the page (JSON-LD, closing CTA) stays on the server.
- */
 export function FaqIndexClient({
   intro,
   items,
@@ -64,7 +51,7 @@ export function FaqIndexClient({
 
   return (
     <>
-      <section className="page-hero faq-hero">
+      <section className="page-hero faq-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
         <ResponsiveImage
           name="spec-home"
           className="page-hero-bg"
@@ -75,29 +62,31 @@ export function FaqIndexClient({
           height={1066}
           priority
         />
-        <div className="page-hero-overlay" />
-        <div className="container page-hero-content">
-          <h1 className="faq-hero-title hero-title">Frequently Asked Questions</h1>
-          <p className="page-hero-sub hero-subtitle">{intro}</p>
-          <div className="faq-search hero-cta" role="search">
-            <Search size={18} aria-hidden="true" />
-            <input
-              type="search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search questions…"
-              aria-label="Search frequently asked questions"
-              data-testid="faq-search-input"
-            />
-          </div>
+        <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }} />
+        <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
+          <h1 className="page-hero-title hero-title" style={{ textTransform: "uppercase" }}>
+            Frequently Asked Questions
+          </h1>
         </div>
       </section>
 
       {query.trim() ? (
-        <section className="section-pad" style={{ background: "var(--color-bg)" }}>
+        <section className="section-pad" style={{ background: "var(--color-bg)", paddingTop: "clamp(24px, 3vw, 40px)" }}>
           <div className="container container-narrow">
+            <p className="page-hero-sub" style={{ color: "var(--color-text)", marginBottom: 24 }}>{intro}</p>
+            <div className="faq-search" role="search" style={{ maxWidth: 560, marginBottom: 32 }}>
+              <Search size={18} aria-hidden="true" />
+              <input
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search questions…"
+                aria-label="Search frequently asked questions"
+                data-testid="faq-search-input"
+              />
+            </div>
             <h2 className="faq-section-title">
-              {results.length} result{results.length === 1 ? "" : "s"} for “{query.trim()}”
+              {results.length} result{results.length === 1 ? "" : "s"} for &ldquo;{query.trim()}&rdquo;
             </h2>
             <ul className="faq-list" data-testid="faq-search-results">
               {results.map((i) => (
@@ -115,7 +104,23 @@ export function FaqIndexClient({
           </div>
         </section>
       ) : (
-        children
+        <section className="section-pad" style={{ background: "var(--color-bg)", paddingTop: "clamp(24px, 3vw, 40px)" }}>
+          <div className="container container-narrow" style={{ marginBottom: 32 }}>
+            <p className="page-hero-sub" style={{ color: "var(--color-text)", marginBottom: 24 }}>{intro}</p>
+            <div className="faq-search" role="search" style={{ maxWidth: 560 }}>
+              <Search size={18} aria-hidden="true" />
+              <input
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search questions…"
+                aria-label="Search frequently asked questions"
+                data-testid="faq-search-input"
+              />
+            </div>
+          </div>
+          {children}
+        </section>
       )}
     </>
   );
