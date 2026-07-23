@@ -4,7 +4,7 @@ import { pageMetadata } from "@/seo/metadata";
 import { collectionJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { BlogIndexClient, type BlogPostMeta } from "@/views/BlogIndexClient";
-import { ContactCta } from "@/components/ContactCta";
+import { CTA } from "@/cta";
 
 export const metadata = pageMetadata({
   title: "Blog",
@@ -52,15 +52,7 @@ export default function BlogIndexPage() {
       />
       <BlogIndexClient posts={posts} />
 
-      <section className="faq-cta">
-        <div className="container faq-cta-inner">
-          <h2 className="faq-cta-title">Ready to start your build?</h2>
-          <p className="faq-cta-sub">
-            Tell us about your project and we'll help you take the first step.
-          </p>
-          <ContactCta testid="blog-cta-contact">Start the conversation</ContactCta>
-        </div>
-      </section>
+      <CTA />
     </main>
   );
 }
