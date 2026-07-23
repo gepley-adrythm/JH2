@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
 import { REFERENCE_MODULES, getReferenceModule, referencesByCategory, moduleCount } from "@/data/reference";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { pageMetadata } from "@/seo/metadata";
@@ -73,6 +73,12 @@ export default async function ReferenceModulePage({
 
       <section className="lib-hub section-pad">
         <div className="container">
+          <div className="dt-back-row">
+            <Link href="/reference-library" className="dt-back dt-back--top" data-testid="reference-module-back">
+              <ArrowLeft size={14} aria-hidden="true" />
+              Reference Library
+            </Link>
+          </div>
           {groups.map((g) => (
             <div key={g.category || "all"} className="lib-group" data-testid={`reference-category-${g.category}`}>
               {g.category ? <div className="lib-group-label">{g.category}</div> : null}
