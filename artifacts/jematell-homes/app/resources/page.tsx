@@ -100,7 +100,7 @@ export default function Resources() {
 
       <section className="resources-hub section-pad">
         <div className="container">
-          <span className="eyebrow" style={{ display: "block", marginBottom: "clamp(20px, 3vw, 32px)" }}>Explore the library</span>
+          <span className="eyebrow" style={{ display: "block", marginBottom: "clamp(20px, 3vw, 32px)", fontSize: "20px" }}>Explore the library</span>
           <div className="resources-grid" data-testid="resources-grid">
             {SECTIONS.map((s) => (
               <Link
