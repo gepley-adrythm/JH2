@@ -60,19 +60,39 @@ export function GlossaryIndexClient({
         <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }} />
         <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
           <h1 className="page-hero-title hero-title" style={{ textTransform: "uppercase" }}>Glossary</h1>
-          <div className="faq-search hero-cta" role="search">
-            <Search size={18} aria-hidden="true" />
-            <input
-              type="search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search terms…"
-              aria-label="Search the glossary"
-              data-testid="glossary-search-input"
-            />
-          </div>
         </div>
       </section>
+
+      <div className="container" style={{ paddingTop: "clamp(20px, 3vw, 32px)", display: "flex", alignItems: "center", gap: 24 }}>
+        <Link
+          href="/resources"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 6,
+            fontFamily: "var(--font-body)",
+            fontSize: "13px",
+            fontWeight: 500,
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            color: "var(--color-muted)",
+            textDecoration: "none",
+          }}
+        >
+          ← Resources
+        </Link>
+        <div className="faq-search" role="search" style={{ flex: 1, maxWidth: 480 }}>
+          <Search size={18} aria-hidden="true" />
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search terms…"
+            aria-label="Search the glossary"
+            data-testid="glossary-search-input"
+          />
+        </div>
+      </div>
 
       {query.trim() ? (
         <section className="section-pad" style={{ background: "var(--color-bg)" }}>
