@@ -82,10 +82,10 @@ export default async function FaqDetailPage({
   ];
 
   const hero = (
-    <section className="page-hero faq-hero faq-detail-hero page-hero-short">
-      <ResponsiveImage name="cta-bg" className="page-hero-bg" alt="" widths={[768, 1280, 1920, 2500]} sizes="100vw" width={2500} height={1667} priority />
-      <div className="page-hero-overlay" />
-      <div className="container page-hero-content">
+    <section className="page-hero faq-hero faq-detail-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
+      <ResponsiveImage name="spec-home" className="page-hero-bg" alt="" widths={[768, 1280, 1600, 2000, 2500]} sizes="100vw" width={2500} height={1667} priority />
+      <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }} />
+      <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
         <nav className="faq-crumbs hero-eyebrow" aria-label="Breadcrumb">
           <Link href="/faq" data-testid="faq-detail-crumb">FAQ</Link>
           <ChevronRight size={14} aria-hidden="true" />
