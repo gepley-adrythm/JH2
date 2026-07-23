@@ -48,7 +48,7 @@ export default function GuidesIndexPage() {
         </Link>
       </div>
 
-      <section className="lib-hub section-pad">
+      <section className="lib-hub section-pad" style={{ paddingTop: "clamp(24px, 3vw, 40px)" }}>
         <div className="container">
           {groups.map((g) => (
             <div key={g.label} className="lib-group" data-testid={`guides-group-${g.label.replace(/\s+/g, "-").toLowerCase()}`}>
