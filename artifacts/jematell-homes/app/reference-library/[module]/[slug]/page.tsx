@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowRight, ChevronRight, ExternalLink, Clock, Calendar } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronRight, ExternalLink, Clock, Calendar } from "lucide-react";
 import {
   referenceEntries,
   getReferenceEntry,
@@ -145,6 +145,12 @@ export default async function ReferenceDetailPage({
 
       <ReferenceDetailShell toc={article.toc} hero={hero} facts={facts}>
         <div className="dt-main">
+          <div className="dt-back-row">
+            <Link href={`/reference-library/${meta.slug}`} className="dt-back dt-back--top" data-testid="reference-detail-back">
+              <ArrowLeft size={14} aria-hidden="true" />
+              {meta.title}
+            </Link>
+          </div>
           {entry.sourceUrl ? (
             <a
               href={entry.sourceUrl}
