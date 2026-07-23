@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowLeft, ArrowRight, ChevronRight, Clock } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { faqDataset, SERVICE_LINKS } from "@/data/faq";
 import { blogs } from "@/data/blogs";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { pageMetadata } from "@/seo/metadata";
 import { qaPageJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
-import { annotateHeadings, readingTime } from "@/lib/detail";
+import { annotateHeadings } from "@/lib/detail";
 import { DetailShell } from "@/components/DetailShell";
 import { DetailMore, DetailDisclaimer, type MoreColumn } from "@/components/DetailParts";
 import { ContactCta } from "@/components/ContactCta";
@@ -50,8 +50,6 @@ export default async function FaqDetailPage({
   const detail = faqDataset.toDetail(item);
   const related = faqDataset.related(item);
   const article = annotateHeadings(detail.answerHtml || "");
-  const minutes = readingTime(detail.answerHtml || detail.answer || "");
-
   const path = `/faq/${detail.slug}`;
   const primaryTopic = (() => {
     for (const ts of detail.topicSlugs) {
@@ -82,23 +80,11 @@ export default async function FaqDetailPage({
   ];
 
   const hero = (
-    <section className="page-hero faq-hero faq-detail-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
+    <section className="page-hero faq-detail-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
       <ResponsiveImage name="spec-home" className="page-hero-bg" alt="" widths={[768, 1280, 1600, 2000, 2500]} sizes="100vw" width={2500} height={1667} priority />
       <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }} />
       <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
-        <nav className="faq-crumbs hero-eyebrow" aria-label="Breadcrumb">
-          <Link href="/faq" data-testid="faq-detail-crumb">FAQ</Link>
-          <ChevronRight size={14} aria-hidden="true" />
-          {primaryTopic ? (
-            <Link href={`/faq/topics/${primaryTopic.slug}`} data-testid="faq-detail-crumb-topic">{primaryTopic.title}</Link>
-          ) : (
-            <span>{detail.categoryTitle}</span>
-          )}
-        </nav>
-        <h1 className="faq-detail-title hero-title">{detail.question}</h1>
-        <div className="dt-hero-meta">
-          <span><Clock size={14} aria-hidden="true" /> {minutes} min read</span>
-        </div>
+        <h1 className="page-hero-title hero-title">{detail.question}</h1>
       </div>
     </section>
   );
