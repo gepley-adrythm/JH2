@@ -170,7 +170,7 @@ export function Header() {
       <div className="container header-inner">
         <div className="header-left">
         <Link href="/" className="brand-logo" aria-label={siteConfig.brand.name} data-testid="nav-logo">
-          <img src={img("logo.png")} alt={siteConfig.brand.name} />
+          <img src={img("logo.png")} alt={siteConfig.brand.name} width={1331} height={472} />
         </Link>
 
         <nav className="main-nav" aria-label="Primary">
@@ -293,7 +293,7 @@ export function Footer() {
       <div className="container">
         <div className="footer-top">
           <div className="footer-brand">
-            <img src={img("logo.png")} alt={siteConfig.brand.name} style={{ filter: "none" }} />
+            <img src={img("logo.png")} alt={siteConfig.brand.name} style={{ filter: "none" }} width={1331} height={472} />
             <p>{siteConfig.blurb}</p>
           </div>
           <nav className="footer-links" aria-label="Footer navigation">
