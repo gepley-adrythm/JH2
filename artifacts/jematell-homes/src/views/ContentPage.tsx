@@ -762,19 +762,53 @@ function SplitSection({
   );
 }
 
+type ProseNode =
+  | { kind: "block"; block: Block; index: number }
+  | { kind: "list"; items: Block[]; startIndex: number };
+
+function groupProseBlocks(blocks: Block[]): ProseNode[] {
+  const nodes: ProseNode[] = [];
+  let i = 0;
+  while (i < blocks.length) {
+    if (blocks[i].type === "li") {
+      const items: Block[] = [];
+      const startIndex = i;
+      while (i < blocks.length && blocks[i].type === "li") {
+        items.push(blocks[i]);
+        i++;
+      }
+      nodes.push({ kind: "list", items, startIndex });
+    } else {
+      nodes.push({ kind: "block", block: blocks[i], index: i });
+      i++;
+    }
+  }
+  return nodes;
+}
+
 function ProseSection({ section }: { section: Section }) {
   // Used for legal-style long-form content (Privacy)
+  const nodes = groupProseBlocks(section.blocks);
   return (
     <section className="page-prose section-pad">
       <div className="container container-readable">
         {section.heading ? (
           <h2 className="heading-md page-prose-h">{section.heading.text}</h2>
         ) : null}
-        {section.blocks.map((b, i) => {
+        {nodes.map((node) => {
+          if (node.kind === "list") {
+            return (
+              <ul key={node.startIndex} className="page-prose-list">
+                {node.items.map((item, j) => (
+                  <li key={j} className="page-prose-li">{item.text}</li>
+                ))}
+              </ul>
+            );
+          }
+          const { block: b, index: i } = node;
           if (b.type === "h3") return <h3 key={i} className="page-prose-h3">{b.text}</h3>;
           if (b.type === "h4") return <h4 key={i} className="page-prose-h4">{b.text}</h4>;
           if (b.type === "p") return <p key={i} className="page-prose-p">{b.text}</p>;
-          if (b.type === "li") return <li key={i} className="page-prose-li">{b.text}</li>;
           if (b.type === "img" && b.src)
             return (
               <figure key={i} className="page-figure">
