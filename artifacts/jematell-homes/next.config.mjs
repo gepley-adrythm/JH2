@@ -66,7 +66,12 @@ const nextConfig = {
     // with "Cannot read properties of null (reading 'useEffect'/'useContext')"
     // on a different random page each attempt; one worker removes that
     // failure mode at the cost of a slower (but reliable) publish build.
-    ...(process.env.NODE_ENV === "development" ? {} : { cpus: 1 }),
+    // Applied unconditionally: the deployment build env sets a non-production
+    // NODE_ENV, which silently disabled the previous env-gated version of this
+    // fix (build log showed "3 workers" despite it). Retry knob is defense in
+    // depth against the nondeterministic per-page worker crash.
+    cpus: 1,
+    staticGenerationRetryCount: 3,
   },
 };
 
