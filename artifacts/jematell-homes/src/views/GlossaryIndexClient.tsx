@@ -46,7 +46,7 @@ export function GlossaryIndexClient({
 
   return (
     <>
-      <section className="page-hero faq-hero">
+      <section className="page-hero faq-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
         <ResponsiveImage
           name="spec-home"
           className="page-hero-bg"
@@ -57,10 +57,9 @@ export function GlossaryIndexClient({
           height={1066}
           priority
         />
-        <div className="page-hero-overlay" />
-        <div className="container page-hero-content">
-          <span className="eyebrow" style={{ color: "var(--color-bone)" }}>The custom-home glossary</span>
-          <h1 className="page-hero-title" style={{ textTransform: "uppercase" }}>Glossary</h1>
+        <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }} />
+        <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
+          <h1 className="page-hero-title hero-title" style={{ textTransform: "uppercase" }}>Glossary</h1>
           <div className="faq-search hero-cta" role="search">
             <Search size={18} aria-hidden="true" />
             <input
