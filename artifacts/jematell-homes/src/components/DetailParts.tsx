@@ -1,10 +1,10 @@
-import React from "react";
+import { type RefObject } from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import type { TocEntry } from "../lib/detail";
 
 /** The fixed reading-progress hairline. Pair with useReadingProgress(). */
-export function DetailProgress({ innerRef }: { innerRef: React.RefObject<HTMLDivElement | null> }) {
+export function DetailProgress({ innerRef }: { innerRef: RefObject<HTMLDivElement | null> }) {
   return <div className="dt-progress" ref={innerRef} aria-hidden="true" />;
 }
 

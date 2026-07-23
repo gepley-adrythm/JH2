@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo, useState } from "react";
+import { useMemo, useState, Fragment, type ReactNode, type ComponentType } from "react";
 import Link from "next/link";
 import { ArrowRight, Search } from "lucide-react";
 import { ResponsiveImage } from "../components/ResponsiveImage";
@@ -38,9 +38,9 @@ export function FaqIndexClient({
   items,
   children,
 }: {
-  intro: React.ReactNode;
+  intro: ReactNode;
   items: FaqSearchItem[];
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   const [query, setQuery] = useState("");
 

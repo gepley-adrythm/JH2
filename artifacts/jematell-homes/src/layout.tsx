@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, type ReactNode } from "react";
 import { MessageSquare, MessageCircle, Phone, Mail, Instagram, Facebook, Menu, X, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -50,7 +50,7 @@ interface NavDropdownProps {
   testId: string;
   to?: string;
   active?: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 function NavDropdown({ label, testId, to, active, children }: NavDropdownProps) {

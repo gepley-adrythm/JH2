@@ -1,11 +1,11 @@
 "use client";
-import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from "react";
+import { createContext, lazy, Suspense, useContext, useState, useEffect, useCallback, useRef, type ReactNode } from "react";
 import "./contact-form.css";
 
 // The animated overlay (AnimatePresence + m.div + lazy ContactForm) lives in
 // ContactPortal, loaded on first open, so this provider adds no framer-motion
 // weight to the shared client entry that every route ships.
-const ContactPortal = React.lazy(() => import("./ContactPortal"));
+const ContactPortal = lazy(() => import("./ContactPortal"));
 
 interface ContactFormContextValue {
   open: () => void;
@@ -21,7 +21,7 @@ export function useContactForm(): ContactFormContextValue {
   return ctx;
 }
 
-export function ContactFormProvider({ children }: { children: React.ReactNode }) {
+export function ContactFormProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   // Latches true on first open and stays true, so ContactPortal remains
   // mounted afterwards and AnimatePresence can animate the exit fade.
@@ -80,9 +80,9 @@ export function ContactFormProvider({ children }: { children: React.ReactNode })
     <ContactFormContext.Provider value={{ open, close, isOpen }}>
       {children}
       {hasOpened && (
-        <React.Suspense fallback={null}>
+        <Suspense fallback={null}>
           <ContactPortal isOpen={isOpen} onClose={close} portalRef={portalRef} />
-        </React.Suspense>
+        </Suspense>
       )}
     </ContactFormContext.Provider>
   );

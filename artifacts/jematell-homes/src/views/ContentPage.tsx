@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo } from "react";
+import { useMemo, lazy, Suspense, Fragment, type ReactNode, type ComponentType } from "react";
 import Link from "next/link";
 import { m, MotionConfig } from "framer-motion";
 import {
@@ -48,7 +48,7 @@ function norm(s: string | undefined | null) {
   return (s || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 }
 
-const SERVICE_ICONS: Record<string, React.ComponentType<{ size?: number }>> = {
+const SERVICE_ICONS: Record<string, ComponentType<{ size?: number }>> = {
   "site selection": MapPin,
   "material selection": Layers,
   funding: DollarSign,
@@ -984,10 +984,10 @@ export default function ContentPage({ pageKey, isRegion, region, data, cityImage
           ? <FloorPlanWidgets />
           : sections.map((s, i) => {
               if (isServiceGridSection(s)) return (
-                <React.Fragment key={i}>
+                <Fragment key={i}>
                   <ServiceGridSection section={s} />
                   {isRegion && <ProcessSection section={REGION_PROCESS_SECTION} />}
-                </React.Fragment>
+                </Fragment>
               );
               if (isProcessSection(s)) return <ProcessSection key={i} section={s} />;
               if (isFloorPlanTiersSection(s, sections.slice(i + 1)))

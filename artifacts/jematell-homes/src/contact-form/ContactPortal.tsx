@@ -1,8 +1,8 @@
 "use client";
-import React from "react";
+import { lazy, Suspense, type RefObject } from "react";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 
-const ContactForm = React.lazy(() => import("./ContactForm"));
+const ContactForm = lazy(() => import("./ContactForm"));
 
 /**
  * ContactPortal: the animated modal overlay, split out of ContactFormProvider
@@ -20,7 +20,7 @@ export default function ContactPortal({
 }: {
   isOpen: boolean;
   onClose: () => void;
-  portalRef: React.RefObject<HTMLDivElement | null>;
+  portalRef: RefObject<HTMLDivElement | null>;
 }) {
   const reduced = useReducedMotion();
   return (
@@ -37,9 +37,9 @@ export default function ContactPortal({
           aria-modal="true"
           aria-label="Contact Jematell Homes"
         >
-          <React.Suspense fallback={null}>
+          <Suspense fallback={null}>
             <ContactForm onClose={onClose} />
-          </React.Suspense>
+          </Suspense>
         </m.div>
       )}
     </AnimatePresence>

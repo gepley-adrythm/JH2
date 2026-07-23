@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { ResponsiveImage } from "./components/ResponsiveImage";
 import { img } from "./lib/paths";

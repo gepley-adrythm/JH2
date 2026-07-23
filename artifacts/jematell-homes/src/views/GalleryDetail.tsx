@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, lazy, Suspense, Fragment } from "react";
 import { m, useReducedMotion } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
 import Link from "next/link";
@@ -17,7 +17,7 @@ function webpPath(jpgSrc: string): string {
 const isDev = process.env.NODE_ENV !== "production";
 
 const DevDraggableGallery = isDev
-  ? React.lazy(() =>
+  ? lazy(() =>
       import("../dev/DevDraggableGallery").then((m) => ({
         default: m.DevDraggableGallery,
       }))
@@ -216,14 +216,14 @@ export default function GalleryDetail({ slug, title = "", ogImage, images = [] }
         <section className="section-pad" style={{ background: "var(--color-bg)", paddingTop: 0 }}>
           <div className="gallery-masonry-wrap">
             {isDev && DevDraggableGallery && devImages ? (
-              <React.Suspense fallback={null}>
+              <Suspense fallback={null}>
                 <DevDraggableGallery
                   initialImages={devImages}
                   slug="crist"
                   masonryClass="gallery-masonry gallery-masonry-crist"
                   onImageClick={openLightbox}
                 />
-              </React.Suspense>
+              </Suspense>
             ) : (
               <div className="gallery-masonry gallery-masonry-crist">
                 {cristImgs.map((img, i) => (
@@ -309,13 +309,13 @@ export default function GalleryDetail({ slug, title = "", ogImage, images = [] }
               </div>
               <div className="gallery-detail-stats-inner">
                 {stats.map((s, i) => (
-                  <React.Fragment key={s.label}>
+                  <Fragment key={s.label}>
                     {i > 0 && <div className="gallery-detail-stat-divider" />}
                     <div className="gallery-detail-stat">
                       <span className="gallery-detail-stat-value">{s.value}</span>
                       <span className="gallery-detail-stat-label">{s.label}</span>
                     </div>
-                  </React.Fragment>
+                  </Fragment>
                 ))}
               </div>
               <div className="gallery-detail-stats-nav" />
@@ -327,14 +327,14 @@ export default function GalleryDetail({ slug, title = "", ogImage, images = [] }
       <section className="section-pad" style={{ background: "var(--color-bg)", paddingTop: 0 }}>
         <div className="gallery-masonry-wrap">
           {isDev && DevDraggableGallery && devImages ? (
-            <React.Suspense fallback={null}>
+            <Suspense fallback={null}>
               <DevDraggableGallery
                 initialImages={devImages}
                 slug={slug}
                 masonryClass="gallery-masonry"
                 onImageClick={openLightbox}
               />
-            </React.Suspense>
+            </Suspense>
           ) : (
             <div className="gallery-masonry">
               {images.map((img, i) => (
