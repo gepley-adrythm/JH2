@@ -71,7 +71,7 @@ export default async function ReferenceModulePage({
         </div>
       </section>
 
-      <section className="lib-hub section-pad" style={{ paddingTop: "clamp(24px, 3vw, 40px)" }}>
+      <section className="lib-hub section-pad" style={{ paddingTop: 0 }}>
         <div className="container">
           <div className="dt-back-row">
             <Link href="/reference-library" className="dt-back dt-back--top" data-testid="reference-module-back">
