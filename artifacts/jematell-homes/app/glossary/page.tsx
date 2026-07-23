@@ -2,6 +2,7 @@ import { glossaryTerms, glossaryByLetter } from "@/data/glossary";
 import { pageMetadata } from "@/seo/metadata";
 import { definedTermSetJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
+import { CTA } from "@/cta";
 import {
   GlossaryIndexClient,
   type GlossaryLetterGroup,
@@ -42,6 +43,7 @@ export default function GlossaryIndexPage() {
       />
 
       <GlossaryIndexClient letters={letters} terms={terms} />
+      <CTA />
     </main>
   );
 }
