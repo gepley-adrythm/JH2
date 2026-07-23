@@ -593,19 +593,22 @@ picture {
   min-height: 800px;
   height: 100vh;
   height: 100dvh;
+  position: relative; /* containing block for the absolutely-placed desktop panes */
 }
 .service-pane {
   flex: 1;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+}
+/* Holds all pane content; on desktop it counter-scales the pane's scaleX so
+   nothing inside is horizontally distorted. Mobile: just the content box. */
+.service-pane-inner {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: flex-end;
   padding: clamp(40px, 5vw, 80px);
-  cursor: pointer;
-  transition: flex 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.service-pane:hover {
-  flex: 1.3;
 }
 .service-bg {
   position: absolute;
@@ -613,8 +616,7 @@ picture {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Promote to its own compositor layer so the hover scale is composited, not
-     painted on the main thread. */
+  /* Own compositor layer so the hover zoom is composited, not painted. */
   transform: translateZ(0);
   will-change: transform;
   backface-visibility: hidden;
@@ -624,22 +626,65 @@ picture {
   transform: scale(1.05) translateZ(0);
 }
 
-/* Desktop side-by-side panes: the hover animates each pane's `flex`, so the pane
-   width changes every frame. If the image tracked that width (width:100%) its
-   compositor layer would re-rasterize each frame, which is the remaining hover
-   choppiness. Instead pin each image to the pane's FIXED screen edge (left pane
-   to the left, right pane to the right) at a width wider than any pane ever
-   reaches (hover is flex 1.3 of 2.3 = 56.5vw). The image box then never changes
-   during the expand: the flex animation only slides the pane's overflow clip
-   across a static, already-rasterized layer, so the only GPU motion is the
-   composited scale. Mobile keeps width:100% (panes stack full-width). */
+/* Desktop side-by-side: the panel expand runs ENTIRELY on the GPU. Each pane is
+   taken out of flex flow and given a FIXED layout width equal to the widest it
+   ever gets (old hover was flex 1.3 of 2.3 = 56.522%). The expand is then pure
+   transform:scaleX (compositor) with NO layout on any frame -> no per-frame
+   reflow and, crucially, no final-frame layout snap, which was the source of the
+   tiny end-of-animation hitch. A counter-scaleX on .service-pane-inner cancels
+   the pane's horizontal scale so image AND text stay undistorted; the two scales
+   always sum to a near-constant so the seam between panes never gaps (a ~2px
+   overlap + z-index guard the sub-pixel seam). Pane/inner are deliberately NOT
+   will-change'd, so their text renders crisp at rest and after the animation;
+   only the photo layer is promoted. Scale numbers: rest 50/56.522 = 0.88462,
+   shrink 43.478/56.522 = 0.76924; each inner counter = 1 / its pane scale.
+   Mobile (<=900px) keeps the stacked flow layout untouched. */
 @media (min-width: 901px) {
-  .service-bg {
-    inset: 0 auto;   /* top/bottom:0, left/right:auto -> pin one edge below */
-    width: 58vw;     /* >= widest pane so it covers at every flex position */
+  .service-pane {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: calc(56.522% + 2px); /* +2px so adjacent panes overlap, never gap */
+    flex: none;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
-  .services-split > .service-pane:first-child .service-bg { left: 0; }
-  .services-split > .service-pane:last-child .service-bg { right: 0; }
+  .service-pane-inner {
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  /* Base (resting) state: each pane pinned to its outer screen edge, scaled to
+     visually read as a 50/50 split. */
+  .services-split > .service-pane:first-child {
+    left: 0;
+    z-index: 2; /* left pane on top so the seam overlap is always covered */
+    transform-origin: left center;
+    transform: scaleX(0.88462);
+  }
+  .services-split > .service-pane:last-child {
+    right: 0;
+    z-index: 1;
+    transform-origin: right center;
+    transform: scaleX(0.88462);
+  }
+  .services-split > .service-pane:first-child .service-pane-inner {
+    transform-origin: left center;
+    transform: scaleX(1.13043);
+  }
+  .services-split > .service-pane:last-child .service-pane-inner {
+    transform-origin: right center;
+    transform: scaleX(1.13043);
+  }
+  /* Hovered pane grows to full width; its inner counter returns to identity. */
+  .services-split > .service-pane:hover { transform: scaleX(1); }
+  .services-split > .service-pane:hover .service-pane-inner { transform: scaleX(1); }
+  /* The other pane shrinks; its inner counter = 1 / 0.76924 = 1.29998. */
+  .services-split > .service-pane:hover ~ .service-pane,
+  .services-split > .service-pane:has(~ .service-pane:hover) {
+    transform: scaleX(0.76924);
+  }
+  .services-split > .service-pane:hover ~ .service-pane .service-pane-inner,
+  .services-split > .service-pane:has(~ .service-pane:hover) .service-pane-inner {
+    transform: scaleX(1.29998);
+  }
 }
 .service-overlay {
   position: absolute;
