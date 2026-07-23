@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowRight, ChevronRight, Clock } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronRight, Clock } from "lucide-react";
 import { glossaryTerms, getGlossaryTerm } from "@/data/glossary";
 import { faqDataset } from "@/data/faq";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
@@ -90,6 +90,12 @@ export default async function GlossaryDetailPage({
         <div className="container">
           <div style={{ maxWidth: 720, marginInline: "auto" }}>
             <div className="dt-main">
+              <div className="dt-back-row">
+                <Link href="/glossary" className="dt-back dt-back--top" data-testid="glossary-detail-back">
+                  <ArrowLeft size={14} aria-hidden="true" />
+                  Glossary
+                </Link>
+              </div>
               {term.shortDefinition ? (
                 <div className="dt-answer-card" data-testid="glossary-short">
                   <span className="dt-answer-card-label">In short</span>
