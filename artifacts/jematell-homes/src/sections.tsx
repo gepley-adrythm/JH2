@@ -98,44 +98,50 @@ export function About() {
 export function ServicesSplit() {
   return (
     <section className="services-split" id="services">
+      {/* .service-pane-inner exists so the desktop expand can counter-scale the
+          pane's transform:scaleX (keeping content undistorted) — see index.css. */}
       <div className="service-pane" data-testid="card-custom">
-        <ResponsiveImage
-          name="custom-home"
-          className="service-bg"
-          alt="Custom home kitchen with green cabinetry and marble island"
-          widths={[768, 1280, 1600, 2000, 2500]}
-          sizes="(min-width: 900px) 50vw, 100vw"
-          width={2500}
-          height={1667}
-        />
-        <div className="service-overlay" />
-        <div className="service-content">
-          <span className="eyebrow" style={{ color: '#fff' }}>Portfolio</span>
-          <h3 style={{ whiteSpace: 'nowrap' }}>Build a Custom Home</h3>
-          <p>
-            Is a custom home what you’re envisioning? Explore our portfolio of past projects, learn more about our process, and discover how we bring your unique vision to life in the desert.
-          </p>
-          <Link href="/custom-homes" className="btn btn-outline-light">Explore Custom</Link>
+        <div className="service-pane-inner">
+          <ResponsiveImage
+            name="custom-home"
+            className="service-bg"
+            alt="Custom home kitchen with green cabinetry and marble island"
+            widths={[768, 1280, 1600, 2000, 2500]}
+            sizes="(min-width: 900px) 50vw, 100vw"
+            width={2500}
+            height={1667}
+          />
+          <div className="service-overlay" />
+          <div className="service-content">
+            <span className="eyebrow" style={{ color: '#fff' }}>Portfolio</span>
+            <h3 style={{ whiteSpace: 'nowrap' }}>Build a Custom Home</h3>
+            <p>
+              Is a custom home what you’re envisioning? Explore our portfolio of past projects, learn more about our process, and discover how we bring your unique vision to life in the desert.
+            </p>
+            <Link href="/custom-homes" className="btn btn-outline-light">Explore Custom</Link>
+          </div>
         </div>
       </div>
       <div className="service-pane" data-testid="card-spec">
-        <ResponsiveImage
-          name="spec-home"
-          className="service-bg"
-          alt="Twilight House spec home front exterior"
-          widths={[768, 1280, 1600, 2000, 2500]}
-          sizes="(min-width: 900px) 50vw, 100vw"
-          width={2500}
-          height={1667}
-        />
-        <div className="service-overlay" />
-        <div className="service-content">
-          <span className="eyebrow" style={{ color: '#fff' }}>Available</span>
-          <h3 style={{ whiteSpace: 'nowrap' }}>Buy One of Our Homes</h3>
-          <p>
-            Explore stunning Arizona properties and find a home that perfectly suits your unique preferences and lifestyle. Move-in ready luxury, crafted with our signature attention to detail.
-          </p>
-          <Link href="/spec-homes" className="btn btn-outline-light">View Spec Homes</Link>
+        <div className="service-pane-inner">
+          <ResponsiveImage
+            name="spec-home"
+            className="service-bg"
+            alt="Twilight House spec home front exterior"
+            widths={[768, 1280, 1600, 2000, 2500]}
+            sizes="(min-width: 900px) 50vw, 100vw"
+            width={2500}
+            height={1667}
+          />
+          <div className="service-overlay" />
+          <div className="service-content">
+            <span className="eyebrow" style={{ color: '#fff' }}>Available</span>
+            <h3 style={{ whiteSpace: 'nowrap' }}>Buy One of Our Homes</h3>
+            <p>
+              Explore stunning Arizona properties and find a home that perfectly suits your unique preferences and lifestyle. Move-in ready luxury, crafted with our signature attention to detail.
+            </p>
+            <Link href="/spec-homes" className="btn btn-outline-light">View Spec Homes</Link>
+          </div>
         </div>
       </div>
     </section>
