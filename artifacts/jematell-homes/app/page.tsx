@@ -13,7 +13,13 @@ export const metadata = pageMetadata({
 
 export default function Home() {
   // LCP hero image — same early-preload the old index.html template did.
-  preload("/images/hero.jpg", { as: "image", fetchPriority: "high" });
+  preload("/images/hero-1280.webp", {
+    as: "image",
+    fetchPriority: "high",
+    imageSrcSet:
+      "/images/hero-768.webp 768w, /images/hero-1280.webp 1280w, /images/hero-1920.webp 1920w, /images/hero-2500.webp 2500w",
+    imageSizes: "100vw",
+  });
   return (
     <main>
       {/* Root canonical/og:url carry the trailing slash to stay byte-identical

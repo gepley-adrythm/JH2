@@ -1,3 +1,4 @@
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { pageMetadata } from "@/seo/metadata";
 import { breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
@@ -67,7 +68,7 @@ export default function Financing() {
 
       <section className="page-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
         <picture>
-          <img src="/images/financing-hero.jpg" alt="" className="page-hero-bg" loading="eager" />
+          <ResponsiveImage name="financing-hero" alt="" className="page-hero-bg" widths={[768, 1280]} sizes="100vw" width={1798} height={875} priority />
         </picture>
         <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.55) 100%)" }} />
         <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
