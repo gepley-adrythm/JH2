@@ -5330,10 +5330,15 @@ a.dt-source-card:hover { transform: translateY(-2px); }
     font-size: clamp(30px, 8vw, 46px) !important;
   }
 }
-/* Financing "how it works" steps: stack on phones (was a fixed 3-up grid). */
+/* Financing "how it works" steps: stack on phones (was a fixed 3-up grid).
+   minmax(0,1fr) + min-width:0 stops the single column blowing out to its
+   content's min-content width. */
 @media (max-width: 640px) {
   .fin-steps {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .fin-step {
+    min-width: 0;
   }
 }
 /* where-we-build editorial split uses an inline 560px column; stack it in the

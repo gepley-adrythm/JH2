@@ -15,13 +15,6 @@ export interface BlogPostMeta {
   image: string;
 }
 
-/**
- * BlogIndexClient - the interactive body of /blog: the search box in the hero
- * plus the filtered card grid. Receives only lightweight post summaries
- * (slug/title/description/image) from the server page, so the full blog
- * corpus (block content) never enters the client bundle. Markup ported
- * verbatim from the old Blog page.
- */
 export function BlogIndexClient({ posts }: { posts: BlogPostMeta[] }) {
   const reduce = useReducedMotion();
   const [query, setQuery] = useState("");
@@ -37,7 +30,7 @@ export function BlogIndexClient({ posts }: { posts: BlogPostMeta[] }) {
 
   return (
     <>
-      <section className="page-hero faq-hero">
+      <section className="page-hero faq-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
         <ResponsiveImage
           name="cta-bg"
           className="page-hero-bg"
@@ -48,12 +41,16 @@ export function BlogIndexClient({ posts }: { posts: BlogPostMeta[] }) {
           height={1667}
           priority
         />
-        <div className="page-hero-overlay" />
-        <div className="container page-hero-content">
-          <span className="eyebrow page-hero-eyebrow">Journal</span>
-          <h1 className="faq-hero-title hero-title">Blog Articles</h1>
-          <p className="page-hero-sub hero-subtitle">{INTRO}</p>
-          <div className="faq-search hero-cta" role="search">
+        <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }} />
+        <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
+          <h1 className="page-hero-title hero-title" style={{ textTransform: "uppercase" }}>Blog Articles</h1>
+        </div>
+      </section>
+
+      <section className="section-pad" style={{ background: "var(--color-bg)", paddingTop: "clamp(24px, 3vw, 40px)" }}>
+        <div className="container">
+          <p className="page-hero-sub" style={{ color: "var(--color-text)", marginBottom: 24 }}>{INTRO}</p>
+          <div className="faq-search" role="search" style={{ maxWidth: 560, marginBottom: 32 }}>
             <Search size={18} aria-hidden="true" />
             <input
               type="search"
@@ -64,10 +61,6 @@ export function BlogIndexClient({ posts }: { posts: BlogPostMeta[] }) {
               aria-label="Search blog"
             />
           </div>
-        </div>
-      </section>
-      <section className="section-pad" style={{ background: "var(--color-bg)" }}>
-        <div className="container">
           <div className="blog-meta-bar">
             <span>{filtered.length} {filtered.length === 1 ? "article" : "articles"}</span>
           </div>
@@ -104,7 +97,7 @@ export function BlogIndexClient({ posts }: { posts: BlogPostMeta[] }) {
           </div>
           {filtered.length === 0 ? (
             <p style={{ textAlign: "center", padding: "80px 0", color: "var(--color-text-muted)" }}>
-              No articles match "{query}". Try another search.
+              No articles match &ldquo;{query}&rdquo;. Try another search.
             </p>
           ) : null}
         </div>
