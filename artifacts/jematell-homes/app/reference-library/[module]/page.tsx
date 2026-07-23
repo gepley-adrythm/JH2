@@ -73,7 +73,7 @@ export default async function ReferenceModulePage({
 
       <section className="lib-hub section-pad" style={{ paddingTop: 0 }}>
         <div className="container">
-          <div className="dt-back-row">
+          <div className="dt-back-row" style={{ marginTop: 32 }}>
             <Link href="/reference-library" className="dt-back dt-back--top" data-testid="reference-module-back">
               <ArrowLeft size={14} aria-hidden="true" />
               Reference Library
