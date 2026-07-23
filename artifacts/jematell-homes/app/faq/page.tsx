@@ -4,7 +4,7 @@ import { faqDataset } from "@/data/faq";
 import { pageMetadata } from "@/seo/metadata";
 import { faqPageJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
-import { ContactCta } from "@/components/ContactCta";
+import { CTA } from "@/cta";
 import { FaqIndexClient, type FaqSearchItem } from "@/views/FaqIndexClient";
 
 const INTRO =
@@ -86,15 +86,7 @@ export default function FaqIndexPage() {
         </section>
       </FaqIndexClient>
 
-      <section className="faq-cta">
-        <div className="container faq-cta-inner">
-          <h2 className="faq-cta-title">Still have a question?</h2>
-          <p className="faq-cta-sub">
-            Tell us about your project and we'll get back to you personally.
-          </p>
-          <ContactCta testid="faq-cta-contact">Start the conversation</ContactCta>
-        </div>
-      </section>
+      <CTA />
     </main>
   );
 }
