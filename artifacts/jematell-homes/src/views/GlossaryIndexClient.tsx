@@ -16,14 +16,6 @@ export interface GlossaryLetterGroup {
   terms: GlossaryTermLite[];
 }
 
-/**
- * GlossaryIndexClient - the interactive body of /glossary: the search box in
- * the hero plus the switch between search results and the A-Z index. Receives
- * only lightweight term summaries (slug/term/shortDefinition) from the server
- * page, so the full glossary corpus (definition HTML, sources, related links)
- * never enters the client bundle. Markup ported verbatim from the old
- * GlossaryIndex page.
- */
 export function GlossaryIndexClient({
   letters,
   terms,
@@ -34,8 +26,6 @@ export function GlossaryIndexClient({
   const { open } = useContactForm();
   const [query, setQuery] = useState("");
 
-  // Same predicate as searchGlossary() in src/data/glossary.ts, applied to the
-  // lightweight list in its original data order (matching the old page).
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return [];
@@ -43,6 +33,20 @@ export function GlossaryIndexClient({
       (t) => t.term.toLowerCase().includes(q) || t.shortDefinition.toLowerCase().includes(q),
     );
   }, [terms, query]);
+
+  const searchBox = (
+    <div className="faq-search" role="search" style={{ maxWidth: 480, marginBottom: 32 }}>
+      <Search size={18} aria-hidden="true" />
+      <input
+        type="search"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search terms…"
+        aria-label="Search the glossary"
+        data-testid="glossary-search-input"
+      />
+    </div>
+  );
 
   return (
     <>
@@ -63,7 +67,7 @@ export function GlossaryIndexClient({
         </div>
       </section>
 
-      <div className="container" style={{ paddingTop: "clamp(20px, 3vw, 32px)", display: "flex", alignItems: "center", gap: 24 }}>
+      <div className="container" style={{ paddingTop: "clamp(20px, 3vw, 32px)" }}>
         <Link
           href="/resources"
           style={{
@@ -81,24 +85,14 @@ export function GlossaryIndexClient({
         >
           ← Resources
         </Link>
-        <div className="faq-search" role="search" style={{ flex: 1, maxWidth: 480 }}>
-          <Search size={18} aria-hidden="true" />
-          <input
-            type="search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search terms…"
-            aria-label="Search the glossary"
-            data-testid="glossary-search-input"
-          />
-        </div>
       </div>
 
       {query.trim() ? (
         <section className="section-pad" style={{ background: "var(--color-bg)" }}>
           <div className="container container-narrow">
+            {searchBox}
             <h2 className="faq-section-title">
-              {results.length} result{results.length === 1 ? "" : "s"} for “{query.trim()}”
+              {results.length} result{results.length === 1 ? "" : "s"} for &ldquo;{query.trim()}&rdquo;
             </h2>
             <ul className="faq-list" data-testid="glossary-search-results">
               {results.map((t) => (
@@ -118,6 +112,7 @@ export function GlossaryIndexClient({
       ) : (
         <section className="glossary-index section-pad">
           <div className="container">
+            {searchBox}
             <div className="glossary-az" data-testid="glossary-letters">
               {letters.map((g) => (
                 <a key={g.letter} href={`#letter-${g.letter}`}>{g.letter}</a>
