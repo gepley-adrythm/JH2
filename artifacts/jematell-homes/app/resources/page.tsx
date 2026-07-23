@@ -92,7 +92,7 @@ export default function Resources() {
         />
         <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }} />
         <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
-          <h1 className="page-hero-title hero-title" style={{ textTransform: "uppercase", fontSize: "clamp(26px, 3.3vw, 50px)", whiteSpace: "nowrap" }}>
+          <h1 className="page-hero-title hero-title" style={{ textTransform: "uppercase", fontSize: "clamp(28px, 3.6vw, 54px)", whiteSpace: "nowrap", width: "100vw", marginLeft: "calc(-50vw + 50%)" }}>
             Everything you need to build with confidence
           </h1>
         </div>
