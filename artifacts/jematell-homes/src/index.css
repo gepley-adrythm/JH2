@@ -3335,6 +3335,7 @@ a.contact-info-card:hover {
 .resource-card--b { grid-column: 3 / 4; grid-row: 1 / 2; }
 .resource-card--c { grid-column: 2 / 3; grid-row: 2 / 3; }
 .resource-card--d { grid-column: 3 / 4; grid-row: 2 / 3; }
+.resource-card:not(.resource-card--featured) .resource-card-count { margin-bottom: 0; }
 
 @media (max-width: 900px) {
   .resources-grid { grid-template-columns: 1fr 1fr; grid-template-rows: none; }
