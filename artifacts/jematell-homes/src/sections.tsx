@@ -44,7 +44,7 @@ export function Hero() {
           name="hero"
           alt="Aerial view of Jematell Home"
           widths={[768, 1280, 1920, 2500]}
-          sizes="100vw"
+          sizes="(orientation: portrait) 200vw, 100vw"
           width={2500}
           height={1406}
           priority

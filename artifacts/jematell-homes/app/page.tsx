@@ -18,7 +18,7 @@ export default function Home() {
     fetchPriority: "high",
     imageSrcSet:
       "/images/hero-768.webp 768w, /images/hero-1280.webp 1280w, /images/hero-1920.webp 1920w, /images/hero-2500.webp 2500w",
-    imageSizes: "100vw",
+    imageSizes: "(orientation: portrait) 200vw, 100vw",
   });
   return (
     <main>
