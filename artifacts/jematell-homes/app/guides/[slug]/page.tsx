@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowRight, ChevronRight, Calendar, Clock, BookOpen } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronRight, Calendar, Clock, BookOpen } from "lucide-react";
 import { guides, getGuide } from "@/data/guides";
 import { getReferenceByKey } from "@/data/reference";
 import { getGlossaryTerm } from "@/data/glossary";
@@ -118,6 +118,12 @@ export default async function GuideDetailPage({
 
       <DetailShell toc={article.toc} hero={hero}>
         <div className="dt-main">
+          <div className="dt-back-row">
+            <Link href="/guides" className="dt-back dt-back--top" data-testid="guide-detail-back">
+              <ArrowLeft size={14} aria-hidden="true" />
+              Guides
+            </Link>
+          </div>
           <div className="dt-prose" data-testid="guide-body" dangerouslySetInnerHTML={{ __html: article.html }} />
           <DetailMore columns={columns} testid="guide-related" />
           <Link href="/guides" className="dt-back" data-testid="guide-detail-all">
