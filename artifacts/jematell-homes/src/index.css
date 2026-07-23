@@ -840,11 +840,31 @@ picture {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.04);
+  /* Own compositor layer so the scale zoom composites instead of repainting. */
+  transform: scale(1.04) translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
   transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .city-nav-item[data-active="true"] .city-nav-img {
-  transform: scale(1);
+  transform: scale(1) translateZ(0);
+}
+
+/* Desktop: decouple each image from its panel's animating width. The active
+   panel animates flex-grow 1 -> 5 (a layout property), so a width:100% image
+   would resize and re-rasterize its promoted layer every frame -- the accordion
+   chop. Instead give the image a FIXED width >= the widest a panel ever reaches
+   (active = 5/13 of the ~1440px track = ~517px), centered on its panel; the flex
+   expand then only slides each panel's overflow clip across a static, already-
+   rasterized layer. Active-panel crop is preserved (520 ~= max active width);
+   collapsed spines just clip a slightly wider view. Mobile keeps width:100%. */
+@media (min-width: 769px) {
+  .city-nav-img {
+    inset: 0 auto;
+    left: 50%;
+    width: 520px;
+    margin-left: -260px;
+  }
 }
 .city-nav-overlay {
   position: absolute;
