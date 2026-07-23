@@ -110,7 +110,7 @@ export function GlossaryIndexClient({
           </div>
         </section>
       ) : (
-        <section className="glossary-index section-pad">
+        <section className="glossary-index section-pad" style={{ paddingTop: "clamp(24px, 3vw, 40px)" }}>
           <div className="container">
             {searchBox}
             <div className="glossary-az" data-testid="glossary-letters">

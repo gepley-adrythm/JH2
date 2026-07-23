@@ -5302,3 +5302,37 @@ a.dt-source-card:hover { transform: translateY(-2px); }
     margin-inline: auto;
   }
 }
+
+/* ===================== Sitewide mobile fit fixes ===================== */
+/* ServiceGrid + Process section headings are set white-space:nowrap inline in
+   ContentPage.tsx (ServiceGrid at a fixed 55px), which forces horizontal
+   scroll on any viewport narrower than the heading. Allow wrapping everywhere
+   and scale the service heading with the viewport so it always fits. */
+.page-services .heading-lg,
+.page-process .heading-lg,
+.page-process-featured .heading-lg,
+.page-intro-title {
+  white-space: normal !important;
+}
+.page-services .heading-lg {
+  font-size: clamp(28px, 4.5vw, 55px) !important;
+}
+/* Homepage reviews columns: stop the grid-item min-content blowout that was
+   clipping ~46px off the right edge on phones. */
+.reviews-left,
+.reviews-right {
+  min-width: 0;
+}
+/* Financing "how it works" steps: stack on phones (was a fixed 3-up grid). */
+@media (max-width: 640px) {
+  .fin-steps {
+    grid-template-columns: 1fr;
+  }
+}
+/* where-we-build editorial split uses an inline 560px column; stack it in the
+   same range the base split collapses so it does not overflow. */
+@media (max-width: 880px) {
+  .page-split-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
