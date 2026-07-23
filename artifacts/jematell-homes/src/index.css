@@ -1265,6 +1265,7 @@ picture {
 }
 .footer-brand img {
   height: 64px;
+  width: auto; /* keep ratio; the width/height attrs are only the pre-load hint */
   margin-bottom: 20px;
   display: block;
   margin-inline: auto;
