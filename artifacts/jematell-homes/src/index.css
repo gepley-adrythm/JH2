@@ -1477,7 +1477,8 @@ picture {
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  transform: scale(1);
+  transform: scale(1.06);
+  animation: heroZoom 24s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 .page-hero-overlay {
   position: absolute;
@@ -5460,5 +5461,11 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   .page-why-cards > * {
     grid-column: auto !important;
     min-width: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-hero-bg {
+    animation: none;
+    transform: scale(1);
   }
 }
