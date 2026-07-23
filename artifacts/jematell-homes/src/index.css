@@ -3900,6 +3900,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 }
 .dt-back:hover { color: var(--color-accent-hover); }
 .dt-back--top { margin-top: 0; margin-bottom: 32px; }
+.dt-back-row { display: flex; align-items: center; gap: 24px; margin-bottom: 32px; }
 
 /* Responsive — collapse the rail below the reading column. */
 @media (max-width: 1024px) {

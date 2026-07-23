@@ -114,14 +114,22 @@ export default async function FaqDetailPage({
 
       <DetailShell toc={article.toc} hero={hero}>
         <div className="dt-main">
-          <Link
-            href={primaryTopic ? `/faq/topics/${primaryTopic.slug}` : "/faq"}
-            className="dt-back dt-back--top"
-            data-testid="faq-detail-back"
-          >
-            <ArrowLeft size={14} aria-hidden="true" />
-            {primaryTopic ? primaryTopic.title : "All questions"}
-          </Link>
+          <div className="dt-back-row">
+            <Link href="/faq" className="dt-back dt-back--top" data-testid="faq-detail-back-faq">
+              <ArrowLeft size={14} aria-hidden="true" />
+              FAQ
+            </Link>
+            {primaryTopic && (
+              <Link
+                href={`/faq/topics/${primaryTopic.slug}`}
+                className="dt-back dt-back--top"
+                data-testid="faq-detail-back"
+              >
+                <ArrowLeft size={14} aria-hidden="true" />
+                {primaryTopic.title}
+              </Link>
+            )}
+          </div>
           {detail.shortAnswer ? (
             <div className="dt-answer-card" data-testid="faq-short-answer">
               <span className="dt-answer-card-label">The short answer</span>
