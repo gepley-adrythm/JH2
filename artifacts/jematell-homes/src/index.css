@@ -5323,6 +5323,13 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 .reviews-right {
   min-width: 0;
 }
+/* The reviews heading is inline font-size:55px, so long words ("homeowners")
+   run past the edge on phones; scale it with the viewport. */
+@media (max-width: 640px) {
+  .reviews-left h2 {
+    font-size: clamp(30px, 8vw, 46px) !important;
+  }
+}
 /* Financing "how it works" steps: stack on phones (was a fixed 3-up grid). */
 @media (max-width: 640px) {
   .fin-steps {
