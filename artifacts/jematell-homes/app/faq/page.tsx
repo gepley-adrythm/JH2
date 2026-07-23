@@ -7,12 +7,19 @@ import { JsonLd } from "@/seo/JsonLd";
 import { CTA } from "@/cta";
 import { FaqIndexClient, type FaqSearchItem } from "@/views/FaqIndexClient";
 
-const INTRO =
+const INTRO_TEXT =
   "Straight answers about building a custom home in Arizona: timelines, budgets, lots, floor plans, and what it's like to work with a family-owned builder.";
+
+const INTRO = (
+  <>
+    Straight answers about building a custom home in Arizona:<br />
+    timelines, budgets, lots, floor plans, and what it&apos;s like to work with a family-owned builder.
+  </>
+);
 
 export const metadata = pageMetadata({
   title: "Frequently Asked Questions",
-  description: INTRO,
+  description: INTRO_TEXT,
   canonical: "/faq",
 });
 

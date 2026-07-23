@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Search } from "lucide-react";
 import { ResponsiveImage } from "../components/ResponsiveImage";
@@ -38,7 +38,7 @@ export function FaqIndexClient({
   items,
   children,
 }: {
-  intro: string;
+  intro: React.ReactNode;
   items: FaqSearchItem[];
   children: React.ReactNode;
 }) {
