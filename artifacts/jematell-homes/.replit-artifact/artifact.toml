@@ -1,30 +1,42 @@
 kind = "web"
-previewPath = "/"
-title = "Jematell Homes"
-version = "1.0.0"
-id = "artifacts/jematell-homes"
-router = "path"
+  previewPath = "/"
+  title = "Jematell Homes"
+  version = "1.0.0"
+  id = "artifacts/jematell-homes"
+  router = "path"
 
-[[integratedSkills]]
-name = "react-vite"
-version = "1.0.0"
+  [[integratedSkills]]
+  name = "react-vite"
+  version = "1.0.0"
 
-[[services]]
-name = "web"
-paths = [ "/" ]
-localPort = 8080
+  [[services]]
+  name = "web"
+  paths = [ "/" ]
+  localPort = 8080
 
-[services.development]
-run = "pnpm --filter @workspace/jematell-homes run dev"
+  [services.development]
+  run = "pnpm --filter @workspace/jematell-homes run dev"
 
-[services.production]
-build = [ "pnpm", "--filter", "@workspace/jematell-homes", "run", "build" ]
-publicDir = "artifacts/jematell-homes/out"
-serve = "static"
+  [services.production]
 
-[[services.production.rewrites]]
-from = "/*"
-to = "/index.html"
+  [services.production.build]
+  args = [ "pnpm", "--filter", "@workspace/jematell-homes", "run", "build" ]
 
-[services.env]
-PORT = "8080"
+  # Production serves through the api-server binary (same pattern as the API
+  # artifact): brotli/gzip, immutable /_next/static caching, 30d image cache,
+  # canonical 301s, redirects.json, real 404s. Do not revert to serve=static
+  # (it sent Cache-Control: private, no compression, and soft-404d every
+  # unknown URL as a 200 homepage).
+  [services.production.run]
+  args = ["node", "--enable-source-maps", "artifacts/api-server/dist/index.mjs"]
+
+  [services.production.run.env]
+  PORT = "8080"
+  NODE_ENV = "production"
+
+  [services.production.health.startup]
+  path = "/"
+
+  [services.env]
+  PORT = "8080"
+  
