@@ -26,7 +26,12 @@ app.listen(port, (err) => {
 
   // Sync the FAQ seed (source of truth) into the DB. Non-fatal: the server still
   // serves health/other routes if the DB is unavailable.
-  syncFaqSeed(logger).catch((err) => {
-    logger.error({ err }, "FAQ seed sync failed");
-  });
+  // In production the monorepo deploy runs two copies of this binary (web
+  // artifact on 8080, api artifact on 8081); SKIP_FAQ_SYNC=1 on the web copy
+  // keeps the seed sync from running twice concurrently.
+  if (process.env["SKIP_FAQ_SYNC"] !== "1") {
+    syncFaqSeed(logger).catch((err) => {
+      logger.error({ err }, "FAQ seed sync failed");
+    });
+  }
 });
