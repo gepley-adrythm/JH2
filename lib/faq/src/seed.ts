@@ -688,8 +688,7 @@ export const faqSeed: FaqSeed = {
 <p>We build for the Sonoran Desert, not a generic climate. Reach out and we will talk through how this applies to your specific lot and plan.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/radiant-barriers" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Radiant Barriers</a></li>
-<li><a href="https://www.energy.gov/energysaver/cool-roofs" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Cool Roofs</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/attic-radiant-barriers" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Attic Radiant Barriers</a></li>
 <li><a href="https://basc.pnnl.gov/resource-guides/cool-roofs-and-walls-reduce-heat-gain" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Cool Roofs and Walls to Reduce Heat Gain</a></li>
 </ul>`,
       shortAnswer: "Often yes. A radiant barrier is a strong fit for an Arizona attic because it reflects the radiant heat pouring off a 150-degree roof deck. The U.S. Department of Energy says barriers can cut cooling costs 5 to 10 percent in hot, sunny climates, especially when ducts run through the attic.",
@@ -769,7 +768,7 @@ export const faqSeed: FaqSeed = {
 <h2>Sources</h2>
 <ul>
 <li><a href="https://codes.iccsafe.org/s/IRC2021P3/part-v-mechanical/IRC2021P3-Pt05-Ch15-SecM1503.4" target="_blank" rel="noopener noreferrer">ICC 2021 International Residential Code, Section M1503.4 (Makeup air required)</a></li>
-<li><a href="https://www.energy.gov/energysaver/whole-house-ventilation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Whole-House Ventilation</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/whole-house-ventilation-strategies-new-homes" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Whole-House Ventilation Strategies for New Homes</a></li>
 <li><a href="https://basc.pnnl.gov/information/pre-retrofit-assessment-combustion-appliances" target="_blank" rel="noopener noreferrer">DOE Building America Solution Center (PNNL): Combustion Appliances</a></li>
 </ul>`,
       shortAnswer: "Yes. Under IRC Section M1503.4, any range hood that can exhaust more than 400 cubic feet per minute must have makeup air supplied at about the same rate, with at least one damper. The big pro-style hoods in most Arizona custom kitchens cross that 400 CFM line, so makeup air is required.",
@@ -811,7 +810,7 @@ export const faqSeed: FaqSeed = {
 <ul>
 <li><a href="https://www.nahb.org/-/media/NAHB/news-and-economics/docs/housing-economics-plus/special-studies/2021/special-study-what-home-buyers-really-want-march-2021.pdf" target="_blank" rel="noopener noreferrer">NAHB: What Home Buyers Really Want (2021 study; garage preferences)</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2021P3/chapter-3-building-planning/IRC2021P3-Pt03-Ch03-SecR302.6" target="_blank" rel="noopener noreferrer">2021 International Residential Code, Section R302.6 Dwelling-Garage Fire Separation (ICC Digital Codes)</a></li>
-<li><a href="https://www.energy.gov/energysaver/insulation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Insulation</a></li>
+<li><a href="https://basc.pnnl.gov/building-components/air-sealinginsulation-1" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Air Sealing and Insulation</a></li>
 </ul>`,
       shortAnswer: "Size a luxury car-collector garage by bay count, not just square footage. Plan at least 12 feet of width and 24 feet of depth per car, a 12-foot or taller ceiling for lifts, and extra room to walk, work, and store. Most collector garages run four to eight-plus bays, well above the two-car norm.",
       metaDescription: "Size a luxury or collector garage by bay count: 12 ft wide and 24 ft deep per car, 12 ft ceilings for lifts. See the Arizona program, code, and climate factors.",
@@ -851,7 +850,7 @@ export const faqSeed: FaqSeed = {
 <ul>
 <li><a href="https://codes.iccsafe.org/s/IRC2021P3/chapter-3-building-planning/IRC2021P3-Pt03-Ch03-SecR302.6" target="_blank" rel="noopener noreferrer">2021 International Residential Code, Section R302.6 Dwelling-Garage Fire Separation (ICC Digital Codes)</a></li>
 <li><a href="https://codes.iccsafe.org/content/IRC2021P1/chapter-3-building-planning" target="_blank" rel="noopener noreferrer">2021 International Residential Code, Chapter 3 Building Planning (ICC Digital Codes)</a></li>
-<li><a href="https://www.energy.gov/energysaver/insulation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Insulation</a></li>
+<li><a href="https://basc.pnnl.gov/building-components/air-sealinginsulation-1" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Air Sealing and Insulation</a></li>
 </ul>`,
       shortAnswer: "A collector garage should be at least 24 feet deep per parking bay, and 30 to 40 feet or more if you want to park cars nose-to-tail or add a lift. For lifts, plan a 12-foot ceiling. In Arizona, climate control and the code-required fire separation between garage and house also matter.",
       metaDescription: "A car collector's garage should run 24 to 40+ feet deep, with 12-foot ceilings for lifts. See Arizona depth, height, climate control, and code requirements.",
@@ -1017,8 +1016,7 @@ export const faqSeed: FaqSeed = {
 <p>Desert-smart design and systems are standard on every home we build. Reach out and we will talk through how this applies to your specific lot and plan.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/update-or-replace-windows" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Update or Replace Windows</a></li>
-<li><a href="https://www.energy.gov/energysaver/window-types-and-technologies" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Window Types and Technologies</a></li>
+<li><a href="https://www.energystar.gov/products/res_windows_doors_skylights" target="_blank" rel="noopener noreferrer">ENERGY STAR: Residential Windows, Doors and Skylights</a></li>
 <li><a href="https://codes.iccsafe.org/content/IECC2021P1/chapter-4-re-residential-energy-efficiency" target="_blank" rel="noopener noreferrer">2021 International Energy Conservation Code, Chapter 4 Residential Energy Efficiency (ICC Digital Codes)</a></li>
 <li><a href="https://basc.pnnl.gov/information/table-maximum-fenestration-u-factor-requirements-new-homes-listed-2009-2021-iecc-and" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Table of Maximum Fenestration U-Factor Requirements (IECC/IRC)</a></li>
 </ul>`,
@@ -1058,8 +1056,8 @@ export const faqSeed: FaqSeed = {
 <p>We build for the Sonoran Desert, not a generic climate. Every project is different, so we will confirm the specifics for your parcel and budget with you directly.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/ductless-minisplit-heat-pumps" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Ductless Mini-Split Heat Pumps</a></li>
-<li><a href="https://www.energy.gov/energysaver/central-air-conditioning" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Central Air Conditioning</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/ductless-mini-split-heat-pumps" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Ductless Mini-Split Heat Pumps</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/air-conditioning" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Air Conditioning</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2021P3/part-v-mechanical/IRC2021P3-Pt05-Ch14-SecM1401.3" target="_blank" rel="noopener noreferrer">2021 International Residential Code M1401.3 (Equipment sizing) (ICC Digital Codes)</a></li>
 </ul>`,
       shortAnswer: "The two ways to cool a casita separately are a dedicated mini-split system or a separate zone added to the main HVAC. A ductless mini-split is usually the best fit for a detached casita: it gives the guest suite its own thermostat, runs only when occupied, and avoids long duct runs through a hot Arizona attic.",
@@ -1103,10 +1101,9 @@ export const faqSeed: FaqSeed = {
 <p>Desert-smart design and systems are standard on every home we build. We would rather answer your questions before you build than after, so get in touch any time.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/cool-roofs" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Cool Roofs</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/cool-roofs-and-walls-reduce-heat-gain" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Cool Roofs and Walls to Reduce Heat Gain</a></li>
 <li><a href="https://basc.pnnl.gov/resource-guides/high-thermal-mass-construction" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: High-Thermal-Mass Construction</a></li>
 <li><a href="https://basc.pnnl.gov/information/table-maximum-fenestration-u-factor-requirements-new-homes-listed-2009-2021-iecc-and" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Table of Maximum Fenestration U-Factor Requirements (IECC/IRC)</a></li>
-<li><a href="https://basc.pnnl.gov/resource-guides/cool-roofs-and-walls-reduce-heat-gain" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Cool Roofs and Walls to Reduce Heat Gain</a></li>
 </ul>`,
       shortAnswer: "Design a cool Arizona home by orienting it to limit west and east glass, shading windows with deep overhangs, using low-SHGC glazing, insulating heavily, adding thermal mass, and choosing light, reflective roof and wall colors. These passive moves cut heat gain before the air conditioner ever runs.",
       metaDescription: "Design a cool Arizona home with smart orientation, deep overhangs, low-SHGC glazing, heavy insulation, thermal mass, and reflective colors to cut heat gain.",
@@ -1144,7 +1141,6 @@ export const faqSeed: FaqSeed = {
 <h2>Sources</h2>
 <ul>
 <li><a href="https://afdc.energy.gov/fuels/electricity-charging-home" target="_blank" rel="noopener noreferrer">U.S. DOE Alternative Fuels Data Center: Charging Electric Vehicles at Home</a></li>
-<li><a href="https://www.energy.gov/energysaver/how-charge-electric-vehicles" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: How to Charge Electric Vehicles</a></li>
 <li><a href="https://afdc.energy.gov/fuels/electricity-stations" target="_blank" rel="noopener noreferrer">U.S. DOE Alternative Fuels Data Center: Electric Vehicle Charging Stations</a></li>
 <li><a href="https://www.energystar.gov/products/energy_star_home_upgrade/make_your_home_electric_ready" target="_blank" rel="noopener noreferrer">ENERGY STAR: Make Your Home Electric Ready</a></li>
 </ul>`,
@@ -1357,10 +1353,10 @@ export const faqSeed: FaqSeed = {
 <p>We build for the Sonoran Desert, not a generic climate. Every project is different, so we will confirm the specifics for your parcel and budget with you directly.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/central-air-conditioning" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Central Air Conditioning</a></li>
-<li><a href="https://www.energy.gov/energysaver/ductless-minisplit-heat-pumps" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Ductless Mini-Split Heat Pumps</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/air-conditioning" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Air Conditioning</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/ductless-mini-split-heat-pumps" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Ductless Mini-Split Heat Pumps</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2021P3/chapter-15-exhaust-systems/IRC2021P3-Pt05-Ch15-SecM1507.3" target="_blank" rel="noopener noreferrer">2021 International Residential Code M1507.3 (Local exhaust rates) (ICC Digital Codes)</a></li>
-<li><a href="https://www.energy.gov/energysaver/moisture-control" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Moisture Control</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/capillary-break-beneath-slab-polyethylene-sheeting-or-rigid-insulation-over" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Capillary Break Beneath Slab</a></li>
 </ul>`,
       shortAnswer: "A built-in home gym in metro Phoenix usually costs about $15,000 to $50,000 or more in 2026, and a finished sauna adds roughly $6,000 to $25,000. The big cost drivers are the floor, the electrical for a sauna heater, and dedicated cooling or ventilation so the room works in the desert heat.",
       metaDescription: "An Arizona home gym runs about $15K-$50K+ and a sauna $6K-$25K in 2026. See cost drivers, the electrical and ventilation a sauna needs, and how to plan it.",
@@ -1398,8 +1394,8 @@ export const faqSeed: FaqSeed = {
 <h2>Sources</h2>
 <ul>
 <li><a href="https://codes.iccsafe.org/s/IRC2021P2/chapter-27-plumbing-fixtures/IRC2021P2-Pt07-Ch27-SecP2708" target="_blank" rel="noopener noreferrer">ICC 2021 International Residential Code, Section P2708 (Showers)</a></li>
-<li><a href="https://www.energy.gov/energysaver/moisture-control" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Moisture Control</a></li>
-<li><a href="https://www.energy.gov/energysaver/estimating-appliance-and-home-electronic-energy-use" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Estimating Appliance and Home Electronic Energy Use</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/capillary-break-beneath-slab-polyethylene-sheeting-or-rigid-insulation-over" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Capillary Break Beneath Slab</a></li>
+<li><a href="https://www.energystar.gov/products" target="_blank" rel="noopener noreferrer">ENERGY STAR: Products</a></li>
 </ul>`,
       shortAnswer: "A home steam shower usually adds several thousand dollars to a custom build, often $4,000 to $12,000 above a standard tiled shower, with elaborate stone enclosures running higher. The main cost drivers are the steam generator sized to your enclosure, full vapor-tight waterproofing, a dedicated 240-volt circuit, and venting. Confirm current pricing with your builder.",
       metaDescription: "A home steam shower often adds $4,000-$12,000 in an Arizona custom home. See the cost drivers: generator sizing, vapor-tight waterproofing, and electrical.",
@@ -1437,8 +1433,8 @@ export const faqSeed: FaqSeed = {
 <p>We build for the Sonoran Desert, not a generic climate. We would rather answer your questions before you build than after, so get in touch any time.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/insulation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Insulation</a></li>
-<li><a href="https://www.energy.gov/energysaver/central-air-conditioning" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Central Air Conditioning</a></li>
+<li><a href="https://basc.pnnl.gov/building-components/air-sealinginsulation-1" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Air Sealing and Insulation</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/air-conditioning" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Air Conditioning</a></li>
 <li><a href="https://codes.iccsafe.org/content/IRC2021P1/part-viii-electrical" target="_blank" rel="noopener noreferrer">2021 International Residential Code, Part VIII Electrical (ICC Digital Codes)</a></li>
 </ul>`,
       shortAnswer: "A dedicated home theater in metro Phoenix usually costs about $20,000 to $100,000 or more in 2026, depending on size, gear, and finishes. A simpler media room shares the cost of the screen, sound, seating, soundproofing, dedicated wiring, and the extra cooling a packed, equipment-heavy room needs.",
@@ -1479,7 +1475,7 @@ export const faqSeed: FaqSeed = {
 <p>Desert-smart design and systems are standard on every home we build. Reach out and we will talk through how this applies to your specific lot and plan.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/insulation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Insulation</a></li>
+<li><a href="https://basc.pnnl.gov/building-components/air-sealinginsulation-1" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Air Sealing and Insulation</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2021P3/chapter-3-building-planning/IRC2021P3-Pt03-Ch03-SecR302.6" target="_blank" rel="noopener noreferrer">2021 International Residential Code, Section R302.6 Dwelling-Garage Fire Separation (ICC Digital Codes)</a></li>
 <li><a href="https://afdc.energy.gov/fuels/electricity-charging-home" target="_blank" rel="noopener noreferrer">U.S. DOE Alternative Fuels Data Center: Charging Electric Vehicles at Home</a></li>
 </ul>`,
@@ -1562,9 +1558,9 @@ export const faqSeed: FaqSeed = {
 <p>Desert-smart design and systems are standard on every home we build. If you are planning a custom home in Scottsdale, Rio Verde, or the greater Phoenix metro, we are happy to walk through your project.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/moisture-control" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Moisture Control</a></li>
-<li><a href="https://www.energy.gov/energysaver/insulation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Insulation</a></li>
-<li><a href="https://www.energy.gov/energysaver/window-types-and-technologies" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Window Types and Technologies</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/capillary-break-beneath-slab-polyethylene-sheeting-or-rigid-insulation-over" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Capillary Break Beneath Slab</a></li>
+<li><a href="https://basc.pnnl.gov/building-components/air-sealinginsulation-1" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Air Sealing and Insulation</a></li>
+<li><a href="https://www.energystar.gov/products/res_windows_doors_skylights" target="_blank" rel="noopener noreferrer">ENERGY STAR: Residential Windows, Doors and Skylights</a></li>
 <li><a href="https://basc.pnnl.gov/resource-guides/high-thermal-mass-construction" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: High-Thermal-Mass Construction</a></li>
 </ul>`,
       shortAnswer: "A custom wine room in metro Phoenix usually costs about $15,000 to $60,000 or more in 2026, depending on size, cooling, and finishes. The biggest desert cost is doing it right: a sealed, insulated room with a vapor barrier and a dedicated cooling unit to hold roughly 55°F and 60% humidity.",
@@ -1689,7 +1685,7 @@ export const faqSeed: FaqSeed = {
 <ul>
 <li><a href="https://codes.iccsafe.org/s/IRC2021P3/chapter-15-exhaust-systems/IRC2021P3-Pt05-Ch15-SecM1503.6" target="_blank" rel="noopener noreferrer">ICC 2021 International Residential Code, Section M1503.6 (Makeup air required)</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2021P3/part-v-mechanical/IRC2021P3-Pt05-Ch15-SecM1503.4" target="_blank" rel="noopener noreferrer">ICC 2021 International Residential Code, Section M1503.4 (Makeup air required, prior numbering / 2018 edition)</a></li>
-<li><a href="https://www.energy.gov/energysaver/whole-house-ventilation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Whole-House Ventilation</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/whole-house-ventilation-strategies-new-homes" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Whole-House Ventilation Strategies for New Homes</a></li>
 </ul>`,
       shortAnswer: "About the same amount of air the hood pulls out. Under IRC Section M1503.6, any range hood that can exhaust more than 400 CFM needs makeup air at roughly the same rate, with an automatic damper. A scullery or second kitchen has its own hood, so each hood over 400 CFM gets its own makeup air.",
       metaDescription: "A scullery or second-kitchen hood over 400 CFM needs makeup air at about the same rate under IRC M1503.6. Here is how much, and how Arizona homes supply it.",
@@ -1768,9 +1764,8 @@ export const faqSeed: FaqSeed = {
 <p>Desert-smart design and systems are standard on every home we build. Every project is different, so we will confirm the specifics for your parcel and budget with you directly.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/insulation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Insulation</a></li>
-<li><a href="https://www.energy.gov/energysaver/ductless-minisplit-heat-pumps" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Ductless Mini-Split Heat Pumps</a></li>
-<li><a href="https://www.energy.gov/energysaver/air-sealing-your-home" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Air Sealing Your Home</a></li>
+<li><a href="https://basc.pnnl.gov/building-components/air-sealinginsulation-1" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Air Sealing and Insulation</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/ductless-mini-split-heat-pumps" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Ductless Mini-Split Heat Pumps</a></li>
 <li><a href="https://www.energystar.gov/saveathome/seal_insulate/identify-problems-you-want-fix/diy-checks-inspections/insulation-r-values" target="_blank" rel="noopener noreferrer">ENERGY STAR: Insulation R-Values</a></li>
 </ul>`,
       shortAnswer: "Yes, a climate-controlled garage is usually worth it in Arizona for a workshop, a car collection, or heat-sensitive storage. A closed garage in the Phoenix sun can pass 110 degrees, which damages cars, tires, and stored goods. Insulation plus a mini-split holds a steady temperature and is cheaper to plan into a build than to add later.",
@@ -1809,8 +1804,8 @@ export const faqSeed: FaqSeed = {
 <p>We build for the Sonoran Desert, not a generic climate. Reach out and we will talk through how this applies to your specific lot and plan.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/evaporative-coolers" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Evaporative Coolers</a></li>
-<li><a href="https://www.energy.gov/energysaver/central-air-conditioning" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Central Air Conditioning</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/evaporative-cooling-systems" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Evaporative Cooling Systems</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/air-conditioning" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Air Conditioning</a></li>
 <li><a href="https://www.energystar.gov/about/federal-tax-credits/central-air-conditioners" target="_blank" rel="noopener noreferrer">ENERGY STAR: Central Air Conditioners (SEER2 efficiency requirements)</a></li>
 </ul>`,
       shortAnswer: "Refrigerated AC is the better primary system, because it works in any humidity and holds a precise temperature. A swamp cooler uses about a quarter of the energy and costs about half as much to install, but it stalls in monsoon humidity. It fits as a low-cost garage or patio add-on, not the main system.",
@@ -2110,7 +2105,7 @@ export const faqSeed: FaqSeed = {
 <h2>Sources</h2>
 <ul>
 <li><a href="https://basc.pnnl.gov/information/generators-back-power-during-outages" target="_blank" rel="noopener noreferrer">DOE Building America Solution Center (PNNL): Generators for Back-Up Power During Outages</a></li>
-<li><a href="https://www.energy.gov/energysaver/planning-home-renewable-energy-systems" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Planning for Home Renewable Energy Systems</a></li>
+<li><a href="https://www.energy.gov/eere/solar/homeowners-guide-going-solar" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Homeowner's Guide to Going Solar</a></li>
 <li><a href="https://www.weather.gov/wrn/241903-home-power-backup" target="_blank" rel="noopener noreferrer">National Weather Service: New Technologies Make Whole-Home Power Backup More Accessible</a></li>
 </ul>`,
       shortAnswer: "Install a whole-house standby generator if you want to ride out long monsoon outages cheaply, since a gas generator runs for days. Install solar plus battery if outages are short and you want quiet, fuel-free backup that recharges from the sun. Many Arizona custom homes use both for full resilience.",
@@ -2233,10 +2228,8 @@ export const faqSeed: FaqSeed = {
 <p>Desert-smart design and systems are standard on every home we build. We would rather answer your questions before you build than after, so get in touch any time.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/types-insulation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Types of Insulation</a></li>
-<li><a href="https://www.energy.gov/energysaver/insulation-materials" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Insulation Materials</a></li>
+<li><a href="https://basc.pnnl.gov/building-components/air-sealinginsulation-1" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Air Sealing and Insulation</a></li>
 <li><a href="https://basc.pnnl.gov/information/table-maximum-fenestration-u-factor-requirements-new-homes-listed-2009-2021-iecc-and" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Table of Maximum Fenestration U-Factor Requirements (IECC/IRC envelope)</a></li>
-<li><a href="https://www.energy.gov/energysaver/air-sealing-your-home" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Air Sealing Your Home</a></li>
 </ul>`,
       shortAnswer: "Spray foam is usually better for an Arizona home because it air-seals as it insulates, which stops the hot attic air that leaks past batts. Fiberglass batt costs much less and works fine in walls. Many desert homes use closed-cell or open-cell foam at the roofline and batt in the walls.",
       metaDescription: "Spray foam vs batt insulation in Arizona: foam air-seals and tames hot attics, batt costs less and suits walls. How open-cell, closed-cell, and batt compare.",
@@ -2278,7 +2271,6 @@ export const faqSeed: FaqSeed = {
 <p>Desert-smart design and systems are standard on every home we build. If you are planning a custom home in Scottsdale, Rio Verde, or the greater Phoenix metro, we are happy to walk through your project.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/cool-roofs" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Cool Roofs</a></li>
 <li><a href="https://basc.pnnl.gov/resource-guides/cool-roofs-and-walls-reduce-heat-gain" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Cool Roofs and Walls to Reduce Heat Gain</a></li>
 <li><a href="https://basc.pnnl.gov/resource-guides/asphalt-shingle-roofs" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Asphalt Shingle Roofs (IRC R905.2)</a></li>
 <li><a href="https://basc.pnnl.gov/resource-guides/clay-or-concrete-tile-roofs" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Clay or Concrete Tile Roofs (IRC R905.3)</a></li>
@@ -2359,8 +2351,8 @@ export const faqSeed: FaqSeed = {
 <p>Desert-smart design and systems are standard on every home we build. Reach out and we will talk through how this applies to your specific lot and plan.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/insulation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Insulation</a></li>
-<li><a href="https://www.energy.gov/energysaver/ductless-minisplit-heat-pumps" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Ductless Mini-Split Heat Pumps</a></li>
+<li><a href="https://basc.pnnl.gov/building-components/air-sealinginsulation-1" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Air Sealing and Insulation</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/ductless-mini-split-heat-pumps" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Ductless Mini-Split Heat Pumps</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2021P3/chapter-3-building-planning/IRC2021P3-Pt03-Ch03-SecR302.6" target="_blank" rel="noopener noreferrer">2021 International Residential Code, Section R302.6 Dwelling-Garage Fire Separation (ICC Digital Codes)</a></li>
 </ul>`,
       shortAnswer: "The core luxury garage finishes are a coated floor (epoxy or polyaspartic), full storage cabinets, and car lifts, plus insulation and a cooled interior to protect it all. In Arizona, climate control comes first, because desert heat and sun degrade uncooled floors, tires, and stored goods faster than in a mild climate.",
@@ -2491,7 +2483,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://www.iccsafe.org/building-safety-journal/bsj-technical/2023-efficiency-requirements-for-air-conditioning-systems-what-you-need-to-know/" target="_blank" rel="noopener noreferrer">ICC Building Safety Journal: 2023 Efficiency Requirements for Air Conditioning Systems (SEER2)</a></li>
 <li><a href="https://www.acca.org/standards/technical-manuals/manual-j" target="_blank" rel="noopener noreferrer">ACCA: Manual J Residential Load Calculation</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2021P3/part-v-mechanical/IRC2021P3-Pt05-Ch14-SecM1401.3" target="_blank" rel="noopener noreferrer">ICC IRC 2021 M1401.3 (Equipment and appliance sizing)</a></li>
-<li><a href="https://www.energy.gov/energysaver/central-air-conditioning" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Central Air Conditioning</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/air-conditioning" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Air Conditioning</a></li>
 </ul>`,
       shortAnswer: "For most Arizona custom homes, a high-efficiency electric heat pump or a gas-furnace-and-AC split system is best. Both must meet the federal SEER2 14.3 minimum for the South region. The deciding factor is correct sizing by a Manual J load calculation, not the brand or system type.",
       metaDescription: "The best HVAC for an Arizona custom home is a right-sized heat pump or AC split system meeting SEER2 14.3, sized by Manual J. Here is how to choose the system.",
@@ -2571,7 +2563,7 @@ export const faqSeed: FaqSeed = {
 <p>We build for the Sonoran Desert, not a generic climate. If you are planning a custom home in Scottsdale, Rio Verde, or the greater Phoenix metro, we are happy to walk through your project.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/whole-house-ventilation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Whole-House Ventilation</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/whole-house-ventilation-strategies-new-homes" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Whole-House Ventilation Strategies for New Homes</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2021P3/chapter-15-exhaust-systems/IRC2021P3-Pt05-Ch15-SecM1503" target="_blank" rel="noopener noreferrer">2021 International Residential Code M1503.4 (Makeup air required) (ICC Digital Codes)</a></li>
 <li><a href="https://www.ncosfm.gov/residential/15034-kitchen-exhaust-makeup-air-exceptions/open" target="_blank" rel="noopener noreferrer">North Carolina Office of State Fire Marshal: M1503.4 Kitchen Exhaust Makeup Air</a></li>
 </ul>`,
@@ -2613,9 +2605,9 @@ export const faqSeed: FaqSeed = {
 <p>Desert-smart design and systems are standard on every home we build. Reach out and we will talk through how this applies to your specific lot and plan.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/passive-solar-homes" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Passive Solar Home Design</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/passive-and-low-energy-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Passive and Low-Energy Cooling</a></li>
 <li><a href="https://basc.pnnl.gov/resource-guides/high-thermal-mass-construction" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: High-Thermal-Mass Construction</a></li>
-<li><a href="https://www.energy.gov/energysaver/cool-roofs" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Cool Roofs</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/cool-roofs-and-walls-reduce-heat-gain" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Cool Roofs and Walls to Reduce Heat Gain</a></li>
 </ul>`,
       shortAnswer: "A courtyard home wraps the living spaces around a private outdoor space, usually open to the sky in the center or on one side. The design works well in the Arizona desert, where it has centuries of history. A shaded courtyard cools nearby rooms, blocks the harsh sun, and creates protected outdoor living.",
       metaDescription: "A courtyard home wraps rooms around a private outdoor space. See why the design works in the Arizona desert, the passive cooling, history, and best orientation.",
@@ -2657,7 +2649,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://codes.iccsafe.org/s/IRC2021P2/chapter-3-building-planning/IRC2021P2-Pt03-Ch03-SecR305.1" target="_blank" rel="noopener noreferrer">2021 International Residential Code, Section R305.1 Minimum Ceiling Height (ICC Digital Codes)</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2021P3/part-iii-building-planning-and-construction/IRC2021P3-Pt03-Ch03-SecR311.7.10.1" target="_blank" rel="noopener noreferrer">2021 International Residential Code, Section R311.7.10.1 Stairways to Unfinished Attics and Lofts (ICC Digital Codes)</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2021P3/chapter-3-building-planning/IRC2021P3-Pt03-Ch03-SecR302.6" target="_blank" rel="noopener noreferrer">2021 International Residential Code, Section R302.6 Dwelling-Garage Fire Separation (ICC Digital Codes)</a></li>
-<li><a href="https://www.energy.gov/energysaver/insulation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Insulation</a></li>
+<li><a href="https://basc.pnnl.gov/building-components/air-sealinginsulation-1" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Air Sealing and Insulation</a></li>
 </ul>`,
       shortAnswer: "A garage mezzanine or loft is a raised platform inside a tall garage that adds storage or a room above the cars. Yes, you can build one in Arizona if the garage is tall enough. A loft needs about 7 feet of ceiling above and below it and code-compliant stairs, so plan a 16-foot or taller garage.",
       metaDescription: "A garage mezzanine or loft is a raised platform for storage or a room above the cars. See Arizona IRC ceiling height, stair, and load rules for building one.",
@@ -2738,7 +2730,6 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://afdc.energy.gov/fuels/electricity-stations" target="_blank" rel="noopener noreferrer">U.S. DOE Alternative Fuels Data Center: Electric Vehicle Charging Stations</a></li>
 <li><a href="https://afdc.energy.gov/fuels/electricity-charging-home" target="_blank" rel="noopener noreferrer">U.S. DOE Alternative Fuels Data Center: Charging Electric Vehicles at Home</a></li>
 <li><a href="https://www.energystar.gov/products/energy_star_home_upgrade/make_your_home_electric_ready" target="_blank" rel="noopener noreferrer">ENERGY STAR: Make Your Home Electric Ready</a></li>
-<li><a href="https://www.energy.gov/energysaver/how-charge-electric-vehicles" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: How to Charge Electric Vehicles</a></li>
 </ul>`,
       shortAnswer: "A NEMA 14-50 is a four-prong 240-volt, 50-amp outlet, the same heavy-duty receptacle used for ranges and RV pedestals. Yes, install one in an Arizona garage if you have an EV, RV, or welder. On a custom build, run it on its own circuit and reserve panel space for more.",
       metaDescription: "A NEMA 14-50 is a 240-volt, 50-amp four-prong outlet for EVs, RVs, and welders. See whether to install one in an Arizona garage and how to size the circuit.",
@@ -2779,7 +2770,7 @@ export const faqSeed: FaqSeed = {
 <h2>Sources</h2>
 <ul>
 <li><a href="https://www.energy.gov/eere/buildings/articles/smart-electrical-panel-based-home-energy-management-system" target="_blank" rel="noopener noreferrer">U.S. Department of Energy (EERE): Smart Electrical Panel-Based Home Energy Management System</a></li>
-<li><a href="https://www.energy.gov/energysaver/estimating-appliance-and-home-electronic-energy-use" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Estimating Appliance and Home Electronic Energy Use</a></li>
+<li><a href="https://www.energystar.gov/products" target="_blank" rel="noopener noreferrer">ENERGY STAR: Products</a></li>
 <li><a href="https://www.energystar.gov/products/energy_star_home_upgrade/make_your_home_electric_ready" target="_blank" rel="noopener noreferrer">ENERGY STAR: Make Your Home Electric Ready</a></li>
 </ul>`,
       shortAnswer: "A smart electrical panel is a breaker box that monitors and controls each circuit through an app. It shows real-time power use per circuit and can shed loads automatically. In a custom home with EV charging, solar, and battery, it is often worth it, because managing loads can avoid a costly 400-amp service upgrade.",
@@ -2819,7 +2810,7 @@ export const faqSeed: FaqSeed = {
 <p>We build for the Sonoran Desert, not a generic climate. If you are planning a custom home in Scottsdale, Rio Verde, or the greater Phoenix metro, we are happy to walk through your project.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/moisture-control" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Moisture Control</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/capillary-break-beneath-slab-polyethylene-sheeting-or-rigid-insulation-over" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Capillary Break Beneath Slab</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2021P3/chapter-15-exhaust-systems/IRC2021P3-Pt05-Ch15-SecM1507.3" target="_blank" rel="noopener noreferrer">2021 International Residential Code M1507.3 (Local exhaust rates) (ICC Digital Codes)</a></li>
 <li><a href="https://codes.iccsafe.org/content/IRC2021P1/chapter-3-building-planning" target="_blank" rel="noopener noreferrer">2021 International Residential Code, Chapter 3 Building Planning (toilet, bath and shower spaces) (ICC Digital Codes)</a></li>
 </ul>`,
@@ -2865,7 +2856,7 @@ export const faqSeed: FaqSeed = {
 <ul>
 <li><a href="https://www.epa.gov/mold/brief-guide-mold-moisture-and-your-home" target="_blank" rel="noopener noreferrer">EPA: A Brief Guide to Mold, Moisture and Your Home (keep indoor humidity 30-50%, below 60%)</a></li>
 <li><a href="https://www.epa.gov/mold/mold-course-chapter-2" target="_blank" rel="noopener noreferrer">EPA Mold Course, Chapter 2: Why and Where Mold Grows (relative humidity and condensation)</a></li>
-<li><a href="https://www.energy.gov/energysaver/whole-house-ventilation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Whole-House Ventilation</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/whole-house-ventilation-strategies-new-homes" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Whole-House Ventilation Strategies for New Homes</a></li>
 </ul>`,
       shortAnswer: "Between 30 and 50 percent relative humidity, and never above 60 percent. ENERGY STAR and the EPA both put the healthy indoor range at 30 to 50 percent. In Arizona the challenge flips with the season, so you may need a humidifier in the dry spring and a dehumidifier during the summer monsoon.",
       metaDescription: "The best indoor humidity for an Arizona home is 30 to 50 percent RH, never above 60. See how desert dryness and monsoon swing the target and what to install.",
@@ -3074,7 +3065,7 @@ export const faqSeed: FaqSeed = {
 <p>We build for the Sonoran Desert, not a generic climate. Every project is different, so we will confirm the specifics for your parcel and budget with you directly.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/central-air-conditioning" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Central Air Conditioning</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/air-conditioning" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Air Conditioning</a></li>
 <li><a href="https://www.acca.org/standards/technical-manuals/manual-j" target="_blank" rel="noopener noreferrer">ACCA: Manual J Residential Load Calculation</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2021P3/part-v-mechanical/IRC2021P3-Pt05-Ch14-SecM1401.3" target="_blank" rel="noopener noreferrer">ICC IRC 2021 M1401.3 (Equipment and appliance sizing)</a></li>
 <li><a href="https://www.energystar.gov/ia/partners/bldrs_lenders_raters/downloads/County%20Level%20Design%20Temperature%20Reference%20Guide%20-%202015-06-24.pdf" target="_blank" rel="noopener noreferrer">ENERGY STAR County-Level Design Temperature Reference Guide</a></li>
@@ -3115,7 +3106,7 @@ export const faqSeed: FaqSeed = {
 <p>We build for the Sonoran Desert, not a generic climate. Every project is different, so we will confirm the specifics for your parcel and budget with you directly.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/central-air-conditioning" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Central Air Conditioning</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/air-conditioning" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Air Conditioning</a></li>
 <li><a href="https://www.acca.org/standards/technical-manuals/manual-j" target="_blank" rel="noopener noreferrer">ACCA: Manual J Residential Load Calculation</a></li>
 <li><a href="https://www.energystar.gov/ia/partners/bldrs_lenders_raters/downloads/County%20Level%20Design%20Temperature%20Reference%20Guide%20-%202015-06-24.pdf" target="_blank" rel="noopener noreferrer">ENERGY STAR County-Level Design Temperature Reference Guide</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2021P3/part-v-mechanical/IRC2021P3-Pt05-Ch14-SecM1401.3" target="_blank" rel="noopener noreferrer">ICC IRC 2021 M1401.3 (Equipment and appliance sizing)</a></li>
@@ -5428,7 +5419,7 @@ export const faqSeed: FaqSeed = {
 <h2>Sources</h2>
 <ul>
 <li><a href="https://www.amwua.org/blog/rethinking-grass-in-the-desert" target="_blank" rel="noopener noreferrer">AMWUA: Rethinking Grass in the Desert (xeriscape water use)</a></li>
-<li><a href="https://www.energy.gov/energysaver/landscaping-shade" target="_blank" rel="noopener noreferrer">U.S. DOE Energy Saver: Landscaping for Shade (vegetation vs hard-surface temperatures)</a></li>
+<li><a href="https://basc.pnnl.gov/information/design-extreme-heat" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Design for Extreme Heat</a></li>
 <li><a href="https://www.azleg.gov/ars/33/01819.htm" target="_blank" rel="noopener noreferrer">A.R.S. 33-1819 (Artificial turf ban; prohibition; restrictions; planned communities)</a></li>
 <li><a href="https://19january2017snapshot.epa.gov/www3/watersense/pubs/outdoor.html" target="_blank" rel="noopener noreferrer">U.S. EPA WaterSense: Outdoor Water Use in the United States</a></li>
 </ul>`,
@@ -6740,7 +6731,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://www.amwua.org/blog/rethinking-grass-in-the-desert" target="_blank" rel="noopener noreferrer">AMWUA: Rethinking Grass in the Desert (xeriscape water use)</a></li>
 <li><a href="https://19january2017snapshot.epa.gov/www3/watersense/pubs/outdoor.html" target="_blank" rel="noopener noreferrer">EPA WaterSense: Outdoor Water Use in the United States</a></li>
 <li><a href="https://www.azleg.gov/ars/33/01819.htm" target="_blank" rel="noopener noreferrer">A.R.S. 33-1819 (Artificial turf ban; prohibition; planned communities)</a></li>
-<li><a href="https://www.energy.gov/energysaver/landscaping-shade" target="_blank" rel="noopener noreferrer">U.S. DOE Energy Saver: Landscaping for Shade and Energy Efficiency</a></li>
+<li><a href="https://basc.pnnl.gov/information/design-extreme-heat" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Design for Extreme Heat</a></li>
 </ul>`,
       shortAnswer: "Landscaping a new custom home in metro Phoenix usually runs about $10,000 to $50,000 or more in 2026, depending on lot size and design. Desert xeriscape costs less to install and far less to water than turf. Plan on roughly $5 to $15 per square foot for a full front-and-back design.",
       metaDescription: "Landscaping a new Arizona custom home runs roughly $10K to $50K+ in 2026. See desert xeriscape vs turf cost, water savings, and HOA landscaping rules.",
@@ -7840,7 +7831,7 @@ export const faqSeed: FaqSeed = {
 <ul>
 <li><a href="https://basc.pnnl.gov/resource-guides/mechanical-ventilation-attached-garage" target="_blank" rel="noopener noreferrer">DOE Building America Solution Center (PNNL): Mechanical Ventilation for Attached Garage</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2018P5/chapter-3-building-planning/IRC2018P5-Ch03-SecR309" target="_blank" rel="noopener noreferrer">ICC IRC 2018 Section R309 (Garages and Carports)</a></li>
-<li><a href="https://www.energy.gov/energysaver/whole-house-ventilation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy: Whole-House Ventilation</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/whole-house-ventilation-strategies-new-homes" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Whole-House Ventilation Strategies for New Homes</a></li>
 <li><a href="https://www.maricopa.gov/6353/Accessory-Structures-Equipment-and-Setba" target="_blank" rel="noopener noreferrer">Maricopa County: Accessory Structures, Equipment, and Setbacks (utilities and structures)</a></li>
 </ul>`,
       shortAnswer: "A full RV garage needs four hookups: a 50-amp, 240-volt RV outlet, a water line, a sewer dump or macerator, and ventilation for fumes. Add these utilities plus a sub-panel, lighting, and a hose bib. In Arizona, plan a mini-split for cooling, and rough it all in during the build.",
@@ -8473,7 +8464,7 @@ export const faqSeed: FaqSeed = {
 <ul>
 <li><a href="https://www.cityofboise.org/media/3923/433-irc-code-section-r303-light-ventilation.pdf" target="_blank" rel="noopener noreferrer">City of Boise, IRC Code Handout Section R303: Light and Ventilation</a></li>
 <li><a href="https://www.scottsdaleaz.gov/docs/default-source/scottsdaleaz/codes---ordinances/building-codes/2021-residential-mechanical-ventilation-options.pdf" target="_blank" rel="noopener noreferrer">City of Scottsdale: Whole-House Mechanical Ventilation Options (2021 IRC M1505)</a></li>
-<li><a href="https://www.energy.gov/energysaver/whole-house-ventilation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Whole-House Ventilation</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/whole-house-ventilation-strategies-new-homes" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Whole-House Ventilation Strategies for New Homes</a></li>
 <li><a href="https://www.energystar.gov/products/dehumidifiers" target="_blank" rel="noopener noreferrer">ENERGY STAR: Dehumidifiers (recommended indoor humidity)</a></li>
 </ul>`,
       shortAnswer: "In a custom home, a walk-in closet should be at least 6 by 6 feet for one person and 8 by 10 feet or larger for a primary suite. How big it needs to be scales with your wardrobe, so his-and-hers or island closets often run 100 to 200 square feet.",
@@ -8516,8 +8507,8 @@ export const faqSeed: FaqSeed = {
 <p>Setbacks, overlays, and ADU rules shape our design work from day one. Reach out and we will talk through how this applies to your specific lot and plan.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/passive-solar-home-design" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Passive Solar Home Design (orientation, overhang shading, thermal mass)</a></li>
-<li><a href="https://www.energy.gov/energysaver/cool-roofs" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Cool Roofs (roof surface temperatures; reflectance)</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/passive-and-low-energy-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Passive and Low-Energy Cooling</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/cool-roofs-and-walls-reduce-heat-gain" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Cool Roofs and Walls to Reduce Heat Gain</a></li>
 <li><a href="https://www.britannica.com/art/International-Style-architecture" target="_blank" rel="noopener noreferrer">Britannica: International Style (architecture); basis of modern and desert contemporary design</a></li>
 </ul>`,
       shortAnswer: "Start with three filters: what your gated community's design guidelines allow, how the style handles desert heat and sun, and your own taste and budget. In North Scottsdale the leading luxury style is desert contemporary, but Spanish Colonial, Pueblo, Territorial, Mediterranean, transitional, and organic styles all work well when adapted for the desert.",
@@ -8559,8 +8550,8 @@ export const faqSeed: FaqSeed = {
 <h2>Sources</h2>
 <ul>
 <li><a href="https://www.cityofboise.org/media/3923/433-irc-code-section-r303-light-ventilation.pdf" target="_blank" rel="noopener noreferrer">City of Boise, IRC Code Handout Section R303: Light and Ventilation</a></li>
-<li><a href="https://www.energy.gov/energysaver/passive-solar-homes" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Passive Solar Home Design</a></li>
-<li><a href="https://www.energy.gov/energysaver/whole-house-ventilation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Whole-House Ventilation</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/passive-and-low-energy-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Passive and Low-Energy Cooling</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/whole-house-ventilation-strategies-new-homes" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Whole-House Ventilation Strategies for New Homes</a></li>
 </ul>`,
       shortAnswer: "Design a work-from-home office around four things: quiet, wiring, light, and privacy. Insulate the walls and hang a solid-core door for sound, run hardwired data and extra power, place it for soft north light without screen glare, and add a private entrance if you meet clients.",
       metaDescription: "Design a work-from-home office for quiet, wiring, light, and privacy. See how to plan acoustics, data, glare-free light, and a private entrance in an AZ home.",
@@ -8603,8 +8594,8 @@ export const faqSeed: FaqSeed = {
 <p>Setbacks, overlays, and ADU rules shape our design work from day one. Reach out and we will talk through how this applies to your specific lot and plan.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/passive-solar-homes" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Passive Solar Home Design</a></li>
-<li><a href="https://www.energy.gov/energysaver/natural-ventilation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Natural Ventilation</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/passive-and-low-energy-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Passive and Low-Energy Cooling</a></li>
+<li><a href="https://basc.pnnl.gov/building-science-measures/natural-ventilation-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Natural Ventilation Cooling</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2018P7/chapter-3-building-planning/IRC2018P7-Pt03-Ch03-SecR305.1" target="_blank" rel="noopener noreferrer">2018 IRC R305.1 (Minimum ceiling height)</a></li>
 </ul>`,
       shortAnswer: "Design a primary suite as a private wing with four parts: the bedroom, a spa-style bathroom, a large closet, and a private outdoor or sitting area. Place it away from the other bedrooms for quiet, plan the path from bedroom to bath to closet, control light and heat with shaded glass, and give it private access to the patio.",
@@ -8649,9 +8640,9 @@ export const faqSeed: FaqSeed = {
 <p>We design to your lot's zoning envelope from the first sketch. Every project is different, so we will confirm the specifics for your parcel and budget with you directly.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/passive-solar-homes" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Passive Solar Home Design</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/passive-and-low-energy-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Passive and Low-Energy Cooling</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2018P7/chapter-3-building-planning/IRC2018P7-Pt03-Ch03-SecR311.6" target="_blank" rel="noopener noreferrer">2018 IRC R311.6 (Hallways)</a></li>
-<li><a href="https://www.energy.gov/energysaver/cool-roofs" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Cool Roofs</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/cool-roofs-and-walls-reduce-heat-gain" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Cool Roofs and Walls to Reduce Heat Gain</a></li>
 </ul>`,
       shortAnswer: "Design a single-level luxury home around a central great room that opens to a shaded patio, with the bedrooms split to either side and short, wide hallways linking them. Fit the plan to the lot, shade the long roof and west glass for the heat, and build in step-free, wide-door details for life.",
       metaDescription: "Design a single-level luxury home around a central great room, split bedrooms, wide halls, and shaded glass. See how to plan an all-on-one-floor Arizona home.",
@@ -8735,9 +8726,9 @@ export const faqSeed: FaqSeed = {
 <p>Setbacks, overlays, and ADU rules shape our design work from day one. If you are planning a custom home in Scottsdale, Rio Verde, or the greater Phoenix metro, we are happy to walk through your project.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/passive-solar-homes" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Passive Solar Home Design</a></li>
-<li><a href="https://www.energy.gov/energysaver/natural-ventilation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Natural Ventilation</a></li>
-<li><a href="https://www.energy.gov/energysaver/cool-roofs" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Cool Roofs</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/passive-and-low-energy-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Passive and Low-Energy Cooling</a></li>
+<li><a href="https://basc.pnnl.gov/building-science-measures/natural-ventilation-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Natural Ventilation Cooling</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/cool-roofs-and-walls-reduce-heat-gain" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Cool Roofs and Walls to Reduce Heat Gain</a></li>
 <li><a href="https://basc.pnnl.gov/resource-guides/high-thermal-mass-construction" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: High-Thermal-Mass Construction</a></li>
 </ul>`,
       shortAnswer: "Design indoor-outdoor flow in an Arizona home with a wide glass opening between the great room and a covered patio, matched floor levels and flooring, and the patio oriented away from the harsh west sun. Pocket or sliding glass walls, deep shade, and a continuous ceiling line make indoor and outdoor living read as one room.",
@@ -8996,8 +8987,8 @@ export const faqSeed: FaqSeed = {
 <p>Setbacks, overlays, and ADU rules shape our design work from day one. Reach out and we will talk through how this applies to your specific lot and plan.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/passive-solar-homes" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Passive Solar Home Design</a></li>
-<li><a href="https://www.energy.gov/energysaver/natural-ventilation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Natural Ventilation</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/passive-and-low-energy-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Passive and Low-Energy Cooling</a></li>
+<li><a href="https://basc.pnnl.gov/building-science-measures/natural-ventilation-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Natural Ventilation Cooling</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2018P7/chapter-3-building-planning/IRC2018P7-Pt03-Ch03-SecR311.6" target="_blank" rel="noopener noreferrer">2018 IRC R311.6 (Hallways)</a></li>
 </ul>`,
       shortAnswer: "These describe two different things, so most Arizona custom homes use both. Open concept means the kitchen, dining, and living rooms share one space. Split bedroom means the primary suite sits on the opposite side of the home from the other bedrooms. The common Arizona plan is open concept with a split-bedroom layout for privacy.",
@@ -9084,7 +9075,7 @@ export const faqSeed: FaqSeed = {
 <ul>
 <li><a href="https://www.nps.gov/articles/mission-revival-architecture.htm" target="_blank" rel="noopener noreferrer">U.S. National Park Service: Mission Revival Style (large flat stucco surfaces, arched doorways, red clay tile gable/hip roofs)</a></li>
 <li><a href="https://www.nps.gov/prsf/learn/historyculture/mediterranean-italian-renaissance-revival.htm" target="_blank" rel="noopener noreferrer">U.S. National Park Service: Mediterranean and Italian Renaissance Revival (Italian Renaissance palaces, simple stucco exterior, 1920-1940)</a></li>
-<li><a href="https://www.energy.gov/energysaver/passive-solar-home-design" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Passive Solar Home Design (overhang shading, thermal mass)</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/passive-and-low-energy-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Passive and Low-Energy Cooling</a></li>
 </ul>`,
       shortAnswer: "Spanish Colonial is clean, white-stucco, and mission-inspired with red tile, arches, and courtyards. Mediterranean is the broad Italian-and-Spanish villa family. Tuscan is the warm, rustic, stone-and-timber Italian-villa branch of that family. All three use stucco and low tile roofs and suit Arizona, but they differ in color, weight, and formality.",
       metaDescription: "Spanish Colonial vs Mediterranean vs Tuscan for an Arizona home: how the three styles differ in color, materials, weight, cost, and HOA fit. A side-by-side guide.",
@@ -9420,7 +9411,7 @@ export const faqSeed: FaqSeed = {
 <ul>
 <li><a href="https://www.dli.mn.gov/sites/default/files/pdf/fs-emergency-escapes.pdf" target="_blank" rel="noopener noreferrer">Minnesota Department of Labor and Industry: Emergency Escapes and Rescue Openings (IRC R310)</a></li>
 <li><a href="https://www.cityofboise.org/media/3923/433-irc-code-section-r303-light-ventilation.pdf" target="_blank" rel="noopener noreferrer">City of Boise, IRC Code Handout Section R303: Light and Ventilation</a></li>
-<li><a href="https://www.energy.gov/energysaver/whole-house-ventilation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Whole-House Ventilation</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/whole-house-ventilation-strategies-new-homes" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Whole-House Ventilation Strategies for New Homes</a></li>
 </ul>`,
       shortAnswer: "A flex room is a bonus room with no fixed purpose, designed to shift from office to nursery to gym to guest room as life changes. To plan one, place it centrally, rough in extra electrical and data, and add a closet and an egress window so it can become a legal bedroom later.",
       metaDescription: "A flex room shifts from office to nursery to gym to guest room. See how to place it, rough in wiring, and add a closet and egress window for future use.",
@@ -9462,7 +9453,7 @@ export const faqSeed: FaqSeed = {
 <p>Setbacks, overlays, and ADU rules shape our design work from day one. We would rather answer your questions before you build than after, so get in touch any time.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/passive-solar-homes" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Passive Solar Home Design</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/passive-and-low-energy-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Passive and Low-Energy Cooling</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2018P7/chapter-3-building-planning/IRC2018P7-Pt03-Ch03-SecR305.1" target="_blank" rel="noopener noreferrer">2018 IRC R305.1 (Minimum ceiling height)</a></li>
 <li><a href="https://basc.pnnl.gov/resource-guides/high-thermal-mass-construction" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: High-Thermal-Mass Construction</a></li>
 </ul>`,
@@ -9511,7 +9502,7 @@ export const faqSeed: FaqSeed = {
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Spanish_Colonial_Revival_architecture" target="_blank" rel="noopener noreferrer">Wikipedia: Spanish Colonial Revival architecture (courtyard/L-plan, predominantly one-story, low-pitched clay tile roofs, stucco, arcades)</a></li>
 <li><a href="https://www.nps.gov/articles/spanish-colonial-missions-architecture-and-preservation.htm" target="_blank" rel="noopener noreferrer">U.S. National Park Service: Spanish Colonial Missions Architecture and Preservation (adobe, thick walls, central courtyard or garth)</a></li>
-<li><a href="https://www.energy.gov/energysaver/passive-solar-home-design" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Passive Solar Home Design (overhang shading, thermal mass)</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/passive-and-low-energy-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Passive and Low-Energy Cooling</a></li>
 </ul>`,
       shortAnswer: "A hacienda or Spanish ranch home is a low, single-story house built around a central courtyard, with thick stucco or adobe walls, a low red tile roof, arched arcades, and wrought iron. It comes from the working Spanish-Mexican ranchos of the Southwest. The courtyard-centered plan suits Arizona well because it shades and cools the home naturally.",
       metaDescription: "A hacienda or Spanish ranch home is a courtyard-centered, single-story house with stucco walls and a low tile roof. See its features, desert fit, cost, and HOA rules.",
@@ -9558,8 +9549,8 @@ export const faqSeed: FaqSeed = {
 <ul>
 <li><a href="https://www.architecture.org/online-resources/architecture-encyclopedia/mid-century-modernism" target="_blank" rel="noopener noreferrer">Chicago Architecture Center: Mid-Century Modernism (clean lines, no ornamentation, innovative glass, organic forms inspired by nature)</a></li>
 <li><a href="https://www.nps.gov/articles/000/identifying-the-1950s-ranch-house-interior-as-a-cultural-resource.htm" target="_blank" rel="noopener noreferrer">U.S. National Park Service / NCPTT: Identifying the 1950s Ranch House Interior (picture windows, sliding glass doors, indoor-outdoor flow, post-war housing starts)</a></li>
-<li><a href="https://www.energy.gov/energysaver/passive-solar-home-design" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Passive Solar Home Design (overhang shading, orientation, thermal mass)</a></li>
-<li><a href="https://www.energy.gov/energysaver/cool-roofs" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Cool Roofs (roof surface temperatures; reflectance)</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/passive-and-low-energy-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Passive and Low-Energy Cooling</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/cool-roofs-and-walls-reduce-heat-gain" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Cool Roofs and Walls to Reduce Heat Gain</a></li>
 </ul>`,
       shortAnswer: "A mid-century modern home is the clean, low-slung post-war style with flat or low roofs, deep overhangs, walls of glass, and natural materials. Phoenix has deep MCM roots in neighborhoods like Arcadia and Marlen Grove. It works very well in Arizona because its overhangs, single-story footprint, and indoor-outdoor flow were built for the desert sun.",
       metaDescription: "A mid-century modern home has flat roofs, deep overhangs, and walls of glass. See its features, Phoenix MCM heritage, desert fit, cost, and HOA notes.",
@@ -9606,8 +9597,8 @@ export const faqSeed: FaqSeed = {
 <h2>Sources</h2>
 <ul>
 <li><a href="https://www.britannica.com/art/International-Style-architecture" target="_blank" rel="noopener noreferrer">Britannica: International Style (architecture); rectilinear forms, glass, flat roofs, no applied ornament; 1920s-30s</a></li>
-<li><a href="https://www.energy.gov/energysaver/cool-roofs" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Cool Roofs (roof surface temperatures; reflectance)</a></li>
-<li><a href="https://www.energy.gov/energysaver/passive-solar-home-design" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Passive Solar Home Design (orientation, thermal mass, overhang shading)</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/cool-roofs-and-walls-reduce-heat-gain" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Cool Roofs and Walls to Reduce Heat Gain</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/passive-and-low-energy-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Passive and Low-Energy Cooling</a></li>
 </ul>`,
       shortAnswer: "A modern or contemporary home uses clean rectilinear forms, flat roofs, big glass, open floor plans, and almost no applied ornament. Modern points to the 20th-century International Style; contemporary means whatever is current. In Arizona the desert-tuned version of this look is called desert contemporary, the metro's leading luxury style.",
       metaDescription: "A modern or contemporary custom home has clean lines, flat roofs, and big glass. See the difference, the Arizona desert version, cost, and HOA design review.",
@@ -9648,7 +9639,7 @@ export const faqSeed: FaqSeed = {
 <p>Setbacks, overlays, and ADU rules shape our design work from day one. Every project is different, so we will confirm the specifics for your parcel and budget with you directly.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/whole-house-ventilation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Whole-House Ventilation</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/whole-house-ventilation-strategies-new-homes" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Whole-House Ventilation Strategies for New Homes</a></li>
 <li><a href="https://www.scottsdaleaz.gov/docs/default-source/scottsdaleaz/codes---ordinances/building-codes/2021-residential-mechanical-ventilation-options.pdf" target="_blank" rel="noopener noreferrer">City of Scottsdale: Whole-House Mechanical Ventilation Options (2021 IRC M1505)</a></li>
 <li><a href="https://www.cityofboise.org/media/3923/433-irc-code-section-r303-light-ventilation.pdf" target="_blank" rel="noopener noreferrer">City of Boise, IRC Code Handout Section R303: Light and Ventilation</a></li>
 </ul>`,
@@ -9743,8 +9734,8 @@ export const faqSeed: FaqSeed = {
 <h2>Sources</h2>
 <ul>
 <li><a href="https://www.nps.gov/articles/000/identifying-the-1950s-ranch-house-interior-as-a-cultural-resource.htm" target="_blank" rel="noopener noreferrer">U.S. National Park Service / NCPTT: Identifying the 1950s Ranch House Interior (one story, low-pitched roof, deep eaves, open plan, picture windows, sliding glass doors)</a></li>
-<li><a href="https://www.energy.gov/energysaver/passive-solar-home-design" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Passive Solar Home Design (overhang shading, orientation, thermal mass)</a></li>
-<li><a href="https://www.energy.gov/energysaver/cool-roofs" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Cool Roofs (roof surface temperatures; reflectance)</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/passive-and-low-energy-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Passive and Low-Energy Cooling</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/cool-roofs-and-walls-reduce-heat-gain" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Cool Roofs and Walls to Reduce Heat Gain</a></li>
 </ul>`,
       shortAnswer: "A ranch home is a one-story, long, horizontal house with a low-pitched roof, deep eaves, and an open floor plan that opens to the outdoors. A desert ranch adds Southwest materials and shading for the heat. The style runs from modest tract homes to high-end custom estates, and its single-story sprawl fits desert lots well.",
       metaDescription: "A ranch or desert ranch home is a one-story, horizontal house with a low roof and deep eaves. See its features, Arizona desert fit, cost range, and HOA notes.",
@@ -9791,7 +9782,7 @@ export const faqSeed: FaqSeed = {
 <ul>
 <li><a href="https://www.nps.gov/articles/mission-revival-architecture.htm" target="_blank" rel="noopener noreferrer">U.S. National Park Service: Mission Revival Style 1890s-1920s (red clay tile gable/hip roofs, flat stucco surfaces, arches)</a></li>
 <li><a href="https://www.nps.gov/articles/spanish-colonial-missions-architecture-and-preservation.htm" target="_blank" rel="noopener noreferrer">U.S. National Park Service: Spanish Colonial Missions Architecture and Preservation (adobe, thick walls, towers, courtyards)</a></li>
-<li><a href="https://www.energy.gov/energysaver/passive-solar-home-design" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Passive Solar Home Design (overhang shading, thermal mass)</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/passive-and-low-energy-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Passive and Low-Energy Cooling</a></li>
 </ul>`,
       shortAnswer: "A Santa Barbara or Spanish Colonial home uses smooth white or cream stucco walls, low red clay tile roofs, arched doorways, wrought iron, and shaded courtyards. It comes from the old Spanish missions of the Southwest. The look fits Arizona well because thick shaded walls and courtyards handle the sun, though red tile is banned in some communities.",
       metaDescription: "A Santa Barbara or Spanish Colonial home has white stucco, red tile roofs, arches, and courtyards. See its features, Arizona desert fit, cost, and HOA rules.",
@@ -9831,7 +9822,7 @@ export const faqSeed: FaqSeed = {
 <h2>Sources</h2>
 <ul>
 <li><a href="https://www.scottsdaleaz.gov/docs/default-source/scottsdaleaz/codes---ordinances/building-codes/2021-residential-mechanical-ventilation-options.pdf" target="_blank" rel="noopener noreferrer">City of Scottsdale: Whole-House Mechanical Ventilation Options (2021 IRC M1505)</a></li>
-<li><a href="https://www.energy.gov/energysaver/whole-house-ventilation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Whole-House Ventilation</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/whole-house-ventilation-strategies-new-homes" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Whole-House Ventilation Strategies for New Homes</a></li>
 <li><a href="https://www.cityofboise.org/media/3923/433-irc-code-section-r303-light-ventilation.pdf" target="_blank" rel="noopener noreferrer">City of Boise, IRC Code Handout Section R303: Light and Ventilation</a></li>
 </ul>`,
       shortAnswer: "A scullery, also called a back kitchen, is a small working kitchen hidden behind the main show kitchen. It holds a second sink, dishwasher, and often a cooktop so the messy prep and cleanup stay out of sight. You need one if you entertain often and want the main kitchen to stay clean and open to the great room.",
@@ -9924,7 +9915,7 @@ export const faqSeed: FaqSeed = {
 <ul>
 <li><a href="https://www.britannica.com/art/International-Style-architecture" target="_blank" rel="noopener noreferrer">Britannica: International Style (architecture); clean lines, glass, minimal ornament (the modern half of the blend)</a></li>
 <li><a href="https://www.nps.gov/articles/mission-revival-architecture.htm" target="_blank" rel="noopener noreferrer">U.S. National Park Service: Mission Revival Style 1890s-1920s (traditional Southwest detailing: tile, stucco, arches)</a></li>
-<li><a href="https://www.energy.gov/energysaver/passive-solar-home-design" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Passive Solar Home Design (orientation, overhang shading, thermal mass)</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/passive-and-low-energy-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Passive and Low-Energy Cooling</a></li>
 </ul>`,
       shortAnswer: "A transitional home blends traditional and modern design. It keeps the comfort and warmth of a classic home, such as natural materials and a pitched or mixed roofline, while using the clean lines, big glass, and uncluttered interiors of modern style. In Arizona it is a popular middle ground between Mediterranean and desert contemporary.",
       metaDescription: "A transitional style home blends traditional warmth with modern clean lines. See its features, why it suits Arizona, cost, and how it fares in HOA design review.",
@@ -9970,7 +9961,7 @@ export const faqSeed: FaqSeed = {
 <ul>
 <li><a href="https://www.nps.gov/prsf/learn/historyculture/mediterranean-italian-renaissance-revival.htm" target="_blank" rel="noopener noreferrer">U.S. National Park Service: Mediterranean and Italian Renaissance Revival (stucco, low-pitched tile roofs, arches; 1920-1940)</a></li>
 <li><a href="https://www.nps.gov/articles/mission-revival-architecture.htm" target="_blank" rel="noopener noreferrer">U.S. National Park Service: Mission Revival Style 1890s-1920s (red clay tile gable/hip roofs, flat stucco surfaces, arches)</a></li>
-<li><a href="https://www.energy.gov/energysaver/passive-solar-home-design" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Passive Solar Home Design (overhang shading, thermal mass)</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/passive-and-low-energy-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Passive and Low-Energy Cooling</a></li>
 </ul>`,
       shortAnswer: "A Tuscan or Mediterranean home copies Italian and Spanish villas: warm stucco walls, low-pitched clay tile roofs, arches, stone accents, and heavy timber. It was Arizona's dominant luxury look in the 2000s. The style suits the desert because thick shaded walls and courtyards handle the sun, but it has cooled in popularity versus desert contemporary.",
       metaDescription: "A Tuscan or Mediterranean home has warm stucco, clay tile roofs, arches, and stone. See its features, Arizona desert fit, cost, and how it fares in HOA review.",
@@ -10012,7 +10003,7 @@ export const faqSeed: FaqSeed = {
 <ul>
 <li><a href="https://www.cityofboise.org/media/3923/433-irc-code-section-r303-light-ventilation.pdf" target="_blank" rel="noopener noreferrer">City of Boise, IRC Code Handout Section R303: Light and Ventilation</a></li>
 <li><a href="https://www.scottsdaleaz.gov/docs/default-source/scottsdaleaz/codes---ordinances/building-codes/2021-residential-mechanical-ventilation-options.pdf" target="_blank" rel="noopener noreferrer">City of Scottsdale: Whole-House Mechanical Ventilation Options (2021 IRC M1505)</a></li>
-<li><a href="https://www.energy.gov/energysaver/whole-house-ventilation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Whole-House Ventilation</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/whole-house-ventilation-strategies-new-homes" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Whole-House Ventilation Strategies for New Homes</a></li>
 <li><a href="https://www.energystar.gov/products/dehumidifiers" target="_blank" rel="noopener noreferrer">ENERGY STAR: Dehumidifiers (recommended indoor humidity)</a></li>
 </ul>`,
       shortAnswer: "A walk-in pantry is a small room off the kitchen for food and small-appliance storage, with shelves you walk in among. A useful one is at least 5 by 5 feet, and 6 by 8 feet or larger for a family. Plan 12-to-16-inch shelves, a 36-inch aisle, and ventilation for the Arizona heat.",
@@ -10104,8 +10095,8 @@ export const faqSeed: FaqSeed = {
 <h2>Sources</h2>
 <ul>
 <li><a href="https://www.britannica.com/art/International-Style-architecture" target="_blank" rel="noopener noreferrer">Britannica: International Style (architecture); rectilinear forms, glass, flat roofs, no applied ornament</a></li>
-<li><a href="https://www.energy.gov/energysaver/passive-solar-home-design" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Passive Solar Home Design (orientation, thermal mass, overhang shading)</a></li>
-<li><a href="https://www.energy.gov/energysaver/cool-roofs" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Cool Roofs (roof surface temperatures; reflectance)</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/passive-and-low-energy-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Passive and Low-Energy Cooling</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/cool-roofs-and-walls-reduce-heat-gain" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Cool Roofs and Walls to Reduce Heat Gain</a></li>
 <li><a href="https://basc.pnnl.gov/resource-guides/high-thermal-mass-construction" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: High-Thermal-Mass Construction (time lag, thermal damping, western US)</a></li>
 </ul>`,
       shortAnswer: "Desert contemporary is the clean, low-slung modern style you see across North Scottsdale luxury homes. It uses flat or shed roofs, long horizontal lines, walls of glass, and natural desert materials like stone and steel. It suits Arizona well because deep overhangs, glass shading, and high thermal mass control the harsh sun and heat.",
@@ -10151,7 +10142,7 @@ export const faqSeed: FaqSeed = {
 <h2>Sources</h2>
 <ul>
 <li><a href="https://franklloydwright.org/taliesin-west/" target="_blank" rel="noopener noreferrer">Frank Lloyd Wright Foundation: About Taliesin West (desert masonry, local rock + cement + desert sand; 1937; UNESCO World Heritage; near Scottsdale)</a></li>
-<li><a href="https://www.energy.gov/energysaver/passive-solar-home-design" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Passive Solar Home Design (orientation, overhang shading, thermal mass)</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/passive-and-low-energy-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Passive and Low-Energy Cooling</a></li>
 <li><a href="https://basc.pnnl.gov/resource-guides/high-thermal-mass-construction" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: High-Thermal-Mass Construction (time lag, thermal damping, western US swings)</a></li>
 </ul>`,
       shortAnswer: "Organic architecture, the idea Frank Lloyd Wright made famous, designs a home to belong to its site, using local materials, low horizontal lines, and forms that grow from the land. His Prairie style brought long low rooflines and deep overhangs. Wright proved it in the desert at Taliesin West near Scottsdale, built of local rock and sand.",
@@ -10196,7 +10187,7 @@ export const faqSeed: FaqSeed = {
 <ul>
 <li><a href="https://19january2017snapshot.epa.gov/www3/watersense/pubs/outdoor.html" target="_blank" rel="noopener noreferrer">EPA WaterSense: Outdoor Water Use in the United States</a></li>
 <li><a href="https://www.amwua.org/blog/rethinking-grass-in-the-desert" target="_blank" rel="noopener noreferrer">AMWUA: Rethinking Grass in the Desert (xeriscape water use)</a></li>
-<li><a href="https://www.energy.gov/energysaver/landscaping-shade" target="_blank" rel="noopener noreferrer">U.S. DOE Energy Saver: Landscaping for Shade and Energy Efficiency</a></li>
+<li><a href="https://basc.pnnl.gov/information/design-extreme-heat" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Design for Extreme Heat</a></li>
 </ul>`,
       shortAnswer: "For indoor-outdoor living in Arizona, prioritize shade, a covered patio or ramada, the right orientation away from west sun, and a wide pass-through opening from the house. Add misting, a pool or water feature, desert landscaping, and outdoor lighting. Shade and orientation matter more than any single feature.",
       metaDescription: "For an Arizona indoor-outdoor backyard, prioritize shade, ramada, north or east orientation, a wide pass-through, misting, a pool, and desert landscaping.",
@@ -10239,7 +10230,7 @@ export const faqSeed: FaqSeed = {
 <p>We design to your lot's zoning envelope from the first sketch. Reach out and we will talk through how this applies to your specific lot and plan.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/passive-solar-homes" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Passive Solar Home Design</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/passive-and-low-energy-cooling" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Passive and Low-Energy Cooling</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2018P7/chapter-3-building-planning/IRC2018P7-Pt03-Ch03-SecR310.1" target="_blank" rel="noopener noreferrer">2018 IRC R310.1 (Emergency escape and rescue openings)</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2018P7/chapter-3-building-planning/IRC2018P7-Pt03-Ch03-SecR311.6" target="_blank" rel="noopener noreferrer">2018 IRC R311.6 (Hallways)</a></li>
 </ul>`,
@@ -10329,7 +10320,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://www.nahb.org/news-and-economics/press-releases/2026/02/impact-of-affordability-challenges-and-demographic-shifts-on-housing-trends-in-2026" target="_blank" rel="noopener noreferrer">NAHB: Impact of Affordability Challenges and Demographic Shifts on Housing Trends in 2026 (contemporary preferred by 57% of high-end buyers; traditional by 50% of entry-level)</a></li>
 <li><a href="https://www.nahb.org/news-and-economics/press-releases/2026/02/nahbs-best-in-american-living-awards-highlight-top-design-trends-for-2026" target="_blank" rel="noopener noreferrer">NAHB: Best in American Living Awards Highlight Top Design Trends for 2026 (shift away from stark white exteriors toward deeper, richer, natural-material tones)</a></li>
 <li><a href="https://www.nahb.org/news-and-economics/press-releases/2025/02/affordability-headwinds-driving-home-buyers-interest-in-smaller-more-personalized-homes-in-2025" target="_blank" rel="noopener noreferrer">NAHB: Affordability Headwinds Driving Home Buyers' Interest in Smaller, More Personalized Homes in 2025 (generational lean toward contemporary vs traditional)</a></li>
-<li><a href="https://www.energy.gov/energysaver/cool-roofs" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Cool Roofs (roof surface temperatures; reflectance)</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/cool-roofs-and-walls-reduce-heat-gain" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Cool Roofs and Walls to Reduce Heat Gain</a></li>
 </ul>`,
       shortAnswer: "High-end buyers have shifted toward contemporary styles, and Arizona community design guidelines increasingly favor low rooflines, earth-tone palettes, and natural materials that fit desert contemporary. NAHB data shows contemporary is preferred by 57% of high-end buyers. The Mediterranean look that dominated the 2000s has cooled, though a well-built version still holds appeal.",
       metaDescription: "Why Arizona luxury communities favor desert contemporary over Mediterranean: NAHB buyer data, earth-tone design trends, and what it means for resale.",
@@ -11381,7 +11372,7 @@ export const faqSeed: FaqSeed = {
 <ul>
 <li><a href="https://visioncommunitymanagement.com/media/vcmdocs/1534049.pdf" target="_blank" rel="noopener noreferrer">FireRock Design Guidelines (5/12 max slope, 50% reflectance cap, no Mexican/barrel tile)</a></li>
 <li><a href="https://www.troonnorthhoa.com/ResourceCenter/Download/12801/FullTNAArchitecturalStandardsProceduresAppendicesARCREVISED5_20_25?view=1&amp;docId=1836664" target="_blank" rel="noopener noreferrer">Troon North Association Architectural Standards (tan flat roofs, SRI minimum of 64)</a></li>
-<li><a href="https://www.energy.gov/energysaver/cool-roofs" target="_blank" rel="noopener noreferrer">U.S. Department of Energy: Cool Roofs (solar reflectance; roof surface temperature)</a></li>
+<li><a href="https://basc.pnnl.gov/resource-guides/cool-roofs-and-walls-reduce-heat-gain" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Cool Roofs and Walls to Reduce Heat Gain</a></li>
 </ul>`,
       shortAnswer: "Luxury Arizona communities favor low-slope and flat desert roofs and cap how reflective the surface can be. FireRock limits pitched roofs to a 5/12 slope and roof material reflectance to 50% or less, and bans red Mexican or barrel tile. Troon North requires tan flat roofs with a Solar Reflectance Index of at least 64.",
       metaDescription: "Luxury Arizona communities cap roof slope and reflectance and often ban barrel tile. See FireRock's 5/12 and 50% limits and Troon North's flat-roof SRI 64 rule.",
@@ -13353,7 +13344,7 @@ export const faqSeed: FaqSeed = {
 <p>We take on additions, remodels, and teardown-rebuilds across the Valley. Reach out and we will talk through how this applies to your specific lot and plan.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.energy.gov/energysaver/insulation" target="_blank" rel="noopener noreferrer">U.S. Department of Energy, Energy Saver: Insulation</a></li>
+<li><a href="https://basc.pnnl.gov/building-components/air-sealinginsulation-1" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Air Sealing and Insulation</a></li>
 <li><a href="https://codes.iccsafe.org/s/IRC2021P3/chapter-3-building-planning/IRC2021P3-Pt03-Ch03-SecR302.6" target="_blank" rel="noopener noreferrer">2021 International Residential Code, Section R302.6 Dwelling-Garage Fire Separation (ICC Digital Codes)</a></li>
 <li><a href="https://www.phoenix.gov/administration/departments/pdd/residential-building/resident-plan-reviews/additions-remodels.html" target="_blank" rel="noopener noreferrer">City of Phoenix: Residential Additions and Remodels</a></li>
 </ul>`,
