@@ -5452,6 +5452,18 @@ a.dt-source-card:hover { transform: translateY(-2px); }
     white-space: normal !important;
   }
 }
+/* Resources hero title is set inline to white-space:nowrap + width:100vw with a
+   negative margin, so it reads as one full-bleed line on desktop. Below the width
+   where the line actually fits, that combination clips the text instead of
+   wrapping, because body has overflow-x:hidden. Let it wrap and return it to the
+   container there; the full-bleed single line is preserved above the breakpoint. */
+@media (max-width: 800px) {
+  .page-hero-content .page-hero-title.hero-title {
+    white-space: normal !important;
+    width: auto !important;
+    margin-left: 0 !important;
+  }
+}
 /* where-we-build editorial split uses an inline 560px column; stack it in the
    same range the base split collapses so it does not overflow. */
 @media (max-width: 880px) {
