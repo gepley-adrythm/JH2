@@ -1282,9 +1282,7 @@ picture {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0;
-  /* break out of the container so the row can use the full viewport width */
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  width: 100%;
 }
 .footer-links a {
   color: var(--color-accent);
