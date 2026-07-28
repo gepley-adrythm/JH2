@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ChevronRight, MapPin } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronRight, MapPin } from "lucide-react";
 import type { JurisdictionMeta, ReferenceEntry, ReferenceModuleMeta } from "@/data/reference";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { JsonLd } from "@/seo/JsonLd";
@@ -60,6 +60,16 @@ export function ReferenceCityHub({
 
       <section className="lib-hub section-pad">
         <div className="container">
+          <div className="dt-back-row">
+            <Link
+              href={`/reference-library/${meta.slug}`}
+              className="dt-back dt-back--top"
+              data-testid="city-hub-back"
+            >
+              <ArrowLeft size={14} aria-hidden="true" />
+              {meta.title}
+            </Link>
+          </div>
           {groups.map((g) => (
             <div key={g.category || "all"} className="lib-group" data-testid={`city-category-${g.category}`}>
               {g.category ? <div className="lib-group-label">{g.category}</div> : null}
