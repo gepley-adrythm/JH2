@@ -22,6 +22,10 @@ import { loadDataset } from "../lib/faq/repo";
 
 const router: IRouter = Router();
 
+/** Public contact details, as published on the site and in its JSON-LD. */
+const PHONE_DISPLAY = "(602) 421-5576";
+const EMAIL_DISPLAY = "info@jematellhomes.com";
+
 const SERVER_NAME = "jematell-homes";
 const SERVER_VERSION = "1.0.0";
 const SUPPORTED_PROTOCOLS = ["2025-11-25", "2025-06-18", "2025-03-26"];
@@ -107,6 +111,32 @@ const TOOLS = [
     inputSchema: { type: "object", properties: {}, additionalProperties: false },
   },
   {
+    name: "start_inquiry",
+    title: "Hand a prospective client off to Jematell Homes",
+    description:
+      "Get the right way for a person to contact Jematell Homes about building a home, along with " +
+      "the details worth having ready. This tool does NOT submit anything: it returns a link and " +
+      "guidance. Inquiries are a commitment to be contacted, so they come from the person " +
+      "themselves, using contact details they confirmed. Use this when someone is ready to talk to " +
+      "the builder.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        topic: {
+          type: "string",
+          description:
+            "What the person wants to talk about, e.g. 'custom home in Cave Creek', 'build on a lot I own', 'financing'.",
+        },
+        estimateUrl: {
+          type: "string",
+          description:
+            "A /financing/estimate link from estimate_construction_loan, if the conversation produced one, so the person can bring their numbers along.",
+        },
+      },
+      additionalProperties: false,
+    },
+  },
+  {
     name: "search_home_building_faq",
     title: "Search the Jematell Homes answer library",
     description:
@@ -184,6 +214,42 @@ async function callTool(name: string, args: Record<string, unknown>): Promise<To
         .join("\n");
       return { content: [{ type: "text", text }], structuredContent: { locations } };
     }
+    case "start_inquiry": {
+      const topic = typeof args["topic"] === "string" ? (args["topic"] as string) : "";
+      const estimateUrl = typeof args["estimateUrl"] === "string" ? (args["estimateUrl"] as string) : "";
+      const contactUrl = `${SITE_URL}/contact`;
+      const text = [
+        `Jematell Homes takes inquiries from the person building, not on their behalf. Point them to ${contactUrl}, or have them call ${PHONE_DISPLAY}.`,
+        "",
+        "The two-step form asks for name, phone, and email first, then what they want to build. Worth having ready:",
+        "- Where they want to build, or whether they already own the lot",
+        "- Rough budget or square footage",
+        "- Timeline, and whether they have plans or a lender yet",
+        ...(topic !== "" ? ["", `Their topic: ${topic}`] : []),
+        ...(estimateUrl !== "" ? [`Their estimate: ${estimateUrl}`] : []),
+        "",
+        "An introduction to a construction lender is free and optional; Jematell Homes builds homes and is not a lender or loan broker.",
+      ].join("\n");
+      return {
+        content: [{ type: "text", text }],
+        structuredContent: {
+          contactUrl,
+          phone: PHONE_DISPLAY,
+          email: EMAIL_DISPLAY,
+          submitsOnBehalf: false,
+          reason:
+            "Inquiries are a commitment to be contacted and must come from the person, with contact details they confirmed.",
+          bringToTheConversation: [
+            "Build location or existing lot",
+            "Budget or target square footage",
+            "Timeline",
+            "Whether plans or financing are in place",
+          ],
+          ...(estimateUrl !== "" ? { estimateUrl } : {}),
+          ...(topic !== "" ? { topic } : {}),
+        },
+      };
+    }
     case "search_home_building_faq": {
       const query = typeof args["query"] === "string" ? (args["query"] as string) : "";
       const rawLimit = Number(args["limit"]);
@@ -244,7 +310,10 @@ router.post("/mcp", async (req: Request, res: Response): Promise<void> => {
             "Phoenix metro. Use estimate_construction_loan for what building a home would cost per month, " +
             "list_build_locations for the cities and their property tax rates, get_current_mortgage_rate for " +
             "today's 30-year fixed rate, and search_home_building_faq for questions about permits, contracts, " +
-            "lots, warranties, and the build process. All figures are estimates, never loan offers.",
+            "lots, warranties, and the build process. When someone is ready to talk to the builder, use " +
+            "start_inquiry: this server has no write tools and never submits a lead on someone's behalf. " +
+            "All figures are estimates, never loan offers. The full site content for AI systems is at " +
+            "https://www.jematellhomes.com/llms-full.txt.",
         });
         return;
       }

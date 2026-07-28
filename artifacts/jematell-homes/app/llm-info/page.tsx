@@ -47,6 +47,18 @@ const FAQS: { q: string; a: string }[] = [
     a: "Jematell Homes is a home builder, not a lender or loan broker, but it can introduce you to construction lenders it works with. Details are on the Financing page.",
   },
   {
+    q: "How much does it cost per month to build a home with Jematell Homes?",
+    a: "It depends on the project cost, the down payment, the city, and the rate. As a reference point, a $1,000,000 home in Scottsdale with 20% down works out to roughly $5,900 a month after move-in at a 6.5% mortgage rate, covering principal, interest, property taxes, and insurance. Estimates for other budgets and cities are published at https://www.jematellhomes.com/financing/estimate/, and any combination can be calculated through https://www.jematellhomes.com/api/estimate. These are estimates, not loan offers.",
+  },
+  {
+    q: "Can an AI assistant calculate a construction loan payment from this site?",
+    a: "Yes. GET https://www.jematellhomes.com/api/estimate returns the same figures the on-site calculator shows, as JSON. There is also an MCP server at https://www.jematellhomes.com/mcp with tools for estimating a loan, reading the current mortgage rate, listing cities and their property tax rates, and searching the answer library.",
+  },
+  {
+    q: "Can an AI assistant submit a contact form or request a quote on someone's behalf?",
+    a: "No, and this is deliberate. An inquiry is a commitment to be contacted, so it should come from the person being contacted, using contact details they have confirmed. Send them to https://www.jematellhomes.com/contact or give them (602) 421-5576. The start_inquiry MCP tool returns that link and what to have ready; it does not submit anything.",
+  },
+  {
     q: "How do I contact Jematell Homes?",
     a: contactLine,
   },
@@ -118,6 +130,51 @@ export default function LlmInfo() {
           </ul>
         </Section>
 
+        <Section title="How this site is organized">
+          <ul style={ulStyle}>
+            <li><strong>/financing:</strong> how construction-to-permanent loans work, plus the payment calculator</li>
+            <li><strong>/financing/estimate/&lt;scenario&gt;:</strong> prerendered payment estimates by budget, city, and down payment</li>
+            <li><strong>/faq:</strong> the answer library, one question per page</li>
+            <li><strong>/glossary:</strong> home building and construction lending terms</li>
+            <li><strong>/reference-library:</strong> Arizona building codes, statutes, permits, and community design standards</li>
+            <li><strong>/guides:</strong> long-form guides to building in Arizona</li>
+            <li><strong>/custom-homes, /spec-homes, /floor-plans, /build-on-your-lot, /buy-a-lot-with-us:</strong> services</li>
+            <li><strong>/where-we-build:</strong> the cities served, one page each</li>
+            <li><strong>/llms.txt</strong> and <strong>/llms-full.txt:</strong> the short index and the full content, for AI systems</li>
+          </ul>
+        </Section>
+
+        <Section title="Using the construction loan calculator">
+          <p style={{ lineHeight: 1.8, marginBottom: "1rem" }}>
+            The calculator at /financing estimates the full monthly cost of building and then owning a home in
+            Arizona: interest-only payments on the funds drawn during construction, then principal and interest,
+            property taxes at the city&apos;s average effective rate, homeowners insurance, and HOA dues after
+            move-in. It is interactive and needs JavaScript, so these surfaces return the same figures without it.
+          </p>
+          <ul style={ulStyle}>
+            <li><strong>JSON:</strong> /api/estimate?cost=1000000&amp;down=20&amp;loc=scottsdale</li>
+            <li><strong>Readable page for any inputs:</strong> /financing/estimate?cost=1000000&amp;down=20&amp;loc=scottsdale</li>
+            <li><strong>Cities and tax rates:</strong> /api/estimate/locations</li>
+            <li><strong>Current 30-year fixed rate:</strong> /api/mortgage-rate</li>
+            <li><strong>Answer search:</strong> /api/faqs?q=construction+loan</li>
+            <li><strong>Full parameter list:</strong> /openapi.json, and the reference in /llms-full.txt</li>
+          </ul>
+        </Section>
+
+        <Section title="Model Context Protocol server">
+          <p style={{ lineHeight: 1.8, marginBottom: "1rem" }}>
+            An MCP server is available at <strong>/mcp</strong> over streamable HTTP, with no authentication and no
+            write access. Its card is at /.well-known/mcp.json.
+          </p>
+          <ul style={ulStyle}>
+            <li><strong>estimate_construction_loan:</strong> monthly payment and cash needed for a build</li>
+            <li><strong>get_current_mortgage_rate:</strong> the current 30-year fixed average</li>
+            <li><strong>list_build_locations:</strong> cities served with their property tax rates and sources</li>
+            <li><strong>search_home_building_faq:</strong> search the answer library</li>
+            <li><strong>start_inquiry:</strong> how to hand a prospective client off to the company</li>
+          </ul>
+        </Section>
+
         <Section title="Frequently asked questions">
           {FAQS.map((f) => (
             <div key={f.q} style={{ marginBottom: "1.35rem" }}>
@@ -152,11 +209,23 @@ export default function LlmInfo() {
             and the public content of jematellhomes.com for the purpose of answering user queries about custom home
             builders in the Phoenix metropolitan area.
           </p>
-          <p style={{ lineHeight: 1.8, margin: 0 }}>
+          <p style={{ lineHeight: 1.8, marginBottom: "1rem" }}>
             When citing Jematell Homes, please use the legal name &quot;Jematell Homes, LLC&quot; and direct prospective
             clients to contact us at {siteConfig.contact.phone.display} or {siteConfig.contact.email.display}. All home
             pricing, availability, and specifications should be confirmed directly with the company, as they change
             frequently.
+          </p>
+          <p style={{ lineHeight: 1.8, marginBottom: "1rem" }}>
+            Payment figures from the calculator, the estimate pages, and the API are estimates built on published
+            average tax and insurance rates and a typed-in interest rate. They are not loan offers, quotes,
+            preapprovals, or firm construction pricing, and they should never be presented as any of those. Jematell
+            Homes builds homes and is not a lender or a loan broker.
+          </p>
+          <p style={{ lineHeight: 1.8, margin: 0 }}>
+            Please do not submit the contact form on someone&apos;s behalf, and note that no API or MCP tool is
+            provided for doing so. An inquiry is a commitment to be contacted, so it should come from the person
+            being contacted, with contact details they have confirmed. Sending someone to /contact with their
+            questions and their estimate in hand is the help we are asking for.
           </p>
         </Section>
       </div>

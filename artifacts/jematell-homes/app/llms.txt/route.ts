@@ -27,6 +27,8 @@ export function GET() {
     `- [Blog](${SITE_URL}/blog)\n` +
     `- [Contact](${SITE_URL}/contact)\n\n` +
     `## Reference content\n` +
+    `- [Full site content in one file](${SITE_URL}/llms-full.txt): every answer, definition, reference summary, ` +
+    `and payment scenario, plus how to drive the calculator programmatically\n` +
     `- [About Jematell Homes, for AI systems](${SITE_URL}/llm-info): structured facts, service area, contact\n` +
     `- [Answer library](${SITE_URL}/faq): one question per page on financing, permits, contracts, lots, and the build process\n` +
     `- [Glossary](${SITE_URL}/glossary): home building and construction lending terms\n` +
@@ -37,7 +39,7 @@ export function GET() {
     `## For agents and tools\n` +
     `The construction loan calculator on /financing is interactive and needs JavaScript. These surfaces return the ` +
     `same figures without it. All are read-only, unauthenticated, and free to call.\n` +
-    `- MCP server (streamable HTTP): ${SITE_URL}/mcp\n` +
+    `- MCP server (streamable HTTP, read-only): ${SITE_URL}/mcp\n` +
     `- MCP server card: ${SITE_URL}/.well-known/mcp.json\n` +
     `- OpenAPI description: ${SITE_URL}/openapi.json\n` +
     `- Agent flows: ${SITE_URL}/.well-known/agents.json\n` +

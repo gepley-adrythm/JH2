@@ -41,8 +41,11 @@ router.get("/.well-known/mcp.json", (_req: Request, res: Response): void => {
       "get_current_mortgage_rate",
       "list_build_locations",
       "search_home_building_faq",
+      "start_inquiry",
     ],
+    readOnly: true,
     documentation: `${SITE_URL}/llm-info`,
+    fullText: `${SITE_URL}/llms-full.txt`,
     websiteUrl: SITE_URL,
   });
 });
@@ -86,7 +89,10 @@ router.get("/openapi.json", (_req: Request, res: Response): void => {
       description:
         DESCRIPTION +
         " All endpoints are read-only, unauthenticated, and safe to call anonymously. Every estimate is " +
-        "an estimate, not a loan offer, quote, or preapproval.",
+        "an estimate, not a loan offer, quote, or preapproval. There is deliberately no endpoint for " +
+        "submitting an inquiry: send a prospective client to " +
+        SITE_URL +
+        "/contact so the person fills in the form themselves, with contact details they confirmed.",
       contact: { name: "Jematell Homes", url: `${SITE_URL}/contact` },
     },
     servers: [{ url: SITE_URL }],
