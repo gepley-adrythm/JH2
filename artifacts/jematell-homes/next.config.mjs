@@ -47,30 +47,23 @@ const nextConfig = {
   // reviewer. Note the estimate route is the EXACT path only: the prerendered
   // scenario pages at /financing/estimate/<slug> are real Next pages and must
   // keep being served by Next.
+  //
+  // The api-server's port comes from its PORT env var, and the two ways it gets
+  // started in this workspace disagree: the "api server" workflow in .replit
+  // passes PORT=5000, while the Replit-managed run uses 8081 (the port .replit
+  // maps to external 80). Pointing at the wrong one turns every proxied path
+  // into a 500, so the origin is overridable and defaults to the port actually
+  // in use. Set API_DEV_ORIGIN if you start the api-server somewhere else.
   ...(process.env.NODE_ENV === "development"
     ? {
         async rewrites() {
+          const api = process.env.API_DEV_ORIGIN ?? "http://localhost:8081";
           return [
-            {
-              source: "/api/:path*",
-              destination: "http://localhost:5000/api/:path*",
-            },
-            {
-              source: "/financing/estimate",
-              destination: "http://localhost:5000/financing/estimate",
-            },
-            {
-              source: "/mcp",
-              destination: "http://localhost:5000/mcp",
-            },
-            {
-              source: "/openapi.json",
-              destination: "http://localhost:5000/openapi.json",
-            },
-            {
-              source: "/.well-known/:path*",
-              destination: "http://localhost:5000/.well-known/:path*",
-            },
+            { source: "/api/:path*", destination: `${api}/api/:path*` },
+            { source: "/financing/estimate", destination: `${api}/financing/estimate` },
+            { source: "/mcp", destination: `${api}/mcp` },
+            { source: "/openapi.json", destination: `${api}/openapi.json` },
+            { source: "/.well-known/:path*", destination: `${api}/.well-known/:path*` },
           ];
         },
       }
