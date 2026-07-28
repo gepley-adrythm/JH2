@@ -2,6 +2,8 @@
 import { useEffect, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { useSafeTimeouts } from "../contact-form/useSafeTimeouts";
 import { ContactCta } from "./ContactCta";
+import { PaymentDonut, PaymentTimeline } from "./PaymentCharts";
+import { breakdownParts } from "./paymentChartParts";
 import {
   buildInterestSeries,
   clamp,
@@ -53,15 +55,6 @@ function fmtMoney(n: number): string {
   return n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 }
 
-/** Round to 2 decimals for stable SVG geometry strings. */
-function r2(n: number): number {
-  return Math.round(n * 100) / 100;
-}
-
-/** Donut geometry: radius 80 in a 200x200 viewBox, 26px ring stroke. */
-const DONUT_R = 80;
-const DONUT_C = 2 * Math.PI * DONUT_R;
-
 type CalcView = "breakdown" | "timeline";
 
 /**
@@ -91,8 +84,6 @@ export function ConstructionLoanCalculator() {
   const [insEdited, setInsEdited] = useState(false);
   const [copied, setCopied] = useState(false);
   const [activeView, setActiveView] = useState<CalcView>("breakdown");
-  const [donutReady, setDonutReady] = useState(false);
-  const [hoveredBarIdx, setHoveredBarIdx] = useState<number | null>(null);
   const [downDollarFocused, setDownDollarFocused] = useState(false);
   const [downDollarStr, setDownDollarStr] = useState("");
   const { safeTimeout } = useSafeTimeouts();
@@ -212,15 +203,6 @@ export function ConstructionLoanCalculator() {
     }
   }, []);
 
-  // Trigger the donut sweep-in one frame after mount: the first painted
-  // frame has zero-length arcs, then the CSS transition animates them to
-  // their real sizes. Reduced-motion users get the final state instantly
-  // via the transition: none override in CSS.
-  useEffect(() => {
-    const id = requestAnimationFrame(() => setDonutReady(true));
-    return () => cancelAnimationFrame(id);
-  }, []);
-
   // Fetch the live 30-yr fixed rate from the API server and apply it as the
   // perm-rate default — but only when the user hasn't loaded a shared link
   // that already contains a "pr" param (so shared estimates stay stable).
@@ -287,72 +269,17 @@ export function ConstructionLoanCalculator() {
   // drawn-balance convention on the linear ramp: in build month m the borrower
   // pays interest on the fraction of the loan drawn by the end of that month.
   const buildSeries = buildInterestSeries(loan, buildRate, buildMonths);
-  // Build ramp bars + a single post-move-in bar representing the ongoing
-  // all-in monthly payment (the payment is flat once the loan converts, so one
-  // bar conveys it; earlier versions drew six identical bars).
-  const totalBars = months + 1;
-  const chartW = 720;
-  const chartH = 190;
-  const plotX0 = 6;
-  const plotX1 = 714;
-  const plotY0 = 28;
-  const plotY1 = 158;
-  const slot = (plotX1 - plotX0) / totalBars;
-  const barW = r2(Math.max(2, slot - 2));
-  const maxVal = Math.max(allInMonthly, finalMonthInterest, 1);
-  const barY = (val: number) => r2(plotY1 - (val / maxVal) * (plotY1 - plotY0));
-  const markerX = r2(plotX0 + months * slot);
-  const markerLabelLeft = months / totalBars > 0.7;
-  const tickMonths = Array.from(new Set([1, months]));
 
-  // Tooltip for the hovered bar.
-  const TT_W = 160;
-  const TT_H = 55;
-  const tooltipInfo = hoveredBarIdx === null ? null : (() => {
-    const isBuild = hoveredBarIdx < months;
-    const val = isBuild ? (buildSeries[hoveredBarIdx] ?? 0) : allInMonthly;
-    const barCenterX = r2(plotX0 + hoveredBarIdx * slot + slot / 2);
-    const ttX = r2(Math.max(0, Math.min(chartW - TT_W, barCenterX - TT_W / 2)));
-    const ttY = r2(Math.max(2, barY(val) - TT_H - 8));
-    return {
-      label: isBuild ? `Month ${hoveredBarIdx + 1} of ${months}` : "After move-in",
-      amount: fmtMoney(val),
-      sub: isBuild ? "interest only" : "all-in per month",
-      ttX,
-      ttY,
-    };
-  })();
-
-  // Payment-breakdown donut. Segments reuse the exact monthly values shown
-  // in the stats (permMonthly, monthlyTax, monthlyInsurance, hoaMonthly),
-  // so the ring, the legend, and the stat text can never disagree. Angles
-  // are normalized over the sum of the parts themselves, never over the
-  // displayed all-in total, so display rounding cannot make the ring over-
-  // or under-shoot a full turn. Zero or non-finite parts contribute a
-  // zero-length dash, which draws nothing (butt line caps).
-  //
-  // Colors on the #121415 band: #8fb0c9 is the accent (#3b617f) lightened
-  // for the dark background (about 8.2:1), bone is 13.6:1, #c08468 is the
-  // warm tone (#8c5a45) lightened to about 6:1, and the HOA grey #9aa0a3
-  // is about 7:1. All clear the 3:1 non-text minimum; legend text is bone
-  // and white, both far above 4.5:1.
-  const donutParts = [
-    { key: "pi", label: "P&I", value: Number.isFinite(permMonthly) ? permMonthly : 0, color: "#8fb0c9" },
-    { key: "tax", label: "Property tax", value: monthlyTax, color: "var(--color-bone)" },
-    { key: "ins", label: "Insurance", value: monthlyInsurance, color: "#c08468" },
-    { key: "hoa", label: "HOA", value: hoaMonthly, color: "#9aa0a3" },
-  ];
-  const donutSum = donutParts.reduce((acc, p) => acc + (p.value > 0 ? p.value : 0), 0);
-  let donutAcc = 0;
-  const donutSegs = donutParts.map((p) => {
-    const frac = donutSum > 0 && p.value > 0 ? p.value / donutSum : 0;
-    const seg = { ...p, len: r2(frac * DONUT_C), offset: r2(donutAcc * DONUT_C) };
-    donutAcc += frac;
-    return seg;
+  // The ring and the timeline live in PaymentCharts, shared with the
+  // prerendered estimate pages so both surfaces animate and behave identically.
+  // Segments reuse the exact monthly values shown in the stats, so the ring,
+  // the legend, and the stat text can never disagree.
+  const donutParts = breakdownParts({
+    principalAndInterest: permMonthly,
+    propertyTax: monthlyTax,
+    insurance: monthlyInsurance,
+    hoa: hoaMonthly,
   });
-  // P&I, tax, and insurance rows always show (a typed-in $0 is information);
-  // the HOA row appears only when there are dues, matching the lead stat sub.
-  const donutLegend = donutParts.filter((p) => p.key !== "hoa" || p.value > 0);
 
   // WAI-ARIA tabs pattern: roving tabindex, ArrowLeft/ArrowRight move
   // selection and focus. With exactly two tabs both arrows toggle.
@@ -749,49 +676,13 @@ export function ConstructionLoanCalculator() {
             hidden={activeView !== "breakdown"}
             tabIndex={0}
           >
-            <div className="fin-donut-wrap" data-testid="calc-breakdown">
-              <div className="fin-donut">
-                <svg viewBox="0 0 200 200" aria-hidden="true" focusable="false">
-                  <g transform="rotate(-90 100 100)">
-                    <circle
-                      cx="100"
-                      cy="100"
-                      r={DONUT_R}
-                      fill="none"
-                      stroke="rgba(255, 255, 255, 0.08)"
-                      strokeWidth="26"
-                    />
-                    {donutSegs.map((s) => (
-                      <circle
-                        key={s.key}
-                        className="fin-donut-arc"
-                        cx="100"
-                        cy="100"
-                        r={DONUT_R}
-                        stroke={s.color}
-                        strokeDasharray={
-                          donutReady ? `${s.len} ${r2(DONUT_C - s.len)}` : `0 ${r2(DONUT_C)}`
-                        }
-                        strokeDashoffset={-s.offset}
-                      />
-                    ))}
-                  </g>
-                </svg>
-                <div className="fin-donut-center">
-                  <span className="fin-donut-total" data-testid="calc-donut-total">{fmtMoney(allInMonthly)}</span>
-                  <span className="fin-donut-per">per month</span>
-                </div>
-              </div>
-              <ul className="fin-donut-legend" data-testid="calc-donut-legend">
-                {donutLegend.map((p) => (
-                  <li key={p.key} className="fin-legend-row">
-                    <span className="fin-legend-dot" style={{ background: p.color }} aria-hidden="true" />
-                    <span className="fin-legend-label">{p.label}</span>
-                    <span className="fin-legend-value">{fmtMoney(p.value)}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <PaymentDonut
+              parts={donutParts}
+              total={allInMonthly}
+              wrapTestId="calc-breakdown"
+              totalTestId="calc-donut-total"
+              legendTestId="calc-donut-legend"
+            />
           </div>
 
           <div
@@ -801,156 +692,13 @@ export function ConstructionLoanCalculator() {
             className="fin-view-panel"
             hidden={activeView !== "timeline"}
           >
-            {/*
-              The timeline wrapper is focusable (tabIndex) because at narrow
-              widths it becomes a horizontal scroll region; keyboard users
-              need focus on it to scroll the hidden months into view.
-            */}
-            <div
-              className="fin-timeline"
-              tabIndex={0}
-              role="group"
-              aria-label="Payment timeline chart, scrollable"
-            >
-          <span className="fin-stat-k">Payment timeline</span>
-          <svg
-            data-testid="calc-timeline"
-            viewBox={`0 0 ${chartW} ${chartH}`}
-            role="img"
-            aria-labelledby="fin-timeline-title fin-timeline-desc"
-            preserveAspectRatio="xMidYMid meet"
-            onMouseLeave={() => setHoveredBarIdx(null)}
-          >
-            <title id="fin-timeline-title">Monthly payment timeline</title>
-            <desc id="fin-timeline-desc">
-              {`Interest-only payments ramp up over the ${months}-month build, from ${fmtMoney(buildSeries[0] ?? 0)} in month 1 to ${fmtMoney(finalMonthInterest)} in month ${months}, then the all-in payment of ${fmtMoney(allInMonthly)} per month begins after move-in.`}
-            </desc>
-            {hoveredBarIdx !== null && (
-              <rect
-                x={r2(plotX0 + hoveredBarIdx * slot)}
-                y={plotY0}
-                width={r2(slot)}
-                height={r2(plotY1 - plotY0)}
-                fill="rgba(255,255,255,0.05)"
-                style={{ pointerEvents: "none" }}
-              />
-            )}
-            {buildSeries.map((val, i) => (
-              <rect
-                key={`b-${i}`}
-                className="fin-bar"
-                x={r2(plotX0 + i * slot + 1)}
-                y={barY(val)}
-                width={barW}
-                height={r2(plotY1 - barY(val))}
-                fill="var(--color-bone)"
-                fillOpacity={hoveredBarIdx === i ? 1 : hoveredBarIdx !== null ? 0.45 : 0.85}
-                onMouseEnter={() => setHoveredBarIdx(i)}
-                onMouseLeave={() => setHoveredBarIdx(null)}
-              />
-            ))}
-            {(() => {
-              // Single post-move-in bar: the all-in monthly payment is flat
-              // once the loan converts, so one bar stands in for every month
-              // after move-in.
-              const barIdx = months;
-              return (
-                <rect
-                  key="a-0"
-                  className="fin-bar"
-                  x={r2(plotX0 + barIdx * slot + 1)}
-                  y={barY(allInMonthly)}
-                  width={barW}
-                  height={r2(plotY1 - barY(allInMonthly))}
-                  fill="#fff"
-                  fillOpacity={hoveredBarIdx === barIdx ? 1 : hoveredBarIdx !== null ? 0.45 : 0.95}
-                  onMouseEnter={() => setHoveredBarIdx(barIdx)}
-                  onMouseLeave={() => setHoveredBarIdx(null)}
-                />
-              );
-            })()}
-            <line
-              x1={markerX}
-              y1={8}
-              x2={markerX}
-              y2={plotY1 + 4}
-              stroke="var(--color-bone)"
-              strokeWidth={1}
-              strokeDasharray="3 3"
+            <PaymentTimeline
+              series={buildSeries}
+              allInMonthly={allInMonthly}
+              months={months}
+              finalMonthInterest={finalMonthInterest}
+              svgTestId="calc-timeline"
             />
-            <text
-              x={markerLabelLeft ? markerX - 5 : markerX + 5}
-              y={16}
-              textAnchor={markerLabelLeft ? "end" : "start"}
-              fontSize={15}
-              fill="var(--color-bone)"
-            >
-              Move-in
-            </text>
-            <line
-              x1={plotX0}
-              y1={plotY1}
-              x2={plotX1}
-              y2={plotY1}
-              stroke="rgba(255, 255, 255, 0.18)"
-              strokeWidth={1}
-            />
-            {tickMonths.map((m) => (
-              <text
-                key={`t-${m}`}
-                x={r2(plotX0 + (m - 1) * slot + slot / 2)}
-                y={plotY1 + 16}
-                textAnchor="middle"
-                fontSize={15}
-                fill="rgba(226, 221, 211, 0.6)"
-              >
-                {`Mo ${m}`}
-              </text>
-            ))}
-            {tooltipInfo && (
-              <g aria-hidden="true" style={{ pointerEvents: "none" }}>
-                <rect
-                  x={tooltipInfo.ttX}
-                  y={tooltipInfo.ttY}
-                  width={TT_W}
-                  height={TT_H}
-                  rx={7}
-                  fill="rgba(20,18,15,0.93)"
-                  stroke="rgba(226,221,211,0.22)"
-                  strokeWidth={1}
-                />
-                <text
-                  x={r2(tooltipInfo.ttX + TT_W / 2)}
-                  y={tooltipInfo.ttY + 17}
-                  textAnchor="middle"
-                  fontSize={12}
-                  fill="rgba(226,221,211,0.6)"
-                >
-                  {tooltipInfo.label}
-                </text>
-                <text
-                  x={r2(tooltipInfo.ttX + TT_W / 2)}
-                  y={tooltipInfo.ttY + 38}
-                  textAnchor="middle"
-                  fontSize={21}
-                  fontWeight="600"
-                  fill="#E2DDD3"
-                >
-                  {tooltipInfo.amount}
-                </text>
-                <text
-                  x={r2(tooltipInfo.ttX + TT_W / 2)}
-                  y={tooltipInfo.ttY + 50}
-                  textAnchor="middle"
-                  fontSize={10}
-                  fill="rgba(226,221,211,0.4)"
-                >
-                  {tooltipInfo.sub}
-                </text>
-              </g>
-            )}
-          </svg>
-            </div>
           </div>
         </div>
 

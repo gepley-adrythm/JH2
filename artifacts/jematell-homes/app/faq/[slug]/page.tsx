@@ -6,7 +6,7 @@ import { faqDataset, SERVICE_LINKS } from "@/data/faq";
 import { blogs } from "@/data/blogs";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { pageMetadata } from "@/seo/metadata";
-import { faqPageJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
+import { qaPageJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { annotateHeadings } from "@/lib/detail";
 import { DetailShell } from "@/components/DetailShell";
@@ -92,7 +92,20 @@ export default async function FaqDetailPage({
     <main className="page faq-page faq-detail">
       <JsonLd
         data={[
-          faqPageJsonLd({ url: path, items: [{ question: detail.question, shortAnswer: detail.shortAnswer || detail.answer }] }),
+          // QAPage, not FAQPage: this page is one question with one
+          // authoritative answer, and FAQPage markup earns nothing outside
+          // government and health sites since Google's 2023 restriction.
+          // dateModified is deliberately not passed: every entry in the FAQ
+          // seed carries the same 2026-01-01 placeholder, so publishing it
+          // would assert the same review date on all 350 pages, which is worse
+          // than asserting none. Pass detail.updatedDate here once the seed
+          // stamps real per-answer dates.
+          qaPageJsonLd({
+            url: path,
+            question: detail.question,
+            answer: detail.answer,
+            ...(detail.categoryTitle ? { topic: detail.categoryTitle } : {}),
+          }),
           breadcrumbJsonLd(crumbs),
         ]}
       />

@@ -34,11 +34,19 @@ const nextConfig = {
   ...(process.env.NODE_ENV === "development"
     ? { pageExtensions: ["tsx", "ts", "jsx", "js", "dev.tsx", "dev.ts"] }
     : {}),
-  // Dev-only /api proxy to the api-server (contact form, mortgage rate) —
-  // replaces the old Vite dev proxy. Same-namespace localhost in the Replit
-  // workflow; production doesn't need it (the api-server serves the site AND
-  // mounts /api itself). rewrites are unsupported under output:"export", so
-  // this must stay inside the development conditional.
+  // Dev-only proxy to the api-server — replaces the old Vite dev proxy. Same-
+  // namespace localhost in the Replit workflow; production doesn't need it (the
+  // api-server serves the site AND mounts these itself). rewrites are
+  // unsupported under output:"export", so this must stay inside the development
+  // conditional.
+  //
+  // Everything the api-server owns in production is proxied here, so a path
+  // behaves the same in both places. Without the /financing/estimate entry, the
+  // calculator's "Copy link to this estimate" button produced a link that 404s
+  // in dev and works in production, which is a confusing thing to hand a
+  // reviewer. Note the estimate route is the EXACT path only: the prerendered
+  // scenario pages at /financing/estimate/<slug> are real Next pages and must
+  // keep being served by Next.
   ...(process.env.NODE_ENV === "development"
     ? {
         async rewrites() {
@@ -46,6 +54,22 @@ const nextConfig = {
             {
               source: "/api/:path*",
               destination: "http://localhost:5000/api/:path*",
+            },
+            {
+              source: "/financing/estimate",
+              destination: "http://localhost:5000/financing/estimate",
+            },
+            {
+              source: "/mcp",
+              destination: "http://localhost:5000/mcp",
+            },
+            {
+              source: "/openapi.json",
+              destination: "http://localhost:5000/openapi.json",
+            },
+            {
+              source: "/.well-known/:path*",
+              destination: "http://localhost:5000/.well-known/:path*",
             },
           ];
         },
