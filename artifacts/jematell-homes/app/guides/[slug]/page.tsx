@@ -12,7 +12,10 @@ import { articleJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { annotateHeadings, readingTime, formatDate, prepareGuideBody } from "@/lib/detail";
 import { DetailShell } from "@/components/DetailShell";
-import { DetailMore, DetailDisclaimer, type MoreColumn } from "@/components/DetailParts";
+import { DetailDisclaimer } from "@/components/DetailParts";
+import { Interlink } from "@/components/Interlink";
+import { relationsForGuide } from "@/lib/interlink";
+import { buildInterlinkSections } from "@/lib/interlink.config";
 import { ContactCta } from "@/components/ContactCta";
 
 export const dynamicParams = false;
@@ -73,12 +76,7 @@ export default async function GuideDetailPage({
     { name: guide.title, url: path },
   ];
 
-  const columns: MoreColumn[] = [
-    { label: "Related questions", items: relatedFaqs.map((r) => ({ to: `/faq/${r.slug}`, label: r.question })) },
-    { label: "Related guides", items: relatedGuides.map((r) => ({ to: `/guides/${r.slug}`, label: r.title })) },
-    { label: "In the reference library", items: relatedRefs.map((r) => ({ to: `/reference-library/${r.module}/${r.slug}`, label: r.title })) },
-    { label: "Related terms", items: relatedTerms.map((r) => ({ to: `/glossary/${r.slug}`, label: r.term })) },
-  ];
+  const interlinks = buildInterlinkSections("guide", relationsForGuide(guide));
 
   const hero = (
     <section className="page-hero faq-hero faq-detail-hero">
@@ -119,7 +117,7 @@ export default async function GuideDetailPage({
       <DetailShell toc={article.toc} hero={hero}>
         <div className="dt-main">
           <div className="dt-prose" data-testid="guide-body" dangerouslySetInnerHTML={{ __html: article.html }} />
-          <DetailMore columns={columns} testid="guide-related" />
+          <Interlink sections={interlinks} testid="guide-interlink" />
           <Link href="/guides" className="dt-back" data-testid="guide-detail-all">
             All guides <ArrowRight size={14} aria-hidden="true" />
           </Link>

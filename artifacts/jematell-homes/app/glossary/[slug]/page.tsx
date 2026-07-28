@@ -9,7 +9,10 @@ import { pageMetadata } from "@/seo/metadata";
 import { definedTermJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { annotateHeadings, readingTime } from "@/lib/detail";
-import { DetailMore, DetailDisclaimer, type MoreColumn } from "@/components/DetailParts";
+import { DetailDisclaimer } from "@/components/DetailParts";
+import { Interlink } from "@/components/Interlink";
+import { relationsForGlossary } from "@/lib/interlink";
+import { buildInterlinkSections } from "@/lib/interlink.config";
 import { ContactCta } from "@/components/ContactCta";
 
 export const dynamicParams = false;
@@ -44,21 +47,13 @@ export default async function GlossaryDetailPage({
 
   const article = annotateHeadings(term.definitionHtml || "");
   const minutes = readingTime(term.definitionHtml || "");
-  const relatedTerms = term.relatedTerms
-    .map(getGlossaryTerm)
-    .filter((t): t is NonNullable<typeof t> => Boolean(t));
-  const relatedFaqs = term.relatedFaqs
-    .map((s) => faqDataset.getItem(s))
-    .filter((i): i is NonNullable<typeof i> => Boolean(i));
+  const interlinks = buildInterlinkSections("glossary", relationsForGlossary(term));
 
   const path = `/glossary/${term.slug}`;
   const crumbs = [
     { name: "Home", url: "/" },
     { name: "Glossary", url: "/glossary" },
     { name: term.term, url: path },
-  ];
-  const columns: MoreColumn[] = [
-    { label: "Related questions", items: relatedFaqs.map((r) => ({ to: `/faq/${r.slug}`, label: r.question })) },
   ];
 
   return (
@@ -99,20 +94,7 @@ export default async function GlossaryDetailPage({
 
               <div className="dt-prose" data-testid="glossary-definition" dangerouslySetInnerHTML={{ __html: article.html }} />
 
-              {relatedTerms.length > 0 ? (
-                <div className="dt-more" data-testid="glossary-related-terms">
-                  <h2 className="dt-more-title">Related terms</h2>
-                  <div className="dt-chips" style={{ marginTop: 22 }}>
-                    {relatedTerms.map((r) => (
-                      <Link key={r.slug} href={`/glossary/${r.slug}`} className="dt-chip" data-testid={`glossary-related-${r.slug}`}>
-                        {r.term}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ) : null}
-
-              <DetailMore columns={columns} testid="glossary-related-faqs" />
+              <Interlink sections={interlinks} testid="glossary-interlink" />
 
               <Link href="/glossary" className="dt-back" data-testid="glossary-detail-all">
                 All terms <ArrowRight size={14} aria-hidden="true" />

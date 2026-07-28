@@ -10,7 +10,10 @@ import { qaPageJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { annotateHeadings } from "@/lib/detail";
 import { DetailShell } from "@/components/DetailShell";
-import { DetailMore, DetailDisclaimer, type MoreColumn } from "@/components/DetailParts";
+import { DetailDisclaimer } from "@/components/DetailParts";
+import { Interlink } from "@/components/Interlink";
+import { relationsForFaq } from "@/lib/interlink";
+import { buildInterlinkSections } from "@/lib/interlink.config";
 import { CTA } from "@/cta";
 
 export const dynamicParams = false;
@@ -73,11 +76,7 @@ export default async function FaqDetailPage({
       : null;
   const paragraphs = detail.answer.split(/\n{2,}/).filter(Boolean);
 
-  const columns: MoreColumn[] = [
-    { label: "Related questions", items: related.map((r) => ({ to: `/faq/${r.slug}`, label: r.question })) },
-    { label: "Related services", items: services.map((s) => ({ to: s.href, label: s.label })) },
-    ...(pillar ? [{ label: "Go deeper", items: [{ to: `/blog/${pillar.slug}`, label: pillar.title }] }] : []),
-  ];
+  const interlinks = buildInterlinkSections("faq", relationsForFaq(detail, related, services, pillar));
 
   const hero = (
     <section className="page-hero faq-detail-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
@@ -129,7 +128,7 @@ export default async function FaqDetailPage({
               paragraphs.map((p, i) => <p key={i}>{p}</p>)
             )}
           </div>
-          <DetailMore columns={columns} testid="faq-related" />
+          <Interlink sections={interlinks} testid="faq-interlink" />
           <Link href="/faq" className="dt-back" data-testid="faq-detail-all">
             All questions <ArrowRight size={14} aria-hidden="true" />
           </Link>

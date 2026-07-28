@@ -5456,3 +5456,334 @@ a.dt-source-card:hover { transform: translateY(-2px); }
     min-width: 0;
   }
 }
+
+/* ============================================================================
+   INTERLINK ENGINE -- the "Keep exploring" footer on every resource detail page.
+   One item shape, six variants. Which variant a module uses is declared in
+   src/lib/interlink.config.ts, so re-skinning a module never touches this file.
+   All variants are CSS-only: the accordion is a native <details>, the carousel
+   is scroll-snap. Nothing here needs JS or hydration.
+   ========================================================================== */
+
+.il {
+  margin-top: 64px;
+  padding-top: 44px;
+  border-top: 1px solid var(--color-border);
+}
+.il-title {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.1;
+  color: var(--color-dark);
+}
+.il-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 46px;
+  margin-top: 34px;
+}
+.il-section-head { margin-bottom: 18px; }
+.il-section-label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-warm);
+  margin: 0;
+}
+.il-section-kicker {
+  margin: 6px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+/* --- variant: list ------------------------------------------------------- */
+.il-list { list-style: none; margin: 0; padding: 0; }
+.il-list li { border-bottom: 1px solid var(--color-border); }
+.il-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  color: var(--color-dark);
+  text-decoration: none;
+  font-size: 15px;
+  line-height: 1.45;
+  transition: color 0.25s ease, padding-left 0.25s ease;
+}
+.il-list a svg { flex: none; color: var(--color-accent); transition: transform 0.25s ease; }
+.il-list a:hover { color: var(--color-accent); padding-left: 6px; }
+.il-list a:hover svg { transform: translateX(4px); }
+
+/* --- variant: cards ------------------------------------------------------ */
+.il-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
+  gap: 16px;
+}
+.il-card {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 22px 22px 20px;
+  background: var(--color-cream);
+  border: 1px solid transparent;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.il-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(59, 97, 127, 0.28);
+  box-shadow: 0 14px 34px rgba(18, 20, 21, 0.09);
+}
+.il-card-kind {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-warm);
+}
+.il-card-title {
+  font-family: var(--font-heading);
+  font-size: 21px;
+  line-height: 1.22;
+  color: var(--color-dark);
+}
+.il-card-blurb {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+.il-card-go {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-accent);
+}
+.il-card-go svg { transition: transform 0.25s ease; }
+.il-card:hover .il-card-go svg { transform: translate(2px, -2px); }
+
+/* --- variant: accordion (native <details>) ------------------------------- */
+.il-accordion { border-top: 1px solid var(--color-border); }
+.il-acc-item { border-bottom: 1px solid var(--color-border); }
+.il-acc-item > summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  cursor: pointer;
+  list-style: none;
+  color: var(--color-dark);
+  font-size: 15px;
+  line-height: 1.45;
+  transition: color 0.25s ease;
+}
+.il-acc-item > summary::-webkit-details-marker { display: none; }
+.il-acc-item > summary:hover { color: var(--color-accent); }
+.il-acc-q { flex: 1; }
+/* plus/minus drawn in CSS so no icon ships for a purely decorative mark */
+.il-acc-mark {
+  position: relative;
+  flex: none;
+  width: 14px;
+  height: 14px;
+}
+.il-acc-mark::before,
+.il-acc-mark::after {
+  content: "";
+  position: absolute;
+  background: var(--color-accent);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease;
+}
+.il-acc-mark::before { top: 6px; left: 0; width: 14px; height: 2px; }
+.il-acc-mark::after { top: 0; left: 6px; width: 2px; height: 14px; }
+.il-acc-item[open] .il-acc-mark::after { transform: rotate(90deg); opacity: 0; }
+.il-acc-panel { padding: 0 0 18px; }
+.il-acc-panel p {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+  max-width: 62ch;
+}
+.il-acc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+.il-acc-link svg { transition: transform 0.25s ease; }
+.il-acc-link:hover svg { transform: translateX(4px); }
+
+/* --- variant: carousel (CSS scroll-snap, no JS) -------------------------- */
+.il-rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(244px, 1fr);
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 4px 0 18px;
+  scrollbar-width: thin;
+  overscroll-behavior-x: contain;
+}
+.il-rail-card {
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 22px 20px;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.il-rail-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(59, 97, 127, 0.3);
+  box-shadow: 0 14px 34px rgba(18, 20, 21, 0.09);
+}
+.il-rail-kind {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-warm);
+}
+.il-rail-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 1.24;
+  color: var(--color-dark);
+}
+.il-rail-blurb {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+.il-rail-go { margin-top: auto; padding-top: 8px; color: var(--color-accent); }
+.il-rail-go svg { transition: transform 0.25s ease; }
+.il-rail-card:hover .il-rail-go svg { transform: translateX(4px); }
+
+/* --- variant: chips ------------------------------------------------------ */
+.il-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.il-chip {
+  padding: 8px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-dark);
+  text-decoration: none;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+.il-chip:hover {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+/* --- variant: feature ---------------------------------------------------- */
+.il-feature { display: grid; gap: 18px; }
+.il-feature-lead {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 30px 30px 26px;
+  background: var(--color-dark);
+  border-radius: 14px;
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+}
+.il-feature-lead:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(18, 20, 21, 0.22);
+}
+.il-feature-kind {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-bone);
+}
+.il-feature-title {
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 2.6vw, 30px);
+  line-height: 1.16;
+  color: #fff;
+}
+.il-feature-blurb {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.74);
+  max-width: 60ch;
+}
+.il-feature-go {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+.il-feature-go svg { transition: transform 0.25s ease; }
+.il-feature-lead:hover .il-feature-go svg { transform: translateX(5px); }
+
+/* focus visibility, since several variants are bare links on light panels */
+.il a:focus-visible,
+.il summary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (max-width: 720px) {
+  .il-sections { gap: 38px; }
+  .il-cards { grid-template-columns: 1fr; }
+  .il-feature-lead { padding: 24px 22px 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .il-card,
+  .il-rail-card,
+  .il-feature-lead,
+  .il-chip,
+  .il-list a,
+  .il-acc-mark::before,
+  .il-acc-mark::after,
+  .il a svg {
+    transition: none;
+  }
+  .il-card:hover,
+  .il-rail-card:hover,
+  .il-feature-lead:hover,
+  .il-chip:hover { transform: none; }
+  .il-rail { scroll-snap-type: none; }
+}

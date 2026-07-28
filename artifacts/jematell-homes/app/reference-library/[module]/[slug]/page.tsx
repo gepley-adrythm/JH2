@@ -2,20 +2,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ArrowRight, ChevronRight, ExternalLink, Clock, Calendar } from "lucide-react";
-import {
-  referenceEntries,
-  getReferenceEntry,
-  getReferenceModule,
-  getReferenceByKey,
-} from "@/data/reference";
-import { getGlossaryTerm } from "@/data/glossary";
-import { faqDataset } from "@/data/faq";
+import { referenceEntries, getReferenceEntry, getReferenceModule } from "@/data/reference";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { pageMetadata } from "@/seo/metadata";
 import { techArticleJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { annotateHeadings, readingTime, formatDate } from "@/lib/detail";
-import { DetailMore, DetailDisclaimer, type MoreColumn } from "@/components/DetailParts";
+import { DetailDisclaimer } from "@/components/DetailParts";
+import { Interlink } from "@/components/Interlink";
+import { relationsForReference } from "@/lib/interlink";
+import { buildInterlinkSections } from "@/lib/interlink.config";
 import { ContactCta } from "@/components/ContactCta";
 import { ReferenceDetailShell } from "@/views/ReferenceDetailShell";
 
@@ -53,15 +49,7 @@ export default async function ReferenceDetailPage({
   const article = annotateHeadings(entry.bodyHtml || "");
   const minutes = readingTime(entry.bodyHtml || "");
 
-  const relatedTerms = entry.relatedTerms
-    .map(getGlossaryTerm)
-    .filter((t): t is NonNullable<typeof t> => Boolean(t));
-  const relatedFaqs = entry.relatedFaqs
-    .map((s) => faqDataset.getItem(s))
-    .filter((i): i is NonNullable<typeof i> => Boolean(i));
-  const relatedRefs = entry.relatedRefs
-    .map(getReferenceByKey)
-    .filter((r): r is NonNullable<typeof r> => Boolean(r));
+  const interlinks = buildInterlinkSections("reference", relationsForReference(entry));
 
   const path = `/reference-library/${entry.module}/${entry.slug}`;
   const crumbs = [
@@ -71,12 +59,6 @@ export default async function ReferenceDetailPage({
     { name: entry.title, url: path },
   ];
   const excerptOnly = entry.sourceLicense === "copyrighted";
-
-  const columns: MoreColumn[] = [
-    { label: `More in ${meta.title}`, items: relatedRefs.map((r) => ({ to: `/reference-library/${r.module}/${r.slug}`, label: r.title })) },
-    { label: "Related questions", items: relatedFaqs.map((r) => ({ to: `/faq/${r.slug}`, label: r.question })) },
-    { label: "Related terms", items: relatedTerms.map((r) => ({ to: `/glossary/${r.slug}`, label: r.term })) },
-  ];
 
   const hero = (
     <section className="page-hero faq-hero faq-detail-hero">
@@ -168,7 +150,7 @@ export default async function ReferenceDetailPage({
 
           <div className="dt-prose" data-testid="reference-body" dangerouslySetInnerHTML={{ __html: article.html }} />
 
-          <DetailMore columns={columns} testid="reference-related" />
+          <Interlink sections={interlinks} testid="reference-interlink" />
 
           <Link href={`/reference-library/${meta.slug}`} className="dt-back" data-testid="reference-detail-all">
             All {meta.title} <ArrowRight size={14} aria-hidden="true" />
