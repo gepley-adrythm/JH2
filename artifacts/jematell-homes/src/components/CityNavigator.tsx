@@ -83,7 +83,7 @@ export function CityNavigator({ images }: { images?: Record<string, string> } = 
                     className="city-nav-img"
                     src={cityImage(loc.slug, images)}
                     alt=""
-                    loading={i === 0 ? "eager" : "lazy"}
+                    loading="eager"
                   />
                   <span className="city-nav-overlay" aria-hidden="true" />
                   <span className="city-nav-index" aria-hidden="true">
