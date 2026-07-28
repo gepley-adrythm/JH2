@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowRight, ChevronRight, ExternalLink, Clock, Calendar } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronRight, ExternalLink, Clock, Calendar } from "lucide-react";
 import {
   referenceEntries,
   getReferenceEntry,
@@ -22,6 +22,7 @@ import { Interlink } from "@/components/Interlink";
 import { relationsForReference } from "@/lib/interlink";
 import { buildInterlinkSections } from "@/lib/interlink.config";
 import { ContactCta } from "@/components/ContactCta";
+import { CTA } from "@/cta";
 import { ReferenceDetailShell } from "@/views/ReferenceDetailShell";
 
 export const dynamicParams = false;
@@ -155,13 +156,19 @@ export default async function ReferenceDetailPage({
     <main className="page faq-page faq-detail reference-detail">
       <JsonLd
         data={[
-          techArticleJsonLd({ title: entry.title, description: entry.shortSummary, url: path, section: meta.title }),
+          techArticleJsonLd({ title: entry.title, description: entry.shortSummary, url: path, section: meta.title, dateModified: entry.updatedDate }),
           breadcrumbJsonLd(crumbs),
         ]}
       />
 
       <ReferenceDetailShell toc={article.toc} hero={hero} facts={facts}>
         <div className="dt-main">
+          <div className="dt-back-row">
+            <Link href={`/reference-library/${meta.slug}`} className="dt-back dt-back--top" data-testid="reference-detail-back">
+              <ArrowLeft size={14} aria-hidden="true" />
+              {meta.title}
+            </Link>
+          </div>
           {entry.sourceUrl ? (
             <a
               href={entry.sourceUrl}
@@ -194,13 +201,7 @@ export default async function ReferenceDetailPage({
         </div>
       </ReferenceDetailShell>
 
-      <section className="faq-cta">
-        <div className="container faq-cta-inner">
-          <h2 className="faq-cta-title">Building somewhere specific?</h2>
-          <p className="faq-cta-sub">Tell us your city and lot and we'll walk you through the codes and rules that apply.</p>
-          <ContactCta testid="reference-detail-cta-contact">Start the conversation</ContactCta>
-        </div>
-      </section>
+      <CTA />
     </main>
   );
 }

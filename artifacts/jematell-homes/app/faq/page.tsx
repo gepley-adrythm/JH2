@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { faqDataset } from "@/data/faq";
 import { pageMetadata } from "@/seo/metadata";
-import { faqPageJsonLd } from "@/seo/jsonldBuilders";
+import { collectionJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { CTA } from "@/cta";
 import { FaqIndexClient, type FaqSearchItem } from "@/views/FaqIndexClient";
@@ -38,12 +38,10 @@ export default function FaqIndexPage() {
   return (
     <main className="page faq-page">
       <JsonLd
-        data={faqPageJsonLd({
+        data={collectionJsonLd({
+          name: "Frequently Asked Questions",
+          description: INTRO_TEXT,
           url: "/faq",
-          items: allItems.map((i) => ({
-            question: i.question,
-            shortAnswer: i.shortAnswer,
-          })),
         })}
       />
 

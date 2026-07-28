@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, type ReactNode } from "react";
 import { MessageSquare, MessageCircle, Phone, Mail, Instagram, Facebook, Menu, X, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -50,7 +50,7 @@ interface NavDropdownProps {
   testId: string;
   to?: string;
   active?: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 function NavDropdown({ label, testId, to, active, children }: NavDropdownProps) {
@@ -170,7 +170,7 @@ export function Header() {
       <div className="container header-inner">
         <div className="header-left">
         <Link href="/" className="brand-logo" aria-label={siteConfig.brand.name} data-testid="nav-logo">
-          <img src={img("logo.png")} alt={siteConfig.brand.name} />
+          <img src={img("logo.png")} alt={siteConfig.brand.name} width={1331} height={472} />
         </Link>
 
         <nav className="main-nav" aria-label="Primary">
@@ -293,13 +293,18 @@ export function Footer() {
       <div className="container">
         <div className="footer-top">
           <div className="footer-brand">
-            <img src={img("logo.png")} alt={siteConfig.brand.name} style={{ filter: "none" }} />
+            <img src={img("logo.png")} alt={siteConfig.brand.name} style={{ filter: "none" }} width={1331} height={472} />
             <p>{siteConfig.blurb}</p>
           </div>
           <nav className="footer-links" aria-label="Footer navigation">
             <Link href="/contact">Contact</Link>
             <Link href="/spec-homes">Spec Homes</Link>
             <Link href="/resources">Resources</Link>
+            <Link href="/faq">FAQ</Link>
+            <Link href="/blog">Blog</Link>
+            <Link href="/guides">Guides</Link>
+            <Link href="/glossary">Glossary</Link>
+            <Link href="/reference-library">Reference Library</Link>
             <Link href="/warranty">Warranty</Link>
             <Link href="/privacy">Privacy Policy</Link>
             <Link href="/disclaimer">Disclaimer</Link>

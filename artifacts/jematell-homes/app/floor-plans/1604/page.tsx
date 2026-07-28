@@ -7,6 +7,7 @@ export const metadata = pageMetadata({
   title: "1604 Floor Plan",
   description: "The Jematell Homes 1604 sq ft floor plan — 3 bed, 2 bath, 2-car garage. View full architectural drawings, all four elevations, and photos of the completed home.",
   canonical: "/floor-plans/1604",
+  image: "/images/plans/1604-rendering.png",
 });
 
 export default function Page() {

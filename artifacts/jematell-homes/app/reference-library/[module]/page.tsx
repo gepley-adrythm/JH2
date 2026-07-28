@@ -1,13 +1,20 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowRight, ChevronRight } from "lucide-react";
-import { REFERENCE_MODULES, getReferenceModule, referencesByCategory, moduleCount, moduleIsPerCity, jurisdictionsInModule } from "@/data/reference";
+import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
+import {
+  REFERENCE_MODULES,
+  getReferenceModule,
+  referencesByCategory,
+  moduleCount,
+  moduleIsPerCity,
+  jurisdictionsInModule,
+} from "@/data/reference";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { pageMetadata } from "@/seo/metadata";
 import { collectionJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
-import { ContactCta } from "@/components/ContactCta";
+import { CTA } from "@/cta";
 
 export const dynamicParams = false;
 
@@ -71,7 +78,7 @@ export default async function ReferenceModulePage({
         </div>
       </section>
 
-      <section className="lib-hub section-pad">
+      <section className="lib-hub section-pad" style={{ paddingTop: 0 }}>
         <div className="container">
           {moduleIsPerCity(meta.slug) ? (
             <div className="lib-grid" data-testid="reference-city-grid">
@@ -120,13 +127,7 @@ export default async function ReferenceModulePage({
         </div>
       </section>
 
-      <section className="faq-cta">
-        <div className="container faq-cta-inner">
-          <h2 className="faq-cta-title">Building somewhere specific?</h2>
-          <p className="faq-cta-sub">Tell us your city and lot and we'll walk you through the codes and rules that apply.</p>
-          <ContactCta testid="reference-module-cta-contact">Start the conversation</ContactCta>
-        </div>
-      </section>
+      <CTA />
     </main>
   );
 }

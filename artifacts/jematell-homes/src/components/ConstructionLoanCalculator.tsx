@@ -1,13 +1,21 @@
 "use client";
 import { useEffect, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { useSafeTimeouts } from "../contact-form/useSafeTimeouts";
+import { ContactCta } from "./ContactCta";
+import {
+  buildInterestSeries,
+  clamp,
+  estimate,
+  parseMoney,
+  resolveZip,
+  STATEWIDE_SLUG,
+} from "@workspace/construction-loan";
 import {
   INSURANCE_AS_OF,
   INSURANCE_PER_YEAR_PER_100K,
   NEW_BUILD_TAX_NOTE,
   TAX_AS_OF,
   TAX_LOCATIONS,
-  ZIP_TO_LOCATION,
 } from "../data/azPropertyTax";
 
 /**
@@ -17,6 +25,11 @@ import {
  * and HOA dues. Pure client-side arithmetic with typed-in rates: no rate
  * feeds, no network, nothing to go stale. Renders deterministic en-US
  * formatting so the prerendered HTML and the hydrated tree always match.
+ *
+ * The arithmetic itself lives in @workspace/construction-loan, shared with
+ * GET /api/estimate, the prerendered scenario pages, and the MCP tool, so every
+ * surface quotes the same number for the same inputs. This file owns the
+ * controls, the formatting, and the charts; it owns no math.
  *
  * Model (stated in the UI footnote): during construction the borrower pays
  * interest only on what has been drawn. Draws are assumed to ramp roughly
@@ -29,8 +42,10 @@ import {
  * stays editable too.
  *
  * Shareable: "Copy link to this estimate" writes the inputs into query params
- * and copies the URL; on mount (in an effect only, so hydration stays
- * deterministic) any such params are read back and applied.
+ * and copies a link to /financing/estimate, which renders those exact figures
+ * server-side. The address bar of this page is updated with the same params, so
+ * a refresh or a bookmark keeps the inputs; on mount (in an effect only, so
+ * hydration stays deterministic) any such params are read back and applied.
  */
 
 function fmtMoney(n: number): string {
@@ -38,22 +53,10 @@ function fmtMoney(n: number): string {
   return n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 }
 
-function parseMoney(s: string): number {
-  const n = Number(s.replace(/[^0-9.]/g, ""));
-  return Number.isFinite(n) ? n : 0;
-}
-
-function clamp(n: number, min: number, max: number): number {
-  return Math.min(max, Math.max(min, n));
-}
-
 /** Round to 2 decimals for stable SVG geometry strings. */
 function r2(n: number): number {
   return Math.round(n * 100) / 100;
 }
-
-/** Slug of the statewide-average row in TAX_LOCATIONS. */
-const STATEWIDE_SLUG = "elsewhere-in-arizona";
 
 /** Donut geometry: radius 80 in a 200x200 viewBox, 26px ring stroke. */
 const DONUT_R = 80;
@@ -61,28 +64,12 @@ const DONUT_C = 2 * Math.PI * DONUT_R;
 
 type CalcView = "breakdown" | "timeline";
 
-type ZipResolution =
-  | { kind: "city"; slug: string; name: string }
-  | { kind: "statewide" }
-  | { kind: "outside" };
-
 /**
- * Resolve a 5-digit ZIP to a tax location. Pure and callable at render time,
- * but only ever invoked from event handlers and the mount effect, so the
- * server render and the first client render (both with an empty ZIP) always
- * match. ZIPs in ZIP_TO_LOCATION map to their city; other ZIPs in the
- * Arizona 85xxx/86xxx ranges fall back to the statewide average; anything
- * else is outside the service area.
+ * resolveZip is imported from the shared module. It is pure and callable at
+ * render time, but only ever invoked here from event handlers and the mount
+ * effect, so the server render and the first client render (both with an empty
+ * ZIP) always match.
  */
-function resolveZip(zip: string): ZipResolution {
-  const slug = ZIP_TO_LOCATION[zip];
-  if (slug !== undefined) {
-    const loc = TAX_LOCATIONS.find((l) => l.slug === slug);
-    return { kind: "city", slug, name: loc ? loc.name : slug };
-  }
-  if (/^8[56]\d{3}$/.test(zip)) return { kind: "statewide" };
-  return { kind: "outside" };
-}
 
 export function ConstructionLoanCalculator() {
   const [costStr, setCostStr] = useState("900,000");
@@ -114,43 +101,46 @@ export function ConstructionLoanCalculator() {
   const landValue = parseMoney(landValueStr);
   const buildCost = parseMoney(buildCostStr);
 
-  // Loan sizing. When the buyer already owns the lot, financing covers the
-  // build only and the lot counts as equity; the taxed/insured home value is
-  // still land plus build in both paths.
-  const totalCost = landOwned ? landValue + buildCost : cost;
-  const financedBase = landOwned ? buildCost : cost;
-  const dp = clamp(downPct, 0, 100) / 100;
-  const cashDown = financedBase * dp;
-  const loan = Math.max(0, financedBase - cashDown);
-  const homeValue = totalCost;
+  // The payment model itself lives in @workspace/construction-loan: loan
+  // sizing (when the buyer already owns the lot, financing covers the build
+  // only and the lot counts as equity, while the taxed/insured home value is
+  // still land plus build on both paths), the construction-phase draw ramp,
+  // the permanent-phase amortization, and the ongoing ownership costs. This
+  // component feeds it parsed numbers and formats what comes back.
+  const est = estimate({
+    totalProjectCost: cost,
+    landOwned,
+    landValue,
+    buildCost,
+    downPct,
+    buildRatePct: buildRate,
+    permRatePct: permRate,
+    termYears,
+    buildMonths,
+    locationSlug: locSlug,
+    hoaMonthly: parseMoney(hoaStr),
+    taxYearlyOverride: taxEdited ? parseMoney(taxStr) : null,
+    insuranceYearlyOverride: insEdited ? parseMoney(insStr) : null,
+  });
 
-  const iBuild = clamp(buildRate, 0, 30) / 100 / 12;
-  const iPerm = clamp(permRate, 0, 30) / 100 / 12;
-  const n = clamp(termYears, 1, 40) * 12;
-  const months = clamp(buildMonths, 1, 36);
-
-  // Construction phase (linear draw ramp): the final month is interest on the
-  // full loan; the total across the build averages half of that.
-  const finalMonthInterest = loan * iBuild;
-  const totalBuildInterest = loan * iBuild * months * 0.5;
-
-  // Permanent phase: standard amortization payment.
-  const permMonthly = iPerm > 0
-    ? (loan * iPerm * Math.pow(1 + iPerm, n)) / (Math.pow(1 + iPerm, n) - 1)
-    : loan / n;
-
-  // Ongoing ownership costs.
-  const activeLoc = TAX_LOCATIONS.find((l) => l.slug === locSlug) ?? TAX_LOCATIONS[0];
-  const autoTax = Math.round(homeValue * (activeLoc.effectiveRatePct / 100));
-  const taxYearly = taxEdited ? clamp(parseMoney(taxStr), 0, 10000000) : autoTax;
-  const monthlyTax = taxYearly / 12;
-  const autoInsurance = Math.round((homeValue / 100000) * INSURANCE_PER_YEAR_PER_100K);
-  const insuranceYearly = insEdited ? clamp(parseMoney(insStr), 0, 10000000) : autoInsurance;
-  const monthlyInsurance = insuranceYearly / 12;
-  const hoaMonthly = clamp(parseMoney(hoaStr), 0, 100000);
-
-  const allInMonthly = permMonthly + monthlyTax + monthlyInsurance + hoaMonthly;
-  const cashToPlanFor = cashDown + totalBuildInterest;
+  const totalCost = est.homeValue;
+  const financedBase = est.financedBase;
+  const cashDown = est.cashDown;
+  const loan = est.loan;
+  const months = est.used.buildMonths;
+  const finalMonthInterest = est.finalMonthInterest;
+  const totalBuildInterest = est.totalBuildInterest;
+  const permMonthly = est.permMonthly;
+  const activeLoc = est.location;
+  const autoTax = est.autoTaxYearly;
+  const taxYearly = est.taxYearly;
+  const monthlyTax = est.monthlyTax;
+  const autoInsurance = est.autoInsuranceYearly;
+  const insuranceYearly = est.insuranceYearly;
+  const monthlyInsurance = est.monthlyInsurance;
+  const hoaMonthly = est.hoaMonthly;
+  const allInMonthly = est.allInMonthly;
+  const cashToPlanFor = est.cashToPlanFor;
 
   // ZIP entry: called from the input's onChange and from the mount effect,
   // never during render. Under 5 digits there is no hint and no location
@@ -267,8 +257,15 @@ export function ConstructionLoanCalculator() {
     p.set("ins", String(Math.round(insuranceYearly)));
     if (zipStr.length === 5) p.set("zip", zipStr);
     const query = `?${p.toString()}`;
+    // Keep this page's address bar in step with the inputs, so refreshing or
+    // bookmarking mid-session keeps the estimate.
     window.history.replaceState(null, "", `${window.location.pathname}${query}`);
-    const url = `${window.location.origin}${window.location.pathname}${query}`;
+    // Share the permalink instead of this URL. /financing is prerendered with
+    // the default estimate and only applies query params after hydration, so a
+    // crawler, a link preview, or an AI assistant reading a shared
+    // /financing?... link would report the default numbers rather than these.
+    // /financing/estimate renders these exact figures server-side.
+    const url = `${window.location.origin}/financing/estimate${query}`;
     if (typeof navigator !== "undefined" && navigator.clipboard) {
       navigator.clipboard.writeText(url).then(
         () => {
@@ -289,10 +286,7 @@ export function ConstructionLoanCalculator() {
   // Month-by-month payment series for the timeline chart, end-of-month
   // drawn-balance convention on the linear ramp: in build month m the borrower
   // pays interest on the fraction of the loan drawn by the end of that month.
-  const buildSeries: number[] = [];
-  for (let m = 1; m <= months; m++) {
-    buildSeries.push(loan * (m / months) * iBuild);
-  }
+  const buildSeries = buildInterestSeries(loan, buildRate, buildMonths);
   // Build ramp bars + a single post-move-in bar representing the ongoing
   // all-in monthly payment (the payment is flat once the loan converts, so one
   // bar conveys it; earlier versions drew six identical bars).
@@ -969,14 +963,19 @@ export function ConstructionLoanCalculator() {
             of {INSURANCE_AS_OF}, and is editable. {NEW_BUILD_TAX_NOTE}
           </p>
 
-          <button
-            type="button"
-            data-testid="calc-share"
-            onClick={onShare}
-            className={`fin-share ${copied ? "fin-share-copied" : ""}`}
-          >
-            {copied ? "Copied" : "Copy link to this estimate"}
-          </button>
+          <div className="fin-calc-actions">
+            <ContactCta className="fin-lead-cta" testid="calc-lead-cta">
+              Talk to us about this estimate
+            </ContactCta>
+            <button
+              type="button"
+              data-testid="calc-share"
+              onClick={onShare}
+              className={`fin-share ${copied ? "fin-share-copied" : ""}`}
+            >
+              {copied ? "Copied" : "Copy link to this estimate"}
+            </button>
+          </div>
 
           <p className="fin-calc-note">
             Estimates only, not a loan offer, quote, or preapproval. Assumes draws spread evenly across

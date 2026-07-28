@@ -17,6 +17,7 @@
   "dependencies": {
     "@replit/connectors-sdk": "^0.4.1",
     "@workspace/api-zod": "workspace:*",
+    "@workspace/construction-loan": "workspace:*",
     "@workspace/db": "workspace:*",
     "@workspace/faq": "workspace:*",
     "cookie-parser": "^1.4.7",

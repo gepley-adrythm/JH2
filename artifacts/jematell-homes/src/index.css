@@ -1265,6 +1265,7 @@ picture {
 }
 .footer-brand img {
   height: 64px;
+  width: auto; /* keep ratio; the width/height attrs are only the pre-load hint */
   margin-bottom: 20px;
   display: block;
   margin-inline: auto;
@@ -1338,7 +1339,7 @@ picture {
   align-items: center;
   flex-wrap: wrap;
   gap: 6px 0;
-  opacity: 0.55;
+  opacity: 0.82; /* was .55 -> 3.4:1 contrast on the black bar; .82 clears WCAG 4.5:1 */
   font-size: 12px;
 }
 .footer-bottom-contact a { color: inherit; text-decoration: none; }
@@ -1477,7 +1478,8 @@ picture {
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  transform: scale(1);
+  transform: scale(1.06);
+  animation: heroZoom 24s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 .page-hero-overlay {
   position: absolute;
@@ -1863,11 +1865,17 @@ picture {
   padding: 28px 0;
   position: relative;
 }
+.gallery-detail-stats-layout {
+  display: flex;
+  align-items: center;
+}
+.gallery-detail-stats-nav {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
 .gallery-detail-stats-back {
-  position: absolute;
-  left: clamp(16px, 4vw, 48px);
-  top: 50%;
-  transform: translateY(-50%);
+  margin-top: 0;
 }
 .gallery-detail-stats-inner {
   display: flex;
@@ -3328,6 +3336,7 @@ a.contact-info-card:hover {
 .resource-card--b { grid-column: 3 / 4; grid-row: 1 / 2; }
 .resource-card--c { grid-column: 2 / 3; grid-row: 2 / 3; }
 .resource-card--d { grid-column: 3 / 4; grid-row: 2 / 3; }
+.resource-card:not(.resource-card--featured) .resource-card-count { margin-bottom: 0; }
 
 @media (max-width: 900px) {
   .resources-grid { grid-template-columns: 1fr 1fr; grid-template-rows: none; }
@@ -3931,10 +3940,16 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   color: var(--color-dark);
 }
 .dt-more-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 8px 44px;
+  columns: 2;
+  column-gap: 44px;
   margin-top: 26px;
+}
+.dt-more-grid > div {
+  break-inside: avoid;
+  margin-bottom: 8px;
+}
+@media (max-width: 540px) {
+  .dt-more-grid { columns: 1; }
 }
 .dt-more-col-label {
   font-family: var(--font-body);
@@ -5457,8 +5472,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   }
 }
 
-/* ============================================================================
-   INTERLINK ENGINE -- the "Keep exploring" footer on every resource detail page.
+/* =====================================================================   INTERLINK ENGINE -- the "Keep exploring" footer on every resource detail page.
    One item shape, six variants. Which variant a module uses is declared in
    src/lib/interlink.config.ts, so re-skinning a module never touches this file.
    All variants are CSS-only: the accordion is a native <details>, the carousel
@@ -5786,4 +5800,281 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   .il-feature-lead:hover,
   .il-chip:hover { transform: none; }
   .il-rail { scroll-snap-type: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-hero-bg {
+    animation: none;
+    transform: scale(1);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Worked examples + page FAQs on /financing, and the prerendered estimate
+   pages at /financing/estimate/<scenario>.
+
+   These exist because the calculator is a client component: without them the
+   prerendered HTML carries a single default estimate, which is all a crawler
+   that does not run JavaScript ever sees. Same type scale and palette as the
+   detail pages so they read as part of the page rather than bolted on.
+   --------------------------------------------------------------------------- */
+.fin-examples,
+.fin-page-faqs {
+  max-width: 860px;
+  margin-inline: auto;
+  margin-block: clamp(40px, 5vw, 64px);
+}
+.fin-examples-intro {
+  max-width: 62ch;
+  color: var(--color-text-muted);
+  margin-bottom: 24px;
+}
+.fin-examples-scroll {
+  overflow-x: auto;
+}
+.fin-examples-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+.fin-examples-table th,
+.fin-examples-table td {
+  text-align: left;
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+.fin-examples-table thead th {
+  font-weight: 500;
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.fin-examples-table tbody th {
+  font-weight: 400;
+  white-space: normal;
+}
+.fin-examples-table tbody td {
+  font-variant-numeric: tabular-nums;
+}
+.fin-examples-table tbody tr:last-child th,
+.fin-examples-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.fin-examples-note,
+.fin-page-faq-a {
+  color: var(--color-text-muted);
+}
+.fin-examples-note {
+  font-size: 13.5px;
+  margin-top: 16px;
+}
+.fin-page-faq {
+  margin-bottom: 26px;
+}
+.fin-page-faq-q {
+  font-family: var(--font-serif, var(--font-heading));
+  font-weight: 500;
+  font-size: 1.15rem;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+.fin-page-faq-a {
+  font-size: 15px;
+  line-height: 1.75;
+  max-width: 68ch;
+}
+
+/* Prerendered scenario pages */
+.est-page {
+  padding-block: clamp(64px, 8vw, 104px);
+}
+.est-container {
+  max-width: 880px;
+}
+.est-eyebrow {
+  color: var(--color-warm);
+}
+.est-h1 {
+  font-family: var(--font-serif, var(--font-heading));
+  font-weight: 400;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 10px 0 18px;
+}
+.est-h2 {
+  font-family: var(--font-serif, var(--font-heading));
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  margin: 44px 0 12px;
+}
+.est-lead {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  max-width: 68ch;
+}
+.est-page p {
+  line-height: 1.75;
+  max-width: 68ch;
+}
+.est-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 36px 0 8px;
+}
+.est-stat {
+  background: var(--color-dark);
+  color: var(--color-bone);
+  padding: 20px 22px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.est-stat-k {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.est-stat-v {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+.est-stat-sub {
+  font-size: 12.5px;
+  opacity: 0.72;
+  line-height: 1.5;
+}
+.est-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 28px 0 8px;
+  font-size: 15px;
+}
+.est-table caption {
+  text-align: left;
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  padding-bottom: 10px;
+}
+.est-table th,
+.est-table td {
+  text-align: left;
+  padding: 11px 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.est-table th {
+  font-weight: 400;
+  color: var(--color-text-muted);
+  width: 58%;
+}
+.est-table td {
+  font-variant-numeric: tabular-nums;
+}
+.est-faq {
+  margin-bottom: 24px;
+}
+.est-faq-q {
+  font-family: var(--font-serif, var(--font-heading));
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+.est-faq-a {
+  color: var(--color-text-muted);
+  font-size: 15px;
+}
+.est-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 36px 0 28px;
+}
+.est-cta {
+  display: inline-block;
+  padding: 12px 22px;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.est-cta:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+.est-note {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+@media (max-width: 760px) {
+  .est-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Calculator footer actions: the lead-form button beside the share button.
+   Filled bone on the dark band (13.6:1) so the primary action reads first;
+   the share button keeps its outline treatment. */
+.fin-calc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.fin-lead-cta {
+  min-height: 44px;
+  border-radius: 999px;
+  padding: 10px 22px;
+  background: var(--color-bone);
+  border: 1px solid var(--color-bone);
+  color: #121415;
+  font-family: var(--font-body);
+  font-size: 13px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.fin-lead-cta:hover {
+  opacity: 0.88;
+}
+.fin-lead-cta:focus-visible {
+  outline: 2px solid var(--color-bone);
+  outline-offset: 2px;
+}
+
+/* Scenario-page CTAs: one filled primary that opens the lead form, the rest
+   outlined. */
+.est-cta--primary {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+.est-cta--primary:hover {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+/* Tertiary: a plain text link, not a third button, so the row stays two
+   buttons wide and the crawlable /contact link is still present. */
+.est-cta--quiet {
+  border-color: transparent;
+  padding-inline: 4px;
+  color: var(--color-text-muted);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.est-cta--quiet:hover {
+  background: transparent;
+  color: var(--color-dark);
+  border-color: transparent;
 }

@@ -1,3 +1,4 @@
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { pages } from "@/data/pages";
 import { GALLERY_PROJECTS } from "@/data/galleryProjects";
 import { pageMetadata } from "@/seo/metadata";
@@ -37,7 +38,7 @@ export default function Gallery() {
       <section className="page-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
         <picture>
           <source srcSet="/images/gallery-hero.webp" type="image/webp" />
-          <img src="/images/gallery-hero.jpg" alt="" className="page-hero-bg" loading="eager" />
+          <ResponsiveImage name="gallery-hero" alt="" className="page-hero-bg" widths={[768, 1280, 1920, 2500]} sizes="100vw" width={3600} height={2400} priority />
         </picture>
         <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }} />
         <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>

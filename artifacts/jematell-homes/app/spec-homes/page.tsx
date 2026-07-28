@@ -1,3 +1,4 @@
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { pageMetadata } from "@/seo/metadata";
@@ -32,7 +33,7 @@ export default function SpecHomes() {
       <main className="page" data-testid="page-spec-homes">
         {/* Hero — kept as-is */}
         <section className="page-hero" data-testid="page-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
-          <img src="/images/spec-homes-hero.jpg" alt="" className="page-hero-bg" loading="eager" fetchPriority="high" />
+          <ResponsiveImage name="spec-homes-hero" alt="" className="page-hero-bg" widths={[768, 1280]} sizes="100vw" width={1672} height={941} priority />
           <div
             className="page-hero-overlay"
             style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }}

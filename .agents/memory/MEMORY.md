@@ -6,3 +6,4 @@
 - [Jematell audit JS budget drift](jematell-audit-js-budget.md) — the `audit` initial-JS-gzip gate is already over its 180KB budget from accumulated unrelated work; verify pre-existing status before assuming your change caused a failure.
 - [Dev-server self-healing supervisor](jematell-dev-supervisor.md) — dev workflows run via `scripts/dev-supervisor.sh` (never revert `dev` to raw); post-merge always exits 0, failures flagged in `/tmp/post-merge-degraded`.
 - [Tailwind is installed but inert in jematell-homes](jematell-tailwind-inert.md) — arbitrary-value Tailwind classes (`text-[..]`) save fine but render invisibly; canvas UI edits sometimes emit them — convert to inline styles.
+- [Publish build stability](jematell-deploy-build.md) — deploy machine randomly crashes parallel SSG workers (null-React-hook errors on random pages); prod builds pinned to `cpus: 1` + standalone `global-error.tsx` required.

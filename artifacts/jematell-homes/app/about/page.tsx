@@ -1,3 +1,4 @@
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { pageMetadata } from "@/seo/metadata";
 import { contentPageMeta } from "@/lib/contentPageMeta";
 import { breadcrumbJsonLd } from "@/seo/jsonldBuilders";
@@ -92,7 +93,7 @@ export default function About() {
       <main className="page" data-testid="page-aboutus">
         {/* Hero — kept as-is */}
         <section className="page-hero" data-testid="page-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
-          <img src="/images/about-hero.jpg" alt="" className="page-hero-bg" loading="eager" fetchPriority="high" />
+          <ResponsiveImage name="about-hero" alt="" className="page-hero-bg" widths={[768, 1280]} sizes="100vw" width={1448} height={1086} priority />
           <div
             className="page-hero-overlay"
             style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }}

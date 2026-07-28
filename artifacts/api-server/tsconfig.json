@@ -8,6 +8,9 @@
   "include": ["src"],
   "references": [
     {
+      "path": "../../lib/construction-loan"
+    },
+    {
       "path": "../../lib/db"
     },
     {

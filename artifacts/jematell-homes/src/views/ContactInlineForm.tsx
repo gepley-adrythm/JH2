@@ -1,7 +1,7 @@
 "use client";
-import React, { Suspense } from "react";
+import { lazy, Suspense } from "react";
 
-const ContactForm = React.lazy(() => import("../contact-form/ContactForm"));
+const ContactForm = lazy(() => import("../contact-form/ContactForm"));
 
 /**
  * ContactInlineForm - client island for the inline contact form on /contact.
@@ -11,8 +11,8 @@ const ContactForm = React.lazy(() => import("../contact-form/ContactForm"));
  */
 export default function ContactInlineForm() {
   return (
-    <Suspense fallback={<div className="cf-inline-fallback" aria-hidden="true" />}>
-      <ContactForm variant="inline" />
+    <Suspense fallback={null}>
+      <ContactForm onClose={() => {}} />
     </Suspense>
   );
 }

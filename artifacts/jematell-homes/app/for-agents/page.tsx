@@ -1,3 +1,4 @@
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import Link from "next/link";
 import { pageMetadata } from "@/seo/metadata";
 import { breadcrumbJsonLd } from "@/seo/jsonldBuilders";
@@ -36,7 +37,7 @@ export default function ForAgents() {
         ])}
       />
       <section className="page-hero" data-testid="page-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
-        <img src="/images/for-agents-hero.jpg" alt="" className="page-hero-bg" loading="eager" fetchPriority="high" />
+        <ResponsiveImage name="for-agents-hero" alt="" className="page-hero-bg" widths={[768, 1280]} sizes="100vw" width={1536} height={1024} priority />
         <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }} />
         <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
           <h1 className="page-hero-title hero-title" style={{ textTransform: "uppercase" }}>For Real Estate Agents</h1>

@@ -9,6 +9,7 @@ export const metadata = pageMetadata({
   description:
     "The Jematell Homes 4103 sq ft floor plan: 3 bedrooms, a bonus room, a den, 4.5 baths, and a 4-car garage. View the floor plan and all four elevations, and build it on your lot.",
   canonical: "/floor-plans/4103",
+  image: "/images/plans/4103-rendering.png",
 });
 
 export default function Page() {

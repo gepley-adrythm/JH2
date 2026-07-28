@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowRight, ChevronRight, Clock } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronRight, Clock } from "lucide-react";
 import { glossaryTerms, getGlossaryTerm } from "@/data/glossary";
 import { faqDataset } from "@/data/faq";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
@@ -13,7 +13,7 @@ import { DetailDisclaimer } from "@/components/DetailParts";
 import { Interlink } from "@/components/Interlink";
 import { relationsForGlossary } from "@/lib/interlink";
 import { buildInterlinkSections } from "@/lib/interlink.config";
-import { ContactCta } from "@/components/ContactCta";
+import { CTA } from "@/cta";
 
 export const dynamicParams = false;
 
@@ -85,6 +85,12 @@ export default async function GlossaryDetailPage({
         <div className="container">
           <div style={{ maxWidth: 720, marginInline: "auto" }}>
             <div className="dt-main">
+              <div className="dt-back-row">
+                <Link href="/glossary" className="dt-back dt-back--top" data-testid="glossary-detail-back">
+                  <ArrowLeft size={14} aria-hidden="true" />
+                  Glossary
+                </Link>
+              </div>
               {term.shortDefinition ? (
                 <div className="dt-answer-card" data-testid="glossary-short">
                   <span className="dt-answer-card-label">In short</span>
@@ -105,13 +111,7 @@ export default async function GlossaryDetailPage({
         </div>
       </section>
 
-      <section className="faq-cta">
-        <div className="container faq-cta-inner">
-          <h2 className="faq-cta-title">Building and want a straight answer?</h2>
-          <p className="faq-cta-sub">Tell us about your project and we'll walk you through the details in plain language.</p>
-          <ContactCta testid="glossary-detail-cta-contact">Start the conversation</ContactCta>
-        </div>
-      </section>
+      <CTA />
     </main>
   );
 }

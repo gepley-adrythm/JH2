@@ -1,3 +1,4 @@
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { pageMetadata } from "@/seo/metadata";
 import { breadcrumbJsonLd } from "@/seo/jsonldBuilders";
@@ -26,7 +27,7 @@ export default function Contact() {
             sizes="100vw"
             type="image/webp"
           />
-          <img src="/images/contact-hero.jpg" alt="" className="page-hero-bg" aria-hidden="true" />
+          <ResponsiveImage name="contact-hero" alt="" className="page-hero-bg" widths={[768, 1280, 1920, 2500]} sizes="100vw" width={6176} height={4115} priority />
         </picture>
         <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }} />
         <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo } from "react";
+import { useMemo, lazy, Suspense, Fragment, type ReactNode, type ComponentType } from "react";
 import Link from "next/link";
 import { m, MotionConfig } from "framer-motion";
 import {
@@ -48,7 +48,7 @@ function norm(s: string | undefined | null) {
   return (s || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 }
 
-const SERVICE_ICONS: Record<string, React.ComponentType<{ size?: number }>> = {
+const SERVICE_ICONS: Record<string, ComponentType<{ size?: number }>> = {
   "site selection": MapPin,
   "material selection": Layers,
   funding: DollarSign,
@@ -762,19 +762,53 @@ function SplitSection({
   );
 }
 
+type ProseNode =
+  | { kind: "block"; block: Block; index: number }
+  | { kind: "list"; items: Block[]; startIndex: number };
+
+function groupProseBlocks(blocks: Block[]): ProseNode[] {
+  const nodes: ProseNode[] = [];
+  let i = 0;
+  while (i < blocks.length) {
+    if (blocks[i].type === "li") {
+      const items: Block[] = [];
+      const startIndex = i;
+      while (i < blocks.length && blocks[i].type === "li") {
+        items.push(blocks[i]);
+        i++;
+      }
+      nodes.push({ kind: "list", items, startIndex });
+    } else {
+      nodes.push({ kind: "block", block: blocks[i], index: i });
+      i++;
+    }
+  }
+  return nodes;
+}
+
 function ProseSection({ section }: { section: Section }) {
   // Used for legal-style long-form content (Privacy)
+  const nodes = groupProseBlocks(section.blocks);
   return (
     <section className="page-prose section-pad">
       <div className="container container-readable">
         {section.heading ? (
           <h2 className="heading-md page-prose-h">{section.heading.text}</h2>
         ) : null}
-        {section.blocks.map((b, i) => {
+        {nodes.map((node) => {
+          if (node.kind === "list") {
+            return (
+              <ul key={node.startIndex} className="page-prose-list">
+                {node.items.map((item, j) => (
+                  <li key={j} className="page-prose-li">{item.text}</li>
+                ))}
+              </ul>
+            );
+          }
+          const { block: b, index: i } = node;
           if (b.type === "h3") return <h3 key={i} className="page-prose-h3">{b.text}</h3>;
           if (b.type === "h4") return <h4 key={i} className="page-prose-h4">{b.text}</h4>;
           if (b.type === "p") return <p key={i} className="page-prose-p">{b.text}</p>;
-          if (b.type === "li") return <li key={i} className="page-prose-li">{b.text}</li>;
           if (b.type === "img" && b.src)
             return (
               <figure key={i} className="page-figure">
@@ -984,10 +1018,10 @@ export default function ContentPage({ pageKey, isRegion, region, data, cityImage
           ? <FloorPlanWidgets />
           : sections.map((s, i) => {
               if (isServiceGridSection(s)) return (
-                <React.Fragment key={i}>
+                <Fragment key={i}>
                   <ServiceGridSection section={s} />
                   {isRegion && <ProcessSection section={REGION_PROCESS_SECTION} />}
-                </React.Fragment>
+                </Fragment>
               );
               if (isProcessSection(s)) return <ProcessSection key={i} section={s} />;
               if (isFloorPlanTiersSection(s, sections.slice(i + 1)))

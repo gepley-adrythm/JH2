@@ -135,7 +135,7 @@ function cacheControlFor(file: string, ext: string): string {
   const norm = file.replace(/\\/g, "/");
   if (norm.includes("/_next/static/")) return "public, max-age=31536000, immutable";
   if (ext === ".html") return "public, max-age=0, must-revalidate";
-  if (IMAGE_OR_FONT.has(ext)) return "public, max-age=604800"; // 7 days, not content-hashed
+  if (IMAGE_OR_FONT.has(ext)) return "public, max-age=2592000"; // 30 days, not content-hashed
   return "public, max-age=3600"; // sitemap/robots/manifest etc.
 }
 
@@ -213,6 +213,16 @@ export async function staticSite(req: Request, res: Response, next: NextFunction
     if (target) {
       res.set("Cache-Control", "no-cache");
       res.redirect(301, target);
+      return;
+    }
+
+    // 1b. Squarespace blog category/tag/author archive listings have no new-site
+    //     equivalent; consolidate them all to the blog index rather than 404.
+    //     Individual posts (/blog-articles/<slug>) are exact entries handled in
+    //     step 1, so only archive URLs reach this rule.
+    if (/^\/blog-articles\/(category|tag|author)[/_]/.test(key)) {
+      res.set("Cache-Control", "no-cache");
+      res.redirect(301, "/blog");
       return;
     }
 

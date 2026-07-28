@@ -4,6 +4,9 @@
   "files": [],
   "references": [
     {
+      "path": "./lib/construction-loan"
+    },
+    {
       "path": "./lib/db"
     },
     {

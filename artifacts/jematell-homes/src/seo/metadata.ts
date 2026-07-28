@@ -54,6 +54,7 @@ export function pageMetadata(p: PageSeo): Metadata {
       title: fullTitle,
       description,
       type: p.type || "website",
+      locale: "en_US",
       ...(isRoot ? {} : { url: canonical }),
       images: [image],
       siteName: brand,
