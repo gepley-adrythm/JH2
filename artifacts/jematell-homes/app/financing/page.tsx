@@ -177,7 +177,9 @@ export default function Financing() {
           </div>
         </div>
 
-        <section className="fin-calc-band">
+        {/* id is the anchor the estimate pages link back to, so "back to the
+            calculator" lands on the tool rather than the top of the page. */}
+        <section className="fin-calc-band" id="calculator">
           <div className="container fin-calc-band-inner">
             <h2 className="fin-band-h2" style={{ textTransform: "uppercase" }}>Estimate your payments</h2>
             <p className="fin-band-intro">

@@ -1,17 +1,27 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { estimate, TAX_AS_OF, INSURANCE_AS_OF, NEW_BUILD_TAX_NOTE } from "@workspace/construction-loan";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import {
+  buildInterestSeries,
+  estimate,
+  TAX_AS_OF,
+  INSURANCE_AS_OF,
+  NEW_BUILD_TAX_NOTE,
+} from "@workspace/construction-loan";
+import { PaymentDonut, PaymentTimeline } from "@/components/PaymentCharts";
+import { breakdownParts } from "@/components/paymentChartParts";
 import { pageMetadata } from "@/seo/metadata";
 import { breadcrumbJsonLd, faqPageJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
-import { DetailMore, DetailDisclaimer, type MoreColumn } from "@/components/DetailParts";
+import { DetailDisclaimer } from "@/components/DetailParts";
 import { ContactCta } from "@/components/ContactCta";
 import { CTA } from "@/cta";
 import {
   SCENARIO_BUILD_MONTHS,
   SCENARIO_CONSTRUCTION_RATE_PCT,
   SCENARIO_DOWN_PCTS,
+  SCENARIO_LOCATIONS,
   SCENARIO_MORTGAGE_RATE_PCT,
   SCENARIO_PRICES,
   SCENARIO_TERM_YEARS,
@@ -130,37 +140,41 @@ export default async function EstimateScenarioPage({
     ["All-in monthly after move-in", `${money(est.allInMonthly)}/mo`],
   ];
 
-  const samePriceElsewhere = estimateScenarios
-    .filter((o) => o.price.slug === s.price.slug && o.downPct === s.downPct && o.location.slug !== s.location.slug)
-    .slice(0, 6);
-  const sameCityOtherPrices = SCENARIO_PRICES.filter((p) => p.slug !== s.price.slug).map((p) => ({
-    to: `/financing/estimate/${scenarioSlug(p, s.location, s.downPct)}`,
-    label: `${p.label} home in ${s.location.name}, ${s.downPct}% down`,
-  }));
-  const otherDowns = SCENARIO_DOWN_PCTS.filter((d) => d !== s.downPct).map((d) => ({
-    to: `/financing/estimate/${scenarioSlug(s.price, s.location, d)}`,
-    label: `${s.price.label} in ${s.location.name} with ${d}% down`,
-  }));
+  /**
+   * A related scenario, carrying the figure it resolves to. Showing the monthly
+   * payment on the card is the point: a reader comparing budgets or cities gets
+   * the answer without a round trip, and every one of those numbers is real
+   * prerendered text rather than something only the calculator can produce.
+   */
+  const related = (o: EstimateScenario | undefined, label: string) => {
+    if (!o) return null;
+    return { slug: o.slug, label, monthly: money(computeFor(o).allInMonthly) };
+  };
+  const byBudget = SCENARIO_PRICES.filter((p) => p.slug !== s.price.slug)
+    .map((p) => related(getEstimateScenario(scenarioSlug(p, s.location, s.downPct)), `${p.label} home`))
+    .filter((x): x is NonNullable<typeof x> => x !== null);
+  const byCity = SCENARIO_LOCATIONS.filter((l) => l.slug !== s.location.slug)
+    .map((l) => related(getEstimateScenario(scenarioSlug(s.price, l, s.downPct)), l.name))
+    .filter((x): x is NonNullable<typeof x> => x !== null);
+  const byDown = SCENARIO_DOWN_PCTS.filter((d) => d !== s.downPct)
+    .map((d) => related(getEstimateScenario(scenarioSlug(s.price, s.location, d)), `${d}% down`))
+    .filter((x): x is NonNullable<typeof x> => x !== null);
 
-  const columns: MoreColumn[] = [
-    { label: `Other budgets in ${s.location.name}`, items: sameCityOtherPrices },
-    {
-      label: `${s.price.label} homes in other cities`,
-      items: samePriceElsewhere.map((o) => ({
-        to: `/financing/estimate/${o.slug}`,
-        label: `${o.location.name}, ${o.downPct}% down`,
-      })),
-    },
-    { label: "Other down payments", items: otherDowns },
-    {
-      label: "Financing questions",
-      items: [
-        { to: "/faq/construction-to-permanent-loan-arizona", label: "What is a construction-to-permanent loan?" },
-        { to: "/faq/construction-loan-requirements-arizona", label: "What are construction loan requirements in Arizona?" },
-        { to: "/faq/do-i-pay-interest-during-the-construction-phase-of-a-loan-in-arizona", label: "Do I pay interest during construction?" },
-        { to: "/faq/how-much-does-it-cost-to-build-a-custom-home-in-arizona", label: "How much does it cost to build in Arizona?" },
-      ],
-    },
+  const financingQuestions = [
+    { to: "/faq/construction-to-permanent-loan-arizona", label: "What is a construction-to-permanent loan in Arizona?" },
+    { to: "/faq/construction-loan-requirements-arizona", label: "What are construction loan requirements in Arizona?" },
+    { to: "/faq/do-i-pay-interest-during-the-construction-phase-of-a-loan-in-arizona", label: "Do I pay interest during the construction phase?" },
+    { to: "/faq/how-much-does-it-cost-to-build-a-custom-home-in-arizona", label: "How much does it cost to build a custom home in Arizona?" },
+    { to: "/faq/what-is-a-builder-allowance-and-what-happens-if-you-go-over", label: "What is a builder allowance and what if you go over it?" },
+    { to: "/faq/cost-plus-vs-fixed-price-home-contract", label: "Cost-plus or fixed-price contract: which is better?" },
+  ];
+
+  const termsToKnow = [
+    { to: "/glossary/draw-schedule", label: "Draw Schedule" },
+    { to: "/glossary/as-completed-appraisal", label: "As-Completed Appraisal" },
+    { to: "/glossary/interest-reserve", label: "Interest Reserve" },
+    { to: "/glossary/allowance", label: "Allowance" },
+    { to: "/glossary/builders-risk-insurance", label: "Builders Risk Insurance" },
   ];
 
   return (
@@ -174,37 +188,81 @@ export default async function EstimateScenarioPage({
       />
       <JsonLd data={faqPageJsonLd({ url, items: faqs })} />
 
-      <section className="dt-section est-page">
-        <div className="container est-container">
-          <p className="eyebrow est-eyebrow">Construction loan estimate</p>
-          <h1 className="est-h1">{title}</h1>
-          <p className="est-lead">
-            Building a {s.price.exact} custom home in {s.location.name}, Arizona with {s.downPct}% down means a{" "}
-            {money(est.loan)} construction-to-permanent loan. After move-in the all-in payment is about{" "}
-            {money(est.allInMonthly)} a month, and you should plan for about {money(est.cashToPlanFor)} in cash
-            between the down payment and the interest paid while the house is being built.
-          </p>
+      {/*
+        The page opens on the same dark surface the calculator band uses on
+        /financing: same palette, same charts, so a scenario page reads as the
+        same tool rather than a stripped-down copy of it. Running it from the
+        very top also gives the site header a dark backdrop to sit on before the
+        reader scrolls, which a light hero does not. Both charts render
+        server-side with their final geometry; the sweep-in is CSS only.
+      */}
+      <section className="est-band">
+        <div className="container est-band-inner">
+          <div className="dt-back-row est-back-row">
+            <Link href="/financing#calculator" className="dt-back dt-back--top est-back" data-testid="estimate-back">
+              <ArrowLeft size={14} aria-hidden="true" />
+              Construction loan calculator
+            </Link>
+          </div>
+
+          <div className="est-hero-grid">
+            <div className="est-hero-copy">
+              <p className="eyebrow est-eyebrow">Construction loan estimate</p>
+              <h1 className="est-h1">{title}</h1>
+              <p className="est-lead">
+                Building a {s.price.exact} custom home in {s.location.name}, Arizona with {s.downPct}% down means a{" "}
+                {money(est.loan)} construction-to-permanent loan, and about {money(est.cashToPlanFor)} in cash between
+                the down payment and the interest paid while the house is being built.
+              </p>
+              <div className="est-stat est-stat--lead">
+                <span className="est-stat-k">All-in monthly after move-in</span>
+                <span className="est-stat-v">{money(est.allInMonthly)}</span>
+                <span className="est-stat-sub">
+                  {money(est.permMonthly)} principal and interest, {money(est.monthlyTax)} taxes,{" "}
+                  {money(est.monthlyInsurance)} insurance
+                </span>
+              </div>
+            </div>
+
+            <div className="est-hero-chart">
+              <PaymentDonut
+                parts={breakdownParts({
+                  principalAndInterest: est.permMonthly,
+                  propertyTax: est.monthlyTax,
+                  insurance: est.monthlyInsurance,
+                  hoa: est.hoaMonthly,
+                })}
+                total={est.allInMonthly}
+              />
+            </div>
+          </div>
 
           <div className="est-stats">
-            <div className="est-stat est-stat--lead">
-              <span className="est-stat-k">All-in monthly after move-in</span>
-              <span className="est-stat-v">{money(est.allInMonthly)}</span>
-              <span className="est-stat-sub">
-                {money(est.permMonthly)} principal and interest, {money(est.monthlyTax)} taxes,{" "}
-                {money(est.monthlyInsurance)} insurance
-              </span>
-            </div>
             <div className="est-stat">
               <span className="est-stat-k">Loan amount</span>
               <span className="est-stat-v">{money(est.loan)}</span>
+              <span className="est-stat-sub">After a {money(est.cashDown)} down payment</span>
             </div>
             <div className="est-stat">
               <span className="est-stat-k">Cash to plan for</span>
               <span className="est-stat-v">{money(est.cashToPlanFor)}</span>
               <span className="est-stat-sub">Down payment plus construction-period interest</span>
             </div>
+            <div className="est-stat">
+              <span className="est-stat-k">Interest during the build</span>
+              <span className="est-stat-v">{money(est.totalBuildInterest)}</span>
+              <span className="est-stat-sub">
+                Payments start small and grow with each draw, reaching about {money(est.finalMonthInterest)}/mo in the
+                final month
+              </span>
+            </div>
           </div>
 
+        </div>
+      </section>
+
+      <section className="dt-section est-page est-body">
+        <div className="container est-container">
           <table className="est-table">
             <caption>Full breakdown at {SCENARIO_MORTGAGE_RATE_PCT}% on a {SCENARIO_TERM_YEARS}-year mortgage</caption>
             <tbody>
@@ -229,6 +287,21 @@ export default async function EstimateScenarioPage({
             loan converts. When the home is finished the loan becomes a standard mortgage, usually without a
             second closing.
           </p>
+
+          {/*
+            The timeline sits here rather than up in the band because this is
+            the paragraph it illustrates, and a dark chart card mid-page breaks
+            up what would otherwise be a long run of prose.
+          */}
+          <div className="est-timeline-card">
+            <PaymentTimeline
+              series={buildInterestSeries(est.loan, SCENARIO_CONSTRUCTION_RATE_PCT, SCENARIO_BUILD_MONTHS)}
+              allInMonthly={est.allInMonthly}
+              months={SCENARIO_BUILD_MONTHS}
+              finalMonthInterest={est.finalMonthInterest}
+              idPrefix={`tl-${s.slug}`}
+            />
+          </div>
 
           <h2 className="est-h2">Where these numbers come from</h2>
           <p>
@@ -257,7 +330,7 @@ export default async function EstimateScenarioPage({
             <ContactCta className="est-cta est-cta--primary" testid="estimate-lead-cta">
               Get a real quote
             </ContactCta>
-            <Link className="est-cta" href={calculatorHref(s)}>
+            <Link className="est-cta" href={`${calculatorHref(s)}#calculator`}>
               Adjust this estimate
             </Link>
             <Link className="est-cta est-cta--quiet" href="/contact">
@@ -271,8 +344,75 @@ export default async function EstimateScenarioPage({
             costs. Your lender&apos;s terms, your parcel&apos;s tax bill, and your insurance quote will differ.
           </p>
 
-          <DetailMore columns={columns} testid="estimate-related" />
           <DetailDisclaimer />
+        </div>
+      </section>
+
+      {/*
+        The old single "Keep exploring" block put four link lists in two masonry
+        columns, which read as one cramped wall. These are three separate
+        modules with room to breathe, and each estimate card carries the figure
+        it resolves to so comparing budgets, cities, or down payments does not
+        require opening anything.
+      */}
+      <section className="dt-section est-explore" data-testid="estimate-related">
+        <div className="container est-container">
+          <h2 className="est-h2 est-explore-h2">Compare other estimates</h2>
+
+          {/*
+            Three lists side by side rather than a card grid: with 4, 8, and 2
+            items the cards left orphan gaps, and a row list compares better
+            anyway because the monthly figures line up in a column.
+          */}
+          <div className="est-compare-cols">
+            {[
+              { label: `Other budgets in ${s.location.name}`, items: byBudget },
+              { label: `A ${s.price.label} home in other cities`, items: byCity },
+              { label: "Other down payments", items: byDown },
+            ].map((group) => (
+              <div key={group.label} className="est-compare-col">
+                <h3 className="est-related-label">{group.label}</h3>
+                <ul className="est-compare-list">
+                  {group.items.map((o) => (
+                    <li key={o.slug}>
+                      <Link className="est-compare-row" href={`/financing/estimate/${o.slug}`}>
+                        <span className="est-compare-label">{o.label}</span>
+                        <span className="est-compare-value">{o.monthly}/mo</span>
+                        <ArrowRight size={14} aria-hidden="true" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="dt-section est-explore est-explore--alt">
+        <div className="container est-container">
+          <h2 className="est-h2 est-explore-h2">Financing questions</h2>
+          <ul className="est-q-grid">
+            {financingQuestions.map((q) => (
+              <li key={q.to}>
+                <Link className="est-q-card" href={q.to}>
+                  <span>{q.label}</span>
+                  <ArrowRight size={16} aria-hidden="true" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <h2 className="est-h2 est-explore-h2 est-terms-h2">Terms to know</h2>
+          <ul className="est-terms">
+            {termsToKnow.map((t) => (
+              <li key={t.to}>
+                <Link className="est-term-chip" href={t.to}>
+                  {t.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
