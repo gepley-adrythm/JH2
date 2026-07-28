@@ -6471,3 +6471,95 @@ a.dt-source-card:hover { transform: translateY(-2px); }
     margin-bottom: clamp(30px, 3.4vw, 46px);
   }
 }
+
+/* The comparison lists, question cards and the city card open wider than the
+   880px reading column: they are scan-and-click modules, not prose, and at
+   880px the three comparison columns were squeezed enough to wrap city names. */
+.est-wide {
+  max-width: min(1280px, 100%);
+}
+
+/* City card: the "where we build" page for this scenario's city, with that
+   page's own hero image. */
+.est-city-section {
+  padding-block: clamp(36px, 4.5vw, 56px) 0;
+}
+.est-city-card {
+  display: grid;
+  grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  text-decoration: none;
+  color: var(--color-dark);
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.est-city-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+}
+.est-city-media {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  /* Fixed ratio so the row height is stable before the image decodes. */
+  aspect-ratio: 4 / 3;
+  background: var(--color-cream);
+}
+.est-city-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.est-city-card:hover .est-city-media img {
+  transform: scale(1.03);
+}
+.est-city-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(24px, 3vw, 40px);
+  align-self: center;
+}
+.est-city-eyebrow {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-warm);
+}
+.est-city-title {
+  font-family: var(--font-serif, var(--font-heading));
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  line-height: 1.2;
+}
+.est-city-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  max-width: 60ch;
+}
+.est-city-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
+@media (max-width: 820px) {
+  .est-city-card {
+    grid-template-columns: 1fr;
+  }
+  .est-city-media {
+    aspect-ratio: 16 / 9;
+  }
+}

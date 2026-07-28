@@ -15,6 +15,8 @@ import { pageMetadata } from "@/seo/metadata";
 import { breadcrumbJsonLd, faqPageJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { DetailDisclaimer } from "@/components/DetailParts";
+import { locations } from "@/config/siteConfig";
+import { pages } from "@/data/pages";
 import { ContactCta } from "@/components/ContactCta";
 import { CTA } from "@/cta";
 import {
@@ -168,6 +170,25 @@ export default async function EstimateScenarioPage({
     { to: "/faq/what-is-a-builder-allowance-and-what-happens-if-you-go-over", label: "What is a builder allowance and what if you go over it?" },
     { to: "/faq/cost-plus-vs-fixed-price-home-contract", label: "Cost-plus or fixed-price contract: which is better?" },
   ];
+
+  /**
+   * The "where we build" page for this scenario's city, when there is one. Every
+   * city in the tax table has one today, but the card is guarded so adding a tax
+   * location without a matching page degrades to no section rather than a dead
+   * link.
+   */
+  const cityLocation = locations.find((l) => l.slug === s.location.slug);
+  const cityPage = pages[s.location.slug];
+  const cityCard =
+    cityLocation && cityPage
+      ? {
+          href: `/where-we-build/${cityLocation.slug}`,
+          name: cityLocation.name,
+          tagline: cityLocation.tagline,
+          image: cityPage.ogImage,
+          description: cityPage.description,
+        }
+      : null;
 
   const termsToKnow = [
     { to: "/glossary/draw-schedule", label: "Draw Schedule" },
@@ -355,8 +376,35 @@ export default async function EstimateScenarioPage({
         it resolves to so comparing budgets, cities, or down payments does not
         require opening anything.
       */}
+      {cityCard ? (
+        <section className="dt-section est-city-section" data-testid="estimate-city">
+          <div className="container est-wide">
+            <Link className="est-city-card" href={cityCard.href}>
+              <span className="est-city-media">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={cityCard.image}
+                  alt={`Custom homes built by Jematell Homes in ${cityCard.name}, Arizona`}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </span>
+              <span className="est-city-body">
+                <span className="est-city-eyebrow">Building in {cityCard.name}</span>
+                <span className="est-city-title">{cityCard.tagline}</span>
+                <span className="est-city-text">{cityCard.description}</span>
+                <span className="est-city-link">
+                  See what we build in {cityCard.name}
+                  <ArrowRight size={16} aria-hidden="true" />
+                </span>
+              </span>
+            </Link>
+          </div>
+        </section>
+      ) : null}
+
       <section className="dt-section est-explore" data-testid="estimate-related">
-        <div className="container est-container">
+        <div className="container est-wide">
           <h2 className="est-h2 est-explore-h2">Compare other estimates</h2>
 
           {/*
@@ -390,7 +438,7 @@ export default async function EstimateScenarioPage({
       </section>
 
       <section className="dt-section est-explore est-explore--alt">
-        <div className="container est-container">
+        <div className="container est-wide">
           <h2 className="est-h2 est-explore-h2">Financing questions</h2>
           <ul className="est-q-grid">
             {financingQuestions.map((q) => (
