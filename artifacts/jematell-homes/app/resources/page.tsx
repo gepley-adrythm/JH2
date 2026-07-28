@@ -4,6 +4,10 @@ import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { pageMetadata } from "@/seo/metadata";
 import { JsonLd } from "@/seo/JsonLd";
 import { CTA } from "@/cta";
+import { faqDataset } from "@/data/faq";
+import { guides } from "@/data/guides";
+import { glossaryTerms } from "@/data/glossary";
+import { referenceEntries } from "@/data/reference";
 
 const INTRO =
   "Everything we have learned building custom homes across Scottsdale, Rio Verde, and the Phoenix metro, written down and kept current. Real cost ranges, the code edition each city actually enforces, what it takes to make a raw lot buildable, and the answers most builders leave you to find on your own.";
@@ -23,10 +27,18 @@ interface ResourceSection {
   featured?: boolean;
 }
 
+/**
+ * Derive the card counts from the datasets rather than hardcoding them. These
+ * were written as literals ("82 terms", "166 references") and silently went
+ * stale the moment content shipped: the glossary was at 105 and the reference
+ * library at 245 while this page still advertised the old numbers.
+ */
+const plural = (n: number, one: string, many = `${one}s`) => `${n} ${n === 1 ? one : many}`;
+
 const SECTIONS: ResourceSection[] = [
   {
     title: "FAQ",
-    count: "350 answers",
+    count: plural(faqDataset.all().length, "answer"),
     description:
       "Straight answers to the questions people actually ask before they build: timelines, budgets, lots, permits, water, design, and what it is like to work with a family-owned builder.",
     href: "/faq",
@@ -35,7 +47,7 @@ const SECTIONS: ResourceSection[] = [
   },
   {
     title: "Guides",
-    count: "17 guides",
+    count: plural(guides.length, "guide"),
     description:
       "Long-read pillars that walk the whole journey end to end, plus a complete guide for every city we build in.",
     href: "/guides",
@@ -43,7 +55,7 @@ const SECTIONS: ResourceSection[] = [
   },
   {
     title: "Glossary",
-    count: "82 terms",
+    count: plural(glossaryTerms.length, "term"),
     description:
       "Plain-English definitions for the terms that come up on a custom build, each with the sources behind it.",
     href: "/glossary",
@@ -51,7 +63,7 @@ const SECTIONS: ResourceSection[] = [
   },
   {
     title: "Reference Library",
-    count: "166 references",
+    count: plural(referenceEntries.length, "reference"),
     description:
       "The source material in plain language: adopted city building codes, Arizona statutes, the residential code, and community design guidelines.",
     href: "/reference-library",
