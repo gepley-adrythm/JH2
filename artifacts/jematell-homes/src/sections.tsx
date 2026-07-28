@@ -116,7 +116,7 @@ export function ServicesSplit() {
           <div className="service-overlay" />
           <div className="service-content">
             <span className="eyebrow" style={{ color: '#fff' }}>Portfolio</span>
-            <h3>Build a Custom Home</h3>
+            <h3 style={{ whiteSpace: 'nowrap' }}>Build a Custom Home</h3>
             <p>
               Is a custom home what you’re envisioning? Explore our portfolio of past projects, learn more about our process, and discover how we bring your unique vision to life in the desert.
             </p>
@@ -138,7 +138,7 @@ export function ServicesSplit() {
           <div className="service-overlay" />
           <div className="service-content">
             <span className="eyebrow" style={{ color: '#fff' }}>Available</span>
-            <h3>Buy One of Our Homes</h3>
+            <h3 style={{ whiteSpace: 'nowrap' }}>Buy One of Our Homes</h3>
             <p>
               Explore stunning Arizona properties and find a home that perfectly suits your unique preferences and lifestyle. Move-in ready luxury, crafted with our signature attention to detail.
             </p>
