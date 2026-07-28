@@ -1,11 +1,21 @@
+import Link from "next/link";
+import { estimate } from "@workspace/construction-loan";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { pageMetadata } from "@/seo/metadata";
-import { breadcrumbJsonLd } from "@/seo/jsonldBuilders";
+import { breadcrumbJsonLd, faqPageJsonLd, webApplicationJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { ConstructionLoanCalculator } from "@/components/ConstructionLoanCalculator";
 import { DetailMore, DetailDisclaimer, type MoreColumn } from "@/components/DetailParts";
 import { ContactCta } from "@/components/ContactCta";
 import { CTA } from "@/cta";
+import {
+  SCENARIO_BUILD_MONTHS,
+  SCENARIO_CONSTRUCTION_RATE_PCT,
+  SCENARIO_MORTGAGE_RATE_PCT,
+  SCENARIO_TERM_YEARS,
+  featuredScenarios,
+  scenarioTitle,
+} from "@/data/estimateScenarios";
 
 export const metadata = pageMetadata({
   title: "Construction Financing in Arizona",
@@ -43,6 +53,34 @@ const financingFaqs = [
   { slug: "what-is-a-mechanics-lien-and-how-do-lien-releases-work-on-a-new-home-in-arizona", question: "What is a mechanics lien and how do lien releases work on a new home in Arizona?" },
 ];
 
+/**
+ * Questions answered in visible copy below, and mirrored into FAQPage JSON-LD.
+ * The answers are written for this page rather than lifted from the FAQ corpus,
+ * so the schema matches what a reader actually sees.
+ */
+const pageFaqs = [
+  {
+    question: "How much do you need for a down payment on an Arizona construction loan?",
+    answer:
+      "Most Arizona construction lenders look for 20 to 25 percent down, measured against the appraised value of the finished home. If you already own your lot, its value usually counts toward that equity, which is why owning land first can lower the cash you bring to closing.",
+  },
+  {
+    question: "Do you make payments while the house is being built?",
+    answer:
+      "Yes, but interest only, and only on the money drawn so far rather than the whole loan. Payments start small and grow with each draw. Whether you write those checks monthly or the lender sets up an interest reserve that covers them until conversion depends on the lender.",
+  },
+  {
+    question: "What does the monthly payment include after you move in?",
+    answer:
+      "Principal and interest on the permanent mortgage, property taxes for the city you built in, homeowners insurance, and HOA dues if the community has them. The calculator on this page adds all four together, which is why its figure is higher than a plain mortgage calculator's.",
+  },
+  {
+    question: "Does the interest rate change when the loan converts to a mortgage?",
+    answer:
+      "With a one-time-close construction-to-permanent loan you set the terms once at the original closing, and the construction-phase rate and the permanent rate are usually two different numbers agreed at that time. Some lenders offer a one-time float-down if rates fall before conversion. Ask your loan officer how theirs handles it.",
+  },
+];
+
 const financingTerms = [
   { slug: "draw-schedule", term: "Draw Schedule" },
   { slug: "as-completed-appraisal", term: "As-Completed Appraisal" },
@@ -51,11 +89,35 @@ const financingTerms = [
   { slug: "builders-risk-insurance", term: "Builders Risk Insurance" },
 ];
 
+const money = (n: number): string =>
+  n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+
 export default function Financing() {
   const columns: MoreColumn[] = [
     { label: "Financing questions", items: financingFaqs.map((f) => ({ to: `/faq/${f.slug}`, label: f.question })) },
     { label: "Terms to know", items: financingTerms.map((t) => ({ to: `/glossary/${t.slug}`, label: t.term })) },
   ];
+
+  // Worked examples, computed at build time from the same module the calculator
+  // uses. The calculator is a client component, so a reader (or a crawler) that
+  // never runs its JavaScript would otherwise see only its single default
+  // scenario. These rows put real numbers in the prerendered HTML.
+  const examples = featuredScenarios().map((s) => ({
+    scenario: s,
+    est: estimate({
+      totalProjectCost: s.price.value,
+      landOwned: false,
+      landValue: 0,
+      buildCost: 0,
+      downPct: s.downPct,
+      buildRatePct: SCENARIO_CONSTRUCTION_RATE_PCT,
+      permRatePct: SCENARIO_MORTGAGE_RATE_PCT,
+      termYears: SCENARIO_TERM_YEARS,
+      buildMonths: SCENARIO_BUILD_MONTHS,
+      locationSlug: s.location.slug,
+      hoaMonthly: 0,
+    }),
+  }));
 
   return (
     <main className="page">
@@ -64,6 +126,31 @@ export default function Financing() {
           { name: "Home", url: "/" },
           { name: "Financing", url: "/financing" },
         ])}
+      />
+      <JsonLd
+        data={webApplicationJsonLd({
+          name: "Arizona Construction Loan Calculator",
+          description:
+            "Estimate the monthly payment and cash needed to build a custom home in Arizona with a construction-to-permanent loan, including principal and interest, city property taxes, homeowners insurance, and HOA dues.",
+          url: "/financing",
+          featureList: [
+            "Construction-to-permanent loan payment estimate",
+            "Interest-only construction draw schedule",
+            "Arizona city and ZIP property tax rates",
+            "Homeowners insurance and HOA dues",
+            "Build on a lot you already own",
+            "Shareable estimate links",
+          ],
+          apiUrlTemplate:
+            "https://www.jematellhomes.com/api/estimate?cost={cost}&down={down}&loc={loc}&months={months}&term={term}",
+          apiActionName: "Estimate a construction-to-permanent loan",
+        })}
+      />
+      <JsonLd
+        data={faqPageJsonLd({
+          url: "/financing",
+          items: pageFaqs.map((f) => ({ question: f.question, shortAnswer: f.answer })),
+        })}
       />
 
       <section className="page-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
@@ -104,6 +191,57 @@ export default function Financing() {
         </section>
 
         <div className="container">
+          <div className="fin-examples" data-testid="financing-examples">
+            <h2 className="fin-h2">Example estimates</h2>
+            <p className="fin-examples-intro">
+              Worked examples for the budgets people ask about most, each at 20% down over a{" "}
+              {SCENARIO_BUILD_MONTHS}-month build, with a {SCENARIO_CONSTRUCTION_RATE_PCT}% construction rate and a{" "}
+              {SCENARIO_MORTGAGE_RATE_PCT}% mortgage over {SCENARIO_TERM_YEARS} years. Every row opens a full
+              breakdown for that scenario.
+            </p>
+            <div className="fin-examples-scroll">
+              <table className="fin-examples-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Project</th>
+                    <th scope="col">Loan</th>
+                    <th scope="col">Cash to plan for</th>
+                    <th scope="col">All-in monthly</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {examples.map(({ scenario, est }) => (
+                    <tr key={scenario.slug}>
+                      <th scope="row">
+                        <Link href={`/financing/estimate/${scenario.slug}`} title={scenarioTitle(scenario)}>
+                          {scenario.price.label} in {scenario.location.name}
+                        </Link>
+                      </th>
+                      <td>{money(est.loan)}</td>
+                      <td>{money(est.cashToPlanFor)}</td>
+                      <td>{money(est.allInMonthly)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="fin-examples-note">
+              Property taxes use each city&apos;s average effective rate and insurance uses the Arizona average, so
+              the all-in figure covers principal, interest, taxes, and insurance. HOA dues are not included.
+              Estimates only, not a loan offer.
+            </p>
+          </div>
+
+          <div className="fin-page-faqs" data-testid="financing-faqs">
+            <h2 className="fin-h2">Common questions about construction financing</h2>
+            {pageFaqs.map((f) => (
+              <div key={f.question} className="fin-page-faq">
+                <h3 className="fin-page-faq-q">{f.question}</h3>
+                <p className="fin-page-faq-a">{f.answer}</p>
+              </div>
+            ))}
+          </div>
+
           <div style={{ maxWidth: 860, marginInline: "auto" }}>
             <div className="fin-lenders" data-testid="preferred-lender">
               <h2 className="fin-h2">Bring any lender, or ask us</h2>

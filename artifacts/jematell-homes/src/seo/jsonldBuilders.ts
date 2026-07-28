@@ -153,6 +153,51 @@ export function definedTermSetJsonLd(opts: {
   };
 }
 
+/**
+ * A tool that lives on the site, such as the construction loan calculator.
+ * `apiUrlTemplate` advertises the machine-readable equivalent of the tool as a
+ * potentialAction, so an agent reading the page can find the JSON endpoint
+ * without guessing.
+ */
+export function webApplicationJsonLd(opts: {
+  name: string;
+  description: string;
+  url: string;
+  featureList?: string[];
+  apiUrlTemplate?: string;
+  apiActionName?: string;
+}): object {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "@id": absoluteUrl(opts.url) + "#calculator",
+    name: opts.name,
+    description: opts.description,
+    url: absoluteUrl(opts.url),
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Any",
+    browserRequirements: "Requires JavaScript",
+    isAccessibleForFree: true,
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    provider: { "@id": SITE_URL + "/#organization" },
+    ...(opts.featureList ? { featureList: opts.featureList } : {}),
+    ...(opts.apiUrlTemplate
+      ? {
+          potentialAction: {
+            "@type": "Action",
+            name: opts.apiActionName ?? opts.name,
+            target: {
+              "@type": "EntryPoint",
+              urlTemplate: opts.apiUrlTemplate,
+              httpMethod: "GET",
+              contentType: "application/json",
+            },
+          },
+        }
+      : {}),
+  };
+}
+
 export function techArticleJsonLd(opts: {
   title: string;
   description?: string;

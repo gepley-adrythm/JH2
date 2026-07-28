@@ -13,6 +13,7 @@ import { faqRoutes } from "../data/faq";
 import { glossaryRoutes } from "../data/glossary";
 import { referenceRoutes } from "../data/reference";
 import { guideRoutes } from "../data/guides";
+import { estimateScenarioRoutes } from "../data/estimateScenarios";
 
 function isRealPost(slug: string): boolean {
   if (slug === "blog-articles") return false;
@@ -80,5 +81,6 @@ export function getAllRoutes(): string[] {
   for (const r of glossaryRoutes()) routes.add(r);
   for (const r of referenceRoutes()) routes.add(r);
   for (const r of guideRoutes()) routes.add(r);
+  for (const r of estimateScenarioRoutes()) routes.add(r);
   return Array.from(routes);
 }

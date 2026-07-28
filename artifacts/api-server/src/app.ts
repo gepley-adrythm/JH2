@@ -2,6 +2,9 @@ import express, { type Express } from "express";
 import cors from "cors";
 import pinoHttp from "pino-http";
 import router from "./routes";
+import estimatePageRouter from "./routes/estimatePage";
+import agentDiscoveryRouter from "./routes/agentDiscovery";
+import mcpRouter from "./routes/mcp";
 import { logger } from "./lib/logger";
 import { staticSite, staticSiteAvailable, staticSiteInfo } from "./middlewares/staticSite";
 
@@ -31,6 +34,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", router);
+
+// Agent-facing surfaces, mounted ahead of the static site so they win over a
+// 404 from the export. All read-only:
+//   /financing/estimate      server-rendered estimate for arbitrary parameters
+//   /mcp                     Model Context Protocol server (streamable HTTP)
+//   /.well-known/*, /openapi.json   discovery documents
+app.use(estimatePageRouter);
+app.use(mcpRouter);
+app.use(agentDiscoveryRouter);
 
 // NOTE: The public FAQ pages (/faq, /faq/:slug, /faq/topics/:slug) are now real
 // React pages owned by the Jematell Homes web app (pre-rendered for SEO). This

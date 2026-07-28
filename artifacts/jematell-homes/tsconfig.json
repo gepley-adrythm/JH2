@@ -21,6 +21,9 @@
   "references": [
     {
       "path": "../../lib/faq"
+    },
+    {
+      "path": "../../lib/construction-loan"
     }
   ]
 }
