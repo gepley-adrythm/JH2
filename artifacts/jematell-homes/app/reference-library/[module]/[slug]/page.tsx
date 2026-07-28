@@ -2,7 +2,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ArrowRight, ChevronRight, ExternalLink, Clock, Calendar } from "lucide-react";
-import { referenceEntries, getReferenceEntry, getReferenceModule } from "@/data/reference";
+import {
+  referenceEntries,
+  getReferenceEntry,
+  getReferenceModule,
+  getJurisdiction,
+  referencesForCity,
+  jurisdictionsInModule,
+  REFERENCE_MODULES,
+} from "@/data/reference";
+import { ReferenceCityHub } from "@/views/ReferenceCityHub";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { pageMetadata } from "@/seo/metadata";
 import { techArticleJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
@@ -18,7 +27,14 @@ import { ReferenceDetailShell } from "@/views/ReferenceDetailShell";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return referenceEntries.map((e) => ({ module: e.module, slug: e.slug }));
+  const params = referenceEntries.map((e) => ({ module: e.module, slug: e.slug }));
+  // per-city hub pages share this [slug] segment (App Router has no sibling dynamic route)
+  for (const m of REFERENCE_MODULES) {
+    for (const g of jurisdictionsInModule(m.slug)) {
+      params.push({ module: m.slug, slug: g.jurisdiction.slug });
+    }
+  }
+  return params;
 }
 
 export async function generateMetadata({
@@ -27,6 +43,15 @@ export async function generateMetadata({
   params: Promise<{ module: string; slug: string }>;
 }): Promise<Metadata> {
   const { module: moduleSlug, slug } = await params;
+  const jurisdiction = getJurisdiction(moduleSlug, slug);
+  const moduleMeta = getReferenceModule(moduleSlug);
+  if (jurisdiction && moduleMeta) {
+    return pageMetadata({
+      title: `${jurisdiction.name} Building Codes`,
+      description: jurisdiction.blurb,
+      canonical: `/reference-library/${moduleSlug}/${slug}`,
+    });
+  }
   const entry = getReferenceEntry(moduleSlug, slug);
   if (!entry) return {};
   return pageMetadata({
@@ -42,8 +67,18 @@ export default async function ReferenceDetailPage({
   params: Promise<{ module: string; slug: string }>;
 }) {
   const { module: moduleSlug, slug } = await params;
-  const entry = getReferenceEntry(moduleSlug, slug);
   const meta = getReferenceModule(moduleSlug);
+  const jurisdiction = getJurisdiction(moduleSlug, slug);
+  if (meta && jurisdiction) {
+    return (
+      <ReferenceCityHub
+        meta={meta}
+        jurisdiction={jurisdiction}
+        groups={referencesForCity(moduleSlug, slug)}
+      />
+    );
+  }
+  const entry = getReferenceEntry(moduleSlug, slug);
   if (!entry || !meta) notFound();
 
   const article = annotateHeadings(entry.bodyHtml || "");

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ArrowRight, ChevronRight } from "lucide-react";
-import { REFERENCE_MODULES, getReferenceModule, referencesByCategory, moduleCount } from "@/data/reference";
+import { REFERENCE_MODULES, getReferenceModule, referencesByCategory, moduleCount, moduleIsPerCity, jurisdictionsInModule } from "@/data/reference";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { pageMetadata } from "@/seo/metadata";
 import { collectionJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
@@ -73,27 +73,46 @@ export default async function ReferenceModulePage({
 
       <section className="lib-hub section-pad">
         <div className="container">
-          {groups.map((g) => (
-            <div key={g.category || "all"} className="lib-group" data-testid={`reference-category-${g.category}`}>
-              {g.category ? <div className="lib-group-label">{g.category}</div> : null}
-              <div className="lib-grid">
-                {g.entries.map((e) => (
-                  <Link
-                    key={e.slug}
-                    href={`/reference-library/${e.module}/${e.slug}`}
-                    className="lib-card"
-                    data-testid={`reference-entry-${e.slug}`}
-                  >
-                    <h3 className="lib-card-title">{e.title}</h3>
-                    <p className="lib-card-desc">{e.shortSummary}</p>
-                    <span className="lib-card-more">
-                      Read the reference <ArrowRight size={15} aria-hidden="true" />
-                    </span>
-                  </Link>
-                ))}
-              </div>
+          {moduleIsPerCity(meta.slug) ? (
+            <div className="lib-grid" data-testid="reference-city-grid">
+              {jurisdictionsInModule(meta.slug).map((g) => (
+                <Link
+                  key={g.jurisdiction.slug}
+                  href={`/reference-library/${meta.slug}/${g.jurisdiction.slug}`}
+                  className="lib-card"
+                  data-testid={`reference-city-${g.jurisdiction.slug}`}
+                >
+                  <h3 className="lib-card-title">{g.jurisdiction.name}</h3>
+                  <p className="lib-card-desc">{g.jurisdiction.blurb}</p>
+                  <span className="lib-card-more">
+                    {g.entries.length} {g.entries.length === 1 ? "page" : "pages"} <ArrowRight size={15} aria-hidden="true" />
+                  </span>
+                </Link>
+              ))}
             </div>
-          ))}
+          ) : (
+            groups.map((g) => (
+              <div key={g.category || "all"} className="lib-group" data-testid={`reference-category-${g.category}`}>
+                {g.category ? <div className="lib-group-label">{g.category}</div> : null}
+                <div className="lib-grid">
+                  {g.entries.map((e) => (
+                    <Link
+                      key={e.slug}
+                      href={`/reference-library/${e.module}/${e.slug}`}
+                      className="lib-card"
+                      data-testid={`reference-entry-${e.slug}`}
+                    >
+                      <h3 className="lib-card-title">{e.title}</h3>
+                      <p className="lib-card-desc">{e.shortSummary}</p>
+                      <span className="lib-card-more">
+                        Read the reference <ArrowRight size={15} aria-hidden="true" />
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))
+          )}
 
           <Link href="/reference-library" className="dt-back" data-testid="reference-module-all">
             All collections <ArrowRight size={14} aria-hidden="true" />
