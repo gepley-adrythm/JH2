@@ -7,6 +7,7 @@
  */
 import { pages, type PageData } from "../data/pages";
 import { serviceJsonLd, breadcrumbJsonLd } from "../seo/jsonldBuilders";
+import { locations } from "../config/siteConfig";
 import { cleanTitle } from "./cleanTitle";
 
 const SERVICE_KEYS = new Set(["custom-homes", "spechomes", "floorplans"]);
@@ -91,7 +92,19 @@ export function contentPageJsonLd(opts: ContentPageMetaOpts): object[] {
   if (!data) return [];
   const pageTitle = cleanTitle(data.title);
   if (opts.region) {
+    // These are the highest-intent pages on the site, and they used to carry a
+    // breadcrumb and nothing else. Service with a City areaServed states the
+    // obvious thing a search engine cannot otherwise infer: this company builds
+    // custom homes in this specific place.
+    const cityName = locations.find((l) => l.slug === opts.region)?.name ?? pageTitle;
     return [
+      serviceJsonLd({
+        name: `Custom Home Building in ${cityName}, Arizona`,
+        description: data.description,
+        url: path,
+        ...(data.ogImage ? { image: data.ogImage } : {}),
+        areaServedCity: cityName,
+      }),
       breadcrumbJsonLd([
         { name: "Home", url: "/" },
         { name: "Where We Build", url: "/where-we-build" },

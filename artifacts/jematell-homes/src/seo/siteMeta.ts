@@ -38,11 +38,18 @@ export function buildSiteJsonLd(): object[] {
     postalCode: addr.postalCode,
     addressCountry: addr.country,
   };
+  // Every profile that verifiably belongs to this company. sameAs is how a
+  // search engine or an AI system decides that the "Jematell Homes" on Houzz
+  // and the one here are the same entity, so the list should stay complete;
+  // these mirror the profiles published on /llm-info.
   const sameAs = [
     social.instagram,
     social.facebook,
     // Google Business Profile
     "https://maps.app.goo.gl/pSjm2LpxCc5CcTVD8",
+    "https://www.houzz.com/pro/jematellhomes",
+    "https://www.buildzoom.com/contractor/jematell-homes-llc",
+    "https://www.yelp.com/biz/jematell-homes-scottsdale",
   ];
 
   const organization = {
@@ -100,6 +107,7 @@ export function buildSiteJsonLd(): object[] {
       "Apache Junction",
     ].map((name) => ({ "@type": "City", name })),
     parentOrganization: { "@id": SITE_URL + "/#organization" },
+    sameAs,
   };
 
   const website = {
