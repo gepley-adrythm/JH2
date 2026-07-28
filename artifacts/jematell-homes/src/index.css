@@ -6453,3 +6453,21 @@ a.dt-source-card:hover { transform: translateY(-2px); }
     padding: 22px clamp(14px, 4vw, 20px);
   }
 }
+
+/* Back link: tucked up under the site header and pulled left of the copy
+   column, so it reads as a breadcrumb rather than a first line of the hero
+   stacked above the eyebrow. The band's top padding shrinks to match, since
+   the link now occupies the space the padding was holding open. */
+.est-band {
+  padding-block: clamp(104px, 9.5vw, 132px) clamp(56px, 7vw, 88px);
+}
+.est-back-row {
+  margin-bottom: clamp(26px, 3vw, 40px);
+}
+@media (min-width: 1081px) {
+  .est-back-row {
+    /* Optically hangs the arrow into the gutter, clearing the text column. */
+    margin-left: clamp(-32px, -2vw, -12px);
+    margin-bottom: clamp(30px, 3.4vw, 46px);
+  }
+}
