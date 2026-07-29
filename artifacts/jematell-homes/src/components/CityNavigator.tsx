@@ -23,7 +23,15 @@ const FALLBACK_IMAGE =
   "/images/cdn/cb106191-10f5-42ca-bd2a-4b2f12503dae__53-DJI_20260125135120_0044_D.webp";
 
 const LOCAL_CITY_HERO: Record<string, string> = {
-  "surprise": "/images/city-hero-surprise.jpg",
+  "scottsdale":      "/images/city-hero-scottsdale.jpg",
+  "rio-verde":       "/images/city-hero-rio-verde.jpg",
+  "phoenix":         "/images/city-hero-phoenix.jpg",
+  "cave-creek":      "/images/city-hero-cave-creek.jpg",
+  "fountain-hills":  "/images/city-hero-fountain-hills.jpg",
+  "carefree":        "/images/city-hero-carefree.jpg",
+  "casa-grande":     "/images/city-hero-casa-grande.jpg",
+  "apache-junction": "/images/city-hero-apache-junction.jpg",
+  "surprise":        "/images/city-hero-surprise.jpg",
 };
 
 function cityImage(slug: string, images?: Record<string, string>): string {
@@ -75,7 +83,7 @@ export function CityNavigator({ images }: { images?: Record<string, string> } = 
                     className="city-nav-img"
                     src={cityImage(loc.slug, images)}
                     alt=""
-                    loading={i === 0 ? "eager" : "lazy"}
+                    loading="eager"
                   />
                   <span className="city-nav-overlay" aria-hidden="true" />
                   <span className="city-nav-index" aria-hidden="true">

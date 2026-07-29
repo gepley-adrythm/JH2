@@ -685,6 +685,21 @@ picture {
   .services-split > .service-pane:has(~ .service-pane:hover) .service-pane-inner {
     transform: scaleX(1.29998);
   }
+  /* The right pane's inner is right-anchored, so its counter-scale pushes its
+     left edge UNDER the left pane (which overlaps with higher z-index) — the
+     content's left side gets hidden at rest. Shift the content right by the
+     exact overhang (pane 56.522% wide, showing 50% at rest => 6.522vw hidden;
+     when shrunk to 43.478% => 13.044vw hidden). Returns to 0 on its own hover. */
+  .services-split > .service-pane:last-child .service-content {
+    transform: translateX(6.522vw);
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .services-split > .service-pane:last-child:hover .service-content {
+    transform: translateX(0);
+  }
+  .services-split > .service-pane:hover ~ .service-pane .service-content {
+    transform: translateX(13.044vw);
+  }
 }
 .service-overlay {
   position: absolute;
@@ -908,6 +923,7 @@ picture {
     inset: 0 auto;
     left: 50%;
     width: 520px;
+    max-width: none;
     margin-left: -260px;
   }
 }
