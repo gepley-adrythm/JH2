@@ -332,6 +332,28 @@ export async function buildEstimate(q: QueryLike): Promise<ParsedEstimate> {
   return { body, warnings };
 }
 
+export interface DonutPart {
+  key: string;
+  label: string;
+  value: number;
+  color: string;
+}
+
+/**
+ * Breakdown segments for the payment ring, in the same order and colours the
+ * calculator uses (see paymentChartParts.ts on the web side). Colours are
+ * chosen for contrast on the #121415 band.
+ */
+export function breakdownParts(r: EstimateResponse): DonutPart[] {
+  const m = r.estimate.afterMoveIn;
+  return [
+    { key: "pi", label: "P&I", value: m.principalAndInterest, color: "#8fb0c9" },
+    { key: "tax", label: "Property tax", value: m.propertyTax, color: "var(--color-bone)" },
+    { key: "ins", label: "Insurance", value: m.insurance, color: "#c08468" },
+    { key: "hoa", label: "HOA", value: m.hoa, color: "#9aa0a3" },
+  ];
+}
+
 /** The locations an agent can pass as `loc`, with the rate each one implies. */
 export function locationCatalog() {
   return TAX_LOCATIONS.map((l) => ({
