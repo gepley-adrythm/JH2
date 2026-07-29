@@ -158,9 +158,15 @@ export default function ContactForm({ onClose, variant = "modal" }: ContactFormP
 
   useEffect(() => {
     loadGTM();
-    safeTimeout(() => nameRef.current?.focus(), 400);
+    // Autofocusing the name field makes sense for the floating modal (it just
+    // opened, nothing else is on screen), but for the inline card embedded in
+    // the contact page it forces the browser to scroll the field into view on
+    // mount, hijacking the page's normal scroll position. Skip it there.
+    if (!isInline) {
+      safeTimeout(() => nameRef.current?.focus(), 400);
+    }
     return () => typing.clearTyping();
-  }, [safeTimeout]);
+  }, [safeTimeout, isInline]);
 
   const updateField = useCallback((field: keyof FormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
