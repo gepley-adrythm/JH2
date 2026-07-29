@@ -73,36 +73,8 @@ export function SpecHomesMap({ homes }: { homes: SpecMapHome[] }) {
         popupAnchor: [0, -38],
       });
 
-      // Adjacent-lot homes project to stacked pins at the fitted view: the
-      // buried ones are unclickable and axe's target-size check measures
-      // 0-11px of clear space (24px minimum). Push overlapping pins apart in
-      // pixel space at this zoom — tens of meters of drift at most, and the
-      // popup address, not the pin tip, is the precise location.
-      const z = map.getZoom();
-      const pts = homes.map((h) => map.project([h.lat, h.lon], z));
-      for (let pass = 0; pass < 10; pass++) {
-        let moved = false;
-        for (let i = 0; i < pts.length; i++) {
-          for (let j = i + 1; j < pts.length; j++) {
-            const dx = pts[j].x - pts[i].x;
-            const dy = pts[j].y - pts[i].y;
-            const d = Math.hypot(dx, dy);
-            if (d >= 40) continue;
-            const push = (40 - d) / 2 + 0.5;
-            const nx = d ? dx / d : 1;
-            const ny = d ? dy / d : 0;
-            pts[i].x -= nx * push;
-            pts[i].y -= ny * push;
-            pts[j].x += nx * push;
-            pts[j].y += ny * push;
-            moved = true;
-          }
-        }
-        if (!moved) break;
-      }
-
-      homes.forEach((h, i) => {
-        L.marker(map.unproject(pts[i], z), { icon, title: `${h.plan} — ${h.address}` })
+      homes.forEach((h) => {
+        L.marker([h.lat, h.lon], { icon, title: `${h.plan} — ${h.address}` })
           .addTo(map)
           .bindPopup(
             `<div class="spec-map-popup"><strong>${h.plan}</strong><br/>${h.address}` +

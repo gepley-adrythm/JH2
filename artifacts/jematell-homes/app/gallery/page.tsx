@@ -36,10 +36,10 @@ export default function Gallery() {
         })}
       />
       <section className="page-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
-        {/* ResponsiveImage renders its own <picture>; the old outer wrapper's
-            "/images/gallery-hero.webp" source pointed at a file that does not
-            exist (only the -<width>.webp variants do). */}
-        <ResponsiveImage name="gallery-hero" alt="" className="page-hero-bg" widths={[768, 1280, 1920, 2500]} sizes="100vw" width={3600} height={2400} priority />
+        <picture>
+          <source srcSet="/images/gallery-hero.webp" type="image/webp" />
+          <ResponsiveImage name="gallery-hero" alt="" className="page-hero-bg" widths={[768, 1280, 1920, 2500]} sizes="100vw" width={3600} height={2400} priority />
+        </picture>
         <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }} />
         <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
           <h1 className="page-hero-title">OUR PORTFOLIO</h1>

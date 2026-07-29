@@ -71,14 +71,11 @@ export function CityNavigator({ images }: { images?: Record<string, string> } = 
                 data-active={isActive}
                 style={{ flexGrow: isActive ? 5 : 1 }}
               >
-                {/* No aria-label: it replaced the accessible name with text that
-                    doesn't contain the card's visible tagline (WCAG 2.5.3
-                    label-in-name). The link's real content — city name +
-                    tagline — is the better accessible name anyway. */}
                 <Link
                   href={locationHref(loc.slug)}
                   className="city-nav-link"
                   data-testid={`city-nav-${loc.slug}`}
+                  aria-label={`Explore building a custom home in ${loc.name}`}
                   onMouseEnter={() => setActive(i)}
                   onFocus={() => setActive(i)}
                 >

@@ -4393,10 +4393,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   border-top: 1px solid var(--color-border);
   font-size: 12.5px;
   line-height: 1.7;
-  /* 0.68, not lower: at 0.52 this computed to 3.59:1 against the cream page
-     background — below the WCAG 4.5:1 minimum for 12.5px text. 0.68 lands
-     ~6:1 while still reading as muted fine print. */
-  color: rgba(18, 20, 21, 0.68);
+  color: rgba(18, 20, 21, 0.52);
 }
 .dt-disclaimer p { margin: 0; }
 .dt-disclaimer a {
@@ -5408,9 +5405,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   margin: 0 0 4px;
 }
 .about-team-role {
-  /* A deeper cut of --color-warm (#8c5a45): the base tone measures 4.23:1 on
-     the #e2ddd3 team card — just under the 4.5:1 minimum at this size. */
-  color: #7d4f3c;
+  color: var(--color-warm);
   font-weight: 600;
   font-size: 12.5px;
   letter-spacing: 0.09em;
@@ -5927,9 +5922,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   max-width: 880px;
 }
 .est-eyebrow {
-  /* Lighter cut of --color-warm for the dark estimate layout: the base
-     #8c5a45 is only 3.22:1 on #121415. Same warm accent, ~7:1. */
-  color: #c89b7b;
+  color: var(--color-warm);
 }
 .est-h1 {
   font-family: var(--font-serif, var(--font-heading));
@@ -6136,8 +6129,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   max-width: min(1440px, 100%);
 }
 .est-band .est-eyebrow {
-  /* Same dark-background contrast cut as .est-eyebrow above. */
-  color: #c89b7b;
+  color: var(--color-warm);
 }
 .est-band .est-h1 {
   color: #fff;
@@ -6240,12 +6232,9 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   animation-delay: 500ms;
 }
 
-/* 0.01, not 0: elements first-painted at opacity 0 are permanently invisible
-   to Chrome's LCP tracker, and `both` fill paints the from-frame during the
-   stagger delays — see the entrance note in transitions.css. */
 @keyframes est-rise {
   from {
-    opacity: 0.01;
+    opacity: 0;
     transform: translateY(22px) scale(0.985);
   }
   to {
@@ -6255,7 +6244,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 }
 @keyframes est-fade-up {
   from {
-    opacity: 0.01;
+    opacity: 0;
     transform: translateY(12px);
   }
   to {

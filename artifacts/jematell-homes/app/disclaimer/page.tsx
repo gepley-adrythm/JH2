@@ -27,9 +27,7 @@ export default function Disclaimer() {
         <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 4vw, 2.75rem)", marginBottom: "0.5rem" }}>
           Website Disclaimer
         </h1>
-        {/* 0.66, not 0.5: 50% black on the cream background is ~3.4:1, under
-            the 4.5:1 WCAG minimum for 14px text. */}
-        <p style={{ color: "rgba(0,0,0,0.66)", fontSize: "0.875rem", marginBottom: "3rem" }}>
+        <p style={{ color: "rgba(0,0,0,0.5)", fontSize: "0.875rem", marginBottom: "3rem" }}>
           Effective July 2026. This disclaimer applies to every page on jematellhomes.com.
         </p>
 

@@ -35,22 +35,16 @@
 /* 2. STAGGERED HERO ENTRANCE
  * Add these classes to above-the-fold hero elements; each starts hidden and
  * rises in slightly after the one before it, so the headline assembles itself
- * after the page paints.
- *
- * Starting opacity is 0.01, not 0: Chrome permanently excludes any element
- * whose first paint is opacity:0 from LCP candidacy. At 0 the hero headline
- * never registers, the header logo becomes the page's only (tiny) candidate,
- * and the score is set by hydration timing instead of the real paint. One
- * frame at 1% is imperceptible; do not "clean up" these values back to 0. */
+ * after the page paints. */
 @keyframes rise-in {
-  0% { opacity: 0.01; transform: translateY(24px); }
+  0% { opacity: 0; transform: translateY(24px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 .hero-eyebrow,
 .hero-title,
 .hero-subtitle,
 .hero-cta {
-  opacity: 0.01;
+  opacity: 0;
   animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 .hero-eyebrow  { animation-delay: 0.10s; }
@@ -60,10 +54,8 @@
 
 /* 3. GENERAL-PURPOSE FADE-IN-UP (on-mount). For scroll-triggered reveals use
  * FADE_IN_UP_PROPS from motion.ts instead. */
-/* `both` fill applies the from-frame during any delay, so the 0.01 floor
- * matters here too (see the LCP note above). */
 @keyframes fade-in-up {
-  from { opacity: 0.01; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 .fade-in-up {

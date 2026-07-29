@@ -4,7 +4,6 @@ import Link from "next/link";
 import { m, MotionConfig } from "framer-motion";
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 import { CTA } from "../cta";
-import { PlanHeroPicture } from "../components/PlanHeroPicture";
 
 const FADE_IN = {
   initial: { opacity: 0, y: 16 },
@@ -55,10 +54,15 @@ export default function FloorPlan2086({
     <MotionConfig reducedMotion="user">
       <main className="page" data-testid="page-floor-plan-2086">
         <section className="gallery-detail-hero">
-          <PlanHeroPicture
-            src="/images/plans/2086-rendering.png"
-            alt="Rendered exterior elevation of the 2086 sq ft Jematell Homes floor plan"
-          />
+          <picture className="gallery-detail-hero-picture">
+            <img
+              src="/images/plans/2086-rendering.png"
+              alt="Rendered exterior elevation of the 2086 sq ft Jematell Homes floor plan"
+              className="page-hero-bg"
+              loading="eager"
+              fetchPriority="high"
+            />
+          </picture>
           <div className="page-hero-overlay" style={{ background: "linear-gradient(to top, rgba(22,22,22,0.72) 0%, rgba(22,22,22,0.2) 60%, transparent 100%)" }} />
           <div className="container page-hero-content gallery-detail-hero-content">
             <h1 className="page-hero-title hero-title">2086 Floor Plan</h1>

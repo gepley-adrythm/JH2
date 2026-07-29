@@ -104,29 +104,8 @@ A multi-page marketing site with:
 - All animations must respect `prefers-reduced-motion`.
 - All interactive elements need kebab-case `data-testid` attributes.
 
-## Image originals are PROTECTED (hard rule)
-
-The client's source photographs — every `.jpg`/`.jpeg`/`.png` in
-`artifacts/jematell-homes/public/images/` (including `plans/`) — must **never
-be deleted, re-encoded, overwritten, moved, or "optimized" in place**. Not to
-save disk space, not to improve Lighthouse, not while cleaning up. This is an
-explicit owner directive (2026-07-29).
-
-- Performance work uses **generated sibling variants only**
-  (`<name>-<width>.webp` / `<name>-<width>.avif`), produced by
-  `artifacts/jematell-homes/scripts/gen-image-variants.mjs [--avif]
-  [--dir=public/images/plans]` — the script reads sources and writes new
-  files; it never touches an original.
-- Every `<picture>` on the site keeps the original as its `<img src>`
-  fallback, so deleting an original breaks live pages.
-- Need space? Delete `dist/`, `out/`, `.next/`, or `node_modules/` — never
-  anything under `public/images/`.
-- If an image genuinely must be replaced, ask the owner and add the new file;
-  do not remove the old one yourself.
-
 ## Gotchas
 
-- **Several muted text colors are WCAG-contrast-pinned — do not darken/lighten them back "for the look".** `.dt-disclaimer` rgba(18,20,21,0.68), `.about-team-role` #7d4f3c, `.est-eyebrow` #c89b7b (light cut of --color-warm for dark backgrounds), and the /disclaimer effective-date line rgba(0,0,0,0.66) all sit just above the 4.5:1 minimum; the site ships with Lighthouse accessibility 100 on every template and reverting any of these reintroduces failures. Same for heading levels: hub-card titles are `h2.lib-card-title` / `h2.resource-card-title` (h3 skipped a level under the page h1).
 - **Don't add the artifact to the root `tsconfig.json` references** — it's a leaf workspace.
 - **Don't run `pnpm dev` at the workspace root** — use the workflow `artifacts/jematell-homes: web`.
 - **Verify with typecheck, not build** — `build` needs `PORT`/`BASE_PATH` env vars the workflow wires up.
