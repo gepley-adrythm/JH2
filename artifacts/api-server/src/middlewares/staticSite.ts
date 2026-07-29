@@ -190,6 +190,11 @@ export function staticSiteAvailable(): boolean {
   return existsSync(join(OUT_DIR, "index.html"));
 }
 
+/** The directory the static export is served from, for callers that need to read it. */
+export function staticSiteDir(): string {
+  return OUT_DIR;
+}
+
 export function staticSiteInfo(): string {
   return `${OUT_DIR} (${Object.keys(REDIRECTS).length} redirects)`;
 }
