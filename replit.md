@@ -126,6 +126,7 @@ explicit owner directive (2026-07-29).
 
 ## Gotchas
 
+- **Several muted text colors are WCAG-contrast-pinned — do not darken/lighten them back "for the look".** `.dt-disclaimer` rgba(18,20,21,0.68), `.about-team-role` #7d4f3c, `.est-eyebrow` #c89b7b (light cut of --color-warm for dark backgrounds), and the /disclaimer effective-date line rgba(0,0,0,0.66) all sit just above the 4.5:1 minimum; the site ships with Lighthouse accessibility 100 on every template and reverting any of these reintroduces failures. Same for heading levels: hub-card titles are `h2.lib-card-title` / `h2.resource-card-title` (h3 skipped a level under the page h1).
 - **Don't add the artifact to the root `tsconfig.json` references** — it's a leaf workspace.
 - **Don't run `pnpm dev` at the workspace root** — use the workflow `artifacts/jematell-homes: web`.
 - **Verify with typecheck, not build** — `build` needs `PORT`/`BASE_PATH` env vars the workflow wires up.

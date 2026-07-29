@@ -81,7 +81,8 @@ export function ReferenceCityHub({
                     className="lib-card"
                     data-testid={`reference-entry-${e.slug}`}
                   >
-                    <h3 className="lib-card-title">{e.title}</h3>
+                    {/* h2: directly under the page h1 — h3 skipped a level. */}
+                    <h2 className="lib-card-title">{e.title}</h2>
                     <p className="lib-card-desc">{e.shortSummary}</p>
                     <span className="lib-card-more">
                       Read the reference <ArrowRight size={15} aria-hidden="true" />

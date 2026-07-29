@@ -31,7 +31,10 @@ export default function GalleryGrid({ projects }: { projects: GalleryGridItem[] 
           >
             <Link href={`/gallery/${proj.slug}`} data-testid={`gallery-card-${proj.slug}`}>
               <div className={`gallery-card-media${img ? "" : " gallery-card-placeholder"}`}>
-                {img && <img src={img} alt={proj.title} loading="lazy" />}
+                {/* Empty alt: the card's visible <h2> title is the accessible
+                    name; repeating it here makes screen readers announce every
+                    project twice (axe: image-redundant-alt). */}
+                {img && <img src={img} alt="" loading="lazy" />}
                 <div className="gallery-card-overlay">
                   <h2 className="gallery-card-title">{proj.title}</h2>
                 </div>
