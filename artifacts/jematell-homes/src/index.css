@@ -923,6 +923,7 @@ picture {
     inset: 0 auto;
     left: 50%;
     width: 520px;
+    max-width: none;
     margin-left: -260px;
   }
 }
