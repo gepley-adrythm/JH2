@@ -178,7 +178,19 @@ export function PaymentTimeline({
     const val = isBuild ? (series[hoveredBarIdx] ?? 0) : allInMonthly;
     const barCenterX = r2(plotX0 + hoveredBarIdx * slot + slot / 2);
     const ttX = r2(Math.max(0, Math.min(chartW - TT_W, barCenterX - TT_W / 2)));
-    const ttY = r2(Math.max(2, barY(val) - TT_H - 8));
+    // Prefer floating the tooltip above the bar's top edge. Short early-month
+    // bars sit close to the baseline, which leaves plenty of headroom above
+    // plotY0 -- but tall bars (later months, or the flat all-in bar) sit
+    // close to plotY0 already, and clamping to a fixed y used to let the box
+    // ride up past plotY0 into the "Move-in" label's strip. Flip below the
+    // bar's top edge instead whenever there isn't room for the full box
+    // above it, and never let either placement leave the plot band.
+    const barTop = barY(val);
+    const ttY = r2(
+      barTop - plotY0 >= TT_H + 8
+        ? barTop - TT_H - 8
+        : Math.max(plotY0 + 2, Math.min(barTop + 8, plotY1 - TT_H - 2)),
+    );
     return {
       label: isBuild ? `Month ${hoveredBarIdx + 1} of ${months}` : "After move-in",
       amount: fmtMoney(val),
