@@ -40,7 +40,14 @@ export function stripTags(html: string): string {
  * heading already carries an id we keep it. Slug collisions get -2, -3 suffixes
  * so anchors stay unique on long pages.
  */
-export function annotateHeadings(html: string): { html: string; toc: TocEntry[] } {
+export function annotateHeadings(
+  html: string,
+  opts: { seeAlso?: boolean } = {},
+): { html: string; toc: TocEntry[] } {
+  // Guides opt out: guideEnrich.ts already resolves their link clusters into richer
+  // components, and short link runs are deliberately left as prose there. Other detail
+  // pages keep the callout.
+  const seeAlso = opts.seeAlso !== false;
   const toc: TocEntry[] = [];
   const used = new Set<string>();
 
@@ -79,7 +86,7 @@ export function annotateHeadings(html: string): { html: string; toc: TocEntry[] 
   // Lift link-dense "see also" paragraphs (3+ links that are mostly link text)
   // into a callout so they read as an intentional element, not a spammy inline
   // link dump. Contextual prose that merely cites a link is left alone.
-  const enhanced = out.replace(/<p>([\s\S]*?)<\/p>/gi, (m, inner: string) => {
+  const enhanced = !seeAlso ? out : out.replace(/<p>([\s\S]*?)<\/p>/gi, (m, inner: string) => {
     const links = (inner.match(/<a\s/gi) || []).length;
     if (links < 3) return m;
     const total = inner.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();

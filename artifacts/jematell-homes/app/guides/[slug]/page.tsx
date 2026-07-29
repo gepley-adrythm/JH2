@@ -11,6 +11,7 @@ import { pageMetadata } from "@/seo/metadata";
 import { articleJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { annotateHeadings, readingTime, formatDate, prepareGuideBody } from "@/lib/detail";
+import { enrichGuideBody } from "@/lib/guideEnrich";
 import { DetailShell } from "@/components/DetailShell";
 import { DetailDisclaimer } from "@/components/DetailParts";
 import { Interlink } from "@/components/Interlink";
@@ -50,7 +51,16 @@ export default async function GuideDetailPage({
   if (!guide) notFound();
 
   const prepared = prepareGuideBody(guide.bodyHtml, guide.title);
-  const article = annotateHeadings(prepared);
+  // Resolve link clusters into readable components (accordions, term cards, reference
+  // tables) before headings are annotated, and opt out of the generic "Related on this
+  // site" callout, which this replaces.
+  const enriched = enrichGuideBody(prepared, {
+    faq: (s) => faqDataset.getItem(s),
+    term: (s) => getGlossaryTerm(s),
+    ref: (k) => getReferenceByKey(k),
+    guide: (s) => getGuide(s),
+  });
+  const article = annotateHeadings(enriched, { seeAlso: false });
   const minutes = readingTime(prepared);
 
   const relatedGuides = guide.relatedGuides

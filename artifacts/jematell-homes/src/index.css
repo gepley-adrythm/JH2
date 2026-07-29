@@ -6576,3 +6576,218 @@ a.dt-source-card:hover { transform: translateY(-2px); }
     aspect-ratio: 16 / 9;
   }
 }
+
+/* ============================================================================
+   GUIDE ENRICHMENT — components that replace the old repeated "see also" box.
+
+   The previous treatment wrapped every link-dense paragraph in one identical
+   callout; a single guide carried 22 of them. These blocks resolve the links to
+   their actual content instead, and vary by what is being linked, so a long
+   guide reads as a sequence of different, informative elements.
+
+   All zero-JS: accordions are native <details>.
+   ========================================================================= */
+
+.dt-prose .ge-block {
+  margin: 34px 0;
+}
+.dt-prose .ge-cluster > .ge-block:first-child { margin-top: 34px; }
+.dt-prose .ge-cluster > .ge-block + .ge-block { margin-top: 18px; }
+
+.dt-prose .ge-label {
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--color-warm);
+  margin: 0 0 12px;
+}
+
+/* --- FAQ accordion ------------------------------------------------------ */
+.dt-prose .ge-qa-item {
+  border-bottom: 1px solid var(--color-border);
+}
+.dt-prose .ge-qa-item:first-of-type { border-top: 1px solid var(--color-border); }
+
+.dt-prose .ge-qa-item > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 15px 34px 15px 0;
+  position: relative;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 1.35;
+  color: var(--color-dark);
+  transition: color 0.18s ease;
+}
+.dt-prose .ge-qa-item > summary::-webkit-details-marker { display: none; }
+.dt-prose .ge-qa-item > summary:hover { color: var(--color-accent); }
+
+/* chevron */
+.dt-prose .ge-qa-item > summary::after {
+  content: "";
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 1.5px solid var(--color-accent);
+  border-bottom: 1.5px solid var(--color-accent);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 0.22s ease;
+}
+.dt-prose .ge-qa-item[open] > summary::after { transform: translateY(-30%) rotate(-135deg); }
+.dt-prose .ge-qa-item > summary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.dt-prose .ge-qa-body { padding: 0 34px 18px 0; }
+.dt-prose .ge-qa-body p {
+  margin: 0 0 10px;
+  font-size: 16px;
+  line-height: 1.68;
+  color: var(--color-text-muted);
+}
+.dt-prose .ge-qa-more {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(59, 97, 127, 0.35);
+  padding-bottom: 1px;
+}
+.dt-prose .ge-qa-more::after { content: " \2192"; }
+.dt-prose .ge-qa-more:hover { border-bottom-color: currentColor; }
+
+/* --- FAQ compact list (alternate presentation) -------------------------- */
+.dt-prose .ge-qlist ul { list-style: none; margin: 0; padding: 0; }
+.dt-prose .ge-qlist-item {
+  margin: 0;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.dt-prose .ge-qlist-item:first-child { border-top: 1px solid var(--color-border); }
+.dt-prose .ge-qlist-item::marker { content: none; }
+.dt-prose .ge-qlist-item > a {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 19px;
+  line-height: 1.35;
+  color: var(--color-dark);
+  text-decoration: none;
+}
+.dt-prose .ge-qlist-item > a:hover { color: var(--color-accent); }
+.dt-prose .ge-qlist-teaser {
+  display: block;
+  margin-top: 5px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* --- glossary term cards ------------------------------------------------ */
+.dt-prose .ge-termgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  gap: 12px;
+}
+.dt-prose .ge-termcard {
+  display: block;
+  padding: 15px 17px 16px;
+  background: var(--color-cream);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.dt-prose .ge-termcard:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+.dt-prose .ge-termcard-name {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 19px;
+  line-height: 1.25;
+  color: var(--color-dark);
+  margin-bottom: 6px;
+}
+.dt-prose .ge-termcard-def {
+  display: block;
+  font-size: 14.5px;
+  line-height: 1.58;
+  color: var(--color-text-muted);
+}
+
+/* --- reference table ---------------------------------------------------- */
+.dt-prose .ge-reftable { margin: 0; font-size: 15.5px; }
+.dt-prose .ge-reftable tbody td,
+.dt-prose .ge-reftable tbody th {
+  padding: 13px 16px 13px 0;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+  text-align: left;
+}
+.dt-prose .ge-reftable tbody tr:first-child th,
+.dt-prose .ge-reftable tbody tr:first-child td { border-top: 1px solid var(--color-border); }
+.dt-prose .ge-reftable th[scope="row"] {
+  width: 38%;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--color-dark);
+}
+.dt-prose .ge-reftable th[scope="row"] a { font-weight: 500; }
+.dt-prose .ge-reftable td { color: var(--color-text-muted); line-height: 1.6; }
+
+/* --- guide next-steps --------------------------------------------------- */
+.dt-prose .ge-pathgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  gap: 12px;
+}
+.dt-prose .ge-path {
+  display: block;
+  padding: 17px 19px 18px;
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 12px;
+  text-decoration: none;
+  background: #fff;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.dt-prose .ge-path:hover { border-color: var(--color-accent); transform: translateY(-2px); }
+.dt-prose .ge-path-title {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--color-dark);
+  margin-bottom: 6px;
+}
+.dt-prose .ge-path-sum {
+  display: block;
+  font-size: 14.5px;
+  line-height: 1.58;
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 620px) {
+  .dt-prose .ge-qa-item > summary { font-size: 18px; }
+  .dt-prose .ge-reftable th[scope="row"] { width: auto; display: block; padding-bottom: 4px; }
+  .dt-prose .ge-reftable td { display: block; padding-top: 0; padding-bottom: 14px; }
+  .dt-prose .ge-reftable tbody tr:first-child td { border-top: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dt-prose .ge-termcard,
+  .dt-prose .ge-path,
+  .dt-prose .ge-qa-item > summary::after { transition: none; }
+  .dt-prose .ge-termcard:hover,
+  .dt-prose .ge-path:hover { transform: none; }
+}
