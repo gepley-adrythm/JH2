@@ -6812,3 +6812,25 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   .dt-prose .ge-termcard:hover,
   .dt-prose .ge-path:hover { transform: none; }
 }
+
+/* Body tables scroll inside their own box rather than dragging the page sideways.
+   A five-column cost table at 375px measured 539px wide against a 375px client
+   width; without this the whole layout scrolls with it. The wrapper is focusable
+   (see wrapTables in lib/detail.ts) so the scroll is reachable by keyboard. */
+.dt-prose .dt-tablewrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 30px 0;
+}
+.dt-prose .dt-tablewrap > table { margin: 0; }
+.dt-prose .dt-tablewrap:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+/* Keep columns readable instead of letting them crush to one word per line. The
+   enrichment reference table is exempt: it restacks each row into a block at 620px
+   and already fits, so a min-width would make it scroll for no reason. */
+@media (max-width: 760px) {
+  .dt-prose .dt-tablewrap > table:not(.ge-reftable) { min-width: 480px; }
+}

@@ -99,7 +99,23 @@ export function annotateHeadings(
     return ratio >= 0.5 ? `<p class="dt-seealso">${inner}</p>` : m;
   });
 
-  return { html: enhanced + tail, toc };
+  return { html: wrapTables(enhanced) + tail, toc };
+}
+
+/**
+ * Put every body table in its own horizontally scrollable box.
+ *
+ * Without this a wide table forces the whole page to scroll sideways on a phone. A five-column
+ * cost table at 375px measured 539px against a 375px client width, which drags the entire
+ * layout with it. Scoping the scroll to the table keeps the page still.
+ *
+ * The wrapper is focusable and labelled because a scrollable region that only responds to a
+ * mouse is unreachable by keyboard, which is an accessibility failure in its own right.
+ */
+export function wrapTables(html: string): string {
+  return html.replace(/<table(?![^>]*\bdata-nowrap\b)([\s\S]*?)<\/table>/gi, (m) =>
+    `<div class="dt-tablewrap" tabindex="0" role="region" aria-label="Table, scroll to see more">${m}</div>`,
+  );
 }
 
 /**
