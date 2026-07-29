@@ -6232,9 +6232,12 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   animation-delay: 500ms;
 }
 
+/* 0.01, not 0: elements first-painted at opacity 0 are permanently invisible
+   to Chrome's LCP tracker, and `both` fill paints the from-frame during the
+   stagger delays — see the entrance note in transitions.css. */
 @keyframes est-rise {
   from {
-    opacity: 0;
+    opacity: 0.01;
     transform: translateY(22px) scale(0.985);
   }
   to {
@@ -6244,7 +6247,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 }
 @keyframes est-fade-up {
   from {
-    opacity: 0;
+    opacity: 0.01;
     transform: translateY(12px);
   }
   to {

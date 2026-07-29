@@ -4,6 +4,7 @@ import Link from "next/link";
 import { m, MotionConfig } from "framer-motion";
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 import { CTA } from "../cta";
+import { PlanHeroPicture } from "../components/PlanHeroPicture";
 
 /**
  * Generic floor-plan detail page. Content is passed in per plan so the many
@@ -89,15 +90,7 @@ export default function FloorPlanDetail({
     <MotionConfig reducedMotion="user">
       <main className="page" data-testid={`page-floor-plan-${planId}`}>
         <section className="gallery-detail-hero">
-          <picture className="gallery-detail-hero-picture">
-            <img
-              src={heroSrc}
-              alt={heroAlt}
-              className="page-hero-bg"
-              loading="eager"
-              fetchPriority="high"
-            />
-          </picture>
+          <PlanHeroPicture src={heroSrc} alt={heroAlt} />
           <div className="page-hero-overlay" style={{ background: "linear-gradient(to top, rgba(22,22,22,0.72) 0%, rgba(22,22,22,0.2) 60%, transparent 100%)" }} />
           <div className="container page-hero-content gallery-detail-hero-content">
             <h1 className="page-hero-title hero-title">{title}</h1>

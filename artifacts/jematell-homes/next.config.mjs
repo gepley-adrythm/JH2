@@ -68,12 +68,23 @@ const nextConfig = {
         },
       }
     : {}),
+  // React Compiler was TRIED here (2026-07-29) and removed on evidence: its
+  // memoization instrumentation added +2.5-7KB gzip per route (pushing
+  // /custom-homes over the 200KB audit budget) to speed up re-renders this
+  // hydrate-once static site barely does. TBT already scores 0.95-1.0; the
+  // added bytes sit in the critical graph that prices LCP, the metric that
+  // actually needs help. Don't re-enable without re-measuring both sides.
   // NOTE: experimental.viewTransition + a React <ViewTransition> boundary were
   // tried here to restore the old cross-route fade, but the experimental
   // wrapper broke framer-motion's whileInView reveals (sections rendered stuck
   // at their SSR opacity:0). Cross-route fades can return when that React API
   // stabilizes; scroll reveals matter more.
   experimental: {
+    // Inline all CSS into <style> tags in the exported HTML instead of two
+    // render-blocking stylesheet requests. The CSS bytes ride the (brotli'd)
+    // HTML response, removing two request chains from every page's critical
+    // path. audit.mjs's render-blocking-stylesheet budget counts 0 after this.
+    inlineCss: true,
     // Persist the Turbopack compilation graph to disk so server restarts and
     // revisited routes skip recompilation entirely. Dev-only; production builds
     // are unaffected.
