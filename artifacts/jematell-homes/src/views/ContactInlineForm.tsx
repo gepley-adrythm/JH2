@@ -11,8 +11,8 @@ const ContactForm = lazy(() => import("../contact-form/ContactForm"));
  */
 export default function ContactInlineForm() {
   return (
-    <Suspense fallback={null}>
-      <ContactForm onClose={() => {}} />
+    <Suspense fallback={<div className="cf-inline-fallback" aria-hidden="true" />}>
+      <ContactForm variant="inline" />
     </Suspense>
   );
 }
