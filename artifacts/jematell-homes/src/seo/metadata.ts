@@ -33,7 +33,7 @@ export function pageMetadata(p: PageSeo): Metadata {
   const image = absoluteUrl(p.image || DEFAULT_OG_IMAGE);
   const fullTitle = formatTitle(p.title);
   // The root route needs its canonical/og:url emitted with the trailing slash
-  // ("https://www.jematellhomes.com/", matching the old build and sitemap.xml),
+  // ("https://jematellhomes.com/", matching sitemap.xml),
   // but Next's metadata resolver normalizes "/" to the bare origin under
   // trailingSlash:false. So for "/" we omit both here and app/page.tsx renders
   // the <link rel="canonical"> and <meta property="og:url"> tags itself

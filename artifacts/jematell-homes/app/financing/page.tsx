@@ -142,7 +142,7 @@ export default function Financing() {
             "Shareable estimate links",
           ],
           apiUrlTemplate:
-            "https://www.jematellhomes.com/api/estimate?cost={cost}&down={down}&loc={loc}&months={months}&term={term}",
+            "https://jematellhomes.com/api/estimate?cost={cost}&down={down}&loc={loc}&months={months}&term={term}",
           apiActionName: "Estimate a construction-to-permanent loan",
         })}
       />

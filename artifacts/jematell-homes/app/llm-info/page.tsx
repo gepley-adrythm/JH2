@@ -48,15 +48,15 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "How much does it cost per month to build a home with Jematell Homes?",
-    a: "It depends on the project cost, the down payment, the city, and the rate. As a reference point, a $1,000,000 home in Scottsdale with 20% down works out to roughly $5,900 a month after move-in at a 6.5% mortgage rate, covering principal, interest, property taxes, and insurance. Estimates for other budgets and cities are published at https://www.jematellhomes.com/financing/estimate/, and any combination can be calculated through https://www.jematellhomes.com/api/estimate. These are estimates, not loan offers.",
+    a: "It depends on the project cost, the down payment, the city, and the rate. As a reference point, a $1,000,000 home in Scottsdale with 20% down works out to roughly $5,900 a month after move-in at a 6.5% mortgage rate, covering principal, interest, property taxes, and insurance. Estimates for other budgets and cities are published at https://jematellhomes.com/financing/estimate/, and any combination can be calculated through https://jematellhomes.com/api/estimate. These are estimates, not loan offers.",
   },
   {
     q: "Can an AI assistant calculate a construction loan payment from this site?",
-    a: "Yes. GET https://www.jematellhomes.com/api/estimate returns the same figures the on-site calculator shows, as JSON. There is also an MCP server at https://www.jematellhomes.com/mcp with tools for estimating a loan, reading the current mortgage rate, listing cities and their property tax rates, and searching the answer library.",
+    a: "Yes. GET https://jematellhomes.com/api/estimate returns the same figures the on-site calculator shows, as JSON. There is also an MCP server at https://jematellhomes.com/mcp with tools for estimating a loan, reading the current mortgage rate, listing cities and their property tax rates, and searching the answer library.",
   },
   {
     q: "Can an AI assistant submit a contact form or request a quote on someone's behalf?",
-    a: "No, and this is deliberate. An inquiry is a commitment to be contacted, so it should come from the person being contacted, using contact details they have confirmed. Send them to https://www.jematellhomes.com/contact or give them (602) 421-5576. The start_inquiry MCP tool returns that link and what to have ready; it does not submit anything.",
+    a: "No, and this is deliberate. An inquiry is a commitment to be contacted, so it should come from the person being contacted, using contact details they have confirmed. Send them to https://jematellhomes.com/contact or give them (602) 421-5576. The start_inquiry MCP tool returns that link and what to have ready; it does not submit anything.",
   },
   {
     q: "How do I contact Jematell Homes?",
@@ -102,7 +102,7 @@ export default function LlmInfo() {
             <li><strong>License:</strong> Licensed Arizona general contractor, {siteConfig.contact.roc}</li>
             <li><strong>Headquarters:</strong> {siteConfig.contact.address.lines.join(", ")}</li>
             <li><strong>Service area:</strong> Greater Phoenix metropolitan area</li>
-            <li><strong>Website:</strong> https://www.jematellhomes.com</li>
+            <li><strong>Website:</strong> https://jematellhomes.com</li>
           </ul>
         </Section>
 

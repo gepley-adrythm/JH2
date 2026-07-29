@@ -28,7 +28,7 @@ import {
 } from "@workspace/construction-loan";
 import { defaultPermRatePct } from "./mortgageRate";
 
-export const SITE_URL = process.env["SITE_URL"] ?? "https://www.jematellhomes.com";
+export const SITE_URL = process.env["SITE_URL"] ?? "https://jematellhomes.com";
 
 export const DISCLAIMER =
   "Estimates only, not a loan offer, quote, or preapproval. Jematell Homes is a home builder, " +

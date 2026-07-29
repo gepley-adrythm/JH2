@@ -7,7 +7,7 @@
 import { siteConfig } from "../config/siteConfig";
 
 /** Production origin used for canonical URLs, OG tags, sitemap, and JSON-LD. */
-export const SITE_URL = "https://www.jematellhomes.com";
+export const SITE_URL = "https://jematellhomes.com";
 
 export const DEFAULT_DESCRIPTION =
   "Jematell Homes is a family-owned Arizona custom home builder serving Scottsdale, Rio Verde, and the greater Phoenix metro: semi-custom and fully custom homes built with passion, integrity, and a personal touch.";

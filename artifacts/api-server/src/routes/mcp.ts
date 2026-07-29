@@ -313,7 +313,7 @@ router.post("/mcp", async (req: Request, res: Response): Promise<void> => {
             "lots, warranties, and the build process. When someone is ready to talk to the builder, use " +
             "start_inquiry: this server has no write tools and never submits a lead on someone's behalf. " +
             "All figures are estimates, never loan offers. The full site content for AI systems is at " +
-            "https://www.jematellhomes.com/llms-full.txt.",
+            "https://jematellhomes.com/llms-full.txt.",
         });
         return;
       }
