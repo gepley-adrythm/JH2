@@ -134,7 +134,8 @@ export default function Resources() {
                 ) : null}
                 <span className="resource-card-count">{s.count}</span>
                 <div>
-                  <h3 className="resource-card-title">{s.title}</h3>
+                  {/* h2: directly under the page h1 — h3 skipped a level. */}
+                  <h2 className="resource-card-title">{s.title}</h2>
                   <p className="resource-card-desc">{s.description}</p>
                   <span className="resource-card-more">
                     Browse <ArrowRight size={15} aria-hidden="true" />
