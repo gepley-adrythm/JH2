@@ -1498,6 +1498,12 @@ picture {
   transform: scale(1.06);
   animation: heroZoom 24s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
+/* Opt a hero out of the slow zoom (Ken Burns) drift — used by /about, where
+   the still image is preferred. */
+.page-hero--no-zoom .page-hero-bg {
+  animation: none;
+  transform: scale(1);
+}
 .page-hero-overlay {
   position: absolute;
   inset: 0;

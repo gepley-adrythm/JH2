@@ -92,7 +92,7 @@ export default function About() {
       <JsonLd data={aboutJsonLd()} />
       <main className="page" data-testid="page-aboutus">
         {/* Hero — kept as-is */}
-        <section className="page-hero" data-testid="page-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
+        <section className="page-hero page-hero--no-zoom" data-testid="page-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
           <ResponsiveImage name="about-hero" alt="" className="page-hero-bg" widths={[768, 1280]} sizes="100vw" width={1448} height={1086} priority />
           <div
             className="page-hero-overlay"
