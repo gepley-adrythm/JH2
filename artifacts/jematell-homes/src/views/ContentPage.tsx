@@ -232,7 +232,7 @@ const LOCAL_HERO_PICTURES: Record<
   "where-we-build": { name: "where-we-build-hero", widths: [768, 1280, 1920, 2500], width: 2533, height: 1219 },
   "build-on-your-lot": { name: "build-on-your-lot-hero", widths: [768, 1280], width: 1672, height: 941 },
   "buy-a-lot-with-us": { name: "buy-a-lot-with-us-hero", widths: [768, 1280], width: 1537, height: 1023 },
-  "aboutus": { name: "about-hero", widths: [768, 1280, 1920, 2500], width: 2752, height: 1536 },
+  "aboutus": { name: "about-hero", widths: [768, 1280, 1920], width: 1920, height: 1080 },
 };
 
 /* Heroes that still ship a single file (no variant ladder on disk). */
