@@ -76,7 +76,10 @@ export default function GuidesIndexPage() {
                     data-testid={`guide-${guide.slug}`}
                   >
                     <span className="lib-card-count">{guide.city ? "City guide" : "Pillar guide"}</span>
-                    <h3 className="lib-card-title">{guide.city || guide.title}</h3>
+                    {/* h2, not h3: the page's only heading above these is the
+                        h1, so h3 skipped a level (axe heading-order). Styling
+                        comes from the class, so the tag change is invisible. */}
+                    <h2 className="lib-card-title">{guide.city || guide.title}</h2>
                     <p className="lib-card-desc">{guide.summary}</p>
                     <span className="lib-card-more">
                       Read the guide <ArrowRight size={15} aria-hidden="true" />
