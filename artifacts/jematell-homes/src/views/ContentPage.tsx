@@ -1,5 +1,6 @@
 "use client";
 import { useMemo, lazy, Suspense, Fragment, type ReactNode, type ComponentType } from "react";
+import { preload } from "react-dom";
 import Link from "next/link";
 import { m, MotionConfig } from "framer-motion";
 import {
@@ -186,6 +187,7 @@ const CITY_HERO_WIDTHS: Record<string, number[]> = {
   "carefree":        [768, 1280, 1500],
   "casa-grande":     [768, 1280, 1920, 2500],
   "apache-junction": [768, 1280, 1500],
+  "surprise":        [768, 1280, 1920, 2500],
 };
 
 function CityHeroPicture({ slug }: { slug: string }) {
@@ -193,9 +195,20 @@ function CityHeroPicture({ slug }: { slug: string }) {
   if (!widths) return null;
   const base = `/images/city-hero-${slug}`;
   const largest = widths[widths.length - 1];
+  const avifSrcset = widths.map((w) => `${base}-${w}.avif ${w}w`).join(", ");
   const webpSrcset = widths.map((w) => `${base}-${w}.webp ${w}w`).join(", ");
+  // Preload must mirror the AVIF rung (first supported <source>) or
+  // AVIF-capable browsers double-download — see ResponsiveImage.
+  preload(`${base}.jpg`, {
+    as: "image",
+    fetchPriority: "high",
+    imageSrcSet: avifSrcset,
+    imageSizes: "100vw",
+    type: "image/avif",
+  });
   return (
     <picture>
+      <source type="image/avif" srcSet={avifSrcset} sizes="100vw" />
       <source type="image/webp" srcSet={webpSrcset} sizes="100vw" />
       <img
         src={`${base}.jpg`}
@@ -209,13 +222,22 @@ function CityHeroPicture({ slug }: { slug: string }) {
   );
 }
 
+/* Local heroes with generated variant ladders render through ResponsiveImage
+ * (picture + preload). Widths list exactly the files on disk — the generator
+ * never upscales, so smaller sources only have the 768/1280 rungs. */
+const LOCAL_HERO_PICTURES: Record<
+  string,
+  { name: string; widths: number[]; width: number; height: number }
+> = {
+  "where-we-build": { name: "where-we-build-hero", widths: [768, 1280, 1920, 2500], width: 2533, height: 1219 },
+  "build-on-your-lot": { name: "build-on-your-lot-hero", widths: [768, 1280], width: 1672, height: 941 },
+  "buy-a-lot-with-us": { name: "buy-a-lot-with-us-hero", widths: [768, 1280], width: 1537, height: 1023 },
+  "aboutus": { name: "about-hero", widths: [768, 1280], width: 1448, height: 1086 },
+};
+
+/* Heroes that still ship a single file (no variant ladder on disk). */
 const LOCAL_HERO_IMAGES: Record<string, string> = {
-  "where-we-build": "/images/where-we-build-hero.jpg",
-  "surprise": "/images/city-hero-surprise.jpg",
   "spechomes": "/images/spec-homes-hero-2.jpg",
-  "build-on-your-lot": "/images/build-on-your-lot-hero.jpg",
-  "buy-a-lot-with-us": "/images/buy-a-lot-with-us-hero.jpg",
-  "aboutus": "/images/about-hero.jpg",
 };
 
 function PageHero({
@@ -238,8 +260,14 @@ function PageHero({
     ? rawTitle.replace(/^Custom Home Builder in /i, "").replace(/, AZ.*$/i, "")
     : rawTitle;
   const hasCityHero = citySlug != null && citySlug in CITY_HERO_WIDTHS;
+  const localPicture = slug ? LOCAL_HERO_PICTURES[slug] : undefined;
   const localHero = slug ? LOCAL_HERO_IMAGES[slug] : undefined;
   const heroSrc = localHero || data.ogImage;
+  // Single-file heroes still deserve an early preload — without one the
+  // browser discovers the LCP image only after CSS, ~1s late on mobile.
+  if (!hasCityHero && !localPicture && heroSrc) {
+    preload(heroSrc, { as: "image", fetchPriority: "high" });
+  }
   return (
     <section
       className="page-hero"
@@ -248,6 +276,17 @@ function PageHero({
     >
       {hasCityHero ? (
         <CityHeroPicture slug={citySlug!} />
+      ) : localPicture ? (
+        <ResponsiveImage
+          name={localPicture.name}
+          alt=""
+          className="page-hero-bg"
+          widths={localPicture.widths}
+          sizes="100vw"
+          width={localPicture.width}
+          height={localPicture.height}
+          priority
+        />
       ) : heroSrc ? (
         <img src={heroSrc} alt="" className="page-hero-bg" loading="eager" fetchPriority="high" />
       ) : null}
@@ -259,11 +298,14 @@ function PageHero({
         className="container page-hero-content"
         style={galleryStyle ? { textAlign: "center", maxWidth: "100%" } : undefined}
       >
+        {/* initial opacity 0.01, not 0: the SSR style would otherwise make the
+            H1 permanently ineligible as an LCP candidate (Chrome ignores
+            elements first-painted at opacity 0) — see transitions.css. */}
         {galleryStyle ? (
           <h1 className="page-hero-title hero-title" style={{ textTransform: "uppercase" }}>{title}</h1>
         ) : (
           <m.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0.01, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
           >

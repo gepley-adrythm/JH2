@@ -104,6 +104,26 @@ A multi-page marketing site with:
 - All animations must respect `prefers-reduced-motion`.
 - All interactive elements need kebab-case `data-testid` attributes.
 
+## Image originals are PROTECTED (hard rule)
+
+The client's source photographs — every `.jpg`/`.jpeg`/`.png` in
+`artifacts/jematell-homes/public/images/` (including `plans/`) — must **never
+be deleted, re-encoded, overwritten, moved, or "optimized" in place**. Not to
+save disk space, not to improve Lighthouse, not while cleaning up. This is an
+explicit owner directive (2026-07-29).
+
+- Performance work uses **generated sibling variants only**
+  (`<name>-<width>.webp` / `<name>-<width>.avif`), produced by
+  `artifacts/jematell-homes/scripts/gen-image-variants.mjs [--avif]
+  [--dir=public/images/plans]` — the script reads sources and writes new
+  files; it never touches an original.
+- Every `<picture>` on the site keeps the original as its `<img src>`
+  fallback, so deleting an original breaks live pages.
+- Need space? Delete `dist/`, `out/`, `.next/`, or `node_modules/` — never
+  anything under `public/images/`.
+- If an image genuinely must be replaced, ask the owner and add the new file;
+  do not remove the old one yourself.
+
 ## Gotchas
 
 - **Don't add the artifact to the root `tsconfig.json` references** — it's a leaf workspace.
