@@ -6293,9 +6293,14 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   border-radius: 14px;
   padding: clamp(24px, 3vw, 36px);
   margin-block: clamp(28px, 3.5vw, 40px);
-  /* Wider than the 68ch prose column so the 12 build months stay legible. */
-  width: min(100%, 860px);
+  /* Break out of the readable estimate column so the timeline can use the
+     full viewport. The surrounding estimate copy stays constrained. */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
   animation: none;
+}
+.est-timeline-card .fin-timeline svg {
+  max-width: none;
 }
 .est-timeline-card .fin-stat-k {
   color: var(--color-bone);
@@ -6476,8 +6481,8 @@ a.dt-source-card:hover { transform: translateY(-2px); }
      costing most of a narrow screen. Cancel the container padding so the chart
      gets the whole width. */
   .est-timeline-card {
-    margin-inline: calc(clamp(24px, 5vw, 64px) * -1);
-    width: auto;
+    margin-left: calc(50% - 50vw);
+    width: 100vw;
     border-radius: 0;
     padding: 22px clamp(14px, 4vw, 20px);
   }
