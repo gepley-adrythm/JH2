@@ -68,6 +68,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             dangerouslySetInnerHTML={{ __html: jsonLdScript(obj) }}
           />
         ))}
+        {/* Speculation Rules: prefetch a same-origin page once the pointer has
+            settled on its link, so the click lands on an already-fetched
+            document. This is a 1,000+ page reference site where readers move
+            between pages constantly, and every page now costs ~10KB on the
+            wire (the CSS is shared and immutable), so prefetching is cheap.
+            "moderate" eagerness, not "eager": it waits for genuine hover
+            intent instead of speculating on everything in the viewport.
+            Deliberately prefetch, NOT prerender — prerender would execute each
+            page's JS ahead of the click and cost main-thread time on the page
+            the reader is actually looking at. Ignored by browsers without
+            support, and invisible to crawlers. */}
+        <script
+          type="speculationrules"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              prefetch: [
+                {
+                  source: "document",
+                  where: { and: [{ href_matches: "/*" }, { not: { href_matches: "/api/*" } }] },
+                  eagerness: "moderate",
+                },
+              ],
+            }),
+          }}
+        />
         <Providers>{children}</Providers>
       </body>
     </html>

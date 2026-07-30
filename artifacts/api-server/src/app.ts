@@ -10,6 +10,10 @@ import { staticSite, staticSiteAvailable, staticSiteInfo } from "./middlewares/s
 
 const app: Express = express();
 
+// Express advertises itself on every response, including all 1,011 static
+// pages. It tells an attacker what to target and buys nothing.
+app.disable("x-powered-by");
+
 app.use(
   pinoHttp({
     logger,
@@ -29,7 +33,16 @@ app.use(
     },
   }),
 );
-app.use(cors());
+// CORS belongs to the JSON API and the agent-facing surfaces, which are meant
+// to be callable cross-origin. It was mounted globally, so every static page
+// also went out with `Access-Control-Allow-Origin: *` — meaningless for a
+// document navigation, and it invites any origin to read the HTML via fetch.
+const corsMiddleware = cors();
+app.use("/api", corsMiddleware);
+app.use("/mcp", corsMiddleware);
+app.use("/openapi.json", corsMiddleware);
+app.use("/.well-known", corsMiddleware);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

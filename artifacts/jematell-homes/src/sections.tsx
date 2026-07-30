@@ -44,7 +44,12 @@ export function Hero() {
           name="hero"
           alt="Aerial view of Jematell Home"
           widths={[768, 1280, 1920, 2500]}
+          // The 200vw portrait bump stays for tablets: a landscape frame still
+          // has to over-fetch to cover a tall viewport, and dropping it would
+          // under-resolve iPad portrait. Phones no longer need it — they get a
+          // real portrait crop below.
           sizes="(orientation: portrait) 200vw, 100vw"
+          portraitWidths={[640, 828, 1080, 1296]}
           width={2500}
           height={1406}
           priority

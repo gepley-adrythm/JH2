@@ -15,6 +15,32 @@ interface ResponsiveImageProps {
   className?: string;
   /** Mark the LCP/above-the-fold image: eager load + high fetch priority. */
   priority?: boolean;
+  /**
+   * Art-directed PORTRAIT crop widths (expects <name>-portrait-<w>.webp,
+   * written by scripts/gen-portrait-crops.mjs). When set, portrait viewports
+   * get a centered crop of the same original instead of the landscape ladder.
+   *
+   * A landscape hero in a portrait viewport makes object-fit:cover discard most
+   * of what it downloaded: measured on the live homepage at 375x812/DPR2, the
+   * browser took hero-1920.webp (320KB) and only 25.9% of those pixels were
+   * ever visible, while the screen wanted 750x1624 — over-fetching AND
+   * under-resolving at the same time, on the LCP element. The crop is centered,
+   * so it is the same region cover already showed.
+   */
+  portraitWidths?: number[];
+  /** sizes for the portrait <source>. Defaults to "100vw" (the crop fills it). */
+  portraitSizes?: string;
+  /**
+   * Media query the portrait crop applies to. Defaults to phones only.
+   *
+   * Scoped to <=600px on purpose. On a phone the 9:16 crop is a SUPERSET of
+   * what object-fit:cover already shows (a 375x812 screen sees ~26% of the
+   * frame width; the crop keeps ~32%), so cover trims it back and the
+   * composition is unchanged. A portrait tablet is far less tall-and-narrow —
+   * it currently sees ~42% of the frame — so handing it the same crop would
+   * genuinely re-frame the shot. Tablets keep the landscape ladder.
+   */
+  portraitMedia?: string;
 }
 
 /**
@@ -64,8 +90,14 @@ export function ResponsiveImage({
   height,
   className,
   priority,
+  portraitWidths,
+  portraitSizes = "100vw",
+  portraitMedia = "(orientation: portrait) and (max-width: 500px)",
 }: ResponsiveImageProps) {
   const hasAvif = AVIF_BASES.has(name);
+  const portraitSrcSet = portraitWidths?.length
+    ? portraitWidths.map((w) => `${img(`${name}-portrait-${w}.webp`)} ${w}w`).join(", ")
+    : null;
   const avifSrcSet = widths
     .map((w) => `${img(`${name}-${w}.avif`)} ${w}w`)
     .join(", ");
@@ -77,7 +109,13 @@ export function ResponsiveImage({
   // the hint can never drift from what the <picture> actually renders: the
   // preload's srcset+type must match the first supported <source> or
   // capable browsers double-download the image.
-  if (priority) {
+  //
+  // Art direction is the exception. A single hint cannot describe two crops —
+  // it would preload the landscape ladder even on a portrait phone, which then
+  // fetches the portrait crop as well and pays for both. Those cases emit two
+  // media-scoped <link>s below instead, so each orientation preloads exactly
+  // the file its <source> will pick.
+  if (priority && !portraitSrcSet) {
     preload(img(`${name}.jpg`), {
       as: "image",
       fetchPriority: "high",
@@ -89,6 +127,39 @@ export function ResponsiveImage({
 
   return (
     <picture>
+      {priority && portraitSrcSet ? (
+        <>
+          {/* React hoists these into <head>. */}
+          <link
+            rel="preload"
+            as="image"
+            type="image/webp"
+            fetchPriority="high"
+            media={portraitMedia}
+            imageSrcSet={portraitSrcSet}
+            imageSizes={portraitSizes}
+          />
+          <link
+            rel="preload"
+            as="image"
+            type={hasAvif ? "image/avif" : "image/webp"}
+            fetchPriority="high"
+            media={`not all and ${portraitMedia}`}
+            imageSrcSet={hasAvif ? avifSrcSet : webpSrcSet}
+            imageSizes={sizes}
+          />
+        </>
+      ) : null}
+      {/* Order matters: the first matching <source> wins, so the portrait crop
+          must be offered before the generic landscape ladder. */}
+      {portraitSrcSet ? (
+        <source
+          media={portraitMedia}
+          type="image/webp"
+          srcSet={portraitSrcSet}
+          sizes={portraitSizes}
+        />
+      ) : null}
       {hasAvif ? <source type="image/avif" srcSet={avifSrcSet} sizes={sizes} /> : null}
       <source type="image/webp" srcSet={webpSrcSet} sizes={sizes} />
       <img
