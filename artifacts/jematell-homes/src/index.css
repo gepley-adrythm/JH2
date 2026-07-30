@@ -5900,8 +5900,10 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   margin-inline: auto;
   margin-block: clamp(40px, 5vw, 64px);
 }
+.fin-examples h2 {
+  text-transform: uppercase;
+}
 .fin-examples-intro {
-  max-width: 62ch;
   color: var(--color-text-muted);
   margin-bottom: 24px;
 }
