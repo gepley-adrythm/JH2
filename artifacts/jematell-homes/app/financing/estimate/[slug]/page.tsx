@@ -354,7 +354,7 @@ export default async function EstimateScenarioPage({
             <Link className="est-cta" href={`${calculatorHref(s)}#calculator`}>
               Adjust this estimate
             </Link>
-            <Link className="est-cta est-cta--quiet" href="/contact">
+            <Link className="est-cta" href="/contact">
               Contact us
             </Link>
           </div>
