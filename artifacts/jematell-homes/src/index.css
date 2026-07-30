@@ -6288,21 +6288,15 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 /* The timeline now sits mid-page on the light body, illustrating the
    construction-phase paragraph. It carries its own dark surface, which both
    keeps the chart's palette valid and breaks up the prose. Overrides the
-   band-era rules above. */
+   band-era rules above. Stays inside the readable estimate column rather
+   than breaking out to the full viewport. */
 .est-timeline-card {
   background: var(--color-dark);
   border: none;
   border-radius: 14px;
   padding: clamp(24px, 3vw, 36px);
   margin-block: clamp(28px, 3.5vw, 40px);
-  /* Break out of the readable estimate column so the timeline can use the
-     full viewport. The surrounding estimate copy stays constrained. */
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
   animation: none;
-}
-.est-timeline-card .fin-timeline svg {
-  max-width: none;
 }
 .est-timeline-card .fin-stat-k {
   color: var(--color-bone);
@@ -6479,13 +6473,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 }
 
 @media (max-width: 760px) {
-  /* Full-bleed on phones: the container's own gutter plus a card gutter was
-     costing most of a narrow screen. Cancel the container padding so the chart
-     gets the whole width. */
   .est-timeline-card {
-    margin-left: calc(50% - 50vw);
-    width: 100vw;
-    border-radius: 0;
     padding: 22px clamp(14px, 4vw, 20px);
   }
 }
