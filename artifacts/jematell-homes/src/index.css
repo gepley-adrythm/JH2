@@ -6177,7 +6177,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 }
 .est-band .est-h1 {
   color: #fff;
-  max-width: 20ch;
+  max-width: 60ch;
   margin: 12px 0 18px;
 }
 .est-band .est-lead {
