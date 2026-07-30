@@ -6041,6 +6041,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 }
 .est-table caption {
   text-align: left;
+  font-family: var(--font-serif, var(--font-heading));
   font-size: 25px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
