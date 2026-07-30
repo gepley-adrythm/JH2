@@ -6191,7 +6191,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(380px, 0.95fr);
   gap: clamp(32px, 4.5vw, 72px);
-  align-items: center;
+  align-items: start;
   margin-bottom: clamp(36px, 4.5vw, 56px);
 }
 .est-hero-chart .est-stat--lead {
