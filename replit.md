@@ -143,6 +143,7 @@ explicit owner directive (2026-07-29).
 
 ## Pointers
 
+- `LOT-FEASIBILITY-TOOL-PLAN.md` (repo root) — full scope for the planned "Can I even build on this lot?" tool. PLANNING ONLY: do not start building it without the owner's explicit go-ahead; the plan file is the source of truth for its architecture and phasing.
 - See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details
 - See `artifacts/jematell-homes/.replit-artifact/artifact.toml` for the artifact's proxy config
 - **Deep architecture detail lives in `.agents/memory/`** (`jematell-seo-ssg.md`, `jematell-performance.md`, `jematell-contact-form.md`, `jematell-quality-guards.md`, `fixed-overlay-containing-block.md`, `floorplan-tier-images.md`) — this README keeps the at-a-glance summary; those files hold the full "why" and edge cases.
