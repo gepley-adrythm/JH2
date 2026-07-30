@@ -1,311 +1,390 @@
 # Tool Plan: "Can I Even Build on This Lot?" — Arizona Lot Feasibility Engine
 
-Status: **PLANNING ONLY — nothing in this document is built.** Owner directive
-2026-07-29: scope the tool in full before any implementation. This file is the
-single source of truth for that scope.
+Status: **PLANNING ONLY — nothing here is built.** Owner directive 2026-07-29.
+Second pass, written as if build starts tomorrow: endpoints verified live,
+corpus slugs resolved, schemas drafted, file manifest concrete. Sections
+marked ✅ were verified against the real service or repo on 2026-07-29;
+sections marked ⚠ are the known unknowns with their verification step.
 
-Precedent: the construction-loan calculator (`lib/construction-loan` +
-`/api/estimate` + 135 prerendered scenario pages + MCP tool). It worked because
-it encoded expertise into an interactive surface and fed the content flywheel.
-This tool is the same play aimed at the highest-anxiety moment in the entire
-buying journey — before a builder is even chosen: **is this parcel buildable at
-all, and what will make it painful?**
+Precedent: the construction-loan calculator (`lib/construction-loan`,
+`/api/estimate`, 135 prerendered scenario pages, MCP tool). Same play, aimed
+earlier in the funnel: **is this parcel buildable, and what will hurt?**
 
-Why this one is a bigger moat than the calculator:
-
-1. It fires **before** builder selection — first contact with the exact person
-   we want.
-2. The load-bearing layer is **field experience** (what actually burned us on
-   rural Maricopa/Pinal land), which cannot be reverse-engineered from HTML.
-3. The lead it produces — *a person with a specific parcel* — is the single
-   most qualified lead type in this business, and the tool naturally asks for
-   the parcel as its first input.
+Why this beats the calculator as a moat: it fires before builder selection;
+its load-bearing layer is field experience (not reverse-engineerable from
+HTML); and its natural first input — a specific parcel — is the most
+qualified lead signal that exists in this business.
 
 ---
 
 ## 1. Product definition
 
-**Input:** an address, an APN (assessor parcel number), or — critically — a
-"just looking at an area" mode (pick jurisdiction + community) for people who
-don't have a parcel yet. Never dead-end someone who lacks an APN.
+**Input:** address, APN, or "exploring an area" (jurisdiction + community
+picker). Never dead-end a visitor without a parcel.
 
-**Output:** a **Lot Dossier** — a seven-dimension feasibility walkthrough where
-every dimension gets:
+**Output:** a **Lot Dossier** — seven dimensions, each with:
+- verdict tier: `looks-clear` / `verify-before-offer` / `known-friction` /
+  `dealbreaker-risk`
+- plain-English why (knowledge layer)
+- concrete verify steps (who to call, what document, rough cost)
+- links into our existing corpus (exact slugs — see §3, all confirmed real)
+- Jematell **field notes** where they exist (the un-copyable layer)
 
-- a verdict tier: `Looks clear` / `Verify before you offer` /
-  `Known friction in this area` / `Potential dealbreaker`
-- a plain-English explanation of *why* (from the knowledge layer)
-- the specific thing to verify and *how* (who to call, what document to pull)
-- a link to the relevant existing reference/FAQ page (we already wrote them)
-- where one exists, a Jematell **field note** — the from-experience warning no
-  competitor has
+**Dimensions, in order** (water first — it's the rural-Maricopa dealbreaker):
+water source · septic/wastewater · utility access · zoning & setbacks ·
+HOA/CC&R exposure · environmental overlays (NAOS/ESL, dark-sky, hillside,
+washes/flood, fissures) · access & easements.
 
-**The seven dimensions** (order matters — water first, because in rural
-Maricopa it's the dealbreaker):
-
-1. **Water source** — municipal service area vs private water company (EPCOR
-   et al.) vs shared well vs exempt well vs hauled water. Rio Verde Foothills
-   post-2023 hauling reality gets first-class treatment. Domestic Water
-   Improvement Districts (DWIDs): what they are, whether one exists or is
-   forming. Assured/adequate water supply rules where subdivision applies.
-2. **Septic / wastewater** — sewer availability vs onsite wastewater; perc
-   test reality by area (where perc failures cluster, alternative-system cost
-   band); county Environmental Services permitting.
-3. **Utility access** — power (SRP vs APS territory, distance-to-line cost
-   reality), gas vs propane areas, internet reality. Line-extension quotes:
-   what they cost and how long they take.
-4. **Zoning & setbacks** — jurisdiction resolution first (city vs county
-   island vs county), zoning district, minimum lot size, setbacks, height,
-   accessory limits. Links straight into our per-city building-codes spokes.
-5. **HOA / CC&R exposure** — is the parcel inside a platted community with
-   CC&Rs, design review (DRC/ARC), build-timeline clauses, minimum square
-   footage, RV/garage rules. Links into the community-design-guidelines
-   module for covered communities.
-6. **Environmental overlays** — NAOS (Scottsdale ESL), dark-sky ordinances
-   (Cave Creek, Fountain Hills flavor), hillside/slope ordinances, washes and
-   FEMA flood zones, fissure areas (Pinal), Sonoran desert tortoise / native
-   plant salvage rules.
-7. **Access & easements** — legal access vs physical access (the classic
-   rural trap), recorded easements, private road maintenance agreements,
-   flag lots, county road maintenance status (dirt roads that the county does
-   NOT maintain).
-
-**Closing screen:** the dossier summary + two CTAs — "email me this dossier"
-(lead capture; see §6) and "walk this lot with us" (the premium ask).
+**Close:** dossier summary (headline verdict = worst tier present) + "email
+me this dossier" (lead capture) + "walk this lot with us" CTA.
 
 ---
 
-## 2. Architecture (fits the existing stack, no new platforms)
-
-Same shape as the calculator, with one structural difference: parcel-specific
-answers cannot be prerendered, so the runtime lives in the api-server.
+## 2. Architecture ✅ (mirrors the calculator; verified against repo layout)
 
 ```
-lib/lot-feasibility/          <- NEW shared workspace lib (pure, typed)
-  src/knowledge/              <- THE MOAT: area profiles + field notes (data)
-  src/schema.ts               <- KnowledgeArea, Dimension, Verdict, FieldNote
-  src/engine.ts               <- pure evaluation: (parcelFacts, area) -> Dossier
-  src/index.ts
+lib/lot-feasibility/                      NEW workspace lib (pure, typed)
+  package.json                            "@workspace/lot-feasibility"
+  src/schema.ts                           types below (§3)
+  src/engine.ts                           (facts, area) -> Dossier  [pure]
+  src/knowledge/index.ts                  registry of KnowledgeArea files
+  src/knowledge/rio-verde-foothills.ts    pilot area 1 (worked example §4)
+  src/knowledge/cave-creek-carefree.ts    pilot area 2
+  src/knowledge/north-scottsdale-esl.ts   pilot area 3
+  src/knowledge/pinal-san-tan.ts          pilot area 4
 
-artifacts/api-server/
-  routes/lot.ts               <- POST /api/lot/resolve (APN/address -> facts)
-                                 POST /api/lot/dossier (facts -> dossier JSON)
-                                 mounts MCP tool alongside existing /mcp
-  services/parcelLookup.ts    <- county assessor/GIS adapters (Phase 2+)
+artifacts/api-server/src/
+  routes/lot.ts                           POST /api/lot/resolve, /api/lot/dossier
+  services/parcel/maricopaParcel.ts       ArcGIS adapter (§5.1)
+  services/parcel/adwrWells.ts            Wells55 adapter (§5.2)
+  services/parcel/cache.ts                in-memory TTL cache (autoscale-safe:
+                                          per-instance, short TTL, no disk)
+
+lib/api-spec/openapi.yaml                 ADD lot paths -> regenerate zod (§7)
 
 artifacts/jematell-homes/
-  app/lot-check/page.tsx      <- the tool page (client island, code-split
-                                 exactly like the calculator; route JS budget
-                                 applies — audit.mjs gates it)
-  app/lot-check/[area]/page.tsx <- ~30-60 PRERENDERED area feasibility pages
-                                 (the SEO layer; same pattern as
-                                 /financing/estimate/*)
+  app/lot-check/page.tsx                  tool page (RSC shell + client island)
+  app/lot-check/[area]/page.tsx           prerendered area pages (SSG params
+                                          from knowledge registry)
+  src/views/LotCheckWizard.tsx            "use client" island, code-split like
+                                          ConstructionLoanCalculator
 ```
 
-Design rules carried over from the calculator build:
+Rules carried over: one engine, three consumers (wizard, area pages, MCP) so
+they can never disagree; static export untouched (only /api/lot/* is
+runtime); tool JS code-split to its route.
 
-- **One engine, three consumers**: the interactive tool, the prerendered area
-  pages, and the MCP tool all call the same `lib/lot-feasibility` evaluation
-  so they can never disagree.
-- The tool page is a client island on its own route; the rest of the site
-  ships zero extra JS. Per-route JS budget (200KB gz) is a hard gate.
-- Static export stays intact. Only `/api/lot/*` is runtime.
-- Every page must hold the current bars: Lighthouse performance ~100 warm,
-  **accessibility 100 (non-negotiable, now a standing requirement)**, zero
-  CLS, entrance animations per the house system (start at opacity 0.01 —
-  see transitions.css note).
+**Route JS budget math** ✅ (measured basis: /financing ships ~190KB gz with
+the calculator against the 200KB audit gate): the wizard is forms + text +
+fetch — no charting, no leaflet. Target: **page chunk ≤ 25KB gz**, route
+total ≤ 185KB gz. audit.mjs gains `/lot-check` in its checked-routes list on
+day one, plus the standing bars: Lighthouse perf ~100 warm, **accessibility
+100 (all 33+ templates hold this today — new templates must too)**, CLS 0,
+entrance animations start at opacity 0.01 (never 0 — LCP eligibility, see
+transitions.css).
 
 ---
 
-## 3. The knowledge layer (the actual moat)
-
-A versioned, reviewable dataset — NOT scattered prose. Proposed shape:
+## 3. Knowledge schema (concrete)
 
 ```ts
-interface KnowledgeArea {
-  slug: string;                 // "rio-verde-foothills", "cave-creek", ...
-  jurisdiction: string;         // resolves to building-codes module city
-  appliesTo: AreaMatcher;       // zip list + optional GIS polygon later
-  dimensions: Record<DimensionKey, DimensionProfile>;
+export type DimensionKey =
+  | "water" | "septic" | "utilities" | "zoning"
+  | "hoa" | "overlays" | "access";
+
+export type VerdictTier =
+  | "looks-clear" | "verify-before-offer"
+  | "known-friction" | "dealbreaker-risk";
+
+export interface VerifyStep {
+  action: string;          // "Call Maricopa Environmental Services (602-506-6666)"
+  artifact?: string;       // "Septic permit record / perc test on file"
+  costBand?: string;       // "$0" | "$1,200-$2,500" ...
+  timeBand?: string;       // "same day" | "2-4 weeks"
 }
 
-interface DimensionProfile {
+export interface FieldNote {
+  note: string;            // first-person, from the team interview
+  attributedTo?: string;   // "Joe" | "Tyler" | "Jematell field crew"
+}
+
+export interface DimensionProfile {
   defaultVerdict: VerdictTier;
-  summary: string;              // plain-English area reality
-  verifySteps: VerifyStep[];    // who to call / what to pull / what it costs
-  referenceLinks: string[];     // slugs into faq/reference/glossary (resolve
-                                // against seed.ts + reference.json at build)
-  fieldNotes: FieldNote[];      // the Jematell-experience layer
-  lastReviewed: string;         // staleness guard — surfaces in admin, not UI
+  summary: string;
+  verifySteps: VerifyStep[];
+  referenceSlugs: string[];   // /faq/<slug> | /reference-library/<module>/<slug>
+                              // BUILD GATE: every slug must resolve against
+                              // lib/faq/src/seed.ts + reference.json (the
+                              // operative sources — NOT the markdown mirrors)
+                              // or the build fails, same as content-lint.
+  fieldNotes: FieldNote[];
+  lastReviewed: string;       // "2026-07"; >6mo stale => "confirm current
+                              // status" banner renders automatically
+}
+
+export interface KnowledgeArea {
+  slug: string;               // route segment for /lot-check/[area]
+  title: string;              // "Rio Verde Foothills"
+  jurisdictionSlug: string;   // joins to building-codes module city
+  zipHints: string[];         // for address->area inference (Phase 2)
+  county: "maricopa" | "pinal";
+  dimensions: Record<DimensionKey, DimensionProfile>;
 }
 ```
 
-**Field notes are the differentiator and they cannot be written by an AI or a
-researcher.** They come from a structured interview with Joe and Tyler, per
-area, per dimension. Draft interview prompts (Phase 0 deliverable):
+**Corpus backing is already real.** Slugs confirmed present in seed.ts /
+reference.json on 2026-07-29 (sample; resolve full list at build):
 
-- "Tell me about a lot in [area] you walked away from. What killed it?"
-- "What does a water-hauling setup actually cost a family per month in RVF
-  right now, and what do buyers always get wrong about it?"
-- "Where have perc tests failed on you? What did the alternative system cost?"
-- "What's the worst easement surprise you've hit? How would a buyer have
-  caught it before closing?"
-- "Which HOAs/DRCs are slow or hostile, and which are easy to work with?"
-  (Publish carefully — tone: factual timelines, not opinions.)
-- "What line-extension quote shocked a client? Distance, utility, number."
+- water: `how-to-get-water-to-a-home-in-rio-verde-foothills`,
+  `how-much-does-it-cost-to-haul-water-in-rio-verde-foothills`,
+  `how-big-a-water-storage-tank-do-i-need-for-a-hauled-water-home-in-arizona`,
+  `building-in-rio-verde-foothills-water-rules`,
+  `assured-vs-adequate-water-supply-and-the-100-year-rule`,
+  `does-a-well-or-hauled-water-affect-a-rio-verde-foothills-property-value-and-financing`,
+  ref `ars-45-454-exempt-domestic-well-arizona`, ref `ars-45-596-well-drilling-notice-arizona`
+- septic: `how-close-can-a-well-be-to-a-septic-system-in-arizona`,
+  `septic-permits-and-the-transfer-of-ownership-inspection`,
+  ref `maricopa-county-septic-and-well-requirements`,
+  ref `pinal-county-septic-and-well-requirements`
+- utilities: `how-much-does-it-cost-to-extend-power-or-utilities-to-a-rural-arizona-lot`,
+  `how-does-temporary-construction-power-and-the-meter-spot-work-on-a-new-arizona-home`
+- zoning: `rural-residential-zoning-districts-in-maricopa-county`, ref
+  `maricopa-county-residential-zoning-and-setbacks` (+ all 10 per-city
+  zoning/setback spokes exist, incl. `cave-creek-…`, `carefree-…`,
+  `pinal-county-…`)
+- hoa: `how-does-hoa-design-review-affect-building-a-custom-home`,
+  `how-much-are-hoa-design-review-fees-for-a-custom-home-in-arizona`
+  (+ community-design-guidelines module for named communities)
+- overlays: `what-is-a-building-envelope-or-naos-easement-on-an-arizona-custom-lot`,
+  `what-is-plant-salvage-or-cactus-boxing-before-grading-on-a-scottsdale-esl-lot`,
+  `desert-and-dark-sky-design-rules-cave-creek-carefree`,
+  `do-i-need-a-floodplain-use-permit-to-build-near-a-wash-in-maricopa-county`,
+  `earth-fissures-and-land-subsidence-in-pinal-county`
+- access: `how-do-i-confirm-legal-access-to-a-rural-lot`
 
-Pilot coverage (Phase 0): **Rio Verde Foothills, Cave Creek/Carefree, North
-Scottsdale (ESL), San Tan / Pinal County** — the four areas where feasibility
-pain is highest and our existing content is deepest. Then the remaining
-service areas.
-
-**Content scaffolding already in place** (link, don't rewrite): shared well
-agreement FAQ, Rio Verde water-hauling coverage, DWID explainer, perc test
-FAQ/glossary, per-city zoning & setback spokes (all 10 jurisdictions),
-Scottsdale ESL/NAOS pillar, Cave Creek dark-sky material, easement/plat/CC&R
-glossary entries, community-design-guidelines module. The build step should
-resolve exact slugs from `lib/faq/src/seed.ts` and `reference.json` (those are
-the operative sources — NOT the markdown mirrors) and fail the build on any
-dead link, same standard as content-lint.
+**Field notes come from a structured team interview** (2-3h with Joe/Tyler;
+Phase 0's long pole). Question set: the lot you walked away from and why;
+real monthly hauling cost a family pays now and what buyers get wrong; where
+perc tests failed and what the alternative system cost; the worst easement
+surprise and how a buyer could have caught it; which DRCs are slow vs easy
+(publish as factual timelines only); the line-extension quote that shocked a
+client (utility, distance, number).
 
 ---
 
-## 4. The parcel layer (best-effort automation, graceful degradation)
+## 4. Worked example — `rio-verde-foothills.ts` (draft content, water dimension)
 
-Public lookups that can turn an APN/address into facts. **Every endpoint below
-is TO-VERIFY at build time — a Phase 2 spike task, not a settled fact.** Do
-not assert any of these in UI copy until proven in code.
+```ts
+water: {
+  defaultVerdict: "known-friction",
+  summary:
+    "Most RVF lots have no municipal water and never will. Your realistic " +
+    "options are an on-site exempt well (hit-or-miss depth and yield in this " +
+    "area), a shared well agreement with neighbors, or hauled water into a " +
+    "storage tank — which after the 2023 Scottsdale standpipe cutoff means " +
+    "knowing exactly which hauler serves your road and at what price.",
+  verifySteps: [
+    { action: "Search ADWR Wells55 for registered wells within a half mile of the parcel (the tool does this automatically when you enter an APN)", artifact: "Nearby well count, depths, and drill dates", costBand: "$0", timeBand: "instant" },
+    { action: "If a shared well is claimed, demand the recorded shared well agreement and check it names this parcel", artifact: "Recorded agreement (county recorder)", costBand: "$0", timeBand: "same day" },
+    { action: "Get a written quote from a hauler that actually serves the parcel's road", artifact: "Quote naming the address", costBand: "varies", timeBand: "days" },
+  ],
+  referenceSlugs: [
+    "how-to-get-water-to-a-home-in-rio-verde-foothills",
+    "how-much-does-it-cost-to-haul-water-in-rio-verde-foothills",
+    "how-big-a-water-storage-tank-do-i-need-for-a-hauled-water-home-in-arizona",
+    "building-in-rio-verde-foothills-water-rules",
+    "reference-library/arizona-building-law/ars-45-454-exempt-domestic-well-arizona",
+  ],
+  fieldNotes: [
+    // FROM INTERVIEW — placeholders illustrate the shape, do not publish:
+    // { note: "…", attributedTo: "Joe" },
+  ],
+  lastReviewed: "2026-07",
+},
+```
 
-| Fact | Candidate source | Notes |
+The other six dimensions follow the same pattern; the numbers inside
+summaries/costBands must come from our published pages (which are sourced)
+or the interview — never invented.
+
+---
+
+## 5. Parcel layer — VERIFIED endpoints
+
+### 5.1 Maricopa parcels ✅ live (checked 2026-07-29)
+
+`https://gis.mcassessor.maricopa.gov/arcgis/rest/services/Parcels/MapServer`
+answered: ArcGIS 11.5, layer 0 "Parcels", esriGeometryPolygon, copyright
+Maricopa County Assessor. Query shape (standard ArcGIS REST):
+
+```
+GET …/Parcels/MapServer/0/query
+  ?where=APN='219-38-016'        ⚠ exact field name TO-CONFIRM via ?f=json fields list
+  &outFields=*&returnGeometry=true&outSR=4326&f=json
+```
+
+Gives polygon + attributes (APN, situs address, size). Separately, the
+Assessor's **documented JSON API** (`mcassessor.maricopa.gov`, PDF docs on
+their site) returns richer parcel data **but requires an API key requested
+via their contact form ("API Token/Question")** — ⚠ **day-1 action item:
+request the key; lead time unknown.** Build against the open ArcGIS layer
+first; treat the keyed API as an upgrade.
+⚠ Confirm ToS: per-query display with attribution (we never bulk-store or
+redistribute), rate limits unknown — cache per-instance, 15-min TTL.
+
+### 5.2 ADWR Wells55 ✅ live (checked 2026-07-29)
+
+`https://services.arcgis.com/C34zQ7veRS0V1t04/ArcGIS/rest/services/Well_Registry_2024/FeatureServer`
+answered with the registry description (NOI series 55-500000/55-900000,
+existing-well registrations, discovered wells). No key. The killer query:
+
+```
+GET …/FeatureServer/0/query
+  ?geometry={"x":-111.67,"y":33.72}&geometryType=esriGeometryPoint&inSR=4326
+  &distance=805&units=esriSRUnit_Meter
+  &outFields=REGISTRY_ID,WELL_DEPTH,INSTALLED&f=json      ⚠ field names TO-CONFIRM
+```
+
+→ "**N registered wells within a half mile**, typical depth ~X ft" rendered
+on the water card. This is the single most impressive automated fact in v1
+and it costs nothing.
+
+### 5.3 The rest
+
+| Fact | Source | Status |
 |---|---|---|
-| APN -> address, lot size, jurisdiction | Maricopa County Assessor public API; Pinal County parcel search | Maricopa has a documented JSON API (verify current terms + rate limits). Pinal likely scrape-or-GIS. |
-| Parcel polygon / GIS | County GIS open-data portals | Needed only for overlay checks; Phase 3. |
-| Zoning district | City GIS layers (Scottsdale, Phoenix, Mesa...), county zoning for unincorporated | Phoenix/Mesa blocked automated fetch during content research (403) — expect the same; plan for manual fallback copy. |
-| Nearby registered wells | ADWR well registry (Wells55) open data | Strong candidate for a genuinely impressive feature: "N registered wells within half a mile." Verify API. |
-| Water provider service area | ADWR / provider boundary data, EPCOR maps | May be partly manual (knowledge layer covers the gaps). |
-| Flood zone | FEMA NFHL | Public, stable. Phase 3 overlay. |
-| Utility territory (SRP vs APS) | Published territory maps | Possibly knowledge-layer-only (zip granularity is fine). |
+| Pinal parcels | Pinal County GIS/parcel search | ⚠ spike: find their ArcGIS REST equivalent |
+| City zoning district | city GIS layers | ⚠ Phoenix/Mesa 403'd automated fetches during content research — expect friction; knowledge layer covers with per-city defaults + "look up your district here" links |
+| Flood zone | FEMA NFHL ArcGIS services | ⚠ Phase 3; endpoint family well known, confirm layer ids |
+| SRP vs APS territory | published maps | knowledge layer at zip granularity (good enough) |
+| Water provider boundary | ADWR/EPCOR maps | knowledge layer v1; GIS later |
 
-Degradation rule: **the tool must be fully useful with zero external APIs
-working** — jurisdiction + community selection alone must produce a complete,
-honest dossier from the knowledge layer, with "how to verify" steps standing
-in for automated facts. APIs upgrade the experience; they are not load-bearing.
-
-Caching: parcel lookups cached server-side (api-server) with short TTL;
-assessor data is not ours to redistribute wholesale — we display per-query
-facts with attribution, never bulk-store or resell. Check each source's terms
-during the Phase 2 spike and record findings in this file.
+**Degradation rule (hard requirement):** the tool must produce a complete,
+honest dossier with ALL external APIs off — area mode + knowledge layer
+only. Prove it with a test that stubs every adapter to fail. APIs are
+enhancements, never load-bearing.
 
 ---
 
-## 5. UX flow (wizard)
+## 6. API contracts (concrete)
 
-1. **Entry**: address / APN / "exploring an area" picker. Set expectations in
-   one sentence: educational pre-diligence, not a survey or title search.
-2. **Resolve & confirm**: show what we resolved (jurisdiction, community,
-   lot size if known) — user confirms or corrects. Wrong-parcel errors die here.
-3. **Seven dimension cards**, walked in order, each with verdict tier, the
-   why, the verify steps, reference links, field note. Progressive reveal =
-   natural narrative tension; verdictless skeleton first so nothing jumps
-   (CLS 0 rule).
-4. **Dossier summary**: tier rollup (the single headline verdict is the
-   worst tier present), the "what to do next week" checklist.
-5. **Capture**: email-the-dossier form (name/email/phone optional) and
-   book-a-lot-walk CTA. Both feed the existing contact pipeline.
-6. Shareable URL for the area-mode (`/lot-check/rio-verde-foothills`);
-   parcel-mode results are NOT indexable/shareable (privacy; also parcel data
-   freshness).
+```
+POST /api/lot/resolve
+  { "query": "219-38-016" | "13822 E Windstone Trl" , "hint": { "county": "maricopa" }? }
+→ { "ok": true,
+    "parcel": { "apn": "219-38-016", "address": "…", "county": "maricopa",
+                "jurisdiction": "maricopa-county", "areaSlug": "rio-verde-foothills",
+                "acreage": 1.25, "centroid": { "lat": 33.72, "lon": -111.67 } },
+    "confidence": "exact" | "approximate" }
+| { "ok": false, "reason": "not-found" | "outside-service-area" | "lookup-unavailable",
+    "fallback": { "areas": [ …KnowledgeArea summaries… ] } }
 
-Design language: house system (Cormorant/DM Sans, warm palette, entrance
-system, premium spacing). The seven cards are a natural fit for the section
-treatments built for the guide-page quality pass.
+POST /api/lot/dossier
+  { "areaSlug": "rio-verde-foothills", "parcel"?: <resolve result>,
+    "enrich"?: { "wellsNearby": true } }
+→ { "dossier": { "headline": "verify-before-offer",
+      "dimensions": [ { "key": "water", "verdict": "known-friction",
+        "summary": "…", "verifySteps": […], "references": [{ "title": "…", "url": "/faq/…" }],
+        "fieldNotes": […], "auto": { "wellsWithinHalfMile": 14, "medianDepthFt": 540 }? } … ] } }
+```
 
----
+Zod: add both paths to `lib/api-spec/openapi.yaml` and regenerate —
+**orval v8.9.1 generates `lib/api-zod/src/generated/api.ts` from that yaml**
+(header confirms; the generated file is do-not-edit). ⚠ locate the exact
+orval invocation (config file or script) before first regen; record it here.
+Remember: generated schemas STRIP unknown keys — the dossier-email payload
+(§8) must be IN the yaml, not bolted on client-side.
 
-## 6. Lead capture & attribution
-
-- Reuse `submitContactForm` + `/api/contact` (Gmail connector) with a new
-  lead type marker so the subject line reads
-  `New LOT CHECK lead: {name} — {area or APN}`.
-- The dossier itself goes in the email body — the sales team sees exactly
-  what the prospect saw, dimension by dimension.
-- Attribution rides automatically: the tracking module (first-touch,
-  UTMs > click-ids > referrer; fixed 2026-07-29 so paid never reads organic)
-  already attaches to every submission. A lot-check lead that came from a
-  Google ad vs an organic guide page will say so in the email.
-- Requires extending `SubmitContactBody` (generated zod in
-  `lib/api-zod`) with the dossier payload — remember the schema STRIPS
-  unknown keys, so this is a schema change, not just a client change. Find
-  the generator source first (orval; see `.agents/memory/`).
+MCP: add `lot_feasibility` tool beside the existing estimate tool in
+`routes/mcp.ts` — input `{ area | apn }`, output the dossier summary (not the
+raw knowledge base; competitive-leakage rule).
 
 ---
 
-## 7. SEO / AEO surface
+## 7. Wizard UX (screen-by-screen)
 
-- **Area feasibility pages** (`/lot-check/[area]`, prerendered): "Can you
-  build on land in Rio Verde Foothills?" etc. — one per knowledge area,
-  ~30-60 pages at maturity. Same static-page pattern as the estimate pages;
-  each is the area's dossier in narrative form, interlinked with the FAQ/
-  reference corpus (the interlink engine already exists).
-- The tool itself exposed via **MCP** (`/mcp`) like the estimate tool — AI
-  assistants can answer "can I build on a lot in Cave Creek" from our engine,
-  with attribution back to the site.
-- JSON-LD: the area pages are strong `FAQPage`/`HowTo` candidates; verify
-  against current Google policy at build time (don't assume rich-result
-  eligibility).
-- Route parity gate updates with the new routes; sitemap + llms.txt pick
-  them up through the existing generators.
+1. **Entry** — one field (address or APN) + "just exploring an area" link.
+   Sub-line: "Educational pre-diligence for Maricopa & Pinal county land —
+   not a survey, appraisal, or title search."
+2. **Confirm** — "We found: APN 219-38-016, 1.25 ac, Rio Verde Foothills
+   (unincorporated Maricopa County). Right parcel?" [Yes / fix]. On lookup
+   failure: area picker, zero friction, no error theatrics.
+3. **Dimension cards ×7** — verdict chip + why + verify steps (collapsed
+   accordion, the detail-page interaction pattern) + reference links +
+   field-note callout (distinct visual voice, e.g. the pull-quote treatment
+   from the guide redesign). Skeleton heights fixed (CLS 0). Water card
+   renders the wells-nearby auto-fact when available.
+4. **Dossier summary** — tier rollup, "this week" checklist (top verify step
+   per non-clear dimension), then capture: email-the-dossier (name, email,
+   phone optional) + "walk this lot with us."
+5. Area mode shares a URL (`/lot-check/rio-verde-foothills`); parcel results
+   are not indexable or shareable (privacy + freshness).
+
+Copy tone: house voice. Verdicts never say "you cannot build" — they say
+what to verify and what it costs to find out.
 
 ---
 
-## 8. Phasing (each phase independently shippable, all gates green)
+## 8. Lead capture & attribution ✅ (pipeline verified end-to-end 2026-07-29)
 
-| Phase | Deliverable | Depends on |
+Reuse `submitContactForm` → `/api/contact` (Gmail connector). Subject:
+`New LOT CHECK lead: {name} — {areaTitle}{apn ? " / APN " + apn : ""}`.
+Body = the dossier the prospect saw, dimension by dimension, above the
+existing attribution block (source/medium/campaign/click-ids/referrer —
+first-touch, click-ids-before-referrer as of 6a90829, so paid never reads
+organic). Requires the openapi.yaml change from §6.
+
+---
+
+## 9. SEO/AEO surface
+
+- `/lot-check/[area]` prerendered pages (start 4, grow to ~30-60): the area
+  dossier as narrative, interlinked via the existing "Keep exploring" engine
+  into the 40+ backing pages. Sitemap/robots/llms.txt pick them up from the
+  route tree automatically; route-parity baseline +N.
+- JSON-LD: FAQPage on area pages ⚠ verify current rich-result eligibility
+  at build; the tool page itself gets WebApplication markup like the
+  calculator.
+- MCP exposure per §6.
+
+---
+
+## 10. Phases (each shippable, all gates green)
+
+| Phase | Deliverable | Exit test |
 |---|---|---|
-| **0. Knowledge schema + pilot data** | `lib/lot-feasibility` schema + engine + 4 pilot areas fully authored (field-note interviews DONE — this is the long pole and it's human work, schedule it first) | Joe/Tyler interview time |
-| **1. Area-mode wizard** | `/lot-check` live with area picker only (no parcel APIs), dossier + capture + email; 4 area pages prerendered | Phase 0 |
-| **2. Parcel resolution spike + integration** | APN/address -> facts via whichever county APIs survive the verification spike; graceful fallback proven by turning the APIs off in a test | Phase 1 |
-| **3. GIS overlays** | flood zone, wells-nearby, zoning layer where available | Phase 2 |
-| **4. Full area buildout + MCP + JSON-LD** | remaining service areas authored; MCP tool; area pages to ~30-60 | Phases 1-3 |
+| **0** | Schema + engine in `lib/lot-feasibility` with unit tests; 4 pilot areas authored; **interviews done**; Maricopa API key requested (lead time!) | engine snapshot tests; every referenceSlug resolves |
+| **1** | `/lot-check` area-mode wizard + 4 area pages + dossier email | all-APIs-off test passes; a11y 100; route JS ≤ budget; lead email lands with attribution |
+| **2** | Parcel resolve (Maricopa ArcGIS + address geocode) + Wells55 enrichment | APN + address round-trip on 10 real RVF/Cave Creek parcels; graceful-fail proven |
+| **3** | Pinal parcels; FEMA flood layer; zoning-district lookups where cities allow | overlay facts on test parcels match county viewers |
+| **4** | Remaining areas; MCP tool; JSON-LD | area pages ~30+; MCP answers area queries |
 
-Explicit non-goals (v1): slope analysis from elevation data, title/easement
-record retrieval (we tell users HOW to pull title commitments; we don't do
-it), cost estimation beyond banded ranges (the calculator handles money),
-anything that could read as a survey, appraisal, or legal opinion.
+Non-goals (v1): slope analysis, title/easement retrieval (we teach HOW),
+cost estimation beyond bands (calculator's job), anything reading as survey/
+legal opinion.
 
----
+## 11. Risks & guardrails
 
-## 9. Risks & guardrails
+- **Liability**: dt-disclaimer treatment + tool-specific line on every
+  dossier + legal review of verdict copy. Tiers say "verify," never "cannot."
+- **Staleness**: `lastReviewed` per dimension; >6mo renders a confirm-status
+  banner; quarterly review task in ops docs. RVF water is the volatile one.
+- **API fragility**: §5 degradation rule; adapters time-boxed (3s) and
+  fire-and-forget enrichments, never render-blocking.
+- **Perf/a11y**: §2 budgets; new templates enter the audit route list and
+  the 33-template a11y sweep on day one.
+- **Leakage**: field notes ship as rendered prose; MCP returns summaries.
+- **Repo rules**: originals-protection for any imagery; contrast-pinned
+  colors stay pinned.
 
-- **Liability**: every dossier carries the dt-disclaimer treatment + a
-  tool-specific line ("educational pre-diligence; verify with the county,
-  a licensed surveyor, and a title company before purchasing"). Legal review
-  of the copy before launch. The verdict tiers deliberately say "verify" and
-  "risk," never "you cannot build."
-- **Staleness**: RVF water, DWID formation, and ordinances change.
-  `lastReviewed` per dimension per area + a quarterly review checklist added
-  to the ops docs. Stale (>6 months) dimensions render a "confirm current
-  status" banner automatically.
-- **API fragility**: covered by the degradation rule (§4). No external call
-  on the critical render path; lookups are async enhancements.
-- **Perf/a11y**: the standing bars apply (perf ~100 warm, a11y 100, CLS 0,
-  route JS budget). The wizard is the heaviest interactive surface after the
-  calculator — budget it from day one, don't retrofit.
-- **Competitive leakage**: field notes ship as rendered prose, not as a
-  downloadable dataset; the MCP tool returns dossier summaries, not the raw
-  knowledge base.
-- **Repo rules**: images (if any area photos are used) follow the originals-
-  protection policy in replit.md; contrast-pinned colors stay pinned.
+## 12. Open questions for the team
 
-## 10. Open questions for the team
-
-1. Interview scheduling: 2-3 hours with Joe/Tyler per §3 — who books it?
-2. Which four pilot areas — confirm RVF / Cave Creek-Carefree / N Scottsdale
-   ESL / Pinal-San Tan, or swap one?
-3. Lead routing: does a LOT CHECK lead go to the same inbox, or straight to
-   whoever walks lots?
-4. Do we want the "book a lot walk" CTA to offer a paid pre-purchase lot
-   consult (productizes the expertise), or keep it free as lead-gen?
-5. Comfort level publishing HOA/DRC timeline observations by name (§3
-   interview note) — factual-only policy proposal attached to the copy
-   review.
+1. Book the Joe/Tyler interview (2-3h) — the Phase-0 long pole.
+2. Confirm pilot areas: RVF / Cave Creek-Carefree / N Scottsdale ESL /
+   Pinal-San Tan?
+3. Lead routing for LOT CHECK leads — same inbox or straight to whoever
+   walks lots?
+4. Free lot-walk CTA vs productized paid pre-purchase lot consult?
+5. Comfort publishing named-DRC timeline observations (factual-only policy)?
+6. Who requests the Maricopa Assessor API token (form asks for requester
+   identity), and under whose name?
