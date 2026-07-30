@@ -80,11 +80,37 @@ const nextConfig = {
   // at their SSR opacity:0). Cross-route fades can return when that React API
   // stabilizes; scroll reveals matter more.
   experimental: {
-    // Inline all CSS into <style> tags in the exported HTML instead of two
-    // render-blocking stylesheet requests. The CSS bytes ride the (brotli'd)
-    // HTML response, removing two request chains from every page's critical
-    // path. audit.mjs's render-blocking-stylesheet budget counts 0 after this.
-    inlineCss: true,
+    // inlineCss was ON here until 2026-07-30, to remove two render-blocking
+    // stylesheet requests from the critical path. Measured, it was costing far
+    // more than it saved, because Next does not only move the CSS into a
+    // <style> tag — it ALSO serializes the same CSS text into the RSC flight
+    // payload, so every page shipped the stylesheet twice:
+    //
+    //   index.html 496KB  =  38KB of actual content
+    //                     + 147KB inline <style>
+    //                     + 309KB inline flight payload (~127KB of it the SAME
+    //                       CSS again, as inline <script> the main thread must
+    //                       parse and execute before anything else)
+    //
+    // With it off, index.html is 56KB and the flight payload is 15KB. Two
+    // Lighthouse runs each, same machine, back to back, mobile + throttled:
+    //
+    //             TBT          LCP     TTI      score
+    //   ON    183 / 346ms    8.9s    9.4s    0.60-0.65
+    //   OFF    15 /  49ms    7.5s    8.0s    0.68-0.74
+    //
+    // TBT is 30% of the performance score, and ON's 183-346ms spread is exactly
+    // the swing that made live scores oscillate between 76 and 93. The cost is
+    // real but small: +2.3KB and one extra request on a cold first load
+    // (10.3KB HTML + 23.3KB CSS brotli, vs 31.3KB HTML). That CSS is hashed and
+    // immutable, so it is fetched once and then reused across all 1,011 pages,
+    // while inlining re-sent it with every single navigation. The two
+    // stylesheets are discovered by the preload scanner at the same instant as
+    // the fonts, hero and JS and resolve in one overlapped round trip;
+    // audit.mjs's render-blocking budget is 3 and this uses 2.
+    //
+    // Do not re-enable without re-running that A/B.
+    inlineCss: false,
     // Persist the Turbopack compilation graph to disk so server restarts and
     // revisited routes skip recompilation entirely. Dev-only; production builds
     // are unaffected.
