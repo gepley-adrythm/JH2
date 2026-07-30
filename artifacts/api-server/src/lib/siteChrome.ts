@@ -85,12 +85,27 @@ export function siteChrome(): SiteChrome {
     const cssHrefs = (head.match(/<link[^>]*rel="stylesheet"[^>]*>/g) ?? [])
       .map((tag) => (tag.match(/href="([^"]+)"/) || [])[1])
       .filter((href): href is string => typeof href === "string" && href.startsWith("/"));
-    const inlineCss = cssHrefs
-      .map((href) => {
-        const cssFile = join(staticSiteDir(), href.replace(/^\//, ""));
-        return existsSync(cssFile) ? readFileSync(cssFile, "utf8") : "";
-      })
-      .join("\n");
+
+    // Fall back to the harvested page's own <style> blocks when it has no
+    // stylesheet links.
+    //
+    // Next's experimental.inlineCss emits the CSS as <style> and NO
+    // <link rel="stylesheet"> at all. That silently broke this page: the
+    // harvest found zero stylesheets, so inlineCss came back empty AND
+    // headLinks carried only font preloads, and every shared estimate link
+    // rendered completely unstyled. Reading the <style> blocks makes the
+    // estimate page correct under either setting, so toggling inlineCss can
+    // never take it out again.
+    const inlineCss = cssHrefs.length
+      ? cssHrefs
+          .map((href) => {
+            const cssFile = join(staticSiteDir(), href.replace(/^\//, ""));
+            return existsSync(cssFile) ? readFileSync(cssFile, "utf8") : "";
+          })
+          .join("\n")
+      : (head.match(/<style[^>]*>[\s\S]*?<\/style>/g) ?? [])
+          .map((tag) => tag.replace(/^<style[^>]*>/, "").replace(/<\/style>$/, ""))
+          .join("\n");
 
     const chrome: SiteChrome = {
       htmlClass,
