@@ -226,9 +226,10 @@ export default async function EstimateScenarioPage({
             </Link>
           </div>
 
+          <p className="eyebrow est-eyebrow est-eyebrow--header">Construction loan estimate</p>
+
           <div className="est-hero-grid">
             <div className="est-hero-copy">
-              <p className="eyebrow est-eyebrow">Construction loan estimate</p>
               <h1 className="est-h1">{title}</h1>
               <p className="est-lead">
                 Building a {s.price.exact} custom home in {s.location.name}, Arizona with {s.downPct}% down means a{" "}

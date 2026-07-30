@@ -6176,6 +6176,11 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   color: #c89b7b;
   font-size: 25px;
 }
+.est-eyebrow--header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  padding-bottom: clamp(14px, 1.8vw, 20px);
+  margin-bottom: clamp(20px, 2.5vw, 30px);
+}
 .est-band .est-h1 {
   color: #fff;
   max-width: 60ch;
