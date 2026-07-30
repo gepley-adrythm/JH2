@@ -5900,7 +5900,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   margin-block: clamp(40px, 5vw, 64px);
 }
 .fin-page-faqs {
-  max-width: 1020px;
+  max-width: 860px;
   margin-inline: auto;
   margin-block: clamp(40px, 5vw, 64px);
 }
@@ -5908,9 +5908,6 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 .fin-page-faqs h2,
 .fin-lenders h2 {
   text-transform: uppercase;
-}
-.fin-page-faqs h2 {
-  white-space: nowrap;
 }
 .fin-examples-intro {
   color: var(--color-text-muted);
