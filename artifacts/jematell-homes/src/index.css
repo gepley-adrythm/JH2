@@ -6041,10 +6041,10 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 }
 .est-table caption {
   text-align: left;
-  font-size: 12.5px;
+  font-size: 25px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-text-muted);
+  color: var(--color-text);
   padding-bottom: 10px;
 }
 .est-table th,
