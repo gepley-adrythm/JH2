@@ -3,3 +3,27 @@
 
 # No need to store the pnpm store twice.
 .local
+
+# --- Publish image slimming -------------------------------------------------
+# The Repl layer push is the slowest step of a publish (~5 minutes) and has
+# timed out before. Nothing below is read at build time or at runtime, so
+# keeping it out of the image shortens that push.
+
+# Git history — never needed by the build or the running server.
+.git
+
+# Local tool/build caches, rebuilt on the deploy machine.
+.cache
+
+# Uploaded working files; no source or script references them.
+attached_assets
+
+# Raw Squarespace scrape. Only clone-data/extracted/*.json is imported by the
+# site (src/data/blogs.ts, src/data/pages.ts); the rest is reference material.
+clone-data/blogs
+clone-data/pages
+clone-data/images
+
+# Research notes and kit archives — documentation, not shipped code.
+research
+*.zip

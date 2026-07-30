@@ -13,3 +13,11 @@ Publish builds intermittently failed with `TypeError: Cannot read properties of 
 3. Keep the minimal self-contained `app/global-error.tsx` (the /_global-error prerender bypasses root-layout providers).
 
 If a publish still fails on a random page with a null-React-hook error, the build machine ignored cpus:1 entirely; next lever is in-process static generation, not chasing individual pages.
+
+## Second failure mode: image-layer push, not the build
+
+A publish can be marked `failed` with build logs that contain **no error at all** — they simply stop after `Pushing Repl layer...` / `Created pid1 binary layer`, then the build times out several minutes later. That is the image upload dying, not the app.
+
+**How to tell it apart:** diff the failed build's log tail against the last successful one. A healthy publish continues `Created Repl layer` → `Pushing Repl (cache) layer` → `Pushed image manifest` → `Creating Autoscale service` → `Deployment successful`. If the static export finished (route table + `[precompress] N files` line present) and only the push steps are missing, the code is fine — republishing is the fix.
+
+**Why it is fragile here:** the export is ~1.4 GB across ~6.7k files plus brotli/gzip siblings, so the Repl layer push takes ~5 minutes even when it works — little headroom before the timeout. Keep non-runtime bulk out of the image via `.replitignore` (git history, caches, uploaded assets, raw scrape data). Only `clone-data/extracted/*.json` is imported by the build; the rest of `clone-data/` is reference material and safe to exclude.
