@@ -5894,14 +5894,8 @@ a.dt-source-card:hover { transform: translateY(-2px); }
    that does not run JavaScript ever sees. Same type scale and palette as the
    detail pages so they read as part of the page rather than bolted on.
    --------------------------------------------------------------------------- */
-.fin-examples {
-  max-width: 860px;
-  margin-inline: auto;
-  margin-block: clamp(40px, 5vw, 64px);
-}
+.fin-examples,
 .fin-page-faqs {
-  max-width: 860px;
-  margin-inline: auto;
   margin-block: clamp(40px, 5vw, 64px);
 }
 .fin-examples h2,

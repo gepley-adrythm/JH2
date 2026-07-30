@@ -244,7 +244,7 @@ export default function Financing() {
             ))}
           </div>
 
-          <div style={{ maxWidth: 860, marginInline: "auto" }}>
+          <div>
             <div className="fin-lenders" data-testid="preferred-lender">
               <h2 className="fin-h2">Bring any lender, or ask us</h2>
               <p>
