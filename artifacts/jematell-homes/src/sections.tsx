@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { ResponsiveImage } from "./components/ResponsiveImage";
 import { img } from "./lib/paths";
@@ -199,16 +199,64 @@ export function Process() {
 
 export function Reviews() {
   const [current, setCurrent] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
 
+  /**
+   * The carousel only advances while it is actually on screen and the tab is
+   * in the foreground.
+   *
+   * It used to run unconditionally from mount. This section sits ~10,000px
+   * down the home page, so on any measurement run (and for every visitor who
+   * never scrolls this far) the timer fired into nothing: each tick
+   * re-rendered the review, then transitioned the pager pills' `width` for
+   * 300ms. `width` is a layout property, so those were full layout passes
+   * every frame, forever, for a section nobody was looking at.
+   *
+   * Gating on visibility is invisible to a reader who scrolls here — the
+   * rotation still starts and runs exactly as before — and it also means they
+   * now arrive at review 1 instead of wherever the timer had wandered to.
+   */
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % REVIEWS.length);
-    }, 6000);
-    return () => clearInterval(timer);
+    const el = sectionRef.current;
+    if (!el) return;
+
+    let timer: ReturnType<typeof setInterval> | null = null;
+    const start = () => {
+      if (timer === null) {
+        timer = setInterval(() => {
+          setCurrent((prev) => (prev + 1) % REVIEWS.length);
+        }, 6000);
+      }
+    };
+    const stop = () => {
+      if (timer !== null) {
+        clearInterval(timer);
+        timer = null;
+      }
+    };
+
+    let onScreen = false;
+    const sync = () => (onScreen && document.visibilityState === "visible" ? start() : stop());
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        onScreen = entry.isIntersecting;
+        sync();
+      },
+      { rootMargin: "200px" },
+    );
+    io.observe(el);
+    document.addEventListener("visibilitychange", sync);
+
+    return () => {
+      io.disconnect();
+      document.removeEventListener("visibilitychange", sync);
+      stop();
+    };
   }, []);
 
   return (
-    <section className="reviews section-pad" id="reviews">
+    <section className="reviews section-pad" id="reviews" ref={sectionRef}>
       <div className="container">
         <div className="reviews-container">
           <div className="reviews-left">
@@ -250,7 +298,10 @@ export function Reviews() {
                       height: '8px',
                       borderRadius: '4px',
                       background: i === current ? 'var(--color-accent)' : 'var(--color-border)',
-                      transition: 'all 0.3s ease'
+                      // Named properties, not `all`: identical motion, but the
+                      // browser no longer has to watch every animatable
+                      // property on this element for a change.
+                      transition: 'width 0.3s ease, background-color 0.3s ease'
                     }}
                   />
                 </button>

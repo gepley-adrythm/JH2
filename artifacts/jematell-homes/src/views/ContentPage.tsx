@@ -240,6 +240,54 @@ const LOCAL_HERO_IMAGES: Record<string, string> = {
   "spechomes": "/images/spec-homes-hero-2.jpg",
 };
 
+/* Squarespace-era cdn/ heroes (pages.json `ogImage`) that now have generated
+ * ladders. These arrive as one 377-888KB webp with no smaller rung, so a phone
+ * downloaded the full desktop file — Lighthouse's image-delivery insight scored
+ * it as the page's single largest waste. Keyed by the exact ogImage path so an
+ * unlisted image simply falls through to the old single-file path.
+ *
+ * Ladders were generated with `--from-lossy` (higher quality, no 2500 rung —
+ * the untouched original IS the top rung and stays the <img> fallback). To add
+ * one: run the generator, then add the entry here. */
+const CDN_HERO_LADDERS: Record<string, { widths: number[]; width: number; height: number }> = {
+  "/images/cdn/1770054676656__06-Kitchen.webp": { widths: [768, 1280, 1920], width: 2500, height: 1667 },
+  "/images/cdn/9dd598a4-90af-45ab-b64c-e6173da0836e__11-Kitchen.webp": { widths: [768, 1280, 1920], width: 2500, height: 1667 },
+  "/images/cdn/349e0c45-d74f-4339-8962-191661b5c87b__natur-wunderland-uH3wpt7gKnQ-unsplash.webp": { widths: [768, 1280, 1920], width: 2500, height: 1875 },
+  "/images/cdn/d3a7f535-7f88-4e72-a8bb-004f7aaab0a9__009_Master-Bathroom-1.webp": { widths: [768, 1280, 1920], width: 2500, height: 1667 },
+};
+
+/** <picture> + matching preload for a cdn hero that has a generated ladder. */
+function CdnHeroPicture({ src }: { src: string }) {
+  const ladder = CDN_HERO_LADDERS[src];
+  if (!ladder) return null;
+  const base = src.replace(/\.webp$/, "");
+  // The original (full-size, untouched) is the last rung so wide viewports and
+  // any srcset miss still land on the pristine file.
+  const srcSet =
+    ladder.widths.map((w) => `${base}-${w}.webp ${w}w`).join(", ") +
+    `, ${src} ${ladder.width}w`;
+  preload(src, {
+    as: "image",
+    fetchPriority: "high",
+    imageSrcSet: srcSet,
+    imageSizes: "100vw",
+    type: "image/webp",
+  });
+  return (
+    <img
+      src={src}
+      srcSet={srcSet}
+      sizes="100vw"
+      alt=""
+      className="page-hero-bg"
+      loading="eager"
+      fetchPriority="high"
+      width={ladder.width}
+      height={ladder.height}
+    />
+  );
+}
+
 function PageHero({
   data,
   slug,
@@ -263,9 +311,11 @@ function PageHero({
   const localPicture = slug ? LOCAL_HERO_PICTURES[slug] : undefined;
   const localHero = slug ? LOCAL_HERO_IMAGES[slug] : undefined;
   const heroSrc = localHero || data.ogImage;
+  const cdnLadder = heroSrc ? CDN_HERO_LADDERS[heroSrc] : undefined;
   // Single-file heroes still deserve an early preload — without one the
   // browser discovers the LCP image only after CSS, ~1s late on mobile.
-  if (!hasCityHero && !localPicture && heroSrc) {
+  // (Laddered heroes emit their own srcset-matched preload in their component.)
+  if (!hasCityHero && !localPicture && !cdnLadder && heroSrc) {
     preload(heroSrc, { as: "image", fetchPriority: "high" });
   }
   return (
@@ -287,6 +337,8 @@ function PageHero({
           height={localPicture.height}
           priority
         />
+      ) : cdnLadder ? (
+        <CdnHeroPicture src={heroSrc!} />
       ) : heroSrc ? (
         <img src={heroSrc} alt="" className="page-hero-bg" loading="eager" fetchPriority="high" />
       ) : null}

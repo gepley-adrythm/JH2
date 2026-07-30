@@ -143,9 +143,24 @@ export function readingTime(html: string): number {
   return Math.max(1, Math.round(words / 200));
 }
 
-/** "Month D, YYYY" from an ISO-ish date string; passthrough on parse failure. */
+/**
+ * "Month D, YYYY" from an ISO-ish date string; passthrough on parse failure.
+ *
+ * timeZone is pinned to UTC on purpose. A date-only string like "2026-07-23"
+ * parses as UTC midnight, so formatting it in the machine's local zone renders
+ * the PREVIOUS day anywhere west of Greenwich: the repl (UTC) built "July 23"
+ * while a Phoenix laptop (UTC-7) built "July 22" from the same content. That
+ * made the build non-reproducible and, worse, made the visible "Updated" date
+ * disagree with the dateModified we emit in JSON-LD. Pinning to UTC keeps the
+ * rendered date identical to the stored ISO date on every machine.
+ */
 export function formatDate(iso: string): string {
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
-  return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  return d.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  });
 }

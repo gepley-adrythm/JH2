@@ -54,7 +54,7 @@ export function FloorPlanTiersSection({ section, pageKey }: { section: Section; 
               transition={{ duration: 0.5, delay: i * 0.08 }}
             >
               <Link href={`/floor-plans/${card.slug}`} className="page-tier-media fp-exclusive-media" data-testid={`fp-featured-${card.slug}-img`}>
-                <img src={card.img} alt={card.alt} loading="lazy" />
+                <img src={card.img} alt={card.alt} loading="lazy" {...(PLAN_RENDERING_DIMS[card.img] ?? {})} />
               </Link>
               <div className="page-tier-body">
                 <h3 className="page-tier-title">{card.title}</h3>
@@ -121,6 +121,31 @@ type ExclusiveCard = {
   desc: string;
   img: string;
   alt: string;
+};
+
+/**
+ * Intrinsic pixel size of every plan rendering, so each <img> can declare
+ * width/height. The card sizes the image entirely in CSS, so these attributes
+ * are visually inert; they exist so the browser can reserve the correct box
+ * up front rather than running another layout pass as each lazy image decodes.
+ * Keyed by src so the card data below stays untouched.
+ */
+const PLAN_RENDERING_DIMS: Record<string, { width: number; height: number }> = {
+  "/images/plans/1604-rendering.png": { width: 1536, height: 1024 },
+  "/images/plans/1644-rendering.png": { width: 1536, height: 1024 },
+  "/images/1849-rendering-v2.png": { width: 1536, height: 1024 },
+  "/images/plans/2045-rendering.png": { width: 1672, height: 941 },
+  "/images/plans/2086-rendering.png": { width: 1774, height: 887 },
+  "/images/plans/2194-rendering.png": { width: 1645, height: 956 },
+  "/images/plans/2616-rendering.png": { width: 1774, height: 887 },
+  "/images/plans/2867-rendering.png": { width: 1672, height: 940 },
+  "/images/plans/2997-rendering.png": { width: 1601, height: 983 },
+  "/images/plans/3094-rendering.png": { width: 1672, height: 941 },
+  "/images/plans/3102-rendering.png": { width: 1672, height: 941 },
+  "/images/plans/3610-rendering.png": { width: 1645, height: 956 },
+  "/images/plans/3771-rendering.png": { width: 1672, height: 941 },
+  "/images/plans/3970-rendering.png": { width: 1672, height: 941 },
+  "/images/plans/4103-rendering.png": { width: 1672, height: 941 },
 };
 
 const FP_EXCLUSIVES: Record<string, ExclusiveCard[]> = {
@@ -292,7 +317,7 @@ export function FloorPlanWidgets() {
                           transition={{ duration: 0.5 }}
                         >
                           <Link href={`/floor-plans/${card.slug}`} className="page-tier-media fp-exclusive-media" data-testid={`fp-exclusive-${card.slug}-img`}>
-                            <img src={card.img} alt={card.alt} loading="lazy" />
+                            <img src={card.img} alt={card.alt} loading="lazy" {...(PLAN_RENDERING_DIMS[card.img] ?? {})} />
                           </Link>
                           <div className="page-tier-body">
                             <h3 className="page-tier-title">{card.title}</h3>
