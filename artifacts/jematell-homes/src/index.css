@@ -4696,12 +4696,20 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   padding: 16px 18px;
 }
 
-/* Notes under the actions, spanning both columns */
+/* Notes under the actions, spanning both columns.
+   Flex row so Calculator info + Disclaimer sit side-by-side,
+   centered under the full calculator width. The border-top
+   provides the visual divider between the buttons and these
+   two dropdowns. */
 .fin-calc-notes {
   grid-column: 1 / -1;
   grid-row: 5;
-  display: grid;
-  gap: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  padding-top: 16px;
 }
 .fin-calc-note {
   font-size: 12px;
