@@ -5186,7 +5186,6 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   border-top: 1px solid var(--color-border);
 }
 .fin-lenders p {
-  max-width: 68ch;
   line-height: 1.7;
   margin-block: 12px 0;
 }
@@ -5896,6 +5895,8 @@ a.dt-source-card:hover { transform: translateY(-2px); }
    --------------------------------------------------------------------------- */
 .fin-examples,
 .fin-page-faqs {
+  max-width: 860px;
+  margin-inline: auto;
   margin-block: clamp(40px, 5vw, 64px);
 }
 .fin-examples h2,
@@ -5961,7 +5962,6 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 .fin-page-faq-a {
   font-size: 15px;
   line-height: 1.75;
-  max-width: 68ch;
 }
 
 /* Prerendered scenario pages */
