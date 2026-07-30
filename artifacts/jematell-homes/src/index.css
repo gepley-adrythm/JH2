@@ -6194,8 +6194,8 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   align-items: center;
   margin-bottom: clamp(36px, 4.5vw, 56px);
 }
-.est-hero-copy .est-stat--lead {
-  margin-top: clamp(20px, 2.5vw, 28px);
+.est-hero-chart .est-stat--lead {
+  margin-bottom: clamp(20px, 2.5vw, 28px);
 }
 
 /* Stat cards sit ON the dark band, so they are translucent rather than solid */

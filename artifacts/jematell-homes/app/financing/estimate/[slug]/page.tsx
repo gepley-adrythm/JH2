@@ -235,6 +235,9 @@ export default async function EstimateScenarioPage({
                 {money(est.loan)} construction-to-permanent loan, and about {money(est.cashToPlanFor)} in cash between
                 the down payment and the interest paid while the house is being built.
               </p>
+            </div>
+
+            <div className="est-hero-chart">
               <div className="est-stat est-stat--lead">
                 <span className="est-stat-k">All-in monthly after move-in</span>
                 <span className="est-stat-v">{money(est.allInMonthly)}</span>
@@ -243,9 +246,6 @@ export default async function EstimateScenarioPage({
                   {money(est.monthlyInsurance)} insurance
                 </span>
               </div>
-            </div>
-
-            <div className="est-hero-chart">
               <PaymentDonut
                 parts={breakdownParts({
                   principalAndInterest: est.permMonthly,
