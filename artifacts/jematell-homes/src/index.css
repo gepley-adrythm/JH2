@@ -5996,11 +5996,9 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 .est-lead {
   font-size: 1.05rem;
   line-height: 1.75;
-  max-width: 68ch;
 }
 .est-page p {
   line-height: 1.75;
-  max-width: 68ch;
 }
 .est-stats {
   display: grid;
