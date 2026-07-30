@@ -702,21 +702,21 @@ export function ConstructionLoanCalculator() {
           </div>
         </div>
 
-        <div className="fin-calc-notes">
-          <div className="fin-calc-actions">
-            <ContactCta className="fin-lead-cta" testid="calc-lead-cta">
-              Talk to us about this estimate
-            </ContactCta>
-            <button
-              type="button"
-              data-testid="calc-share"
-              onClick={onShare}
-              className={`fin-share ${copied ? "fin-share-copied" : ""}`}
-            >
-              {copied ? "Copied" : "Copy link to this estimate"}
-            </button>
-          </div>
+        <div className="fin-calc-actions">
+          <ContactCta className="fin-lead-cta" testid="calc-lead-cta">
+            Talk to us about this estimate
+          </ContactCta>
+          <button
+            type="button"
+            data-testid="calc-share"
+            onClick={onShare}
+            className={`fin-share ${copied ? "fin-share-copied" : ""}`}
+          >
+            {copied ? "Copied" : "Copy link to this estimate"}
+          </button>
+        </div>
 
+        <div className="fin-calc-notes">
           <details className="fin-calc-info">
             <summary>Calculator info</summary>
             <p className="fin-tax-note" data-testid="calc-tax-note">

@@ -4696,10 +4696,10 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   padding: 16px 18px;
 }
 
-/* Notes and share row under the timeline, spanning both columns */
+/* Notes under the actions, spanning both columns */
 .fin-calc-notes {
   grid-column: 1 / -1;
-  grid-row: 4;
+  grid-row: 5;
   display: grid;
   gap: 14px;
 }
@@ -6097,6 +6097,8 @@ a.dt-source-card:hover { transform: translateY(-2px); }
    Filled bone on the dark band (13.6:1) so the primary action reads first;
    the share button keeps its outline treatment. */
 .fin-calc-actions {
+  grid-column: 1;
+  grid-row: 4;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
