@@ -10,6 +10,8 @@
     "build": "node ./build.mjs",
     "start": "node --enable-source-maps ./dist/index.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
+    "smoke": "node scripts/smoke-express-pages.mjs",
+    "smoke:ci": "pnpm run build && node scripts/smoke-express-pages.mjs",
     "faq:validate": "tsx src/scripts/validate-faq.ts",
     "faq:crosslinks": "tsx src/scripts/gen-cross-links.ts",
     "faq:registry": "tsx src/scripts/gen-intent-registry.ts"
