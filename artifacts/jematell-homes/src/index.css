@@ -6106,21 +6106,6 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   background: var(--color-accent-hover);
   border-color: var(--color-accent-hover);
 }
-/* Tertiary: a plain text link, not a third button, so the row stays two
-   buttons wide and the crawlable /contact link is still present. */
-.est-cta--quiet {
-  border-color: transparent;
-  padding-inline: 4px;
-  color: var(--color-text-muted);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-.est-cta--quiet:hover {
-  background: transparent;
-  color: var(--color-dark);
-  border-color: transparent;
-}
-
 /* ---------------------------------------------------------------------------
    Scenario estimate pages: the dark band.
 
