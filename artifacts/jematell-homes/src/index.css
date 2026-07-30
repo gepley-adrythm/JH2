@@ -4702,7 +4702,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
    provides the visual divider between the buttons and these
    two dropdowns. */
 .fin-calc-notes {
-  grid-column: 1 / -1;
+  grid-column: 1;
   grid-row: 5;
   display: flex;
   flex-wrap: wrap;
