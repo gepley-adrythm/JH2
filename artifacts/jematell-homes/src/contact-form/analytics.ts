@@ -3,14 +3,21 @@
  *
  * Captures marketing attribution on the visitor's first page load (first-touch,
  * persisted in sessionStorage) so it survives client-side navigation before they
- * open the contact form. When UTM params are present they win; otherwise the
- * source/medium are derived *dynamically* from document.referrer (search engines
- * -> organic, social networks -> social, anything else -> referral; a Google
- * click id with no UTMs -> cpc; no referrer at all -> direct).
+ * open the contact form. When UTM params are present they win; otherwise ad
+ * click ids decide (gclid -> google/cpc, msclkid -> bing/cpc, fbclid ->
+ * facebook/paid-social) BEFORE the referrer is consulted — auto-tagged ad
+ * clicks arrive with search/social referrers and would otherwise read as
+ * organic. Only then is document.referrer classified (search engines ->
+ * organic, social networks -> social, anything else -> referral; no referrer
+ * -> direct).
  */
 
 export interface TrackingData {
   gclid: string;
+  /** Microsoft Advertising click id (auto-tagging). */
+  msclkid: string;
+  /** Meta (Facebook/Instagram) click id. */
+  fbclid: string;
   utm_source: string;
   utm_medium: string;
   utm_campaign: string;
@@ -27,6 +34,8 @@ const STORAGE_KEY = "jh_attribution";
 
 const EMPTY: TrackingData = {
   gclid: "",
+  msclkid: "",
+  fbclid: "",
   utm_source: "",
   utm_medium: "",
   utm_campaign: "",
@@ -76,13 +85,18 @@ const SOCIAL_NETWORKS: Record<string, string> = {
 
 function classifyReferrer(
   referrer: string,
-  gclid: string,
+  ids: { gclid: string; msclkid: string; fbclid: string },
 ): { source: string; medium: string } {
-  if (!referrer) {
-    // A Google click id with no referrer still implies a paid Google click.
-    if (gclid) return { source: "google", medium: "cpc" };
-    return { source: "direct", medium: "(none)" };
-  }
+  // Platform click ids are checked FIRST, before the referrer host. An
+  // auto-tagged ad click usually arrives WITH a search/social referrer
+  // (google.com, googleadservices.com, bing.com, facebook.com), so testing the
+  // host first classified paid clicks as organic/social — exactly the
+  // paid-vs-organic confusion this data exists to prevent.
+  if (ids.gclid) return { source: "google", medium: "cpc" };
+  if (ids.msclkid) return { source: "bing", medium: "cpc" };
+  if (ids.fbclid) return { source: "facebook", medium: "paid-social" };
+
+  if (!referrer) return { source: "direct", medium: "(none)" };
 
   let host = "";
   try {
@@ -104,8 +118,6 @@ function classifyReferrer(
   for (const [token, name] of Object.entries(SOCIAL_NETWORKS)) {
     if (host.includes(token)) return { source: name, medium: "social" };
   }
-  // gclid present but referrer is some other host -> still a paid Google click.
-  if (gclid) return { source: "google", medium: "cpc" };
 
   return { source: cleanHost, medium: "referral" };
 }
@@ -116,18 +128,22 @@ function detectAttribution(): Attribution {
   const utm_medium = params.get("utm_medium") || "";
   const utm_campaign = params.get("utm_campaign") || "";
   const gclid = params.get("gclid") || "";
+  const msclkid = params.get("msclkid") || "";
+  const fbclid = params.get("fbclid") || "";
   const referrer = document.referrer || "";
 
   let source = utm_source;
   let medium = utm_medium;
   if (!source || !medium) {
-    const derived = classifyReferrer(referrer, gclid);
+    const derived = classifyReferrer(referrer, { gclid, msclkid, fbclid });
     if (!source) source = derived.source;
     if (!medium) medium = derived.medium;
   }
 
   return {
     gclid,
+    msclkid,
+    fbclid,
     utm_source,
     utm_medium,
     utm_campaign,
