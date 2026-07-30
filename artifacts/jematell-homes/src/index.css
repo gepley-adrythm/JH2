@@ -4708,8 +4708,6 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   line-height: 1.65;
   color: rgba(226, 221, 211, 0.62);
   max-width: 78ch;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-  padding-top: 12px;
 }
 
 /* Resolved-ZIP hint under the ZIP input. Kept mounted (empty) so the
@@ -4984,7 +4982,8 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 }
 .fin-calc-info[open] summary::after { transform: rotate(-135deg); }
 .fin-calc-info summary:hover { opacity: 1; }
-.fin-calc-info .fin-tax-note { margin-top: 12px; }
+.fin-calc-info .fin-tax-note,
+.fin-calc-info .fin-calc-note { margin-top: 12px; }
 
 /* Copy-link share button: outline pill on the dark band */
 .fin-share {
