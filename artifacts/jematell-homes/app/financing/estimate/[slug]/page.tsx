@@ -219,15 +219,16 @@ export default async function EstimateScenarioPage({
       */}
       <section className="est-band">
         <div className="container est-band-inner">
+          <div className="dt-back-row est-back-row">
+            <Link href="/financing#calculator" className="dt-back dt-back--top est-back" data-testid="estimate-back">
+              <ArrowLeft size={14} aria-hidden="true" />
+              Construction loan calculator
+            </Link>
+          </div>
+
           <div className="est-hero-grid">
             <div className="est-hero-copy">
-              <div className="est-eyebrow-row">
-                <Link href="/financing#calculator" className="dt-back est-back est-back--inline" data-testid="estimate-back">
-                  <ArrowLeft size={14} aria-hidden="true" />
-                  Construction loan calculator
-                </Link>
-                <p className="eyebrow est-eyebrow">Construction loan estimate</p>
-              </div>
+              <p className="eyebrow est-eyebrow">Construction loan estimate</p>
               <h1 className="est-h1">{title}</h1>
               <p className="est-lead">
                 Building a {s.price.exact} custom home in {s.location.name}, Arizona with {s.downPct}% down means a{" "}
