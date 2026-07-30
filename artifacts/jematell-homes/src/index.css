@@ -5904,6 +5904,9 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 .fin-lenders h2 {
   text-transform: uppercase;
 }
+.fin-page-faqs h2 {
+  font-size: 31px;
+}
 .fin-examples-intro {
   color: var(--color-text-muted);
   margin-bottom: 24px;
