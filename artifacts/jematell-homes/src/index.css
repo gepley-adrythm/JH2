@@ -4956,6 +4956,36 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   max-width: 78ch;
 }
 
+/* Calculator info dropdown — a native <details> collapsing the tax/insurance
+   assumptions note out of the way until asked for. */
+.fin-calc-info summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-bone);
+  opacity: 0.8;
+}
+.fin-calc-info summary::-webkit-details-marker { display: none; }
+.fin-calc-info summary::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.25s ease;
+  flex: none;
+}
+.fin-calc-info[open] summary::after { transform: rotate(-135deg); }
+.fin-calc-info summary:hover { opacity: 1; }
+.fin-calc-info .fin-tax-note { margin-top: 12px; }
+
 /* Copy-link share button: outline pill on the dark band */
 .fin-share {
   justify-self: start;

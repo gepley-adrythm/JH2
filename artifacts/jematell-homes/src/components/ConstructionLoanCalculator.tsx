@@ -703,13 +703,16 @@ export function ConstructionLoanCalculator() {
         </div>
 
         <div className="fin-calc-notes">
-          <p className="fin-tax-note" data-testid="calc-tax-note">
-            Property taxes default to {activeLoc.effectiveRatePct.toFixed(2)}% for {activeLoc.name}
-            {activeLoc.county === "Statewide" ? " (statewide average)" : ` (${activeLoc.county} County)`}, the average
-            effective rate as of {TAX_AS_OF}, and are editable. Your parcel will differ. Insurance defaults to the
-            Arizona average of about {fmtMoney(INSURANCE_PER_YEAR_PER_100K)} per year per $100,000 of home value as
-            of {INSURANCE_AS_OF}, and is editable. {NEW_BUILD_TAX_NOTE}
-          </p>
+          <details className="fin-calc-info">
+            <summary>Calculator info</summary>
+            <p className="fin-tax-note" data-testid="calc-tax-note">
+              Property taxes default to {activeLoc.effectiveRatePct.toFixed(2)}% for {activeLoc.name}
+              {activeLoc.county === "Statewide" ? " (statewide average)" : ` (${activeLoc.county} County)`}, the average
+              effective rate as of {TAX_AS_OF}, and are editable. Your parcel will differ. Insurance defaults to the
+              Arizona average of about {fmtMoney(INSURANCE_PER_YEAR_PER_100K)} per year per $100,000 of home value as
+              of {INSURANCE_AS_OF}, and is editable. {NEW_BUILD_TAX_NOTE}
+            </p>
+          </details>
 
           <div className="fin-calc-actions">
             <ContactCta className="fin-lead-cta" testid="calc-lead-cta">
