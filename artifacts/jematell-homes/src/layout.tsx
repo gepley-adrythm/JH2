@@ -35,6 +35,9 @@ function SubNavLink({
     <Link
       href={item.href}
       role="menuitem"
+      // Dropdown children are in the DOM before the menu opens, so without
+      // this they prefetch on load too — for menus the reader never opens.
+      prefetch={false}
       className={className}
       data-testid={testId}
       aria-current={active ? "page" : undefined}
@@ -79,6 +82,10 @@ function NavDropdown({ label, testId, to, active, children }: NavDropdownProps) 
   const trigger = to ? (
     <Link
       href={to}
+      // Same reason as the top-level nav links: intent, not sight. Opening the
+      // dropdown already runs on mouseenter/focus, which is exactly when Next
+      // prefetches this href anyway.
+      prefetch={false}
       className={triggerClass}
       data-testid={testId}
       aria-haspopup="true"
@@ -191,6 +198,18 @@ export function Header() {
               <Link
                 key={item.id}
                 href={item.href!}
+                // Prefetch on intent, not on sight. The header sits in the
+                // viewport from the first paint, so the default viewport
+                // prefetch fired for every top-level route while the page was
+                // still loading: a production trace showed ~28 RSC payload
+                // fetches AND — because a `priority` hero calls react-dom
+                // preload() — the about, gallery and financing hero images
+                // pulled in at HIGH priority (147KB) at ~700ms, competing for
+                // bandwidth with this page's own LCP image.
+                // prefetch={false} only turns off the VIEWPORT trigger; Next
+                // still prefetches on hover/focus, so a real navigation is
+                // just as fast, in every browser.
+                prefetch={false}
                 className={isNavActive(pathname, item.href!) ? "is-active" : undefined}
                 data-testid={`nav-${item.id}`}
                 aria-current={isNavActive(pathname, item.href!) ? "page" : undefined}

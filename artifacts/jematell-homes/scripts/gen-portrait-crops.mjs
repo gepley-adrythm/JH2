@@ -33,8 +33,14 @@ const TARGET = aw / ah;
 
 // Same quality curve as the landscape ladder: sharper at the small widths
 // phones actually download, slightly lower where DPR hides artifacts.
+// 768 exists because of a real device cluster, not a round number: a 412px
+// viewport at DPR 1.75 (the common Android mid-range, and what Lighthouse
+// emulates) needs 721px. Without a rung between 640 and 828 those devices are
+// forced up to 828 and over-fetch ~25% for pixels they cannot show. 768 still
+// exceeds 721, so nothing is served softer than before.
 const LADDER = [
   [640, 80],
+  [768, 80],
   [828, 80],
   [1080, 78],
   [1296, 74],

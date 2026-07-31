@@ -49,7 +49,7 @@ export function Hero() {
           // under-resolve iPad portrait. Phones no longer need it — they get a
           // real portrait crop below.
           sizes="(orientation: portrait) 200vw, 100vw"
-          portraitWidths={[640, 828, 1080, 1296]}
+          portraitWidths={[640, 768, 828, 1080, 1296]}
           width={2500}
           height={1406}
           priority
