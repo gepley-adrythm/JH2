@@ -6875,3 +6875,82 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 @media (max-width: 760px) {
   .dt-prose .dt-tablewrap > table:not(.ge-reftable) { min-width: 480px; }
 }
+
+/* ===================== City local guide cards ======================
+   "Building / Construction / Activities / Education In <City>" on the
+   where-we-build region pages. White section so it separates from the cream
+   floor-plan tiers that follow; the cream cards carry the visual weight. */
+.local-guide {
+  background: var(--color-bg);
+  /* Same divider the process section uses, so the two rules match. */
+  border-top: 2px solid rgba(0, 0, 0, 0.15);
+}
+/* Size is intentionally left to .page-section-head .heading-lg so this heading
+   matches every other section head on the site. */
+.local-guide-h2 {
+  text-transform: uppercase;
+  line-height: 1.12;
+  margin-top: 12px;
+  font-size: clamp(24px, 2.8vw, 34px);
+}
+.local-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(20px, 2.6vw, 32px);
+}
+.local-guide-card {
+  background: var(--color-cream);
+  border-radius: 12px;
+  border-top: 3px solid var(--color-warm);
+  padding: clamp(28px, 3vw, 40px);
+  min-width: 0;
+}
+.local-guide-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  color: var(--color-accent);
+  margin-bottom: 18px;
+}
+.local-guide-title {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: clamp(21px, 2.1vw, 27px);
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  margin: 0 0 14px;
+}
+.local-guide-p {
+  color: var(--color-text-muted);
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 0 0 14px;
+}
+.local-guide-p:last-child {
+  margin-bottom: 0;
+}
+/* Stack only on phones. Tablets keep two columns so a card does not stretch
+   into a single very long measure. */
+@media (max-width: 700px) {
+  .local-guide-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.local-guide-link {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(59, 97, 127, 0.4);
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+.local-guide-link:hover {
+  color: var(--color-accent-hover);
+  text-decoration-color: var(--color-accent-hover);
+}

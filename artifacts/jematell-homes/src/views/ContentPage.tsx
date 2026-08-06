@@ -37,6 +37,13 @@ const FloorPlanWidgets = dynamic(() =>
 const FloorPlanTiersSection = dynamic(() =>
   import("./ContentPageFloorPlans").then((mod) => mod.FloorPlanTiersSection),
 );
+
+// The city "local guide" cards render only on region pages, so their per-city
+// link table is code-split away from every other ContentPage route. ssr stays
+// on (the default), so the prerendered HTML still contains the section.
+const LocalGuide = dynamic(() =>
+  import("./ContentPageLocalGuide").then((mod) => mod.LocalGuide),
+);
 import { ResponsiveImage } from "../components/ResponsiveImage";
 import { useContactForm } from "../contact-form";
 import { EASE_OUT_EXPO } from "../motion";
@@ -1083,6 +1090,15 @@ export default function ContentPage({ pageKey, isRegion, region, data, cityImage
 
   const tierEyebrow = key === "floorplans" ? "Floor plans" : undefined;
 
+  // Bare city name for the local guide headings, derived the same way PageHero
+  // derives its title (e.g. "Custom Home Builder in Phoenix, AZ" -> "Phoenix").
+  const cityName = isRegion
+    ? cleanTitle(data.title)
+        .replace(/^Custom Home Builder in /i, "")
+        .replace(/,\s*AZ.*$/i, "")
+        .trim()
+    : "";
+
   return (
     <MotionConfig reducedMotion="user">
       <main className="page" data-testid={`page-${key}`}>
@@ -1115,6 +1131,7 @@ export default function ContentPage({ pageKey, isRegion, region, data, cityImage
                 <Fragment key={i}>
                   <ServiceGridSection section={s} />
                   {isRegion && <ProcessSection section={REGION_PROCESS_SECTION} />}
+                  {isRegion && <LocalGuide blocks={s.blocks} cityName={cityName} />}
                 </Fragment>
               );
               if (isProcessSection(s)) return <ProcessSection key={i} section={s} />;
