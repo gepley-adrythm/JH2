@@ -6993,3 +6993,96 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   color: var(--color-accent-hover);
   text-decoration-color: var(--color-accent-hover);
 }
+
+/* ==================== Why build with us (transparency) ====================
+   Sits between the bone intro and the off-white services grid, so the section
+   is cream and the cards are the lighter surface. Inverts the local-guide
+   treatment (white section, cream cards) so the two read as distinct. */
+.why-build {
+  background: var(--color-cream);
+  border-top: 2px solid rgba(0, 0, 0, 0.15);
+}
+.why-build-h2 {
+  text-transform: uppercase;
+  line-height: 1.12;
+  margin-top: 12px;
+}
+.why-build .page-section-head { max-width: 900px; }
+.why-build-lead {
+  margin: clamp(16px, 2vw, 22px) auto 0;
+  max-width: 80ch;
+  font-size: clamp(16px, 1.25vw, 18px);
+  line-height: 1.8;
+  color: var(--color-text-muted);
+}
+.why-build-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(20px, 2.6vw, 32px);
+}
+.why-build-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 12px;
+  padding: clamp(26px, 2.8vw, 36px);
+  min-width: 0;
+}
+.why-build-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.why-build-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-cream);
+  color: var(--color-accent);
+  flex: none;
+}
+.why-build-title {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: clamp(20px, 1.9vw, 25px);
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  margin: 0;
+  min-width: 0;
+}
+.why-build-p {
+  color: var(--color-text-muted);
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 0;
+}
+.why-build-footer {
+  margin-top: clamp(28px, 3.2vw, 40px);
+  text-align: center;
+}
+.why-build-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+.why-build-link:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (max-width: 700px) {
+  .why-build-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

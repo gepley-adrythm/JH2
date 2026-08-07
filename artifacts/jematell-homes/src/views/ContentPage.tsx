@@ -44,6 +44,11 @@ const FloorPlanTiersSection = dynamic(() =>
 const LocalGuide = dynamic(() =>
   import("./ContentPageLocalGuide").then((mod) => mod.LocalGuide),
 );
+
+// "Why build with us" transparency section, code-split for the same reason.
+const WhyBuild = dynamic(() =>
+  import("./ContentPageWhyBuild").then((mod) => mod.WhyBuild),
+);
 import { ResponsiveImage } from "../components/ResponsiveImage";
 import { useContactForm } from "../contact-form";
 import { EASE_OUT_EXPO } from "../motion";
@@ -1149,6 +1154,11 @@ export default function ContentPage({ pageKey, isRegion, region, data, cityImage
           subtitleTwoLine={key === "buy-a-lot-with-us"}
           editorial={isRegion || key === "custom-homes" || key === "build-on-your-lot" || key === "buy-a-lot-with-us"}
         />}
+
+        {/* Sits directly under the "Build A Home In <City>" intro. Scoped to
+            Scottsdale for now; widen this check to `isRegion` to run it on
+            every city page. */}
+        {key === "scottsdale" && <WhyBuild />}
 
         {isLegal
           ? sections.map((s, i) => <ProseSection key={i} section={s} />)
