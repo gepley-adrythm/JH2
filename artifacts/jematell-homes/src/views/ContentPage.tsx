@@ -655,7 +655,7 @@ function WhyChooseSection({ section, extraSection }: { section: Section; extraSe
     <section className="page-why section-pad">
       <div className="container">
         <m.div className="page-section-head" {...FADE_IN}>
-          <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>{section.heading?.text}</h2>
+          <h2 className="heading-lg" style={{ textTransform: "uppercase", fontSize: "50px" }}>{section.heading?.text}</h2>
         </m.div>
         <div className="page-why-cards">
           {features.map((f, i) => (
@@ -1147,7 +1147,7 @@ export default function ContentPage({ pageKey, isRegion, region, data, cityImage
           horizontal={key === "where-we-build"}
           subtitleNowrap={key === "scottsdale" || key === "rio-verde" || key === "cave-creek" || key === "fountain-hills" || key === "carefree" || key === "casa-grande" || key === "apache-junction"}
           subtitleTwoLine={key === "buy-a-lot-with-us"}
-          editorial={isRegion || key === "custom-homes" || key === "build-on-your-lot"}
+          editorial={isRegion || key === "custom-homes" || key === "build-on-your-lot" || key === "buy-a-lot-with-us"}
         />}
 
         {isLegal

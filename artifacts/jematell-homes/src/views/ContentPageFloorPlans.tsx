@@ -41,7 +41,7 @@ export function FloorPlanTiersSection({ section, pageKey }: { section: Section; 
     <section className="page-tiers section-pad alt-bg">
       <div className="container">
         <m.div className="page-section-head centered" {...FADE_IN}>
-          <h2 className="heading-lg" style={{ textTransform: "uppercase" }}>{section.heading?.text}</h2>
+          <h2 className="heading-lg" style={{ textTransform: "uppercase", fontSize: "50px" }}>{section.heading?.text}</h2>
         </m.div>
         <div className="page-tiers-grid">
           {visibleCards.map((card, i) => (
