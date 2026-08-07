@@ -7,6 +7,7 @@ import { pageMetadata } from "@/seo/metadata";
 import { collectionJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { CTA } from "@/cta";
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 
 export const dynamicParams = false;
 
@@ -57,16 +58,20 @@ export default async function FaqTopicPage({
         ]}
       />
 
-      <section className="page-hero faq-hero">
-        <div className="page-hero-overlay" />
-        <div className="container page-hero-content">
-          <nav className="faq-crumbs hero-eyebrow" aria-label="Breadcrumb">
-            <Link href="/faq" data-testid="faq-crumb-home">FAQ</Link>
-            <ChevronRight size={14} aria-hidden="true" />
-            <span>{topic.title}</span>
-          </nav>
-          <h1 className="faq-hero-title hero-title">{topic.title}</h1>
-          <p className="page-hero-sub hero-subtitle">{topic.description}</p>
+      <section className="page-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
+        <ResponsiveImage
+          name="faq-hero"
+          className="page-hero-bg"
+          alt=""
+          widths={[768, 1280, 1600]}
+          sizes="100vw"
+          width={1600}
+          height={1066}
+          priority
+        />
+        <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }} />
+        <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
+          <h1 className="page-hero-title">{topic.title}</h1>
         </div>
       </section>
 
