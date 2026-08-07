@@ -2591,8 +2591,7 @@ a.contact-info-card:hover {
 @media (min-width: 900px) { .pie-figure img { min-height: 560px; } }
 .pie-copy { min-width: 0; display: flex; flex-direction: column; justify-content: center; padding: clamp(16px, 2vw, 48px) 0; }
 .pie-rule { width: 64px; height: 1px; background: var(--color-text); margin-bottom: clamp(20px, 2.5vw, 36px); }
-.pie-lead { font-family: var(--font-heading); font-size: clamp(18px, 1.5vw, 22px); line-height: 1.78; color: var(--color-text); }
-.pie-lead::first-letter { font-size: 3.4em; line-height: 0.78; float: left; margin-right: 0.1em; margin-top: 0.08em; font-family: var(--font-heading); }
+.pie-lead { font-family: var(--font-body); font-size: clamp(17px, 1.4vw, 20px); line-height: 1.7; color: var(--color-text); }
 .page-intro-h-heading { margin-bottom: clamp(28px, 3vw, 48px); text-align: center; }
 .page-intro-h-heading .page-intro-title {
   font-size: clamp(28px, 3.6vw, 54px);
