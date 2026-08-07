@@ -27,8 +27,9 @@ export default function Home() {
       <About />
       <ServicesSplit />
       <Process />
-      {/* Sits after the process so the pricing and schedule commitments read as
-          a continuation of how we work, before the proof sections below. */}
+      {/* Transparency pillars. Sits after the process so the pricing and
+          schedule commitments read as a continuation of how we work, before
+          the proof sections below. */}
       <WhyBuild />
       <FeaturedProjects />
       <Reviews />
