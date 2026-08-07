@@ -2581,11 +2581,15 @@ a.contact-info-card:hover {
 @media (min-width: 900px) { .pie-location-tag { display: block; } }
 .pie-title { font-family: var(--font-heading); font-size: 50px; line-height: 0.88; letter-spacing: -0.02em; text-transform: uppercase; font-weight: 400; }
 .pie-body { display: flex; flex-direction: column; gap: clamp(32px, 4vw, 60px); }
-@media (min-width: 900px) { .pie-body { flex-direction: row-reverse; align-items: stretch; gap: clamp(40px, 5vw, 96px); } }
-.pie-figure { flex: 0 0 60%; min-width: 0; overflow: hidden; }
+@media (min-width: 900px) {
+  .pie-body { display: grid; grid-template-columns: 2fr 3fr; gap: clamp(40px, 5vw, 96px); align-items: stretch; }
+  .pie-copy { order: 1; }
+  .pie-figure { order: 2; }
+}
+.pie-figure { min-width: 0; overflow: hidden; }
 .pie-figure img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 380px; }
 @media (min-width: 900px) { .pie-figure img { min-height: 560px; } }
-.pie-copy { flex: 0 0 40%; min-width: 0; display: flex; flex-direction: column; justify-content: center; padding: clamp(16px, 2vw, 48px) 0; }
+.pie-copy { min-width: 0; display: flex; flex-direction: column; justify-content: center; padding: clamp(16px, 2vw, 48px) 0; }
 .pie-rule { width: 64px; height: 1px; background: var(--color-text); margin-bottom: clamp(20px, 2.5vw, 36px); }
 .pie-lead { font-family: var(--font-heading); font-size: clamp(18px, 1.5vw, 22px); line-height: 1.78; color: var(--color-text); }
 .pie-lead::first-letter { font-size: 3.4em; line-height: 0.78; float: left; margin-right: 0.1em; margin-top: 0.08em; font-family: var(--font-heading); }
