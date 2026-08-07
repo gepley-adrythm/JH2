@@ -8,6 +8,7 @@ import { collectionJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { JsonLd } from "@/seo/JsonLd";
 import { CTA } from "@/cta";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
+import { FaqTopicList } from "@/views/FaqTopicList";
 
 export const dynamicParams = false;
 
@@ -83,19 +84,12 @@ export default async function FaqTopicPage({
               FAQ
             </Link>
           </div>
-          <ul className="faq-list" data-testid="faq-topic-list">
-            {topic.items.map((i) => (
-              <li key={i.slug}>
-                <Link href={`/faq/${i.slug}`} data-testid={`faq-topic-q-${i.slug}`}>
-                  <span>{i.question}</span>
-                  <ArrowRight size={16} aria-hidden="true" />
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <Link href="/faq" className="faq-back" data-testid="faq-topic-all">
-            All questions <ArrowRight size={14} aria-hidden="true" />
-          </Link>
+          <FaqTopicList items={topic.items.map((i) => ({
+            slug: i.slug,
+            question: i.question,
+            shortAnswer: i.shortAnswer ?? "",
+            tags: i.tags ?? [],
+          }))} />
         </div>
       </section>
 
