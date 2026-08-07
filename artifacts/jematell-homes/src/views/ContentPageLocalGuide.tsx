@@ -65,6 +65,8 @@ interface GuideLink {
   re: RegExp;
   href: string;
   external?: boolean;
+  /** When set, only linkify on the named city slug(s). */
+  only?: string | string[];
 }
 
 /**
@@ -83,7 +85,7 @@ const LOCAL_GUIDE_LINKS: GuideLink[] = [
   { re: /custom home building/i, href: "/custom-homes" },
   { re: /custom residences/i, href: "/custom-homes" },
   { re: /custom home/i, href: "/custom-homes" },
-  { re: /hiking trails/i, href: "https://www.phoenix.gov/administration/departments/parks/activities-facilities/trails.html", external: true },
+  { re: /hiking trails/i, href: "https://www.phoenix.gov/administration/departments/parks/activities-facilities/trails.html", external: true, only: "phoenix" },
   { re: /private lot/i, href: "/build-on-your-lot" },
   // ---- Internal: permitting ----
   { re: /city permitting departments/i, href: "/faq/topics/building-permits-arizona" },
@@ -114,6 +116,7 @@ const LOCAL_GUIDE_LINKS: GuideLink[] = [
   // ---- External: Phoenix ----
   { re: /Arizona State University/i, href: "https://www.asu.edu", external: true },
   // ---- External: Cave Creek + Carefree ----
+  { re: /local events/i, href: "https://www.cavecreekaz.gov/254/Tourist-Info", external: true, only: "cave-creek" },
   { re: /Cave Creek Unified School District/i, href: "https://www.ccusd93.org", external: true },
   { re: /Carefree Town Center/i, href: "https://www.carefree.org/page/carefree-town-center", external: true },
   // ---- External: Fountain Hills ----
@@ -139,10 +142,14 @@ const LOCAL_GUIDE_LINKS: GuideLink[] = [
  * Turn a paragraph into nodes with the mapped phrases linked. `used` is shared
  * across the whole section so a destination is linked once, not in every card.
  */
-export function linkifyGuideText(text: string, used: Set<string>): ReactNode[] {
+export function linkifyGuideText(text: string, used: Set<string>, citySlug?: string): ReactNode[] {
   const found: Array<{ start: number; end: number; link: GuideLink }> = [];
   for (const link of LOCAL_GUIDE_LINKS) {
     if (used.has(link.href)) continue;
+    if (link.only) {
+      const allowed = Array.isArray(link.only) ? link.only : [link.only];
+      if (!citySlug || !allowed.includes(citySlug)) continue;
+    }
     const m = link.re.exec(text);
     if (m) found.push({ start: m.index, end: m.index + m[0].length, link });
   }
@@ -189,7 +196,7 @@ export function linkifyGuideText(text: string, used: Set<string>): ReactNode[] {
   return out;
 }
 
-export function LocalGuide({ blocks, cityName }: { blocks: Block[]; cityName: string }) {
+export function LocalGuide({ blocks, cityName, citySlug }: { blocks: Block[]; cityName: string; citySlug?: string }) {
   const cards = extractLocalGuide(blocks);
   if (!cards.length) return null;
   // Shared across all cards so each destination is linked once per section.
@@ -219,7 +226,7 @@ export function LocalGuide({ blocks, cityName }: { blocks: Block[]; cityName: st
                   <h3 className="local-guide-title">{c.title}</h3>
                 </div>
                 {c.paras.map((p, j) => (
-                  <p key={j} className="local-guide-p">{linkifyGuideText(p, usedLinks)}</p>
+                  <p key={j} className="local-guide-p">{linkifyGuideText(p, usedLinks, citySlug)}</p>
                 ))}
               </m.article>
             );

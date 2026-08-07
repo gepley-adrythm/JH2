@@ -1159,7 +1159,7 @@ export default function ContentPage({ pageKey, isRegion, region, data, cityImage
                 <Fragment key={i}>
                   <ServiceGridSection section={s} />
                   {isRegion && <ProcessSection section={REGION_PROCESS_SECTION} />}
-                  {isRegion && <LocalGuide blocks={s.blocks} cityName={cityName} />}
+                  {isRegion && <LocalGuide blocks={s.blocks} cityName={cityName} citySlug={key} />}
                 </Fragment>
               );
               if (isProcessSection(s)) return <ProcessSection key={i} section={s} />;
