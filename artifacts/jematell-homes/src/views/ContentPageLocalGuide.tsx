@@ -120,6 +120,7 @@ const LOCAL_GUIDE_LINKS: GuideLink[] = [
   { re: /Cave Creek Unified School District/i, href: "https://www.ccusd93.org", external: true },
   { re: /Carefree Town Center/i, href: "https://www.carefree.org/page/carefree-town-center", external: true },
   // ---- External: Fountain Hills ----
+  { re: /scenic walking trails/i, href: "https://www.fountainhillsaz.gov/295/McDowell-Mountain-Preserve-Trails", external: true, only: "fountain-hills" },
   // fhusd.org serves a mismatched certificate; fhschools.org is the live site.
   { re: /Fountain Hills Unified School District/i, href: "https://www.fhschools.org", external: true },
   // ---- External: Casa Grande ----
