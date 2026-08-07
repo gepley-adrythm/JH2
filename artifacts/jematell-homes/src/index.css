@@ -2607,6 +2607,7 @@ a.contact-info-card:hover {
 
 /* Service icon grid */
 .page-services { background: var(--color-bg); }
+.page-services .page-section-head { max-width: none; }
 .page-services-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
