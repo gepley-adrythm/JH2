@@ -6887,11 +6887,14 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 }
 /* Size is intentionally left to .page-section-head .heading-lg so this heading
    matches every other section head on the site. */
+.local-guide .page-section-head {
+  max-width: none;
+}
 .local-guide-h2 {
   text-transform: uppercase;
   line-height: 1.12;
   margin-top: 12px;
-  font-size: clamp(24px, 2.8vw, 34px);
+  white-space: nowrap;
 }
 .local-guide-grid {
   display: grid;
