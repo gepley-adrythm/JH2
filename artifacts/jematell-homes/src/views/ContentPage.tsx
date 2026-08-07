@@ -1147,7 +1147,7 @@ export default function ContentPage({ pageKey, isRegion, region, data, cityImage
           horizontal={key === "where-we-build"}
           subtitleNowrap={key === "scottsdale" || key === "rio-verde" || key === "cave-creek" || key === "fountain-hills" || key === "carefree" || key === "casa-grande" || key === "apache-junction"}
           subtitleTwoLine={key === "buy-a-lot-with-us"}
-          editorial={isRegion || key === "custom-homes"}
+          editorial={isRegion || key === "custom-homes" || key === "build-on-your-lot"}
         />}
 
         {isLegal
