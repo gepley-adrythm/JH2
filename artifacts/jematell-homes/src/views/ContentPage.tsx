@@ -419,7 +419,6 @@ function IntroSection({
               <img src={image.src} alt={image.alt || ""} loading="lazy" />
             </m.figure>
             <m.div className="pie-copy" {...FADE_IN}>
-              <div className="pie-rule" />
               {intro ? <p className="pie-lead">{intro}</p> : null}
             </m.div>
           </div>
