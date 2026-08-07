@@ -83,6 +83,7 @@ const LOCAL_GUIDE_LINKS: GuideLink[] = [
   { re: /custom home building/i, href: "/custom-homes" },
   { re: /custom residences/i, href: "/custom-homes" },
   { re: /custom home/i, href: "/custom-homes" },
+  { re: /hiking trails/i, href: "https://www.phoenix.gov/administration/departments/parks/activities-facilities/trails.html" },
   { re: /private lot/i, href: "/build-on-your-lot" },
   // ---- Internal: permitting ----
   { re: /city permitting departments/i, href: "/faq/topics/building-permits-arizona" },
