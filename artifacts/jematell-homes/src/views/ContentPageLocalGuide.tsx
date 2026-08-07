@@ -124,6 +124,7 @@ const LOCAL_GUIDE_LINKS: GuideLink[] = [
   // fhusd.org serves a mismatched certificate; fhschools.org is the live site.
   { re: /Fountain Hills Unified School District/i, href: "https://www.fhschools.org", external: true },
   // ---- External: Casa Grande ----
+  { re: /regional parks/i, href: "https://casagrandeaz.gov/250/Facilities-Parks-Trails", external: true, only: "casa-grande" },
   { re: /Casa Grande Union High School District/i, href: "https://www.cguhsd.org", external: true },
   { re: /Central Arizona College/i, href: "https://www.centralaz.edu", external: true },
   // ---- External: Apache Junction ----
