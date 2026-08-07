@@ -76,7 +76,7 @@ export default async function FaqTopicPage({
         </div>
       </section>
 
-      <section className="section-pad" style={{ background: "var(--color-bg)" }}>
+      <section className="section-pad" style={{ background: "var(--color-bg)", paddingTop: "clamp(24px, 3vw, 40px)" }}>
         <div className="container container-narrow">
           <div className="dt-back-row">
             <Link href="/faq" className="dt-back dt-back--top" data-testid="faq-topic-back">
