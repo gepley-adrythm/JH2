@@ -406,7 +406,6 @@ function IntroSection({
       <section className="page-intro page-intro--editorial" style={{ backgroundColor: 'var(--color-bone)' }}>
         <div className="container">
           <m.div className="pie-head" {...FADE_IN}>
-            <span className="pie-location-tag">Location Spotlight</span>
             <h2 className="pie-title">{subtitle}</h2>
           </m.div>
           <div className="pie-body">

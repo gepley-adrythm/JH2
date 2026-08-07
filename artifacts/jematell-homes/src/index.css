@@ -2579,7 +2579,7 @@ a.contact-info-card:hover {
 .pie-head { position: relative; border-bottom: 1px solid var(--color-text); padding-bottom: clamp(20px, 2.5vw, 36px); margin-bottom: clamp(28px, 3.5vw, 52px); }
 .pie-location-tag { position: absolute; top: 0; right: 0; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-text-muted); display: none; }
 @media (min-width: 900px) { .pie-location-tag { display: block; } }
-.pie-title { font-family: var(--font-heading); font-size: clamp(52px, 9vw, 128px); line-height: 0.88; letter-spacing: -0.02em; text-transform: uppercase; font-weight: 500; }
+.pie-title { font-family: var(--font-heading); font-size: 50px; line-height: 0.88; letter-spacing: -0.02em; text-transform: uppercase; font-weight: 500; }
 .pie-body { display: flex; flex-direction: column; gap: clamp(32px, 4vw, 60px); }
 @media (min-width: 900px) { .pie-body { flex-direction: row; align-items: stretch; gap: clamp(40px, 5vw, 96px); } }
 .pie-figure { flex: 0 0 60%; min-width: 0; overflow: hidden; }
