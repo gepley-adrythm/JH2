@@ -2573,6 +2573,22 @@ a.contact-info-card:hover {
 
 /* Horizontal intro variant — heading full-width, then body-left / photo-right */
 .page-intro--horizontal { padding-bottom: clamp(48px, 6vw, 96px); }
+
+/* ── Editorial city-intro layout ──────────────────────────────────────── */
+.page-intro--editorial { padding: clamp(60px, 7vw, 110px) 0; }
+.pie-head { position: relative; border-bottom: 1px solid var(--color-text); padding-bottom: clamp(20px, 2.5vw, 36px); margin-bottom: clamp(28px, 3.5vw, 52px); }
+.pie-location-tag { position: absolute; top: 0; right: 0; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-text-muted); display: none; }
+@media (min-width: 900px) { .pie-location-tag { display: block; } }
+.pie-title { font-family: var(--font-heading); font-size: clamp(52px, 9vw, 128px); line-height: 0.88; letter-spacing: -0.02em; text-transform: uppercase; font-weight: 500; }
+.pie-body { display: flex; flex-direction: column; gap: clamp(32px, 4vw, 60px); }
+@media (min-width: 900px) { .pie-body { flex-direction: row; align-items: stretch; gap: clamp(40px, 5vw, 96px); } }
+.pie-figure { flex: 0 0 60%; min-width: 0; overflow: hidden; }
+.pie-figure img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 380px; }
+@media (min-width: 900px) { .pie-figure img { min-height: 560px; } }
+.pie-copy { flex: 0 0 40%; min-width: 0; display: flex; flex-direction: column; justify-content: center; padding: clamp(16px, 2vw, 48px) 0; }
+.pie-rule { width: 64px; height: 1px; background: var(--color-text); margin-bottom: clamp(20px, 2.5vw, 36px); }
+.pie-lead { font-family: var(--font-heading); font-size: clamp(18px, 1.5vw, 22px); line-height: 1.78; color: var(--color-text); }
+.pie-lead::first-letter { font-size: 3.4em; line-height: 0.78; float: left; margin-right: 0.1em; margin-top: 0.08em; font-family: var(--font-heading); }
 .page-intro-h-heading { margin-bottom: clamp(28px, 3vw, 48px); text-align: center; }
 .page-intro-h-heading .page-intro-title {
   font-size: clamp(28px, 3.6vw, 54px);

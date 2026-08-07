@@ -388,6 +388,7 @@ function IntroSection({
   horizontal,
   subtitleNowrap,
   subtitleTwoLine,
+  editorial,
 }: {
   subtitle?: string;
   intro?: string;
@@ -396,8 +397,37 @@ function IntroSection({
   horizontal?: boolean;
   subtitleNowrap?: boolean;
   subtitleTwoLine?: boolean;
+  editorial?: boolean;
 }) {
   if (!subtitle && !intro && !image) return null;
+
+  if (editorial && subtitle && image) {
+    return (
+      <section className="page-intro page-intro--editorial" style={{ backgroundColor: 'var(--color-bone)' }}>
+        <div className="container">
+          <m.div className="pie-head" {...FADE_IN}>
+            <span className="pie-location-tag">Location Spotlight</span>
+            <h2 className="pie-title">{subtitle}</h2>
+          </m.div>
+          <div className="pie-body">
+            <m.figure
+              className="pie-figure"
+              initial={{ opacity: 0, scale: 0.97 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.65 }}
+            >
+              <img src={image.src} alt={image.alt || ""} loading="lazy" />
+            </m.figure>
+            <m.div className="pie-copy" {...FADE_IN}>
+              <div className="pie-rule" />
+              {intro ? <p className="pie-lead">{intro}</p> : null}
+            </m.div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   if (horizontal) {
     return (
@@ -1119,6 +1149,7 @@ export default function ContentPage({ pageKey, isRegion, region, data, cityImage
           horizontal={key === "where-we-build"}
           subtitleNowrap={key === "scottsdale" || key === "rio-verde" || key === "cave-creek" || key === "fountain-hills" || key === "carefree" || key === "casa-grande" || key === "apache-junction"}
           subtitleTwoLine={key === "buy-a-lot-with-us"}
+          editorial={isRegion}
         />}
 
         {isLegal
