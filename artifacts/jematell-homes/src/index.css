@@ -5423,6 +5423,8 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   display: grid;
   gap: 14px;
   max-width: 520px;
+  width: fit-content;
+  text-align: left;
 }
 .about-assurance li {
   display: flex;
