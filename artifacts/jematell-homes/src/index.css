@@ -5499,8 +5499,6 @@ a.dt-source-card:hover { transform: translateY(-2px); }
    scroll on any viewport narrower than the heading. Allow wrapping everywhere
    and scale the service heading with the viewport so it always fits. */
 .page-services .heading-lg,
-.page-process .heading-lg,
-.page-process-featured .heading-lg,
 .city-nav-head .heading-lg,
 .page-intro-title {
   white-space: normal !important;
