@@ -7010,7 +7010,8 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 .why-build-h2 {
   text-transform: uppercase;
   line-height: 1.12;
-  margin-top: 12px;
+  /* No eyebrow above it, so the heading starts the section head flush. */
+  margin-top: 0;
 }
 .why-build .page-section-head { max-width: 900px; }
 .why-build-lead {

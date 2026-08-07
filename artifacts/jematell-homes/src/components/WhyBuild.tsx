@@ -40,7 +40,7 @@ const PILLARS: Array<{ icon: ComponentType<{ size?: number }>; title: string; bo
     icon: Layers,
     title: "Selection Allowance Breakdown",
     body:
-      "Every allowance is itemized before you choose a single finish. Flooring, cabinets, countertops, and fixtures each carry their own number, so you always know what is budgeted and what an upgrade actually costs.",
+      "Every allowance is itemized before you choose a single finish. Flooring, cabinets, countertops, fixtures, etc. each carry their own number, so you always know what is budgeted and what an upgrade actually costs.",
   },
 ];
 
@@ -49,7 +49,6 @@ export function WhyBuild() {
     <section className="why-build section-pad" data-testid="why-build">
       <div className="container">
         <m.div className="page-section-head centered" {...FADE_IN}>
-          <span className="eyebrow">Why Build With Us</span>
           <h2 className="heading-lg why-build-h2">The Most Transparent Builder You Will Work With</h2>
           <p className="why-build-lead">
             Most homeowners find out about a cost overrun after it has already happened. We work the other way
