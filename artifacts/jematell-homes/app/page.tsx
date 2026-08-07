@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/seo/metadata";
 import { absoluteUrl } from "@/seo/siteMeta";
 import { Hero, About, ServicesSplit, Process, Reviews, FeaturedProjects, HomepageFloorPlans } from "@/sections";
+import { WhyBuild } from "@/components/WhyBuild";
 import { CTA } from "@/cta";
 
 export const metadata = pageMetadata({
@@ -26,6 +27,9 @@ export default function Home() {
       <About />
       <ServicesSplit />
       <Process />
+      {/* Sits after the process so the pricing and schedule commitments read as
+          a continuation of how we work, before the proof sections below. */}
+      <WhyBuild />
       <FeaturedProjects />
       <Reviews />
       <HomepageFloorPlans />

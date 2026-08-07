@@ -45,9 +45,11 @@ const LocalGuide = dynamic(() =>
   import("./ContentPageLocalGuide").then((mod) => mod.LocalGuide),
 );
 
-// "Why build with us" transparency section, code-split for the same reason.
+// "Why build with us" transparency section. Shared with the home page, so it
+// lives in components/; still code-split here for the ContentPage routes that
+// do not render it.
 const WhyBuild = dynamic(() =>
-  import("./ContentPageWhyBuild").then((mod) => mod.WhyBuild),
+  import("../components/WhyBuild").then((mod) => mod.WhyBuild),
 );
 import { ResponsiveImage } from "../components/ResponsiveImage";
 import { useContactForm } from "../contact-form";
@@ -1155,10 +1157,9 @@ export default function ContentPage({ pageKey, isRegion, region, data, cityImage
           editorial={isRegion || key === "custom-homes" || key === "build-on-your-lot" || key === "buy-a-lot-with-us"}
         />}
 
-        {/* Sits directly under the "Build A Home In <City>" intro. Scoped to
-            Scottsdale for now; widen this check to `isRegion` to run it on
-            every city page. */}
-        {key === "scottsdale" && <WhyBuild />}
+        {/* Sits directly under the intro on every city page and on
+            /custom-homes. The home page renders it separately in app/page.tsx. */}
+        {(isRegion || key === "custom-homes") && <WhyBuild />}
 
         {isLegal
           ? sections.map((s, i) => <ProseSection key={i} section={s} />)

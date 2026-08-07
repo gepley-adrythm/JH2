@@ -7090,3 +7090,9 @@ a.dt-source-card:hover { transform: translateY(-2px); }
     grid-template-columns: minmax(0, 1fr);
   }
 }
+/* Several sections (featured projects, process) draw their own top rule. After
+   this section that would stack with the rule above into a double line, so the
+   next section's top border is suppressed and ours is the single divider. */
+.why-build + section {
+  border-top: 0;
+}
