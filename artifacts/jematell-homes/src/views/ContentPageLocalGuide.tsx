@@ -212,10 +212,12 @@ export function LocalGuide({ blocks, cityName }: { blocks: Block[]; cityName: st
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.5, delay: Math.min(i, 4) * 0.07 }}
               >
-                <span className="local-guide-icon" aria-hidden="true">
-                  <Icon size={20} />
-                </span>
-                <h3 className="local-guide-title">{c.title}</h3>
+                <div className="local-guide-head">
+                  <span className="local-guide-icon" aria-hidden="true">
+                    <Icon size={20} />
+                  </span>
+                  <h3 className="local-guide-title">{c.title}</h3>
+                </div>
                 {c.paras.map((p, j) => (
                   <p key={j} className="local-guide-p">{linkifyGuideText(p, usedLinks)}</p>
                 ))}

@@ -6898,6 +6898,15 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   white-space: nowrap;
   font-size: 50px;
 }
+/* The single-line heading needs ~1080px of viewport for the longest city name
+   ("Living and Building in Apache Junction"). Below that it has to wrap, or it
+   forces the whole page to scroll sideways. Sizing is left to
+   `.page-section-head .heading-lg`, whose clamp already scales down here. */
+@media (max-width: 1100px) {
+  .local-guide-h2 {
+    white-space: normal;
+  }
+}
 .local-guide-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -6910,6 +6919,13 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   padding: clamp(28px, 3vw, 40px);
   min-width: 0;
 }
+/* Icon and heading share one line. */
+.local-guide-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
 .local-guide-icon {
   width: 46px;
   height: 46px;
@@ -6919,7 +6935,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   justify-content: center;
   background: var(--color-bg);
   color: var(--color-accent);
-  margin-bottom: 18px;
+  flex: none;
 }
 .local-guide-title {
   font-family: var(--font-heading);
@@ -6929,7 +6945,8 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   letter-spacing: 0.01em;
   text-transform: uppercase;
   color: var(--color-dark);
-  margin: 0 0 14px;
+  margin: 0;
+  min-width: 0;
 }
 .local-guide-p {
   color: var(--color-text-muted);
