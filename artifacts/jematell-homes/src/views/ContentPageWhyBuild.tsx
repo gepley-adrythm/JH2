@@ -26,9 +26,9 @@ const PILLARS: Array<{ icon: ComponentType<{ size?: number }>; title: string; bo
   },
   {
     icon: DollarSign,
-    title: "Upfront, Itemized Estimates",
+    title: "Upfront Cost Estimates",
     body:
-      "Your estimate is broken out line by line before we break ground, so you can see what each part of your home costs. You get a clear final construction cost in writing, and if anything changes you hear it from us first.",
+      "On cost-plus builds you get an itemized cost estimate before we break ground, and we share the actual subcontractor bids with you, so you can see what every part of your home costs. For our in-house plans or simpler custom homes, we can quote a flat-rate build cost up front instead.",
   },
   {
     icon: FileCheck,

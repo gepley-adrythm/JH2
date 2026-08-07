@@ -6999,8 +6999,11 @@ a.dt-source-card:hover { transform: translateY(-2px); }
    is cream and the cards are the lighter surface. Inverts the local-guide
    treatment (white section, cream cards) so the two read as distinct. */
 .why-build {
-  background: var(--color-cream);
+  /* Same surface as the services grid below it, so the two share a background
+     and the bottom rule is what separates them. */
+  background: var(--color-bg);
   border-top: 2px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.15);
 }
 .why-build-h2 {
   text-transform: uppercase;
@@ -7021,7 +7024,8 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   gap: clamp(20px, 2.6vw, 32px);
 }
 .why-build-card {
-  background: var(--color-bg);
+  /* Cream on the lighter section so the cards still read as cards. */
+  background: var(--color-cream);
   border: 1px solid var(--color-border);
   border-left: 3px solid var(--color-accent);
   border-radius: 12px;
@@ -7041,7 +7045,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-cream);
+  background: var(--color-bg);
   color: var(--color-accent);
   flex: none;
 }
