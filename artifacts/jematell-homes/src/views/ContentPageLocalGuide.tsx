@@ -84,7 +84,6 @@ const LOCAL_GUIDE_LINKS: GuideLink[] = [
   { re: /custom residences/i, href: "/custom-homes" },
   { re: /custom home/i, href: "/custom-homes" },
   { re: /private lot/i, href: "/build-on-your-lot" },
-  { re: /infill lot/i, href: "/build-on-your-lot" },
   // ---- Internal: permitting ----
   { re: /city permitting departments/i, href: "/faq/topics/building-permits-arizona" },
   { re: /permitting process/i, href: "/faq/topics/building-permits-arizona" },
