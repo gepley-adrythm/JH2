@@ -49,12 +49,12 @@ export function WhyBuild() {
     <section className="why-build section-pad" data-testid="why-build">
       <div className="container">
         <m.div className="page-section-head centered" {...FADE_IN}>
-          <span className="eyebrow">Why Build With Us</span>
           <h2 className="heading-lg why-build-h2">The Most Transparent Builder You Will Work With</h2>
           <p className="why-build-lead">
             Most homeowners find out about a cost overrun after it has already happened. We work the other way
-            around. Before you break ground you see the full estimate, the draw schedule, and every allowance in
-            writing, and once we start you hear from us every week until you have the keys.
+            around. Before you break ground you know how your home is priced, what your draw schedule looks like,
+            and what every allowance covers, all in writing. Once we start, you hear from us every week until you
+            have the keys.
           </p>
         </m.div>
 
