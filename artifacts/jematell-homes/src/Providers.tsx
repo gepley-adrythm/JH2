@@ -24,6 +24,10 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     // Loaded async so the analytics module stays out of the initial route JS;
     // the effect still runs on first mount, before any user-driven navigation.
     void import("./contact-form/analytics").then((mod) => mod.initTracking());
+    // Arm the deferred GTM loader. Attribution capture above must not depend on
+    // this — it writes sessionStorage immediately, whereas GTM waits for a real
+    // interaction (or, on ad clicks only, a short idle window). See lib/gtm.ts.
+    void import("./lib/gtm").then((mod) => mod.loadGtmDeferred());
   }, []);
 
   return (

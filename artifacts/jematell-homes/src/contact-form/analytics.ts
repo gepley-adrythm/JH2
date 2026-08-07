@@ -185,11 +185,135 @@ export function getTrackingData(): TrackingData {
   return { ...EMPTY, ...attr, trigger_url: window.location.href };
 }
 
+/**
+ * No-op by design. GTM is installed site-wide in the app shell, not lazily by
+ * the form — a container that only loads once the modal opens would miss every
+ * page_view. Kept as a call site so the form's mount effect stays stable.
+ */
 export function loadGTM(): void {}
 
+/* -------------------------------------------------------------------------
+ * Enhanced conversions normalization.
+ *
+ * Google hashes user-provided data client-side before it leaves the browser,
+ * but it hashes EXACTLY what we hand it — so the normalization has to happen
+ * here or the hash won't match Google's copy and the match silently fails.
+ * Rules per Google Ads "enhanced conversions for leads": trim, lowercase,
+ * E.164 phone numbers, and strip the dots gmail ignores.
+ * ---------------------------------------------------------------------- */
+
+/** E.164: +<country><digits>. Assumes US when no country code is present. */
+function toE164(phone: string): string {
+  let digits = phone.replace(/\D/g, "");
+  if (!digits) return "";
+  if (digits.length === 10) digits = "1" + digits;
+  // Anything that isn't a plausible NANP number is dropped rather than sent
+  // malformed — a bad value is worse than a missing one, it poisons the match.
+  if (digits.length !== 11 || digits[0] !== "1") return "";
+  return "+" + digits;
+}
+
+/**
+ * gmail.com and googlemail.com ignore dots in the local part, so
+ * `first.last@gmail.com` and `firstlast@gmail.com` are one inbox and must
+ * produce one hash. Every other domain keeps its local part verbatim.
+ */
+function normalizeEmail(email: string): string {
+  const trimmed = email.trim().toLowerCase();
+  const at = trimmed.lastIndexOf("@");
+  if (at < 1 || at === trimmed.length - 1) return "";
+  const local = trimmed.slice(0, at);
+  const domain = trimmed.slice(at + 1);
+  if (domain === "gmail.com" || domain === "googlemail.com") {
+    return local.replace(/\./g, "") + "@" + domain;
+  }
+  return trimmed;
+}
+
+/** The form takes one free-text name field; Google wants the parts separately. */
+function splitName(name: string): { first: string; last: string } {
+  const parts = name.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return { first: "", last: "" };
+  if (parts.length === 1) return { first: parts[0], last: "" };
+  return { first: parts[0], last: parts.slice(1).join(" ") };
+}
+
+/**
+ * Stable id for Google Ads conversion de-duplication. Derived from identity
+ * plus a one-minute bucket: a tag that fires twice for one submission collapses
+ * to a single conversion, while a genuine second inquiry later still counts.
+ */
+function leadId(email: string, phone: string): string {
+  const seed = email + "|" + phone + "|" + Math.floor(Date.now() / 60000);
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) | 0;
+  return "lead_" + (h >>> 0).toString(36);
+}
+
+interface DataLayerWindow extends Window {
+  dataLayer?: Record<string, unknown>[];
+}
+
+/**
+ * Pushes the lead event GTM listens for. One event drives all three tags:
+ * the Google Ads conversion, the Ads user-provided-data event (enhanced
+ * conversions), and the GA4 `generate_lead` event — so they can never disagree
+ * about whether a lead happened.
+ */
 export function reportConversion(
-  _formData: { name: string; email: string; phone: string },
-  _eventName: string,
-  _isNew: boolean,
-  _value: number,
-): void {}
+  formData: { name: string; email: string; phone: string },
+  eventName: string,
+  isNew: boolean,
+  value: number,
+): void {
+  if (typeof window === "undefined") return;
+
+  const w = window as DataLayerWindow;
+  w.dataLayer = w.dataLayer || [];
+
+  const email = normalizeEmail(formData.email);
+  const phone = toE164(formData.phone);
+  const { first, last } = splitName(formData.name);
+  const tracking = getTrackingData();
+
+  // Null out the previous lead first. dataLayer state persists across pushes,
+  // so without this a second submission in the same session would inherit any
+  // field the new one happens to leave empty — i.e. attribute lead B to
+  // person A. Same reasoning as clearing `ecommerce` before a new push.
+  w.dataLayer.push({ lead: null, user_data: null });
+
+  w.dataLayer.push({
+    event: "generate_lead",
+    lead: {
+      form: eventName,
+      is_new: isNew,
+      value,
+      currency: "USD",
+      transaction_id: leadId(email, phone),
+    },
+    // Key names are Google's, not ours: the Code method for enhanced
+    // conversions expects exactly `email`, `phone_number`, and a nested
+    // `address` with `first_name`/`last_name`. Renaming any of these makes the
+    // User-Provided Data variable read undefined and the match fails silently.
+    user_data: {
+      email,
+      phone_number: phone,
+      address: { first_name: first, last_name: last, country: "US" },
+    },
+    attribution: {
+      gclid: tracking.gclid,
+      msclkid: tracking.msclkid,
+      source: tracking.source,
+      medium: tracking.medium,
+      campaign: tracking.utm_campaign,
+      // Two different questions, both worth answering:
+      //   landing_page    - where they ENTERED the site (first touch, session-persisted)
+      //   conversion_page - where they actually SUBMITTED (`trigger_url`)
+      // The form is a portal modal, not a route, so the second is the article
+      // or service page they were reading — not always /contact. With 1,000+
+      // content pages that's the signal telling us which ones produce leads.
+      landing_page: tracking.landing_page,
+      conversion_page: tracking.trigger_url,
+    },
+  });
+}
