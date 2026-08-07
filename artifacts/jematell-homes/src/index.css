@@ -5507,7 +5507,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   white-space: normal !important;
 }
 .page-services .heading-lg {
-  font-size: clamp(28px, 4.5vw, 55px) !important;
+  font-size: 50px !important;
 }
 /* Homepage reviews columns: stop the grid-item min-content blowout that was
    clipping ~46px off the right edge on phones. */
