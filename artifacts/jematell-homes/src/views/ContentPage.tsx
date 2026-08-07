@@ -500,8 +500,7 @@ function ServiceGridSection({ section }: { section: Section }) {
     <section className="page-services section-pad">
       <div className="container">
         <m.div className="page-section-head" {...FADE_IN}>
-          <span className="eyebrow" style={{ fontSize: '15px' }}>What we do</span>
-          <h2 className="heading-lg" style={{ fontSize: 'clamp(32px, 4.5vw, 55px)', textTransform: 'uppercase' }}>{section.heading?.text}</h2>
+          <h2 className="heading-lg" style={{ fontSize: 'clamp(32px, 4.5vw, 55px)', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>{section.heading?.text}</h2>
         </m.div>
         <div className="page-services-grid">
           {items.map((it, i) => {
