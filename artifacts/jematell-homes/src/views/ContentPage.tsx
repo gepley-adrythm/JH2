@@ -500,7 +500,7 @@ function ServiceGridSection({ section }: { section: Section }) {
     <section className="page-services section-pad">
       <div className="container">
         <m.div className="page-section-head" {...FADE_IN}>
-          <h2 className="heading-lg" style={{ fontSize: 'clamp(32px, 4.5vw, 55px)', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>{section.heading?.text}</h2>
+          <h2 className="heading-lg" style={{ fontSize: '50px', textTransform: 'uppercase', whiteSpace: 'nowrap', textAlign: 'center' }}>{section.heading?.text}</h2>
         </m.div>
         <div className="page-services-grid">
           {items.map((it, i) => {
@@ -545,7 +545,7 @@ function ProcessSection({ section }: { section: Section }) {
     <section className={isFeaturedLayout ? "process page-process-featured section-pad" : "page-process section-pad"}>
       <div className="container">
         <m.div className="page-section-head centered" {...FADE_IN}>
-          <h2 className="heading-lg" style={{ textTransform: "uppercase", fontSize: "clamp(24px, 3vw, 44px)" }}>{section.heading?.text}</h2>
+          <h2 className="heading-lg" style={{ textTransform: "uppercase", fontSize: "50px" }}>{section.heading?.text}</h2>
         </m.div>
         {isFeaturedLayout ? (
           <div className="process-grid">
