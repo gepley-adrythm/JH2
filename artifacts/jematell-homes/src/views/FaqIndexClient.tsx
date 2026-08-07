@@ -51,9 +51,9 @@ export function FaqIndexClient({
 
   return (
     <>
-      <section className="page-hero faq-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
+      <section className="page-hero" style={{ alignItems: "center", minHeight: "65vh" }}>
         <ResponsiveImage
-          name="spec-home"
+          name="faq-hero"
           className="page-hero-bg"
           alt=""
           widths={[768, 1280, 1600]}
@@ -64,9 +64,7 @@ export function FaqIndexClient({
         />
         <div className="page-hero-overlay" style={{ background: "linear-gradient(180deg, rgba(10,12,14,0.25) 0%, rgba(10,12,14,0.45) 100%)" }} />
         <div className="container page-hero-content" style={{ textAlign: "center", maxWidth: "100%" }}>
-          <h1 className="page-hero-title hero-title" style={{ textTransform: "uppercase" }}>
-            Frequently Asked Questions
-          </h1>
+          <h1 className="page-hero-title">FREQUENTLY ASKED QUESTIONS</h1>
         </div>
       </section>
 
