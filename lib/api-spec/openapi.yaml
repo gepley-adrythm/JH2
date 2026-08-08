@@ -326,6 +326,33 @@ components:
         - referrer
         - landing_page
         - trigger_url
+    ContactSelection:
+      type: object
+      description: >-
+        The structured choices behind a sentence-builder message. The composed
+        sentence is still sent as `message`; this reports which chips produced
+        it so the reply can be tailored without re-parsing prose. Absent when
+        the visitor typed their own message.
+      properties:
+        action:
+          type: string
+          description: What they want to do, e.g. "schedule a consultation".
+        topic:
+          type: string
+          description: >-
+            What it is about, e.g. "building a custom home". The literal value
+            "other" means they typed their own topic into `otherTopic`.
+        otherTopic:
+          type: string
+          description: Free text typed when `topic` is "other".
+        question:
+          type: string
+          description: Free text typed when the action is "ask a question".
+      required:
+        - action
+        - topic
+        - otherTopic
+        - question
     ContactRequest:
       type: object
       properties:
@@ -339,6 +366,8 @@ components:
           type: string
         message:
           type: string
+        selection:
+          $ref: "#/components/schemas/ContactSelection"
         tracking:
           $ref: "#/components/schemas/ContactTracking"
       required:

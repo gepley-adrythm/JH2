@@ -110,6 +110,12 @@ export const SubmitContactBody = zod.object({
   "email": zod.string().email(),
   "phone": zod.string(),
   "message": zod.string(),
+  "selection": zod.object({
+  "action": zod.string().describe('What they want to do, e.g. \"schedule a consultation\".'),
+  "topic": zod.string().describe('What it is about, e.g. \"building a custom home\". The literal value \"other\" means they typed their own topic into `otherTopic`.'),
+  "otherTopic": zod.string().describe('Free text typed when `topic` is \"other\".'),
+  "question": zod.string().describe('Free text typed when the action is \"ask a question\".')
+}).optional().describe('The structured choices behind a sentence-builder message. The composed sentence is still sent as `message`; this reports which chips produced it so the reply can be tailored without re-parsing prose. Absent when the visitor typed their own message.'),
   "tracking": zod.object({
   "gclid": zod.string(),
   "utm_source": zod.string(),

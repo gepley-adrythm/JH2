@@ -44,6 +44,16 @@ export const leads = pgTable(
     landingPage: text("landing_page").notNull().default(""),
     triggerUrl: text("trigger_url").notNull().default(""),
 
+    // What the form's sentence builder produced, when it was used. Empty for a
+    // free-typed message. Stored as its own columns rather than left inside the
+    // message prose so "what are people asking about" is a GROUP BY rather than
+    // a text search.
+    requestAction: text("request_action").notNull().default(""),
+    requestTopic: text("request_topic").notNull().default(""),
+    // Free text captured when the topic chip was "other" — this is where demand
+    // for a topic that is not yet on the list shows up.
+    requestOtherTopic: text("request_other_topic").notNull().default(""),
+
     createdAt: timestamp("created_at", { withTimezone: true })
       .notNull()
       .defaultNow(),
@@ -52,6 +62,7 @@ export const leads = pgTable(
     // Reporting is almost always "leads in a date range, grouped by source".
     index("leads_created_at_idx").on(t.createdAt),
     index("leads_source_idx").on(t.source),
+    index("leads_topic_idx").on(t.requestTopic),
     index("leads_email_idx").on(t.email),
   ],
 );

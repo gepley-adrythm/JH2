@@ -5,6 +5,7 @@ import { SubmitContactBody, SubmitContactResponse } from "@workspace/api-zod";
 import { ReplitConnectors } from "@replit/connectors-sdk";
 import { db, leads } from "@workspace/db";
 
+import { ackLeadIn } from "./contact-ack-copy.js";
 /**
  * contact.ts — POST /api/contact
  *
@@ -43,6 +44,13 @@ const DEFAULT_ATTRIBUTION_TO = ["gepley@adrythm.com"];
 const BUSINESS_NAME = "Jematell Homes";
 const PHONE_DISPLAY = "(602) 421-5576";
 const PHONE_HREF = "tel:+16024215576";
+const EMAIL_DISPLAY = "info@jematellhomes.com";
+const SITE_URL = "https://jematellhomes.com/";
+/** Absolute: an email client has no origin to resolve a relative path against. */
+const LOGO_URL = "https://jematellhomes.com/images/logo.png";
+const BRAND_TAGLINE = "Family-Owned Arizona Home Builder";
+const ADDRESS_LINE = "8350 E Raintree Dr Ste 210, Scottsdale, AZ 85260";
+const ROC_LINE = "ROC# 339367";
 
 function envList(name: string, fallback: string[]): string[] {
   const raw = process.env[name];
@@ -223,41 +231,168 @@ function shell(headline: string, inner: string, footer: string): string {
       it is something the customer will read.
    ------------------------------------------------------------------------- */
 
-const ACK_LEAD_IN =
-  "We're grateful for the opportunity and will reach out as soon as possible, typically within one business day.";
 const ACK_SIGNOFF = `Thanks again for choosing ${BUSINESS_NAME}. We look forward to speaking with you soon.`;
 
-function buildAckHtml(data: ContactBody): string {
-  const inner = `<p style="margin:0;color:#2b2018;font-size:15px;line-height:1.7">${escapeHtml(
-    ACK_LEAD_IN,
-  )}</p>
-        <p style="margin:12px 0 0;color:#2b2018;font-size:15px;line-height:1.7">If this is urgent, call <a href="${PHONE_HREF}" style="color:#3b617f;text-decoration:none">${escapeHtml(
-          PHONE_DISPLAY,
-        )}</a>.</p>
-        <div style="margin-top:20px;border-top:1px solid #e7ded2;padding-top:16px">
-          <div style="color:#6b5d4f;font-size:13px;margin-bottom:8px">What you sent us</div>
-          <table style="width:100%;border-collapse:collapse">${detailRows(data)}</table>
-          ${messageBlock(data)}
-        </div>`;
-  return shell("Thank you — we're on it!", inner, ACK_SIGNOFF);
+/** Keep the phone number from breaking across lines in narrow clients. */
+const PHONE_NOWRAP = PHONE_DISPLAY.replace(/ /g, "&nbsp;").replace(/-/g, "&#8209;");
+
+const ACK_LINK = "color:#8a5a2b; text-decoration:none; border-bottom:1px solid #d9c6ae;";
+const ACK_SANS = "Arial, Helvetica, sans-serif";
+const ACK_SERIF = "Georgia, 'Times New Roman', serif";
+
+/**
+ * One label/value pair in the "What you sent us" table. The stack-label and
+ * stack-value classes let the media query collapse the two columns into rows
+ * on narrow screens, which is the only way a fixed-width email table reflows.
+ */
+function ackDetailRow(label: string, valueHtml: string, last: boolean): string {
+  const pad = last ? "0" : "0 0 14px 0";
+  return `<tr>
+                      <td class="stack-label" width="90" valign="top" style="width:90px; padding:${pad}; font-family:${ACK_SANS}; font-size:13px; line-height:22px; mso-line-height-rule:exactly; color:#8a7c6c;">${label}</td>
+                      <td class="stack-value" valign="top" style="padding:${pad}; font-family:${ACK_SANS}; font-size:15px; line-height:22px; mso-line-height-rule:exactly; color:#2b211a;">${valueHtml}</td>
+                    </tr>`;
 }
 
-function buildAckText(data: ContactBody): string {
+/**
+ * The acknowledgment is built as a table-based email rather than reusing the
+ * plain internal `shell`: it is the only one of the two a customer ever sees,
+ * so it carries the brand, and it has to survive Outlook, which ignores most
+ * modern CSS. Hence the nested tables, inline styles, and mso hints.
+ */
+function buildAckHtml(data: ContactBody, leadIn: string): string {
+  const email = escapeHtml(data.email);
+  const messageHtml = escapeHtml(data.message).replace(/\n/g, "<br>");
+  const quoted = data.message.trim() ? `&ldquo;${messageHtml}&rdquo;` : "(no message)";
+
+  const rows =
+    ackDetailRow("Name", escapeHtml(data.name), false) +
+    ackDetailRow("Email", `<a href="mailto:${email}" style="${ACK_LINK}">${email}</a>`, !data.phone) +
+    (data.phone ? ackDetailRow("Phone", escapeHtml(data.phone), true) : "");
+
+  return `<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>We received your message | ${escapeHtml(BUSINESS_NAME)}</title>
+<!--[if mso]>
+<noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>
+<![endif]-->
+<style>
+  @media only screen and (max-width: 620px) {
+    .container { width: 100% !important; }
+    .px { padding-left: 24px !important; padding-right: 24px !important; }
+    .stack-label { display: block !important; width: 100% !important; padding-bottom: 2px !important; }
+    .stack-value { display: block !important; width: 100% !important; padding-bottom: 14px !important; }
+  }
+</style>
+</head>
+<body style="margin:0; padding:0; background-color:#f4f2ec; word-spacing:normal;">
+<div style="display:none; font-size:1px; color:#f4f2ec; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden;">Thank you, we&rsquo;ve received your message and will reply within one business day.&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;</div>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#f4f2ec;">
+  <tr>
+    <td align="center" style="padding:48px 12px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" class="container" style="width:600px; max-width:600px;">
+        <tr>
+          <td align="center" style="padding:0 0 28px 0;">
+            <a href="${SITE_URL}" style="text-decoration:none;"><img src="${LOGO_URL}" width="150" alt="${escapeHtml(
+              BUSINESS_NAME,
+            )}" style="display:block; width:150px; height:auto; border:0; margin:0 auto;"></a>
+            <div style="font-family:${ACK_SANS}; font-size:10px; line-height:16px; mso-line-height-rule:exactly; color:#8a7c6c; letter-spacing:3px; text-transform:uppercase; padding-top:10px;">${escapeHtml(
+              BRAND_TAGLINE,
+            ).replace(/ /g, "&nbsp;")}</div>
+          </td>
+        </tr>
+        <tr>
+          <td style="background-color:#fdfbf7; border-radius:6px; border:1px solid #e2d9cb;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td class="px" style="background-color:#2b211a; border-radius:5px 5px 0 0; padding:40px 48px 36px 48px;">
+                  <div style="font-family:${ACK_SANS}; font-size:11px; line-height:16px; mso-line-height-rule:exactly; color:#b8a58e; letter-spacing:3px; text-transform:uppercase;">Message received</div>
+                  <div style="font-family:${ACK_SERIF}; font-size:30px; line-height:38px; mso-line-height-rule:exactly; color:#f6f1e8; padding-top:10px;">Thank you. We&rsquo;re on&nbsp;it.</div>
+                </td>
+              </tr>
+              <tr>
+                <td class="px" style="padding:36px 48px 0 48px;">
+                  <p style="margin:0; font-family:${ACK_SANS}; font-size:16px; line-height:26px; mso-line-height-rule:exactly; color:#3f362c;">${escapeHtml(
+                    leadIn,
+                  )}</p>
+                  <p style="margin:16px 0 0 0; font-family:${ACK_SANS}; font-size:16px; line-height:26px; mso-line-height-rule:exactly; color:#3f362c;">If your matter is urgent, call us directly at <a href="${PHONE_HREF}" style="${ACK_LINK}">${PHONE_NOWRAP}</a>.</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="px" style="padding:32px 48px 0 48px;">
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tr><td style="border-top:1px solid #e7ddce; font-size:0; line-height:0;">&nbsp;</td></tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="px" style="padding:28px 48px 0 48px;">
+                  <div style="font-family:${ACK_SANS}; font-size:11px; line-height:16px; mso-line-height-rule:exactly; color:#8a7c6c; letter-spacing:3px; text-transform:uppercase; padding-bottom:18px;">What you sent us</div>
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                    ${rows}
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="px" style="padding:24px 48px 40px 48px;">
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tr>
+                      <td style="background-color:#f4eee3; border-left:3px solid #b8a58e; padding:18px 22px;">
+                        <div style="font-family:${ACK_SANS}; font-size:11px; line-height:16px; mso-line-height-rule:exactly; color:#8a7c6c; letter-spacing:2px; text-transform:uppercase; padding-bottom:8px;">Your message</div>
+                        <div style="font-family:${ACK_SERIF}; font-size:15px; line-height:24px; mso-line-height-rule:exactly; color:#3f362c; font-style:italic;">${quoted}</div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" class="px" style="padding:28px 48px 0 48px;">
+            <p style="margin:0; font-family:${ACK_SANS}; font-size:12px; line-height:20px; mso-line-height-rule:exactly; color:#8a7c6c;">${escapeHtml(
+              ACK_SIGNOFF,
+            )}</p>
+            <p style="margin:14px 0 0 0; font-family:${ACK_SANS}; font-size:11px; line-height:18px; mso-line-height-rule:exactly; color:#a89a88;">${escapeHtml(
+              BUSINESS_NAME,
+            )} &middot; ${escapeHtml(ADDRESS_LINE)} &middot; ${escapeHtml(ROC_LINE).replace(
+              /# /,
+              "#&nbsp;",
+            )}<br><a href="mailto:${EMAIL_DISPLAY}" style="color:#8a7c6c; text-decoration:underline;">${EMAIL_DISPLAY}</a> &middot; <a href="${PHONE_HREF}" style="color:#8a7c6c; text-decoration:none;">${PHONE_NOWRAP}</a> &middot; <a href="${SITE_URL}" style="color:#8a7c6c; text-decoration:underline;">jematellhomes.com</a><br>You&rsquo;re receiving this one-time confirmation because you contacted us through our website.</p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>`;
+}
+
+function buildAckText(data: ContactBody, leadIn: string): string {
   return [
-    "Thank you — we're on it!",
+    "THANK YOU. WE'RE ON IT.",
     "",
-    ACK_LEAD_IN,
-    `If this is urgent, call ${PHONE_DISPLAY}.`,
+    leadIn,
+    `If your matter is urgent, call us directly at ${PHONE_DISPLAY}.`,
     "",
-    "What you sent us:",
+    "WHAT YOU SENT US",
     `  Name: ${data.name}`,
     `  Email: ${data.email}`,
-    `  Phone: ${data.phone || "(none)"}`,
+    ...(data.phone ? [`  Phone: ${data.phone}`] : []),
     "",
-    "  Message:",
+    "  Your message:",
     `  ${data.message || "(no message)"}`,
     "",
     ACK_SIGNOFF,
+    "",
+    `${BUSINESS_NAME} · ${ADDRESS_LINE} · ${ROC_LINE}`,
+    `${EMAIL_DISPLAY} · ${PHONE_DISPLAY} · jematellhomes.com`,
+    "You're receiving this one-time confirmation because you contacted us through our website.",
   ].join("\n");
 }
 
@@ -404,6 +539,9 @@ router.post("/contact", async (req: Request, res: Response): Promise<void> => {
       referrer: t.referrer,
       landingPage: t.landing_page,
       triggerUrl: t.trigger_url,
+      requestAction: data.selection?.action ?? "",
+      requestTopic: data.selection?.topic ?? "",
+      requestOtherTopic: data.selection?.otherTopic ?? "",
     });
     stored = true;
   } catch (err) {
@@ -412,6 +550,7 @@ router.post("/contact", async (req: Request, res: Response): Promise<void> => {
 
   const teamInbox = getTeamInbox();
   const attributionTo = getAttributionTo();
+  const leadIn = ackLeadIn(data.selection);
 
   const ack = buildRawMessage({
     to: [formatAddress(data.name, data.email)],
@@ -419,8 +558,8 @@ router.post("/contact", async (req: Request, res: Response): Promise<void> => {
     // reaches the customer on a thread that is already customer-safe.
     cc: teamInbox,
     subject: `Thank you for contacting ${BUSINESS_NAME}`,
-    text: buildAckText(data),
-    html: buildAckHtml(data),
+    text: buildAckText(data, leadIn),
+    html: buildAckHtml(data, leadIn),
   });
 
   const attribution = buildRawMessage({

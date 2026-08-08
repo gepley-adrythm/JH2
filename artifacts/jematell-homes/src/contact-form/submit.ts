@@ -5,11 +5,25 @@ export interface SubmitResult {
   error?: string;
 }
 
+/**
+ * The sentence-builder chips behind a composed message. Absent when the
+ * visitor typed their own message instead.
+ */
+export interface ContactSelection {
+  action: string;
+  topic: string;
+  /** Free text, set only when `topic` is "other". */
+  otherTopic: string;
+  /** Free text, set only when `action` is "ask a question". */
+  question: string;
+}
+
 export interface ContactSubmission {
   name: string;
   email: string;
   phone: string;
   message: string;
+  selection?: ContactSelection;
   tracking: TrackingData;
 }
 

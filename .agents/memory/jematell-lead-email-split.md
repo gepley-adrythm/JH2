@@ -39,7 +39,28 @@ separate from development. Read it with a read-only production query; the
 production schema itself is applied by Replit's Publish flow, so a newly added
 column or table does not exist in production until the user publishes.
 
-## Gmail raw-message construction
+## The two emails are deliberately not styled alike
+
+The acknowledgment is the only one a customer ever sees, so it is a full
+table-based branded email (nested tables, inline styles, Outlook `mso` hints)
+and does not share the plain internal card shell. The attribution email is
+internal and stays plain on purpose — do not "unify" the two templates, since
+the whole point is that one is a brand artifact and the other is a report.
+
+## Chip values are a cross-artifact contract
+
+The acknowledgment's opening line is chosen from a copy map keyed on the
+sentence-builder chip *values* defined in the web artifact's contact form data.
+Nothing enforces that the two agree: renaming a chip does not break the build,
+it silently degrades that combination to the generic fallback copy.
+
+**Why:** the fallback is intentional so an unknown value can never throw inside
+a send path, but it converts a product regression into something invisible.
+
+**How to apply:** when editing chip values, update the copy map in the same
+change. Treat "tailored copy quietly became generic" as the expected symptom of
+drift, and prefer an exhaustiveness check over trusting review to catch it.
+
 
 Sending through the Gmail API means hand-building an RFC 822 message, and two
 things there are easy to get wrong and invisible until a real lead trips them:

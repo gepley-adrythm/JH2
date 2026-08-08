@@ -78,12 +78,27 @@ export interface ContactTracking {
   trigger_url: string;
 }
 
+/**
+ * The structured choices behind a sentence-builder message. The composed sentence is still sent as `message`; this reports which chips produced it so the reply can be tailored without re-parsing prose. Absent when the visitor typed their own message.
+ */
+export interface ContactSelection {
+  /** What they want to do, e.g. "schedule a consultation". */
+  action: string;
+  /** What it is about, e.g. "building a custom home". The literal value "other" means they typed their own topic into `otherTopic`. */
+  topic: string;
+  /** Free text typed when `topic` is "other". */
+  otherTopic: string;
+  /** Free text typed when the action is "ask a question". */
+  question: string;
+}
+
 export interface ContactRequest {
   /** @minLength 1 */
   name: string;
   email: string;
   phone: string;
   message: string;
+  selection?: ContactSelection;
   tracking: ContactTracking;
 }
 

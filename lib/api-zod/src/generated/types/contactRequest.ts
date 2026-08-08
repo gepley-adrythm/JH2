@@ -5,6 +5,7 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
+import type { ContactSelection } from './contactSelection';
 import type { ContactTracking } from './contactTracking';
 
 export interface ContactRequest {
@@ -13,5 +14,6 @@ export interface ContactRequest {
   email: string;
   phone: string;
   message: string;
+  selection?: ContactSelection;
   tracking: ContactTracking;
 }

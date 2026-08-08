@@ -375,12 +375,26 @@ export default function ContactForm({ onClose, variant = "modal" }: ContactFormP
 
     const tracking = getTrackingData();
 
+    // Report the chips themselves, not just the sentence they composed, so the
+    // acknowledgment can be tailored without the server re-parsing prose that
+    // changes whenever a chip label is edited. Omitted entirely in manual mode:
+    // a typed message has no selection to report.
+    const selection = manualMode
+      ? undefined
+      : {
+          action: actionValue,
+          topic: topicValue,
+          otherTopic: topicValue === "other" ? otherTopicValue.trim() : "",
+          question: actionValue === "ask a question" ? questionValue.trim() : "",
+        };
+
     try {
       const result = await submitContactForm({
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
         message: msg,
+        selection,
         tracking,
       });
       if (result.success) {
