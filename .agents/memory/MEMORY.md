@@ -8,4 +8,5 @@
 - [Tailwind is installed but inert in jematell-homes](jematell-tailwind-inert.md) — arbitrary-value Tailwind classes (`text-[..]`) save fine but render invisibly; canvas UI edits sometimes emit them — convert to inline styles.
 - [Services split scaleX geometry](jematell-services-split-geometry.md) — right pane content clips under the left pane at rest; fix with translateX compensation, never font shrink/wrap.
 - [Estimate pages render twice](jematell-estimate-dual-render.md) — `/financing/estimate` is both a prerendered Next page and an api-server HTML page; change both, and only the Next one can hydrate.
+- [Lead notification email split](jematell-lead-email-split.md) — customer ack (team CC'd) carries no attribution so replies can't leak it; attribution lives in the `leads` table + a marketing-only email.
 - [Publish build stability](jematell-deploy-build.md) — deploy machine randomly crashes parallel SSG workers (null-React-hook errors on random pages); prod builds pinned to `cpus: 1` + standalone `global-error.tsx` required.
