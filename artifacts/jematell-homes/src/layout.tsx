@@ -227,6 +227,15 @@ export function Header() {
           </button>
         </div>
 
+        <a
+          href={siteConfig.contact.phone.href}
+          className="mobile-call-btn"
+          aria-label={`Call ${siteConfig.contact.phone.display}`}
+          data-testid="mobile-call"
+        >
+          <Phone size={19} strokeWidth={1.5} aria-hidden="true" />
+        </a>
+
         <button
           className={`mobile-menu-btn${mobileMenuOpen ? " is-open" : ""}`}
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}

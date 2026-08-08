@@ -327,10 +327,31 @@ h1, h2, h3, h4, h5, h6 {
 .mobile-menu-btn.is-open,
 .site-header:not(.scrolled) .mobile-menu-btn.is-open { color: var(--color-dark); }
 
+/* Mobile "call us" affordance, sits just left of the hamburger. Tracks the
+   same colour inversion as .mobile-menu-btn so it reads correctly over both
+   the transparent hero header and the scrolled solid one. */
+.mobile-call-btn {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  position: relative;
+  z-index: 95;
+  transition: color 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.mobile-call-btn:active { transform: scale(0.92); opacity: 0.7; }
+.site-header:not(.scrolled) .mobile-call-btn { color: #fff; }
+/* While the drawer is open the header goes light, so mirror the menu button. */
+.site-header:has(.mobile-menu-btn.is-open) .mobile-call-btn { color: var(--color-dark); }
+
 @media (max-width: 1100px) {
   .main-nav { display: none; }
   .header-actions { display: none; }
   .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
+  .mobile-call-btn { display: inline-flex; margin-left: auto; margin-right: 10px; }
 }
 
 /* Mobile nav drawer */
