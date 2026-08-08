@@ -38,7 +38,6 @@ Note that the deployed site writes to the **production** database, which is
 separate from development. Read it with a read-only production query; the
 production schema itself is applied by Replit's Publish flow, so a newly added
 column or table does not exist in production until the user publishes.
-
 ## The two emails are deliberately not styled alike
 
 The acknowledgment is the only one a customer ever sees, so it is a full
