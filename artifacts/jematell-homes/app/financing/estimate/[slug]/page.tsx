@@ -18,6 +18,7 @@ import { DetailDisclaimer } from "@/components/DetailParts";
 import { locations } from "@/config/siteConfig";
 import { pages } from "@/data/pages";
 import { ContactCta } from "@/components/ContactCta";
+import { WhyBuild } from "@/components/WhyBuild";
 import { CTA } from "@/cta";
 import {
   SCENARIO_BUILD_MONTHS,
@@ -374,6 +375,15 @@ export default async function EstimateScenarioPage({
           <DetailDisclaimer />
         </div>
       </section>
+
+      {/*
+        These pages double as landing pages, so the transparency block that
+        carries the homepage's core pitch runs here too, directly after the
+        numbers and before the exploration modules. Kept in sync with the
+        api-server's static copy of this section (see estimatePage.ts), which
+        serves the same block on shared-link estimates.
+      */}
+      <WhyBuild />
 
       {/*
         The old single "Keep exploring" block put four link lists in two masonry

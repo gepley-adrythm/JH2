@@ -44,6 +44,75 @@ const usd = (n: number): string =>
 const esc = (s: string): string =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
+/**
+ * A static copy of the site's "why build with us" transparency section, which
+ * these pages carry because they double as landing pages.
+ *
+ * Duplicated rather than imported: the original is a React client component
+ * (src/components/WhyBuild.tsx in the web artifact), and this server has no
+ * React and no access to that package. It is also deliberately NOT lifted out
+ * of the static export the way the header and footer are — the exported markup
+ * is framer-motion's pre-animation state, so it carries inline opacity:0 and
+ * would render invisible here, where scripts are stripped and nothing ever
+ * animates it in.
+ *
+ * The class names match the real stylesheet, so this inherits the same design.
+ * The icons are lucide paths inlined at the size the component requests.
+ *
+ * KEEP IN SYNC with WhyBuild.tsx — same headline, lead, and four pillars.
+ */
+const ICON_ATTRS =
+  'xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" ' +
+  'stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
+
+const WHY_BUILD_PILLARS: Array<{ icon: string; title: string; body: string }> = [
+  {
+    icon: '<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/>',
+    title: "Weekly Progress Updates",
+    body: "Every week of construction you get a written update: what was finished, what is scheduled next, and any decision we need from you. You never have to call and ask how your home is coming along.",
+  },
+  {
+    icon: '<line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
+    title: "Upfront Cost Estimates",
+    body: "On cost-plus builds you get an itemized cost estimate before we break ground, and we share the actual subcontractor bids with you, so you can see what every part of your home costs. For our in-house plans or simpler custom homes, we can quote a flat-rate build cost up front instead.",
+  },
+  {
+    icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/>',
+    title: "A Clear Draw Schedule",
+    body: "You get the full draw schedule at the start: which milestones release which funds, and when your lender is billed. Your financing stays predictable from foundation through final inspection.",
+  },
+  {
+    icon: '<path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/>',
+    title: "Selection Allowance Breakdown",
+    body: "Every allowance is itemized before you choose a single finish. Flooring, cabinets, countertops, fixtures, etc. each carry their own number, so you always know what is budgeted and what an upgrade actually costs.",
+  },
+];
+
+const WHY_BUILD_HTML = `<section class="why-build section-pad" data-testid="why-build">
+  <div class="container">
+    <div class="page-section-head centered">
+      <h2 class="heading-lg why-build-h2">The Most Transparent Builder You Will Work With</h2>
+      <p class="why-build-lead">Most homeowners find out about a cost overrun after it has already happened. We work the other way around. Before you break ground you know how your home is priced, what your draw schedule looks like, and what every allowance covers, all in writing. Once we start, you hear from us every week until you have the keys.</p>
+    </div>
+
+    <div class="why-build-grid">${WHY_BUILD_PILLARS.map(
+      (p) => `
+      <article class="why-build-card">
+        <div class="why-build-head">
+          <span class="why-build-icon" aria-hidden="true"><svg ${ICON_ATTRS}>${p.icon}</svg></span>
+          <h3 class="why-build-title">${esc(p.title)}</h3>
+        </div>
+        <p class="why-build-p">${esc(p.body)}</p>
+      </article>`,
+    ).join("")}
+    </div>
+
+    <div class="why-build-footer">
+      <a href="/financing" class="why-build-link">See how construction financing works <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</section>`;
+
 function body(r: EstimateResponse, query: string): string {
   const locLabel = r.input.county === "Statewide" ? "Arizona" : `${r.input.location}, Arizona`;
   const interactive = `/financing${query ? `?${query}` : ""}#calculator`;
@@ -163,6 +232,7 @@ ${r.warnings.length > 0 ? `    <ul class="est-note">${r.warnings.map((w) => `<li
       <a href="${esc(jsonUrl)}">${esc(jsonUrl)}</a></p>
   </div>
 </section>
+${WHY_BUILD_HTML}
 </main>`;
 }
 

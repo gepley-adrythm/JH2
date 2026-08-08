@@ -38,6 +38,25 @@ tree to hydrate. Consequences:
 - This asymmetry is intended, not a bug. A modal button and a link to the
   contact page are both acceptable; a dead button is not.
 
+## Do not lift animated sections out of the static export
+
+The api-server harvests header/footer/CSS from an exported page, so lifting a
+whole marketing section from the export looks like an easy way to avoid
+duplicating it. It is a trap for any section built with framer-motion.
+
+Those components render their **pre-animation** state into the exported HTML
+(`initial={{ opacity: 0 }}` → inline `opacity:0`). On the api-server page,
+scripts are stripped, so nothing ever animates it in and the section renders
+**invisible** — present in the DOM, silently blank on screen.
+
+**Why:** the export is a snapshot of a tree that expects to hydrate. The
+api-server page never hydrates.
+
+**How to apply:** hand-write a static HTML copy for the api-server, with lucide
+icon paths inlined (read them from `node_modules/lucide-react/dist/esm/icons/`
+rather than writing SVG from memory). Mark it clearly as needing to stay in
+sync with its React counterpart.
+
 ## How to apply
 
 When told to change "the estimate pages", change both the Next `[slug]` page
