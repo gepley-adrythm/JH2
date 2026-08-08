@@ -82,6 +82,9 @@ function body(r: EstimateResponse, query: string): string {
         <p class="eyebrow est-eyebrow">Construction loan estimate</p>
         <h1 class="est-h1">Estimated payments on a ${usd(e.homeValue)} custom home in ${esc(locLabel)}</h1>
         <p class="est-lead">${esc(r.summary)}</p>
+        <div class="est-hero-cta">
+          <a class="est-cta est-cta--primary" href="/contact" data-testid="estimate-hero-cta">Start Your Build</a>
+        </div>
         <div class="est-stat est-stat--lead">
           <span class="est-stat-k">All-in monthly after move-in</span>
           <span class="est-stat-v">${usd(e.afterMoveIn.allInMonthly)}</span>

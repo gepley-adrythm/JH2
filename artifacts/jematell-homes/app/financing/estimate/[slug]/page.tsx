@@ -236,6 +236,11 @@ export default async function EstimateScenarioPage({
                 {money(est.loan)} construction-to-permanent loan, and about {money(est.cashToPlanFor)} in cash between
                 the down payment and the interest paid while the house is being built.
               </p>
+              <div className="est-hero-cta">
+                <ContactCta className="est-cta est-cta--primary" testid="estimate-hero-cta">
+                  Start Your Build
+                </ContactCta>
+              </div>
             </div>
 
             <div className="est-hero-chart">

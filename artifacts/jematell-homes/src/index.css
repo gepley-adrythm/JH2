@@ -6178,6 +6178,16 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   outline-offset: 2px;
 }
 
+/* The hero CTA sits directly under the opening paragraph, above the fold on
+   mobile, so the estimate has an action attached to it before the reader has
+   to scroll past the charts to find one. */
+.est-hero-cta {
+  margin: 24px 0 4px;
+}
+.est-hero-cta .est-cta {
+  display: inline-block;
+}
+
 /* Scenario-page CTAs: one filled primary that opens the lead form, the rest
    outlined. */
 .est-cta--primary {
