@@ -46,8 +46,15 @@ const PHONE_DISPLAY = "(602) 421-5576";
 const PHONE_HREF = "tel:+16024215576";
 const EMAIL_DISPLAY = "info@jematellhomes.com";
 const SITE_URL = "https://jematellhomes.com/";
-/** Absolute: an email client has no origin to resolve a relative path against. */
-const LOGO_URL = "https://jematellhomes.com/images/logo.png";
+/**
+ * Absolute: an email client has no origin to resolve a relative path against.
+ *
+ * Deliberately NOT the site's images/logo.png — that file is a WebP carrying a
+ * .png extension. Browsers sniff the real format and render it, but Gmail does
+ * not decode WebP here and shows a black box instead. This one is a genuine
+ * PNG, flattened onto the email's background so it also survives dark mode.
+ */
+const LOGO_URL = "https://jematellhomes.com/images/logo-email.png";
 const BRAND_TAGLINE = "Family-Owned Arizona Home Builder";
 const ADDRESS_LINE = "8350 E Raintree Dr Ste 210, Scottsdale, AZ 85260";
 const ROC_LINE = "ROC# 339367";
@@ -299,7 +306,7 @@ function buildAckHtml(data: ContactBody, leadIn: string): string {
           <td align="center" style="padding:0 0 28px 0;">
             <a href="${SITE_URL}" style="text-decoration:none;"><img src="${LOGO_URL}" width="150" alt="${escapeHtml(
               BUSINESS_NAME,
-            )}" style="display:block; width:150px; height:auto; border:0; margin:0 auto;"></a>
+            )}" style="display:block; width:150px; height:auto; border:0; margin:0 auto; background-color:#f4f2ec;"></a>
             <div style="font-family:${ACK_SANS}; font-size:10px; line-height:16px; mso-line-height-rule:exactly; color:#8a7c6c; letter-spacing:3px; text-transform:uppercase; padding-top:10px;">${escapeHtml(
               BRAND_TAGLINE,
             ).replace(/ /g, "&nbsp;")}</div>

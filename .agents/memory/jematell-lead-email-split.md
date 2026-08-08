@@ -47,6 +47,28 @@ and does not share the plain internal card shell. The attribution email is
 internal and stays plain on purpose — do not "unify" the two templates, since
 the whole point is that one is a brand artifact and the other is a report.
 
+## Site image assets can be WebP wearing a .png extension
+
+At least the two site logo files are WebP data with a `.png` name. Browsers
+sniff the real format and render them, so the site looks fine and nothing in the
+build complains — but Gmail does not decode WebP for a remote `<img>` and
+renders a **black box** instead.
+
+**Why:** this makes "the logo is broken in email" look like a styling or
+dark-mode bug when it is actually a file-format bug, and the misleading
+extension means checking the URL or the content-type header will not reveal it.
+Confirm with `file` on the bytes, not the name.
+
+**How to apply:** never point an email at a site image without verifying the
+real format first. Email needs its own asset: a genuine PNG, flattened onto the
+email's background colour rather than left transparent, since alpha is what dark
+mode inverts. Keep it separate from the site logo — flattening the shared file
+in place would wreck it wherever it sits on a dark background.
+
+Note the ordering trap: an email referencing a newly added asset by absolute URL
+will 404 until the site is published, so the asset and the email change have to
+go live together.
+
 ## Chip values are a cross-artifact contract
 
 The acknowledgment's opening line is chosen from a copy map keyed on the
