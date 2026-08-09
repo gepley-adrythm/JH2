@@ -283,6 +283,7 @@ ${
 </head>
 <body>
 ${chrome.header}
+${chrome.mobileNav}
 ${body(data, query)}
 ${chrome.footer}
 ${CHROME_SCRIPT}

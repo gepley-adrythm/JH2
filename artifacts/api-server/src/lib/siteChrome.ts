@@ -16,8 +16,9 @@
  * uses the same class names as the scenario pages and inherits the real design.
  *
  * Deliberately NOT lifted: <script> tags. There is no React tree here to
- * hydrate, so the chrome is inert markup. Nav links work; the mobile nav toggle
- * does not, which is an acceptable trade for a page reached by a shared link.
+ * hydrate, so the chrome arrives as inert markup. The behaviour that markup
+ * needs is supplied instead by chromeScript.ts, which is small, hand-written
+ * and specific to this page — see that file for what it covers and why.
  *
  * Cached against the source file's mtime so a rebuild is picked up without a
  * restart — otherwise a dev rebuild would leave this pointing at CSS hashes that
@@ -26,6 +27,7 @@
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { staticSiteDir } from "../middlewares/staticSite";
+import { logger } from "./logger";
 
 export interface SiteChrome {
   /** Class list from <html>, carrying the font variables. */
@@ -45,14 +47,35 @@ export interface SiteChrome {
   header: string;
   /** The site footer markup, scripts stripped. */
   footer: string;
+  /**
+   * The mobile nav panel markup, scripts stripped.
+   *
+   * Separate from `header` because React renders it as a SIBLING of <header>
+   * rather than a child, so lifting the header element alone leaves the menu
+   * button on the page with nothing to open.
+   */
+  mobileNav: string;
 }
 
 /** The page we harvest from: always exported, and it carries the full chrome. */
 const SOURCE_PAGE = "financing.html";
 
-const EMPTY: SiteChrome = { htmlClass: "", headLinks: "", inlineCss: "", header: "", footer: "" };
+const EMPTY: SiteChrome = { htmlClass: "", headLinks: "", inlineCss: "", header: "", footer: "", mobileNav: "" };
 
 let cache: { mtimeMs: number; chrome: SiteChrome } | null = null;
+
+/**
+ * Remove scripts and comments before any markup is located.
+ *
+ * Order matters and used to be wrong. Both extractors below find elements by
+ * scanning for tag-shaped text, so a `<div` or `</header>` sitting inside a
+ * script body or an HTML comment counts as real markup and throws the search
+ * off — truncating a lifted element midway, or swallowing the rest of the
+ * document. Stripping first means the scanners only ever see live markup.
+ */
+function stripInertText(html: string): string {
+  return html.replace(/<script[\s\S]*?<\/script>/gi, "").replace(/<!--[\s\S]*?-->/g, "");
+}
 
 function block(html: string, tag: "header" | "footer"): string {
   const open = html.indexOf(`<${tag}`);
@@ -60,6 +83,43 @@ function block(html: string, tag: "header" | "footer"): string {
   if (open === -1 || close === -1 || close < open) return "";
   // Strip any script tags; nothing here is meant to execute.
   return html.slice(open, close + tag.length + 3).replace(/<script[\s\S]*?<\/script>/g, "");
+}
+
+/**
+ * Extract the mobile nav panel.
+ *
+ * Found by walking <div> depth rather than by regex: the panel nests divs, so
+ * the first `</div>` after it is not its closing tag and a lazy match would
+ * truncate the menu partway through.
+ */
+function mobileNavPanel(html: string): string {
+  const marker = html.indexOf('id="mobile-nav-panel"');
+  if (marker === -1) return "";
+  const start = html.lastIndexOf("<div", marker);
+  if (start === -1) return "";
+
+  // The id must sit inside that div's opening tag. Without this check a stray
+  // mention of the id in body text or an attribute elsewhere would anchor the
+  // walk to an unrelated element and lift the wrong markup.
+  const openTagEnd = html.indexOf(">", start);
+  if (openTagEnd === -1 || openTagEnd < marker) return "";
+
+  let depth = 0;
+  let i = start;
+  while (i < html.length) {
+    const open = html.indexOf("<div", i);
+    const close = html.indexOf("</div>", i);
+    if (close === -1) return "";
+    if (open !== -1 && open < close) {
+      depth += 1;
+      i = open + 4;
+    } else {
+      depth -= 1;
+      i = close + 6;
+      if (depth === 0) return html.slice(start, i);
+    }
+  }
+  return "";
 }
 
 export function siteChrome(): SiteChrome {
@@ -107,12 +167,29 @@ export function siteChrome(): SiteChrome {
           .map((tag) => tag.replace(/^<style[^>]*>/, "").replace(/<\/style>$/, ""))
           .join("\n");
 
+    // Markup extraction works on a script- and comment-free copy; the head
+    // harvesting above deliberately uses the original, since it is reading
+    // <link> and <style> tags rather than searching for element boundaries.
+    const markup = stripInertText(html);
+
+    const mobileNav = mobileNavPanel(markup);
+    if (!mobileNav) {
+      // Not fatal — the page still renders. But it silently returns the menu
+      // button to opening nothing, which is the exact bug this was added to
+      // fix, so it must not fail quietly.
+      logger.warn(
+        { source: SOURCE_PAGE },
+        "siteChrome: #mobile-nav-panel not found in the export; the estimate page's mobile menu will be inert",
+      );
+    }
+
     const chrome: SiteChrome = {
       htmlClass,
       headLinks,
       inlineCss,
-      header: block(html, "header"),
-      footer: block(html, "footer"),
+      header: block(markup, "header"),
+      footer: block(markup, "footer"),
+      mobileNav,
     };
     cache = { mtimeMs, chrome };
     return chrome;

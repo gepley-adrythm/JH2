@@ -89,6 +89,19 @@ across; those constants must be changed in both places. A wrong-but-plausible
 GTM container id is the dangerous case — traffic lands in another property and
 the number still looks believable.
 
+A related trap when lifting chrome: the mobile nav panel is a SIBLING of
+`<header>`, not a child, so lifting the header element alone brings the menu
+button across with nothing for it to open. Anything else React renders outside
+the element being harvested has the same problem. The mobile accordions are
+worse still — their children only exist while expanded, so a static export
+captures empty groups; the same links can be read off the desktop dropdowns,
+which render their panel unconditionally.
+
+Also remember which controls are modal triggers rather than links. The header
+and mobile "Start Your Build" buttons open a React contact-form modal, so they
+are inert wherever that modal does not exist and have to be pointed at
+/contact instead.
+
 Quick check that the page still has its behaviour: the served HTML should have
 two `<script>` tags (JSON-LD plus the inline chrome script). One means the
 regression is back.
