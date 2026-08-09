@@ -64,3 +64,31 @@ and the api-server route. Verify the shared-link half with a request against
 the running api-server rather than only screenshotting the Next page — the
 Next dev server will happily render the indexed page while the shared-link
 half is untouched.
+
+## The api-server copy ships zero client JavaScript
+
+siteChrome lifts the real header/footer markup but strips every `<script>`,
+because there is no React tree to hydrate. The page therefore *looks* identical
+to the Next pages while silently lacking anything driven by JS.
+
+Two things this cost, both reported as separate bugs before the shared cause was
+found: Google Tag Manager never loaded (armed from Providers on normal pages, so
+every visit through a shared estimate link was invisible to analytics), and the
+header never gained its `scrolled` class, so it stayed transparent forever and
+scrolled content showed through it.
+
+**Why:** the failure is invisible from the markup and the stylesheet — both are
+correct and complete. Only the behaviour is missing, so it reads as a CSS or a
+tag-config bug rather than a missing-runtime bug.
+
+**How to apply:** when anything on the site gains behaviour that a shared
+estimate link should also have, it will NOT arrive here for free. The inline
+script this page now carries duplicates the web artifact's GTM loader and the
+Header's scroll threshold across a package boundary that cannot be imported
+across; those constants must be changed in both places. A wrong-but-plausible
+GTM container id is the dangerous case — traffic lands in another property and
+the number still looks believable.
+
+Quick check that the page still has its behaviour: the served HTML should have
+two `<script>` tags (JSON-LD plus the inline chrome script). One means the
+regression is back.

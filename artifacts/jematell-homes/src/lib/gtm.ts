@@ -36,6 +36,15 @@ const GTM_ID = "GTM-P4ZTW76";
 /** Params that mean "an ad platform sent this visitor and expects attribution". */
 const CLICK_IDS = ["gclid", "gbraid", "wbraid", "msclkid", "fbclid"];
 
+/**
+ * GTM preview mode sets this. Without it in the eager set, the debugger cannot
+ * connect until the tester happens to scroll or click, which presents as "the
+ * tag is not firing at all" and sends people hunting for a bug that is not
+ * there. Only ever present in a deliberate debug session, so real visitors are
+ * unaffected.
+ */
+const DEBUG_PARAM = "gtm_debug";
+
 /** Interaction is the primary signal; passive+once so it costs nothing to listen. */
 const WAKE_EVENTS = ["pointerdown", "keydown", "touchstart", "scroll"] as const;
 
@@ -62,9 +71,9 @@ function injectGtm(): void {
   document.head.appendChild(script);
 }
 
-function hasClickId(): boolean {
+function needsEagerLoad(): boolean {
   const params = new URLSearchParams(window.location.search);
-  return CLICK_IDS.some((id) => params.has(id));
+  return params.has(DEBUG_PARAM) || CLICK_IDS.some((id) => params.has(id));
 }
 
 /**
@@ -95,8 +104,8 @@ export function loadGtmDeferred(): void {
     window.addEventListener(evt, fire, { once: true, passive: true });
   }
 
-  // Only paid visits get a deadline — see the header comment.
-  if (hasClickId()) {
+  // Only paid visits and debug sessions get a deadline — see the header comment.
+  if (needsEagerLoad()) {
     const ric = (window as unknown as {
       requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
     }).requestIdleCallback;

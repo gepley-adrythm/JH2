@@ -35,6 +35,7 @@ import {
 } from "../lib/estimateRequest";
 import { renderDonut, renderTimeline } from "../lib/estimateChartSvg";
 import { siteChrome } from "../lib/siteChrome";
+import { CHROME_SCRIPT } from "../lib/chromeScript.js";
 
 const router: IRouter = Router();
 
@@ -284,6 +285,7 @@ ${
 ${chrome.header}
 ${body(data, query)}
 ${chrome.footer}
+${CHROME_SCRIPT}
 </body>
 </html>`;
 
