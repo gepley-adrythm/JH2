@@ -33,6 +33,50 @@ app.use(
     },
   }),
 );
+
+// Canonical host. www.jematellhomes.com and jematellhomes.com both answered 200
+// with byte-identical responses (same ETag), so Google indexed the site twice.
+// Measured in Search Console, Jul 27-Aug 9 2026: 249 of ~1,010 pages ranked
+// under BOTH hostnames, 303 www URLs ranked in total, and the www share of
+// impressions was still climbing (22.5% in Jul 13-26 -> 29.8% in Jul 27-Aug 9).
+// On several pages the www copy outranked the apex by double digits, so this
+// was not resolving on its own.
+//
+// rel=canonical was already correct on every page and did not fix it — it is a
+// hint, not a directive — and Google removed the preferred-domain setting from
+// Search Console in 2019. A 301 is the only mechanism that actually merges the
+// two. Placed after pino so the redirects are visible in logs while Google
+// reprocesses.
+//
+// Deliberately an exact-host allowlist rather than a generic "strip the www"
+// rule: the *.replit.dev preview hostnames, localhost, and the autoscale health
+// check must pass through untouched, and an over-broad rule is exactly how a
+// redirect loop takes a site down.
+//
+// CANONICAL_HOST_REDIRECT=off disables it without a code change or redeploy —
+// a safety valve, since this ships against a site that is under a month old.
+const CANONICAL_HOST = process.env.CANONICAL_HOST ?? "jematellhomes.com";
+const REDIRECT_HOSTS = new Set(
+  (process.env.REDIRECT_HOSTS ?? "www.jematellhomes.com")
+    .split(",")
+    .map((h) => h.trim().toLowerCase())
+    .filter(Boolean),
+);
+const HOST_REDIRECT_ENABLED = process.env.CANONICAL_HOST_REDIRECT !== "off";
+
+if (HOST_REDIRECT_ENABLED && REDIRECT_HOSTS.size > 0) {
+  app.use((req, res, next) => {
+    // Behind Google Frontend (Replit autoscale) the original hostname can
+    // arrive on x-forwarded-host; fall back to Host. Take the first value if a
+    // proxy chain appended more, and drop any :port suffix.
+    const raw = (req.headers["x-forwarded-host"] ?? req.headers.host ?? "").toString();
+    const host = raw.split(",")[0].trim().toLowerCase().replace(/:\d+$/, "");
+    if (!REDIRECT_HOSTS.has(host) || host === CANONICAL_HOST) return next();
+    // originalUrl carries path AND query, so a shared estimate link survives:
+    // www.../financing/estimate?cost=900000 -> .../financing/estimate?cost=900000
+    res.redirect(301, `https://${CANONICAL_HOST}${req.originalUrl}`);
+  });
+}
 // CORS belongs to the JSON API and the agent-facing surfaces, which are meant
 // to be callable cross-origin. It was mounted globally, so every static page
 // also went out with `Access-Control-Allow-Origin: *` — meaningless for a

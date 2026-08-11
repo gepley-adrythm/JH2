@@ -22,6 +22,7 @@
  * Exits non-zero on the first failed assertion.
  */
 import { spawn } from "node:child_process";
+import { request as httpRequest } from "node:http";
 import { existsSync } from "node:fs";
 import { dirname, resolve, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -191,6 +192,78 @@ console.log("\nstatic export via the same service");
   const html = await res.text();
   const css = await cssReaching(html);
   check(`site CSS reaches the home page — ${css.via}`, css.ok);
+}
+
+// --- 4. Canonical host redirect -------------------------------------------
+// www and apex both answered 200 with byte-identical responses, so Google
+// indexed 249 of ~1,010 pages under both hostnames and the www share of
+// impressions was still growing. The 301 consolidates them. These assertions
+// exist because the failure modes are severe and silent: a redirect LOOP takes
+// the whole site down, a redirect that drops the path dumps every deep link on
+// the home page, and an over-broad host rule breaks *.replit.dev and localhost.
+console.log("\ncanonical host redirect");
+{
+  // NOTE: node's global fetch (undici) silently DROPS a Host header — it is a
+  // forbidden header name in the fetch spec — so every request would arrive as
+  // 127.0.0.1 and the redirect would look broken when it is not. This gate must
+  // use node:http, which sends whatever Host it is given.
+  const rawGet = (path, host) =>
+    new Promise((resolve, reject) => {
+      const req = httpRequest(
+        { host: "127.0.0.1", port: PORT, path, method: "GET", headers: { Host: host } },
+        (res) => {
+          res.resume(); // drain, we only need status + headers
+          res.on("end", () => resolve({ status: res.statusCode, location: res.headers.location }));
+        },
+      );
+      req.on("error", reject);
+      req.end();
+    });
+
+  {
+    const res = await rawGet(
+      "/faq/cost-to-build-a-house-per-square-foot-in-arizona",
+      "www.jematellhomes.com",
+    );
+    check("www request 301s", res.status === 301, `HTTP ${res.status}`);
+    check(
+      "301 preserves the path on the apex host",
+      res.location ===
+        "https://jematellhomes.com/faq/cost-to-build-a-house-per-square-foot-in-arizona",
+      `Location: ${res.location}`,
+    );
+  }
+
+  // Query strings must survive — shared estimate links depend on it
+  {
+    const res = await rawGet(
+      "/financing/estimate?cost=900000&down=20&loc=scottsdale",
+      "www.jematellhomes.com",
+    );
+    check(
+      "301 preserves the query string",
+      res.location ===
+        "https://jematellhomes.com/financing/estimate?cost=900000&down=20&loc=scottsdale",
+      `Location: ${res.location}`,
+    );
+  }
+
+  // The canonical host must NEVER redirect — that is the loop
+  {
+    const res = await rawGet("/", "jematellhomes.com");
+    check("apex host does NOT redirect (no loop)", res.status === 200, `HTTP ${res.status}`);
+  }
+
+  // Everything else passes through untouched
+  for (const host of [
+    "localhost",
+    "127.0.0.1",
+    "jh2.replit.dev",
+    "example-00-abc.picard.replit.dev",
+  ]) {
+    const res = await rawGet("/", host);
+    check(`${host} passes through`, res.status === 200, `HTTP ${res.status}`);
+  }
 }
 
 shutdown();
