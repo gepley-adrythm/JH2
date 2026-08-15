@@ -6,3 +6,31 @@ id = "i4qqj2VE8tBzCTwloJrsB"
 uri = "file://research/jematell-faq-content-plan.md"
 type = "text"
 title = "Jematell Homes — FAQ / Resource Content Plan"
+
+[[outputs]]
+id = "MPOo3TTbnnU19yt72rClB"
+uri = "file://brand-assets/google-ads/jematell-logo-square-1200x1200.png"
+type = "image"
+title = "Square logo 1:1 — 1200×1200 (transparent)"
+description = "Google Ads square logo at the recommended 1200×1200. Transparent background — the most flexible option, since Google places logos on its own light surfaces."
+
+[[outputs]]
+id = "l1Ob19uG47EWYGZDvr9n8"
+uri = "file://brand-assets/google-ads/jematell-logo-square-1200x1200-white.png"
+type = "image"
+title = "Square logo 1:1 — 1200×1200 (white)"
+description = "Same square logo flattened onto solid white, for any placement that rejects transparency or renders on a coloured card."
+
+[[outputs]]
+id = "lwawxKQY3-FNCE5mpO1hw"
+uri = "file://brand-assets/google-ads/jematell-logo-landscape-1200x300.png"
+type = "image"
+title = "Landscape logo 4:1 — 1200×300 (transparent)"
+description = "Google Ads landscape logo at the recommended 1200×300, transparent background."
+
+[[outputs]]
+id = "UIGTYCaouZpE3uTEdoIbv"
+uri = "file://brand-assets/google-ads/jematell-logo-landscape-1200x300-white.png"
+type = "image"
+title = "Landscape logo 4:1 — 1200×300 (white)"
+description = "Same landscape logo flattened onto solid white."
