@@ -66,6 +66,10 @@ export interface DuplicateCheckResponse {
  */
 export interface ContactTracking {
   gclid: string;
+  /** Microsoft Advertising click id (auto-tagging). */
+  msclkid?: string;
+  /** Meta (Facebook/Instagram) click id. */
+  fbclid?: string;
   utm_source: string;
   utm_medium: string;
   utm_campaign: string;

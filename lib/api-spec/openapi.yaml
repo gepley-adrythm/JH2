@@ -298,6 +298,12 @@ components:
       properties:
         gclid:
           type: string
+        msclkid:
+          type: string
+          description: Microsoft Advertising click id (auto-tagging).
+        fbclid:
+          type: string
+          description: Meta (Facebook/Instagram) click id.
         utm_source:
           type: string
         utm_medium:

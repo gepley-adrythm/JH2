@@ -118,6 +118,8 @@ export const SubmitContactBody = zod.object({
 }).optional().describe('The structured choices behind a sentence-builder message. The composed sentence is still sent as `message`; this reports which chips produced it so the reply can be tailored without re-parsing prose. Absent when the visitor typed their own message.'),
   "tracking": zod.object({
   "gclid": zod.string(),
+  "msclkid": zod.string().optional().describe('Microsoft Advertising click id (auto-tagging).'),
+  "fbclid": zod.string().optional().describe('Meta (Facebook\/Instagram) click id.'),
   "utm_source": zod.string(),
   "utm_medium": zod.string(),
   "utm_campaign": zod.string(),

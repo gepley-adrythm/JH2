@@ -4,6 +4,7 @@ import { SubmitContactBody, SubmitContactResponse } from "@workspace/api-zod";
 // Replit Connectors proxy, which injects OAuth2 tokens automatically.
 import { ReplitConnectors } from "@replit/connectors-sdk";
 import { db, leads } from "@workspace/db";
+import { postLeadToAdRhythm } from "../lib/adrythm";
 
 import { ackLeadIn } from "./contact-ack-copy.js";
 /**
@@ -601,13 +602,39 @@ router.post("/contact", async (req: Request, res: Response): Promise<void> => {
     html: buildAttributionHtml(data),
   });
 
-  const [ackResult, attrResult] = await Promise.allSettled([
+  const [ackResult, attrResult, hookResult] = await Promise.allSettled([
     sendMail(ack),
     sendMail(attribution),
+    // Batched with the sends so it runs concurrently and normally costs the
+    // visitor no extra wait. It resolves with an outcome rather than
+    // rejecting, so it cannot influence whether this request is a failure.
+    postLeadToAdRhythm({
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      message: data.message,
+      // The page they actually submitted from. The form is a modal rather
+      // than a route, so this is the article or service page they were
+      // reading — not /contact.
+      page_url: t.trigger_url || t.landing_page,
+      gclid: t.gclid,
+      msclkid: t.msclkid,
+      fbclid: t.fbclid,
+      source: t.source,
+      medium: t.medium,
+      utm_source: t.utm_source,
+      utm_medium: t.utm_medium,
+      utm_campaign: t.utm_campaign,
+      referrer: t.referrer,
+      landing_page: t.landing_page,
+      request_action: data.selection?.action,
+      request_topic: data.selection?.topic,
+    }),
   ]);
 
   const ackOk = ackResult.status === "fulfilled";
   const attrOk = attrResult.status === "fulfilled";
+  const adrythm = hookResult.status === "fulfilled" ? hookResult.value : "failed";
   if (!ackOk) {
     req.log.error({ err: (ackResult as PromiseRejectedResult).reason }, "Lead acknowledgment failed");
   }
@@ -615,6 +642,8 @@ router.post("/contact", async (req: Request, res: Response): Promise<void> => {
     req.log.error({ err: (attrResult as PromiseRejectedResult).reason }, "Lead attribution email failed");
   }
 
+  // Deliberately excludes AdRhythm: it is a reporting mirror, so its being
+  // down is no reason to tell the visitor their message failed.
   // Only a total loss is an error: if the row landed, the lead is recoverable
   // even when Gmail is down, and telling the visitor their message failed
   // would just make them submit again.
@@ -623,7 +652,7 @@ router.post("/contact", async (req: Request, res: Response): Promise<void> => {
     return;
   }
 
-  req.log.info({ stored, ackOk, attrOk, teamInbox, attributionTo }, "Contact form lead processed");
+  req.log.info({ stored, ackOk, attrOk, adrythm, teamInbox, attributionTo }, "Contact form lead processed");
   res.json(SubmitContactResponse.parse({ success: true }));
 });
 
