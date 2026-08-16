@@ -12,3 +12,4 @@
 - [Contact lead sinks](jematell-lead-sinks.md) — DB row + emails are the lead; third-party mirrors (AdRhythm) must never be awaited in the request path or their outage stalls every submit.
 - [Tracking fields drift at the API boundary](jematell-tracking-schema-drift.md) — browser `TrackingData` vs OpenAPI `ContactTracking` are separate; zod silently drops any field the spec omits.
 - [Publish build stability](jematell-deploy-build.md) — deploy machine randomly crashes parallel SSG workers (null-React-hook errors on random pages); prod builds pinned to `cpus: 1` + standalone `global-error.tsx` required.
+- [Partnered widget iframe constraints](jematell-partnered-widget-iframe.md) — cross-origin scrollbar can't be recolored; wrapper-scroll workarounds break the widget's infinite scroll and hide plans.
