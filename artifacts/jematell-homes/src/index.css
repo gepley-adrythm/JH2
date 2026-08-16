@@ -4422,6 +4422,15 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 .fp-exclusives-inline .page-tier-body p { font-size: 13px; }
 .fp-exclusives-inline .page-tier-link { font-size: 14px; margin-top: 4px; }
 
+@media (max-width: 600px) {
+  /* Desktop insets the exclusives (and the partnered label that aligns with
+     them) to set them apart from the widget; on phones that 202px of side
+     padding crushes the cards to a sliver. Let them use the full container
+     width, which still leaves the container's own 24px gutters. */
+  .fp-exclusives-inline { padding-inline: 0; }
+  .fp-partnered-label { padding-inline-start: 0; }
+}
+
 /* Specs list + description inside exclusive cards */
 .fp-exclusive-specs {
   list-style: none;
