@@ -341,17 +341,15 @@ export function FloorPlanWidgets() {
                     <span className="eyebrow text-[15px]" style={{ color: "var(--color-accent)" }}>Partnered Plans</span>
                   </div>
                 )}
-                <div style={{ overflow: "hidden" }}>
+                <div className="fp-partnered-widget">
                   <iframe
                     src={c.widget}
                     title={`${c.title} house plan collection`}
-                    scrolling="no"
                     height="580"
                     frameBorder={0}
                     allowFullScreen
                     loading="lazy"
                     data-testid={`floor-plan-iframe-${c.id}`}
-                    style={{ display: "block", width: "calc(100% + 20px)", marginRight: -20 }}
                   />
                 </div>
               </m.div>

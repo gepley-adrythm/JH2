@@ -2843,6 +2843,30 @@ a.contact-info-card:hover {
   .page-plan-embed { padding-bottom: 75%; }
 }
 
+/* Partnered-plan widget iframes (Architectural Designs). The +20px width
+   trick pushes the iframe's own scrollbar just out of view on desktop;
+   overflow:hidden on the iframe replaces the deprecated scrolling="no"
+   attribute so a media query can override it. */
+.fp-partnered-widget { overflow: hidden; }
+.fp-partnered-widget iframe {
+  display: block;
+  width: calc(100% + 20px);
+  margin-right: -20px;
+  overflow: hidden;
+}
+@media (max-width: 600px) {
+  /* On phones the widget stacks its plans in one column far taller than the
+     fixed 580px height, clipping most of them with no way to scroll. Let the
+     iframe scroll and reveal its scrollbar so every partnered plan is
+     reachable. Desktop is untouched. */
+  .fp-partnered-widget iframe {
+    width: 100%;
+    margin-right: 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
 /* Why-choose feature cards */
 .page-why-cards {
   display: grid;
