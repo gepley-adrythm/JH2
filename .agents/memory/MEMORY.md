@@ -9,4 +9,6 @@
 - [Services split scaleX geometry](jematell-services-split-geometry.md) — right pane content clips under the left pane at rest; fix with translateX compensation, never font shrink/wrap.
 - [Estimate pages render twice](jematell-estimate-dual-render.md) — `/financing/estimate` is both a prerendered Next page and an api-server HTML page; change both, and only the Next one can hydrate.
 - [Lead notification email split](jematell-lead-email-split.md) — customer ack (team CC'd) carries no attribution so replies can't leak it; attribution lives in the `leads` table + a marketing-only email.
+- [Contact lead sinks](jematell-lead-sinks.md) — DB row + emails are the lead; third-party mirrors (AdRhythm) must never be awaited in the request path or their outage stalls every submit.
+- [Tracking fields drift at the API boundary](jematell-tracking-schema-drift.md) — browser `TrackingData` vs OpenAPI `ContactTracking` are separate; zod silently drops any field the spec omits.
 - [Publish build stability](jematell-deploy-build.md) — deploy machine randomly crashes parallel SSG workers (null-React-hook errors on random pages); prod builds pinned to `cpus: 1` + standalone `global-error.tsx` required.

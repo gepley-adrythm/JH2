@@ -602,39 +602,49 @@ router.post("/contact", async (req: Request, res: Response): Promise<void> => {
     html: buildAttributionHtml(data),
   });
 
-  const [ackResult, attrResult, hookResult] = await Promise.allSettled([
+  // Fire-and-forget by design, and deliberately NOT part of the awaited batch
+  // below. AdRhythm is a reporting mirror; if it were awaited, an outage there
+  // would spend its whole retry budget while the visitor waits — seconds added
+  // to every submission, which is exactly the visitor-facing change this
+  // integration must not make. Kicked off here so it still overlaps the sends.
+  void postLeadToAdRhythm({
+    name: data.name,
+    email: data.email,
+    phone: data.phone,
+    message: data.message,
+    // The page they actually submitted from. The form is a modal rather
+    // than a route, so this is the article or service page they were
+    // reading — not /contact.
+    page_url: t.trigger_url || t.landing_page,
+    gclid: t.gclid,
+    msclkid: t.msclkid,
+    fbclid: t.fbclid,
+    source: t.source,
+    medium: t.medium,
+    utm_source: t.utm_source,
+    utm_medium: t.utm_medium,
+    utm_campaign: t.utm_campaign,
+    referrer: t.referrer,
+    landing_page: t.landing_page,
+    request_action: data.selection?.action,
+    request_topic: data.selection?.topic,
+  })
+    .then((adrythm) => {
+      req.log.info({ adrythm }, "AdRhythm lead forwarding finished");
+    })
+    .catch((err) => {
+      // postLeadToAdRhythm is written never to reject. This is a backstop so a
+      // future change there can never surface as an unhandled rejection.
+      req.log.error({ err }, "AdRhythm lead forwarding threw unexpectedly");
+    });
+
+  const [ackResult, attrResult] = await Promise.allSettled([
     sendMail(ack),
     sendMail(attribution),
-    // Batched with the sends so it runs concurrently and normally costs the
-    // visitor no extra wait. It resolves with an outcome rather than
-    // rejecting, so it cannot influence whether this request is a failure.
-    postLeadToAdRhythm({
-      name: data.name,
-      email: data.email,
-      phone: data.phone,
-      message: data.message,
-      // The page they actually submitted from. The form is a modal rather
-      // than a route, so this is the article or service page they were
-      // reading — not /contact.
-      page_url: t.trigger_url || t.landing_page,
-      gclid: t.gclid,
-      msclkid: t.msclkid,
-      fbclid: t.fbclid,
-      source: t.source,
-      medium: t.medium,
-      utm_source: t.utm_source,
-      utm_medium: t.utm_medium,
-      utm_campaign: t.utm_campaign,
-      referrer: t.referrer,
-      landing_page: t.landing_page,
-      request_action: data.selection?.action,
-      request_topic: data.selection?.topic,
-    }),
   ]);
 
   const ackOk = ackResult.status === "fulfilled";
   const attrOk = attrResult.status === "fulfilled";
-  const adrythm = hookResult.status === "fulfilled" ? hookResult.value : "failed";
   if (!ackOk) {
     req.log.error({ err: (ackResult as PromiseRejectedResult).reason }, "Lead acknowledgment failed");
   }
@@ -652,7 +662,7 @@ router.post("/contact", async (req: Request, res: Response): Promise<void> => {
     return;
   }
 
-  req.log.info({ stored, ackOk, attrOk, adrythm, teamInbox, attributionTo }, "Contact form lead processed");
+  req.log.info({ stored, ackOk, attrOk, teamInbox, attributionTo }, "Contact form lead processed");
   res.json(SubmitContactResponse.parse({ success: true }));
 });
 

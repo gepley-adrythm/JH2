@@ -91,7 +91,18 @@ export async function postLeadToAdRhythm(lead: AdRhythmLead): Promise<AdRhythmOu
         signal: AbortSignal.timeout(ATTEMPT_TIMEOUT_MS),
       });
 
-      if (response.ok) return "sent";
+      if (response.status === 200) return "sent";
+
+      // AdRhythm documents 200 as the acknowledgement. Another 2xx is not a
+      // failure, but it is not the agreed contract either — accept it, but
+      // loudly, so a silent protocol drift on their side is visible here.
+      if (response.ok) {
+        logger.warn(
+          { status: response.status },
+          "AdRhythm acknowledged with an unexpected 2xx status",
+        );
+        return "sent";
+      }
 
       // A 4xx means the body is wrong, and a retry would send the identical
       // body to the identical result. AdRhythm watches for these on their side,
