@@ -40,7 +40,7 @@ import {
  * of that across the schedule. After conversion the loan amortizes as a
  * standard mortgage. Property taxes default to the average effective rate for
  * the selected city (see src/data/azPropertyTax.ts) and stay editable;
- * insurance defaults to the Arizona average per $100,000 of home value and
+ * insurance defaults to a planning estimate per $100,000 of home value and
  * stays editable too.
  *
  * Shareable: "Copy link to this estimate" writes the inputs into query params
@@ -722,9 +722,9 @@ export function ConstructionLoanCalculator() {
             <p className="fin-tax-note" data-testid="calc-tax-note">
               Property taxes default to {activeLoc.effectiveRatePct.toFixed(2)}% for {activeLoc.name}
               {activeLoc.county === "Statewide" ? " (statewide average)" : ` (${activeLoc.county} County)`}, the average
-              effective rate as of {TAX_AS_OF}, and are editable. Your parcel will differ. Insurance defaults to the
-              Arizona average of about {fmtMoney(INSURANCE_PER_YEAR_PER_100K)} per year per $100,000 of home value as
-              of {INSURANCE_AS_OF}, and is editable. {NEW_BUILD_TAX_NOTE}
+              effective rate as of {TAX_AS_OF}, and are editable. Your parcel will differ. Insurance defaults to a
+              planning estimate of about {fmtMoney(INSURANCE_PER_YEAR_PER_100K)} per year per $100,000 of home value
+              as of {INSURANCE_AS_OF}, and is editable. {NEW_BUILD_TAX_NOTE}
             </p>
           </details>
 
@@ -732,8 +732,8 @@ export function ConstructionLoanCalculator() {
             <summary>Disclaimer</summary>
             <p className="fin-calc-note">
               Estimates only, not a loan offer, quote, or preapproval. Assumes draws spread evenly across
-              the build and excludes closing costs. Taxes, insurance, and HOA dues are editable estimates
-              based on published averages, not your parcel or policy. Your lender's terms will differ.
+              the build and excludes closing costs. Taxes, insurance, and HOA dues are editable estimates —
+              tax rates come from published averages — not your parcel or policy. Your lender's terms will differ.
               Enter the rates from your own quote for the closest estimate.
             </p>
           </details>

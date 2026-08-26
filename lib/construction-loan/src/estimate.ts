@@ -10,7 +10,7 @@
  * is interest on the full loan and the total paid during the build averages half of
  * that across the schedule. After conversion the loan amortizes as a standard
  * mortgage. Property taxes default to the average effective rate for the selected
- * city; insurance defaults to the Arizona average per $100,000 of home value.
+ * city; insurance defaults to a planning estimate per $100,000 of home value.
  *
  * Every function here is pure and free of DOM, network, and formatting concerns.
  * Number formatting stays with the caller so the React component keeps producing

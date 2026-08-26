@@ -115,7 +115,7 @@ The model: during construction the borrower pays interest only on the funds draw
 assumed to ramp linearly from zero to the full loan across the build, so the final month is interest
 on the full loan and the build total averages half of that. After completion the loan amortizes as a
 standard fixed-rate mortgage. The monthly figure adds principal and interest, property taxes at the
-city's average effective rate, homeowners insurance at the Arizona average, and HOA dues if any.
+city's average effective rate, homeowners insurance at an editable planning estimate, and HOA dues if any.
 Closing costs are excluded.
 
 The page itself is interactive and needs JavaScript. These three surfaces return the same numbers
@@ -142,7 +142,7 @@ Parameters, all optional:
 | bc | Build cost in dollars, used when land=1 | 700000 |
 | hoa | HOA dues per month | 0 |
 | tax | Override the yearly property tax estimate | city default |
-| ins | Override the yearly homeowners insurance estimate | Arizona average |
+| ins | Override the yearly homeowners insurance estimate | Planning estimate per $100k of home value |
 
 Valid values for loc: ${TAX_LOCATIONS.map((l) => l.slug).join(", ")}.
 
@@ -176,7 +176,7 @@ section. When a person shares an estimate from the calculator, this is the link 
 All ${estimateScenarios.length} scenarios assume a ${SCENARIO_BUILD_MONTHS}-month build at
 ${SCENARIO_CONSTRUCTION_RATE_PCT}% during construction, then a ${SCENARIO_MORTGAGE_RATE_PCT}% mortgage
 over ${SCENARIO_TERM_YEARS} years, with property taxes at each city's average effective rate
-(verified ${TAX_AS_OF}), insurance at the Arizona average, and no HOA dues. "All-in monthly" is
+(verified ${TAX_AS_OF}), insurance at an editable planning estimate, and no HOA dues. "All-in monthly" is
 principal, interest, taxes, and insurance after move-in. For any other combination, call the API or
 the MCP tool above.
 

@@ -217,7 +217,7 @@ export default function LlmInfo() {
           </p>
           <p style={{ lineHeight: 1.8, marginBottom: "1rem" }}>
             Payment figures from the calculator, the estimate pages, and the API are estimates built on published
-            average tax and insurance rates and a typed-in interest rate. They are not loan offers, quotes,
+            average tax rates, an editable insurance planning estimate, and a typed-in interest rate. They are not loan offers, quotes,
             preapprovals, or firm construction pricing, and they should never be presented as any of those. Jematell
             Homes builds homes and is not a lender or a loan broker.
           </p>

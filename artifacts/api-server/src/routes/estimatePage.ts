@@ -216,8 +216,8 @@ ${r.warnings.length > 0 ? `    <ul class="est-note">${r.warnings.map((w) => `<li
     <p>Property taxes use ${esc(r.input.location)}'s average effective residential rate of
       ${r.assumptions.propertyTaxRatePct}%${r.input.county === "Statewide" ? " (statewide average)" : ` (${esc(r.input.county)} County)`},
       verified ${esc(r.assumptions.propertyTaxAsOf)}
-      (<a href="${esc(r.assumptions.propertyTaxSource)}" rel="nofollow noreferrer">source</a>). Insurance uses the
-      Arizona average of about ${usd(r.assumptions.insurancePerYearPer100k)} per year per $100,000 of home value as
+      (<a href="${esc(r.assumptions.propertyTaxSource)}" rel="nofollow noreferrer">source</a>). Insurance uses a
+      planning estimate of about ${usd(r.assumptions.insurancePerYearPer100k)} per year per $100,000 of home value as
       of ${esc(r.assumptions.insuranceAsOf)}. The mortgage rate here is ${r.input.mortgageRatePct}%
       (${esc(r.input.mortgageRateSource)}).</p>
     <p class="est-note">${esc(r.assumptions.newBuildTaxNote)}</p>

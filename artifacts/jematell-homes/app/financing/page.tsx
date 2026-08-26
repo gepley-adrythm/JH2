@@ -228,7 +228,7 @@ export default function Financing() {
               </table>
             </div>
             <p className="fin-examples-note">
-              Property taxes use each city&apos;s average effective rate and insurance uses the Arizona average, so
+              Property taxes use each city&apos;s average effective rate and insurance uses a planning estimate, so
               the all-in figure covers principal, interest, taxes, and insurance. HOA dues are not included.
               Estimates only, not a loan offer.
             </p>

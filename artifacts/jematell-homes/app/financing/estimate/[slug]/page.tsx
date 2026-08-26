@@ -7,6 +7,7 @@ import {
   estimate,
   TAX_AS_OF,
   INSURANCE_AS_OF,
+  INSURANCE_PER_YEAR_PER_100K,
   NEW_BUILD_TAX_NOTE,
 } from "@workspace/construction-loan";
 import { PaymentDonut, PaymentTimeline } from "@/components/PaymentCharts";
@@ -338,8 +339,8 @@ export default async function EstimateScenarioPage({
             <a href={s.location.sourceUrl} rel="nofollow noreferrer" target="_blank">
               source
             </a>
-            ). Insurance uses the Arizona average of about $600 per year per $100,000 of home value as of{" "}
-            {INSURANCE_AS_OF}. The mortgage rate here is a fixed {SCENARIO_MORTGAGE_RATE_PCT}% assumption and the
+            ). Insurance uses a planning estimate of about {money(INSURANCE_PER_YEAR_PER_100K)} per year per
+            $100,000 of home value as of {INSURANCE_AS_OF}. The mortgage rate here is a fixed {SCENARIO_MORTGAGE_RATE_PCT}% assumption and the
             construction rate is {SCENARIO_CONSTRUCTION_RATE_PCT}%; both are editable in the calculator, which
             also loads the current 30-year fixed average. HOA dues are not included because they vary by
             community.

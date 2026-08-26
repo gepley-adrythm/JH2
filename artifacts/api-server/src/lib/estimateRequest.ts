@@ -33,7 +33,7 @@ export const SITE_URL = process.env["SITE_URL"] ?? "https://jematellhomes.com";
 export const DISCLAIMER =
   "Estimates only, not a loan offer, quote, or preapproval. Jematell Homes is a home builder, " +
   "not a lender or loan broker. Assumes draws spread evenly across the build and excludes closing " +
-  "costs. Taxes, insurance, and HOA dues are editable estimates based on published averages, not " +
+  "costs. Taxes, insurance, and HOA dues are editable estimates — tax rates come from published averages — not " +
   "your parcel or policy. Your lender's terms will differ.";
 
 /** Calculator defaults, kept in step with the component's initial state. */

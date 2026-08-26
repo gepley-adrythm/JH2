@@ -213,19 +213,13 @@ export const NEW_BUILD_TAX_NOTE =
  * Estimated homeowners insurance cost per year, per $100,000 of home value,
  * used as the calculator default for new custom-build homes in the Phoenix metro.
  *
- * Derivation: broad Arizona averages from Bankrate, Insurance.com, and
- * Policygenius (2025) cluster around $507–$580 per $100k when normalised to
- * the full home value. NerdWallet's Feb 2026 benchmark ($2,690/yr for a $300k
- * dwelling) implies $897/100k — but that overstates premiums for high-value
- * new construction when applied to the full project cost (land is not insurable
- * and inflates the base). A figure of $600/100k is a reasonable mid-point for
- * a brand-new custom home in the $600k–$1.2M range in Maricopa County, and the
- * field is editable so owners can plug in their own quote.
+ * Set to $400/100k per the business's current guidance for new custom builds.
+ * The field is editable so owners can plug in their own quote.
  */
-export const INSURANCE_PER_YEAR_PER_100K = 600;
+export const INSURANCE_PER_YEAR_PER_100K = 400;
 
 /**
- * Publication date of the sources behind INSURANCE_PER_YEAR_PER_100K,
- * rendered in the calculator's visible copy. Update alongside the figure above.
+ * Date the planning figure above was last set, rendered in the calculator's
+ * visible copy. Update alongside the figure above.
  */
 export const INSURANCE_AS_OF = "July 2026";

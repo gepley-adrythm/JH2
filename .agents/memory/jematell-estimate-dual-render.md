@@ -27,6 +27,25 @@ so a change landing in only one produces a silent inconsistency that no
 typecheck or build catches. The divergence only shows up when someone opens a
 shared link.
 
+## Assumption copy lives in far more than two places
+
+Changing a calculator assumption (rate, tax, insurance figure or its framing)
+is NOT done when both renderers agree. The same claim is repeated in the
+calculator's info/disclosure details, the curated scenario prose, the API
+`DISCLAIMER` string (`estimateRequest.ts`, surfaced verbatim by `/api/estimate`
+and MCP), `llms-full.txt`, `llm-info`, and the financing page's examples note.
+The scenario page even hardcoded the insurance figure inline instead of using
+the shared constant for a long time.
+
+**Why:** grep over `src/` misses the Next `app/` directory (it sits at the
+artifact root, not under `src/`), so a quick search makes the surfaces look
+fewer and more constant-driven than they are.
+
+**How to apply:** when touching any financing assumption, grep the whole
+artifact roots (not just `src/`) for the figure and its framing words, and
+include the agent-facing surfaces (`llms-full`, `llm-info`, MCP/API disclaimer)
+in the sweep.
+
 ## The hydration asymmetry
 
 The api-server page borrows the real stylesheet, header, and footer from the
