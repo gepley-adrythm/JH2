@@ -5979,7 +5979,6 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   text-transform: uppercase;
 }
 .fin-page-faqs h2 {
-  font-size: 31px;
   margin-bottom: 12px;
 }
 .fin-examples-intro {
@@ -6038,7 +6037,6 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   margin-bottom: 6px;
 }
 .fin-page-faq-a {
-  font-size: 15px;
   line-height: 1.75;
 }
 
