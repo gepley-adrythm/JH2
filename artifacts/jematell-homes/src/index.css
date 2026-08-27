@@ -5980,6 +5980,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
 }
 .fin-page-faqs h2 {
   font-size: 31px;
+  margin-bottom: 12px;
 }
 .fin-examples-intro {
   color: var(--color-text-muted);
