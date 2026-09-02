@@ -4471,7 +4471,7 @@ a.dt-source-card:hover { transform: translateY(-2px); }
   margin-top: 36px;
   padding-top: 18px;
   border-top: 1px solid var(--color-border);
-  font-size: 12.5px;
+  font-size: 13px;
   line-height: 1.7;
   /* 0.68, not lower: at 0.52 this computed to 3.59:1 against the cream page
      background — below the WCAG 4.5:1 minimum for 12.5px text. 0.68 lands
