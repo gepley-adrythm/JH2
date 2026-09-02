@@ -18,20 +18,20 @@ const TEAM: { name: string; monogram: string; role: string; bio: string; jsonId?
   {
     name: "Joseph Telles",
     monogram: "JT",
-    role: "Founder & Owner",
+    role: "President, Founder",
     bio: "Joseph founded Jematell Homes with over a decade of experience building homes across Arizona. His hands-on approach and eye for quality guide every project the company takes on.",
     jsonId: SITE_URL + "/#founder",
   },
   {
     name: "Tyler Johnson",
     monogram: "TJ",
-    role: "Partner, Finance & Real Estate",
+    role: "Vice President | Real Estate & Client Relations",
     bio: "Tyler brings a background in finance as a financial analyst and holds an active Arizona real estate license, helping clients move through budgets, financing, and land with clarity and confidence.",
   },
   {
     name: "Dave Telles",
     monogram: "DT",
-    role: "Partner, Land Development",
+    role: "Co-Founder",
     bio: "Dave contributes more than 40 years of experience in land development and bridge building. His deep knowledge of sitework and infrastructure keeps every build on solid ground.",
   },
 ];

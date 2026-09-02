@@ -68,7 +68,7 @@ export function buildSiteJsonLd(): object[] {
       "@type": "Person",
       "@id": SITE_URL + "/#founder",
       name: "Joseph Telles",
-      jobTitle: "Founder & Owner",
+      jobTitle: "President, Founder",
     },
     email: contact.email.display,
     telephone: contact.phone.display,
