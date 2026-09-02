@@ -210,7 +210,7 @@ export default function About() {
                 <article className="about-team-card" key={t.name}>
                   <div className="about-monogram" aria-hidden="true">{t.monogram}</div>
                   <h3>{t.name}</h3>
-                  <p className="about-team-role text-[13px]">{t.role}</p>
+                  <p className="about-team-role">{t.role}</p>
                   <p>{t.bio}</p>
                 </article>
               ))}
