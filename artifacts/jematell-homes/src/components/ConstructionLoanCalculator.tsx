@@ -732,8 +732,8 @@ export function ConstructionLoanCalculator() {
             <summary>Disclaimer</summary>
             <p className="fin-calc-note">
               Estimates only, not a loan offer, quote, or preapproval. Assumes draws spread evenly across
-              the build and excludes closing costs. Taxes, insurance, and HOA dues are editable estimates —
-              tax rates come from published averages — not your parcel or policy. Your lender's terms will differ.
+              the build and excludes closing costs. Taxes, insurance, and HOA dues are editable estimates.
+              Tax rates come from published averages, not your parcel or policy. Your lender's terms will differ.
               Enter the rates from your own quote for the closest estimate.
             </p>
           </details>
