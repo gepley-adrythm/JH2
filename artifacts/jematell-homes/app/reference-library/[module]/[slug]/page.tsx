@@ -19,7 +19,7 @@ import { JsonLd } from "@/seo/JsonLd";
 import { annotateHeadings, readingTime, formatDate } from "@/lib/detail";
 import { DetailDisclaimer } from "@/components/DetailParts";
 import { Interlink } from "@/components/Interlink";
-import { relationsForReference } from "@/lib/interlink";
+import { relationsForReference, relationsForJurisdiction } from "@/lib/interlink";
 import { buildInterlinkSections } from "@/lib/interlink.config";
 import { ContactCta } from "@/components/ContactCta";
 import { CTA } from "@/cta";
@@ -76,6 +76,7 @@ export default async function ReferenceDetailPage({
         meta={meta}
         jurisdiction={jurisdiction}
         groups={referencesForCity(moduleSlug, slug)}
+        crossLinks={buildInterlinkSections("jurisdiction", relationsForJurisdiction(jurisdiction))}
       />
     );
   }

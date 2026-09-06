@@ -5,6 +5,7 @@ import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { JsonLd } from "@/seo/JsonLd";
 import { collectionJsonLd, breadcrumbJsonLd } from "@/seo/jsonldBuilders";
 import { ContactCta } from "@/components/ContactCta";
+import { Interlink, type InterlinkSection } from "@/components/Interlink";
 
 /**
  * A city hub for the per-city building-codes collection: one page that gathers all of
@@ -16,10 +17,13 @@ export function ReferenceCityHub({
   meta,
   jurisdiction,
   groups,
+  crossLinks,
 }: {
   meta: ReferenceModuleMeta;
   jurisdiction: JurisdictionMeta;
   groups: { category: string; entries: ReferenceEntry[] }[];
+  /** The way from the rules back to the business: the city page, its guide, and its FAQs. */
+  crossLinks?: InterlinkSection[];
 }) {
   const path = `/reference-library/${meta.slug}/${jurisdiction.slug}`;
   const count = groups.reduce((n, g) => n + g.entries.length, 0);
@@ -92,6 +96,10 @@ export function ReferenceCityHub({
               </div>
             </div>
           ))}
+
+          {crossLinks && crossLinks.length > 0 ? (
+            <Interlink sections={crossLinks} title={`Build in ${jurisdiction.name}`} testid="city-hub-interlink" />
+          ) : null}
 
           <Link href={`/reference-library/${meta.slug}`} className="dt-back" data-testid="city-hub-all">
             All cities <ArrowRight size={14} aria-hidden="true" />

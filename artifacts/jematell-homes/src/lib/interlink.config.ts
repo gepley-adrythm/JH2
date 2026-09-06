@@ -14,6 +14,8 @@
  *   reference : cards -> list -> chips -> feature
  *   faq       : carousel -> cards -> chips -> list -> feature
  *   guide     : accordion -> cards -> list -> chips
+ *   region    : cards -> feature -> list   (a /where-we-build city page)
+ *   jurisdiction : list -> feature -> list (a building-codes city hub)
  */
 import type { InterlinkSection, InterlinkVariant } from "@/components/Interlink";
 import type { RelationSet, SourceKind } from "@/lib/interlink";
@@ -45,8 +47,29 @@ const LAYOUTS: Record<SourceKind, BucketSpec[]> = {
       variant: "cards",
     },
     { bucket: "faqs", label: "Related questions", variant: "list" },
+    { bucket: "services", label: "Build here with Jematell Homes", variant: "list" },
     { bucket: "terms", label: "Terms on this page", variant: "chips" },
     { bucket: "guides", label: "The full walkthrough", variant: "feature" },
+  ],
+  region: [
+    {
+      bucket: "references",
+      label: "The rules for building here",
+      kicker: "Adopted codes, permits, inspections, setbacks and fees for this jurisdiction, from our Reference Library.",
+      variant: "cards",
+    },
+    { bucket: "guides", label: "The complete guide to building here", variant: "feature" },
+    { bucket: "faqs", label: "Questions people ask about building here", variant: "list" },
+  ],
+  jurisdiction: [
+    {
+      bucket: "services",
+      label: "Build here with Jematell Homes",
+      kicker: "We build on private lots and in communities under these rules.",
+      variant: "list",
+    },
+    { bucket: "guides", label: "The complete guide to building here", variant: "feature" },
+    { bucket: "faqs", label: "Questions people ask about building here", variant: "list" },
   ],
   faq: [
     {

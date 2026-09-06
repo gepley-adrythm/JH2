@@ -6,6 +6,8 @@ import { contentPageMeta, contentPageJsonLd } from "@/lib/contentPageMeta";
 import { JsonLd } from "@/seo/JsonLd";
 import { locations } from "@/config/siteConfig";
 import { pages } from "@/data/pages";
+import { relationsForRegion } from "@/lib/interlink";
+import { buildInterlinkSections } from "@/lib/interlink.config";
 
 export const dynamicParams = false;
 
@@ -32,10 +34,14 @@ export default async function RegionPage({
   const { region } = await params;
   if (!pages[region]) notFound();
   const jsonLd = contentPageJsonLd({ region });
+  // Resolved here, on the server, so the FAQ and Reference Library datasets
+  // stay out of the client bundle; ContentPage only receives plain link items.
+  const cityName = locations.find((l) => l.slug === region)?.name ?? region;
+  const interlinks = buildInterlinkSections("region", relationsForRegion(region, cityName));
   return (
     <>
       {jsonLd.length ? <JsonLd data={jsonLd} /> : null}
-      <ContentPage isRegion region={region} data={pages[region]} />
+      <ContentPage isRegion region={region} data={pages[region]} interlinks={interlinks} />
     </>
   );
 }
