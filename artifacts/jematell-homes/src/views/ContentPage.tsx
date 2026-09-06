@@ -3,6 +3,7 @@ import { useMemo, lazy, Suspense, Fragment, type ReactNode, type ComponentType }
 import { preload } from "react-dom";
 import Link from "next/link";
 import { m, MotionConfig } from "framer-motion";
+import { Interlink, type InterlinkSection } from "@/components/Interlink";
 import {
   ArrowRight,
   MapPin,
@@ -1032,9 +1033,11 @@ interface Props {
   data: PageData;
   /** slug -> ogImage map for the CityNavigator (where-we-build only), provided by the server wrapper for the same reason. */
   cityImages?: Record<string, string>;
+  /** Resolved "keep exploring" sections for a city page (Reference Library hub and spokes, the city guide, city FAQs). Plain items, resolved by the server wrapper. */
+  interlinks?: InterlinkSection[];
 }
 
-export default function ContentPage({ pageKey, isRegion, region, data, cityImages }: Props) {
+export default function ContentPage({ pageKey, isRegion, region, data, cityImages, interlinks }: Props) {
   const key = isRegion ? region || "" : pageKey || "";
 
   const layout = useMemo(() => {
@@ -1191,6 +1194,14 @@ export default function ContentPage({ pageKey, isRegion, region, data, cityImage
 
 
         {key === "custom-homes" && <FeaturedProjects />}
+
+        {isRegion && interlinks && interlinks.length > 0 ? (
+          <section className="section-pad region-interlink">
+            <div className="container">
+              <Interlink sections={interlinks} title={`Building in ${cityName}`} testid="region-interlink" />
+            </div>
+          </section>
+        ) : null}
 
         {key !== "warranty" && <PageCTA title={ctaTitle ? cleanTitle(ctaTitle) : undefined} body={ctaBody} bgImage={key === "custom-homes" ? "/images/custom-homes-cta.jpg" : undefined} />}
       </main>

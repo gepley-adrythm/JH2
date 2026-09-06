@@ -24,7 +24,12 @@ import { glossaryTerms, getGlossaryTerm, type GlossaryTerm } from "@/data/glossa
 import {
   referenceEntries,
   getReferenceByKey,
+  referencesForCity,
+  jurisdictionSlugOf,
+  moduleIsPerCity,
+  BUILDING_CODE_JURISDICTIONS,
   REFERENCE_MODULES,
+  type JurisdictionMeta,
   type ReferenceEntry,
 } from "@/data/reference";
 import { guides, getGuide, type Guide } from "@/data/guides";
@@ -44,7 +49,7 @@ export interface LinkItem {
   derived?: boolean;
 }
 
-export type SourceKind = "faq" | "glossary" | "reference" | "guide";
+export type SourceKind = "faq" | "glossary" | "reference" | "guide" | "region" | "jurisdiction";
 
 /* ------------------------------------------------------------------ *
  * shaping helpers
@@ -303,6 +308,149 @@ export function relationsForReference(entry: ReferenceEntry): RelationSet {
       self,
       3,
     ),
+    // The way back to the business from a code page. A Scottsdale setback
+    // rule links to the Scottsdale city page; a statute or IRC section, which
+    // has no city, links to the service pages instead.
+    services: dedupe(
+      [
+        ...(moduleIsPerCity(entry.module)
+          ? cityPagesForJurisdiction(jurisdictionSlugOf(entry.slug))
+          : []),
+        ...serviceItems(["build-on-your-lot", "custom-homes"]),
+      ],
+      self,
+      3,
+    ),
+  };
+}
+
+/* ------------------------------------------------------------------ *
+ * City page <-> Reference Library city hub
+ *
+ * The building-codes module is a per-jurisdiction hub-and-spoke, and every
+ * jurisdiction we build in has a city page under /where-we-build. Until now
+ * the two never linked to each other except through the nav: the Scottsdale
+ * codes hub earned 855 impressions in a month while the Scottsdale city page
+ * earned 115. These resolvers give each side a descriptive path to the other.
+ *
+ * A city page can span more than one jurisdiction (Casa Grande builds fall
+ * under the city or unincorporated Pinal County), and a jurisdiction can map
+ * to no city page yet (Paradise Valley, Mesa). Both maps are explicit so that
+ * adding a city page or a jurisdiction is a one-line change here, and the
+ * city-page side is keyed on SERVICE_LINKS so a page that does not exist is
+ * simply skipped rather than linked to a 404.
+ * ------------------------------------------------------------------ */
+
+const BUILDING_CODES = "building-codes";
+
+/** City page slug -> jurisdiction slugs whose rules apply on that page's lots. */
+const CITY_JURISDICTIONS: Record<string, string[]> = {
+  scottsdale: ["scottsdale"],
+  phoenix: ["phoenix"],
+  "cave-creek": ["cave-creek"],
+  "fountain-hills": ["fountain-hills"],
+  carefree: ["carefree"],
+  "casa-grande": ["casa-grande", "pinal-county"],
+  "apache-junction": ["apache-junction", "pinal-county"],
+  "rio-verde": ["maricopa-county"],
+  "paradise-valley": ["paradise-valley"],
+  // Surprise has its own building department and no hub yet, so it maps to
+  // nothing rather than to the unincorporated-county rules.
+};
+
+/** Jurisdiction slug -> city page slugs where those rules apply. */
+const JURISDICTION_CITIES: Record<string, string[]> = {};
+for (const [city, js] of Object.entries(CITY_JURISDICTIONS)) {
+  for (const j of js) (JURISDICTION_CITIES[j] ??= []).push(city);
+}
+
+/** Jurisdiction slug -> the place names a guide's `city` field or a FAQ question might use. */
+const JURISDICTION_PLACE_NAMES: Record<string, string[]> = {
+  "maricopa-county": ["Maricopa County", "Rio Verde"],
+  "pinal-county": ["Pinal County", "Casa Grande", "Apache Junction"],
+};
+
+function jurisdictionMeta(slug: string): JurisdictionMeta | undefined {
+  return BUILDING_CODE_JURISDICTIONS.find((j) => j.slug === slug);
+}
+
+function serviceItems(keys: string[], derived = true): LinkItem[] {
+  return keys
+    .map((k) => SERVICE_LINKS[k])
+    .filter((s): s is { label: string; href: string } => Boolean(s))
+    .map((s) => ({ to: s.href, label: s.label, kind: "service" as const, derived }));
+}
+
+function cityPagesForJurisdiction(jslug: string): LinkItem[] {
+  return serviceItems((JURISDICTION_CITIES[jslug] || []).map((c) => `where-we-build/${c}`));
+}
+
+function hubItem(j: JurisdictionMeta): LinkItem {
+  return {
+    to: `/reference-library/${BUILDING_CODES}/${j.slug}`,
+    label: `${j.name} Building Codes`,
+    kind: "reference",
+    blurb: firstSentence(j.blurb),
+    meta: MODULE_TITLE.get(BUILDING_CODES),
+    derived: true,
+  };
+}
+
+function guidesForPlaces(names: string[]): LinkItem[] {
+  return guides
+    .filter((g) => g.city && names.some((n) => g.city.startsWith(n)))
+    .map((g) => guideItem(g, true));
+}
+
+/**
+ * FAQs whose QUESTION names the place. Case-sensitive on the proper noun and
+ * question-only on purpose: faqsMentioning() also scores answer bodies, where
+ * "no surprises" and "carefree" are ordinary words. Cost questions first, since
+ * they are the highest-intent ones for someone reading a city page.
+ */
+function faqsForPlaces(names: string[], limit: number): LinkItem[] {
+  const res = names.map((n) => new RegExp(`\\b${escapeRe(n)}\\b`));
+  return FAQ_INDEX.filter((r) => res.some((re) => re.test(r.question)))
+    .map((r) => ({ r, cost: /cost|price|budget|how much/i.test(r.question) ? 0 : 1 }))
+    .sort((a, b) => a.cost - b.cost)
+    .slice(0, limit)
+    .map((x) => faqItem(x.r.f, true));
+}
+
+/** "Keep exploring" for a /where-we-build city page. */
+export function relationsForRegion(citySlug: string, cityName: string): RelationSet {
+  const self = `/where-we-build/${citySlug}`;
+  const js = (CITY_JURISDICTIONS[citySlug] || []).map(jurisdictionMeta).filter(Boolean) as JurisdictionMeta[];
+  const refs: LinkItem[] = [];
+  for (const j of js) {
+    refs.push(hubItem(j));
+    // Round-robin across categories (adopted codes, permits, inspections,
+    // zoning, fees...) so the block shows one spoke of each kind before a
+    // second permit type crowds out the zoning page.
+    const groups = referencesForCity(BUILDING_CODES, j.slug).map((g) => [...g.entries]);
+    for (let round = 0; groups.some((g) => g.length > round); round++) {
+      for (const g of groups) if (g[round]) refs.push(refItem(g[round], true));
+    }
+  }
+  return {
+    references: dedupe(refs, self, 6),
+    guides: dedupe(guidesForPlaces([cityName]), self, 2),
+    faqs: dedupe(faqsForPlaces([cityName], 4), self, 4),
+  };
+}
+
+/** "Keep exploring" for a /reference-library/building-codes/<jurisdiction> hub. */
+export function relationsForJurisdiction(j: JurisdictionMeta): RelationSet {
+  const self = `/reference-library/${BUILDING_CODES}/${j.slug}`;
+  const names = JURISDICTION_PLACE_NAMES[j.slug] || [j.name];
+  return {
+    services: dedupe(
+      [...cityPagesForJurisdiction(j.slug), ...serviceItems(["build-on-your-lot", "where-we-build"])],
+      self,
+      3,
+    ),
+    guides: dedupe(guidesForPlaces(names), self, 2),
+    faqs: dedupe(faqsForPlaces(names, 4), self, 4),
   };
 }
 
