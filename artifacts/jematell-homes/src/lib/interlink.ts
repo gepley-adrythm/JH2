@@ -18,7 +18,8 @@
  * export, so no Math.random, no Date.now, and identical input always yields
  * identical output (otherwise SSG output churns between builds).
  */
-import { faqDataset } from "@/data/faq";
+import { faqDataset, SERVICE_LINKS } from "@/data/faq";
+import { locations } from "@/config/siteConfig";
 import { glossaryTerms, getGlossaryTerm, type GlossaryTerm } from "@/data/glossary";
 import {
   referenceEntries,
@@ -325,6 +326,60 @@ export function relationsForGuide(guide: Guide): RelationSet {
   };
 }
 
+/* ------------------------------------------------------------------ *
+ * FAQ -> service derivation
+ *
+ * Every seed entry authors relatedServiceSlugs, but 272 of 350 author exactly
+ * ["custom-homes"], so before this the "Related services" block was the same
+ * one link on almost every page and no FAQ pointed at a city page, financing,
+ * floor plans or the portfolio from its body. The maps below answer "what
+ * would this reader do next?" per topic; the city the question names wins
+ * first, since a Rio Verde well question belongs on the Rio Verde page.
+ * Curated slugs still come first (fill() only derives when they are short).
+ * ------------------------------------------------------------------ */
+
+/** Topic slug -> service slugs (keys of SERVICE_LINKS), most relevant first. */
+const TOPIC_SERVICES: Record<string, string[]> = {
+  "buying-land-to-build": ["buy-a-lot-with-us", "build-on-your-lot"],
+  "rural-water-and-septic": ["build-on-your-lot", "buy-a-lot-with-us"],
+  "rio-verde-water": ["where-we-build/rio-verde", "build-on-your-lot"],
+  "budgeting-a-custom-home": ["financing", "floor-plans"],
+  "per-city-cost": ["financing", "floor-plans"],
+  "construction-financing": ["financing", "build-on-your-lot"],
+  "choosing-a-custom-home-builder": ["custom-homes", "gallery"],
+  "building-permits-arizona": ["build-on-your-lot", "where-we-build"],
+  "pre-construction-permits": ["build-on-your-lot", "where-we-build"],
+  "zoning-setbacks-adus": ["build-on-your-lot", "where-we-build"],
+  "adus-and-casitas": ["floor-plans", "build-on-your-lot"],
+  "desert-build-essentials": ["floor-plans", "gallery"],
+  "foundations-and-soils": ["build-on-your-lot", "buy-a-lot-with-us"],
+  "luxury-features": ["gallery", "floor-plans"],
+  "architectural-styles": ["gallery", "floor-plans"],
+  "rv-garages": ["rv-garage-build", "floor-plans"],
+  "remodeling-and-additions": ["custom-homes", "gallery"],
+  "warranty-and-defects": ["warranty", "custom-homes"],
+};
+
+/**
+ * Case-sensitive on purpose: questions write place names as proper nouns, and
+ * "surprise" or "carefree" in lower case are ordinary words, not the towns.
+ */
+const CITY_MENTIONS = locations.map((l) => ({
+  key: `where-we-build/${l.slug}`,
+  re: new RegExp(`\\b${escapeRe(l.name)}\\b`),
+}));
+
+function derivedServices(detail: { question: string; topicSlugs?: string[] }): LinkItem[] {
+  const keys: string[] = [];
+  for (const c of CITY_MENTIONS) if (c.re.test(detail.question)) keys.push(c.key);
+  for (const t of detail.topicSlugs || []) for (const k of TOPIC_SERVICES[t] || []) keys.push(k);
+  keys.push("custom-homes");
+  return keys
+    .map((k) => SERVICE_LINKS[k])
+    .filter((s): s is { label: string; href: string } => Boolean(s))
+    .map((s) => ({ to: s.href, label: s.label, kind: "service" as const, derived: true }));
+}
+
 export function relationsForFaq(
   detail: { slug: string; question: string; topicSlugs?: string[]; categorySlug?: string; relatedFaqSlugs?: string[] },
   related: { slug: string; question: string; shortAnswer?: string }[],
@@ -339,8 +394,9 @@ export function relationsForFaq(
       self,
       6,
     ),
-    services: dedupe(
+    services: fill(
       services.map((s) => ({ to: s.href, label: s.label, kind: "service" as const })),
+      () => derivedServices(detail),
       self,
       4,
     ),

@@ -5,6 +5,7 @@
  * (no DB), so it works identically during SSG and in the browser.
  */
 import { buildDatasetFromSeed, faqSeed, type FaqSummary } from "@workspace/faq";
+import { locations } from "../config/siteConfig";
 
 export const faqDataset = buildDatasetFromSeed(faqSeed);
 
@@ -41,6 +42,21 @@ export const SERVICE_LINKS: Record<string, { label: string; href: string }> = {
   "build-on-your-lot": { label: "Build on Your Lot", href: "/build-on-your-lot" },
   "buy-a-lot-with-us": { label: "Buy a Lot With Us", href: "/buy-a-lot-with-us" },
   "where-we-build": { label: "Where We Build", href: "/where-we-build" },
+  // The pages below are not authored in the seed today; the interlink resolver
+  // derives them from a question's topic and the city it names, so a reader
+  // who just learned what a draw schedule is lands on the financing page and a
+  // Rio Verde well question lands on the Rio Verde page, not only on
+  // /custom-homes. Keys are stable slugs the seed MAY author later.
+  financing: { label: "Construction Financing", href: "/financing" },
+  gallery: { label: "Homes We Have Built", href: "/gallery" },
+  warranty: { label: "Our Home Warranty", href: "/warranty" },
+  "rv-garage-build": { label: "An RV Garage Home We Built in Rio Verde", href: "/gallery/rio-verde-rv" },
+  ...Object.fromEntries(
+    locations.map((l) => [
+      `where-we-build/${l.slug}`,
+      { label: `Custom Homes in ${l.name}`, href: `/where-we-build/${l.slug}` },
+    ]),
+  ),
 };
 
 /** All FAQ in-app paths — consumed by the prerender route list. */
