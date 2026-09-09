@@ -12,6 +12,58 @@ import { BlogPostBody } from "@/views/BlogPostBody";
 
 export const dynamicParams = false;
 
+/**
+ * Posts that carry a service's search ranking link up to the service page.
+ * The BYOL post ranks 7.9 for "build on your lot arizona" while the service
+ * page had 8 impressions; the casita posts held the "guest house builder
+ * scottsdale" queries before the casita page existed. The posts keep their
+ * content; this adds the way through to the page that converts.
+ */
+const SERVICE_CALLOUTS: Record<string, { href: string; kicker: string; title: string; body: string; cta: string }> = {
+  "building-on-your-own-lot-arizona": {
+    href: "/build-on-your-lot",
+    kicker: "Build on your lot",
+    title: "Ready to build on land you own?",
+    body: "Jematell Homes handles site evaluation, permits, budget and financing on private lots across the Phoenix metro and Pinal County. The service page gathers every land, water, permit and financing answer in one place.",
+    cta: "See how we build on your lot",
+  },
+  "guest-house-casita-adu-scottsdale": {
+    href: "/casitas-and-guest-houses",
+    kicker: "Casitas and guest houses",
+    title: "Planning a casita or guest house?",
+    body: "What each city allows in 2026, what it costs, and how Jematell Homes builds them, with the rules for Scottsdale, Phoenix, Mesa and the small towns side by side.",
+    cta: "See our casita and guest house page",
+  },
+  "guest-house-amp-adu-essentials-building-casitas-in-phoenix-under-new-laws": {
+    href: "/casitas-and-guest-houses",
+    kicker: "Casitas and guest houses",
+    title: "Planning a casita or guest house?",
+    body: "What each city allows in 2026, what it costs, and how Jematell Homes builds them, with the rules for Scottsdale, Phoenix, Mesa and the small towns side by side.",
+    cta: "See our casita and guest house page",
+  },
+  "modern-casita-and-guest-house-design-trends": {
+    href: "/casitas-and-guest-houses",
+    kicker: "Casitas and guest houses",
+    title: "Planning a casita or guest house?",
+    body: "What each city allows in 2026, what it costs, and how Jematell Homes builds them, with the rules for Scottsdale, Phoenix, Mesa and the small towns side by side.",
+    cta: "See our casita and guest house page",
+  },
+  "designing-a-custom-rv-garage": {
+    href: "/rv-garages",
+    kicker: "RV garages",
+    title: "Building an RV garage?",
+    body: "Door heights by RV class, slab and hookup numbers, 2026 cost and the zoning height cap, plus the RV garage home we built in Rio Verde.",
+    cta: "See our RV garage page",
+  },
+  "why-adding-an-rv-garage-is-a-smart-investment-for-your-arizona-home": {
+    href: "/rv-garages",
+    kicker: "RV garages",
+    title: "Building an RV garage?",
+    body: "Door heights by RV class, slab and hookup numbers, 2026 cost and the zoning height cap, plus the RV garage home we built in Rio Verde.",
+    cta: "See our RV garage page",
+  },
+};
+
 /** Same real-post filter the old prerender used (blogSlugs wraps it). */
 export function generateStaticParams() {
   return blogSlugs().map((slug) => ({ slug }));
@@ -65,6 +117,7 @@ export default async function BlogPostPage({
   };
 
   const relatedFaqs = faqCrossLinks.filter((f) => f.pillarBlogSlug === slug);
+  const callout = SERVICE_CALLOUTS[slug];
 
   const title = cleanTitle(data.title);
   const heroImg = heroImage(data);
@@ -105,6 +158,21 @@ export default async function BlogPostPage({
           <BlogPostBody blocks={bodyBlocks} />
         </div>
       </section>
+
+      {callout ? (
+        <section className="section-pad post-service" style={{ background: "var(--color-bg)", paddingTop: 0 }} data-testid="post-service-callout">
+          <div className="container container-narrow">
+            <Link href={callout.href} className="lib-card" data-testid={`post-service-${slug}`}>
+              <span className="lib-card-count">{callout.kicker}</span>
+              <h2 className="lib-card-title">{callout.title}</h2>
+              <p className="lib-card-desc">{callout.body}</p>
+              <span className="lib-card-more">
+                {callout.cta} <ArrowRight size={15} />
+              </span>
+            </Link>
+          </div>
+        </section>
+      ) : null}
 
       {relatedFaqs.length > 0 ? (
         <section className="section-pad post-faqs" style={{ background: "var(--color-cream, #ece9e2)" }}>
