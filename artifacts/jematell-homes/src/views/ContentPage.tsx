@@ -1035,9 +1035,11 @@ interface Props {
   cityImages?: Record<string, string>;
   /** Resolved "keep exploring" sections for a city page (Reference Library hub and spokes, the city guide, city FAQs). Plain items, resolved by the server wrapper. */
   interlinks?: InterlinkSection[];
+  /** Server-rendered hub content for a service page (e.g. /build-on-your-lot), placed after the scraped sections and before the CTA. */
+  hubSlot?: ReactNode;
 }
 
-export default function ContentPage({ pageKey, isRegion, region, data, cityImages, interlinks }: Props) {
+export default function ContentPage({ pageKey, isRegion, region, data, cityImages, interlinks, hubSlot }: Props) {
   const key = isRegion ? region || "" : pageKey || "";
 
   const layout = useMemo(() => {
@@ -1202,6 +1204,8 @@ export default function ContentPage({ pageKey, isRegion, region, data, cityImage
             </div>
           </section>
         ) : null}
+
+        {hubSlot}
 
         {key !== "warranty" && <PageCTA title={ctaTitle ? cleanTitle(ctaTitle) : undefined} body={ctaBody} bgImage={key === "custom-homes" ? "/images/custom-homes-cta.jpg" : undefined} />}
       </main>
