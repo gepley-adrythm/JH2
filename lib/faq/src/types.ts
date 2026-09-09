@@ -26,6 +26,14 @@ export interface SeedTopic {
 export interface SeedItem {
   slug: string;
   question: string;
+  /**
+   * Optional <title> override. The question stays the H1 and the QAPage
+   * question; this only changes what the search result shows. Keep it under
+   * about 50 characters so it survives Google's ~60 character cut with the
+   * brand suffix. Absent = the question is the title (the default for every
+   * page that has not been tuned against Search Console data).
+   */
+  seoTitle?: string;
   /** Plain-text answer — used for schema.org acceptedAnswer text. */
   answer: string;
   /** Optional rich HTML for on-page display (authored, trusted). */
@@ -64,6 +72,7 @@ export interface FaqSummary {
 }
 
 export interface FaqDetail extends FaqSummary {
+  seoTitle: string | null;
   answer: string;
   answerHtml: string | null;
   metaDescription: string;

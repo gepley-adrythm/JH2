@@ -13,6 +13,8 @@ export interface GlossarySource {
 export interface GlossaryTerm {
   slug: string;
   term: string;
+  /** Optional <title> override; the term stays the H1. See FaqItem.seoTitle. */
+  seoTitle?: string;
   shortDefinition: string;
   definitionHtml: string;
   metaDescription: string;

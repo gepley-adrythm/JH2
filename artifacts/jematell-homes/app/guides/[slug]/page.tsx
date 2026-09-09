@@ -35,7 +35,7 @@ export async function generateMetadata({
   const guide = getGuide(slug);
   if (!guide) return {};
   return pageMetadata({
-    title: guide.title,
+    title: guide.seoTitle ?? guide.title,
     description: guide.metaDescription || guide.summary,
     canonical: `/guides/${guide.slug}`,
   });
