@@ -62,6 +62,8 @@ export function getAllRoutes(): string[] {
     "/where-we-build",
     "/build-on-your-lot",
     "/buy-a-lot-with-us",
+    "/casitas-and-guest-houses",
+    "/rv-garages",
     "/about",
     "/contact",
     "/warranty",
