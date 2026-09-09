@@ -30,7 +30,7 @@ export async function generateMetadata({
   const term = getGlossaryTerm(slug);
   if (!term) return {};
   return pageMetadata({
-    title: term.term,
+    title: term.seoTitle ?? term.term,
     description: term.metaDescription || term.shortDefinition,
     canonical: `/glossary/${term.slug}`,
   });

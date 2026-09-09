@@ -78,6 +78,7 @@ export function makeDataset(input: DatasetInput): Dataset {
 
   const toDetail = (item: NormalizedItem): FaqDetail => ({
     ...toSummary(item),
+    seoTitle: item.seoTitle,
     answer: item.answer,
     answerHtml: item.answerHtml,
     metaDescription: item.metaDescription,
@@ -193,6 +194,7 @@ export function buildDatasetFromSeed(seed: FaqSeed): Dataset {
   const items: NormalizedItem[] = seed.items.map((it) => ({
     slug: it.slug,
     question: it.question,
+    seoTitle: it.seoTitle ?? null,
     shortAnswer: it.shortAnswer,
     categorySlug: it.categorySlug,
     categoryTitle:

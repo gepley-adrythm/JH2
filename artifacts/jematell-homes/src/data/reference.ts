@@ -15,6 +15,8 @@ export interface ReferenceEntry {
   slug: string;
   module: string;
   title: string;
+  /** Optional <title> override; the title stays the H1. See FaqItem.seoTitle. */
+  seoTitle?: string;
   shortSummary: string;
   bodyHtml: string;
   metaDescription: string;

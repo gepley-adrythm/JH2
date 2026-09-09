@@ -32,7 +32,7 @@ export async function generateMetadata({
   if (!item) return {};
   const detail = faqDataset.toDetail(item);
   return pageMetadata({
-    title: detail.question,
+    title: detail.seoTitle ?? detail.question,
     description: detail.metaDescription,
     canonical: `/faq/${detail.slug}`,
   });

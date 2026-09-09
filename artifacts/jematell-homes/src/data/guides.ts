@@ -13,6 +13,8 @@ export interface GuideSource {
 export interface Guide {
   slug: string;
   title: string;
+  /** Optional <title> override; the title stays the H1. See FaqItem.seoTitle. */
+  seoTitle?: string;
   summary: string;
   bodyHtml: string;
   metaDescription: string;

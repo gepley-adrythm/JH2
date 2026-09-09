@@ -326,6 +326,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "are-container-homes-legal-in-arizona",
       question: "Are shipping container homes legal in Arizona?",
+      seoTitle: "Are Container Homes Legal in Arizona? Rules by City",
       answerHtml: `<p>A <strong>container home</strong> still has to clear the same two approvals as any house: the land has to be zoned to allow a home, and the building has to meet the adopted building code, the <strong>International Residential Code (IRC)</strong>. The 2021 IRC even names them. Section <strong>R301.1.4</strong> addresses <strong>intermodal shipping containers</strong> used in construction. The practical reality is that you cannot just drop a container on a lot and move in. Cutting doors, windows, or wall openings into a container changes how its steel carries load, so a container home in Arizona needs <strong>engineered, stamped plans</strong> from a licensed engineer before a building official will permit it.</p>
 <p>So the right answer is not "are they allowed" but "what does it take to do one legally." This page walks through the code, the engineering, the zoning, and the financing reality in Arizona.</p>
 <h2>Does Arizona's building code allow container homes?</h2>
@@ -355,7 +356,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://guide.freddiemac.com/app/guide/section/5605.5" target="_blank" rel="noopener noreferrer">Freddie Mac Single-Family Seller/Servicer Guide, Section 5605.5 (unique properties; appraisal)</a></li>
 </ul>`,
       shortAnswer: "Yes. Shipping container homes are legal in Arizona if the land is zoned for a dwelling and the home meets the building code, the IRC. The 2021 IRC recognizes intermodal containers, but any container home needs engineered, stamped plans, since cutting steel changes the structure.",
-      metaDescription: "Are shipping container homes legal in Arizona? Yes, if zoning allows and it meets the IRC. See the engineering, permit, and zoning rules that really apply here.",
+      metaDescription: "Shipping container homes are legal in Arizona where zoning allows and the build meets the IRC. The engineering, permit and zoning rules that actually apply.",
       categorySlug: "building-in-the-desert",
       topicSlugs: ["desert-build-essentials"],
       tags: ["desert-build", "research-phase"],
@@ -540,6 +541,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "can-you-build-a-house-with-a-basement-in-arizona",
       question: "Can you build a house with a basement in Arizona?",
+      seoTitle: "Basements in Arizona: Can You Build One, and the Cost",
       answerHtml: `<p>Nothing in the building code stops you. Basements are fully legal here and the code has rules for them, but they stay rare for practical reasons. Arizona's ground is the main one. Much of central Arizona sits on hard <strong>caliche</strong>, a cement-like layer of soil, and on <strong>expansive clay</strong> that swells and shrinks with water. Both make digging a deep hole slow and expensive. Add a warm climate that does not need a deep, frost-protected foundation, and most builders pour a concrete slab on grade instead. So a basement is a choice you can make, not a default, and it costs real money.</p>
 <p>If you want a basement, plan for the soil and the budget up front. The desert does not stop you, but it does charge you.</p>
 <h2>Why basements are rare in Arizona</h2>
@@ -567,7 +569,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://codes.iccsafe.org/content/IRC2021P2/chapter-4-foundations" target="_blank" rel="noopener noreferrer">ICC, 2021 International Residential Code (IRC), Chapter 4 Foundations</a></li>
 </ul>`,
       shortAnswer: "Yes, you can build a house with a basement in Arizona. They are legal and code-compliant but uncommon, because hard caliche and expansive clay soils make digging expensive. Only about 17 percent of new U.S. homes have basements, and in hot, slab-friendly Arizona the share is far lower.",
-      metaDescription: "Can you build a basement in Arizona? Yes, but caliche and expansive soil make digging costly, so they are rare. Here is the real cost and what to expect.",
+      metaDescription: "Yes, you can build a basement in Arizona, but caliche and expansive clay make digging costly. What a basement adds to the build cost and how it stays dry.",
       categorySlug: "building-in-the-desert",
       topicSlugs: ["desert-build-essentials"],
       tags: ["desert-build", "research-phase"],
@@ -1621,6 +1623,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "how-much-does-it-cost-to-build-an-icf-house-in-arizona",
       question: "How much does it cost to build an ICF house in Arizona?",
+      seoTitle: "ICF House Cost in Arizona: 5 to 12% Over Wood Frame",
       answerHtml: `<p>Building with <strong>ICF</strong> in Arizona adds roughly <strong>5 to 12 percent</strong> to the cost of the same home framed in wood. ICF, short for <strong>insulated concrete form</strong>, is a wall system of hollow foam blocks stacked like bricks, reinforced with steel, then filled with concrete. The premium is concentrated in the exterior walls, where you pay for concrete, rebar, and the foam forms instead of lumber. On a typical Arizona custom home, that often works out to roughly <strong>$5 to $15 per square foot</strong> more on the wall package, though the exact number swings with home size, wall height, and concrete prices.</p>
 <p>The premium is real, but it is not the whole story. In Arizona's heat, an ICF wall cuts cooling costs enough to pay part of that cost back over the years you own the home. Prices for concrete, steel, and labor move, so treat these as planning ranges and confirm current pricing with a builder before you budget. For whether the system is right for you, see <a href="/faq/are-icf-homes-worth-it-arizona">are ICF homes worth it in Arizona's heat</a>.</p>
 <h2>What an ICF house actually costs in Arizona</h2>
@@ -1649,7 +1652,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://www.nahb.org/blog/2025/10/square-foot-prices" target="_blank" rel="noopener noreferrer">NAHB, How Do Median Square-Foot Prices Differ by Region?</a></li>
 </ul>`,
       shortAnswer: "An ICF house in Arizona usually costs about 5 to 12 percent more to build than the same home in wood framing, which often pencils out to roughly $5 to $15 per square foot extra on the wall package in 2026. Lower cooling bills in the desert heat pay part of that back over time.",
-      metaDescription: "How much does an ICF house cost to build in Arizona? Expect about a 5 to 12 percent premium over wood framing. See the real cost drivers and the energy payback.",
+      metaDescription: "An ICF home costs about 5 to 12 percent more than wood framing in Arizona. What drives the premium, and the cooling-bill payback that offsets it.",
       categorySlug: "building-in-the-desert",
       topicSlugs: ["desert-build-essentials"],
       tags: ["desert-build", "research-phase"],
@@ -2081,6 +2084,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "should-i-install-a-whole-house-generator-or-battery-backup-in-arizona",
       question: "Should I install a whole-house generator or battery backup in Arizona?",
+      seoTitle: "Generator vs Battery Backup for an Arizona Home",
       answerHtml: `<p>Whether you should install a <strong>whole-house generator</strong> or <strong>solar plus battery backup</strong> in Arizona comes down to two questions: how long your outages last, and whether you are putting solar on the roof anyway. A <strong>standby generator</strong> wired to natural gas runs for days through a long monsoon outage and costs less up front to cover the whole house. <strong>Solar plus battery</strong> handles the short, frequent outages silently, recharges itself from the sun each day, and folds into a solar system many Arizona homeowners already want. The two are not enemies. A growing number of high-end desert homes install both, with solar and battery for everyday resilience and a generator as the deep backup.</p>
 <p>Here is how each option performs in Arizona, what the safety code requires, and how to choose for your home.</p>
 <h2>Why backup power matters in the Arizona desert</h2>
@@ -2289,6 +2293,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "tract-home-vs-custom-home",
       question: "Tract home vs custom home: what's the difference?",
+      seoTitle: "Tract Home vs Custom Home: The Real Differences",
       answerHtml: `<p>How a house gets built sits on a spectrum, and a <strong>tract home</strong> and a <strong>custom home</strong> occupy opposite ends of it. A tract home (also called a <strong>production home</strong>) is one of many houses a builder constructs in a planned subdivision, using a handful of repeated floor plans and a fixed menu of options. A <strong>custom home</strong> is designed from scratch for one owner, on that owner's lot, with no set plan to start from. The tract builder builds the same few homes hundreds of times to keep costs down and crews moving. The custom builder builds your home once.</p>
 <p>That single difference, repetition versus one-of-a-kind, drives the cost, the timeline, and how much you can change.</p>
 <h2>How much you can change the design</h2>
@@ -2316,7 +2321,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://www.census.gov/construction/soc/index.html" target="_blank" rel="noopener noreferrer">U.S. Census Bureau, Survey of Construction (SOC)</a></li>
 </ul>`,
       shortAnswer: "A tract home is one of many houses a builder puts up in a subdivision from a small set of repeated floor plans. A custom home is designed and built for one owner on their own lot. Tract homes trade design freedom for lower cost and faster delivery.",
-      metaDescription: "Tract home vs custom home: a tract home repeats set plans in a subdivision, a custom home is one-of-a-kind on your lot. Here is how they differ in Arizona.",
+      metaDescription: "A tract home repeats set plans in a subdivision; a custom home is designed for your lot. How they differ in price, process and what you get in Arizona.",
       categorySlug: "building-in-the-desert",
       topicSlugs: ["desert-build-essentials"],
       tags: ["desert-build", "research-phase"],
@@ -2828,6 +2833,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "what-is-the-best-indoor-humidity-level-for-an-arizona-home",
       question: "What is the best indoor humidity level for an Arizona home?",
+      seoTitle: "Best Indoor Humidity for an Arizona Home: 30 to 50%",
       answerHtml: `<p>The best indoor humidity level for an Arizona home is <strong>30 to 50 percent relative humidity</strong>, and you want to stay below 60 percent at all times. The EPA's guidance for any home is to keep indoor <strong>relative humidity (RH)</strong>, the amount of moisture in the air compared to what the air can hold, between 30 and 50 percent, and to never let it sit above 60 percent. ENERGY STAR uses the same 30 to 50 percent target. What makes Arizona different is not the target, it is the swing. The desert spends most of the year far too dry, then the summer monsoon can push indoor air toward the damp end fast. Hitting 30 to 50 percent here often means humidifying in the dry months and dehumidifying during monsoon.</p>
 <p>Below is why that range matters, why Arizona pulls in both directions, and how a custom home is set up to hold the target year-round.</p>
 <h2>Why 30 to 50 percent is the target</h2>
@@ -2859,7 +2865,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://basc.pnnl.gov/resource-guides/whole-house-ventilation-strategies-new-homes" target="_blank" rel="noopener noreferrer">PNNL Building America Solution Center: Whole-House Ventilation Strategies for New Homes</a></li>
 </ul>`,
       shortAnswer: "Between 30 and 50 percent relative humidity, and never above 60 percent. ENERGY STAR and the EPA both put the healthy indoor range at 30 to 50 percent. In Arizona the challenge flips with the season, so you may need a humidifier in the dry spring and a dehumidifier during the summer monsoon.",
-      metaDescription: "The best indoor humidity for an Arizona home is 30 to 50 percent RH, never above 60. See how desert dryness and monsoon swing the target and what to install.",
+      metaDescription: "Keep an Arizona home at 30 to 50 percent RH, never above 60. Why desert dryness and monsoon swing the number, and what to install to hold it.",
       categorySlug: "building-in-the-desert",
       topicSlugs: ["desert-build-essentials"],
       tags: ["desert-build", "research-phase"],
@@ -2954,6 +2960,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "what-is-the-difference-between-standard-and-upgrade-finishes",
       question: "What's the difference between standard and upgrade finishes in a custom home?",
+      seoTitle: "Standard vs Upgrade Finishes: What Upgrades Cost",
       answerHtml: `<p><strong>Standard finishes</strong> are the base-level materials your contract price already includes, defined by the <strong>allowance</strong> set for each category. <strong>Upgrade finishes</strong> are anything you choose that costs more than that allowance, like a higher-grade tile, a custom cabinet line, or a premium faucet. The standard finish is built into your base price. The upgrade is an extra cost, billed as an <strong>overage</strong> through a signed <strong>change order</strong> on top of that base price. So the real difference is not just quality, it is who pays: the standard is covered, and the upgrade is on you. Knowing which is which, and how upgrades stack up, is how you keep a custom home close to its contract number. Pricing here is current as of 2026 and varies by product and supplier, so confirm the figures with your builder.</p>
 <p>Here is what each term means, how upgrades turn into cost, and how to upgrade where it counts without blowing your budget.</p>
 <h2>What "standard" and "upgrade" really mean</h2>
@@ -2987,7 +2994,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://www.energystar.gov/products/res_windows_doors_skylights" target="_blank" rel="noopener noreferrer">ENERGY STAR: Residential Windows, Doors &amp; Skylights</a></li>
 </ul>`,
       shortAnswer: "The difference between standard and upgrade finishes in a custom home is who pays. Standard finishes are the base materials your allowance already covers. Upgrade finishes cost more than the allowance, so you pay the extra as an overage billed through a change order.",
-      metaDescription: "Standard finishes are covered by your base allowance; upgrade finishes cost extra above it. How upgrades drive cost and change orders in an Arizona custom home.",
+      metaDescription: "Standard finishes are covered by your allowance; upgrades cost extra above it. How upgrades are priced and how they turn into change orders.",
       categorySlug: "building-in-the-desert",
       topicSlugs: ["desert-build-essentials"],
       tags: ["desert-build", "research-phase"],
@@ -3730,6 +3737,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "how-to-verify-an-arizona-contractor-license-with-the-roc",
       question: "How do I verify an Arizona contractor's license with the ROC?",
+      seoTitle: "How to Verify an Arizona Contractor License (ROC)",
       answerHtml: `<p>To verify an Arizona contractor's license, use the free <strong>license search</strong> run by the <strong>Arizona Registrar of Contractors (ROC)</strong> at roc.az.gov. The ROC is the state agency that licenses and disciplines contractors. Search by the contractor's name, license number, business name, or ZIP code. When the record opens, confirm four things: the <strong>status</strong> reads "Active," the <strong>license class</strong> matches your project, the <strong>bond</strong> is current, and the contractor has no open or repeated <strong>complaints</strong>. This check is free, takes a few minutes, and protects your money before you sign or pay anything.</p>
 <p>Why it matters in Arizona is concrete. The state's <strong>Residential Contractors' Recovery Fund</strong> only pays homeowners back for damage caused by a <strong>licensed</strong> contractor. A.R.S. 32-1132 ties the fund to a "residential contractor" with a license. If you hire someone who is not licensed, that backstop is gone. So the license check is not paperwork. It is the thing that keeps a state safety net available if the build goes wrong.</p>
 <h2>How to run the ROC license search</h2>
@@ -3758,7 +3766,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://www.azleg.gov/ars/32/01132.htm" target="_blank" rel="noopener noreferrer">A.R.S. 32-1132 (Recovery Fund covers damage by a licensed residential contractor)</a></li>
 </ul>`,
       shortAnswer: "Search the contractor by name, license number, or business at the Arizona Registrar of Contractors (ROC) license search on roc.az.gov. Confirm the status reads Active, the class fits your job (B is General Residential Contractor), the bond is current, and check for complaints before you sign or pay.",
-      metaDescription: "Verify an Arizona contractor's license free at the ROC search on roc.az.gov. Check that status is Active, class B fits a home build, and the bond is current.",
+      metaDescription: "Check any Arizona contractor free at roc.az.gov: license status, the right class for a home build, and the bond. Step by step, with what to watch for.",
       categorySlug: "choosing-a-builder",
       topicSlugs: ["choosing-a-custom-home-builder"],
       tags: ["builder", "research-phase"],
@@ -4340,6 +4348,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "new-home-builder-warranty-arizona",
       question: "What does a new home builder warranty cover in Arizona?",
+      seoTitle: "New Home Builder Warranty in Arizona: 1-2-10 Explained",
       answerHtml: `<p>Two layers of protection apply to every Arizona new-home purchase. The first is the <strong>written warranty</strong> your builder hands you at closing. Most builders use a tiered structure: <strong>one year</strong> on workmanship and finishes, <strong>two years</strong> on the systems that run the house (plumbing, electrical wiring, heating, and cooling), and <strong>ten years</strong> on major structural defects. The second layer is the <strong>implied warranty of workmanship and habitability</strong>, a protection that Arizona courts attach to every new home sale whether or not it is written down. Together these cover defects in how the home was built, not normal wear or damage you cause.</p>
 <p>A warranty is a promise about quality. It tells you what the builder will fix, for how long, and at whose cost. Knowing both the written terms and the Arizona legal floor under them helps you hold a builder to real standards instead of guessing.</p>
 <h2>What a typical written builder warranty covers</h2>
@@ -4370,7 +4379,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://www.azleg.gov/ars/32/01151.htm" target="_blank" rel="noopener noreferrer">A.R.S. 32-1151 (Contractor licensing required)</a></li>
 </ul>`,
       shortAnswer: "A new home builder warranty in Arizona usually covers workmanship for one year, systems like plumbing and wiring for two years, and major structural defects for ten years. On top of that, Arizona law gives every buyer an implied warranty that the home was built in a workmanlike manner and is habitable.",
-      metaDescription: "New home builder warranties in Arizona cover 1-year workmanship, 2-year systems, and 10-year structural defects, plus an implied warranty under state law.",
+      metaDescription: "Arizona builder warranties: 1 year workmanship, 2 years systems, 10 years structural, plus the implied warranty under state law. What is and is not covered.",
       categorySlug: "choosing-a-builder",
       topicSlugs: ["choosing-a-custom-home-builder", "warranty-and-defects"],
       tags: ["builder", "research-phase"],
@@ -6617,6 +6626,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "cost-to-build-an-rv-garage-in-arizona",
       question: "How much does it cost to build an RV garage in Arizona?",
+      seoTitle: "RV Garage Cost in Arizona: $40K to $120K+ (2026)",
       answerHtml: `<p>The spread on an <strong>RV garage</strong> is wide, <strong>$40,000 to $120,000 or more</strong> in Arizona in 2026, because the size jump between options is large. A simple tall detached garage for a single motorhome sits near the bottom. A large, finished, climate-controlled RV garage with a workshop, a bathroom, and a high-clearance door climbs past <strong>$120,000</strong>. These are 2026 planning ranges, not quotes, since prices move with steel, concrete, and labor costs. The two things that make an RV garage cost more than a normal garage are the <strong>tall door</strong> and the <strong>extra-tall walls and roof</strong> needed to fit a 12 to 14 foot Class A motorhome.</p>
 <p>Before you design one, you have to check <strong>local zoning</strong>, because height and setback limits decide how tall and where you can build. A tall RV garage can run into a city or county height cap. Below is how the cost breaks down and what the rules require.</p>
 <h2>What an RV garage costs in Arizona</h2>
@@ -6645,7 +6655,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://www.maricopa.gov/1674/Residential-Construction" target="_blank" rel="noopener noreferrer">Maricopa County: Planning and Development (zoning and permits)</a></li>
 </ul>`,
       shortAnswer: "An RV garage in Arizona typically costs about $40,000 to $120,000 or more in 2026, depending on size, ceiling height, and finishes. The tall door and roof are the main cost drivers. Local zoning caps building height, often around 30 feet for accessory structures, so confirm limits before you design.",
-      metaDescription: "An Arizona RV garage runs roughly $40K to $120K+ in 2026. See what drives the cost, the height and setback zoning rules, and how to plan it into a new build.",
+      metaDescription: "An Arizona RV garage runs roughly $40K to $120K+ in 2026. What drives the price, the height and setback rules, and how to fold it into a new build.",
       categorySlug: "costs-and-budget",
       topicSlugs: ["budgeting-a-custom-home", "rv-garages"],
       tags: ["cost", "research-phase"],
@@ -6788,6 +6798,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "rv-garage-door-height-and-size-arizona",
       question: "How tall and wide does an RV garage door need to be?",
+      seoTitle: "RV Garage Door Size: Height and Width by RV Class",
       answerHtml: `<p>An RV garage door is sized by height first, and the three common heights are <strong>12, 14, and 16 feet</strong>. A <strong>12 foot door</strong> clears a camper van or a small Class C. A <strong>14 foot door</strong> clears most <strong>Class A motorhomes</strong>, which top out at the <strong>13.5 foot</strong> legal road height including rooftop air conditioners. A <strong>16 foot door</strong> gives you headroom for a taller rig or a future coach. Widths run <strong>12 to 16 feet</strong> so a coach up to <strong>102 inches</strong> (8.5 feet) wide can drive in with room on each side. Pick the height for the tallest RV you might own, because the door is built into the wall and is the hardest thing to change later.</p>
 <p>Below is the door height by RV class, how wide the opening needs to be, and the Arizona zoning limits that cap how tall the whole building can be.</p>
 <h2>RV garage door height by RV class</h2>
@@ -6814,7 +6825,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://www.scottsdaleaz.gov/codes-and-ordinances/building-codes" target="_blank" rel="noopener noreferrer">City of Scottsdale: Building Codes (adopted codes and permit basis)</a></li>
 </ul>`,
       shortAnswer: "Most RV garage doors are 12, 14, or 16 feet tall and 12 to 16 feet wide. A 12 foot door fits a camper van or small Class C. A 14 foot door fits most Class A motorhomes at the 13.5 foot legal height. A 16 foot door adds room for any future rig.",
-      metaDescription: "How tall does an RV garage door need to be? Plan 12, 14, or 16 ft by RV class. A 14 ft door fits most Class A coaches. See widths and Arizona height limits.",
+      metaDescription: "Plan a 12, 14 or 16 ft door by RV class; 14 ft fits most Class A coaches. Widths, clearances and Arizona height limits, by RV class.",
       categorySlug: "costs-and-budget",
       topicSlugs: ["budgeting-a-custom-home", "rv-garages"],
       tags: ["cost", "research-phase"],
@@ -7549,6 +7560,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "what-is-an-appraisal-gap-on-a-construction-loan",
       question: "What is an appraisal gap on a construction loan and what happens if the home appraises low?",
+      seoTitle: "Construction Loan Appraisal Gap: What Happens Next",
       answerHtml: `<p>A construction loan gets sized to the appraised value, not to your construction budget, which is exactly why an <strong>appraisal gap</strong> matters so much: it is the difference when a home's appraised value lands below what it costs to build or what you agreed to pay. If the appraisal comes in low, the lender will usually lend less, and you make up the shortfall yourself. Your common options are to bring more cash, cut project costs, challenge the appraisal, or renegotiate the contract. The exact rules depend on your lender and loan program, so confirm your numbers with your lender.</p>
 <h2>How an appraisal gap happens on a construction loan</h2>
 <p>An appraisal gap appears when the appraised value of your finished home is lower than its total cost to build. With a construction loan the appraisal is unusual because the house does not exist yet. The appraiser works from your plans, specifications, and the lot, then estimates what the completed home will be worth based on comparable sales in the area. That estimate is called the "as-completed" or "subject-to" value.</p>
@@ -7581,7 +7593,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://yourhome.fanniemae.com/understanding-home-appraisals" target="_blank" rel="noopener noreferrer">Fannie Mae: Understanding Home Appraisals</a></li>
 </ul>`,
       shortAnswer: "An appraisal gap is the shortfall when a home's appraised value comes in below its cost or contract price. On a construction loan it matters because the lender sizes the loan to the appraised value, not your budget. If it appraises low, you usually cover the gap with extra cash, cut costs, or renegotiate.",
-      metaDescription: "An appraisal gap on a construction loan is when the appraised value falls below cost. Here is what happens if your Arizona home appraises low and your options.",
+      metaDescription: "An appraisal gap is when the appraised value comes in below the cost to build. What happens if your Arizona home appraises low, and your options if it does.",
       categorySlug: "costs-and-budget",
       topicSlugs: ["budgeting-a-custom-home", "construction-financing"],
       tags: ["cost", "research-phase"],
@@ -7594,6 +7606,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "owner-builder-construction-loan-arizona",
       question: "What is an owner-builder construction loan in Arizona?",
+      seoTitle: "Owner-Builder Construction Loans in Arizona",
       answerHtml: `<p>With an owner-builder construction loan, <strong>you are the general contractor on your own home</strong>, and the loan funds the build without a licensed builder running the job. You manage the trades, the schedule, and the budget yourself, and the money releases in stages the same way a normal construction loan does. The trade-off is steep. <strong>Fewer lenders offer this loan</strong>, and the ones that do ask for a <strong>bigger down payment</strong> and proof you can actually manage a build. Arizona law permits the arrangement under the <strong>owner-builder exemption</strong> in <strong>A.R.S. 32-1121</strong>, but only for a home you intend to live in, not one you plan to sell or rent. Because the lender loses the safety net of a vetted professional builder, an owner-builder loan is the hardest construction loan to qualify for in Arizona, and it is the most demanding to see through.</p>
 <p>Below is the Arizona law that makes it possible, the one-year rule that can void it, what lenders require, and whether this path is right for you.</p>
 <h2>The Arizona law that allows owner-building</h2>
@@ -7624,7 +7637,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://www.federalreserve.gov/releases/h15/" target="_blank" rel="noopener noreferrer">Federal Reserve: H.15 Selected Interest Rates</a></li>
 </ul>`,
       shortAnswer: "An owner-builder construction loan in Arizona lets you finance building your own home while acting as your own general contractor instead of hiring a licensed builder. Fewer lenders offer it, and they require a larger down payment and proof you can manage the build. Arizona law allows it under the A.R.S. 32-1121 owner-builder exemption.",
-      metaDescription: "An owner-builder construction loan in Arizona finances building your own home as your own contractor. See the A.R.S. 32-1121 rules, requirements, and the catch.",
+      metaDescription: "How owner-builder construction loans work in Arizona: the A.R.S. 32-1121 rule, what lenders require, and the catch most people miss.",
       categorySlug: "costs-and-budget",
       topicSlugs: ["budgeting-a-custom-home", "construction-financing"],
       tags: ["cost", "research-phase"],
@@ -7681,6 +7694,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "cost-to-build-a-house-per-square-foot-in-arizona",
       question: "What is the cost per square foot to build a house in Arizona?",
+      seoTitle: "Cost to Build a House in Arizona per Sq Ft (2026)",
       answerHtml: `<p>That per-foot number is the <strong>vertical construction cost</strong>, meaning the heated, finished structure divided by its living area, and it excludes the land, the permits, and the site work to make the lot buildable. In the Phoenix and Scottsdale metro in 2026, it runs roughly <strong>$200 to $350 per square foot</strong> for a standard semi-custom home and <strong>$350 to $600 or more per square foot</strong> for a true custom home. The national data lines up with this: <strong>NAHB</strong> reported a median of <strong>$169 per square foot</strong> for custom homes started in the Mountain Division (which includes Arizona) in 2024, and that median total price already folds in lower-cost tract homes and the land.</p>
 <p><strong>Cost per square foot</strong> is the fastest way to size a budget, but it is the most misused number in home building. Below is what it actually includes, why two builders can quote wildly different numbers, and where Arizona homes land by type and city.</p>
 <h2>What "cost per square foot" actually measures</h2>
@@ -7713,7 +7727,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://eyeonhousing.org/2025/01/cost-of-constructing-a-home-in-2024/" target="_blank" rel="noopener noreferrer">NAHB / Eye on Housing: Cost of Constructing a Home in 2024</a></li>
 </ul>`,
       shortAnswer: "Building a house in Arizona costs about $200 to $350 per square foot for a standard semi-custom home in 2026, and $350 to $600+ per square foot for a true custom home in metro Phoenix or Scottsdale. The figure covers the structure only, not land, permits, or site work.",
-      metaDescription: "Building a house in Arizona costs about $200 to $350 per square foot semi-custom and $350 to $600+ custom in 2026. See what the figure includes and excludes.",
+      metaDescription: "Arizona homes cost about $200 to $350 per sq ft semi-custom and $350 to $600+ custom in 2026. What the figure includes, what it leaves out, and how to budget.",
       categorySlug: "costs-and-budget",
       topicSlugs: ["budgeting-a-custom-home"],
       tags: ["cost", "research-phase"],
@@ -8918,6 +8932,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "cost-to-build-adu-arizona",
       question: "How much does it cost to build an ADU in Arizona?",
+      seoTitle: "ADU Cost in Arizona: $150K to $350K Detached (2026)",
       answerHtml: `<p>A simpler <strong>garage or interior conversion</strong> can start near <strong>$80,000</strong>, since it reuses an existing slab, walls, and roof. A common <strong>600 to 1,000 square foot detached ADU</strong> lands at roughly <strong>$150,000 to $350,000</strong>, and high-end Scottsdale casitas with premium finishes and difficult lots run <strong>$450 per square foot</strong> or more. Averaged across those tiers, an <strong>ADU</strong> (accessory dwelling unit) in the Phoenix and Scottsdale metro costs about <strong>$200 to $400 per square foot</strong> to build in 2026. These are planning ranges, not quotes, because prices move with material and labor costs.</p>
 <p>Where your project lands depends on whether it is detached or attached, how large the state and city let you build, your finish level, and how much utility and site work the lot needs. Below is how the dollars break down for a real Arizona ADU.</p>
 <h2>What an ADU costs per square foot in Arizona</h2>
@@ -8949,7 +8964,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://phoenix.municipal.codes/ZO/706" target="_blank" rel="noopener noreferrer">Phoenix Zoning Ordinance 706 (Accessory Uses and Structures)</a></li>
 </ul>`,
       shortAnswer: "Building an ADU in Arizona runs about $200 to $400 per square foot in 2026 across metro Phoenix and Scottsdale. A typical 600 to 1,000 square foot detached ADU costs roughly $150,000 to $350,000 to build, while a garage conversion can start near $80,000, plus utilities.",
-      metaDescription: "An ADU in metro Phoenix costs about $200 to $400 per square foot in 2026, or roughly $150K to $350K for a detached unit. See the full Arizona cost breakdown.",
+      metaDescription: "An ADU in metro Phoenix costs about $200 to $400 per sq ft in 2026, roughly $150K to $350K for a detached unit. The full Arizona cost breakdown.",
       categorySlug: "design-zoning-adus",
       topicSlugs: ["zoning-setbacks-adus", "adus-and-casitas"],
       tags: ["design", "research-phase"],
@@ -9218,6 +9233,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "adu-and-casita-rules-in-phoenix-arizona",
       question: "What are the ADU and casita rules in Phoenix, Arizona?",
+      seoTitle: "Phoenix ADU and Casita Rules: Size, Setbacks, Lot",
       answerHtml: `<p>Phoenix lets you build <strong>two accessory dwelling units (ADUs)</strong> on a normal single-family lot, plus a possible third on large lots. The rules live in <strong>Phoenix Zoning Ordinance Section 706</strong>. An <strong>ADU</strong>, often called a <strong>casita</strong> or <strong>guest house</strong> in Arizona, is a small second home with its own kitchen, bathroom, and entrance. On lots up to 10,000 square feet, each ADU is capped at <strong>1,000 square feet</strong>. A detached ADU placed in a required yard can be up to <strong>15 feet</strong> tall. The city cannot make you add parking. The big catch is that a Phoenix ADU cannot be used as a short-term rental, though you can lease it long term.</p>
 <p>These standards came from a state law that forced large Arizona cities to open their backyards to second units. Phoenix wrote that law into Section 706 and added its own size and height details. Below is what each rule means for a real Phoenix build.</p>
 <h2>How many ADUs you can build in Phoenix</h2>
@@ -9247,7 +9263,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://www.phoenix.gov/administration/departments/pdd/residential-building/accessory-dwelling-units.html" target="_blank" rel="noopener noreferrer">City of Phoenix: Accessory Dwelling Units (Planning and Development)</a></li>
 </ul>`,
       shortAnswer: "Phoenix allows two ADUs on a standard single-family lot under Zoning Ordinance Section 706. On lots up to 10,000 square feet, each ADU caps at 1,000 square feet. A detached unit in a required yard caps at 15 feet tall. No extra parking is required, but ADUs cannot be short-term rentals.",
-      metaDescription: "Phoenix ADU and casita rules: two units per lot, 1,000 sq ft cap on standard lots, 5-foot setbacks, 15-foot height, no extra parking. See Zoning Ordinance 706.",
+      metaDescription: "Phoenix allows two ADUs per lot, up to 1,000 sq ft on standard lots, 5 ft setbacks, 15 ft height and no extra parking. Zoning Ordinance 706 explained.",
       categorySlug: "design-zoning-adus",
       topicSlugs: ["zoning-setbacks-adus", "adus-and-casitas"],
       tags: ["design", "phoenix", "research-phase"],
@@ -10557,6 +10573,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "how-close-can-a-well-be-to-a-septic-system-in-arizona",
       question: "How close can a well be to a septic system in Arizona?",
+      seoTitle: "Well to Septic Distance in Arizona: the 100 ft Rule",
       answerHtml: `<p>State law is direct: no well may be drilled within <strong>100 feet</strong> of any septic tank or sewage disposal area, unless the <strong>Arizona Department of Water Resources (ADWR)</strong> director approves an exception in writing. That 100 feet is the statewide floor, not a target. Your county health authority can require a larger separation based on soil and site conditions, so confirm the exact setback with the county before you place the well or the septic field. Getting this right on the site plan protects your drinking water and keeps both permits on track.</p>
 <h2>The 100-foot rule and who sets it</h2>
 <p>The core rule is 100 feet between a well and a septic system, set by state water law in <strong>A.A.C. R12-15-818</strong>, the well construction rule. ADWR states it plainly: except for monitoring wells, "no well shall be drilled within 100 feet of any septic tank system, sewage disposal area, landfill, hazardous waste facility, storage area of hazardous materials or petroleum storage areas and tanks, unless authorized in writing by the Director." So a private domestic well and your leach field must keep at least 100 feet apart in every direction. To build closer, you would have to request a written variance from the ADWR director, which is the exception, not the plan.</p>
@@ -10586,7 +10603,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://azdeq.gov/onsitewastewater" target="_blank" rel="noopener noreferrer">ADEQ Onsite Wastewater Treatment Facility (septic) program</a></li>
 </ul>`,
       shortAnswer: "In Arizona a well must be at least 100 feet from any septic tank or sewage disposal area. State law bars drilling a well within 100 feet of a septic system unless the state director approves an exception. Your county can require a greater distance, so confirm the setback with the county before you site either one.",
-      metaDescription: "Arizona requires a well to sit at least 100 feet from a septic tank or disposal area. Here is the rule, who enforces it, and how to plan well and septic placement.",
+      metaDescription: "Arizona requires 100 feet between a well and a septic tank or leach field. Who enforces it, and how to lay out both on a small rural lot.",
       categorySlug: "land-and-due-diligence",
       topicSlugs: ["buying-land-to-build"],
       tags: ["land", "research-phase"],
@@ -11772,6 +11789,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "do-i-need-a-permit-to-build-a-shed-or-detached-structure-in-arizona",
       question: "Do I need a permit to build a shed or detached structure in Arizona?",
+      seoTitle: "Shed Permit in Arizona: When 200 Sq Ft Is Exempt",
       answerHtml: `<p>In most of Arizona, you do <strong>not</strong> need a building permit for a shed that is <strong>200 square feet or smaller</strong>, one story, and has <strong>no electrical, plumbing, or mechanical</strong> hookups. This exemption comes from the <strong>International Residential Code (IRC)</strong>, the model code Arizona cities and counties enforce, in Section <strong>R105.2</strong>, "Work exempt from permit." The exemption covers small detached buildings like tool sheds and storage sheds. The moment your shed crosses 200 square feet, adds a second story, or gets wired for power or plumbed for water, the exemption ends and you need a permit. And even when no permit is required, your shed still has to meet <strong>zoning</strong> rules like setbacks from property lines. Check your specific city, because some lower the size limit.</p>
 <h2>The 200 square foot rule and its exact limits</h2>
 <p>The core rule is a 200 square foot ceiling, and it is the single most useful number for any shed project in Arizona. The IRC exempts "one-story detached accessory structures used as tool and storage sheds, playhouses and similar uses" when the floor area is not greater than <strong>200 square feet</strong>.</p>
@@ -11803,7 +11821,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://www.scottsdaleaz.gov/planning-development/permit-services" target="_blank" rel="noopener noreferrer">City of Scottsdale: Permit Services</a></li>
 </ul>`,
       shortAnswer: "Usually not, if the shed is 200 square feet or smaller, one story, and has no electrical, plumbing, or mechanical hookups. The International Residential Code exempts these small detached structures from a building permit. Larger sheds or any with utilities need a permit. Zoning setbacks still apply even when no permit is required.",
-      metaDescription: "In Arizona, sheds 200 sq ft or smaller with no utilities are exempt from a building permit under the IRC. Larger or wired sheds need one; zoning setbacks apply.",
+      metaDescription: "Sheds of 200 sq ft or less with no utilities need no building permit in Arizona; larger or wired sheds do. Setbacks still apply. The rules explained.",
       categorySlug: "permits-and-codes",
       topicSlugs: ["building-permits-arizona"],
       tags: ["permits", "research-phase"],
@@ -12164,6 +12182,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "building-permit-cost-arizona",
       question: "How much does a building permit cost in Arizona?",
+      seoTitle: "Building Permit Cost in Arizona: $2K to $10K+ (2026)",
       answerHtml: `<p>There is no single statewide permit fee in Arizona. Each city sets its own schedule, so the exact number depends on three things: which city or county issues the permit, how big the home is, and the <strong>valuation</strong> (the dollar value of the labor and materials). Run those variables together and a building permit for a new custom home usually costs between <strong>$2,000 and $10,000 or more</strong>. Some cities, like <strong>Scottsdale</strong>, base the building permit fee on <strong>square footage</strong>. Others base it on the construction value of the project. On top of the building permit, you almost always pay a separate <strong>plan review fee</strong> and, for new construction, <strong>development (impact) fees</strong>. Because these schedules change, confirm the current cost with your city before you budget.</p>
 <h2>What goes into an Arizona building permit cost</h2>
 <p>Your permit cost is rarely one fee. It is a stack of fees, and knowing each one keeps the final invoice from surprising you. For a new home, the main pieces are the building permit fee, the plan review fee, the trade permits, and development fees.</p>
@@ -12193,7 +12212,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://www.scottsdaleaz.gov/planning-development/plan-review-services" target="_blank" rel="noopener noreferrer">City of Scottsdale: Plan Review Services</a></li>
 </ul>`,
       shortAnswer: "A building permit for a new home in Arizona usually runs $2,000 to $10,000 or more, depending on the city, the home's size, and its valuation. Most cities set permit fees on square footage or on construction value, then add separate plan review and development fees. Always confirm the current figure with your city.",
-      metaDescription: "Arizona building permit costs run roughly $2,000-$10,000+ for a new home, set by city on square footage or valuation, plus plan review and development fees.",
+      metaDescription: "A new-home building permit in Arizona runs about $2,000 to $10,000+, set by city on square footage or valuation. Plan review and development fees by city.",
       categorySlug: "permits-and-codes",
       topicSlugs: ["building-permits-arizona"],
       tags: ["permits", "research-phase"],
@@ -13611,6 +13630,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "how-much-does-it-cost-to-tear-down-and-rebuild-a-house-in-arizona",
       question: "How much does it cost to tear down and rebuild a house in Arizona?",
+      seoTitle: "Tear Down and Rebuild Cost in Arizona (2026)",
       answerHtml: `<p>Tearing down and rebuilding a house in Arizona has two cost halves. The <strong>demolition</strong> itself usually runs about <strong>$8,000 to $25,000</strong> in 2026 for a typical single-family home, plus separate charges for <strong>asbestos abatement</strong>, <strong>well or septic abandonment</strong>, and <strong>debris hauling</strong>. The <strong>rebuild</strong> then costs the same as any new home, roughly <strong>$350 to $600 or more per square foot</strong> for a custom home in the Phoenix and Scottsdale metro. So a scrape and rebuild is mostly a new-construction budget with a demolition line on top. These are 2026 planning ranges, not quotes. Demolition and material prices move, so confirm the current figures with your builder before you set a budget.</p>
 <h2>What demolition itself costs</h2>
 <p>The demolition line on a scrape and rebuild usually lands between <strong>$8,000 and $25,000</strong> for a standard Arizona house, and the number is driven by size, structure, and what the crew finds. A small slab-on-grade ranch comes down fast and cheap. A larger two-story home, a home with a basement, or one built with block and tile takes longer and costs more. Demolition pricing tends to scale with square footage and the volume of debris hauled to the landfill, which is why a 1,200 square foot teardown costs a fraction of a 3,500 square foot one.</p>
@@ -13640,7 +13660,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://www.azwater.gov/permitting-wells/well-drilling-arizona" target="_blank" rel="noopener noreferrer">Arizona Department of Water Resources: Well Drilling in Arizona</a></li>
 </ul>`,
       shortAnswer: "Demolishing a house in Arizona usually runs about $8,000 to $25,000 in 2026, plus extra for asbestos abatement, well or septic abandonment, and debris hauling. The rebuild then costs the same as new construction, about $350 to $600+ per square foot for a custom home. Confirm current pricing with your builder.",
-      metaDescription: "Tearing down a house in Arizona costs about $8,000 to $25,000 to demolish in 2026, plus the new-build cost. See abatement, salvage, and scrape vs remodel.",
+      metaDescription: "Demolition in Arizona runs about $8,000 to $25,000, then the new-build cost on top. Abatement, salvage, and when a scrape beats a remodel, with 2026 numbers.",
       categorySlug: "remodeling-and-additions",
       topicSlugs: ["remodeling-and-additions"],
       tags: ["remodeling", "research-phase"],
@@ -13910,6 +13930,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "can-you-finance-a-hauled-water-or-cistern-home-with-a-usda-or-va-loan-in-arizona",
       question: "Can you finance a hauled-water or cistern home with a USDA or VA loan in Arizona?",
+      seoTitle: "USDA or VA Loan on a Cistern Home in Arizona?",
       answerHtml: `<p>Both programs require the property to have a continuous, safe, and potable water supply, and both treat a <strong>cistern</strong> as a stored tank, not a real water source. USDA's rulebook says properties served by cisterns are not acceptable. VA says a cistern is not a continuing supply of safe and potable water. The fix is the same for both: a drilled <strong>private well</strong> that produces water and passes a health-authority or EPA water test does qualify. So if you are building or buying in Rio Verde Foothills and want a USDA or VA loan, the deciding factor is whether the parcel has a well, not a tank of <strong>hauled water</strong>.</p>
 <p>This page covers what USDA and VA each require for water, why a cistern fails both, what a well has to pass, and the practical path for a tank-home buyer. For the broader resale and lender picture, see <a href="/faq/does-a-well-or-hauled-water-affect-a-rio-verde-foothills-property-value-and-financing">does a well or hauled water affect a Rio Verde Foothills property value and financing</a>.</p>
 <h2>What USDA Rural Development requires for water</h2>
@@ -13946,7 +13967,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://www.azleg.gov/ars/45/00454.htm" target="_blank" rel="noopener noreferrer">A.R.S. 45-454 (Exemption of small non-irrigation wells; 35 gallons per minute domestic well)</a></li>
 </ul>`,
       shortAnswer: "No, not on hauled water alone. USDA and VA both require a continuous, safe, and potable water supply, and both treat a cistern as unacceptable. A drilled well that passes a health-authority or EPA water test does qualify for both. On a Rio Verde Foothills lot, a well, not a tank, unlocks these loans.",
-      metaDescription: "USDA and VA loans reject hauled-water cisterns but accept a tested private well. Here is what each program requires for water on raw rural Arizona land.",
+      metaDescription: "USDA and VA loans reject hauled-water cisterns but accept a tested private well. What each program requires for water on rural Arizona land and what qualifies.",
       categorySlug: "water-septic-utilities",
       topicSlugs: ["rural-water-and-septic", "rio-verde-water"],
       tags: ["water-septic", "research-phase"],
@@ -14211,6 +14232,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "how-deep-do-you-have-to-drill-a-well-in-arizona",
       question: "How deep do you have to drill a well in Arizona?",
+      seoTitle: "How Deep Are Wells in Arizona? Depth by Region",
       answerHtml: `<p>The <strong>aquifer</strong> (the underground layer of rock and sand that holds water) and the <strong>water table</strong> (the depth at which the ground is saturated) beneath your land set how deep a well has to go, not a code minimum. Arizona has no required depth for a water well. A well is drilled only as deep as it has to go to reach enough water. Most domestic wells in the state land somewhere between <strong>100 and 800 feet</strong>, and in deep desert basins, some go past <strong>1,000 feet</strong>. Two homes a mile apart can need very different depths. Because water levels shift over time and vary lot by lot, confirm the likely depth for your specific parcel with a <strong>licensed well driller</strong> before you budget. These are general ranges, not a guarantee for your land.</p>
 <h2>Why there is no single answer to well depth</h2>
 <p>Well depth has no fixed number because you are chasing water, not a code requirement. The drill goes down until it hits a water-bearing layer that can supply the home, then a bit further to set the pump below the water level. How deep that is comes down to geology. In a valley with a high water table, you might hit good water at 150 feet. On a ridge or in a deep basin, the same water might sit 600 or 800 feet down. The land sets the depth, not a rule.</p>
@@ -14238,7 +14260,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://www.azleg.gov/ars/45/00454.htm" target="_blank" rel="noopener noreferrer">A.R.S. 45-454 (Exemption of small non-irrigation wells; 35 gpm)</a></li>
 </ul>`,
       shortAnswer: "There is no set depth. An Arizona well is drilled until it reaches enough water, which depends on the local aquifer and water table. Most domestic wells run between 100 and 800 feet, and some pass 1,000 feet in deep basins. If a well runs dry, you deepen it or drill a new one.",
-      metaDescription: "There is no required well depth in Arizona. Most domestic wells run 100 to 1,000+ feet by aquifer. See what sets depth and what to do if a well runs dry.",
+      metaDescription: "There is no required well depth in Arizona. Domestic wells run 100 to 1,000+ ft depending on the aquifer. What sets the depth and what to do if one runs dry.",
       categorySlug: "water-septic-utilities",
       topicSlugs: ["rural-water-and-septic"],
       tags: ["water-septic", "research-phase"],
@@ -14421,6 +14443,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "what-is-a-shared-well-agreement-in-arizona",
       question: "What is a shared well agreement and do I need one in Arizona?",
+      seoTitle: "Shared Well Agreements in Arizona: What to Check",
       answerHtml: `<p>No state agency regulates who pays what when two homes draw from one well, which is exactly why you need a written, recorded contract if your home shares a well with a neighbor's. That contract, called a shared well agreement, divides the cost of <strong>power, repairs, testing, and maintenance</strong>, names who manages the pump, and records the <strong>easements</strong> that let each owner reach the well. Arizona law does not force you to have one. But because the <strong>Arizona Department of Water Resources (ADWR)</strong> stays out of these arrangements, a recorded agreement is the only thing standing between you and a handshake over your drinking water.</p>
 <p>Here is what a shared well agreement does, what it should contain, and why skipping it is a real risk on rural Arizona land.</p>
 <h2>What a shared well agreement actually is</h2>
@@ -14449,7 +14472,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://www.azwater.gov/permitting-wells/well-drilling-arizona" target="_blank" rel="noopener noreferrer">Arizona Department of Water Resources: Well Drilling in Arizona</a></li>
 </ul>`,
       shortAnswer: "A shared well agreement is a recorded contract that lets two or more properties draw from one well and sets who pays for power, repairs, and upkeep. Arizona does not legally require one, but you need it: ADWR does not regulate these deals, so the recorded agreement is your only protection if a neighbor stops paying.",
-      metaDescription: "A shared well agreement in Arizona is a recorded contract dividing one well's cost and upkeep. You are not required to have one, but you need it. Here is why.",
+      metaDescription: "A shared well agreement is a recorded contract splitting one well's costs and upkeep. What it should cover, and why you need one even if it is not required.",
       categorySlug: "water-septic-utilities",
       topicSlugs: ["rural-water-and-septic", "rio-verde-water"],
       tags: ["water-septic", "research-phase"],
@@ -15000,6 +15023,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "rural-residential-zoning-districts-in-maricopa-county",
       question: "What do Maricopa County's rural residential zoning districts (like RU-43) allow?",
+      seoTitle: "Maricopa County RU-43 Zoning: What You Can Build",
       answerHtml: `<p><strong>Outside city limits there is no municipal code to answer to. Land in unincorporated Maricopa County, including much of the Rio Verde Foothills, is governed by the county's own zoning ordinance rather than a city code, and most low-density home sites fall in a rural district such as RU-43. These districts pair a single-family home with generous lot sizes, larger setbacks, and the right to keep horses and other animals, which is exactly why so many custom-home buyers seek them out.</strong></p>
 <h2>The county, not a city, is the authority here</h2>
 <p>If your lot is outside an incorporated city or town, Maricopa County Planning and Development administers zoning and issues the building permit. The Maricopa County Zoning Ordinance defines a family of districts; the most common rural-residential one is RU-43, where the "RU" denotes rural and the "43" refers to a minimum lot area of 43,560 square feet, which is one acre. Larger rural and residential districts exist for bigger parcels, and the exact district for any given lot is recorded on the county's zoning map.</p>
@@ -15021,7 +15045,7 @@ export const faqSeed: FaqSeed = {
 <h2>How Jematell Homes helps</h2>
 <p>We build custom homes throughout unincorporated Maricopa County and design each one to its parcel's rural zoning, working the setbacks, height, lot coverage, accessory buildings, and any animal facilities into the site plan from the start. Because Maricopa County updates its zoning ordinance and applies districts and overlays parcel by parcel, confirm the current zoning, setbacks, and animal rules with Maricopa County Planning and Development, and any applicable HOA, for your specific lot before you finalize a design.</p>`,
       shortAnswer: "In unincorporated Maricopa County, low-density home sites usually sit in a rural district like RU-43, which sets a one-acre minimum lot, allows a single-family home plus horses and other animals, and uses larger setbacks. The county, not a city, is the permitting authority, and exact rules are set per district.",
-      metaDescription: "What does Maricopa County RU-43 rural zoning allow? A one-acre minimum lot, a single-family home, horse and animal privileges, and larger setbacks, all administered by the county for unincorporated land.",
+      metaDescription: "RU-43 rural zoning in Maricopa County: one-acre minimum lots, a single-family home, animal privileges, and larger setbacks, administered by the county.",
       categorySlug: "design-zoning-adus",
       topicSlugs: ["zoning-setbacks-adus"],
       tags: ["zoning", "ru-43", "maricopa-county", "rural", "research-phase"],
