@@ -413,6 +413,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "are-stucco-homes-good-for-arizona",
       question: "Are stucco homes good for the Arizona desert climate?",
+      seoTitle: "Stucco Homes in Arizona: Pros, Cons and Cracking",
       answerHtml: `<p>Stucco is a strong fit for the Arizona desert, which is why most homes in the Phoenix and Scottsdale metro wear it. <strong>Stucco</strong> is a cement-based plaster troweled onto the outside of a home in layers. It handles brutal sun and 110-degree summers without warping, fading fast, or rotting the way wood and vinyl can. It resists fire, shrugs off insects, and needs little upkeep beyond paint and the occasional crack repair. Its real weakness is hairline cracking, which good installation and properly placed control joints keep small and cosmetic. For desert durability, stucco earns its place as the default exterior here.</p>
 <p>Below is how stucco is built, how it performs in desert heat, where it falls short, and how to keep it looking good for decades.</p>
 <h2>What stucco is and how it is built</h2>
@@ -3479,6 +3480,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "cost-plus-vs-fixed-price-home-contract",
       question: "Cost-plus vs fixed-price custom home contract: which is better?",
+      seoTitle: "Cost-Plus vs Fixed-Price Home Contract: Which Wins",
       answerHtml: `<p>Neither contract is better in every case. The right choice depends on whether you value <strong>budget certainty</strong> or <strong>cost transparency</strong> more. A <strong>fixed-price contract</strong>, also called a fixed-fee or lump-sum contract, gives you one locked number for the finished home, and the builder absorbs the risk if costs run over. A <strong>cost-plus contract</strong> charges you the real cost of construction plus a builder fee, so you see every dollar and keep any savings, but you carry the risk if costs rise. The NAHB lays out both methods, one where the "builder furnishes you with a bid that tells you exactly how much you will pay," and one where the builder charges "time and labor plus a percentage markup." Pick fixed-price if a predictable budget matters most. Pick cost-plus if you want control over selections and a clear view of where your money goes.</p>
 <h2>The core trade-off: who carries the risk</h2>
 <p>The single biggest difference is who eats the cost overruns. In a fixed-price contract the builder does. In a cost-plus contract you do. Everything else flows from that.</p>
@@ -3992,6 +3994,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "how-long-does-it-take-to-build-a-custom-home-in-arizona",
       question: "How long does it take to build a custom home in Arizona?",
+      seoTitle: "How Long to Build a Custom Home in Arizona (Timeline)",
       answerHtml: `<p>A <strong>custom home</strong> in Arizona usually takes <strong>10 to 16 months</strong> from the day you sign a builder contract to the day you get keys. That breaks into three stages: <strong>design and engineering</strong> (2 to 5 months), <strong>plan review and permitting</strong> by your city or county (1 to 6 weeks), and <strong>construction</strong> (about 8 months on average). A bigger or more complex house, a raw lot that needs grading and utilities, or a permit office with a backlog can push the total past 18 months. National data backs the construction piece: the U.S. Census Bureau's Survey of Construction found single-family homes took about <strong>9.1 months</strong> start to finish in 2024, and homes built on the owner's land, which is what most custom builds are, took the longest.</p>
 <h2>What the full timeline looks like, stage by stage</h2>
 <p>A custom home timeline has four real stages, and most of the calendar goes to design and construction. Here is how the months usually split for a Phoenix-area build.</p>
@@ -6087,6 +6090,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "cost-to-add-a-pool-to-a-new-home-in-arizona",
       question: "How much does it cost to add a pool to a new home in Arizona?",
+      seoTitle: "Pool Cost on a New Home in Arizona (2026)",
       answerHtml: `<p>A basic play pool with simple decking sits at the low end of the Phoenix-metro market. A larger custom pool with a spa, a rock waterfall, travertine decking, and a heater climbs well past <strong>$100,000</strong>. Between those two, a new in-ground pool in the Phoenix and Scottsdale metro usually costs about <strong>$50,000 to $100,000 or more</strong> in 2026. These are 2026 planning ranges, not quotes, since pool prices move with concrete, steel, and labor costs. The number depends on size, depth, materials, and the features you add.</p>
 <p>Two facts shape the whole decision. First, building the pool <strong>during home construction</strong> is often cheaper and cleaner than adding it after you move in. Second, Arizona law requires a <strong>pool barrier</strong> on almost every residential pool, and that fence or wall is a real line item you cannot skip. Below is how the dollars and the rules break down.</p>
 <h2>What a new pool costs in Arizona</h2>
@@ -6173,6 +6177,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "how-much-does-it-cost-to-build-a-custom-home-in-arizona",
       question: "How much does it cost to build a custom home in Arizona?",
+      seoTitle: "Custom Home Cost in Arizona: $250 to $500 per Sq Ft",
       answerHtml: `<p>A custom home in the Phoenix and Scottsdale metro typically costs <strong>$250 to $500 per square foot</strong> to build in 2026. For a common 2,000 to 3,000 square foot home, that puts the build cost at roughly <strong>$500,000 to $1.5 million</strong>, and that figure does not include the land. Luxury Scottsdale and Cave Creek homes with high-end finishes, large spans, and difficult lots often run <strong>$600 to $900 per square foot</strong> or more. The national benchmark backs this up: the <strong>NAHB</strong> 2024 construction survey put the average new single-family home sale price at <strong>$665,298</strong>, with the home itself costing about <strong>$428,215</strong> to build before the lot.</p>
 <p>Where your project lands in that range comes down to size, finish level, lot conditions, and which city you build in. Below is how the dollars break down for a real Arizona custom build, so you can size your budget before you ever call a builder.</p>
 <h2>What a custom home costs per square foot in Arizona</h2>
@@ -9317,6 +9322,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "adu-setback-and-size-rules-by-city-in-arizona",
       question: "What are the ADU setback and size rules by city in Arizona?",
+      seoTitle: "ADU Setback and Size Rules by Arizona City",
       answerHtml: `<p>Across Arizona's larger cities the <strong>ADU setback and size rules</strong> rhyme but do not match. <strong>Phoenix, Scottsdale, and Mesa</strong> all permit a detached <strong>accessory dwelling unit (ADU)</strong>, or <strong>casita</strong>, as close as <strong>five feet</strong> to a side or rear lot line, cap the first unit near <strong>1,000 square feet</strong>, and cannot require extra parking. Where they diverge is rentals and height. <strong>Scottsdale</strong> makes you live on site to rent, <strong>Phoenix</strong> bans short-term rentals, and <strong>Mesa</strong> sets no owner rule at all. Smaller towns under 75,000 people, like <strong>Cave Creek</strong>, <strong>Fountain Hills</strong>, and <strong>Carefree</strong>, are exempt from the state mandate and treat casitas as guest space you cannot rent separately. This page lays the rules side by side so you can compare your city in one place.</p>
 <p>The reason the big cities look similar is a shared floor. State law <strong>A.R.S. 9-461.18</strong> sets minimum ADU rights for any city over 75,000 people. Each city then adds its own detail on top. The reason small towns look different is that the same statute exempts them. Below is the comparison, rule by rule.</p>
 <h2>ADU setback and size: the city-by-city comparison</h2>
@@ -9814,6 +9820,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "what-is-a-scullery-or-back-kitchen-and-do-you-need-one",
       question: "What is a scullery or back kitchen, and do you need one?",
+      seoTitle: "Scullery or Back Kitchen: What It Is, Do You Need One",
       answerHtml: `<p>Behind the main kitchen, where the real cooking, prep, and cleanup happen out of sight, sits the <strong>scullery</strong>, also called a <strong>back kitchen</strong> or <strong>messy kitchen</strong>. It usually holds a second sink, a dishwasher, plenty of counter, and often a cooktop or second oven. The point is simple: the main kitchen stays clean and beautiful for guests while the dishes, the small appliances, and the cooking mess hide in the scullery. You need one if you cook seriously or entertain often and want the show kitchen to stay open and uncluttered in the great room.</p>
 <p>The scullery has become one of the most requested features in higher-end Arizona custom homes, and the reason is the open floor plan. When the kitchen sits on display in the great room, homeowners want a second space to absorb the work. Below is what a scullery includes, how it differs from a butler's pantry, the ventilation a second cooking space needs in a sealed Arizona home, and how to decide if it earns its place in your plan.</p>
 <h2>What a scullery includes</h2>
@@ -9842,7 +9849,7 @@ export const faqSeed: FaqSeed = {
 <li><a href="https://www.cityofboise.org/media/3923/433-irc-code-section-r303-light-ventilation.pdf" target="_blank" rel="noopener noreferrer">City of Boise, IRC Code Handout Section R303: Light and Ventilation</a></li>
 </ul>`,
       shortAnswer: "A scullery, also called a back kitchen, is a small working kitchen hidden behind the main show kitchen. It holds a second sink, dishwasher, and often a cooktop so the messy prep and cleanup stay out of sight. You need one if you entertain often and want the main kitchen to stay clean and open to the great room.",
-      metaDescription: "A scullery or back kitchen is a hidden working kitchen behind the show kitchen. See what it includes, how it differs from a butler's pantry, and if you need one.",
+      metaDescription: "A scullery or back kitchen is a hidden working kitchen behind the show kitchen. What it includes, how it differs from a butler's pantry, and if you need one.",
       categorySlug: "design-zoning-adus",
       topicSlugs: ["zoning-setbacks-adus"],
       tags: ["design", "research-phase"],
@@ -10264,6 +10271,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "which-arizona-cities-are-required-to-allow-adus",
       question: "Which Arizona cities are required to allow ADUs?",
+      seoTitle: "Which Arizona Cities Must Allow ADUs (A.R.S. 9-461.18)",
       answerHtml: `<p>In Arizona, a city is <strong>required to allow ADUs</strong> only if its population is <strong>more than 75,000 people</strong>. The state ADU law, <strong>A.R.S. 9-461.18</strong>, says plainly: "This section applies to a municipality with a population of more than seventy-five thousand persons." An <strong>ADU</strong>, or accessory dwelling unit, is a small second home on a single-family lot with its own sleeping and bathroom space. Cities over that line, like <strong>Phoenix, Mesa, Chandler, Scottsdale, and Gilbert</strong>, must allow at least one attached and one detached ADU on any single-family lot. Smaller towns, including several Jematell serves, like <strong>Carefree, Cave Creek, and Fountain Hills</strong>, fall under the threshold and are not forced by this law to allow them. Land outside any city is governed by county law instead, under A.R.S. 11-810.01.</p>
 <p>The simple test is population plus jurisdiction. If your lot is inside a city over 75,000, the state mandate covers you. If it is in a small town or out in unincorporated county land, a different rule applies. Knowing which one decides whether you have a legal right to build a backyard casita or have to ask permission.</p>
 <h2>The rule: 75,000 people is the line</h2>
@@ -10787,6 +10795,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "how-much-are-hoa-design-review-fees-for-a-custom-home-in-arizona",
       question: "How much are HOA design review fees for a custom home in Arizona?",
+      seoTitle: "HOA Design Review Fees for a Custom Home in Arizona",
       answerHtml: `<p>Budget for two separate charges when a gated community reviews your plans: a <strong>plan review fee</strong> of a few hundred to a few thousand dollars, and a larger <strong>refundable construction deposit</strong> that is returned when you finish to the approved plans. The plan fee pays the <strong>Design Review Committee (DRC)</strong> to review your drawings. The deposit protects the community against damage and unfinished work. As a real example, <strong>Carefree Ranch</strong> publishes a fee schedule of <strong>$1,500 for plans and $500 for the building envelope</strong>, with non-standard requests billed by the association's architect at <strong>$250 an hour</strong> or more. Numbers vary widely by community, and these are private fees set by the HOA, not the city. Because fee schedules change, confirm the current amounts with your community before you budget.</p>
 <p>This page breaks down the plan fees, the refundable deposit, the Arizona law that controls the deposit, and what else to budget for. For how the whole review works, see <a href="/faq/how-does-hoa-design-review-affect-building-a-custom-home">how HOA design review affects building a custom home</a>.</p>
 <h2>What the plan review fees cover and what they run</h2>
@@ -12575,6 +12584,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "what-inspections-are-required-when-building-a-house-in-arizona",
       question: "What inspections are required when building a house in Arizona?",
+      seoTitle: "Home Building Inspections in Arizona: The Sequence",
       answerHtml: `<p>Building a house in Arizona requires a series of inspections, each tied to a stage of construction under the <strong>International Residential Code (IRC)</strong>, the model code every Arizona city and county has adopted. The required stages are the <strong>footing and foundation</strong> inspection before concrete is poured, the <strong>rough-in</strong> inspections for plumbing, electrical, and mechanical before walls close, the <strong>framing</strong> inspection, the <strong>insulation</strong> inspection before drywall, and the <strong>final inspection</strong> before anyone moves in. The inspections come from IRC Section <strong>R109</strong>, "Types of inspections." Your city or county inspector has to approve each stage before the next phase covers it up. Skip one and you may have to open finished walls to prove the hidden work meets code.</p>
 <h2>The required inspection stages, in order</h2>
 <p>A house is inspected in the order it is built, so each stage signs off on work before the next stage hides it. The IRC sets these stages in Section R109.1, and Arizona cities follow them. Here is the sequence for a typical custom home.</p>
@@ -13299,6 +13309,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "how-much-does-a-garage-conversion-cost-in-arizona",
       question: "How much does a garage conversion cost in Arizona?",
+      seoTitle: "Garage Conversion Cost in Arizona (2026)",
       answerHtml: `<p>A garage conversion in the Phoenix and Scottsdale metro usually costs about <strong>$20,000 to $70,000</strong> in 2026, which works out to roughly <strong>$80 to $200 per square foot</strong>. A basic conversion that turns the garage into a heated and cooled bedroom or office sits at the low end. A full conversion into a legal <strong>accessory dwelling unit (ADU)</strong> with its own kitchen and bathroom runs higher, often <strong>$60,000 to $120,000</strong>, because plumbing, a kitchen, and a separate entrance add real money. These are 2026 planning ranges, not quotes. Labor and material prices move, so confirm the current figure with your builder before you set a budget.</p>
 <h2>What you are actually paying for in a garage conversion</h2>
 <p>A garage conversion costs what it does because you are turning a rough, unconditioned box into finished living space that meets current building code. A garage has a bare slab, open framing, no insulation in the walls, no heating or cooling, and a big roll-up door where a wall should be. Every one of those gaps has to be closed to make the room legal and comfortable in Arizona heat. The price reflects that work, not just paint and flooring.</p>
@@ -13673,6 +13684,7 @@ export const faqSeed: FaqSeed = {
     item({
       slug: "remodel-vs-tear-down-and-rebuild-which-is-better-in-arizona",
       question: "Remodel vs tear down and rebuild: which is better in Arizona?",
+      seoTitle: "Remodel or Tear Down and Rebuild? Arizona Compared",
       answerHtml: `<p>Remodel your Arizona house when it is structurally sound and you can live with the basic layout, because keeping the existing shell is almost always cheaper. <strong>Tear down and rebuild</strong> when the foundation, roof, electrical, and plumbing all need replacing, the floor plan cannot be fixed, or the lot is worth far more than the house sitting on it. The honest crossover point is the <strong>full gut remodel</strong>: once a remodel costs nearly as much as a new home and still leaves you with an old shell, a scrape and rebuild usually gives you more house for close to the same money. Here is a clear framework to decide.</p>
 <h2>Start with the structure: is the house worth keeping?</h2>
 <p>The first question is whether the bones are sound, because that decides how much of the house you can reuse. A remodel is the smart move when the <strong>foundation</strong>, <strong>roof structure</strong>, and <strong>framing</strong> are in good shape. You are keeping the most expensive parts of a house and changing the parts you can see. A tear-down starts to make sense when those core systems are failing all at once.</p>
