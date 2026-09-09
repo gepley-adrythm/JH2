@@ -51,6 +51,8 @@ export const SERVICE_LINKS: Record<string, { label: string; href: string }> = {
   gallery: { label: "Homes We Have Built", href: "/gallery" },
   warranty: { label: "Our Home Warranty", href: "/warranty" },
   "rv-garage-build": { label: "An RV Garage Home We Built in Rio Verde", href: "/gallery/rio-verde-rv" },
+  casitas: { label: "Casitas and Guest Houses", href: "/casitas-and-guest-houses" },
+  "rv-garages": { label: "RV Garages", href: "/rv-garages" },
   ...Object.fromEntries(
     locations.map((l) => [
       `where-we-build/${l.slug}`,
