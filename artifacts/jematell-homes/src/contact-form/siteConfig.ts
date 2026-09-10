@@ -21,7 +21,7 @@ export const siteConfig = {
   },
 
   conversionValue: {
-    newContact: 50,
+    newContact: 2160,
     existingContact: 1,
   },
 } as const;
